@@ -1081,7 +1081,7 @@ button.g-node:hover{border-color:var(--v-accent);transform:translateY(-1px)}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><b>cg cert path<sup>&deg;</sup></b><span>v.1.2</span></div>
+    <div class="mark" data-rv="0"><b>cg cert path<sup>&deg;</sup></b><span>v.1.3</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2251,6 +2251,7 @@ function onSheetOpen(){
   revealIn($("#sv-"+shView),160);
   requestAnimationFrame(function(){placeTab();sheet.classList.add("live");if(shView!=="home") $("#sv-"+shView).classList.add("drawn");});
   if(shView==="home"){var c=$("#sb-count");countUp(c,+c.dataset.n,"",1500);}
+  else if(shView==="cool"){var cn=$("#cool-n");cn.textContent="$0";countUp(cn,4500,"$",1600);}
 }
 function animSheet(to,dur){
   var id=++sheetId, from=sheetP;
