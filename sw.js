@@ -1,12 +1,14 @@
 /* CG Cert Path service worker: makes the site installable and usable offline.
    Change VERSION whenever you upload a new index.html so phones pick it up quickly. */
-var VERSION = "certpath-v1";
-var SHELL = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png",
+var VERSION = "certpath-v3";
+var SHELL = [ "manifest.webmanifest", "icon-192.png", "icon-512.png",
              "icon-maskable-512.png", "apple-touch-icon.png", "favicon.png"];
 var CDN = ["cdnjs.cloudflare.com", "cdn.jsdelivr.net", "fonts.googleapis.com", "fonts.gstatic.com"];
 
 self.addEventListener("install", function (e) {
-  e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(SHELL); }).then(function () { return self.skipWaiting(); }));
+  e.waitUntil(caches.open(VERSION).then(function (c) {
+    return Promise.all([c.addAll(SHELL), fetch("index.html", { cache: "no-store" }).then(function (r) { return c.put("index.html", r); })]);
+  }).then(function () { return self.skipWaiting(); }));
 });
 
 self.addEventListener("activate", function (e) {
@@ -22,7 +24,8 @@ self.addEventListener("fetch", function (e) {
 
   /* the page itself: network first so updates show right away, cache when offline */
   if (req.mode === "navigate") {
-    e.respondWith(fetch(req).then(function (res) {
+    /* "no-store" skips the browser's saved copy, so an update shows up the moment it's live */
+    e.respondWith(fetch(req.url, { cache: "no-store", credentials: "same-origin" }).then(function (res) {
       var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put("index.html", copy); });
       return res;
     }).catch(function () { return caches.match("index.html"); }));
