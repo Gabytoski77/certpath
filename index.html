@@ -1106,7 +1106,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><b>cg cert path<sup>&deg;</sup></b><span>v.1.6</span></div>
+    <div class="mark" data-rv="0"><b>cg cert path<sup>&deg;</sup></b><span>v.1.7</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -3537,6 +3537,202 @@ GUIDES["PenTest+"]={
     ["Crucial Exams: 2026 voucher prices","https://crucialexams.com/posts/blog/comptia-voucher-price-increase-2026"]]
 };
 
+GUIDES["SecurityX"]={
+  id:"securityx",
+  lead:"CompTIA's expert-level security cert, formerly called CASP+. It proves you can design and engineer security across a whole enterprise: architecture, zero trust, cryptography, automation and governance. It's built for senior engineers, not beginners.",
+  checked:"Nov 6, 2026",
+  planHours:150,
+  laneOnly:["Cyber"],
+  versions:{
+    v5:{code:"CAS-005",label:"V5",status:"Launched Dec 17, 2024 · pass/fail",
+      note:"The current version, and the first under the SecurityX name. CompTIA usually retires an exam about three years after launch, so expect V5 to run until about 2027. There's no scaled score: you simply pass or fail.",
+      numbered:true,
+      domains:[
+        {n:"1.0",name:"Governance, Risk, and Compliance",w:20,obj:[
+          ["Given a set of organizational security requirements, implement the appropriate governance components","Policies, procedures, standards, training, RACI, COBIT and ITIL, configuration management, GRC tools and data governance."],
+          ["Given a set of organizational security requirements, perform risk management activities","Impact analysis, quantitative and qualitative risk, third-party and supply chain risk, and continuity planning."],
+          ["Explain how compliance affects information security strategies","PCI DSS, ISO/IEC 27000, NIST CSF, SOC 2, privacy laws and cross-border issues."],
+          ["Given a scenario, perform threat-modeling activities","Threat actors, ATT&CK, CAPEC and STRIDE, attack surface, abuse cases and attack trees."],
+          ["Summarize the information security challenges associated with artificial intelligence (AI) adoption","AI legal and ethical concerns, prompt injection, data poisoning, deepfakes and AI assistant risks.",true]]},
+        {n:"2.0",name:"Security Architecture",w:27,obj:[
+          ["Given a scenario, analyze requirements to design resilient systems","Where firewalls, IPS, WAFs and load balancers go, plus recovery and scaling."],
+          ["Given a scenario, implement security in the early stages of the systems life cycle and throughout subsequent stages","Security requirements, SAST, DAST, SCA, SBoMs, CI/CD security and end-of-life planning."],
+          ["Given a scenario, integrate appropriate controls in the design of a secure architecture","Attack surface reduction, defense in depth, logging, data classification, DLP and hybrid setups."],
+          ["Given a scenario, apply security concepts to the design of access, authentication, and authorization systems","Provisioning, federation, SSO, RBAC, ABAC, MAC, DAC and PKI design."],
+          ["Given a scenario, securely implement cloud capabilities in an enterprise environment","CASB, shared responsibility, containers, serverless, API security and cloud data risks."],
+          ["Given a scenario, integrate Zero Trust concepts into system architecture design","Continuous authorization, microsegmentation, SASE, SD-WAN, attestation and security boundaries."]]},
+        {n:"3.0",name:"Security Engineering",w:31,obj:[
+          ["Given a scenario, troubleshoot common issues with identity and access management (IAM) components in an enterprise environment","Secrets, conditional access, MFA, SAML, OAuth, Kerberos, PAM and 802.1X."],
+          ["Given a scenario, analyze requirements to enhance the security of endpoints and servers","EDR, application control, host firewalls and IPS, MDM and defending against attacker techniques."],
+          ["Given a scenario, troubleshoot complex network infrastructure security issues","Misconfigurations, IPS rules, DNSSEC, SPF, DKIM and DMARC, TLS errors and DoS."],
+          ["Given a scenario, implement hardware security technologies and techniques","TPM, HSM, secure and measured boot, self-encrypting drives and tamper detection."],
+          ["Given a set of requirements, secure specialized and legacy systems against threats","OT, SCADA, ICS, IoT, embedded systems and systems that can't be patched."],
+          ["Given a scenario, use automation to secure the enterprise","Scripting, infrastructure as code, SOAR, patching, SCAP and generative AI tools."],
+          ["Explain the importance of advanced cryptographic concepts","Post-quantum crypto, key stretching and splitting, homomorphic encryption and forward secrecy."],
+          ["Given a scenario, apply the appropriate cryptographic use case and/or technique","Data at rest, in transit and in use, code signing, signatures, tokenization and key management."]]},
+        {n:"4.0",name:"Security Operations",w:22,obj:[
+          ["Given a scenario, analyze data to enable monitoring and response activities","SIEM tuning, correlation, baselines, alert priority and dashboards."],
+          ["Given a scenario, analyze vulnerabilities and attacks, and recommend solutions to reduce the attack surface","Injection, XSS, SSRF and weak configs, fixed with validation, patching, least privilege and allow lists."],
+          ["Given a scenario, apply threat-hunting and threat intelligence concepts","Honeypots, ISACs, threat intel platforms, STIX and TAXII, Sigma, YARA and Snort."],
+          ["Given a scenario, analyze data and artifacts in support of incident response activities","Malware analysis, reverse engineering, memory and network forensics, timelines and root cause."]]}
+      ]}
+  },
+  extras:[
+    {kind:"rows",title:"Zero trust building blocks",sub:"2.6 · never trust, always verify",rows:[
+      ["PDP","Policy decision point","The policy engine that decides allow or deny for every request, using identity, device and context."],
+      ["PEP","Policy enforcement point","The gateway or proxy that carries out the decision in front of the resource."],
+      ["CAE","Continuous authorization","Trust is checked again during the session, not just at login."],
+      ["Micro","Microsegmentation","Small zones around each workload, so one breach can't spread."],
+      ["SASE","Secure access service edge","Networking and security (SWG, CASB, ZTNA) delivered from the cloud, close to users."]]},
+    {kind:"rows",wide:true,title:"Crypto to know",sub:"3.7 · 3.8 · what each one is for",rows:[
+      ["PQC","Post-quantum cryptography","New algorithms (NIST's ML-KEM and ML-DSA) built to resist quantum computers. Plan the move now for long-lived secrets."],
+      ["PFS","Forward secrecy","A fresh key for every session (ECDHE), so a stolen server key can't decrypt old traffic."],
+      ["HE","Homomorphic encryption","Compute on encrypted data without ever decrypting it."],
+      ["Token","Tokenization","Swap sensitive data (like a card number) for a meaningless stand-in. The real value lives in a vault."],
+      ["Stretch","Key stretching","Slow, salted hashing (Argon2, bcrypt, PBKDF2) that makes password cracking expensive."],
+      ["TPM / HSM","Hardware roots of trust","A TPM protects one device's keys and boot integrity. An HSM guards many keys for servers and CAs."],
+      ["Erase","Cryptographic erase","Destroy the key and the encrypted data is gone. Fast drive retirement."]]},
+    {kind:"rows",title:"Email and DNS security",sub:"3.3 · stop spoofing",rows:[
+      ["SPF","Sender Policy Framework","A DNS record listing the servers allowed to send mail for your domain."],
+      ["DKIM","DomainKeys Identified Mail","Signs each message so receivers can check it wasn't changed."],
+      ["DMARC","Domain-based Message Authentication","Tells receivers what to do when SPF or DKIM fail (none, quarantine, reject) and sends you reports."],
+      ["DNSSEC","DNS Security Extensions","Signs DNS answers so they can't be forged or poisoned."]]},
+    {kind:"rows",title:"Frameworks and standards",sub:"1.1 · 1.3 · which one when",rows:[
+      ["NIST CSF","Cybersecurity Framework 2.0","Govern, Identify, Protect, Detect, Respond, Recover. The common language for a security program."],
+      ["ISO 27001","Information security management","An international, certifiable standard for running security."],
+      ["PCI DSS","Payment Card Industry","Required for anyone who stores, processes or sends card data."],
+      ["SOC 2","Service Organization Control 2","An audit report that shows customers a provider's controls work."],
+      ["COBIT","IT governance","Ties IT goals and controls to business goals."]]}
+  ],
+  facts:[["Questions","90","max"],["Time","165","minutes"],["Passing","Pass/fail","no scaled score"],["Format","MCQ","+ PBQs"],["Study","120–180","hours"],["Voucher","$544","US retail"],["Valid","3","years"],["DoD 8570","IAT III","+ IAM II, IASAE"]],
+  method:[
+    ["Map","Use the domains above as your checklist. Security Engineering is almost a third of the exam."],
+    ["Think","Think like an architect: the BEST answer fixes the root cause at the right layer, and still fits the business."],
+    ["Build","Build it to learn it: set up conditional access, a small PKI, SPF/DKIM/DMARC on a test domain and a SIEM in your own lab or a cloud free tier."],
+    ["Recall","Flashcards for crypto, IAM protocols, zero trust parts, frameworks and compliance standards."],
+    ["Test","Take timed practice exams and study every explanation. The questions are long, so build reading stamina."]],
+  tips:[
+    ["Flag the PBQs","They often come first and take time. Flag them, finish the multiple choice, then come back."],
+    ["Pace the clock","165 minutes for up to 90 questions is just under 2 minutes each. Long scenarios eat time."],
+    ["BEST, not just right","Several answers will work. Pick the one that solves the stated requirement with the least added risk or cost."],
+    ["It's pass/fail","There's no score to chase. Spend your study time on your weakest domain."],
+    ["Never leave a blank","There is no penalty for a wrong answer, so always pick something."]],
+  resources:[
+    {group:"Official",items:[
+      ["SecurityX (V5) exam page","CompTIA","https://www.comptia.org/en/certifications/securityx/","Free","Exam details and the V5 objectives summary."],
+      ["CAS-005 exam objectives (PDF)","CompTIA","https://onlc.com/comptia/securityx-cas-005-exam-objectives-(3-0).pdf","Free","The full numbered objectives (a copy hosted by a CompTIA training partner)."],
+      ["CompTIA CertMaster","CompTIA","","Paid","CompTIA's own course, labs and practice. The difficulty reference for this site's questions."]]},
+    {group:"Architecture and zero trust",items:[
+      ["Zero Trust Architecture (SP 800-207)","NIST","https://csrc.nist.gov/pubs/sp/800/207/final","Free","The reference for policy engines, enforcement points and zero trust designs."],
+      ["Zero Trust Maturity Model","CISA","https://www.cisa.gov/zero-trust-maturity-model","Free","How federal agencies move step by step toward zero trust."],
+      ["Zero Trust guidance","Microsoft Learn","https://learn.microsoft.com/en-us/security/zero-trust/","Free","Hands-on guides for identity, devices, apps and networks."]]},
+    {group:"Reference",items:[
+      ["Cybersecurity Framework 2.0","NIST","https://www.nist.gov/cyberframework","Free","The framework most security programs are built on."],
+      ["Post-Quantum Cryptography","NIST","https://csrc.nist.gov/projects/post-quantum-cryptography","Free","The new quantum-resistant standards and why they matter."],
+      ["MITRE ATT&CK","MITRE","https://attack.mitre.org","Free","Attacker tactics and techniques, for threat modeling and detection."],
+      ["DMARC.org","DMARC.org","https://dmarc.org","Free","Plain explanations of SPF, DKIM and DMARC."]]}
+  ],
+  quiz:[
+    {d:"1.0",q:"A server is worth $200,000. A flood would destroy 25% of it, and floods are expected once every 10 years. What is the annualized loss expectancy (ALE)?",
+     o:[["$5,000","Right. SLE = $200,000 × 25% = $50,000. ARO = 1 in 10 years = 0.1. ALE = SLE × ARO = $5,000 a year."],
+        ["$50,000","That's the single loss expectancy (SLE), the cost of one flood. ALE spreads it across the expected frequency."],
+        ["$20,000","That's the asset value × ARO. It skips the exposure factor (only 25% is lost)."],
+        ["$500","That applies the 25% and the 0.1 twice. Check the order: SLE first, then × ARO."]],a:0},
+    {d:"1.0",q:"Developers have been pasting proprietary source code into a public generative AI chatbot. Which response BEST reduces the risk without stopping AI use?",
+     o:[["An AI acceptable use policy plus an approved enterprise AI tool that doesn't keep or train on company data","Right. Give people a safe, approved option and clear rules. That cuts the leak risk while keeping the productivity gain."],
+        ["Block every AI website at the proxy","Blocking pushes people to personal devices and 'shadow AI', and loses the benefit. It doesn't meet 'without stopping AI use'."],
+        ["Require developers to review AI output for bugs","That's about the quality of what comes back, not the code leaking out."],
+        ["Encrypt the source code repository","Encryption at rest doesn't stop someone from copying code into a chatbot."]],a:0},
+    {d:"2.0",q:"A hospital wants doctors to open records only for patients on their own unit, only during their shift, and only from managed devices. Which access control model fits BEST?",
+     o:[["Attribute-based access control (ABAC)","Right. ABAC decides on attributes such as unit, time and device state, which is exactly this rule set."],
+        ["Role-based access control (RBAC)","Roles alone can't express time of day, device state and the patient's unit without an explosion of roles."],
+        ["Mandatory access control (MAC)","MAC uses fixed classification labels set by the system. It's built for clearance levels, not shifts and devices."],
+        ["Discretionary access control (DAC)","DAC lets data owners grant access themselves. It can't enforce these central rules."]],a:0},
+    {d:"2.0",q:"Today, users who sign in to the VPN get access to the whole internal network. Moving to zero trust, which change matters MOST?",
+     o:[["Check every request to each resource using identity, device health and context, with microsegmentation","Right. Zero trust removes implicit trust after login: each access is decided on its own, and segments limit what any one session can reach."],
+        ["Add MFA at VPN login","MFA is good, but after login the user still has broad network access. That's still implicit trust."],
+        ["Switch to an always-on VPN","Always-on changes when the tunnel connects, not how much the user can reach."],
+        ["Put a bigger firewall at the perimeter","Zero trust assumes the perimeter will be crossed. A bigger perimeter is the old model."]],a:0},
+    {d:"2.0",q:"A critical flaw is announced in a popular open-source logging library. The CISO asks which of your 300 internal apps use it. What answers this FASTEST?",
+     o:[["A software bill of materials (SBoM) kept for every app","Right. An SBoM lists every component and version in each app, so you can search all 300 in minutes."],
+        ["Run DAST scans against all 300 apps","Scanning takes days, and DAST may not trigger the flaw at all."],
+        ["Email every development team and ask","Slow, and only as good as each team's memory."],
+        ["Run a network vulnerability scan","Network scans see exposed services, not the libraries inside an app."]],a:0},
+    {d:"3.0",q:"Users at one site get SAML errors saying the assertion's NotBefore or NotOnOrAfter condition wasn't met. Certificates are valid and other sites work. What's the MOST likely cause?",
+     o:[["The identity provider servers at that site have clock drift; fix NTP","Right. SAML assertions are only valid in a short time window. A clock that's off by a few minutes makes valid assertions look early or expired."],
+        ["The IdP's signing certificate expired","The question says certificates are valid, and an expired cert would break every site."],
+        ["The assertion consumer service URL is wrong","A wrong ACS URL fails everywhere and gives a different error."],
+        ["MFA is turned off at that site","MFA settings don't affect the time conditions inside an assertion."]],a:0},
+    {d:"3.0",q:"Attackers keep spoofing mail from ceo@acme.example. SPF and DKIM are set up correctly, but the spoofed mail still reaches inboxes. What closes the gap?",
+     o:[["Publish a DMARC record with p=reject","Right. SPF and DKIM only report results. DMARC checks they align with the From address and tells receivers to reject mail that fails."],
+        ["Add more IP addresses to the SPF record","More allowed senders makes spoofing easier, not harder."],
+        ["Rotate the DKIM key","The key isn't compromised. Without DMARC, receivers still don't act on failures."],
+        ["Turn on DNSSEC","DNSSEC protects DNS answers from forgery. It doesn't tell receivers what to do with spoofed mail."]],a:0},
+    {d:"3.0",q:"Field laptops must refuse to release the disk encryption key if the bootloader has been tampered with. Which technology does this?",
+     o:[["A TPM with measured boot, sealing the key to the boot measurements","Right. The TPM records hashes of each boot stage and only unseals the key if they match the known-good values."],
+        ["A hardware security module (HSM)","HSMs protect keys for servers and CAs. They don't measure a laptop's boot chain."],
+        ["A self-encrypting drive alone","The drive encrypts data, but on its own it doesn't check whether the bootloader changed."],
+        ["A UEFI administrator password","It stops settings changes, but it doesn't tie the disk key to boot integrity."]],a:0},
+    {d:"3.0",q:"Leadership worries that encrypted traffic recorded today could be decrypted years from now by quantum computers. Which response BEST protects long-lived secrets?",
+     o:[["Start moving key exchange to NIST post-quantum algorithms such as ML-KEM, using hybrid modes first","Right. 'Harvest now, decrypt later' targets the key exchange. Post-quantum (or hybrid) key exchange protects data recorded today."],
+        ["Double RSA keys to 4,096 bits","Shor's algorithm breaks RSA at any practical size. Bigger keys only buy a little time."],
+        ["Turn on forward secrecy with ECDHE","Forward secrecy helps against stolen server keys, but ECDHE itself falls to a large quantum computer."],
+        ["Move from AES-128 to AES-256","Stronger symmetric keys help, but the weak spot is the public-key exchange that protects them."]],a:0},
+    {d:"4.0",q:"A SIEM rule fires 4,000 times a day on single failed logins, so analysts ignore it. A real password-spraying attack was missed. What is the BEST fix?",
+     o:[["Tune it to correlate many failed logins across many accounts from one source in a short window","Right. Correlation turns noise into the pattern that matters: one source, many accounts, few tries each."],
+        ["Disable the rule","That removes the alert fatigue and the detection along with it."],
+        ["Raise the threshold to 10,000 failures a day","A spray tries one or two passwords per account, so it stays far under any big threshold."],
+        ["Hire more analysts to work the alerts","More people on bad alerts is expensive and still misses the pattern."]],a:0},
+    {d:"4.0",q:"Your ISAC shares indicators of compromise. You want to send and receive them automatically in a standard machine-readable format over a standard transport. Which pair fits?",
+     o:[["STIX over TAXII","Right. STIX is the format for threat intelligence; TAXII is the protocol for exchanging it."],
+        ["YARA over syslog","YARA describes malware patterns for scanning files. Syslog carries log messages, not threat intel."],
+        ["Sigma over SNMP","Sigma is a format for SIEM detection rules. SNMP is for device monitoring."],
+        ["CSV files over email","It works, but it's manual and not a standard for automated sharing."]],a:0},
+    {d:"4.0",q:"Ransomware is still running on a file server. Before anyone reimages it, what should you capture FIRST for analysis?",
+     o:[["A memory image","Right. Memory is the most volatile evidence: running processes, network connections and possibly encryption keys disappear at shutdown."],
+        ["A full disk image","Important, but the disk survives a shutdown. Memory doesn't, so it comes first."],
+        ["The Windows event logs","Logs live on disk and can be collected after the memory image."],
+        ["The latest backup","Backups are for recovery. They don't show what the malware is doing right now."]],a:0}
+  ],
+  pbqs:[
+    {id:"crypto",kind:"match",short:"Crypto fit",title:"Match the crypto to the requirement",dom:"3.0",
+     scenario:"Each team brought you a requirement. Pick the technique that meets it BEST. Each answer is used once; two choices are distractors.",
+     pick:"Technique",choices:["Tokenization","Homomorphic encryption","Code signing","Forward secrecy (ECDHE)","Cryptographic erase","Key stretching","Steganography","Unsalted hashing"],
+     items:[
+       {src:"Payments team",log:"Analytics systems must never hold real card numbers,\nbut must still join records for the same card.",a:0,why:"A token stands in for the card number everywhere, and the real number stays in a protected vault. That also shrinks PCI DSS scope."},
+       {src:"Cloud analytics",log:"A provider must total encrypted salary data\nwithout ever decrypting it.",a:1,why:"Homomorphic encryption lets you compute on ciphertext. The provider never sees the real numbers."},
+       {src:"Endpoint team",log:"Field laptops may only run scripts and updates\nthat IT approved and that weren't changed in transit.",a:2,why:"Code signing proves who published the code and that it hasn't been altered. Set the endpoints to run only signed code."},
+       {src:"Web team",log:"If the server's private key is stolen next year,\ntraffic recorded today must stay unreadable.",a:3,why:"With ECDHE each session gets its own throwaway key, so a stolen long-term key can't decrypt recorded sessions."},
+       {src:"Asset disposal",log:"Retire 400 self-encrypting drives in minutes,\nwith the data unrecoverable and no shredding.",a:4,why:"Destroying the drive's media key makes all its data unreadable instantly. That's cryptographic erase."},
+       {src:"Identity team",log:"If the user database leaks, stored passwords\nmust be slow and costly to brute-force.",a:5,why:"Key stretching (Argon2, bcrypt, PBKDF2) runs the hash thousands of times with a salt, so every guess costs the attacker real time."}]},
+    {id:"zt",kind:"table",short:"Zero trust calls",title:"Make the zero trust decisions",dom:"2.0 · 3.0",
+     scenario:"You're tuning the policy engine. For each access request, choose the decision and the signal that drives it most. Each signal is used once.",
+     cols:["Decision","Main signal"],
+     opts:[["Allow","Step-up MFA","Deny"],["Device health","Location and time","Role and least privilege","Unusual behavior"]],
+     rows:[
+       {req:"An engineer opens the code repository at 10:00 from home on a company laptop. EDR reports the laptop is missing three months of patches.",a:[2,0],why:"Identity looks fine, but the device fails its health check. Deny (or quarantine to a fix-up network) until it's patched."},
+       {req:"A sysadmin on a compliant laptop, during her normal hours, opens the server console that her role grants.",a:[0,2],why:"Every signal checks out and the access matches her role. Allow, with least privilege still limiting what she can do."},
+       {req:"A manager on a compliant laptop signs in from a new country at 03:00 local time and asks for the HR share he uses daily.",a:[1,1],why:"The request itself is normal, but the place and time are not. Step-up MFA confirms it's really him without blocking travel."},
+       {req:"A developer's account, which normally reads about 20 files a day, has downloaded 9,000 files from the design share in the last hour.",a:[2,3],why:"That volume looks like data theft or a compromised account. Deny, alert the SOC and investigate."}]}
+  ],
+  before:[["Security+","The foundation everything else builds on"],["CySA+","Defensive operations and detection"],["PenTest+","Offensive skills, so you design against real attacks"]],
+  next:[["CISSP","The senior security cert for leaders and architects"],["CCSP","Go deeper on cloud security architecture"]],
+  hereNote:"The top of the Cyber path",
+  mapSub:"SecurityX caps CompTIA's security line. From here, most people add a senior cert like CISSP or a cloud specialty. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"3 years",text:"Renew with 75 continuing education units (CEUs), or by passing the latest SecurityX exam or another qualifying cert."},
+    {lab:"DoD 8570",big:"IAT III",text:"Listed under its old name, CASP+, for four categories under the old 8570 baseline:",list:["IAT Level III","IAM Level II","IASAE Level I","IASAE Level II"]},
+    {lab:"DoD 8140",big:"Work roles",text:"Under DoD 8140, it's used for advanced roles such as security architecture and engineering.",after:"The proficiency level needed depends on the role, so check the 8140 matrix for your billet."},
+    {lab:"New name",big:"CASP+",text:"SecurityX is the new name for CASP+ (CompTIA Advanced Security Practitioner). Older documents, job posts and DoD lists may still say CASP+."}],
+  sources:[
+    ["CompTIA SecurityX (V5): exam details","https://www.comptia.org/en/certifications/securityx/"],
+    ["CompTIA SecurityX CAS-005 exam objectives","https://onlc.com/comptia/securityx-cas-005-exam-objectives-(3-0).pdf"],
+    ["CompTIA: how long SecurityX lasts (75 CEUs)","https://www.comptia.org/en/blog/how-long-does-the-securityx-certification-last/"],
+    ["CompTIA: DoD 8570 approved certifications","https://partners.comptia.org/docs/default-source/resources/certification_dod_8570_flier"],
+    ["Infosec Institute: SecurityX (CASP+) renewal","https://infosecinstitute.com/resources/securityx/maintaining-securityx-certification-renewal-requirements/"],
+    ["Crucial Exams: 2026 voucher prices","https://crucialexams.com/posts/blog/comptia-voucher-price-increase-2026"]]
+};
+
 /* ---------- cert guide page (renders inside the vendor panel) ---------- */
 var guideName=null, gVer="v8", gIO=null, gSpyRaf=0, gQ=null, gHpw=10;
 function gGet(k){try{var r=localStorage.getItem(k);return r?JSON.parse(r):null;}catch(err){return null;}}
@@ -3571,7 +3767,7 @@ function renderGuide(i,name){
   h+='<dl class="g-facts pr">'+G.facts.map(function(f){return '<div><dt>'+gEsc(f[0])+'</dt><dd><b>'+gEsc(f[1])+'</b><small>'+gEsc(f[2])+'</small></dd></div>';}).join("")+'</dl>';
   function head(k,id,title,sub){return '<header class="g-sh g-rv"><p class="lab"><span>('+pad2(k)+')</span> '+gEsc(G_SECS[k-1][1])+'</p><h3>'+title+'</h3>'+(sub?'<p class="g-sub">'+sub+'</p>':'')+'</header>';}
   // 01 objectives
-  h+='<section class="g-sec" id="g-obj" data-sec="obj" aria-labelledby="g-obj-h">'+head(1,"obj",'<span id="g-obj-h">What\'s on the exam.</span>',gEsc(G.objSub||'Five domains, weighted by how much of the exam they cover. Tick objectives off as you study; your progress stays on this device.'))+
+  h+='<section class="g-sec" id="g-obj" data-sec="obj" aria-labelledby="g-obj-h">'+head(1,"obj",'<span id="g-obj-h">What\'s on the exam.</span>',gEsc(G.objSub||(function(){var n=G.versions[Object.keys(G.versions)[0]].domains.length;return (['','One','Two','Three','Four','Five','Six','Seven','Eight'][n]||n)+(n===1?' domain':' domains');})()+', weighted by how much of the exam they cover. Tick objectives off as you study; your progress stays on this device.'))+
      '<div class="g-wrap g-rv"><div class="g-wbar" id="g-wbar" role="img"></div><div class="g-wleg" id="g-wleg"></div></div>'+
      '<div class="g-prog g-rv"><div class="g-ring" id="g-ring"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="19"/><circle class="g-ring-v" cx="22" cy="22" r="19"/></svg><b id="g-ring-n">0%</b></div>'+
        '<div><p class="g-prog-t"><b id="g-done">0</b> of <span id="g-total">0</span> objectives studied</p><p class="g-prog-s" id="g-prog-s"></p></div>'+
@@ -3874,7 +4070,7 @@ function gRoad(G){
   function node(lbl,full,cls){return '<button type="button" class="g-node '+(cls||"")+'" data-gocert="'+gEsc(full)+'">'+gEsc(lbl)+'</button>';}
   el.innerHTML='<div class="g-rcol"><p class="lab">Before</p>'+(before.length?before.map(function(b){return '<div class="g-rb">'+(b[2]===0?'<span class="g-node off">'+gEsc(b[0])+'</span>':node(b[0],typeof b[2]==="string"?b[2]:b[0]))+'<small>'+gEsc(b[1])+'</small></div>';}).join(""):'<small>Nothing required.</small>')+'</div>'+
     '<div class="g-rcol g-rhere"><p class="lab">You are here</p><div class="g-node here" aria-current="true">'+gEsc(name)+'</div><small>'+gEsc(G.hereNote||"")+'</small></div>'+
-    '<div class="g-rcol g-rnext"><p class="lab">Next, by path</p>'+lanes.map(function(l){return '<div class="g-lane"><span class="g-lname">'+gEsc(l.name)+'<small>'+gEsc(l.tag)+'</small></span><span class="g-lsteps">'+l.steps.map(function(s,k){return '<span class="g-step">'+(k?'<i aria-hidden="true">&rarr;</i>':'')+node(s[0],s[1])+'</span>';}).join("")+'</span></div>';}).join("")+'</div>';
+    '<div class="g-rcol g-rnext"><p class="lab">'+(G.next?'Next':'Next, by path')+'</p>'+(G.next?G.next.map(function(b){return '<div class="g-rb">'+node(b[0],typeof b[2]==="string"?b[2]:b[0])+'<small>'+gEsc(b[1])+'</small></div>';}).join(""):'')+(G.next?[]:lanes).map(function(l){return '<div class="g-lane"><span class="g-lname">'+gEsc(l.name)+'<small>'+gEsc(l.tag)+'</small></span><span class="g-lsteps">'+l.steps.map(function(s,k){return '<span class="g-step">'+(k?'<i aria-hidden="true">&rarr;</i>':'')+node(s[0],s[1])+'</span>';}).join("")+'</span></div>';}).join("")+'</div>';
   specScan(el);
 }
 
@@ -3930,7 +4126,7 @@ if(finePointer) document.documentElement.classList.add("kbd");
 document.querySelectorAll(".kbd-k").forEach(function(k){k.textContent=isMac?"⌘K":"Ctrl K";});
 var ALIAS={"A+":"a plus core 1 core 2 220-1101 220-1102 220-1201 220-1202 v15 help desk guide","Network+":"net plus n10-009 v9 networking guide","Security+":"sec plus secplus security plus sy0-701 sy0-801 v7 v8 guide",
  "Cloud+":"cloud plus cv0-004 v4 guide","CySA+":"cysa cs0-003 cs0-004 v3 v4 cybersecurity analyst blue team soc guide","PenTest+":"pentest plus pen test penetration testing pt0-003 v3 ethical hacking red team offensive guide",
- "SecurityX":"casp casp plus cas-005 advanced security practitioner","CC":"certified in cybersecurity isc2 cc","SSCP":"systems security certified practitioner",
+ "SecurityX":"securityx security x casp casp plus cas-005 v5 advanced security practitioner architect engineer guide","CC":"certified in cybersecurity isc2 cc","SSCP":"systems security certified practitioner",
  "CCSP":"certified cloud security professional","CISSP":"certified information systems security professional","CCST Networking":"100-150 cisco certified support technician",
  "CCST Cybersecurity":"100-160 cisco certified support technician","CyberOps Associate":"200-201 cbrops soc blue team","CCNA":"200-301 routing switching",
  "CCNP Security":"350-701 scor","SAL1 · Security Analyst L1":"sal1 sal 1 soc analyst blue team","PT1 · Junior Pentester":"pt1 jr junior pentest red team",
