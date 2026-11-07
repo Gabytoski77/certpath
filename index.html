@@ -1305,7 +1305,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.4</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.5</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2655,7 +2655,7 @@ veil.addEventListener("click",function(){closeSheet();});
 /* ---------- My path: five questions -> one personal roadmap (plain rules, no AI) ---------- */
 var MP_KEY="cgcp.mypath", mpEl=$("#mp"), mp={step:0,view:"quiz",t:0,a:{exp:"",goal:"",have:[],hpw:"",wgu:""}};
 var MP_CERTS=(function(){var m={},o=[];function add(n,l){if(!m.hasOwnProperty(n)){m[n]=l||n;o.push(n);}}
-  add("A+");add("CC");add("Network+");add("Security+");PATHS.forEach(function(p){p.steps.forEach(function(st){add(st[1],st[0]);});});add("CISSP");return {label:m,order:o};})();
+  add("A+");add("CC");add("Network+");add("Security+");add("SSCP");PATHS.forEach(function(p){p.steps.forEach(function(st){add(st[1],st[0]);});});add("CISSP");return {label:m,order:o};})();
 var MP_WGU=(function(){var w={};VENDORS[VENDORS.length-1].certs.forEach(function(c){w[c[0]]=1;});return w;})();
 var MP_Q=[
   {k:"exp",h:"How long have you worked in IT?",o:[["new","Brand new","A-School or my first unit"],["mid","1–4 years","I know the basics"],["sr","5+ years","Ready for senior certs"]]},
@@ -4351,6 +4351,233 @@ GUIDES["CC"]={
     ["ISC2: CC and DoD 8140","https://www.isc2.org/Insights/2024/07/ISC2-Entry-Level-Cybersecurity-Certification-US-DoD-8140-Marketplace"]]
 };
 
+GUIDES["SSCP"]={
+  id:"sscp",
+  lead:"ISC2's hands-on security practitioner cert, Systems Security Certified Practitioner. It proves you can run security day to day: access control, monitoring, incident response, crypto and network defense. Built for people already doing security work, and it counts toward the WGU cyber degree.",
+  checked:"Nov 7, 2026",
+  planHours:75,
+  planSub:"Set how many hours a week you can give it. The plan splits about 75 hours across the seven domains by exam weight, then saves the last stretch for practice tests and PBQs.",
+  laneOnly:["Stay 20","Cyber"],
+  versions:{
+    v25:{code:"SSCP",label:"2025 outline",status:"In effect since Oct 1, 2025 · passing 700",
+      note:"Since October 1, 2025 the SSCP is an adaptive (CAT) exam: 100 to 125 questions in 2 hours. Older books may describe the earlier fixed-length exam, and may call Domain 1 by its old name, Security Operations and Administration. The weights didn't change.",
+      numbered:true,
+      domains:[
+        {n:"1.0",name:"Security Concepts and Practices",w:16,obj:[
+          ["Comply with codes of ethics","The ISC2 Code of Ethics (four canons) and your organization's own code, and what to do when they pull in different directions."],
+          ["Understand security concepts","Confidentiality, integrity and availability, plus accountability, non-repudiation, least privilege and privacy."],
+          ["Identify and implement security controls","Technical, physical and administrative controls, and how compliance checks and audits confirm they actually work."],
+          ["Document and maintain functional security controls","Control types (deterrent, preventive, detective, corrective, compensating), security principles and separation of duties."],
+          ["Support the asset management lifecycle","Track hardware, software and data from purchase to secure disposal. You can't protect what you don't know you have."],
+          ["Support and implement change management","Change requests, a security impact analysis before each change, and configuration management so systems match their approved baseline."],
+          ["Support security awareness and training","Phishing drills and role-based training, and measuring whether behavior actually changes."],
+          ["Collaborate with physical security operations","Badges, cameras, locks and server room controls, and how they back up the logical controls."]]},
+        {n:"2.0",name:"Access Controls",w:15,obj:[
+          ["Implement and maintain authentication methods","Single-factor and multifactor (MFA), single sign-on (SSO), device authentication and federation, where one organization trusts another's logins."],
+          ["Understand internetwork trust architectures","Trust relationships (one-way, two-way, transitive), security zones and third-party connections like extranets."],
+          ["Support the identity management lifecycle","Identity proofing, provisioning and deprovisioning, entitlements, access reviews and the IAM systems that automate them."],
+          ["Understand and administer access controls","Mandatory (MAC), discretionary (DAC), role-based (RBAC), rule-based and attribute-based (ABAC) models, and where each one fits."]]},
+        {n:"3.0",name:"Risk Identification, Monitoring and Analysis",w:15,obj:[
+          ["Understand risk management","Risk registers and reporting, frameworks like the NIST RMF, risk tolerance, and the four treatments: avoid, transfer, mitigate, accept."],
+          ["Understand legal and regulatory concerns","Which laws apply where (jurisdiction), their limits, and privacy rules for personal data."],
+          ["Perform security assessments and vulnerability management","Assess against a framework, run scans and tests, review the risk, and work the vulnerability lifecycle: find, rank, fix, verify."],
+          ["Operate and monitor security platforms","Choose log sources and events of interest, manage logs, and run a SIEM that pulls them together and correlates them."],
+          ["Analyze monitoring results","Compare activity against baselines, spot anomalies and trends with metrics and visuals, and document and report what you found."]]},
+        {n:"4.0",name:"Incident Response and Recovery",w:14,obj:[
+          ["Support the incident response lifecycle","Preparation, detection and analysis (and escalation), containment, eradication, recovery and post-incident lessons learned."],
+          ["Support forensic investigations","Legal and ethical rules, evidence handling and chain of custody, and reporting your analysis."],
+          ["Support business continuity and disaster recovery","Emergency response plans, alternate processing sites, restoration order, backups and redundancy, and testing with drills."]]},
+        {n:"5.0",name:"Cryptography",w:9,obj:[
+          ["Understand reasons and requirements for cryptography","Confidentiality, integrity and authenticity, how data sensitivity and regulations drive encryption, and why good randomness (entropy) matters."],
+          ["Apply cryptography concepts","Hashing and salting, symmetric and asymmetric encryption, non-repudiation, key length and strength, and basic cryptanalysis (attacks on crypto)."],
+          ["Understand and implement secure protocols","Pick the secure version: TLS, HTTPS, SSH, SFTP and IPsec. Retire the clear-text ones."],
+          ["Understand and support PKI","Certificates and certificate authorities, key management (create, store, rotate, revoke), the web of trust, and where PKI falls short."]]},
+        {n:"6.0",name:"Network and Communications Security",w:16,obj:[
+          ["Understand and apply networking concepts","OSI and TCP/IP models, topologies, transmission media, software-defined networking (SDN), and common ports and protocols."],
+          ["Understand network attacks and countermeasures","DDoS, man-in-the-middle and DNS cache poisoning, and the defenses: CDNs, firewalls, network access control and IDS/IPS."],
+          ["Manage network access controls","802.1X port-based access, RADIUS and TACACS+, and remote access through VPNs, thin clients and virtual desktops (VDI)."],
+          ["Manage network security","Where to place devices, how to segment the network, and how to manage network gear securely."],
+          ["Operate network security appliances and services","Firewalls and proxies, IDS/IPS, routers and switches, traffic shaping, NAC, data loss prevention (DLP) and unified threat management (UTM)."],
+          ["Secure wireless communications","Cellular, Wi-Fi, Bluetooth and NFC risks; WPA2 and WPA3, and EAP for enterprise Wi-Fi."],
+          ["Secure and monitor IoT devices","Harden their settings, isolate them on their own network, keep firmware updated and plan for end-of-life devices."]]},
+        {n:"7.0",name:"Systems and Application Security",w:15,obj:[
+          ["Identify and analyze malicious code and activity","Malware types and countermeasures, social engineering, insider activity, and behavior analytics that flag the unusual."],
+          ["Implement and operate endpoint security","Host IDS/IPS, host firewalls, application allow lists, full-disk encryption, the TPM chip and secure browsing."],
+          ["Endpoint detection and response (EDR)","Always-on monitoring of endpoints that can alert, help you investigate and isolate a host from the network."],
+          ["Understand and configure cloud security","Public, private, hybrid and community clouds; IaaS, PaaS and SaaS; the shared responsibility model; third-party and legal requirements."],
+          ["Operate and maintain secure virtual environments","Hypervisors, containers, virtual appliances, mobile app management, encryption, storage and keeping virtual systems resilient."]]}
+      ]}
+  },
+  extras:[
+    {kind:"rows",title:"Access control models",sub:"2.4 · who decides",rows:[
+      ["MAC","Mandatory","The system enforces labels (like Secret) and clearances. Users can't change them."],
+      ["DAC","Discretionary","The owner of a file decides who gets access. Common on file shares."],
+      ["RBAC","Role-based","Access comes from your job role. Change jobs, change roles."],
+      ["Rule","Rule-based","System-wide rules apply to everyone, like firewall rules or allowed login hours."],
+      ["ABAC","Attribute-based","Decisions use attributes of the user, the resource and the situation: who, what, where, when."]]},
+    {kind:"rows",title:"Control types",sub:"1.4 · what each one does",rows:[
+      ["Deter","Deterrent","Discourages an attack. Warning banners, visible cameras."],
+      ["Prevent","Preventive","Stops it from happening. Firewall rules, MFA, locked doors."],
+      ["Detect","Detective","Finds it while or after it happens. IDS alerts, log reviews, audits."],
+      ["Correct","Corrective","Fixes things after an incident. Restoring from backup, patching."],
+      ["Comp","Compensating","A substitute when the normal control isn't possible, like extra monitoring on a system that can't be patched."]]},
+    {kind:"steps",title:"Incident response, in order",sub:"4.1 · the lifecycle",rows:[
+      "Preparation: plans, contacts, tools and training before anything happens.",
+      "Detection and analysis: confirm it's real, judge its scope and escalate.",
+      "Containment: stop the spread, like isolating a host or disabling an account.",
+      "Eradication: remove the cause, such as malware or the attacker's accounts.",
+      "Recovery: restore systems, verify they're clean and watch them closely.",
+      "Post-incident: lessons learned, then update plans and controls."]},
+    {kind:"rows",title:"Crypto at a glance",sub:"5.2 · pick the right tool",rows:[
+      ["Hash","SHA-256","One-way fingerprint. Proves data didn't change (integrity)."],
+      ["Salt","Random value","Added to a password before hashing so identical passwords get different hashes."],
+      ["Sym","AES","One shared key. Fast, so it encrypts the bulk data."],
+      ["Asym","RSA, ECC","A public and private key pair. Used for key exchange and signatures."],
+      ["Sign","Digital signature","Hash signed with the sender's private key. Integrity, authenticity and non-repudiation."],
+      ["PKI","Certificates","A certificate authority vouches that a public key belongs to someone."]]},
+    {kind:"ports",title:"Ports to know",sub:"6.1 · common services",rows:[
+      ["22","SSH / SFTP","Encrypted admin and file transfer"],["25","SMTP","Mail between servers"],["49","TACACS+","Device admin logins (TCP)"],
+      ["53","DNS","Name lookups"],["88","Kerberos","Domain logins"],["161/162","SNMP","Device monitoring; use v3"],
+      ["389/636","LDAP/LDAPS","Directory lookups; 636 is encrypted"],["443","HTTPS","Encrypted web"],["445","SMB","Windows file sharing"],
+      ["514","Syslog","Logs to a collector"],["1812/1813","RADIUS","Network logins and accounting (UDP)"],["3389","RDP","Remote desktop"]]},
+    {kind:"rows",title:"Network access",sub:"6.3 · AAA services",rows:[
+      ["802.1X","Port-based access","A device must authenticate before the switch port or Wi-Fi lets it on."],
+      ["RADIUS","Network logins","UDP. Combines authentication and authorization; only the password is encrypted."],
+      ["TACACS+","Device admin","TCP 49. Encrypts the whole session and splits AAA apart, so each command can be authorized and logged."],
+      ["VPN","Remote access","An encrypted tunnel back to the network, often with MFA."],
+      ["VDI","Virtual desktop","The desktop runs in the data center; only the screen reaches the user."]]}
+  ],
+  facts:[["Questions","100–125","adaptive"],["Time","2","hours"],["Passing","700","of 1000"],["Format","CAT","MCQ +"],["Study","60–90","hours"],["Voucher","$249","exam only"],["Valid","3","years"],["DoD 8570","IAT II","+ IAT I"]],
+  method:[
+    ["Map","Use the seven domains above as your checklist. They're close in weight, so no domain is safe to skip. Crypto is the smallest at 9%."],
+    ["Learn","Learn how each control works and when you'd use it. SSCP asks what a practitioner should do, not just what a term means."],
+    ["Do","Practice the hands-on parts: read logs, set up MFA, write a firewall rule, look at a certificate. Your unit's systems are full of examples."],
+    ["Recall","Flashcards for access control models, control types, the IR lifecycle, crypto uses, ports and AAA services."],
+    ["Test","Timed practice tests, then read every explanation, including the ones you got right."]],
+  tips:[
+    ["No going back","SSCP uses computerized adaptive testing (CAT). You answer one question at a time and can't return to earlier ones."],
+    ["It can end early","The exam stops once it's confident you've passed or failed, anywhere from 100 to 125 questions. Ending early isn't a bad sign."],
+    ["Think like the practitioner","Pick the answer a careful admin would do next under policy, not the drastic fix. Escalate when it's above your authority."],
+    ["Order matters","For incidents, contain before you eradicate, and preserve evidence before you wipe anything."],
+    ["Ethics come first","For ethics questions, protecting society and acting honestly beat doing what a boss or client asks."]],
+  resources:[
+    {group:"Official",items:[
+      ["SSCP exam outline","ISC2","https://edge.sitecorecloud.io/internationf173-xmc4e73-prodbc0f-9660/media/Project/ISC2/Main/Media/documents/exam-outlines/MAR-EXAMS-SSCP-Exam_Outline-English---10012025---FINAL.pdf","Free","The full outline (effective Oct 1, 2025), domain by domain."],
+      ["Systems Security Certified Practitioner","ISC2","https://www.isc2.org/certifications/sscp","Free","Exam facts, experience requirements and purchase options."],
+      ["ISC2 Code of Ethics","ISC2","https://www.isc2.org/ethics","Free","Read the four canons. Ethics questions follow them."],
+      ["SSCP Online Self-Paced Training","ISC2","","Paid","ISC2's own course (90-day access), sold with the exam as a bundle."]]},
+    {group:"Reference",items:[
+      ["Incident Response (SP 800-61 Rev. 3)","NIST","https://csrc.nist.gov/pubs/sp/800/61/r3/final","Free","How organizations plan for and handle incidents. Matches Domain 4."],
+      ["Risk Management Framework","NIST","https://csrc.nist.gov/projects/risk-management","Free","The framework DoD systems use. Matches Domain 3."],
+      ["Cybersecurity Framework 2.0","NIST","https://www.nist.gov/cyberframework","Free","Govern, Identify, Protect, Detect, Respond, Recover."]]},
+    {group:"Hands-on",items:[
+      ["SOC Level 1 path","TryHackMe","https://tryhackme.com/path/outline/soclevel1","Free tier","SIEM, log analysis, network traffic and incident rooms. Lines up with Domains 3, 4 and 7."],
+      ["Pre Security path","TryHackMe","https://tryhackme.com/path/outline/presecurity","Free tier","Networking, web and Linux basics, if Domain 6 feels shaky."]]}
+  ],
+  quiz:[
+    {d:"1.0",q:"A help desk tech has rights to create user accounts and also to approve their own access requests. An audit flags this. Which principle is being violated?",
+     o:[["Separation of duties","Right. One person shouldn't both request and approve access. Splitting those steps means fraud or mistakes need two people."],
+        ["Least privilege","Related, but least privilege is about having only the access you need. The problem here is one person doing both halves of a sensitive task."],
+        ["Need to know","Need to know limits what information you can see. It doesn't cover who approves account changes."],
+        ["Defense in depth","Defense in depth is layering controls. It doesn't describe the conflict in this person's duties."]],a:0},
+    {d:"1.0",q:"A server running a legacy app can't be patched for a known flaw until the vendor ships an update next quarter. The team adds strict firewall rules and extra monitoring for that server. What type of control is this?",
+     o:[["Compensating","Right. The normal control (patching) isn't possible, so other controls stand in to reduce the risk until it is."],
+        ["Corrective","Corrective controls fix things after an incident, like restoring from backup. Nothing has happened yet."],
+        ["Deterrent","Deterrent controls discourage attackers, like warning banners. Firewall rules and monitoring do more than discourage."],
+        ["Directive","Directive controls tell people what to do, like policies. These are technical stand-ins for a missing patch."]],a:0},
+    {d:"2.0",q:"A unit wants file access to change automatically based on the user's clearance, the data's classification, the time of day and whether the laptop is government-issued. Which model fits BEST?",
+     o:[["Attribute-based access control (ABAC)","Right. ABAC weighs attributes of the user, the resource and the situation (time, device) in one decision."],
+        ["Role-based access control (RBAC)","RBAC grants access by job role. It can't easily factor in time of day or device type on its own."],
+        ["Discretionary access control (DAC)","With DAC the file owner decides. Nothing here is up to the owner."],
+        ["Mandatory access control (MAC)","MAC handles clearance and classification labels, but not the time and device conditions."]],a:0},
+    {d:"2.0",q:"A member transfers from the help desk to the network team. Two months later, an access review shows they still have help desk admin rights plus the new network rights. What is this called, and what step failed?",
+     o:[["Privilege creep; deprovisioning of the old role's access","Right. Access piled up because the old rights weren't removed at the transfer. Reviews catch it, but deprovisioning should prevent it."],
+        ["Privilege escalation; the MFA setup","Privilege escalation is when an attacker or user gains higher rights by exploiting a flaw. Nothing was exploited here."],
+        ["Account sharing; identity proofing","Nobody shared an account. Identity proofing happens at onboarding, not at a transfer."],
+        ["Federation; the trust relationship","Federation is trusting another organization's logins. This is an internal role change."]],a:0},
+    {d:"3.0",q:"A vulnerability scan finds a critical flaw on a public web server. The business decides the cost of fixing it outweighs the risk, and the commander signs off in writing. Which risk treatment is this?",
+     o:[["Risk acceptance","Right. Leadership knowingly keeps the risk and documents the decision. The signed approval is what makes it formal acceptance."],
+        ["Risk avoidance","Avoidance means stopping the activity that creates the risk, like taking the server offline. The server stays up."],
+        ["Risk transference","Transference shifts the impact to someone else, like insurance or a contract. Nothing is shifted here."],
+        ["Risk mitigation","Mitigation reduces the risk with controls. They decided not to fix it."]],a:0},
+    {d:"3.0",q:"Your SIEM shows a service account that normally authenticates to two servers at night has logged in to 40 workstations in the past hour. What should you do FIRST?",
+     o:[["Validate it against the baseline and change records, then escalate as a possible incident","Right. It's a big departure from the account's baseline. Confirm it isn't approved work, document it and escalate fast so containment can start."],
+        ["Delete the service account immediately","Deleting it could break critical services and destroy evidence. Analysis and escalation come first."],
+        ["Lower the alert threshold so this stops firing","Tuning away an alert that may be real hides the incident."],
+        ["Wait for the weekly log review","An account spreading to 40 machines in an hour can't wait a week. It could be lateral movement."]],a:0},
+    {d:"4.0",q:"Ransomware is encrypting files on a shared drive from one workstation. The team must stop the damage but may need the machine for investigation. What is the BEST first step?",
+     o:[["Isolate the workstation from the network without powering it off","Right. Isolation stops the spread (containment) while keeping memory and disk intact for forensics."],
+        ["Reimage the workstation right away","Reimaging destroys evidence and is eradication, which comes after containment and analysis."],
+        ["Power off the file server","That stops all users and loses volatile data on the server, while the infected workstation may keep going."],
+        ["Restore the shared drive from backup","Restoring while the source is still active means the new files get encrypted too. Contain first."]],a:0},
+    {d:"4.0",q:"An analyst copies a suspect laptop's drive for an investigation. Which action BEST protects the evidence's integrity for a later legal review?",
+     o:[["Hash the original and the copy, and record every hand-off in a chain of custody form","Right. Matching hashes prove the copy is exact, and the chain of custody shows who had it at every step."],
+        ["Work directly on the original drive to save time","Working on the original can change it and makes the evidence easy to challenge."],
+        ["Encrypt the copy with the analyst's personal key","Encryption protects confidentiality but doesn't prove the copy is unchanged or who handled it."],
+        ["Store the drive in the analyst's desk drawer","An unsecured drawer breaks the chain of custody. Evidence goes in controlled storage."]],a:0},
+    {d:"5.0",q:"Two users choose the same password. An attacker steals the password database and sees that their stored hashes are different. What explains this?",
+     o:[["Each password was salted with a unique random value before hashing","Right. A unique salt makes identical passwords hash differently, which defeats precomputed rainbow tables."],
+        ["The passwords were encrypted with AES","Passwords should be hashed, not encrypted. And the same key would give the same output for the same password."],
+        ["The hashing algorithm produced a collision","A collision is two different inputs with the same hash. This is the reverse."],
+        ["The system used a digital signature on each password","Signatures prove who sent a message. They aren't used to store passwords."]],a:0},
+    {d:"6.0",q:"Network engineers want every admin login to switches and routers to be authenticated centrally, with each command they run authorized and logged separately. Which protocol fits BEST?",
+     o:[["TACACS+","Right. TACACS+ separates authentication, authorization and accounting, so each command can be authorized and logged. It also encrypts the whole session."],
+        ["RADIUS","RADIUS is great for network access logins, but it combines authentication and authorization and doesn't do per-command authorization well."],
+        ["LDAP","LDAP is a directory lookup protocol. It doesn't authorize or log device commands by itself."],
+        ["SNMPv3","SNMPv3 is for monitoring and managing devices, not for authenticating admin logins."]],a:0},
+    {d:"6.0",q:"Users on one floor are being sent to a fake login page when they visit the unit's real intranet site by name. Other floors are fine. The site's IP address hasn't changed. What is the MOST likely attack?",
+     o:[["DNS cache poisoning on the resolver that floor uses","Right. A poisoned DNS cache hands out the wrong IP for a real name, so only users of that resolver land on the fake page."],
+        ["A distributed denial of service (DDoS)","DDoS makes a site slow or unavailable. It doesn't redirect users to a fake page."],
+        ["SQL injection on the intranet site","SQL injection attacks the site's database. The real site isn't even being reached here."],
+        ["A rogue DHCP server handing out bad gateways","Possible on a single floor, but the symptom is a bad name lookup. A wrong DNS answer is the more direct cause."]],a:0},
+    {d:"7.0",q:"In an IaaS cloud deployment, who is responsible for patching the guest operating system on the virtual machines?",
+     o:[["The customer","Right. In IaaS the provider secures the physical hosts and hypervisor; the customer owns the guest OS, apps and data."],
+        ["The cloud provider","The provider handles the hardware and virtualization layer. In IaaS the guest OS is yours."],
+        ["Whoever the SLA names, since IaaS has no default","The shared responsibility model sets a clear default: guest OS patching is the customer's in IaaS."],
+        ["The hypervisor patches guests automatically","Hypervisors don't patch the operating systems running on them."]],a:0}
+  ],
+  pbqs:[
+    {id:"acm",kind:"match",short:"Access models",title:"Pick the access control model",dom:"2.0",
+     scenario:"Your unit is reviewing how access is granted on six systems. Pick the access control model each one is using.",
+     pick:"Model",choices:["MAC","DAC","RBAC","Rule-based","ABAC"],
+     items:[
+       {src:"Classified network",log:"Users can open a document only if their\nclearance is at or above its label.",a:0,why:"The system enforces labels and clearances, and users can't change them. That's mandatory access control."},
+       {src:"Shared drive",log:"Petty officer creates a folder and adds\ntwo shipmates to it herself.",a:1,why:"The owner decides who gets in, so it's discretionary access control."},
+       {src:"Admin portal",log:"Anyone in the 'Help Desk' group can reset\npasswords. Leave the group, lose the right.",a:2,why:"Rights come from the job role, so it's role-based access control."},
+       {src:"Firewall",log:"Block all inbound traffic to the training\nlab between 2200 and 0600.",a:3,why:"One system-wide rule applies to everyone, so it's rule-based access control."},
+       {src:"Cloud app",log:"Allow if user is in the unit AND device is\ngov-issued AND location is in the U.S.",a:4,why:"The decision combines user, device and location attributes. That's attribute-based access control."},
+       {src:"Personnel records",log:"Supervisors see the records for their\ndivision; clerks see only their own.",a:2,why:"Access follows the job role (supervisor or clerk), so it's role-based."}]},
+    {id:"netsec",kind:"table",short:"Network controls",title:"Secure the network",dom:"6.0",
+     scenario:"Your unit's network has gaps. For each requirement, pick the BEST control and where it goes. Each control is used once.",
+     cols:["Control","Where"],
+     opts:[["Separate VLAN","Inline IPS","802.1X + RADIUS","DLP","TACACS+","WPA3-Enterprise"],["Internet edge","IoT devices","Access switch ports","Email gateway","Wireless network","Router/switch admin"]],
+     rows:[
+       {req:"Stop unknown laptops from getting a network connection by plugging into any office wall jack.",a:[2,2],why:"802.1X makes each device authenticate (through RADIUS) before the switch port opens."},
+       {req:"Log every command each admin runs on routers and switches.",a:[4,5],why:"TACACS+ authorizes and logs each command separately for device administration."},
+       {req:"Make Wi-Fi users sign in with their own credentials instead of one shared password.",a:[5,4],why:"WPA3-Enterprise uses 802.1X/EAP, so each user authenticates individually."},
+       {req:"Block known exploit traffic coming in from the internet before it reaches servers.",a:[1,0],why:"An inline IPS at the edge can drop malicious traffic, not just alert on it."},
+       {req:"Keep building cameras and badge readers from reaching user workstations.",a:[0,1],why:"Putting IoT devices on their own segment (VLAN) isolates them from everything else."},
+       {req:"Stop spreadsheets with Social Security numbers from leaving in outbound email.",a:[3,3],why:"DLP at the email gateway can spot sensitive data patterns and block the message."}]}
+  ],
+  before:[["Security+","Most people take it first. It's the DoD baseline"],["CC","Optional first ISC2 step if cyber is new to you"],["Network+","Helpful for the networking domain"]],
+  next:[["CySA+","Hands-on analyst work, if you're in a SOC"],["CISSP","ISC2's senior cert, once you have five years of security work"],["CCSP","Cloud security, if your work moves to the cloud"]],
+  hereNote:"Hands-on security admin for people already doing the work",
+  mapSub:"SSCP sits between entry certs like Security+ and CC and senior ones like CISSP. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"3 years",text:"Earn 60 continuing professional education (CPE) credits every three years. ISC2 suggests about 20 a year."},
+    {lab:"Yearly fee",big:"$135",text:"Every ISC2 member who holds SSCP pays a $135 annual maintenance fee (AMF), due each year on your certification anniversary.",after:"One AMF covers all your ISC2 certs, so adding CISSP later doesn't add a second fee."},
+    {lab:"Experience",big:"1 year",text:"You need one year of full-time paid work in at least one of the seven domains. A computer science or IT degree can count for that year. Part-time work and internships can count too.",list:["No experience yet? Pass the exam and you become an Associate of ISC2.","You then have two years to earn the one year of experience.","After you pass, finish the certification application, including endorsement by an ISC2-certified member, within nine months."]},
+    {lab:"DoD",big:"IAT I · II",text:"Under the old DoD 8570 list, SSCP counts for IAT Level I, IAT Level II and CSSP Infrastructure Support.",after:"ISC2 says SSCP meets DoD 8140 Intermediate for operational work roles and Advanced for Technical Support Specialists. Check the 8140 matrix for your billet."}],
+  sources:[
+    ["ISC2: SSCP certification","https://www.isc2.org/certifications/sscp"],
+    ["ISC2: SSCP exam outline (effective Oct 1, 2025)","https://edge.sitecorecloud.io/internationf173-xmc4e73-prodbc0f-9660/media/Project/ISC2/Main/Media/documents/exam-outlines/MAR-EXAMS-SSCP-Exam_Outline-English---10012025---FINAL.pdf"],
+    ["ISC2: SSCP moves to adaptive testing (Aug 2025)","https://www.isc2.org/insights/2025/08/new-exam-format-systems-security-certified-practitioner"],
+    ["ISC2: Member policies (CPEs and AMF)","https://www.isc2.org/policies-procedures/member-policies"],
+    ["ISC2: Apply for certification (endorsement)","https://www.isc2.org/en/Endorsement"],
+    ["ISC2: SSCP and DoD 8140","https://www.isc2.org/landing/sscp-ready-state-dod-8140"],
+    ["DoD: Approved 8570 baseline certifications","https://public.cyber.mil/wid/dod8140/dod-approved-8570-baseline-certifications/"]]
+};
+
 /* ---------- cert guide page (renders inside the vendor panel) ---------- */
 var guideName=null, gVer="v8", gIO=null, gSpyRaf=0, gQ=null, gHpw=10;
 function gGet(k){try{var r=localStorage.getItem(k);return r?JSON.parse(r):null;}catch(err){return null;}}
@@ -4779,7 +5006,7 @@ if(finePointer) document.documentElement.classList.add("kbd");
 document.querySelectorAll(".kbd-k").forEach(function(k){k.textContent=isMac?"⌘K":"Ctrl K";});
 var ALIAS={"A+":"a plus core 1 core 2 220-1101 220-1102 220-1201 220-1202 v15 help desk guide","Network+":"net plus n10-009 v9 networking guide","Security+":"sec plus secplus security plus sy0-701 sy0-801 v7 v8 guide",
  "Cloud+":"cloud plus cv0-004 v4 guide","CySA+":"cysa cs0-003 cs0-004 v3 v4 cybersecurity analyst blue team soc guide","PenTest+":"pentest plus pen test penetration testing pt0-003 v3 ethical hacking red team offensive guide",
- "SecurityX":"securityx security x casp casp plus cas-005 v5 advanced security practitioner architect engineer guide","CC":"certified in cybersecurity isc2 cc entry level cyber beginner no experience 2026 outline guide","SSCP":"systems security certified practitioner",
+ "SecurityX":"securityx security x casp casp plus cas-005 v5 advanced security practitioner architect engineer guide","CC":"certified in cybersecurity isc2 cc entry level cyber beginner no experience 2026 outline guide","SSCP":"systems security certified practitioner sscp isc2 practitioner 2025 outline cat adaptive security administration operations associate of isc2 guide",
  "CCSP":"certified cloud security professional","CISSP":"certified information systems security professional","CCST Networking":"100-150 cisco certified support technician",
  "CCST Cybersecurity":"100-160 cisco certified support technician","CyberOps Associate":"200-201 cbrops soc blue team","CCNA":"200-301 routing switching",
  "CCNP Security":"350-701 scor","SAL1 · Security Analyst L1":"sal1 sal 1 soc analyst blue team","PT1 · Junior Pentester":"pt1 jr junior pentest red team",
