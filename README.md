@@ -1,7 +1,7 @@
 # CG Cert Path
 
 Certifications, career paths and CG COOL funding for Coast Guard IT, with full study guides
-(objectives, study plan, resources, quiz, PBQs, roadmap) for CompTIA A+, Network+, Security+, Cloud+, CySA+, PenTest+ and SecurityX.
+(objectives, study plan, resources, quiz, PBQs, roadmap) for CompTIA A+, Network+, Security+, Cloud+, CySA+, PenTest+, SecurityX and ISC2 CC.
 
 **Not an official U.S. Coast Guard site.** Public information only. Vendor names are trademarks of their owners.
 Quiz and PBQ questions are original.
