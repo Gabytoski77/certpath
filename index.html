@@ -327,7 +327,12 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 #sheet.is-open .sh-up{animation:none;transform:rotate(180deg)}
 .sh-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
   padding-left:max(18px,var(--sal));padding-right:max(18px,var(--sar));padding-block:0 calc(var(--sab) + 48px)}
-.sh-in{max-width:1040px;margin:0 auto}
+.sh-in{max-width:1040px;margin:0 auto;position:relative;isolation:isolate}
+/* sheet parallax (shFx): the glow drifts at about half speed, the big title sinks into its own line */
+.sh-glow{position:absolute;z-index:-1;left:50%;top:-140px;width:min(980px,140%);height:620px;margin-left:calc(min(980px,140%) / -2);pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(188,214,234,.13) 0%,rgba(111,142,168,.06) 45%,rgba(21,26,34,0) 72%)}
+.ed-tw{overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em;min-width:0}
+.ed-title{translate:0 var(--tsink,0)}
 .lab{margin:0;font:600 10px/1.35 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
 .meta{font:500 10.5px/1 var(--f-mono);color:var(--ink-3);letter-spacing:.06em;white-space:nowrap}
 .draft{display:inline-block;margin-left:8px;padding:4px 6px;border:1px dashed var(--hair-2);border-radius:2px;font:600 9px/1 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);vertical-align:2px}
@@ -846,8 +851,17 @@ html.kbd .touch-only{display:none}
   background:color-mix(in srgb,var(--v-accent) 20%,rgba(255,255,255,.04));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--v-accent) 55%,transparent),0 0 18px -6px color-mix(in srgb,var(--v-accent) 60%,transparent);
   transition:transform .4s var(--ez),width .4s var(--ez)}
 
-.g-sec{padding:64px 0 8px;scroll-margin-top:70px}
-.g-sec+.g-sec{border-top:1px solid var(--v-line);margin-top:56px}
+.g-sec{padding:88px 0 8px;scroll-margin-top:70px}
+.g-sec+.g-sec{border-top:1px solid var(--v-line);margin-top:88px}
+/* scroll "chapter breaks" (gFx): headings zoom in as they arrive, a section's last block eases back as it leaves */
+.g-sh{transform-origin:0 100%}
+.g-num{display:inline-flex;align-items:baseline}
+.g-dig{display:inline-block;height:1.35em;line-height:1.35em;overflow:hidden;vertical-align:bottom}
+.g-reel{display:flex;flex-direction:column;transform:translateY(calc(var(--d) * -10%));transition:transform .9s var(--ez)}
+.g-reel span{display:block;height:1.35em}
+.g-sec>.fx-l{transition:none!important;transform-origin:50% 100%}
+/* guide title sinks into its own line as you scroll: it moves up slower than the page, and never over the text below */
+.g-hero h2 .ch{translate:0 var(--tsink,0)}
 .g-sh{display:grid;gap:12px;margin-bottom:30px}
 .g-sh .lab span{font-family:var(--f-mono);letter-spacing:.04em}
 .g-sh h3{margin:0;font:700 clamp(30px,4.6vw,52px)/1 var(--f-disp);letter-spacing:-.045em;color:var(--v-fg)}
@@ -1172,8 +1186,8 @@ html.kbd .touch-only{display:none}
   .g-nav .g-nav-back{padding:9px 11px}
   .g-nav .g-nav-back .gb-full{display:none}
   .g-nav .g-nav-back .gb-short{display:inline}
-  .g-sec{padding-top:44px}
-  .g-sec+.g-sec{margin-top:36px}
+  .g-sec{padding-top:60px}
+  .g-sec+.g-sec{margin-top:52px}
   .g-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .g-facts div:nth-child(odd){border-left:0;padding-left:0}
   .g-facts div:nth-child(n+3){border-top:1px solid var(--v-line)}
@@ -1224,7 +1238,7 @@ html.kbd .touch-only{display:none}
   .g-kc{border-left:0;padding-left:0;border-top:1px solid var(--v-line)}
   .g-kc:first-child{border-top:0}
 }
-@media (prefers-reduced-motion:reduce){.g-rv{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.g-rv{opacity:1;transform:none}.g-reel{transition:none}}
 @media (max-height:640px) and (max-width:720px){ .hero p{display:none} }
 /* ---------- phone in landscape: wide but short ---------- */
 @media (orientation:landscape) and (max-height:500px){
@@ -1291,7 +1305,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.3</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.4</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1327,8 +1341,9 @@ html.kbd .touch-only{display:none}
   </div>
   <div class="sh-scroll" id="sh-scroll">
     <div class="sh-in">
+      <div class="sh-glow" id="sh-glow" aria-hidden="true"></div>
       <header class="ed-head rv-s">
-        <div><p class="lab">(CG_CERT_PATH) &nbsp;/&nbsp; Categories</p><h2 class="ed-title" id="ed-title">Explore.</h2></div>
+        <div class="ed-tw"><p class="lab">(CG_CERT_PATH) &nbsp;/&nbsp; Categories</p><h2 class="ed-title" id="ed-title">Explore.</h2></div>
         <div class="ed-acts"><button type="button" class="ed-close ed-srch" data-search aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg></button><button type="button" class="ed-close" data-close aria-label="Close explore panel">&darr;</button></div>
       </header>
       <nav class="tabs rv-s" aria-label="Explore sections">
@@ -2613,6 +2628,15 @@ grab.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.p
 
 /* pull down from the top of the content to close (touch) */
 var tdrag=null;
+/* Explore sheet parallax: glow at about half speed, the big title sinks into its line */
+var shGlow=$("#sh-glow"), shTitle=$("#ed-title"), shFxRaf=0;
+function shFx(){
+  shFxRaf=0;if(reduced) return;
+  var y=shScroll.scrollTop, soft=window.innerWidth<720?.5:1, p=Math.min(1,y/360);
+  shGlow.style.transform="translate3d(0,"+(Math.min(y,1400)*.5*soft).toFixed(1)+"px,0)";
+  shTitle.style.setProperty("--tsink",(p*.45*soft).toFixed(4)+"em");shTitle.style.opacity=(1-p*.5).toFixed(3);
+}
+shScroll.addEventListener("scroll",function(){if(!shFxRaf) shFxRaf=requestAnimationFrame(shFx);},{passive:true});
 shScroll.addEventListener("touchstart",function(e){if(sheetP<.98) return;tdrag={y0:e.touches[0].clientY,on:false,sm:[]};},{passive:true});
 shScroll.addEventListener("touchmove",function(e){
   if(!tdrag) return;
@@ -4359,7 +4383,9 @@ function renderGuide(i,name){
      (Object.keys(G.versions).length>1?'<div class="seg g-vseg" role="group" aria-label="'+gEsc(G.verLabel||"Exam version")+'">'+Object.keys(G.versions).map(function(k){var V=G.versions[k];return '<button type="button" data-ver="'+k+'" aria-pressed="'+(k===gVer)+'">'+V.label+' &middot; '+V.code+'</button>';}).join("")+'<span class="seg-ind" aria-hidden="true"></span></div>':'<p class="g-vone">'+gEsc(G.versions[gVer].label)+' &middot; '+gEsc(G.versions[gVer].code)+'</p>')+
      '<p class="g-vstat" id="g-vstat"></p><p class="g-vnote" id="g-vnote"></p></aside></div>';
   h+='<dl class="g-facts pr">'+G.facts.map(function(f){return '<div><dt>'+gEsc(f[0])+'</dt><dd><b>'+gEsc(f[1])+'</b><small>'+gEsc(f[2])+'</small></dd></div>';}).join("")+'</dl>';
-  function head(k,id,title,sub){return '<header class="g-sh g-rv"><p class="lab"><span>('+pad2(k)+')</span> '+gEsc(G_SECS[k-1][1])+'</p><h3>'+title+'</h3>'+(sub?'<p class="g-sub">'+sub+'</p>':'')+'</header>';}
+  /* section number rolls from the previous number to its own as the heading comes in (gFx) */
+  function head(k,id,title,sub){var reel='<span class="g-dig" aria-hidden="true"><span class="g-reel" style="--d:'+(k-1)+'">'+'0123456789'.split("").map(function(n){return "<span>"+n+"</span>";}).join("")+'</span></span>';
+    return '<header class="g-sh" data-k="'+k+'"><p class="lab"><span class="g-num"><span aria-hidden="true">(0'+reel+')</span><span class="vh">('+pad2(k)+')</span></span> '+gEsc(G_SECS[k-1][1])+'</p><h3>'+title+'</h3>'+(sub?'<p class="g-sub">'+sub+'</p>':'')+'</header>';}
   // 01 objectives
   h+='<section class="g-sec" id="g-obj" data-sec="obj" aria-labelledby="g-obj-h">'+head(1,"obj",'<span id="g-obj-h">What\'s on the exam.</span>',gEsc(G.objSub||(function(){var n=G.versions[Object.keys(G.versions)[0]].domains.length;return (['','One','Two','Three','Four','Five','Six','Seven','Eight'][n]||n)+(n===1?' domain':' domains');})()+', weighted by how much of the exam they cover. Tick objectives off as you study; your progress stays on this device.'))+
      '<div class="g-wrap g-rv"><div class="g-wbar" id="g-wbar" role="img"></div><div class="g-wleg" id="g-wleg"></div></div>'+
@@ -4422,7 +4448,7 @@ function renderGuide(i,name){
     else{var en=sByName(t.dataset.gocert);if(en) openCertFrom(en);}
   });
   gVersion(G,false);gPlan(G,false);gQuizStart(G,false);gPbq(G,0,false);gRoad(G);
-  requestAnimationFrame(function(){body.querySelectorAll(".seg").forEach(function(s){gPlaceSeg(s);});gNavSet("obj",true);});
+  requestAnimationFrame(function(){body.querySelectorAll(".seg").forEach(function(s){gPlaceSeg(s);});gNavSet("obj",true);gFx();});
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){if(guideName===name){body.querySelectorAll(".seg").forEach(gPlaceSeg);gNavSet(gNavCur,true);}});
   // reveal sections as they scroll in
   var secs=body.querySelectorAll(".g-sec");
@@ -4456,8 +4482,40 @@ function gNavSet(id,force){
   var ind=nav.querySelector(".g-nav-ind");if(cur&&ind){ind.style.width=cur.offsetWidth+"px";ind.style.transform="translateX("+cur.offsetLeft+"px)";
     if(nav.scrollWidth>nav.clientWidth+2) nav.scrollTo({left:Math.max(0,cur.offsetLeft-(nav.clientWidth-cur.offsetWidth)/2),behavior:reduced?"auto":"smooth"});}
 }
+/* ---------- scroll chapter breaks + title parallax (guide pages) ----------
+   Only transform/opacity, read everything first then write. Normal scrolling, nothing locked or snapped.
+   Phones get about half the movement; reduce motion keeps the fades and drops the scaling and drift. */
+function gFx(){
+  if(!guideName||panel.hidden) return;
+  var pr=panel.getBoundingClientRect(), vh=pr.height, navB=pr.top+gNavH(), phone=window.innerWidth<720, soft=phone?.5:1;
+  var secs=panel.querySelectorAll(".g-sec"), reads=[];
+  for(var i=0;i<secs.length;i++){
+    var sec=secs[i], hd=sec.querySelector(".g-sh"), last=sec.lastElementChild;
+    reads.push({sec:sec,hd:hd,last:last!==hd?last:null,hTop:hd?hd.getBoundingClientRect().top:0,sBot:sec.getBoundingClientRect().bottom});
+  }
+  var h2=panel.querySelector(".g-hero h2"), heroP=Math.min(1,Math.max(0,panel.scrollTop/(vh*.7)));
+  if(h2){
+    if(reduced){h2.style.opacity=(1-heroP*.5).toFixed(3);}
+    else{h2.style.setProperty("--tsink",(heroP*.42*soft).toFixed(4)+"em");h2.style.opacity=(1-heroP*.55).toFixed(3);}
+  }
+  reads.forEach(function(r){
+    if(r.hd){
+      /* arriving: 0 when the heading's top is at the bottom edge, 1 once it's 30% of the way up */
+      var e=Math.min(1,Math.max(0,(pr.bottom-r.hTop)/(vh*.3))), eo=1-Math.pow(1-e,3);
+      if(e>=1){if(r.hd.dataset.fx){r.hd.style.transform="";r.hd.style.opacity="";delete r.hd.dataset.fx;}}
+      else{r.hd.dataset.fx="1";r.hd.style.opacity=(eo).toFixed(3);r.hd.style.transform=reduced?"":"scale("+(1-(.1*soft)*(1-eo)).toFixed(4)+")";}
+      if(e>.55&&!r.sec.classList.contains("counted")){r.sec.classList.add("counted");var rl=r.hd.querySelector(".g-reel");if(rl) rl.style.setProperty("--d",r.hd.dataset.k);}
+    }
+    if(r.last){
+      /* leaving: the section's last block eases back as the section's end passes under the Jump to bar */
+      var band=vh*.38, l=Math.min(1,Math.max(0,(navB+band-r.sBot)/band));
+      if(l<=0){if(r.last.classList.contains("fx-l")){r.last.classList.remove("fx-l");r.last.style.transform="";r.last.style.opacity="";}}
+      else{r.last.classList.add("fx-l");r.last.style.opacity=(1-.5*l).toFixed(3);r.last.style.transform=reduced?"":"scale("+(1-.03*soft*l).toFixed(4)+")";}
+    }
+  });
+}
 function gSpy(){
-  gSpyRaf=0;if(!guideName) return;
+  gSpyRaf=0;if(!guideName) return;gFx();
   var secs=panel.querySelectorAll(".g-sec"), top=panel.getBoundingClientRect().top+gNavH()+80, id="obj";
   for(var k=0;k<secs.length;k++){if(secs[k].getBoundingClientRect().top<=top) id=secs[k].dataset.sec;}
   if(panel.scrollTop+panel.clientHeight>=panel.scrollHeight-4) id=secs[secs.length-1].dataset.sec;
@@ -4467,7 +4525,7 @@ function gSpy(){
 var sbarEl=$("#sbar");
 function syncSbar(){sbarEl.classList.toggle("on",state==="open"&&!panel.hidden&&panel.scrollTop>4);}
 panel.addEventListener("scroll",function(){syncSbar();if(guideName&&!gSpyRaf) gSpyRaf=requestAnimationFrame(gSpy);},{passive:true});
-window.addEventListener("resize",function(){if(!guideName) return;panel.querySelectorAll(".g .seg").forEach(gPlaceSeg);gNavSet(gNavCur,true);});
+window.addEventListener("resize",function(){if(!guideName) return;panel.querySelectorAll(".g .seg").forEach(gPlaceSeg);gNavSet(gNavCur,true);gFx();});
 
 /* version switch: hero notes + objectives + plan */
 function gVersion(G,anim1){
