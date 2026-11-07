@@ -1,6 +1,6 @@
 /* CG Cert Path service worker: makes the site installable and usable offline.
    Change VERSION whenever you upload a new index.html so phones pick it up quickly. */
-var VERSION = "certpath-v8";
+var VERSION = "certpath-v9";
 var SHELL = [ "manifest.webmanifest", "icon-192.png", "icon-512.png",
              "icon-maskable-512.png", "apple-touch-icon.png", "favicon.png"];
 var CDN = ["cdnjs.cloudflare.com", "cdn.jsdelivr.net", "fonts.googleapis.com", "fonts.gstatic.com"];
