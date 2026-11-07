@@ -160,6 +160,17 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .hero-note p{margin:0;font:500 12.5px/1.45 var(--f-disp);color:#e3e7ec;max-width:21ch}
 .hero-note small{display:block;margin-top:12px;font:500 9.5px/1.4 var(--f-mono);color:#7f8996;letter-spacing:.04em}
 .readout{grid-area:ro;align-self:end;justify-self:end;width:min(290px,100%);display:grid;gap:12px;padding-bottom:2.5vh;pointer-events:auto;position:relative;z-index:1}
+.ro-head{display:grid;gap:inherit;justify-items:inherit;min-width:0}
+/* when the big CertPath wordmark would cover the vendor text, the text moves above the wordmark and the crests + buttons stay below it (placeReadout) */
+.readout.split .ro-head{position:absolute;left:0;right:0;bottom:var(--ro-lift,100%)}
+.readout.tight .crest{width:54px;height:58px}
+.readout.tight .ro-dots{margin:2px 0 6px;gap:2px 6px}
+.readout.tight .cta{padding:11px 20px;white-space:nowrap}
+.readout.tight .cta2{padding:11px 14px;white-space:nowrap}
+.readout.tighter .crest{width:48px;height:52px}
+.readout.tighter .ro-dots{margin:0 0 4px;gap:0 4px}
+.readout.tighter .cta{padding:10px 16px;gap:8px}
+.readout.tighter .cta2{padding:10px 12px}
 .ro-title{margin:0;font:700 15px/1.3 var(--f-disp);letter-spacing:-.015em;color:#fff}
 .ro-title #ro-name{display:inline-block}
 .ro-sub{font-weight:400;color:#b9c1cc}
@@ -402,12 +413,20 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .mp-bar i{display:block;height:100%;width:100%;background:var(--accent);transform-origin:0 0;transition:transform .5s var(--ez)}
 .mp-h{margin:4px 0 0;font:700 clamp(26px,3.4vw,36px)/1.02 var(--f-disp);letter-spacing:-.04em;color:var(--ink)}
 .mp-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
-.mp-opt{display:grid;gap:6px;align-content:start;text-align:left;padding:16px 16px 15px;border:1px solid var(--hair-2);border-radius:8px;background:rgba(255,255,255,.02);transition:border-color .25s var(--ez),background .25s var(--ez),transform .25s var(--ez)}
+.mp-opt{display:grid;gap:6px;align-content:start;text-align:left;padding:16px 16px 15px;border:1px solid var(--hair-2);border-radius:8px;background:rgba(255,255,255,.02);transition:border-color .25s var(--ez),background .25s var(--ez),transform .25s var(--ez),box-shadow .25s var(--ez)}
+.mp-opt b,.mp-opt span{transition:color .25s var(--ez)}
 .mp-opt b{font:600 15px/1.2 var(--f-ui);color:var(--ink)}
 .mp-opt span{font:400 12px/1.45 var(--f-ui);color:var(--ink-3)}
 .mp-opt[aria-checked="true"]{border-color:var(--accent);background:rgba(188,214,234,.09)}
 .mp-opt[aria-checked="true"] span{color:var(--ink-2)}
-@media (hover:hover) and (pointer:fine){.mp-opt:hover{border-color:rgba(255,255,255,.3)}}
+/* answers light up under the mouse; the picked one keeps the solid accent border */
+@media (hover:hover) and (pointer:fine){
+  .mp-opt:hover{border-color:rgba(188,214,234,.55);background:rgba(188,214,234,.075);transform:translateY(-2px);box-shadow:0 12px 26px -16px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
+  .mp-opt:hover b{color:#fff}
+  .mp-opt:hover span{color:var(--ink-2)}
+  .mp-chip:hover{border-color:rgba(188,214,234,.5);background:rgba(188,214,234,.08);color:var(--ink)}
+  .mp-chip[aria-pressed="true"]:hover{background:var(--accent);color:#0b0e13}
+}
 .mp-opt:active{transform:scale(.985);transition-duration:.1s}
 .mp-chips{display:flex;flex-wrap:wrap;gap:8px}
 .mp-chip{padding:10px 14px;border-radius:999px;border:1px solid var(--hair-2);font:500 13px/1 var(--f-ui);color:var(--ink-2);transition:background .2s var(--ez),border-color .2s var(--ez),color .2s var(--ez),transform .2s var(--ez)}
@@ -1272,7 +1291,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.2</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.3</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1284,9 +1303,11 @@ html.kbd .touch-only{display:none}
     <div class="hero" data-rv="2"><div class="hero-note"><i></i><p>Certifications, paths and funding for Coast Guard IT.<small>Not an official U.S. Coast Guard site</small></p></div></div>
     <div class="stage" id="stage"></div>
     <div class="readout" id="readout" aria-live="polite" data-rv="3">
+      <div class="ro-head">
       <p class="ro-title"><span id="ro-name">CompTIA</span> <span class="ro-sub">( vendor line )</span></p>
       <p class="ro-count"><span id="ro-num">01</span> / <span id="ro-total">08</span> &nbsp;&middot;&nbsp; <span id="ro-certs">7 certs</span></p>
       <p class="ro-blurb" id="ro-blurb"></p>
+      </div>
       <div class="ro-dots" id="ro-dots" role="group" aria-label="Vendors"></div>
       <div class="cta-row"><button type="button" class="cta" id="cta"><span class="cta-lbl">Enter <span id="cta-name">CompTIA</span></span><span class="ar" aria-hidden="true">&rarr;</span></button><button type="button" class="cta2" id="cta-path">My path</button></div>
     </div>
@@ -1985,7 +2006,7 @@ function resize(){
   (function(){var sh=isShort(),mb=W<720&&!sh,r=Math.max(70,mb?Math.min(W*.46,sr.height*.46):sh?Math.min(sr.width*.4,sr.height*.47):Math.min(W*.28,sr.height*.52));
     app.style.setProperty("--gx",gcx.toFixed(1)+"px");app.style.setProperty("--gy",gcy.toFixed(1)+"px");app.style.setProperty("--gr",r.toFixed(1)+"px");})();
   fieldBack.resize(W,H);fieldFront.resize(W,H);
-  if(!has3D){if(tt) tt.resize(W,H,gcy,isShort()?{cx:gcx,w:sr.width}:null);return;}
+  if(!has3D){if(tt) tt.resize(W,H,gcy,isShort()?{cx:gcx,w:sr.width}:null);placeReadout();return;}
   renderer.setSize(W,H,false);
   camera.aspect=W/H;
   var short=isShort(), mobile=W<720&&!short;
@@ -1996,6 +2017,33 @@ function resize(){
   camera.setViewOffset(W,H,W/2-gcx,H/2-gcy,W,H);
   camera.updateProjectionMatrix();
   if(tt) tt.resize(W,H,mobile?gcy-Rpx*.86:short?gcy+Rpx*.42:gcy-H*.04,short?{cx:gcx,w:sr.width}:null);
+  placeReadout();
+}
+/* keep the vendor text clear of the CertPath wordmark: if they overlap, lift the text above the word (crests + buttons stay below it) */
+var roHead=null, roRO=null, roBusy=false;
+function placeReadout(){
+  if(roBusy||!readout) return;roBusy=true;
+  try{
+    roHead=roHead||readout.querySelector(".ro-head");
+    readout.classList.remove("split","tight","tighter");readout.style.removeProperty("--ro-lift");
+    if(!tt||!tt.bounds||W<720||isShort()) return;
+    var w=tt.bounds();if(!w) return;
+    var ar=app.getBoundingClientRect(), pad=14, bandTop=ar.top+w.top-pad, bandBot=ar.top+w.bottom+pad, wl=ar.left+w.left, wr=ar.left+w.right;
+    var r=readout.getBoundingClientRect();
+    if(!(r.bottom>bandTop&&r.top<bandBot&&r.right>wl&&r.left<wr)) return;
+    readout.classList.add("split");r=readout.getBoundingClientRect();
+    if(r.top<bandBot){readout.classList.add("tight");r=readout.getBoundingClientRect();}
+    if(r.top<bandBot){readout.classList.add("tighter");r=readout.getBoundingClientRect();}
+    var hh=roHead.getBoundingClientRect().height, top=midEl.getBoundingClientRect().top;
+    if(bandTop-hh<top-4){readout.classList.remove("split","tight","tighter");return;}
+    readout.style.setProperty("--ro-lift",Math.round(r.bottom-bandTop)+"px");
+  }finally{roBusy=false;}
+}
+function watchReadout(){
+  if(roRO||!window.ResizeObserver) return;
+  roHead=readout.querySelector(".ro-head");
+  /* the blurb changes length per vendor: the text grows upward from its anchor, so only re-place when the head's size really changes */
+  var last=0;roRO=new ResizeObserver(function(){var h=Math.round(roHead.getBoundingClientRect().height);if(h!==last){last=h;placeReadout();}});roRO.observe(roHead);
 }
 /* phone held sideways: wide but short. Laid out like desktop, compressed (see the matching CSS media query) */
 function isShort(){return !!(window.matchMedia&&matchMedia("(orientation: landscape) and (max-height: 500px)").matches);}
@@ -2581,7 +2629,7 @@ shScroll.addEventListener("touchend",function(){
 veil.addEventListener("click",function(){closeSheet();});
 
 /* ---------- My path: five questions -> one personal roadmap (plain rules, no AI) ---------- */
-var MP_KEY="cgcp.mypath", mpEl=$("#mp"), mp={step:0,view:"quiz",t:0,a:{exp:"",goal:"",have:[],hpw:10,wgu:""}};
+var MP_KEY="cgcp.mypath", mpEl=$("#mp"), mp={step:0,view:"quiz",t:0,a:{exp:"",goal:"",have:[],hpw:"",wgu:""}};
 var MP_CERTS=(function(){var m={},o=[];function add(n,l){if(!m.hasOwnProperty(n)){m[n]=l||n;o.push(n);}}
   add("A+");add("CC");add("Network+");add("Security+");PATHS.forEach(function(p){p.steps.forEach(function(st){add(st[1],st[0]);});});add("CISSP");return {label:m,order:o};})();
 var MP_WGU=(function(){var w={};VENDORS[VENDORS.length-1].certs.forEach(function(c){w[c[0]]=1;});return w;})();
@@ -2674,7 +2722,7 @@ if(mpEl){
     else if(act==="have"){var c=t.dataset.v,i=mp.a.have.indexOf(c);if(i>=0) mp.a.have.splice(i,1);else mp.a.have.push(c);mpRender(false);var cb=mpEl.querySelector("[data-mp='have'][data-v='"+c.replace(/'/g,"")+"']");if(cb) cb.focus({preventScroll:true});}
     else if(act==="next") mpNext();
     else if(act==="back"){clearTimeout(mp.t);if(mp.step>0){mp.step--;mpRender(true);}}
-    else if(act==="retake"){clearTimeout(mp.t);mp.view="quiz";mp.step=0;mpRender(true);}
+    else if(act==="retake"){clearTimeout(mp.t);mp.view="quiz";mp.step=0;mp.a={exp:"",goal:"",have:[],hpw:"",wgu:""};mpRender(true);}
   });
 }
 $("#cta-path").addEventListener("click",function(){goPage("mine");});
@@ -5137,6 +5185,7 @@ function makeTechText(cv,cvF){
     skipIntro:function(){introT=S.introDur+1;sweepHold=1e9;},
     holdSweep:function(sec){sweepHold=sec;},
     word:function(){return word;},
+    bounds:function(){if(dirty&&fontsOK) layout();return word;},
     pointer:function(x,y,inside){if(drag>=0) return;ptr.x=x;ptr.y=y;ptr.inside=inside;},
     hit:function(x,y){return (reduced||introT<S.introDur+.15)?glyphAt(x,y):glyphAt(x,y);},
     down:function(i,x,y){ptr.x=x;ptr.y=y;ptr.inside=true;drag=i;grabP.x=x-glyphs[i].off.x;grabP.y=y-glyphs[i].off.y;press={x:x,y:y,t:performance.now(),i:i};},
@@ -5150,8 +5199,10 @@ function makeTechText(cv,cvF){
 }
 var tt=makeTechText($("#tt"),$("#tt-front")), gshadow=$("#gshadow"), appLeft=0, appTop=0, ttDrag=false;
 if(document.fonts&&document.fonts.load){
-  Promise.race([document.fonts.load("700 100px 'Inter Tight'","CertPath"),wait(2500)]).then(function(){tt.fontReady();},function(){tt.fontReady();});
-}else tt.fontReady();
+  Promise.race([document.fonts.load("700 100px 'Inter Tight'","CertPath"),wait(2500)]).then(function(){tt.fontReady();placeReadout();watchReadout();},function(){tt.fontReady();placeReadout();watchReadout();});
+}else{tt.fontReady();placeReadout();watchReadout();}
+/* the readout slides in on load: measure again once that motion has settled */
+setTimeout(placeReadout,2600);setTimeout(placeReadout,4200);
 function sphereR(){
   if(!has3D) return 0;
   return (H/2)/Math.tan(camera.fov*Math.PI/360)/Math.sqrt(Math.max(camDist*camDist-1,.01));
@@ -5237,7 +5288,7 @@ function makeFlex(host,v){
   var CARD_VS="#version 300 es\nin vec2 position;in vec2 uv;uniform vec4 uRect;uniform vec2 uResolution;out vec2 vUv;out vec2 vLocal;\nvoid main(){vUv=uv;vLocal=vec2(position.x,-position.y)*uRect.zw;vec2 px=uRect.xy+vLocal;gl_Position=vec4(px.x/uResolution.x*2.0-1.0,1.0-px.y/uResolution.y*2.0,0.0,1.0);}";
   var CARD_FS=`#version 300 es
 precision highp float;
-uniform sampler2D tMap;uniform vec2 uSize;uniform vec2 uImage;uniform float uRadius;uniform float uAlpha;uniform float uShift;uniform float uDpr;
+uniform sampler2D tMap;uniform vec2 uSize;uniform vec2 uImage;uniform float uRadius;uniform float uAlpha;uniform float uShift;uniform float uDpr;uniform vec3 uGloss;
 in vec2 vUv;in vec2 vLocal;out vec4 fragColor;
 float roundedBox(vec2 p,vec2 b,float r){vec2 q=abs(p)-b+r;return length(max(q,0.0))+min(max(q.x,q.y),0.0)-r;}
 void main(){
@@ -5249,6 +5300,15 @@ void main(){
   scale/=1.06;
   vec2 uv=vec2(local.x,1.0-local.y);uv=(uv-0.5)*scale+0.5;uv.x+=uShift*(1.0-scale.x)*0.5;
   vec3 color=texture(tMap,uv).rgb;
+  if(uGloss.z>0.001){
+    /* gloss under the mouse: a soft light spot, a diagonal sheen that slides with the pointer, and a lit rim */
+    vec2 d=(local-uGloss.xy)*vec2(cardAspect,1.0);
+    float spot=exp(-dot(d,d)*7.0);
+    float diag=(local.x-uGloss.x)*0.9+(local.y-uGloss.y)*0.45;
+    float sheen=exp(-diag*diag*90.0)*(0.55+0.45*(1.0-local.y));
+    float rim=smoothstep(-3.5,-0.5,sd);
+    color+=vec3(0.86,0.93,1.0)*(spot*0.12+sheen*0.09+rim*0.18)*uGloss.z;
+  }
   float alpha=mask*uAlpha;
   fragColor=vec4(color*alpha,alpha);
 }`;
@@ -5298,7 +5358,8 @@ void main(){
   function prog(vs,fs){var o=gl.createProgram();gl.attachShader(o,sh(gl.VERTEX_SHADER,vs));gl.attachShader(o,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(o);if(!gl.getProgramParameter(o,gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(o));return o;}
   try{cardP=prog(CARD_VS,CARD_FS);lensP=prog(LENS_VS,LENS_FS);}catch(err){var lc=gl.getExtension("WEBGL_lose_context");if(lc) lc.loseContext();cv.remove();return fallback();}
   function U(p,names){var o={};names.forEach(function(nm){o[nm]=gl.getUniformLocation(p,nm);});return o;}
-  var cu=U(cardP,["tMap","uRect","uResolution","uSize","uImage","uRadius","uAlpha","uShift","uDpr"]);
+  var cu=U(cardP,["tMap","uRect","uResolution","uSize","uImage","uRadius","uAlpha","uShift","uDpr","uGloss"]);
+  var gloss=items.map(function(){return {t:0,x:.5,y:.4};}), glossOn=finePointer;
   var lu=U(lensP,["tScene","uResolution","uDpr","uCenter","uHalf","uAngle","uExponent","uInner","uOuter","uFlow","uCurl","uDispersion","uStrength","uSceneAlpha"]);
   var cardVao=gl.createVertexArray();gl.bindVertexArray(cardVao);
   var pb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,pb);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-.5,-.5,.5,-.5,-.5,.5,.5,.5]),gl.STATIC_DRAW);
@@ -5379,6 +5440,8 @@ void main(){
       gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texes[d.i]);
       gl.uniform4f(cu.uRect,d.x,d.y,d.cw+2,d.ch+2);gl.uniform2f(cu.uSize,d.cw,d.ch);gl.uniform1f(cu.uAlpha,d.a);
       gl.uniform1f(cu.uShift,reduced?0:Math.max(-1,Math.min(1,d.rel/(width*.75))));
+      var gs=gloss[d.i];if(gs.t>.001&&hoverIdx===d.i&&mouseIn){gs.x=(ptr.x-(d.x-d.cw/2))/d.cw;gs.y=(ptr.y-(d.y-d.ch/2))/d.ch;}
+      gl.uniform3f(cu.uGloss,gs.x,gs.y,gs.t);
       gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
       instances.push({index:d.i,x0:d.x-d.cw/2,x1:d.x+d.cw/2,y0:d.y-d.ch/2,y1:d.y+d.ch/2});
     });
@@ -5407,6 +5470,7 @@ void main(){
     if(focus.pending>=0&&mode==="spring"&&Math.abs(goal-pos)<1.5&&Math.abs(vel)<30){if(cur===focus.pending) openFocus(cur);else focus.pending=-1;}
     var travel=Math.abs(pos-lastPos)/Math.max(dt,1e-3);lastPos=pos;
     var eT=reduced?0:Math.min(travel/2600,1);energy+=(eT-energy)*(1-Math.exp(-dt/(eT>energy?.07:.35)));if(energy>.001) anim1=true;
+    if(glossOn){for(var gi=0;gi<n;gi++){var g1=gloss[gi],gt=(gi===hoverIdx&&mouseIn&&!ptr.dragging)?1:0;if(Math.abs(gt-g1.t)>.002){g1.t+=(gt-g1.t)*(1-Math.exp(-dt/(gt>g1.t?.12:.28)));anim1=true;}else g1.t=gt;}}
     var FK=64;focus.v+=(FK*(focus.target-focus.t)-2*Math.sqrt(FK)*focus.v)*dt;focus.t+=focus.v*dt;
     if(Math.abs(focus.target-focus.t)<.0005&&Math.abs(focus.v)<.001){focus.t=focus.target;focus.v=0;}else anim1=true;
     if(dirty||anim1){
@@ -5430,7 +5494,7 @@ void main(){
   }
   function onMove(e){
     var q=lp(e);ptr.x=q[0];ptr.y=q[1];
-    if(e.pointerType==="mouse"){mouseIn=true;if(!ptr.dragging){var hv=hitAt(q[0],q[1]);setHover(hv?hv.index:-1);}}
+    if(e.pointerType==="mouse"){mouseIn=true;if(!ptr.dragging){var hv=hitAt(q[0],q[1]);setHover(hv?hv.index:-1);if(hv) dirty=true;}}
     if(!ptr.down||e.pointerId!==ptr.id) return;
     var dx=q[0]-ptr.startX,dy=q[1]-ptr.startY,slop=ptr.touch?10:5;
     if(!ptr.dragging){
@@ -5701,7 +5765,7 @@ function runSplash(){
   /* wait (briefly) for the display font so the word is drawn in Inter Tight, then go */
   var fontP=document.fonts&&document.fonts.load?document.fonts.load("700 100px 'Inter Tight'","CertPath"):Promise.resolve();
   Promise.race([fontP,wait(1200)]).then(function(){},function(){}).then(function(){
-    if(tt){tt.fontReady();}
+    if(tt){tt.fontReady();placeReadout();}
     requestAnimationFrame(function(now){t0=now;phase="reveal";draw(now);});
   });
 }
