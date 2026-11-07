@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-xU8h+oBDPNBxy82aNZlGdvLYtdmGEYn7hjYWMT3v0bo=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -26,9 +27,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://gabytoski77.github.io/certpath/og-image.jpg">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Geist:wght@300..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="preload" href="fonts/inter-tight.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="fonts/geist.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 /* animatable custom properties so glass tint, text tint and vendor color morph smoothly */
 @property --c{syntax:"<color>";inherits:true;initial-value:#bcd6ea}
@@ -1305,7 +1306,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.5</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.6</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1494,8 +1495,8 @@ html.kbd .touch-only{display:none}
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="vendor/three.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
 <script>
 (function(){
 "use strict";
@@ -2007,7 +2008,7 @@ function addWorld(geo){
 function loadWorld(){
   window.echarts={registerMap:function(name,geo){if(String(name).toLowerCase()==="world") addWorld(geo);}};
   var s=document.createElement("script");
-  s.src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js";s.crossOrigin="anonymous";s.referrerPolicy="no-referrer";
+  s.src="vendor/world.js";s.crossOrigin="anonymous";s.referrerPolicy="no-referrer";
   s.onerror=function(){statusEl.textContent="Map outlines didn't load · grid only";};
   document.head.appendChild(s);
 }
