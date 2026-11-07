@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-xU8h+oBDPNBxy82aNZlGdvLYtdmGEYn7hjYWMT3v0bo=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-atLM+fHdpaUyolE9JsIzNaRCqtiysH/FGATERcpltvM=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1306,7 +1306,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.6</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.7</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -4579,6 +4579,234 @@ GUIDES["SSCP"]={
     ["DoD: Approved 8570 baseline certifications","https://public.cyber.mil/wid/dod8140/dod-approved-8570-baseline-certifications/"]]
 };
 
+GUIDES["CCSP"]={
+  id:"ccsp",
+  lead:"ISC2's senior cloud security cert, Certified Cloud Security Professional. It proves you can design, run and govern security for data, apps and infrastructure in the cloud, on any provider. It's the last step on the Cloud path and built for experienced people, not beginners.",
+  checked:"Nov 7, 2026",
+  planHours:140,
+  planSub:"Set how many hours a week you can give it. The plan splits about 140 hours across the six domains by exam weight, then saves the last stretch for practice tests and PBQs.",
+  laneOnly:["Cloud"],
+  versions:{
+    v26:{code:"CCSP",label:"2026 outline",status:"In effect since Aug 1, 2026 · passing 700",
+      note:"ISC2 updated the CCSP outline on August 1, 2026. The six domains are the same, but there's new material on AI and machine learning (1.6 and 2.9) and the weights shifted a little. Older books follow the previous outline, so fill those gaps from the outline itself. The exam is adaptive (CAT): 100 to 150 questions in 3 hours.",
+      numbered:true,
+      domains:[
+        {n:"1.0",name:"Cloud Concepts, Architecture and Design",w:17,obj:[
+          ["Understand cloud computing concepts","Cloud definitions and roles (customer, provider, broker), the essential characteristics like on-demand self-service and elasticity, and the building blocks: compute, storage, networking."],
+          ["Describe cloud reference architecture","How the pieces fit together: service models, deployment models, cloud activities and shared considerations like interoperability and portability."],
+          ["Understand security concepts for cloud computing","Cryptography and key management, identity and access control, data sanitization, network and virtualization security, and common cloud threats."],
+          ["Understand design principles of secure cloud computing","Secure data lifecycle, BC/DR and business impact analysis, cost-benefit, security design patterns and DevOps security."],
+          ["Evaluate cloud service providers","Check a provider against criteria like ISO/IEC 27017 and PCI DSS, and products against certifications like Common Criteria and FIPS 140 for crypto modules."],
+          ["Comprehend AI and machine learning","AI for threat detection, data validation and SOAR automation, plus the ethics and regulation that come with it.",true]]},
+        {n:"2.0",name:"Cloud Data Security",w:20,obj:[
+          ["Describe cloud data concepts","The data lifecycle (create, store, use, share, archive, destroy), data dispersion across locations, and data flows."],
+          ["Design and implement cloud data storage architectures","Storage types (like object, volume and ephemeral storage) and the threats to each, such as a storage bucket left open to the public."],
+          ["Design and apply data security technologies","Encryption and key management, hashing, masking, tokenization, DLP, and managing secrets and certificates."],
+          ["Implement data discovery","Find structured, unstructured and semi-structured data, and know where it physically lives."],
+          ["Plan and implement data classification","Classification policies, data mapping, and labeling or tagging data so controls follow it."],
+          ["Design and implement information rights management (IRM)","Controls that travel with the file: who can open, edit, print or forward it, plus certificate issuance and revocation."],
+          ["Plan data retention, deletion and archiving","Retention periods, secure deletion (crypto-shredding in the cloud), archiving, and legal holds that pause deletion."],
+          ["Design auditability, traceability and accountability","Which events to log, log analysis, chain of custody and non-repudiation for data events."],
+          ["Comprehend protection of AI and ML data","Keeping training data and models private and secure, and validating them against poisoning.",true]]},
+        {n:"3.0",name:"Cloud Platform and Infrastructure Security",w:17,obj:[
+          ["Comprehend cloud infrastructure components","Physical environment, network, compute, virtualization, storage and the management plane that controls it all."],
+          ["Design a secure data center","Logical design (tenant separation), physical and environmental design, and resilience."],
+          ["Analyze risks of cloud infrastructure and platforms","Risk assessment, cloud-specific vulnerabilities and attacks (like VM escape), and risk treatment."],
+          ["Plan and implement security controls","Physical and environmental protection, system and communication protection, identification and access, and audit mechanisms."],
+          ["Plan business continuity and disaster recovery","BC/DR strategy, recovery time and point objectives (RTO, RPO), and creating, testing and updating the plan."]]},
+        {n:"4.0",name:"Cloud Application Security",w:16,obj:[
+          ["Advocate application security training and awareness","Cloud development basics, common pitfalls, and vulnerability lists like the OWASP Top 10."],
+          ["Describe the secure software development life cycle (SDLC)","Business requirements, SDLC phases and methodologies like Agile, and where security fits in each."],
+          ["Apply the secure SDLC","Threat modeling, secure coding and configuration management throughout development."],
+          ["Apply cloud software assurance and validation","Functional and security testing (SAST, DAST), testing in CI/CD pipelines, QA, and abuse case testing."],
+          ["Use verified secure software","API security, supply chain management, and vetting third-party and open-source components."],
+          ["Comprehend cloud application architecture","Web application firewalls, API gateways, cryptography, sandboxing, and containers and orchestration."],
+          ["Design identity and access management solutions","Federation, identity providers, SSO, MFA, cloud access security brokers (CASB) and secrets management."]]},
+        {n:"5.0",name:"Cloud Security Operations",w:17,obj:[
+          ["Build physical and logical infrastructure","Secure hardware and virtual configuration, secure defaults, management tools and guest OS tool sets."],
+          ["Operate and maintain cloud infrastructure","Access controls, network security, OS hardening, patching, clustering and high availability, monitoring, and backup and restore."],
+          ["Implement operational controls and standards","Frameworks like NIST, ISO/IEC 27001 and 20000-1, ITIL, CIS Controls and COBIT for running operations."],
+          ["Support digital forensics","Forensic collection in the cloud, where you may not control the hardware, and evidence management."],
+          ["Manage communication with relevant parties","Vendors, customers, partners, regulators and other stakeholders, before and during incidents."],
+          ["Manage security operations","SOC and monitoring, log analysis and SIEM, incident response, vulnerability assessment and pen testing, and change, continuity and capacity management."]]},
+        {n:"6.0",name:"Legal, Risk and Compliance",w:13,obj:[
+          ["Articulate legal requirements and risks in the cloud","Conflicting laws across countries, legal frameworks, eDiscovery and forensic requirements."],
+          ["Understand privacy requirements","Contractual vs regulated data, privacy laws like GDPR and HIPAA, jurisdiction, and privacy impact assessments (PIAs)."],
+          ["Understand audit processes for the cloud","Internal and external audits, audit reports (SOC 1, 2, 3), scope limits, gap analysis, ISMS, and specialized compliance like PCI DSS."],
+          ["Understand cloud impact on enterprise risk management","Risk treatment, risk frameworks and metrics, and assessing the provider's risk environment."],
+          ["Understand outsourcing and cloud contract design","SLAs, master service agreements (MSAs), statements of work (SOWs), vendor management, the right to audit, and exit terms."]]}
+      ]}
+  },
+  extras:[
+    {kind:"rows",title:"Who secures what",sub:"1.4 · shared responsibility",rows:[
+      ["IaaS","Infrastructure","Provider: hardware, network, hypervisor. You: guest OS, patching, apps, data, firewall rules."],
+      ["PaaS","Platform","Provider: also the OS and runtime. You: your code, its settings, users and data."],
+      ["SaaS","Software","Provider: almost everything. You: who has access, how it's configured, and your data."],
+      ["Always","The customer","Your data and your users' access. You can't hand those off, in any model."]]},
+    {kind:"steps",title:"Cloud data lifecycle",sub:"2.1 · in order",rows:[
+      "Create: classify and label data the moment it's made.",
+      "Store: encrypt at rest and control access.",
+      "Use: protect it in use with access control, masking and monitoring.",
+      "Share: encrypt in transit, use IRM and DLP to control where it goes.",
+      "Archive: keep it for the required retention period, still encrypted.",
+      "Destroy: crypto-shred (delete the keys) since you can't wipe the provider's disks."]},
+    {kind:"rows",title:"Data protection techniques",sub:"2.3 · pick the right one",rows:[
+      ["Encrypt","Encryption","Reversible with the key. Protects data at rest and in transit."],
+      ["Token","Tokenization","Swaps the real value for a random token; the real one sits in a separate vault. Common for card numbers."],
+      ["Mask","Masking","Hides part of a value, like ***-**-1234. Good for screens and test data."],
+      ["Anon","Anonymization","Removes identifiers for good. The data can't be tied back to a person."],
+      ["Hash","Hashing","One-way fingerprint. Proves data didn't change."],
+      ["DLP","Data loss prevention","Watches data in motion and at rest and blocks sensitive data from leaving."]]},
+    {kind:"rows",title:"Recovery terms",sub:"3.5 · BC/DR",rows:[
+      ["BIA","Business impact analysis","Finds which systems matter most and what an outage costs."],
+      ["MTD","Max tolerable downtime","The longest the mission can survive without the system."],
+      ["RTO","Recovery time objective","How fast the system must be back. Must be shorter than the MTD."],
+      ["RPO","Recovery point objective","How much data you can afford to lose, measured in time since the last backup."]]},
+    {kind:"rows",title:"Audits and authorizations",sub:"6.3 · reports to know",rows:[
+      ["SOC 1","Financial controls","Controls that affect financial reporting."],
+      ["SOC 2","Security controls","Security, availability, integrity, confidentiality and privacy. Type I is one point in time; Type II covers a period."],
+      ["SOC 3","Public summary","A short version of SOC 2 that can be shared publicly."],
+      ["27001","ISO/IEC 27001","Certifies the provider's information security management system (ISMS)."],
+      ["FedRAMP","U.S. government","Authorization for cloud services used by federal agencies. DoD adds its own impact levels (IL2 to IL6)."]]},
+    {kind:"rows",title:"Contract terms",sub:"6.5 · what to look for",rows:[
+      ["SLA","Service level agreement","Measurable promises like uptime, and what happens when they're missed."],
+      ["MSA","Master service agreement","The overall legal terms for the relationship."],
+      ["SOW","Statement of work","The specific work for a project under the MSA."],
+      ["Audit","Right to audit","Your right to check the provider, often met with their SOC 2 report."],
+      ["Exit","Exit and portability","How you get your data back, in what format, and how theirs is destroyed."]]}
+  ],
+  facts:[["Questions","100–150","adaptive"],["Time","3","hours"],["Passing","700","of 1000"],["Format","CAT","MCQ +"],["Study","120–160","hours"],["Voucher","$599","exam only"],["Valid","3","years"],["DoD 8570","IASAE III","architect"]],
+  method:[
+    ["Map","Use the six domains as your checklist. Cloud Data Security is the biggest at 20%, so give it the most time."],
+    ["Think","CCSP asks what a security leader should do, not which button to click. Learn the reasons behind each control."],
+    ["Compare","For every topic, ask how it changes in IaaS, PaaS and SaaS, and who's responsible. That one habit answers many questions."],
+    ["Recall","Flashcards for the data lifecycle, protection techniques, recovery terms, audit reports and contract terms."],
+    ["Test","Timed practice tests, then read every explanation. Note why the 'technical' answer is often wrong."]],
+  tips:[
+    ["No going back","CCSP uses computerized adaptive testing (CAT). You answer one question at a time and can't return to earlier ones."],
+    ["It can end early","The exam stops once it's confident you've passed or failed, anywhere from 100 to 150 questions."],
+    ["Pick the vendor-neutral answer","Questions don't name AWS or Azure services. Answer with the general concept."],
+    ["Contracts and data come first","When answers look close, protecting the data and following the contract and the law usually beat a technical fix."],
+    ["Ethics come first","For ethics questions, protecting society and acting honestly beat doing what a boss or client asks."]],
+  resources:[
+    {group:"Official",items:[
+      ["CCSP exam outline (2026)","ISC2","https://edge.sitecorecloud.io/internationf173-xmc4e73-prodbc0f-9660/media/Project/ISC2/Main/Media/documents/exam-outlines/EXAMS-CCSP-Exam-Outline-English-01-2026-V2.pdf","Free","The full outline, effective Aug 1, 2026."],
+      ["Certified Cloud Security Professional","ISC2","https://www.isc2.org/certifications/ccsp","Free","Exam facts, experience rules and purchase options."],
+      ["ISC2 Code of Ethics","ISC2","https://www.isc2.org/ethics","Free","Read the four canons. Ethics questions follow them."],
+      ["CCSP Online Self-Paced Training","ISC2","","Paid","ISC2's own course, sold with the exam as a bundle."]]},
+    {group:"Reference",items:[
+      ["Security Guidance v5","Cloud Security Alliance","https://cloudsecurityalliance.org/research/guidance","Free","The CSA's cloud security guide. Many CCSP topics come from it."],
+      ["Cloud Computing Definition (SP 800-145)","NIST","https://csrc.nist.gov/pubs/sp/800/145/final","Free","The official definition of the service and deployment models."],
+      ["FedRAMP","GSA","https://www.fedramp.gov","Free","How the U.S. government authorizes cloud services."]]},
+    {group:"Hands-on",items:[
+      ["AWS Skill Builder","Amazon","https://skillbuilder.aws","Free tier","Free cloud fundamentals and security courses to see the concepts in a real platform."],
+      ["Microsoft Learn: Azure security","Microsoft","https://learn.microsoft.com/training/azure/","Free","Free modules and sandboxes for identity, networking and data protection on Azure."]]}
+  ],
+  quiz:[
+    {d:"1.0",q:"A unit moves its web app to a provider's managed platform. It uploads code; the provider runs the OS, runtime and scaling. A new flaw is found in the runtime. Who is responsible for patching it?",
+     o:[["The provider, because this is PaaS","Right. In PaaS the provider manages the OS and runtime. The customer is responsible for its own code, settings and data."],
+        ["The customer, because they own the application","The customer owns the code, but not the runtime underneath it in PaaS."],
+        ["The customer, because patching is always the customer's job","Patching depends on the service model. In SaaS and PaaS the provider patches what it runs."],
+        ["Nobody until the SLA is renegotiated","The shared responsibility model already sets this. A runtime flaw in PaaS is the provider's to fix."]],a:0},
+    {d:"1.0",q:"Before choosing a cloud provider for a federal workload, which evidence BEST shows the provider's security has been independently checked against U.S. government requirements?",
+     o:[["A FedRAMP authorization for the service","Right. FedRAMP is the government's standardized assessment and authorization for cloud services."],
+        ["The provider's own security white paper","A white paper is the provider describing itself. It isn't an independent assessment."],
+        ["A SOC 1 report","SOC 1 covers controls over financial reporting, not overall security for government use."],
+        ["A high uptime figure in the SLA","Uptime is about availability, not whether security controls meet government requirements."]],a:0},
+    {d:"2.0",q:"A team stores card numbers for a billing app. Developers need realistic records to test with, and the live system needs to look up the real number only at payment time. Which technique fits the live system BEST?",
+     o:[["Tokenization with a separate token vault","Right. The app stores tokens; the real numbers sit in a guarded vault and are only fetched at payment time. A stolen app database holds no real card numbers."],
+        ["Hashing the card numbers","Hashing is one-way. The system could never get the real number back for a payment."],
+        ["Anonymization","Anonymized data can't be tied back to the original, so payments would be impossible."],
+        ["Masking in the database","Masking hides values for display or test data. It doesn't let the live system retrieve the real value securely."]],a:0},
+    {d:"2.0",q:"A unit is leaving a cloud provider and must make sure its data on the provider's shared disks can never be recovered. What is the MOST practical method?",
+     o:[["Crypto-shredding: securely destroy the encryption keys for that data","Right. You can't physically wipe a provider's shared disks. If the data was encrypted and the keys are destroyed, what remains is unreadable."],
+        ["Degaussing the provider's drives","You don't control the provider's hardware, and those disks hold other customers' data."],
+        ["Deleting the files normally","Normal deletion leaves recoverable data behind and in backups."],
+        ["Asking the provider to overwrite the disks once","You can't verify it, and shared or distributed storage makes it impractical."]],a:0},
+    {d:"2.0",q:"A sensitive briefing must stay unreadable to anyone it's forwarded to, and access must be revocable even after it's been downloaded. Which control fits?",
+     o:[["Information rights management (IRM)","Right. IRM rights travel with the file, so they still apply after download and can be revoked later."],
+        ["Encryption at rest on the storage service","That protects the file on the server, but not after someone downloads it."],
+        ["A data loss prevention (DLP) rule","DLP can block it from leaving the network, but it can't control a copy that already left or revoke access later."],
+        ["Role-based access control on the folder","Folder permissions stop applying once the file is copied out."]],a:0},
+    {d:"3.0",q:"After a ransomware event, leadership says the mission can tolerate at most 8 hours offline, and losing more than 1 hour of data is unacceptable. Which pair of objectives does that describe?",
+     o:[["MTD of 8 hours and an RPO of 1 hour","Right. Max tolerable downtime is the outer limit for being down; the recovery point objective is how much data loss is acceptable. The RTO must then fit inside the 8 hours."],
+        ["RTO of 1 hour and an RPO of 8 hours","That flips them. The 1 hour is about data loss (RPO), not time to restore."],
+        ["RPO of 8 hours and an MTD of 1 hour","That flips them too, and an MTD shorter than recovery wouldn't make sense here."],
+        ["SLA of 8 hours and a BIA of 1 hour","An SLA is a contract term and a BIA is an analysis. Neither is a recovery objective."]],a:0},
+    {d:"3.0",q:"An attacker in one virtual machine exploits a hypervisor flaw to reach other tenants' VMs on the same host. What is this attack, and whose control mainly prevents it?",
+     o:[["VM escape; the provider's hypervisor patching and isolation","Right. Breaking out of a guest to the hypervisor is VM escape. In IaaS the hypervisor is the provider's responsibility."],
+        ["VM sprawl; the customer's asset inventory","VM sprawl is too many unmanaged VMs. It isn't an attack across tenants."],
+        ["Side-loading; the customer's app allow list","Side-loading is installing apps from unofficial sources. It isn't a hypervisor break-out."],
+        ["A DDoS attack; the provider's traffic scrubbing","DDoS overwhelms a service. It doesn't give access to other VMs."]],a:0},
+    {d:"4.0",q:"A team wants to catch insecure code before it's merged, without running the app. Which test belongs in the pull request stage of their CI/CD pipeline?",
+     o:[["Static application security testing (SAST)","Right. SAST scans the source code itself, so it can run on every pull request before anything is deployed."],
+        ["Dynamic application security testing (DAST)","DAST tests the running app from the outside, so it needs a deployed build."],
+        ["A penetration test","Pen tests are manual and run against a running system, usually far less often."],
+        ["Load testing","Load testing checks performance, not security flaws in code."]],a:0},
+    {d:"4.0",q:"Several cloud apps keep database passwords hard-coded in their source code repositories. What is the BEST fix?",
+     o:[["Move them into a secrets manager the apps call at runtime, and rotate the exposed ones","Right. A secrets manager keeps credentials out of code, controls who can read them and makes rotation easy. Anything already committed must be treated as exposed."],
+        ["Make the repositories private","That helps, but the passwords are still in every copy and in history, and anyone with repo access can read them."],
+        ["Encode the passwords in Base64","Base64 is encoding, not encryption. Anyone can decode it instantly."],
+        ["Add a comment telling developers not to share the code","A comment doesn't protect anything."]],a:0},
+    {d:"5.0",q:"During an incident in an IaaS environment, investigators need evidence from a compromised VM. The provider won't give access to physical hardware. What should they do FIRST?",
+     o:[["Capture a snapshot of the VM's memory and disk, hash it and log the chain of custody","Right. In the cloud you collect at the virtual layer. Hashing and chain of custody keep the evidence usable."],
+        ["Demand the provider ship the physical server","Providers won't, and the server holds other customers' data."],
+        ["Delete the VM to stop the attack","Deleting destroys the evidence. Isolate and snapshot first."],
+        ["Wait for the provider's quarterly audit report","An audit report won't hold evidence of this incident, and waiting loses volatile data."]],a:0},
+    {d:"5.0",q:"A unit needs a standard for running its cloud services day to day: incident, change, capacity and service level management. Which framework is built for this?",
+     o:[["ITIL or ISO/IEC 20000-1 for IT service management","Right. Both describe how to run IT services, including incident, change and capacity management."],
+        ["PCI DSS","PCI DSS is a compliance standard for card data, not a service management framework."],
+        ["GDPR","GDPR is a privacy law."],
+        ["OWASP Top 10","OWASP Top 10 lists web application risks. It doesn't cover running IT services."]],a:0},
+    {d:"6.0",q:"A U.S. unit's partner stores personal data with a provider whose data centers are in another country. A court there orders the data released, which conflicts with a U.S. agreement. What is this risk called, and what reduces it?",
+     o:[["Conflicting jurisdiction; contract terms that fix where data is stored and processed","Right. Different countries' laws can conflict over the same data. Data residency terms in the contract are the main way to control it."],
+        ["Vendor lock-in; using multiple providers","Lock-in is about being stuck with one provider. It doesn't address conflicting laws."],
+        ["eDiscovery; deleting the data quickly","Deleting data under a legal order can be illegal. That's not a fix."],
+        ["Data dispersion; turning off replication","Dispersion is about data spread across locations. The core issue is which laws apply."]],a:0}
+  ],
+  pbqs:[
+    {id:"protect",kind:"match",short:"Protect the data",title:"Pick the protection technique",dom:"2.0",
+     scenario:"A unit is moving six data sets to the cloud. Pick the BEST technique for each one's requirement.",
+     pick:"Technique",choices:["Encryption","Tokenization","Masking","Anonymization","Hashing","Crypto-shredding"],
+     items:[
+       {src:"Payments",log:"Billing must charge real card numbers,\nbut the app database must not hold them.",a:1,why:"Tokens replace the card numbers in the app; the real ones stay in a separate vault."},
+       {src:"Help desk",log:"Agents see only the last 4 digits of a\nmember's SSN on screen.",a:2,why:"Masking hides most of the value for display while keeping it usable."},
+       {src:"Research",log:"Share survey results publicly with no way\nto trace answers to a person.",a:3,why:"Anonymization removes identifiers for good, so data can't be tied back to anyone."},
+       {src:"Backups",log:"Backups in object storage must be\nunreadable if the bucket leaks.",a:0,why:"Encrypting at rest makes the files useless without the keys."},
+       {src:"Software",log:"Prove downloaded installers weren't\nchanged after they were published.",a:4,why:"Comparing a hash to the published value proves integrity."},
+       {src:"Exit plan",log:"Leaving the provider; make sure the data\non their disks can never be read again.",a:5,why:"Destroying the encryption keys renders the leftover data unreadable."}]},
+    {id:"shared",kind:"table",short:"Who's responsible",title:"Who secures what",dom:"1.0",
+     scenario:"For each task, pick the service model it describes and who is responsible for it under the shared responsibility model.",
+     cols:["Service model","Responsible"],
+     opts:[["SaaS","IaaS","PaaS"],["Provider","Shared","Customer"]],
+     rows:[
+       {req:"Patch the operating system on the virtual machines you rent.",a:[1,2],why:"In IaaS the guest OS is yours to patch."},
+       {req:"Patch the language runtime that runs the code you upload to a managed app platform.",a:[2,0],why:"In PaaS the provider runs and patches the OS and runtime."},
+       {req:"Decide which users can read records in a hosted email and office suite.",a:[0,2],why:"Even in SaaS, who gets access to your data is always the customer's call."},
+       {req:"Physical security of the data center behind a hosted HR app.",a:[0,0],why:"In SaaS the provider owns the whole stack, including the building."},
+       {req:"Set firewall rules (security groups) for the VMs you rent.",a:[1,2],why:"In IaaS you configure network access to your own instances."},
+       {req:"Fix an injection flaw in code you deployed to a managed app platform.",a:[2,2],why:"In PaaS your own application code is your responsibility."}]}
+  ],
+  before:[["Security+","The DoD baseline most people start with"],["Cloud+","Vendor-neutral cloud skills"],["AWS Solutions Architect","Hands-on design on a real platform","Solutions Architect Associate"],["SSCP","ISC2's practitioner step, if you're on that track"]],
+  next:[["CISSP","ISC2's senior cert; many cloud leads hold both"],["Security Specialty","Deep AWS security on a real platform"],["Azure Security Engineer","Deep Azure security on a real platform"]],
+  hereNote:"Senior cloud security for experienced people",
+  mapSub:"CCSP caps the Cloud path. Most people get there through Security+, Cloud+ and a platform cert. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"3 years",text:"Earn 90 continuing professional education (CPE) credits every three years. ISC2 suggests about 30 a year."},
+    {lab:"Yearly fee",big:"$135",text:"CCSP holders pay a $135 annual maintenance fee (AMF), due each year on your certification anniversary.",after:"One AMF covers all your ISC2 certs, so holding SSCP or CISSP too doesn't add a second fee."},
+    {lab:"Experience",big:"5 years",text:"You need five years of full-time paid IT work. Three must be in cybersecurity and one in a CCSP domain. Part-time work and internships can count too.",list:["A computer science or IT degree, or CSA's CCSK certificate, can waive one year. Only one year can be waived.","An active CISSP covers the whole experience requirement.","No experience yet? Pass the exam and you become an Associate of ISC2, with six years to earn the five.","After you pass, finish the certification application, including endorsement, within nine months."]},
+    {lab:"DoD",big:"IASAE III",text:"On the old DoD 8570 chart, CCSP is listed with CISSP-ISSAP and CISSP-ISSEP at the senior architect and engineer level (IASAE III).",after:"ISC2 says all of its certs are approved under DoD 8140. Check the 8140 matrix for your billet's work role and level."}],
+  sources:[
+    ["ISC2: CCSP certification","https://www.isc2.org/certifications/ccsp"],
+    ["ISC2: CCSP exam outline (effective Aug 1, 2026)","https://edge.sitecorecloud.io/internationf173-xmc4e73-prodbc0f-9660/media/Project/ISC2/Main/Media/documents/exam-outlines/EXAMS-CCSP-Exam-Outline-English-01-2026-V2.pdf"],
+    ["ISC2: CCSP exam outline revised (Jun 2026)","https://www.isc2.org/insights/2026/06/isc2-ccsp-exam-outline-revised"],
+    ["ISC2: Exam pricing","https://www.isc2.org/ISC2-Exam-Pricing"],
+    ["ISC2: Member policies (CPEs and AMF)","https://www.isc2.org/policies-procedures/member-policies"],
+    ["ISC2: Apply for certification (endorsement)","https://www.isc2.org/en/Endorsement"],
+    ["ISC2: All certifications approved under DoD 8140","https://www.isc2.org/insights/2024/11/all-isc2-certifications-and-trainings-approved-under-dod-8140"],
+    ["DoD: Approved 8570 baseline certifications","https://public.cyber.mil/wid/dod8140/dod-approved-8570-baseline-certifications/"]]
+};
+
 /* ---------- cert guide page (renders inside the vendor panel) ---------- */
 var guideName=null, gVer="v8", gIO=null, gSpyRaf=0, gQ=null, gHpw=10;
 function gGet(k){try{var r=localStorage.getItem(k);return r?JSON.parse(r):null;}catch(err){return null;}}
@@ -5008,7 +5236,7 @@ document.querySelectorAll(".kbd-k").forEach(function(k){k.textContent=isMac?"⌘
 var ALIAS={"A+":"a plus core 1 core 2 220-1101 220-1102 220-1201 220-1202 v15 help desk guide","Network+":"net plus n10-009 v9 networking guide","Security+":"sec plus secplus security plus sy0-701 sy0-801 v7 v8 guide",
  "Cloud+":"cloud plus cv0-004 v4 guide","CySA+":"cysa cs0-003 cs0-004 v3 v4 cybersecurity analyst blue team soc guide","PenTest+":"pentest plus pen test penetration testing pt0-003 v3 ethical hacking red team offensive guide",
  "SecurityX":"securityx security x casp casp plus cas-005 v5 advanced security practitioner architect engineer guide","CC":"certified in cybersecurity isc2 cc entry level cyber beginner no experience 2026 outline guide","SSCP":"systems security certified practitioner sscp isc2 practitioner 2025 outline cat adaptive security administration operations associate of isc2 guide",
- "CCSP":"certified cloud security professional","CISSP":"certified information systems security professional","CCST Networking":"100-150 cisco certified support technician",
+ "CCSP":"certified cloud security professional ccsp isc2 cloud security 2026 outline cat adaptive shared responsibility csa ccsk guide","CISSP":"certified information systems security professional","CCST Networking":"100-150 cisco certified support technician",
  "CCST Cybersecurity":"100-160 cisco certified support technician","CyberOps Associate":"200-201 cbrops soc blue team","CCNA":"200-301 routing switching",
  "CCNP Security":"350-701 scor","SAL1 · Security Analyst L1":"sal1 sal 1 soc analyst blue team","PT1 · Junior Pentester":"pt1 jr junior pentest red team",
  "Linux Essentials":"010-160 lpi","LPIC-1":"lpic1 101-500 102-500","Cloud Practitioner":"clf-c02 ccp aws amazon","Solutions Architect Associate":"saa saa-c03 aws amazon",
