@@ -16,14 +16,22 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta property="og:title" content="CG Cert Path">
 <meta property="og:description" content="Certifications, career paths and funding for Coast Guard IT.">
-<meta property="og:image" content="icon-512.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CG Cert Path">
+<meta property="og:url" content="https://gabytoski77.github.io/certpath/">
+<meta property="og:image" content="https://gabytoski77.github.io/certpath/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CG Cert Path: Plan the path. Earn the cert.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gabytoski77.github.io/certpath/og-image.jpg">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Geist:wght@300..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* animatable custom properties so glass tint, text tint and vendor color morph smoothly */
-@property --c{syntax:"<color>";inherits:true;initial-value:#7fe3ff}
+@property --c{syntax:"<color>";inherits:true;initial-value:#bcd6ea}
 @property --gl-ink{syntax:"<color>";inherits:true;initial-value:#ffffff}
 @property --ink-tint{syntax:"<percentage>";inherits:true;initial-value:70%}
 @property --tint{syntax:"<percentage>";inherits:false;initial-value:18%}
@@ -34,7 +42,8 @@
   --fg:#e8eef6;
   --muted:#7f8a99;
   --line:#1a222e;
-  --accent:#7fe3ff;
+  --accent:#bcd6ea;--powder:#bcd6ea;--steel:#5e7a92;--ice:#e8f1f8;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E");
   --on-accent:#03141b;
   --glass:rgba(255,255,255,.055);
   --glass-line:rgba(255,255,255,.12);
@@ -57,20 +66,22 @@ html,body{height:100%;overscroll-behavior:none}
 @supports (height:100dvh){html{height:100dvh}}
 body{position:fixed;inset:0;width:100%}
 /* launch screen */
-#splash{position:fixed;inset:0;z-index:60;background:radial-gradient(60% 58% at 50% 46%,#3d4655 0%,#2a313d 38%,#1b2029 72%,#12161d 100%);background-color:#12161d;
+#splash{position:fixed;inset:0;z-index:60;background:var(--grain),radial-gradient(60% 58% at 50% 46%,#3a4c5d 0%,#273441 38%,#19212a 72%,#12161d 100%);background-color:#12161d;
   animation:spFail .5s ease 7s forwards;cursor:default}
 #splash.out{pointer-events:none}
 #sp-cv{position:absolute;inset:0;width:100%;height:100%;display:block}
 .sp-meta{position:absolute;left:0;top:0;width:0;height:0;opacity:0;pointer-events:none;font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
 .sp-top{position:absolute;left:0;bottom:14px;margin:0;display:flex;justify-content:space-between;gap:20px;width:100%;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8d97a5;white-space:nowrap}
 .sp-top span:first-child{color:#c9d0d9}
+.sp-brand{display:inline-flex;align-items:center;gap:8px}
+.sp-brand .mk{width:13px;height:13px;color:#e8f1f8}
 .sp-bot{position:absolute;left:0;top:18px;width:100%;display:flex;align-items:center;gap:14px}
 .sp-bar{position:relative;flex:1;height:1px;background:rgba(255,255,255,.12);overflow:hidden}
 .sp-bar i{position:absolute;inset:0;background:#f3f5f8;transform-origin:0 50%;transform:scaleX(0)}
 .sp-n{font-size:11px;color:#f3f5f8;font-variant-numeric:tabular-nums;letter-spacing:.06em}
 @keyframes spFail{to{opacity:0;visibility:hidden}}
 @media (max-width:720px){.sp-top span:last-child{display:none}}
-body{margin:0;background:radial-gradient(60% 58% at 50% 46%,#3d4655 0%,#2a313d 38%,#1b2029 72%,var(--bg) 100%);background-color:var(--bg);color:var(--fg);font-family:var(--f-ui);overflow:hidden;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--grain),radial-gradient(60% 58% at 50% 46%,#3a4c5d 0%,#273441 38%,#19212a 72%,var(--bg) 100%);background-color:var(--bg);color:var(--fg);font-family:var(--f-ui);overflow:hidden;-webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
 /* feel native on phones: no tap flash, no font inflation, instant taps, no text selection on controls */
 html{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -117,11 +128,15 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .ui{position:relative;z-index:4;transition:opacity .55s var(--ez),transform .8s var(--ez),filter .55s var(--ez)}
 #app.is-diving .ui{opacity:0;transform:scale(.985);filter:blur(4px);pointer-events:none}
 #app.is-diving #labels{opacity:0}
+.bloom{position:absolute;left:calc(var(--gx,50%) - var(--gr,200px) * 1.7);top:calc(var(--gy,50%) - var(--gr,200px) * 1.7);width:calc(var(--gr,200px) * 3.4);height:calc(var(--gr,200px) * 3.4);border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(closest-side,rgba(188,214,234,.25) 0%,rgba(111,142,168,.13) 38%,rgba(26,36,48,.05) 62%,rgba(18,22,29,0) 100%);transition:opacity .6s var(--ez)}
+#app.is-diving .bloom{opacity:0}
 
 /* header */
 .top{display:flex;justify-content:space-between;align-items:center;gap:16px;pointer-events:none}
 .mark{display:flex;align-items:baseline;gap:10px;pointer-events:auto}
 .mark b{font:700 18px/1 var(--f-disp);letter-spacing:-.035em;color:#fff}
+.mark .mk{flex:none;width:20px;height:20px;color:#f4f8fb;margin-right:-2px;align-self:center}
 .mark b sup{font-size:10px;font-weight:600;vertical-align:9px;margin-left:1px}
 .mark span{font:500 10px var(--f-mono);color:#8d97a5;letter-spacing:.06em}
 .hdr-btn{pointer-events:auto;width:32px;height:32px;border-radius:50%;background:#f2f4f7;color:#151a21;display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.35);transition:transform .28s var(--ez)}
@@ -280,7 +295,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
   background:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1.3px) 0 0/4px 4px,linear-gradient(180deg,#1c222c 0%,#151a22 40%,#10141a 100%);background-color:#151a22;
   box-shadow:0 -30px 80px rgba(0,0,0,.6);will-change:transform;transform:translateY(calc(100% - var(--peek) - var(--sab)));transition:opacity .5s var(--ez)}
 #app.is-diving ~ #sheet{opacity:0;pointer-events:none}
-.sh-grab{flex:none;height:var(--peek);box-sizing:border-box;display:grid;justify-items:center;align-content:start;gap:11px;padding-top:9px;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;
+.sh-grab{flex:none;height:var(--peek);box-sizing:border-box;background:var(--grain),radial-gradient(55% 150% at 50% 0%,rgba(188,214,234,.3) 0%,rgba(111,142,168,.12) 45%,rgba(21,26,34,0) 100%);display:grid;justify-items:center;align-content:start;gap:11px;padding-top:9px;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;
   border-bottom:1px solid transparent;transition:border-color .6s var(--ez)}
 .sh-grab:active{cursor:grabbing}
 #sheet.is-open .sh-grab{border-bottom-color:var(--hair)}
@@ -288,7 +303,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 @media (hover:hover) and (pointer:fine){.sh-grab:hover .sh-handle{background:rgba(255,255,255,.5);transform:scaleX(1.33)}}
 .sh-peek{display:flex;align-items:center;gap:12px;font:600 10px/1 var(--f-ui);letter-spacing:.18em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
 .sh-peek em{font-style:normal;font-weight:500;color:var(--ink-3);letter-spacing:.12em}
-.sh-mark{width:8px;height:12px;border:1.5px solid var(--accent);border-radius:1px}
+.sh-mk{width:13px;height:13px;color:var(--powder)}
 .sh-up{display:inline-block;color:var(--ink-3);animation:nudge 2.6s var(--ez) infinite;transition:transform .5s var(--ez)}
 @keyframes nudge{0%,55%,100%{transform:none}28%{transform:translateY(-4px)}}
 #sheet.is-open .sh-up{animation:none;transform:rotate(180deg)}
@@ -1120,11 +1135,12 @@ html.kbd .touch-only{display:none}
 <div id="splash" aria-hidden="true">
   <canvas id="sp-cv"></canvas>
   <div class="sp-meta" id="sp-meta">
-    <p class="sp-top"><span>(CG_CERT_PATH)</span><span>Certifications &middot; Paths &middot; Funding</span></p>
+    <p class="sp-top"><span class="sp-brand"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg>(CG_CERT_PATH)</span><span>Certifications &middot; Paths &middot; Funding</span></p>
     <div class="sp-bot"><span class="sp-bar"><i id="sp-fill"></i></span><span class="sp-n" id="sp-n">000</span></div>
   </div>
 </div>
 <div id="app">
+  <div class="bloom" aria-hidden="true"></div>
   <canvas id="pk-back" class="layer" aria-hidden="true"></canvas>
   <canvas id="tt" class="layer" role="img" aria-label="CertPath"></canvas>
   <div class="gshadow" id="gshadow" aria-hidden="true"></div>
@@ -1135,7 +1151,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><b>cg cert path<sup>&deg;</sup></b><span>v.1.8</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.1.9</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1165,7 +1181,7 @@ html.kbd .touch-only{display:none}
 <section id="sheet" aria-label="Explore">
   <div class="sh-grab" id="sh-grab" role="button" tabindex="0" aria-expanded="false" aria-controls="sh-scroll" aria-label="Open explore panel">
     <span class="sh-handle"></span>
-    <span class="sh-peek"><span class="sh-mark" aria-hidden="true"></span>Explore<em>paths &middot; funding &middot; vendors</em><span class="sh-up" aria-hidden="true">&uarr;</span></span>
+    <span class="sh-peek"><svg class="mk sh-mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg>Explore<em>paths &middot; funding &middot; vendors</em><span class="sh-up" aria-hidden="true">&uarr;</span></span>
   </div>
   <div class="sh-scroll" id="sh-scroll">
     <div class="sh-in">
@@ -1808,6 +1824,8 @@ function resize(){
   W=Math.max(1,ar.width);H=Math.max(1,ar.height);
   gcx=sr.left-ar.left+sr.width/2;gcy=sr.top-ar.top+sr.height/2;
   appLeft=ar.left;appTop=ar.top;
+  (function(){var sh=isShort(),mb=W<720&&!sh,r=Math.max(70,mb?Math.min(W*.46,sr.height*.46):sh?Math.min(sr.width*.4,sr.height*.47):Math.min(W*.28,sr.height*.52));
+    app.style.setProperty("--gx",gcx.toFixed(1)+"px");app.style.setProperty("--gy",gcy.toFixed(1)+"px");app.style.setProperty("--gr",r.toFixed(1)+"px");})();
   fieldBack.resize(W,H);fieldFront.resize(W,H);
   if(!has3D){if(tt) tt.resize(W,H,gcy,isShort()?{cx:gcx,w:sr.width}:null);return;}
   renderer.setSize(W,H,false);
