@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-t4WNabUVWkfF0UjKSHhJpfePMf4RFTXTeCxY8vM0Cbc=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-nhap7Q3UAj/HtzIXYwf72g47Ax5ObF3u53EhS3YLalg=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1315,7 +1315,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.9</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.10</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1439,7 +1439,9 @@ html.kbd .touch-only{display:none}
           </button>
         </div>
         <div class="hatch rv-s" aria-hidden="true"></div>
-        <p class="fine rv-s">*Amount reported by approved CG COOL training vendors; confirm the current cap with ETQC. All roadmap data is a draft and gets verified before launch. Not an official U.S. Coast Guard site.</p>
+        <p class="fine rv-s">*Amount reported by approved CG COOL training vendors; confirm the current cap with ETQC. All roadmap data is a draft and gets verified before launch.</p>
+        <p class="fine rv-s">Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the U.S. Coast Guard, CompTIA, ISC2, Cisco, TryHackMe, LPI, AWS, Microsoft or WGU. All names are trademarks of their owners.</p>
+        <p class="fine rv-s">Your data stays on your device. CertPath has no accounts, cookies or analytics; your progress is saved in your browser and you can clear it anytime. The site is hosted on GitHub Pages, which keeps standard server logs.</p>
       </div>
 
       <div class="sv" id="sv-mine" hidden>
@@ -2311,7 +2313,7 @@ function openPanel(i,certName){
     '<span class="p-crumb" id="p-crumb"></span><span class="p-mock">Mock data</span>'+
     '<div class="p-arrows"><button type="button" class="p-arr p-srch" id="p-srch" aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="ps-l">Search</span></button><button type="button" class="p-arr" id="p-prev" aria-label="Previous vendor">&larr;</button><button type="button" class="p-arr" id="p-next" aria-label="Next vendor">&rarr;</button></div></header>'+
     '<div class="p-body" id="p-body"></div></div>'+
-    '<p class="p-foot">Not an official U.S. Coast Guard site &middot; Vendor names are trademarks of their owners</p>'+
+    '<p class="p-foot">Not an official U.S. Coast Guard or DoD site &middot; Not affiliated with or endorsed by the Coast Guard or any cert vendor &middot; Names are trademarks of their owners</p>'+
    '</div>';
   panel.querySelector("#p-back").addEventListener("click",function(){if(guideName) closeGuide();else back();});
   panel.querySelector("#p-srch").addEventListener("click",function(){srchShow(this);});
@@ -2752,8 +2754,8 @@ if(mpEl){
   mpEl.addEventListener("click",function(e){
     var t=e.target.closest&&e.target.closest("[data-mp]");if(!t||!mpEl.contains(t)) return;
     var act=t.dataset.mp, q=MP_Q[mp.step];
-    if(act==="pick"){mp.a[q.k]=q.k==="hpw"?+t.dataset.v:t.dataset.v;mpRender(false);var nb=mpEl.querySelector("[data-mp='pick'][data-v='"+t.dataset.v+"']");if(nb) nb.focus({preventScroll:true});clearTimeout(mp.t);mp.t=setTimeout(mpNext,reduced?0:280);}
-    else if(act==="have"){var c=t.dataset.v,i=mp.a.have.indexOf(c);if(i>=0) mp.a.have.splice(i,1);else mp.a.have.push(c);mpRender(false);var cb=mpEl.querySelector("[data-mp='have'][data-v='"+c.replace(/'/g,"")+"']");if(cb) cb.focus({preventScroll:true});}
+    if(act==="pick"){mp.a[q.k]=q.k==="hpw"?+t.dataset.v:t.dataset.v;mpRender(false);var nb=mpEl.querySelector("[data-mp='pick'][data-v='"+cssEsc(t.dataset.v)+"']");if(nb) nb.focus({preventScroll:true});clearTimeout(mp.t);mp.t=setTimeout(mpNext,reduced?0:280);}
+    else if(act==="have"){var c=t.dataset.v,i=mp.a.have.indexOf(c);if(i>=0) mp.a.have.splice(i,1);else mp.a.have.push(c);mpRender(false);var cb=mpEl.querySelector("[data-mp='have'][data-v='"+cssEsc(c)+"']");if(cb) cb.focus({preventScroll:true});}
     else if(act==="next") mpNext();
     else if(act==="back"){clearTimeout(mp.t);if(mp.step>0){mp.step--;mpRender(true);}}
     else if(act==="retake"){clearTimeout(mp.t);mp.view="quiz";mp.step=0;mp.a={exp:"",goal:"",have:[],hpw:"",wgu:""};mpRender(true);}
@@ -5085,12 +5087,13 @@ GUIDES["CISSP"]={
 
 /* ---------- cert guide page (renders inside the vendor panel) ---------- */
 var guideName=null, gVer="v8", gIO=null, gSpyRaf=0, gQ=null, gHpw=10;
+function cssEsc(s){return window.CSS&&CSS.escape?CSS.escape(String(s)):String(s).replace(/[^\w-]/g,"\\$&");}
 function gGet(k){try{var r=localStorage.getItem(k);return r?JSON.parse(r):null;}catch(err){return null;}}
 function gDone(G){var d=gGet(gDoneKey(G));return Array.isArray(d)?d.filter(function(x){return typeof x==="string"&&x.length<12;}):[];}
 function gBest(G){var b=gGet("cgcp."+G.id+".quizbest");return (typeof b==="number"&&isFinite(b)&&b>=0&&b<=G.quiz.length)?Math.round(b):null;}
 function gSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(err){}}
 function gShuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
-function gEsc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function gEsc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 function setBackLabel(t){var l=panel.querySelector("#p-back .pb-l");if(l) l.textContent=t;var b=panel.querySelector("#p-back");if(b) b.setAttribute("aria-label",t==="Globe"?"Back to the globe":"Back to "+t);}
 var G_SECS=[["obj","Objectives"],["plan","Study plan"],["res","Resources"],["quiz","Quiz"],["pbq","PBQs"],["map","Roadmap"],["keep","Keep it"]];
 var G_ICON_EXT='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
@@ -5106,6 +5109,8 @@ function renderGuide(i,name){
   gVer=gGet("cgcp."+G.id+".ver");if(typeof gVer!=="string"||!Object.prototype.hasOwnProperty.call(G.versions,gVer)) gVer=Object.keys(G.versions)[0];
   gHpw=gGet("cgcp."+G.id+".hpw");if([6,10,15].indexOf(gHpw)<0) gHpw=10;
   var c=v.certs.filter(function(x){return x[0]===name;})[0]||["",""," ","",""];
+  /* the exam's publisher (not the WGU line the guide may have been opened from) */
+  var pub=(VENDORS.filter(function(x){return x.id!=="wgu"&&x.certs.some(function(cc){return cc[0]===name;});})[0]||v).name;
   var h='';
   h+='<nav class="g-nav pr" aria-label="Guide sections"><button type="button" class="g-nav-back" id="g-nav-back" aria-label="Back to '+gEsc(v.name)+'"><span class="ar" aria-hidden="true">&larr;</span><span class="gb-full">'+gEsc(v.name)+'</span><span class="gb-short" aria-hidden="true">'+gEsc(v.short)+'</span></button><span class="g-nav-lab" aria-hidden="true">Jump to</span><div class="g-nav-in" id="g-nav">'+G_SECS.map(function(s,k){return '<button type="button" data-sec="'+s[0]+'"'+(k?'':' aria-current="true"')+'><span>'+pad2(k+1)+'</span>'+s[1]+'</button>';}).join("")+'<span class="g-nav-ind" aria-hidden="true"></span></div></nav>';
   h+='<div class="p-hero g-hero"><div class="p-hero-main"><p class="p-eyebrow pr"><span>'+gEsc(v.name)+'</span> / '+gEsc(c[1])+' &nbsp;&middot;&nbsp; Cert guide</p>'+
@@ -5154,7 +5159,7 @@ function renderGuide(i,name){
        (G.keep||[]).map(function(kc){return '<div class="g-kc"><p class="lab">'+gEsc(kc.lab)+'</p><b>'+gEsc(kc.big)+'</b><p>'+gEsc(kc.text)+'</p>'+(kc.list?'<ul class="g-roles">'+kc.list.map(function(r){return '<li>'+gEsc(r)+'</li>';}).join("")+'</ul>':'')+(kc.after?'<p>'+gEsc(kc.after)+'</p>':'')+'</div>';}).join("")+
      '</div>'+
      '<div class="g-src g-rv"><p class="lab">Sources &middot; checked '+gEsc(G.checked)+'</p><ul>'+G.sources.map(function(s){return '<li><a href="'+gEsc(s[1])+'" target="_blank" rel="noopener noreferrer">'+gEsc(s[0])+G_ICON_EXT+'</a></li>';}).join("")+'</ul>'+
-     '<p class="g-fine">Exam facts come from CompTIA. The V7 retirement date, voucher price and 8140 roles come from the sources above; confirm them before you book. Quiz and PBQ content is original to this site.</p></div></section>';
+     '<p class="g-fine">Exam facts come from '+gEsc(pub)+'. Prices, dates and DoD roles can change; confirm them with the sources above before you book. Domain and objective titles follow the official exam outline, &copy; '+gEsc(pub)+'. Descriptions, quiz questions and PBQs are original to this site.</p></div></section>';
   body.innerHTML='<div class="g" id="guide">'+h+'</div>';
 
   // wire
@@ -5521,7 +5526,7 @@ var ALIAS={"A+":"a plus core 1 core 2 220-1101 220-1102 220-1201 220-1202 v15 he
 var POPULAR=["Security+","Network+","CCNA","CISSP","SAL1 · Security Analyst L1","Cloud Practitioner"];
 var FILTERS=[["all","All"],["Stay 20","Stay 20"],["Cyber eng","Cyber"],["Cloud security","Cloud"],["Network eng","Network"],["iat","DoD IAT"]];
 function snorm(s){return String(s).toLowerCase().replace(/\+/g," plus ").replace(/[^a-z0-9]+/g," ").trim();}
-function sesc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function sesc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 var SIDX=[];
 (function(){
   var WG=VENDORS.length-1;

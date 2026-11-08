@@ -1,0 +1,19 @@
+Copyright (c) 2026 Gabytoski77. All rights reserved.
+
+CG Cert Path (the code, design, guide text, quiz questions and PBQs in this
+repository) is not licensed for reuse. You may view and use the site at
+https://gabytoski77.github.io/certpath/. You may not copy, modify, republish
+or redistribute any part of it without written permission.
+
+Third-party components keep their own licenses and are not covered by the
+notice above:
+  vendor/three.min.js   three.js r128        MIT          vendor/LICENSE-three.txt
+  vendor/lenis.min.js   Lenis 1.1.13         MIT          vendor/LICENSE-lenis.txt
+  vendor/world.js       Apache ECharts map   Apache-2.0   vendor/LICENSE-echarts.txt, vendor/NOTICE-echarts.txt
+  fonts/                Inter Tight, Geist, IBM Plex Mono   SIL OFL 1.1   fonts/OFL-*.txt
+
+Exam names, vendor names and certification names are trademarks of their
+owners. Domain and objective titles follow the official exam outlines and
+remain the property of their publishers. This site is not affiliated with or
+endorsed by the U.S. Coast Guard, the Department of Defense, or any
+certification vendor.
