@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-yMHoQq3L6zSX/HpCCz36DIV7qDESIlP6/SObX/etlgQ=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-wwJXyCNYobuU0+7SZwl5Q8SsUVCwEV8TOoruQuVCLWE=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -387,7 +387,14 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .sv[hidden]{display:none}
 .intro{margin:0 0 26px;color:var(--ink-2);font-size:14.5px;line-height:1.6;max-width:62ch}
 
-/* overview: numbers */
+/* overview: numbers (v2.16: compact row under the cards, so the cards come first) */
+#sv-home .feats{margin-top:0}
+.nums2{margin-top:36px;padding-top:22px;border-top:1px solid var(--hair)}
+.n2{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px 24px;margin-top:16px}
+.n2 b{display:block;font:400 26px/1 var(--f-ui);letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.n2>div>span{display:block;margin-top:9px;font:400 12px/1.45 var(--f-ui);color:var(--ink-3);max-width:22ch}
+@media (max-width:900px){.n2{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:720px){.n2{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 18px}.n2 b{font-size:23px}}
 .nums{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
 .nums-big{padding:26px 30px 28px 0;border-right:1px solid var(--hair);display:grid;align-content:space-between;gap:24px}
 .big-n{display:block;margin-top:14px;font:300 clamp(104px,14vw,156px)/.78 var(--f-ui);letter-spacing:-.065em;font-variant-numeric:tabular-nums;color:var(--ink)}
@@ -707,6 +714,74 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 
 /* paths view: editorial columns */
 .pcols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+/* Career paths tree (v2.17) */
+.ptree{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px 40px;align-items:start;border-top:1px solid var(--hair);padding-top:26px}
+.pt-map{position:relative;aspect-ratio:400/230;width:100%;max-width:480px;position:sticky;top:12px}
+.pt-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.pt-b{fill:none;stroke:rgba(255,255,255,.1);stroke-width:1.3;transition:stroke .45s var(--ez),stroke-width .45s var(--ez)}
+.pt-b.on{stroke:rgba(188,214,234,.55);stroke-width:1.8}
+.pt-f{fill:none;stroke:#ecebe8;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:10 308;animation:flow 3.2s linear infinite;opacity:.35;transition:opacity .45s var(--ez),stroke .45s var(--ez)}
+.pt-f.on{opacity:1;stroke:var(--powder);animation-duration:2.2s}
+.pt-root{position:absolute;left:10%;top:50%;transform:translate(-50%,-50%);display:grid;justify-items:center;pointer-events:none}
+.pt-root i{width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center}
+.pt-root i::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--powder);box-shadow:0 0 12px rgba(188,214,234,.8)}
+.pt-root b{position:absolute;top:30px;font:600 9.5px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
+.pt-tk{position:absolute;display:flex;align-items:center;gap:10px;min-height:40px;padding:0 10px 0 0;transform:translate(-20px,-50%);border-radius:999px;font:600 10px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;transition:color .3s var(--ez)}
+.pt-tk i{flex:none;width:22px;height:22px;margin-left:9px;border-radius:50%;border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;transition:border-color .3s var(--ez),box-shadow .3s var(--ez),transform .3s var(--ez)}
+.pt-tk i::after{content:"";width:8px;height:8px;border-radius:50%;background:rgba(236,235,232,.55);transition:background .3s var(--ez),transform .3s var(--ez)}
+.pt-tk.on{color:var(--ink)}
+.pt-tk.on i{border-color:var(--powder);box-shadow:0 0 0 4px rgba(188,214,234,.12),0 0 18px rgba(188,214,234,.35);transform:scale(1.08)}
+.pt-tk.on i::after{background:var(--powder);transform:scale(1.15)}
+@media (hover:hover) and (pointer:fine){.pt-tk:not(.on):hover{color:var(--ink-2)}.pt-tk:not(.on):hover i{border-color:rgba(255,255,255,.45)}}
+.pt-tk:active i{transform:scale(.92);transition-duration:.1s}
+.pt-head{display:grid;gap:10px;margin-bottom:18px}
+.pt-head .lab span{color:var(--accent)}
+.pt-head h3{margin:0;font:700 40px/.95 var(--f-disp);letter-spacing:-.05em;color:var(--ink)}
+.pt-head p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.55;max-width:46ch}
+.pt-head .pt-sum{font:500 11px/1.4 var(--f-mono);color:var(--ink-3);letter-spacing:.02em}
+.pt-steps{list-style:none;margin:0;padding:0}
+.pt-st{position:relative;padding-left:0}
+/* the path: a line from each cert to the next, blending from this vendor's color into the next one's */
+.pt-st::before{content:"";position:absolute;left:19px;top:40px;bottom:-6px;width:2px;border-radius:1px;background:linear-gradient(var(--c),var(--n));opacity:.55;transform-origin:50% 0}
+.pt-st:last-child::before{display:none}
+.pt-trail.draw .pt-st::before{animation:ptLine .5s var(--ez) both;animation-delay:calc(var(--k) * 90ms + 120ms)}
+.pt-trail.draw .pt-n{animation:ptIn .55s var(--ez) both;animation-delay:calc(var(--k) * 90ms)}
+@keyframes ptLine{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes ptIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+.pt-n{position:relative;width:100%;display:grid;grid-template-columns:40px minmax(0,1fr) auto 16px;align-items:center;gap:12px;padding:10px 4px 10px 0;margin:2px 0;border-radius:10px;text-align:left;transition:background .25s var(--ez)}
+@media (hover:hover) and (pointer:fine){.pt-n:hover{background:rgba(255,255,255,.03)}}
+.pt-n:active{background:rgba(255,255,255,.05);transition-duration:.1s}
+.pt-dot{width:40px;height:40px;box-sizing:border-box;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--c);background:color-mix(in srgb,var(--c) 10%,#141920);font:500 11px/1 var(--f-mono);color:color-mix(in srgb,var(--c) 70%,#fff);box-shadow:0 0 16px -4px color-mix(in srgb,var(--c) 70%,transparent);transition:transform .3s var(--ez),background .3s var(--ez)}
+.pt-st.open .pt-dot{transform:scale(1.08);background:color-mix(in srgb,var(--c) 22%,#141920)}
+.pt-st.have .pt-dot{background:var(--c);color:#0b1016;font-size:15px}
+.pt-t{display:grid;gap:5px;min-width:0}
+.pt-t b{font:600 16px/1.15 var(--f-disp);letter-spacing:-.015em;color:var(--ink);overflow:hidden;text-overflow:ellipsis}
+.pt-t small{font:400 11.5px/1.35 var(--f-ui);color:var(--ink-3)}
+.pt-tags{display:flex;gap:6px}
+.pt-tags em{font:600 8.5px/1 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--accent);border:1px solid rgba(188,214,234,.35);padding:4px 6px;border-radius:2px}
+.pt-tags .pt-have{color:#5fd394;border-color:rgba(95,211,148,.45)}
+.pt-chev{font:300 18px/1 var(--f-ui);color:var(--ink-3);text-align:center;transition:transform .3s var(--ez)}
+.pt-st.open .pt-chev{transform:rotate(45deg)}
+.pt-more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ez)}
+.pt-st.open .pt-more{grid-template-rows:1fr}
+.pt-in{overflow:hidden;min-height:0;padding-left:52px}
+.pt-in>*:first-child{margin-top:2px}
+.pt-in p{margin:0 0 12px;color:var(--ink-2);font-size:13.5px;line-height:1.6;max-width:56ch}
+.pt-dif{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.pt-dif .lab{margin:0}
+.pt-dd{display:inline-flex;gap:3px}
+.pt-dd i{width:14px;height:4px;border-radius:2px;background:rgba(255,255,255,.12)}
+.pt-dd i.on{background:var(--c)}
+.pt-next{font-size:12.5px;color:var(--ink-3)}
+.pt-next b{color:var(--ink);font-weight:600}
+.pt-also{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.pt-also .lab{margin:0 4px 0 0}
+.pt-also button{padding:7px 11px;border-radius:999px;border:1px solid var(--hair-2);font:500 12px/1 var(--f-ui);color:var(--ink-2);transition:border-color .2s var(--ez),color .2s var(--ez)}
+@media (hover:hover) and (pointer:fine){.pt-also button:hover{border-color:var(--powder);color:var(--ink)}}
+.pt-also button:active{opacity:.7;transition-duration:.1s}
+.pt-acts{padding:2px 0 18px}
+@media (max-width:900px){.ptree{grid-template-columns:minmax(0,1fr)}.pt-map{position:relative;top:auto;max-width:440px;justify-self:center}}
+@media (max-width:720px){.ptree{padding-top:18px;gap:18px}.pt-head h3{font-size:34px}.pt-tk{font-size:9.5px;letter-spacing:.13em}.pt-n{grid-template-columns:40px minmax(0,1fr) auto 14px;gap:10px}.pt-in{padding-left:50px}}
 .pcol{padding:24px 22px 28px;border-right:1px solid var(--hair);display:grid;gap:14px;align-content:start;min-width:0}
 .pcol:first-child{padding-left:0}
 .pcol:last-child{border-right:0;padding-right:0}
@@ -1487,7 +1562,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.16</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.17</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1547,20 +1622,6 @@ html.kbd .touch-only{display:none}
       </nav>
 
       <div class="sv" id="sv-home">
-        <div class="nums rv-s">
-          <div class="nums-big">
-            <div><p class="lab">By the numbers</p><b class="big-n" id="sb-count">0</b></div>
-            <p>Certifications mapped across <span id="sb-lines">7</span> vendor lines, ranked by difficulty and tied to the roles you can hold.</p>
-            <div class="kv">
-              <div><b class="kv-n">4</b><span class="lab">Career paths</span></div>
-              <div><b class="kv-n">$4,500</b><span class="kv-s">Credentialing assistance CG COOL can cover each fiscal year</span></div>
-              <div><b class="kv-n">IAT II</b><span class="lab">Security+ baseline</span></div>
-              <div><b class="kv-n">9</b><span class="lab">Certs in WGU BS</span></div>
-            </div>
-          </div>
-          <ul class="vlist" id="sb-bars"></ul>
-        </div>
-
         <div class="feats">
           <button type="button" class="pcard rv-s" data-go="paths">
             <span class="pc-rail" aria-hidden="true"><span class="pc-mark"></span><span class="pc-dots">&middot;&middot;&middot;</span><span class="pc-num">01</span></span>
@@ -1621,6 +1682,16 @@ html.kbd .touch-only{display:none}
           </button>
         </div>
         <div class="hatch rv-s" aria-hidden="true"></div>
+        <div class="nums2 rv-s">
+          <p class="lab">By the numbers</p>
+          <div class="n2">
+            <div><b id="sb-count">0</b><span>certs mapped across <span id="sb-lines">7</span> vendor lines</span></div>
+            <div><b>4</b><span>career paths, from A-school to 20 years</span></div>
+            <div><b>$4,500*</b><span>credentialing assistance CG COOL can cover each fiscal year</span></div>
+            <div><b>IAT II</b><span>the DoD baseline Security+ meets</span></div>
+            <div><b>9</b><span>certs built into the WGU cyber degree</span></div>
+          </div>
+        </div>
         <p class="fine rv-s">*Amount reported by approved CG COOL training vendors; confirm the current cap with ETQC. All roadmap data is a draft and gets verified before launch.</p>
         <p class="fine rv-s">Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the U.S. Coast Guard, CompTIA, ISC2, Cisco, TryHackMe, LPI, AWS, Microsoft or WGU. All names are trademarks of their owners.</p>
         <p class="fine rv-s">Your data stays on your device. CertPath has no accounts, cookies or analytics; your progress is saved in your browser and you can clear it anytime. The site is hosted on GitHub Pages, which keeps standard server logs.</p>
@@ -1637,9 +1708,14 @@ html.kbd .touch-only{display:none}
       </div>
 
       <div class="sv" id="sv-paths" hidden>
-        <p class="intro rv-s">The order to take certs for each track. Tap a cert to fly to it on the globe.<span class="draft">Draft</span></p>
-        <button type="button" class="mp-cta rv-s" data-go="mine"><span>Not sure where to start?</span><b>Build my path &rarr;</b></button>
-        <div class="pcols rv-s" id="pgrid"></div>
+        <p class="intro rv-s">Every path starts at A-school. Pick a track, then follow it cert by cert; tap a cert for what it covers and where it leads.<span class="draft">Draft</span></p>
+        <button type="button" class="mp-cta rv-s" data-go="mine"><span>Not sure which track?</span><b>Build my path &rarr;</b></button>
+        <div class="ptree rv-s" id="ptree">
+          <div class="pt-map" id="pt-map"><svg class="pt-svg" viewBox="0 0 400 230" aria-hidden="true"><g id="pt-lines"></g></svg>
+            <span class="pt-root" aria-hidden="true"><i></i><b>A-school</b></span>
+            <div class="pt-tracks" id="pt-tracks" role="group" aria-label="Tracks"></div></div>
+          <div class="pt-trail" id="pt-trail" aria-live="polite"></div>
+        </div>
       </div>
 
       <div class="sv" id="sv-cool" hidden>
@@ -2716,9 +2792,7 @@ function findCert(name){for(var i=0;i<VENDORS.length-1;i++){for(var k=0;k<VENDOR
   var lines=VENDORS.slice(0,-1), total=0, max=0;
   lines.forEach(function(v){total+=v.certs.length;max=Math.max(max,v.certs.length);});
   $("#sb-count").dataset.n=total;$("#sb-lines").textContent=lines.length;
-  $("#sb-bars").innerHTML=lines.map(function(v,i){
-    return '<li style="--i:'+i+';--w:'+(v.certs.length/max).toFixed(3)+'"><span>'+v.name+'</span><em>'+pad2(v.certs.length)+'</em><i></i></li>';
-  }).join("");
+  $("#sb-count").textContent=total;
   var orb=$("#orbit"), rings=[[30,"16s"],[46,"26s"],[62,"38s"]], html="";
   rings.forEach(function(r,ri){
     var dots="";
@@ -2736,13 +2810,78 @@ function findCert(name){for(var i=0;i<VENDORS.length-1;i++){for(var k=0;k<VENDOR
       '<text x="314" y="'+(y+3.5)+'" class="pl-lbl">'+pth.name.toUpperCase()+'</text>';
   });
   $("#pmap-lines").innerHTML=svg;
-  $("#pgrid").innerHTML=PATHS.map(function(pth,i){
-    return '<article class="pcol"><p class="lab"><span>'+pad2(i+1)+'</span> &nbsp;/&nbsp; '+pth.tag+'</p><h3>'+pth.name+'.</h3><p>'+pth.line+'</p><ol class="plist">'+
-      pth.steps.map(function(st,k){var f=findCert(st[1]), mt=f.c?(f.c[4]||f.c[1]):"";
-        return '<li><button type="button" data-cert="'+st[1]+'"><span class="ix">'+pad2(k+1)+'</span><span class="nm">'+st[0]+'</span><span class="mt">'+mt+'</span><span class="ar" aria-hidden="true">&rarr;</span></button></li>';}).join("")+
-      '</ol><p class="meta">'+pad2(pth.steps.length)+' certs</p></article>';
-  }).join("");
 })();
+
+/* ---------- Career paths tree (v2.17): A-school branches into the four tracks; the picked track runs as a path through its certs ---------- */
+var PT={track:-1,open:-1,ready:false}, PT_Y=[38,90,142,194], PT_X=300;
+function ptInit(){
+  if(PT.ready||!$("#ptree")) return;PT.ready=true;
+  var svg="";
+  PATHS.forEach(function(pth,i){
+    var y=PT_Y[i], d="M40 115 C 150 115, 170 "+y+", "+PT_X+" "+y;
+    svg+='<path class="pt-b" data-b="'+i+'" d="'+d+'"/><path class="pt-f" data-b="'+i+'" d="'+d+'" style="animation-delay:-'+(i*.7)+'s"/>';
+  });
+  $("#pt-lines").innerHTML=svg;
+  $("#pt-tracks").innerHTML=PATHS.map(function(pth,i){
+    return '<button type="button" class="pt-tk" data-ptrack="'+i+'" aria-pressed="false" style="left:'+(PT_X/4)+'%;top:'+(PT_Y[i]/2.3).toFixed(2)+'%"><i aria-hidden="true"></i><span>'+gEsc(pth.name)+'</span></button>';
+  }).join("");
+  var sv=null;try{sv=mpLoad();}catch(err){sv=null;}
+  var start=0;if(sv){PATHS.forEach(function(p,i){if(p.name===sv.goal) start=i;});}
+  ptShow(start,-1,false);
+  $("#ptree").addEventListener("click",function(e){
+    var tk=e.target.closest("[data-ptrack]");
+    if(tk){e.stopPropagation();var ti=+tk.dataset.ptrack, op=tk.dataset.pstep!=null?+tk.dataset.pstep:-1;if(ti!==PT.track||op>=0) ptShow(ti,op,true);return;}
+    var st=e.target.closest("[data-pstep]");
+    if(st){var k=+st.dataset.pstep;ptOpen(PT.open===k?-1:k);}
+  });
+}
+function ptMeta(name){
+  var f=findCert(name), c=f.c, v=VENDORS[f.v];
+  return {v:v,c:c,col:v?v.beacon:"#bcd6ea",lvl:c?c[1]:"",dif:c?c[2]:0,hrs:c?c[3]:"",iat:c&&c[4]?c[4]:"",g:!!GUIDES[name]};
+}
+function ptShow(i,openStep,anim1){
+  PT.track=i;PT.open=-1;
+  var pth=PATHS[i], sv=null;try{sv=mpLoad();}catch(err){sv=null;}
+  document.querySelectorAll("#pt-lines [data-b]").forEach(function(p){p.classList.toggle("on",+p.dataset.b===i);});
+  document.querySelectorAll("#pt-tracks .pt-tk").forEach(function(b){var on=+b.dataset.ptrack===i;b.classList.toggle("on",on);b.setAttribute("aria-pressed",String(on));});
+  var hrs=0;pth.steps.forEach(function(st){hrs+=mpHours(st[1])||0;});
+  var weeks=Math.max(1,Math.ceil(hrs/10));
+  var h='<div class="pt-head"><p class="lab"><span>'+pad2(i+1)+'</span> &nbsp;/&nbsp; '+gEsc(pth.tag)+'</p><h3>'+gEsc(pth.name)+'.</h3><p>'+gEsc(pth.line)+'</p>'+
+    '<p class="pt-sum">'+pth.steps.length+' certs &middot; about '+weeks+' weeks at 10 h a week</p></div><ol class="pt-steps">';
+  pth.steps.forEach(function(st,k){
+    var name=st[1], m=ptMeta(name), nx=pth.steps[k+1]?ptMeta(pth.steps[k+1][1]).col:m.col, have=!!(sv&&sv.have.indexOf(name)>=0);
+    var also=PATHS.map(function(p,pi){if(pi===i) return null;var at=-1;p.steps.forEach(function(x,xi){if(x[1]===name) at=xi;});return at<0?null:[pi,at,p.name];}).filter(Boolean);
+    var dots="";for(var d=1;d<=5;d++) dots+='<i class="'+(d<=m.dif?"on":"")+'"></i>';
+    h+='<li class="pt-st'+(have?' have':'')+'" style="--c:'+gEsc(m.col)+';--n:'+gEsc(nx)+';--k:'+k+'">'+
+      '<button type="button" class="pt-n" data-pstep="'+k+'" aria-expanded="false" aria-controls="pt-m'+k+'">'+
+        '<span class="pt-dot" aria-hidden="true">'+(have?'&#10003;':pad2(k+1))+'</span>'+
+        '<span class="pt-t"><b>'+gEsc(st[0])+'</b><small>'+gEsc((m.v?m.v.name:"")+(m.lvl?" · "+m.lvl:"")+(m.hrs?" · "+m.hrs:"")+(m.iat?" · "+m.iat:""))+'</small></span>'+
+        '<span class="pt-tags">'+(have?'<em class="pt-have">Have it</em>':'')+(m.g?'<em>Guide</em>':'')+'</span>'+
+        '<span class="pt-chev" aria-hidden="true">+</span></button>'+
+      '<div class="pt-more" id="pt-m'+k+'" inert><div class="pt-in">'+
+        '<p>'+gEsc(CERT_NOTE[name]||"")+'</p>'+
+        '<p class="pt-dif"><span class="lab">Difficulty</span><span class="pt-dd" aria-label="'+m.dif+' of 5">'+dots+'</span>'+(k+1<pth.steps.length?'<span class="pt-next">Next: <b>'+gEsc(pth.steps[k+1][0])+'</b></span>':'<span class="pt-next">Top of the '+gEsc(pth.name)+' track</span>')+'</p>'+
+        (also.length?'<p class="pt-also"><span class="lab">Also on</span>'+also.map(function(a){return '<button type="button" data-ptrack="'+a[0]+'" data-pstep="'+a[1]+'">'+gEsc(a[2])+' &middot; step '+(a[1]+1)+'</button>';}).join("")+'</p>':'')+
+        '<div class="pt-acts"><button type="button" class="g-btn" data-cert="'+gEsc(name)+'"><span class="g-btn-l">'+(m.g?'Open the guide &rarr;':'See it on the globe &rarr;')+'</span></button></div>'+
+      '</div></div></li>';
+  });
+  h+='</ol>';
+  var tr=$("#pt-trail");tr.innerHTML=h;
+  if(anim1&&!reduced){
+    tr.classList.remove("draw");void tr.offsetWidth;tr.classList.add("draw");
+    anim(tr.querySelector(".pt-head"),[{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:520,easing:EZ});
+  }
+  if(openStep>=0) setTimeout(function(){ptOpen(openStep);var b=tr.querySelector('[data-pstep="'+openStep+'"]');if(b){b.focus({preventScroll:true});b.scrollIntoView({block:"nearest",behavior:reduced?"auto":"smooth"});}},anim1&&!reduced?380:0);
+}
+function ptOpen(k){
+  PT.open=k;
+  document.querySelectorAll("#pt-trail .pt-st").forEach(function(li,j){
+    var on=j===k, b=li.querySelector(".pt-n"), m=li.querySelector(".pt-more");
+    li.classList.toggle("open",on);b.setAttribute("aria-expanded",String(on));
+    if(on) m.removeAttribute("inert");else m.setAttribute("inert","");
+  });
+}
+setTimeout(ptInit,0);
 
 var safeProbe=document.createElement("div");safeProbe.style.cssText="position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;padding-top:var(--sat);padding-bottom:var(--sab)";document.body.appendChild(safeProbe);
 function safeBottom(){return parseFloat(getComputedStyle(safeProbe).paddingBottom)||0;}
@@ -2831,6 +2970,7 @@ async function showView(name){
   if(name==="home"){var c=$("#sb-count");c.textContent=c.dataset.n;}
   if(name==="mine") mpEnter();
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
+  if(name==="paths"&&PT.ready) ptShow(PT.track,-1,true);
 }
 
 /* drag the bar */
@@ -6164,6 +6304,7 @@ function setViewNow(name){
   $("#sv-"+name).hidden=false;shView=name;setTabs(name);$("#ed-title").textContent=TITLES[name];
   if(name==="mine") mpEnter();
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
+  if(name==="paths"&&PT.ready) ptShow(PT.track,-1,false);
 }
 async function goExplore(){
   if(state!=="open"||switching||guideBusy) return;
