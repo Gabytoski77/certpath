@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-nhap7Q3UAj/HtzIXYwf72g47Ax5ObF3u53EhS3YLalg=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-YDMyNTGVxLwZHy8YisewQBXAKBMhVMKyxrhGeOsOXKw=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -440,6 +440,9 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .mp-chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#0b0e13}
 .mp-chip:active{transform:scale(.96);transition-duration:.1s}
 .mp-hint,.mp-note{margin:0;font:400 12px/1.5 var(--f-ui);color:var(--ink-3)}
+.mp-saved{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:4px 0 0;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);font:400 12.5px/1.4 var(--f-ui);color:var(--ink-2)}
+.mp-saved button{appearance:none;border:0;background:none;padding:4px 0;font:500 12.5px/1.4 var(--f-ui);color:var(--ink);cursor:pointer;transition:color .2s}
+.mp-saved button:hover{color:#fff}.mp-saved button:focus-visible{outline:2px solid rgba(255,255,255,.5);outline-offset:3px;border-radius:4px}
 .mp-nav{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .mp-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;background:var(--ink);color:#101317;font:600 12px/1 var(--f-disp);transition:opacity .25s var(--ez),transform .25s var(--ez),background .25s var(--ez)}
 .mp-btn.ghost{background:transparent;color:var(--ink-2);border:1px solid var(--hair-2)}
@@ -1315,7 +1318,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.10</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.11</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1944,7 +1947,7 @@ function inPoly(lo,la,ring){
 function addWorld(geo){
   try{
     var maxT=(renderer.capabilities&&renderer.capabilities.maxTextureSize)||4096;
-    var TW=Math.min(4096,maxT), TH=TW/2, sx=TW/360, sy=TH/180;
+    var TW=Math.min(window.innerWidth<720?2048:4096,maxT), TH=TW/2, sx=TW/360, sy=TH/180;
     var cv=document.createElement("canvas");cv.width=TW;cv.height=TH;var x=cv.getContext("2d");
     x.fillStyle="#000";x.fillRect(0,0,TW,TH);
     var scale=geo.UTF8Scale||1024, borders=new Path2D(), outer=[], verts=[], n=0;
@@ -2114,8 +2117,9 @@ function updateBeacons(dt){
   if(state==="idle"&&!steering&&bestI!==frontIdx&&best>.35&&(best>cf+.06||cf<.3)) setFront(bestI);
 }
 
+var splashCover=!!document.getElementById("splash");
 function frame(now){
-  var dt=Math.min(.05,(now-(frame.last||now))/1000);frame.last=now;tClock+=dt;
+  var dt=Math.min(.05,(now-(frame.last||now))/1000);frame.last=now;tClock+=dt;frame.n=(frame.n||0)+1;
   runTweens(now);
   var kL=damp(2.6,dt), lean=(state==="idle"&&!reduced);
   smooth.x+=((lean?mouse.nx:0)-smooth.x)*kL;smooth.y+=((lean?mouse.ny:0)-smooth.y)*kL;
@@ -2126,7 +2130,7 @@ function frame(now){
     zoom+=(target-zoom)*damp(5,dt);
     camDist=baseDist*zoom*introCam.v;
   }
-  if(state!=="open"&&sheetP<.999&&!srchFull){
+  if(state!=="open"&&sheetP<.999&&!srchFull&&!(splashCover&&frame.n>3)){
     if(has3D){
       camera.position.set(0,0,camDist);camera.lookAt(0,0,0);camera.updateMatrixWorld();
       stars.rotation.set(smooth.y*.05,rotY*.06+smooth.x*.08,0);
@@ -2611,7 +2615,7 @@ async function showView(name){
   requestAnimationFrame(function(){nx.classList.add("drawn");});
   if(name==="cool") countUp($("#cool-n"),4500,"$",1600);
   if(name==="home"){var c=$("#sb-count");c.textContent=c.dataset.n;}
-  if(name==="mine") mpRender(false);
+  if(name==="mine"){mpFresh();mpRender(false);}
 }
 
 /* drag the bar */
@@ -2718,11 +2722,14 @@ function mpRender(animate){
     var ready=q.multi||(val!==""&&val!==null&&val!==undefined);
     h+='<div class="mp-nav"><button type="button" class="mp-btn ghost" data-mp="back"'+(mp.step?'':' disabled')+'>&larr; Back</button>'+
       '<button type="button" class="mp-btn" data-mp="next"'+(ready?'':' disabled')+'>'+(mp.step===n-1?'See my path':'Next')+' &rarr;</button></div></div>';
+    if(mp.step===0&&mpLoad()) h+='<p class="mp-saved"><span>You have a saved path from before.</span><button type="button" data-mp="saved">See it &rarr;</button></p>';
     mpEl.innerHTML=h;
     if(animate){var bar=mpEl.querySelector(".mp-bar i");if(bar&&mp.step>0){bar.style.transform="scaleX("+((mp.step-1)/n).toFixed(3)+")";requestAnimationFrame(function(){bar.style.transform="scaleX("+(mp.step/n).toFixed(3)+")";});}}
   }
   if(animate&&mpEl.firstChild) anim(mpEl.firstChild,[{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:480,easing:EZ});
 }
+/* My path always opens on a blank question 1. A finished path is saved, and a link offers it back. */
+function mpFresh(){clearTimeout(mp.t);mp.view="quiz";mp.step=0;mp.a={exp:"",goal:"",have:[],hpw:"",wgu:""};}
 function mpResult(){
   var a=mp.a, r=mpBuild(a), months=r.todo?Math.max(1,Math.round(r.weeks/4.345)):0;
   var h='<div class="mp-res"><div class="mp-sum">'+
@@ -2750,7 +2757,7 @@ function mpNext(){
 }
 if(mpEl){
   /* first render waits until the whole script has run: the guide data (GUIDES) is defined further down */
-  setTimeout(function(){var mpSaved=mpLoad();if(mpSaved){mp.a=mpSaved;mp.view="result";}mpRender(false);},0);
+  setTimeout(function(){mpFresh();mpRender(false);},0);
   mpEl.addEventListener("click",function(e){
     var t=e.target.closest&&e.target.closest("[data-mp]");if(!t||!mpEl.contains(t)) return;
     var act=t.dataset.mp, q=MP_Q[mp.step];
@@ -2758,7 +2765,8 @@ if(mpEl){
     else if(act==="have"){var c=t.dataset.v,i=mp.a.have.indexOf(c);if(i>=0) mp.a.have.splice(i,1);else mp.a.have.push(c);mpRender(false);var cb=mpEl.querySelector("[data-mp='have'][data-v='"+cssEsc(c)+"']");if(cb) cb.focus({preventScroll:true});}
     else if(act==="next") mpNext();
     else if(act==="back"){clearTimeout(mp.t);if(mp.step>0){mp.step--;mpRender(true);}}
-    else if(act==="retake"){clearTimeout(mp.t);mp.view="quiz";mp.step=0;mp.a={exp:"",goal:"",have:[],hpw:"",wgu:""};mpRender(true);}
+    else if(act==="retake"){mpFresh();mpRender(true);}
+    else if(act==="saved"){var sv=mpLoad();if(sv){clearTimeout(mp.t);mp.a=sv;mp.view="result";mpRender(true);var fb=mpEl.querySelector(".mp-list button");if(fb) fb.focus({preventScroll:true});}}
   });
 }
 $("#cta-path").addEventListener("click",function(){goPage("mine");});
@@ -5724,7 +5732,7 @@ function setViewNow(name){
   if(name===shView) return;
   var cur=$("#sv-"+shView);cur.hidden=true;cur.classList.remove("drawn");
   $("#sv-"+name).hidden=false;shView=name;setTabs(name);$("#ed-title").textContent=TITLES[name];
-  if(name==="mine") mpRender(false);
+  if(name==="mine"){mpFresh();mpRender(false);}
 }
 async function goPage(name){
   if(state==="open") await back();
@@ -6466,28 +6474,34 @@ function startHome(lead){
   tween(1600,function(k){partFade.v=k;},E.outCubic,(lead||0)+300);
   rvEls.forEach(function(el,n){
     el.style.opacity="";
-    anim(el,[{opacity:0,transform:"translateY(14px)",filter:"blur(6px)"},{opacity:1,transform:"none",filter:"blur(0px)"}],{duration:1000,delay:(lead||0)+250+n*70,easing:EZ,fill:"backwards"});
+    anim(el,[{opacity:0,transform:"translateY(16px)"},{opacity:1,transform:"none"}],{duration:1100,delay:(lead||0)+250+n*80,easing:EZ,fill:"backwards"});
   });
   setTimeout(function(){document.querySelectorAll(".ui .glass").forEach(function(g,n){setTimeout(function(){shine(g);},n*70);});},(lead||0)+1500);
 }
 requestAnimationFrame(frame);
-if(has3D) loadWorld();
+/* the world map is a big canvas paint + texture upload: do it once the home screen has settled, never mid-animation */
+var worldQueued=false;
+function queueWorld(delay){
+  if(worldQueued||!has3D) return;worldQueued=true;
+  setTimeout(function(){var go=function(){loadWorld();};if(window.requestIdleCallback) requestIdleCallback(go,{timeout:1200});else go();},delay||0);
+}
+setTimeout(function(){queueWorld(0);},9000);   /* safety net if the launch screen never finishes */
 runSplash();
 
 /* ---------- launch screen: CertPath rises in, then flies into its place behind the globe ---------- */
 function runSplash(){
   var el=$("#splash"), cv=$("#sp-cv"), meta=$("#sp-meta"), fill=$("#sp-fill"), num=$("#sp-n");
   var ttEls=[$("#tt"),$("#tt-front")];
-  if(!el){startHome();return;}
+  if(!el){splashCover=false;startHome();queueWorld(1400);return;}
   if(tt) tt.skipIntro();
   ttEls.forEach(function(c){if(c) c.style.opacity="0";});
   var ctx=cv.getContext("2d"), dpr=Math.min(window.devicePixelRatio||1,2), vw=0, vh=0;
   function size(){vw=window.innerWidth;vh=window.innerHeight;cv.width=Math.round(vw*dpr);cv.height=Math.round(vh*dpr);}
   size();window.addEventListener("resize",size);
   var phase="wait", t0=0, exitAt=0, done=false, snap=null;
-  var REVEAL=600, STAG=38, HOLD=900, EXIT=760;
+  var REVEAL=820, STAG=55, HOLD=1500, EXIT=1150;
   function eo(x){return 1-Math.pow(1-x,4);}
-  function eio(x){return x<.5?8*x*x*x*x:1-Math.pow(-2*x+2,4)/2;}
+  function eio(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;}
   function cl(x){return x<0?0:x>1?1:x;}
   function pose(e){
     /* e=0: centered splash pose, e=1: exactly where the real wordmark sits */
@@ -6526,8 +6540,8 @@ function runSplash(){
     num.textContent=String(Math.round(eio(prog)*100)).padStart(3,"0");
     meta.style.opacity=phase==="wait"?"0":String(cl(el_/250)*(1-cl(ex/.22)));
     if(phase==="exit"){
-      bgLayer.style.opacity=String(1-cl((ex-.12)/.62));
-      if(ex>.62&&!ttShown){ttShown=true;ttEls.forEach(function(c){if(c){c.style.transition="opacity .32s cubic-bezier(.16,1,.3,1)";c.style.opacity="";}});}
+      bgLayer.style.opacity=String(1-eio(cl((ex-.1)/.7)));
+      if(ex>.6&&!ttShown){ttShown=true;ttEls.forEach(function(c){if(c){c.style.transition="opacity .5s cubic-bezier(.16,1,.3,1)";c.style.opacity="";}});}
       if(ex>=1){finish();return;}
     } else if(phase==="reveal"&&el_>=HOLD) beginExit(now);
     requestAnimationFrame(draw);
@@ -6539,13 +6553,14 @@ function runSplash(){
   var ttShown=false;
   function beginExit(now){
     if(phase==="exit") return;
-    phase="exit";exitAt=now;el.classList.add("out");
-    startHome(120);
+    phase="exit";exitAt=now;el.classList.add("out");splashCover=false;
+    startHome(Math.round(EXIT*.35));
   }
   function finish(){
     if(done) return;done=true;
     if(!homeStarted) startHome();
-    ttEls.forEach(function(c){if(c){c.style.opacity="";setTimeout(function(){c.style.transition="";},400);}});
+    splashCover=false;queueWorld(1400);
+    ttEls.forEach(function(c){if(c){c.style.opacity="";setTimeout(function(){c.style.transition="";},600);}});
     if(tt&&tt.holdSweep) tt.holdSweep(2.2);
     window.removeEventListener("resize",size);
     el.parentNode&&el.parentNode.removeChild(el);
