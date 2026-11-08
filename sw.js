@@ -1,12 +1,13 @@
 /* CG Cert Path service worker: makes the site installable and usable offline.
    Change VERSION whenever you upload a new index.html so phones pick it up quickly. */
-var VERSION = "certpath-v24";
+var VERSION = "certpath-v25";
 /* everything the app needs lives on this site (no outside servers), so it is all cached on install */
 var SHELL = [ "manifest.webmanifest", "icon-192.png", "icon-512.png",
              "icon-maskable-512.png", "apple-touch-icon.png", "favicon.png",
              "vendor/three.min.js", "vendor/lenis.min.js", "vendor/world.js",
              "fonts/fonts.css", "fonts/inter-tight.woff", "fonts/geist.woff",
-             "fonts/IBMPlexMono-Regular.ttf", "fonts/IBMPlexMono-Medium.ttf"];
+             "fonts/IBMPlexMono-Regular.ttf", "fonts/IBMPlexMono-Medium.ttf",
+             "fonts/LexendZetta-Variable.ttf"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) {

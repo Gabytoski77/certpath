@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-htNgN9OdIoU7UNxPm+Le63xwr7yzOPVTLCgoXUR/2z0=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-I0v7xL948R27BtXI4zkcxL2YD3JtNsALMDxaSMNstmg=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -60,6 +60,7 @@
   --gl-rim:rgba(255,255,255,.42);
   --f-ui:"Geist", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --f-serif:"Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --f-title:"Lexend Zetta","Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   color-scheme:dark;
 }
@@ -245,9 +246,11 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .p-hero-main{padding:52px 28px 34px 0;min-width:0}
 .p-eyebrow{margin:0;font:600 10px/1.3 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--v-muted)}
 .p-eyebrow span{color:var(--v-accent)}
-.p-hero h2{margin:16px 0 0;font:700 clamp(52px,9vw,112px)/.9 var(--f-disp);letter-spacing:-.055em;text-wrap:balance}
+.p-hero h2{margin:16px 0 0;font:260 clamp(30px,5.4vw,70px)/1.06 var(--f-title);letter-spacing:.02em;text-transform:uppercase;text-wrap:balance}
 .p-hero h2 .w{display:inline-block;white-space:nowrap;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
-.p-hero h2 .ch{display:inline-block;will-change:transform}
+.p-hero h2 .ch{display:inline-block;will-change:transform;background:linear-gradient(180deg,#ffffff 0%,#e9eff4 40%,#9fb0bf 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.p-hero h2 .ch.dot{color:var(--v-accent)}
+@media (max-width:420px){.p-hero h2{font-size:clamp(22px,7.4vw,30px)}}
 .p-aside{border-left:1px solid var(--v-line);padding:52px 0 34px 24px;display:grid;align-content:start;gap:12px}
 .p-blurb{margin:0;font-size:14px;line-height:1.6;color:#b9bdc4}
 /* every note sits in the same grid cell, so the panel keeps the height of the longest one and nothing below it jumps */
@@ -340,7 +343,14 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .draft{display:inline-block;margin-left:8px;padding:4px 6px;border:1px dashed var(--hair-2);border-radius:2px;font:600 9px/1 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);vertical-align:2px}
 
 .ed-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:16px;padding-top:30px}
-.ed-title{margin:14px 0 0;font:700 clamp(52px,8.4vw,92px)/.9 var(--f-disp);letter-spacing:-.055em;color:var(--ink)}
+.ed-title{margin:14px 0 0;padding:.08em 0 .06em;font:260 clamp(32px,5.4vw,66px)/1 var(--f-title);letter-spacing:.02em;text-transform:uppercase;color:var(--ink);
+  background:linear-gradient(180deg,#ffffff 0%,#e9eff4 40%,#9fb0bf 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ed-title .dot,.p-hero h2 .dot{-webkit-text-fill-color:currentColor;background:none}
+.ed-title .dot{color:var(--accent)}
+/* a glint of light catching the top edge of the big Explore title */
+.ed-title{position:relative}
+.ed-title::after{content:"";position:absolute;left:30%;top:var(--glint-y,.335em);width:4.2em;height:.06em;min-height:3px;transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,255,255,.9),rgba(188,214,234,.3) 50%,rgba(188,214,234,0))}
 .ed-close{width:38px;height:38px;border-radius:50%;border:1px solid var(--hair-2);display:grid;place-items:center;color:var(--ink-2);transition:border-color .3s var(--ez),color .3s var(--ez),transform .3s var(--ez)}
 @media (hover:hover) and (pointer:fine){.ed-close:hover{border-color:rgba(255,255,255,.4);color:var(--ink);transform:translateY(2px)}}
 .tabs{position:relative;display:flex;gap:28px;margin-top:28px;border-bottom:1px solid var(--hair);overflow-x:auto;scrollbar-width:none}
@@ -1387,8 +1397,8 @@ html.kbd .touch-only{display:none}
   .cta2{padding:10px 16px}
   .sh-grab{gap:7px;padding-top:7px}
   .p-crumb{display:none}
-  .ed-title{font-size:clamp(40px,6.6vw,64px)}
-  .p-hero h2{font-size:clamp(40px,6.6vw,72px)}
+  .ed-title{font-size:clamp(28px,4.6vw,48px)}
+  .p-hero h2{font-size:clamp(26px,4.4vw,52px)}
   .p-hero-main{padding:30px 24px 24px 0}
   #srch{padding-top:max(10px,var(--sat));padding-bottom:8px}
   .sr-list{max-height:none;flex:1}
@@ -1427,7 +1437,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.13</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.14</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1465,7 +1475,7 @@ html.kbd .touch-only{display:none}
     <div class="sh-in">
       <div class="sh-glow" id="sh-glow" aria-hidden="true"></div>
       <header class="ed-head rv-s">
-        <div class="ed-tw"><p class="lab">(CG_CERT_PATH) &nbsp;/&nbsp; Categories</p><h2 class="ed-title" id="ed-title">Explore.</h2></div>
+        <div class="ed-tw"><p class="lab">(CG_CERT_PATH) &nbsp;/&nbsp; Categories</p><h2 class="ed-title" id="ed-title">Explore<span class="dot">.</span></h2></div>
         <div class="ed-acts"><button type="button" class="ed-close ed-srch" data-search aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg></button><button type="button" class="ed-close" data-close aria-label="Close explore panel">&darr;</button></div>
       </header>
       <nav class="tabs rv-s" aria-label="Explore sections">
@@ -2438,8 +2448,11 @@ function scrollPanelTo(target,offset){
 /* ---------- vendor page ---------- */
 var current=0, hardestFirst=true, switching=false;
 function splitTitle(name){
-  return name.split(" ").map(function(w){return '<span class="w">'+Array.from(w).map(function(c){return '<span class="ch">'+c+'</span>';}).join("")+'</span>';}).join(" ");
+  var ws=name.split(" ");
+  return ws.map(function(w,wi){var cs=Array.from(w);return '<span class="w">'+cs.map(function(c,ci){return '<span class="ch'+(c==="."&&wi===ws.length-1&&ci===cs.length-1?' dot':'')+'">'+c+'</span>';}).join("")+'</span>';}).join(" ");
 }
+/* Explore titles: "Compare." with the period in the accent color */
+function setEdTitle(h,txt){txt=String(txt);var dot=txt.slice(-1)===".";h.innerHTML=gEsc(dot?txt.slice(0,-1):txt)+(dot?'<span class="dot">.</span>':'');}
 function openPanel(i,certName){
   current=i;
   panel.innerHTML=
@@ -2706,7 +2719,7 @@ function setTabs(name){sheet.querySelectorAll(".tabs [data-go]").forEach(functio
 function swapTitle(txt){
   var h=$("#ed-title");
   var a=anim(h,[{opacity:1,transform:"none"},{opacity:0,transform:"translateY(-12px)"}],{duration:220,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"});
-  done(a).then(function(){h.textContent=txt;if(a) a.cancel();anim(h,[{opacity:0,transform:"translateY(16px)"},{opacity:1,transform:"none"}],{duration:900,easing:EZ});});
+  done(a).then(function(){setEdTitle(h,txt);if(a) a.cancel();anim(h,[{opacity:0,transform:"translateY(16px)"},{opacity:1,transform:"none"}],{duration:900,easing:EZ});});
 }
 function revealIn(el,base){
   el.querySelectorAll(".rv-s").forEach(function(x,n){
@@ -2730,7 +2743,7 @@ function openSheet(){if(state!=="idle") return Promise.resolve();return animShee
 function closeSheet(){return animSheet(0,580);}
 function resetSheet(){
   sheet.classList.remove("live");
-  if(shView!=="home"){$("#sv-"+shView).hidden=true;$("#sv-"+shView).classList.remove("drawn");$("#sv-home").hidden=false;shView="home";$("#ed-title").textContent=TITLES.home;setTabs("home");}
+  if(shView!=="home"){$("#sv-"+shView).hidden=true;$("#sv-"+shView).classList.remove("drawn");$("#sv-home").hidden=false;shView="home";setEdTitle($("#ed-title"),TITLES.home);setTabs("home");}
   shScroll.scrollTop=0;
 }
 async function showView(name){
@@ -6011,7 +6024,7 @@ async function srchPick(e){
 function setViewNow(name){
   if(name===shView) return;
   var cur=$("#sv-"+shView);cur.hidden=true;cur.classList.remove("drawn");
-  $("#sv-"+name).hidden=false;shView=name;setTabs(name);$("#ed-title").textContent=TITLES[name];
+  $("#sv-"+name).hidden=false;shView=name;setTabs(name);setEdTitle($("#ed-title"),TITLES[name]);
   if(name==="mine"){mpFresh();mpRender(false);}
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
 }
@@ -6762,6 +6775,8 @@ function startHome(lead){
 requestAnimationFrame(frame);
 if(has3D) loadWorld();
 runSplash();
+/* warm up the title font once the home screen has settled, so the Explore and vendor titles never flash a fallback */
+setTimeout(function(){try{if(document.fonts&&document.fonts.load) document.fonts.load("260 40px 'Lexend Zetta'","EXPLORE.").then(function(){},function(){});}catch(e){}},3800);
 
 /* ---------- launch screen: CertPath rises in, then flies into its place behind the globe ---------- */
 function runSplash(){

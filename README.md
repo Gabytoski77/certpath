@@ -18,7 +18,7 @@ Quiz and PBQ questions are original.
 1. Replace `index.html` with the new version (Add file → Upload files).
 2. In `sw.js`, bump `VERSION` (for example `certpath-v1` → `certpath-v2`) so installed copies refresh.
 
-Everything the app needs is served from this repo: no outside servers. Libraries are in `vendor/` (three.js, Lenis, ECharts world map) and fonts in `fonts/` (Inter Tight, Geist, IBM Plex Mono), each with its license. The page locks itself down with a Content Security Policy.
+Everything the app needs is served from this repo: no outside servers. Libraries are in `vendor/` (three.js, Lenis, ECharts world map) and fonts in `fonts/` (Inter Tight, Geist, IBM Plex Mono, Lexend Zetta), each with its license. The page locks itself down with a Content Security Policy.
 
 ## Disclaimer
 
