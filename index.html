@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-YDMyNTGVxLwZHy8YisewQBXAKBMhVMKyxrhGeOsOXKw=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-SM6doBm8AiyxF8ngZ50k2tyl62pEqluaNURfuJj6h8I=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1318,7 +1318,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.11</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.12</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2015,16 +2015,32 @@ function addWorld(geo){
 
     var tex=new THREE.CanvasTexture(cv);
     tex.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy?renderer.capabilities.getMaxAnisotropy():1);
+    if(renderer.initTexture) renderer.initTexture(tex);   /* upload to the GPU now, not on the next visible frame */
     coreMat.uniforms.land.value=tex;
     tween(1800,function(k){coreMat.uniforms.landK.value=k;},E.outCubic);
   }catch(e){statusEl.textContent="Map outlines didn't load · grid only";}
 }
+/* The map is drawn while the launch screen is still blank (before the word rises), so it is there from the start
+   and its heavy one-time paint never lands mid-animation. If it arrives late, it waits until the launch screen is gone. */
+var worldP=null, splashBusy=false, lateGeo=null;
 function loadWorld(){
-  window.echarts={registerMap:function(name,geo){if(String(name).toLowerCase()==="world") addWorld(geo);}};
-  var s=document.createElement("script");
-  s.src="vendor/world.js";s.crossOrigin="anonymous";s.referrerPolicy="no-referrer";
-  s.onerror=function(){statusEl.textContent="Map outlines didn't load · grid only";};
-  document.head.appendChild(s);
+  if(worldP) return worldP;
+  worldP=new Promise(function(res){
+    window.echarts={registerMap:function(name,geo){
+      if(String(name).toLowerCase()!=="world") return;
+      if(splashBusy) lateGeo=geo; else addWorld(geo);
+      res();
+    }};
+    var s=document.createElement("script");
+    s.src="vendor/world.js";s.crossOrigin="anonymous";s.referrerPolicy="no-referrer";
+    s.onerror=function(){statusEl.textContent="Map outlines didn't load · grid only";res();};
+    document.head.appendChild(s);
+  });
+  return worldP;
+}
+function lateWorld(){
+  splashBusy=false;if(!lateGeo) return;var g=lateGeo;lateGeo=null;
+  setTimeout(function(){var go=function(){addWorld(g);};if(window.requestIdleCallback) requestIdleCallback(go,{timeout:1200});else go();},1400);
 }
 
 /* ---------- sizing ---------- */
@@ -6479,20 +6495,14 @@ function startHome(lead){
   setTimeout(function(){document.querySelectorAll(".ui .glass").forEach(function(g,n){setTimeout(function(){shine(g);},n*70);});},(lead||0)+1500);
 }
 requestAnimationFrame(frame);
-/* the world map is a big canvas paint + texture upload: do it once the home screen has settled, never mid-animation */
-var worldQueued=false;
-function queueWorld(delay){
-  if(worldQueued||!has3D) return;worldQueued=true;
-  setTimeout(function(){var go=function(){loadWorld();};if(window.requestIdleCallback) requestIdleCallback(go,{timeout:1200});else go();},delay||0);
-}
-setTimeout(function(){queueWorld(0);},9000);   /* safety net if the launch screen never finishes */
+if(has3D) loadWorld();
 runSplash();
 
 /* ---------- launch screen: CertPath rises in, then flies into its place behind the globe ---------- */
 function runSplash(){
   var el=$("#splash"), cv=$("#sp-cv"), meta=$("#sp-meta"), fill=$("#sp-fill"), num=$("#sp-n");
   var ttEls=[$("#tt"),$("#tt-front")];
-  if(!el){splashCover=false;startHome();queueWorld(1400);return;}
+  if(!el){splashCover=false;startHome();lateWorld();return;}
   if(tt) tt.skipIntro();
   ttEls.forEach(function(c){if(c) c.style.opacity="0";});
   var ctx=cv.getContext("2d"), dpr=Math.min(window.devicePixelRatio||1,2), vw=0, vh=0;
@@ -6559,7 +6569,7 @@ function runSplash(){
   function finish(){
     if(done) return;done=true;
     if(!homeStarted) startHome();
-    splashCover=false;queueWorld(1400);
+    splashCover=false;lateWorld();
     ttEls.forEach(function(c){if(c){c.style.opacity="";setTimeout(function(){c.style.transition="";},600);}});
     if(tt&&tt.holdSweep) tt.holdSweep(2.2);
     window.removeEventListener("resize",size);
@@ -6574,9 +6584,14 @@ function runSplash(){
   }
   /* wait (briefly) for the display font so the word is drawn in Inter Tight, then go */
   var fontP=document.fonts&&document.fonts.load?document.fonts.load("700 100px 'Inter Tight'","CertPath"):Promise.resolve();
-  Promise.race([fontP,wait(1200)]).then(function(){},function(){}).then(function(){
+  /* and for the world map (capped), so the globe already has its outlines when the home screen appears */
+  var fontW=Promise.race([fontP,wait(1200)]).then(function(){},function(){});
+  var mapW=has3D?Promise.race([loadWorld(),wait(2000)]).then(function(){},function(){}):Promise.resolve();
+  Promise.all([fontW,mapW]).then(function(){
+    if(done) return;
     if(tt){tt.fontReady();placeReadout();}
-    requestAnimationFrame(function(now){t0=now;phase="reveal";draw(now);});
+    splashBusy=true;
+    requestAnimationFrame(function(now){if(done) return;if(phase==="wait"){t0=now;phase="reveal";}draw(now);});
   });
 }
 })();
