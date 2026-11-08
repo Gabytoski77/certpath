@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-SFUuTrnM/8xbbtOmto9jlIUdEH+U7Z5azOdXlcOvCxc=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-yMHoQq3L6zSX/HpCCz36DIV7qDESIlP6/SObX/etlgQ=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -156,10 +156,42 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .stage{grid-area:stage;min-height:0}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .hero{grid-area:hero;align-self:end;padding-bottom:2.5vh}
-.hero-note{display:flex;align-items:flex-start;gap:14px}
-.hero-note i{flex:none;width:54px;height:1px;margin-top:8px;background:rgba(255,255,255,.6)}
-.hero-note p{margin:0;font:500 12.5px/1.45 var(--f-disp);color:#e3e7ec;max-width:21ch}
-.hero-note small{display:block;margin-top:12px;font:500 9.5px/1.4 var(--f-mono);color:#7f8996;letter-spacing:.04em}
+/* start block (v2.16): what the site does, that the CG pays, one main action. Returning visitors get a Continue card instead. */
+.start{display:grid;gap:14px;justify-items:start;max-width:min(330px,100%);pointer-events:auto}
+.st-head{display:grid;gap:10px;justify-items:inherit;min-width:0}
+/* like the vendor readout: when the CertPath wordmark would cover the start block, the promise moves above the wordmark and the buttons stay below it (placeStart) */
+.start{position:relative}
+.start.split .st-head{position:absolute;left:0;right:0;bottom:var(--st-lift,100%)}
+.st-lead{margin:0;max-width:300px;font:600 19px/1.24 var(--f-disp);letter-spacing:-.02em;color:#f4f7fa;text-wrap:balance}
+.st-cool{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:3px 7px;font:500 12.5px/1.35 var(--f-ui);color:#c4cdd7;text-align:left;border-radius:6px}
+.st-cool i{flex:none;align-self:center;width:6px;height:6px;border-radius:50%;background:var(--powder);box-shadow:0 0 10px rgba(188,214,234,.8)}
+.st-cool b{font-weight:600;color:var(--powder);white-space:nowrap}
+.st-cool b span{display:inline-block;transition:transform .25s var(--ez)}
+@media (hover:hover) and (pointer:fine){.st-cool:hover b span{transform:translateX(3px)}.st-cool:hover{color:#fff}}
+.st-act{display:grid;gap:12px;justify-items:inherit;width:100%}
+.st-main{display:inline-flex;align-items:center;gap:10px;padding:14px 22px 14px 24px;border-radius:999px;background:#e8f1f8;color:#0b121a;font:650 14px/1 var(--f-disp);letter-spacing:-.01em;
+  box-shadow:inset 0 1px 0 #fff,0 14px 34px -14px rgba(188,214,234,.55),0 12px 26px -16px rgba(0,0,0,.85);transition:transform .25s var(--ez),background .25s var(--ez),box-shadow .25s var(--ez)}
+.st-main small{font:500 10px/1 var(--f-mono);letter-spacing:.03em;color:#3f5870;padding:4px 7px;border-radius:999px;background:rgba(94,122,146,.17)}
+.st-main .ar{display:inline-block;transition:transform .25s var(--ez)}
+@media (hover:hover) and (pointer:fine){.st-main:hover{background:#fff;box-shadow:inset 0 1px 0 #fff,0 18px 40px -14px rgba(188,214,234,.7),0 12px 26px -16px rgba(0,0,0,.85)}.st-main:hover .ar{transform:translateX(3px)}}
+.st-main:active{transform:scale(.97);transition-duration:.1s}
+.st-links{display:flex;flex-wrap:wrap;align-items:center;gap:4px 18px}
+.st-links button{padding:6px 0 5px;font:500 12.5px/1 var(--f-ui);color:#c4cdd7;border-bottom:1px solid rgba(255,255,255,.2);transition:color .2s var(--ez),border-color .2s var(--ez)}
+@media (hover:hover) and (pointer:fine){.st-links button:hover{color:#fff;border-color:var(--powder)}}
+.st-links button:active{opacity:.7;transition-duration:.1s}
+.st-card{--c:var(--powder);display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:16px;row-gap:5px;width:100%;max-width:300px;box-sizing:border-box;padding:14px 14px 15px 18px;border-radius:18px;text-align:left;
+  background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.03));border:1px solid rgba(188,214,234,.32);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 16px 34px -20px rgba(0,0,0,.9);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:transform .25s var(--ez),border-color .25s var(--ez),background .25s var(--ez)}
+.st-card .k{grid-column:1/-1;font:500 9.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--powder)}
+.st-card .n{font:700 17px/1.15 var(--f-disp);letter-spacing:-.02em;color:#fff;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.st-card .s{grid-column:1;font:400 12px/1.35 var(--f-ui);color:#b9c3ce}
+.st-card .go{grid-column:2;grid-row:2/span 2;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#e8f1f8;color:#0b121a;font:600 14px/1 var(--f-disp);transition:transform .25s var(--ez)}
+.st-card .bar{grid-column:1/-1;height:3px;margin-top:5px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
+.st-card .bar i{display:block;height:100%;width:100%;border-radius:inherit;background:var(--c);transform-origin:0 50%;transform:scaleX(var(--p,0))}
+@media (hover:hover) and (pointer:fine){.st-card:hover{border-color:rgba(188,214,234,.6);background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.045))}.st-card:hover .go{transform:translateX(3px)}}
+.st-card:active{transform:scale(.98);transition-duration:.1s}
+.st-disc{margin:2px 0 0;font:500 9.5px/1.4 var(--f-mono);color:#7f8996;letter-spacing:.04em}
+.ro-pick{display:none;margin:0;font:500 9.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#8d97a5}
 .readout{grid-area:ro;align-self:end;justify-self:end;width:min(290px,100%);display:grid;gap:12px;padding-bottom:2.5vh;pointer-events:auto;position:relative;z-index:1}
 .ro-head{display:grid;gap:inherit;justify-items:inherit;min-width:0}
 /* when the big CertPath wordmark would cover the vendor text, the text moves above the wordmark and the crests + buttons stay below it (placeReadout) */
@@ -362,6 +394,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .nums-big p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.6;max-width:32ch}
 .kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px;padding-top:20px;border-top:1px solid var(--hair)}
 .kv div{display:grid;gap:7px}
+.kv-s{font:400 12px/1.4 var(--f-ui);color:var(--ink-3);max-width:24ch}
 .kv-n{font:400 24px/1 var(--f-ui);letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
 .vlist{list-style:none;margin:0;padding:12px 0 12px 30px;display:grid;align-content:center}
 .vlist li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px 16px;align-items:baseline;padding:12px 0}
@@ -781,9 +814,18 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
   #app{padding-left:max(24px,var(--sal));padding-right:max(24px,var(--sar));padding-block:max(22px,calc(var(--sat) + 12px)) 14px;row-gap:6px}
   .frame{inset:max(7px,calc(var(--sat) + 2px)) 7px 7px;border-radius:26px}
   .mark b{font-size:16px}
-  .mid{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;grid-template-areas:"stage" "ro";row-gap:4px}
-  .hero{display:none}
-  .readout{justify-self:center;width:auto;justify-items:center;text-align:center;gap:9px;padding-bottom:2px}
+  .mid{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto auto;grid-template-areas:"stage" "hero" "ro";row-gap:12px}
+  .hero{justify-self:center;padding-bottom:0;width:100%;display:grid;justify-items:center}
+  .start{justify-items:center;text-align:center;max-width:350px;gap:12px}
+  .st-lead{font-size:17.5px}
+  .st-head{gap:8px}
+  .st-cool{justify-content:center;text-align:center}
+  .st-main{padding:15px 26px 15px 28px}
+  .st-card{max-width:340px}
+  .st-disc{display:none}
+  .readout{justify-self:center;width:auto;justify-items:center;text-align:center;gap:6px;padding-bottom:2px}
+  .readout .ro-head,.readout .cta-row{display:none}
+  .ro-pick{display:block}
   .ro-blurb{display:none}
   .ro-dots{display:flex;gap:2px;margin:2px -12px 4px;padding:4px 12px;max-width:calc(100vw - 24px);overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;justify-content:flex-start}
   .ro-dots::-webkit-scrollbar{display:none}
@@ -833,6 +875,8 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .sb-k,.sr-foot kbd{font:500 9.5px/1 var(--f-mono);color:#8d97a5;border:1px solid rgba(255,255,255,.13);border-radius:5px;padding:4px 5px;letter-spacing:.02em;background:rgba(255,255,255,.03)}
 .p-srch{width:auto;padding:0 15px 0 13px;gap:8px;display:inline-flex;align-items:center;border-radius:999px;font:600 9.5px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase}
 .p-srch svg,.ed-srch svg{width:13px;height:13px}
+.p-exp svg{width:11px;height:11px}
+@media (max-width:380px){.p-top .p-mock{display:none}}
 .ed-acts{display:flex;gap:8px}
 @media (hover:hover) and (pointer:fine){.ed-srch:hover{transform:translateY(-2px)}}
 html:not(.kbd) .kbd-only,html:not(.kbd) .sb-k{display:none}
@@ -1363,16 +1407,30 @@ html.kbd .touch-only{display:none}
   .g-kc:first-child{border-top:0}
 }
 @media (prefers-reduced-motion:reduce){.g-rv{opacity:1;transform:none}.g-reel{transition:none}}
-@media (max-height:640px) and (max-width:720px){ .hero p{display:none} }
+@media (max-height:700px) and (max-width:720px){ .st-lead{font-size:15.5px} .start{gap:9px} .st-main{padding:13px 22px 13px 24px} .mid{row-gap:8px} }
 /* ---------- phone in landscape: wide but short ---------- */
 @media (orientation:landscape) and (max-height:500px){
   :root{--peek:44px}
   #app{padding-left:max(24px,calc(var(--sal) + 8px));padding-right:max(24px,calc(var(--sar) + 8px));padding-block:max(14px,calc(var(--sat) + 10px)) 13px;row-gap:2px}
   .frame{inset:max(6px,var(--sat)) max(6px,calc(var(--sar) - 12px)) 6px max(6px,calc(var(--sal) - 12px));border-radius:24px}
   .mark b{font-size:16px}
-  .mid{grid-template-columns:minmax(0,1.3fr) minmax(230px,1fr);grid-template-areas:"stage ro";column-gap:14px}
-  .hero{display:none}
-  .readout{align-self:center;justify-self:end;width:min(290px,100%);gap:7px;padding-bottom:0;justify-items:stretch;text-align:left}
+  .mid{grid-template-columns:minmax(0,1.3fr) minmax(230px,1fr);grid-template-rows:minmax(0,1fr) auto;grid-template-areas:"stage hero" "stage ro";column-gap:14px;row-gap:8px}
+  .hero{align-self:end;justify-self:end;width:min(300px,100%);padding-bottom:0}
+  .start{gap:8px;max-width:none}
+  .st-lead{font-size:14.5px;line-height:1.25}
+  .st-head{gap:6px}
+  .st-cool{font-size:11.5px}
+  .st-act{gap:8px}
+  .st-main{padding:11px 18px 11px 20px;font-size:13px}
+  .st-links button{font-size:11.5px;padding:4px 0}
+  .st-card{padding:10px 12px 11px 14px;row-gap:3px}
+  .st-card .n{font-size:15px}
+  .st-card .s{font-size:11px}
+  .st-card .go{width:30px;height:30px}
+  .st-disc{display:none}
+  .readout{align-self:start;justify-self:end;width:min(300px,100%);gap:4px;padding-bottom:0;justify-items:stretch;text-align:left}
+  .readout .ro-head,.readout .cta-row{display:none}
+  .ro-pick{display:block}
   .ro-dots{max-width:none}
   .cta{justify-self:start}
   .foot{justify-content:flex-start;font-size:9px}
@@ -1407,7 +1465,7 @@ html.kbd .touch-only{display:none}
 .g-qo:not(:disabled):active{transform:scale(.985)}
 .plist button:active,.c-row:active,.g-dh:active,a.g-r:active{background:rgba(255,255,255,.05)}
 .g-nav button:active,.seg button:active,.tabs button:active{opacity:.72}
-:is(.hdr-btn,.srch-btn,.p-srch,.ed-srch,.ed-close,.sr-x,.sr-chip,.copy,.flex-open,.g-node,.g-qo,.g-btn,.cta,.crest,.p-arr,.g-ck,.plist button,.c-row,.g-dh,a.g-r,.g-nav button,.seg button,.tabs button):active{transition-duration:.1s}
+:is(.st-main,.st-card,.hdr-btn,.srch-btn,.p-srch,.ed-srch,.ed-close,.sr-x,.sr-chip,.copy,.flex-open,.g-node,.g-qo,.g-btn,.cta,.crest,.p-arr,.g-ck,.plist button,.c-row,.g-dh,a.g-r,.g-nav button,.seg button,.tabs button):active{transition-duration:.1s}
 </style>
 
 <div id="splash" aria-hidden="true">
@@ -1429,16 +1487,24 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.15</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.16</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
-    <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
+    <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
     </div>
   </header>
 
   <main class="mid ui">
     <h1 class="vh">CG Cert Path: choose your certification path</h1>
-    <div class="hero" data-rv="2"><div class="hero-note"><i></i><p>Certifications, paths and funding for Coast Guard IT.<small>Not an official U.S. Coast Guard site</small></p></div></div>
+    <div class="hero" data-rv="2"><div class="start" id="start">
+      <div class="st-head">
+      <p class="st-lead">Which certs to take, in what order, and how the Coast Guard pays for them.</p>
+      <button type="button" class="st-cool" id="st-cool"><i aria-hidden="true"></i>The Coast Guard can pay for your certs. <b>See how <span aria-hidden="true">&rarr;</span></b></button>
+      </div>
+      <div class="st-act" id="st-act"><button type="button" class="st-main" id="st-path">Build my path <small>1 min</small><span class="ar" aria-hidden="true">&rarr;</span></button></div>
+      <div class="st-links" id="st-links"><button type="button" data-st="vendors">Browse vendors</button><button type="button" data-st="search">Search a cert</button></div>
+      <p class="st-disc">Not an official U.S. Coast Guard site</p>
+    </div></div>
     <div class="stage" id="stage"></div>
     <div class="readout" id="readout" aria-live="polite" data-rv="3">
       <div class="ro-head">
@@ -1446,8 +1512,9 @@ html.kbd .touch-only{display:none}
       <p class="ro-count"><span id="ro-num">01</span> / <span id="ro-total">08</span> &nbsp;&middot;&nbsp; <span id="ro-certs">7 certs</span></p>
       <p class="ro-blurb" id="ro-blurb"></p>
       </div>
+      <p class="ro-pick" aria-hidden="true">Or tap a vendor</p>
       <div class="ro-dots" id="ro-dots" role="group" aria-label="Vendors"></div>
-      <div class="cta-row"><button type="button" class="cta" id="cta"><span class="cta-lbl">Enter <span id="cta-name">CompTIA</span></span><span class="ar" aria-hidden="true">&rarr;</span></button><button type="button" class="cta2" id="cta-path">My path</button></div>
+      <div class="cta-row"><button type="button" class="cta" id="cta"><span class="cta-lbl">Enter <span id="cta-name">CompTIA</span></span><span class="ar" aria-hidden="true">&rarr;</span></button></div>
     </div>
   </main>
 
@@ -1459,9 +1526,9 @@ html.kbd .touch-only{display:none}
 <div id="veil" aria-hidden="true"></div>
 <div id="sbar" aria-hidden="true"></div>
 <section id="sheet" aria-label="Explore">
-  <div class="sh-grab" id="sh-grab" role="button" tabindex="0" aria-expanded="false" aria-controls="sh-scroll" aria-label="Open explore panel">
+  <div class="sh-grab" id="sh-grab" role="button" tabindex="0" aria-expanded="false" aria-controls="sh-scroll" aria-label="Open paths, funding and compare">
     <span class="sh-handle"></span>
-    <span class="sh-peek"><svg class="mk sh-mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg>Explore<em>paths &middot; funding &middot; vendors</em><span class="sh-up" aria-hidden="true">&uarr;</span></span>
+    <span class="sh-peek"><svg class="mk sh-mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg>Paths &middot; Funding &middot; Compare<span class="sh-up" aria-hidden="true">&uarr;</span></span>
   </div>
   <div class="sh-scroll" id="sh-scroll">
     <div class="sh-in">
@@ -1486,7 +1553,7 @@ html.kbd .touch-only{display:none}
             <p>Certifications mapped across <span id="sb-lines">7</span> vendor lines, ranked by difficulty and tied to the roles you can hold.</p>
             <div class="kv">
               <div><b class="kv-n">4</b><span class="lab">Career paths</span></div>
-              <div><b class="kv-n">$4,500</b><span class="lab">CA per FY*</span></div>
+              <div><b class="kv-n">$4,500</b><span class="kv-s">Credentialing assistance CG COOL can cover each fiscal year</span></div>
               <div><b class="kv-n">IAT II</b><span class="lab">Security+ baseline</span></div>
               <div><b class="kv-n">9</b><span class="lab">Certs in WGU BS</span></div>
             </div>
@@ -1793,26 +1860,20 @@ document.addEventListener("pointerdown",function(e){var g=e.target.closest&&e.ta
 document.addEventListener("focusin",function(e){var g=e.target.closest&&e.target.closest(".glass");if(g&&g.matches(":focus-visible")) shine(g);});
 var frontIdx=-1;
 var roCerts=$("#ro-certs"), roBlurb=$("#ro-blurb"), roDots=$("#ro-dots");
-/* mini crests: hover (or focus) turns the globe to that vendor, click dives in. On touch, first tap turns, second tap enters. */
+/* mini crests: hover (or focus) turns the globe to that vendor; a click or a single tap opens it. */
 var CREST_HEX='<svg viewBox="0 0 60 64" aria-hidden="true"><polygon class="h1" points="30,5 53,18.5 53,45.5 30,59 7,45.5 7,18.5"/><polygon class="h2" points="30,10 48.6,21 48.6,43 30,54 11.4,43 11.4,21"/><circle cx="30" cy="1.8" r="1.3"/><circle cx="30" cy="62.2" r="1.3"/></svg>';
 var crestHoverT=0;
 VENDORS.forEach(function(v,i){
   var b=document.createElement("button");b.type="button";b.className="crest";b.style.setProperty("--c",v.beacon);
-  b.setAttribute("aria-label",v.name+", "+v.certs.length+" certs. Hover to turn the globe, click to enter.");
+  b.setAttribute("aria-label","Open "+v.name+", "+v.certs.length+" certs");
   b.innerHTML=CREST_HEX+'<span class="cr-n">'+v.short.toUpperCase()+'</span><span class="cr-c">'+pad2(v.certs.length)+'</span>';
-  var lastType="mouse";
-  b.addEventListener("pointerdown",function(e){lastType=e.pointerType;},{passive:true});
   b.addEventListener("pointerenter",function(e){
     if(e.pointerType!=="mouse"||state!=="idle") return;
     clearTimeout(crestHoverT);crestHoverT=setTimeout(function(){if(frontIdx!==i) focusVendor(i);},70);
   });
   b.addEventListener("pointerleave",function(){clearTimeout(crestHoverT);});
   b.addEventListener("focus",function(){if(state==="idle"&&frontIdx!==i&&b.matches(":focus-visible")) focusVendor(i);});
-  b.addEventListener("click",function(){
-    if(state!=="idle") return;
-    if(lastType!=="mouse"&&frontIdx!==i){focusVendor(i);lastType="mouse";return;}
-    lastType="mouse";dive(i);
-  });
+  b.addEventListener("click",function(){if(state==="idle"){clearTimeout(crestHoverT);dive(i);}});
   roDots.appendChild(b);
 });
 function setFront(i){
@@ -2200,7 +2261,22 @@ function placeReadout(){
     var hh=roHead.getBoundingClientRect().height, top=midEl.getBoundingClientRect().top;
     if(bandTop-hh<top-4){readout.classList.remove("split","tight","tighter");return;}
     readout.style.setProperty("--ro-lift",Math.round(r.bottom-bandTop)+"px");
-  }finally{roBusy=false;}
+  }finally{roBusy=false;placeStart();}
+}
+function placeStart(){
+  var st=document.getElementById("start");if(!st) return;
+  var head=st.querySelector(".st-head");
+  st.classList.remove("split");st.style.removeProperty("--st-lift");
+  if(!tt||!tt.bounds||W<720||isShort()) return;
+  var w=tt.bounds();if(!w) return;
+  var ar=app.getBoundingClientRect(), pad=14, bandTop=ar.top+w.top-pad, bandBot=ar.top+w.bottom+pad, wl=ar.left+w.left, wr=ar.left+w.right;
+  var r=st.getBoundingClientRect();
+  if(!(r.bottom>bandTop&&r.top<bandBot&&r.right>wl&&r.left<wr)) return;
+  var hh=head.getBoundingClientRect().height;
+  st.classList.add("split");r=st.getBoundingClientRect();
+  /* only split when both halves then clear the wordmark */
+  if(r.top<bandBot-pad||bandTop-hh<midEl.getBoundingClientRect().top-4){st.classList.remove("split");return;}
+  st.style.setProperty("--st-lift",Math.round(r.bottom-bandTop)+"px");
 }
 function watchReadout(){
   if(roRO||!window.ResizeObserver) return;
@@ -2395,12 +2471,13 @@ async function dive(i,certName){
   await Promise.all([fl2,dolly]);
   state="open";
 }
-async function back(){
+async function back(o){
   if(state!=="open") return;
+  o=o||{};
   state="closing";
   destroyLenis();
   var inner=panel.querySelector(".p-inner");
-  await done(anim(inner,[{opacity:1,transform:"none",filter:"blur(0px)"},{opacity:0,transform:"translateY(12px)",filter:"blur(6px)"}],{duration:280,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"}));
+  if(!o.swiped) await done(anim(inner,[{opacity:1,transform:"none",filter:"blur(0px)"},{opacity:0,transform:"translateY(12px)",filter:"blur(6px)"}],{duration:280,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"}));
   if(flex){flex.destroy();flex=null;}
   panel.hidden=true;panel.innerHTML="";guideName=null;switching=false;guideBusy=false;if(typeof syncSbar==="function") syncSbar();panel.classList.remove("in-guide");if(gIO){gIO.disconnect();gIO=null;}
   var ar=app.getBoundingClientRect();
@@ -2411,10 +2488,12 @@ async function back(){
   var cam=has3D?tween(1500,function(k){camDist=1.16+(baseDist*zoomT-1.16)*k;},E.outQuart,80):Promise.resolve();
   tween(800,function(k){dim.v=1-k;},E.outCubic,500);
   setTimeout(function(){app.classList.remove("is-diving");},reduced?0:420);
-  await Promise.all([fl,cam]);
-  zoom=zoomT;introCam.v=1;velY=0;dim.v=0;
+  if(o.quick){await fl;introCam.v=1;zoom=camDist/baseDist;}   /* the globe keeps easing back while the sheet rises */
+  else{await Promise.all([fl,cam]);zoom=zoomT;introCam.v=1;}
+  velY=0;dim.v=0;
   state="idle";
-  setFront(current);cta.focus({preventScroll:true});
+  setFront(current);stRender();
+  var fb=(W<720||isShort())?$("#start .st-main,#start .st-card"):cta;if(fb) fb.focus({preventScroll:true});
 }
 document.addEventListener("keydown",function(e){
   if(srchOpen||document.getElementById("splash")) return;
@@ -2448,12 +2527,13 @@ function openPanel(i,certName){
    '<div class="p-inner"><div class="p-frame">'+
     '<header class="p-top"><span class="p-mark" aria-hidden="true"></span><button type="button" class="p-back" id="p-back"><span class="ar">&larr;</span><span class="pb-l">Globe</span></button>'+
     '<span class="p-crumb" id="p-crumb"></span><span class="p-mock">Mock data</span>'+
-    '<div class="p-arrows"><button type="button" class="p-arr p-srch" id="p-srch" aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="ps-l">Search</span></button><button type="button" class="p-arr" id="p-prev" aria-label="Previous vendor">&larr;</button><button type="button" class="p-arr" id="p-next" aria-label="Next vendor">&rarr;</button></div></header>'+
+    '<div class="p-arrows"><button type="button" class="p-arr p-srch p-exp" id="p-exp" aria-label="Go to paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg><span class="ps-l">Paths &middot; Funding &middot; Compare</span></button><button type="button" class="p-arr p-srch" id="p-srch" aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="ps-l">Search</span></button><button type="button" class="p-arr" id="p-prev" aria-label="Previous vendor">&larr;</button><button type="button" class="p-arr" id="p-next" aria-label="Next vendor">&rarr;</button></div></header>'+
     '<div class="p-body" id="p-body"></div></div>'+
     '<p class="p-foot">Not an official U.S. Coast Guard or DoD site &middot; Not affiliated with or endorsed by the Coast Guard or any cert vendor &middot; Names are trademarks of their owners</p>'+
    '</div>';
   panel.querySelector("#p-back").addEventListener("click",function(){if(guideName) closeGuide();else back();});
   panel.querySelector("#p-srch").addEventListener("click",function(){srchShow(this);});
+  panel.querySelector("#p-exp").addEventListener("click",function(){goExplore();});
   panel.querySelector("#p-prev").addEventListener("click",function(){switchVendor(-1);});
   panel.querySelector("#p-next").addEventListener("click",function(){switchVendor(1);});
   var toGuide=!!(certName&&GUIDES[certName]);
@@ -2482,10 +2562,10 @@ function renderBody(i){
       '<div class="pa-v on" data-cert=""><p class="lab">From the roadmap</p><p class="p-blurb">'+v.blurb+'</p></div>'+
       v.certs.map(function(c){var g=!!GUIDES[c[0]];return '<div class="pa-v" data-cert="'+gEsc(c[0])+'" aria-hidden="true"><p class="lab"><span class="pa-n">'+gEsc(c[0])+'</span> &middot; '+gEsc(c[1])+'</p>'+
         '<p class="p-blurb">'+gEsc(CERT_NOTE[c[0]]||v.blurb)+'</p>'+
-        '<p class="pa-meta"><span>'+gEsc(c[3])+'</span>'+(c[4]?'<span>'+gEsc(c[4])+'</span>':'')+'<span class="'+(g?'g':'')+'">'+(g?(finePointer?'Guide ready &middot; double-click':'Guide ready &middot; double-tap'):'Guide coming soon')+'</span></p></div>';}).join("")+
+        '<p class="pa-meta"><span>'+gEsc(c[3])+'</span>'+(c[4]?'<span>'+gEsc(c[4])+'</span>':'')+'<span class="'+(g?'g':'')+'">'+(g?(finePointer?'Guide ready &middot; click again to open':'Guide ready &middot; tap again to open'):'Guide coming soon')+'</span></p></div>';}).join("")+
     '</div></aside></div>'+
     '<div class="flex pr" id="flex" tabindex="0" role="region" aria-roledescription="carousel" aria-label="'+v.name+' certifications">'+
-      '<span class="flex-hint lab">'+(finePointer?'Drag to browse &nbsp;&middot;&nbsp; click to focus &nbsp;&middot;&nbsp; double-click to open':'Drag &nbsp;&middot;&nbsp; tap to focus &nbsp;&middot;&nbsp; double-tap to open')+'</span>'+
+      '<span class="flex-hint lab">'+(finePointer?'Drag to browse &nbsp;&middot;&nbsp; click to focus &nbsp;&middot;&nbsp; click again to open':'Drag &nbsp;&middot;&nbsp; tap to focus &nbsp;&middot;&nbsp; tap again to open')+'</span>'+
       '<div class="flex-cap"><span class="flex-title" id="flex-title"></span>'+
       '<span class="flex-count"><span class="digits"><span class="digit"><span class="reel">'+'0123456789'.split("").map(function(n){return "<span>"+n+"</span>";}).join("")+'</span></span><span class="digit"><span class="reel">'+'0123456789'.split("").map(function(n){return "<span>"+n+"</span>";}).join("")+'</span></span></span><span>/</span><span class="flex-total"></span></span>'+
       '<button type="button" class="flex-open" id="flex-open"><span class="fo-l">View details &darr;</span></button></div>'+
@@ -2697,7 +2777,8 @@ function setSheet(p){
   var open=sheetP>.5;
   if(open!==sheet.classList.contains("is-open")){
     sheet.classList.toggle("is-open",open);grab.setAttribute("aria-expanded",String(open));
-    grab.setAttribute("aria-label",open?"Close explore panel":"Open explore panel");
+    grab.setAttribute("aria-label",open?"Close paths, funding and compare":"Open paths, funding and compare");
+    if(!open&&typeof stRender==="function") stRender();
   }
 }
 function placeTab(){
@@ -2748,7 +2829,7 @@ async function showView(name){
   requestAnimationFrame(function(){nx.classList.add("drawn");});
   if(name==="cool") countUp($("#cool-n"),4500,"$",1600);
   if(name==="home"){var c=$("#sb-count");c.textContent=c.dataset.n;}
-  if(name==="mine"){mpFresh();mpRender(false);}
+  if(name==="mine") mpEnter();
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
 }
 
@@ -2864,6 +2945,9 @@ function mpRender(animate){
 }
 /* My path always opens on a blank question 1. A finished path is saved, and a link offers it back. */
 function mpFresh(){clearTimeout(mp.t);mp.view="quiz";mp.step=0;mp.a={exp:"",goal:"",have:[],hpw:"",wgu:""};}
+/* entering the tab: blank question 1, unless the home Continue card asked for the saved path */
+var mpWantSaved=false;
+function mpEnter(){var sv=mpWantSaved?mpLoad():null;mpWantSaved=false;if(sv){clearTimeout(mp.t);mp.a=sv;mp.view="result";}else mpFresh();mpRender(false);}
 function mpResult(){
   var a=mp.a, r=mpBuild(a), months=r.todo?Math.max(1,Math.round(r.weeks/4.345)):0;
   var h='<div class="mp-res"><div class="mp-sum">'+
@@ -2886,7 +2970,7 @@ function mpNext(){
   clearTimeout(mp.t);var q=MP_Q[mp.step];
   if(!q.multi&&(mp.a[q.k]===""||mp.a[q.k]===null||mp.a[q.k]===undefined)) return;
   if(mp.step<MP_Q.length-1){mp.step++;mpRender(true);}
-  else{mp.view="result";gSet(MP_KEY,mp.a);mpRender(true);}
+  else{mp.view="result";gSet(MP_KEY,mp.a);gSet("cgcp.last",{k:"p",t:Date.now()});mpRender(true);}
   var f=mpEl.querySelector(".mp-opt,.mp-chip,.mp-list button");if(f&&mpEl.contains(document.activeElement)) f.focus({preventScroll:true});
 }
 if(mpEl){
@@ -2900,10 +2984,10 @@ if(mpEl){
     else if(act==="next") mpNext();
     else if(act==="back"){clearTimeout(mp.t);if(mp.step>0){mp.step--;mpRender(true);}}
     else if(act==="retake"){mpFresh();mpRender(true);}
-    else if(act==="saved"){var sv=mpLoad();if(sv){clearTimeout(mp.t);mp.a=sv;mp.view="result";mpRender(true);var fb=mpEl.querySelector(".mp-list button");if(fb) fb.focus({preventScroll:true});}}
+    else if(act==="saved"){var sv=mpLoad();if(sv){gSet("cgcp.last",{k:"p",t:Date.now()});clearTimeout(mp.t);mp.a=sv;mp.view="result";mpRender(true);var fb=mpEl.querySelector(".mp-list button");if(fb) fb.focus({preventScroll:true});}}
   });
 }
-$("#cta-path").addEventListener("click",function(){goPage("mine");});
+
 /* ---------- Compare: two certs side by side, facts only ---------- */
 var CMP_KEY="cgcp.compare", cmpEl=$("#cmp");
 var CMP_ALL=(function(){var o=[];VENDORS.slice(0,-1).forEach(function(v,i){v.certs.forEach(function(c){o.push({name:c[0],short:c[0].split(" · ")[0],v:i,c:c});});});return o;})();
@@ -5391,7 +5475,7 @@ var G_ICON_EXT='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10
 
 function renderGuide(i,name){
   var G=GUIDES[name], v=VENDORS[i], body=panel.querySelector("#p-body");
-  guideName=name;panel.classList.add("in-guide");
+  guideName=name;panel.classList.add("in-guide");gSet("cgcp.last",{k:"g",g:name,t:Date.now()});
   if(flex){flex.destroy();flex=null;}
   if(gIO){gIO.disconnect();gIO=null;}
   panel.querySelector("#p-crumb").textContent="(CG_CERT_PATH) / "+v.name+" / "+name;
@@ -5772,11 +5856,11 @@ async function openGuide(name){
   guideBusy=false;
   focusBack();
 }
-async function closeGuide(){
+async function closeGuide(o){
   if(!guideName||guideBusy) return;
   guideBusy=true;
   var name=guideName, body=panel.querySelector("#p-body");
-  var out=anim(body,[{opacity:1,transform:"none",filter:"blur(0px)"},{opacity:0,transform:"translateY(14px)",filter:"blur(6px)"}],{duration:280,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"});
+  var out=(o&&o.swiped)?null:anim(body,[{opacity:1,transform:"none",filter:"blur(0px)"},{opacity:0,transform:"translateY(14px)",filter:"blur(6px)"}],{duration:280,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"});
   await done(out);
   if(state!=="open"||!panel.querySelector("#p-body")){guideBusy=false;return;}
   renderBody(current);
@@ -5787,6 +5871,67 @@ async function closeGuide(){
   guideBusy=false;
   var pb=panel.querySelector("#p-back");if(pb) pb.focus({preventScroll:true});
 }
+/* ---------- swipe right to go back (touch): guide -> vendor page -> globe ---------- */
+(function(){
+  var sw=null;
+  function scrollsX(el){
+    for(var n=el;n&&n!==panel;n=n.parentElement){
+      if(n.scrollWidth>n.clientWidth+2){var ox=getComputedStyle(n).overflowX;if(ox==="auto"||ox==="scroll") return true;}
+    }
+    return false;
+  }
+  function blocked(t){
+    if(!t||!t.closest) return true;
+    if(t.closest(".flex,input,textarea,select,[contenteditable],[data-noswipe]")) return true;
+    return scrollsX(t);
+  }
+  function reset(inner,ms){
+    if(!inner) return;
+    if(reduced||!ms){inner.style.transform="";inner.style.opacity="";return;}
+    var a=anim(inner,[{transform:inner.style.transform||"none",opacity:inner.style.opacity||1},{transform:"none",opacity:1}],{duration:ms,easing:"cubic-bezier(.32,.72,0,1)"});
+    inner.style.transform="";inner.style.opacity="";
+    return a;
+  }
+  panel.addEventListener("touchstart",function(e){
+    sw=null;
+    if(state!=="open"||switching||guideBusy||srchOpen||e.touches.length!==1||blocked(e.target)) return;
+    var t=e.touches[0];
+    sw={x0:t.clientX,y0:t.clientY,dx:0,on:false,inner:panel.querySelector(".p-inner"),pts:[{x:t.clientX,t:performance.now()}]};
+  },{passive:true});
+  panel.addEventListener("touchmove",function(e){
+    if(!sw) return;
+    var t=e.touches[0], dx=t.clientX-sw.x0, dy=t.clientY-sw.y0;
+    if(!sw.on){
+      if(Math.abs(dy)>10&&Math.abs(dy)>Math.abs(dx)){sw=null;return;}          /* scrolling up/down: leave it alone */
+      if(dx<-10){sw=null;return;}                                              /* swiping left does nothing */
+      if(dx>12&&dx>Math.abs(dy)*1.4){sw.on=true;sw.x0=t.clientX-1;}else return;
+    }
+    e.preventDefault();
+    sw.dx=Math.max(0,t.clientX-sw.x0);
+    var now=performance.now();sw.pts.push({x:t.clientX,t:now});while(sw.pts.length>2&&now-sw.pts[0].t>100) sw.pts.shift();
+    if(sw.inner){var w=panel.clientWidth||1;sw.inner.style.transform="translate3d("+sw.dx.toFixed(1)+"px,0,0)";sw.inner.style.opacity=String(1-Math.min(.45,sw.dx/w*.6));}
+  },{passive:false});
+  async function end(cancel){
+    var s1=sw;sw=null;
+    if(!s1||!s1.on) return;
+    var w=panel.clientWidth||1, a=s1.pts[0], b=s1.pts[s1.pts.length-1], v=(b&&a&&b.t>a.t)?(b.x-a.x)/(b.t-a.t):0;
+    var go=!cancel&&state==="open"&&(s1.dx>w*.33||(v>.5&&s1.dx>40));
+    if(!go){reset(s1.inner,320);return;}
+    var inner=s1.inner;
+    if(inner&&!reduced) await done(anim(inner,[{transform:inner.style.transform,opacity:inner.style.opacity||1},{transform:"translate3d("+Math.round(w*.6)+"px,0,0)",opacity:0}],{duration:200,easing:"cubic-bezier(.2,.6,.3,1)",fill:"forwards"}));
+    if(state!=="open"){reset(inner,0);return;}
+    if(guideName){
+      await closeGuide({swiped:true});
+      if(inner){if(inner.getAnimations) inner.getAnimations().forEach(function(x){x.cancel();});inner.style.transform="";inner.style.opacity="";
+        if(!reduced) anim(inner,[{opacity:0,transform:"translate3d(-24px,0,0)"},{opacity:1,transform:"none"}],{duration:420,easing:EZ});}
+    }else{
+      if(inner) inner.style.opacity="0";
+      back({swiped:true});
+    }
+  }
+  panel.addEventListener("touchend",function(){end(false);});
+  panel.addEventListener("touchcancel",function(){end(true);});
+})();
 /* go to a cert/vendor from anywhere (search, roadmap) */
 async function openCertFrom(e){
   var name=e.kind==="cert"?e.name:null, hasG=!!(name&&GUIDES[name]);
@@ -5896,8 +6041,8 @@ function sGroups(){
     } else {
       var rec=sRecent().map(sByKey).filter(Boolean);
       if(rec.length) groups.push({label:"Recent",items:rec});
+      groups.push({label:"Pages",items:SIDX.filter(function(e){return e.kind==="page"&&rec.indexOf(e)<0;})});
       groups.push({label:"Popular",items:POPULAR.map(sByName).filter(function(e){return e&&rec.indexOf(e)<0;})});
-      groups.push({label:"Pages",items:SIDX.filter(function(e){return e.kind==="page";})});
     }
     return {groups:groups,raw:""};
   }
@@ -6017,8 +6162,13 @@ function setViewNow(name){
   if(name===shView) return;
   var cur=$("#sv-"+shView);cur.hidden=true;cur.classList.remove("drawn");
   $("#sv-"+name).hidden=false;shView=name;setTabs(name);$("#ed-title").textContent=TITLES[name];
-  if(name==="mine"){mpFresh();mpRender(false);}
+  if(name==="mine") mpEnter();
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
+}
+async function goExplore(){
+  if(state!=="open"||switching||guideBusy) return;
+  await back({quick:true});
+  if(state==="idle") openSheet();
 }
 async function goPage(name){
   if(state==="open") await back();
@@ -6608,6 +6758,8 @@ void main(){
     if(lastTap&&lastTap.index>=0&&now-lastTap.t<400&&Math.abs(q[0]-lastTap.x)<tol&&Math.abs(q[1]-lastTap.y)<tol){var di=lastTap.index;lastTap=null;openItem(di);return;}
     lastTap={t:now,x:q[0],y:q[1],index:hit?hit.index:-1};
     if(hit) pick();
+    /* the card is already focused (its Open guide button is showing): a second tap on it, at any speed, opens it */
+    if(focus.target>0&&hit&&hit.index===focus.index){lastTap=null;openItem(hit.index);return;}
     if(closeFocus()) return;
     if(!hit) return;
     if(hit.index===activeIndex&&Math.abs(goal-pos)<2) openFocus(hit.index);
@@ -6753,6 +6905,63 @@ if(window.ResizeObserver) new ResizeObserver(resize).observe(stageEl);
 var T0=performance.now(), homeStarted=false;
 var rvEls=Array.prototype.slice.call(document.querySelectorAll("[data-rv]")).sort(function(a,b){return a.dataset.rv-b.dataset.rv;});
 rvEls.forEach(function(el){el.style.opacity="0";});
+/* ---------- home start block (v2.16) ----------
+   New visitors: one filled button, Build my path. Returning visitors: a Continue card for the last guide they opened
+   (objectives ticked, best quiz) or their saved path, whichever they used last. */
+var stEl=$("#start"), stAct=$("#st-act"), stLinks=$("#st-links"), stHTML="";
+function stLast(){
+  var d=gGet("cgcp.last");if(!d||typeof d!=="object"||Array.isArray(d)||typeof d.t!=="number") return null;
+  if(d.k==="g"&&typeof d.g==="string"&&Object.prototype.hasOwnProperty.call(GUIDES,d.g)) return {k:"g",g:d.g};
+  if(d.k==="p"&&mpLoad()) return {k:"p"};
+  return null;
+}
+function stGuide(name){
+  var G=GUIDES[name], ver=gGet("cgcp."+G.id+".ver");
+  if(typeof ver!=="string"||!Object.prototype.hasOwnProperty.call(G.versions,ver)) ver=Object.keys(G.versions)[0];
+  var total=0, ids={};G.versions[ver].domains.forEach(function(d){total+=d.obj.length;});
+  var d=gGet("cgcp."+G.id+"."+ver+".done"), n=0;
+  if(Array.isArray(d)) d.forEach(function(x){if(typeof x==="string"&&x.length<12&&!ids[x]){ids[x]=1;n++;}});
+  var pct=total?Math.min(100,Math.round(n/total*100)):0, best=gBest(G), f=findCert(name);
+  var sub=(pct?"Objectives "+pct+"%":"Objectives not started")+(best!=null?" · Quiz best "+best+"/"+G.quiz.length:"");
+  return {name:name,sub:sub,p:pct/100,c:VENDORS[f.v].beacon};
+}
+function stRender(){
+  if(!stEl) return;
+  var L=null;try{L=stLast();}catch(err){L=null;}
+  var h, links='';
+  if(L&&L.k==="g"){
+    var g=stGuide(L.g);
+    h='<button type="button" class="st-card" data-st="guide" data-g="'+gEsc(g.name)+'" style="--c:'+gEsc(g.c)+';--p:'+g.p.toFixed(3)+'" aria-label="'+gEsc("Continue the "+g.name+" guide. "+g.sub)+'">'+
+      '<span class="k">Pick up where you left off</span><span class="n">'+gEsc(g.name)+'</span><span class="s">'+gEsc(g.sub)+'</span><span class="go" aria-hidden="true">&rarr;</span><span class="bar" aria-hidden="true"><i></i></span></button>';
+    links='<button type="button" data-st="path">My path</button>';
+  }else if(L&&L.k==="p"){
+    var R=mpBuild(mpLoad()), nx=R.first;
+    var sub=nx?(R.todo+(R.todo===1?" cert":" certs")+" to go · about "+R.weeks+(R.weeks===1?" week":" weeks")):"Every cert on it is done";
+    h='<button type="button" class="st-card" data-st="saved" aria-label="'+gEsc("Open your saved path. "+(nx?"Next up "+nx.name+". ":"")+sub)+'">'+
+      '<span class="k">Your saved path</span><span class="n">'+(nx?"Next up: "+gEsc(nx.name):"Path complete")+'</span><span class="s">'+gEsc(sub)+'</span><span class="go" aria-hidden="true">&rarr;</span></button>';
+  }else{
+    h='<button type="button" class="st-main" data-st="path">Build my path <small>1 min</small><span class="ar" aria-hidden="true">&rarr;</span></button>';
+  }
+  links+='<button type="button" data-st="vendors">Browse vendors</button><button type="button" data-st="search">Search a cert</button>';
+  if(h+links===stHTML) return;
+  var first=!stHTML;stHTML=h+links;stAct.innerHTML=h;stLinks.innerHTML=links;
+  placeStart();
+  if(!first&&!reduced) anim(stAct,[{opacity:0,transform:"translateY(6px)"},{opacity:1,transform:"none"}],{duration:500,easing:EZ});
+}
+if(stEl){
+  stEl.addEventListener("click",function(e){
+    var b=e.target.closest("[data-st],#st-cool");if(!b||state!=="idle") return;
+    if(b.id==="st-cool"){goPage("cool");return;}
+    var k=b.dataset.st;
+    if(k==="path") goPage("mine");
+    else if(k==="saved"){mpWantSaved=true;if(shView==="mine") mpEnter();goPage("mine");}
+    else if(k==="guide"){var n=b.dataset.g;if(GUIDES[n]) dive(findCert(n).v,n);}
+    else if(k==="vendors") dive(frontIdx<0?0:frontIdx);
+    else if(k==="search") srchShow(b);
+  });
+  stRender();
+}
+
 function startHome(lead){
   if(homeStarted) return;homeStarted=true;
   var shift=performance.now()-T0;tweens.forEach(function(t){t.s+=shift;});   /* anything queued at load (crest pops) starts now */
@@ -6866,6 +7075,8 @@ function runSplash(){
 }
 })();
 </script>
+
+</body></html>
 <script>
 /* app updates: check for a new version every time the app opens, and reload once when it arrives */
 if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){
