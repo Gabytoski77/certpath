@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-SM6doBm8AiyxF8ngZ50k2tyl62pEqluaNURfuJj6h8I=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-htNgN9OdIoU7UNxPm+Le63xwr7yzOPVTLCgoXUR/2z0=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -442,7 +442,115 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .mp-hint,.mp-note{margin:0;font:400 12px/1.5 var(--f-ui);color:var(--ink-3)}
 .mp-saved{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:4px 0 0;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);font:400 12.5px/1.4 var(--f-ui);color:var(--ink-2)}
 .mp-saved button{appearance:none;border:0;background:none;padding:4px 0;font:500 12.5px/1.4 var(--f-ui);color:var(--ink);cursor:pointer;transition:color .2s}
-.mp-saved button:hover{color:#fff}.mp-saved button:focus-visible{outline:2px solid rgba(255,255,255,.5);outline-offset:3px;border-radius:4px}
+@media (hover:hover) and (pointer:fine){.mp-saved button:hover{color:#fff}}
+.mp-saved button:focus-visible{outline:2px solid rgba(255,255,255,.5);outline-offset:3px;border-radius:4px}
+/* Compare */
+.cm{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+.cm-grid{display:grid;grid-template-columns:168px minmax(0,1fr) minmax(0,1fr)}
+.cm-side{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:14px;padding:6px 18px 6px 0}
+.cm-swap{display:inline-flex;align-items:center;gap:8px;padding:9px 14px 9px 12px;border-radius:999px;border:1px solid var(--hair-2);background:rgba(255,255,255,.02);font:500 12px/1 var(--f-ui);color:var(--ink-2);transition:border-color .25s var(--ez),color .25s var(--ez),background .25s var(--ez),transform .25s var(--ez)}
+.cm-swap svg{width:15px;height:15px;transition:transform .5s var(--ez)}
+.cm-swap:active{transform:scale(.96);transition-duration:.1s}
+.cm-slot{position:relative;overflow:hidden;display:grid;gap:10px;align-content:start;min-width:0;text-align:left;padding:22px 22px 18px;border:1px solid var(--hair-2);background:#1a2029;transition:border-color .3s var(--ez),background .3s var(--ez),transform .25s var(--ez)}
+.cm-slot.cm-a{border-radius:10px 0 0 10px}
+.cm-slot.cm-b{border-radius:0 10px 10px 0;border-left-color:transparent}
+.cm-slot::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 120% at 0% 0%,var(--vc),transparent 62%);opacity:.13;pointer-events:none;transition:opacity .4s var(--ez)}
+.cm-slot::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--vc);opacity:.85}
+.cm-slot>*{position:relative}
+.cm-slot .lab{color:var(--ink-2)}
+.cm-nm{display:block;font:700 clamp(26px,3.3vw,40px)/.98 var(--f-disp);letter-spacing:-.045em;color:var(--ink);overflow-wrap:anywhere}
+.cm-chg{display:inline-flex;align-items:center;gap:5px;font:500 11.5px/1 var(--f-ui);color:var(--ink-3);transition:color .25s var(--ez)}
+.cm-chg svg{width:12px;height:12px;transition:transform .35s var(--ez)}
+.cm-slot[aria-expanded="true"]{border-color:rgba(188,214,234,.55)}
+.cm-slot[aria-expanded="true"]::before{opacity:.22}
+.cm-slot[aria-expanded="true"] .cm-chg{color:var(--ink)}
+.cm-slot[aria-expanded="true"] .cm-chg svg{transform:rotate(180deg)}
+.cm-slot:active{transform:scale(.99);transition-duration:.1s}
+.cm-pairs{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.cm-pairs .lab{margin-right:6px}
+.cm-pick{border:1px solid var(--hair-2);border-radius:12px;background:rgba(20,25,33,.72);padding:12px;display:grid;grid-template-columns:minmax(0,1fr);min-width:0;gap:10px;animation:cmIn .35s var(--ez) both}
+@keyframes cmIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.cm-pick-top{display:flex;gap:10px;align-items:center}
+.cm-pick input{flex:1;min-width:0;height:42px;padding:0 14px;border-radius:999px;border:1px solid var(--hair-2);background:rgba(255,255,255,.035);color:var(--ink);font:400 14px var(--f-ui);outline:none;transition:border-color .2s var(--ez)}
+.cm-pick input::placeholder{color:var(--ink-3)}
+.cm-pick input:focus{border-color:rgba(188,214,234,.6)}
+.cm-pick input::-webkit-search-cancel-button{display:none}
+.cm-done{height:42px;padding:0 18px;border-radius:999px;background:var(--ink);color:#101317;font:600 12px/1 var(--f-disp)}
+.cm-done:active{transform:scale(.97)}
+.cm-list{max-height:320px;overflow-y:auto;overscroll-behavior:contain;display:grid;grid-template-columns:minmax(0,1fr);gap:2px;padding:2px 2px 4px;scrollbar-width:thin}
+.cm-g{padding:12px 10px 6px}
+.cm-g:first-child{padding-top:4px}
+.cm-opt{display:grid;grid-template-columns:8px minmax(0,1fr) auto;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;text-align:left;transition:background .2s var(--ez)}
+.cm-opt i{width:8px;height:8px;border-radius:50%;background:var(--vc);box-shadow:0 0 10px var(--vc)}
+.cm-opt b{font:500 14px/1.2 var(--f-ui);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cm-opt span{font:400 11.5px/1 var(--f-ui);color:var(--ink-3);white-space:nowrap}
+.cm-opt[aria-current="true"]{background:rgba(188,214,234,.09)}
+.cm-opt:disabled{opacity:.35;cursor:default}
+.cm-none{margin:0;padding:18px 10px;font:400 13px/1.4 var(--f-ui);color:var(--ink-3)}
+.cm-body{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;min-width:0}
+.cm-take{padding:20px 22px;border:1px solid var(--hair);border-radius:10px;background:linear-gradient(180deg,rgba(188,214,234,.06),rgba(188,214,234,0) 70%),rgba(255,255,255,.015)}
+.cm-take ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+.cm-take li{position:relative;padding-left:18px;font:400 14.5px/1.55 var(--f-ui);color:var(--ink-2)}
+.cm-take li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.8}
+.cm-take b{color:var(--ink);font-weight:600}
+.cm-sec{display:flex;align-items:baseline;gap:12px;padding:30px 0 12px}
+.cm-sec:first-child{padding-top:0}
+.cm-sec span{font:500 11px/1 var(--f-mono);color:var(--ink-3)}
+.cm-sec h3{margin:0;font:700 22px/1 var(--f-disp);letter-spacing:-.035em;color:var(--ink)}
+.cm-row{border-top:1px solid var(--hair)}
+.cm-sec+.cm-row{border-top-color:var(--hair-2)}
+.cm-l{padding:16px 18px 16px 0}
+.cm-c{min-width:0;padding:14px 18px 15px;border-left:1px solid var(--hair);transition:background .3s var(--ez)}
+.cm-c>b{display:block;font:600 15px/1.35 var(--f-ui);color:var(--ink);overflow-wrap:anywhere}
+.cm-c>p.cm-long{margin:0;font:400 14px/1.55 var(--f-ui);color:var(--ink-2);max-width:46ch}
+.cm-c small{display:block;margin-top:4px;font:400 12px/1.45 var(--f-ui);color:var(--ink-3)}
+.cm-c.win{background:linear-gradient(90deg,rgba(188,214,234,.07),rgba(188,214,234,0))}
+.cm-tag{display:inline-block;margin-left:9px;padding:4px 7px 3px;border-radius:999px;background:rgba(188,214,234,.13);color:var(--accent);font:600 8.5px/1 var(--f-ui);font-style:normal;letter-spacing:.14em;text-transform:uppercase;vertical-align:3px}
+.cm-na{font:400 13px/1.35 var(--f-ui);color:var(--ink-3)}
+.cm-dots{display:flex;gap:4px;margin-top:8px}
+.cm-dots i{width:16px;height:4px;border-radius:2px;background:var(--hair-2)}
+.cm-dots i.on{background:var(--vc)}
+.cm-p{display:block;font:500 14px/1.3 var(--f-ui);color:var(--ink)}
+.cm-p+.cm-p{margin-top:8px}
+.cm-p small{display:inline;margin:0 0 0 8px;font:400 11.5px var(--f-mono);color:var(--ink-3)}
+.cm-cov{display:grid;gap:12px}
+.cm-d{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:baseline}
+.cm-d span{font:400 13px/1.35 var(--f-ui);color:var(--ink-2)}
+.cm-d em{font:500 11px/1 var(--f-mono);font-style:normal;color:var(--ink-3)}
+.cm-d i{grid-column:1/-1;height:3px;border-radius:2px;background:rgba(255,255,255,.06);overflow:hidden}
+.cm-d i b{display:block;height:100%;background:var(--vc);transform-origin:0 0;opacity:.85}
+.cm-go .cm-c{padding-top:18px;padding-bottom:4px}
+.cm-go .mp-btn{white-space:normal;text-align:left;line-height:1.3}
+.cm-go{border-top-color:var(--hair-2)}
+@media (hover:hover) and (pointer:fine){
+  .cm-swap:hover{border-color:rgba(188,214,234,.5);color:var(--ink);background:rgba(188,214,234,.07)}
+  .cm-swap:hover svg{transform:rotate(180deg)}
+  .cm-slot:hover{border-color:rgba(188,214,234,.4)}
+  .cm-slot:hover::before{opacity:.2}
+  .cm-slot:hover .cm-chg{color:var(--ink)}
+  .cm-opt:not(:disabled):hover{background:rgba(255,255,255,.05)}
+  .cm-done:hover{opacity:.88}
+  .cm-row:hover .cm-c:not(.win){background:rgba(255,255,255,.015)}
+}
+@media (max-width:720px){
+  .cm-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .cm-side{grid-column:1/-1;flex-direction:row;align-items:center;padding:0 0 12px}
+  .cm-slot{padding:18px 16px 15px}
+  .cm-nm{font-size:clamp(22px,7vw,30px)}
+  .cm-l{grid-column:1/-1;padding:14px 0 0}
+  .cm-c{padding:8px 14px 14px 0;border-left:0}
+  .cm-cb{padding-left:14px;border-left:1px solid var(--hair)}
+  .cm-c.win{background:none}
+  .cm-take{padding:18px 18px}
+  .cm-take li{font-size:14px}
+  .cm-sec h3{font-size:20px}
+  .cm-p small{display:block;margin:3px 0 0}
+  .cm-opt span{display:none}
+  .cm-go .mp-btn{padding:12px 16px;font-size:11.5px}
+  .cm-list{max-height:min(320px,46vh)}
+}
+@media (pointer:coarse){.cm-pick input{font-size:16px}}
+.tab-s{display:none}
 .mp-nav{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .mp-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;background:var(--ink);color:#101317;font:600 12px/1 var(--f-disp);transition:opacity .25s var(--ez),transform .25s var(--ez),background .25s var(--ez)}
 .mp-btn.ghost{background:transparent;color:var(--ink-2);border:1px solid var(--hair-2)}
@@ -474,6 +582,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
   .mp-cta{flex-direction:column;align-items:flex-start;gap:6px}
   .tabs{gap:22px}
   .tab-x{display:none}
+  .tab-s{display:inline}
 }
 .fine{margin:22px 0 0;font:400 11.5px/1.65 var(--f-ui);color:#5c6169;max-width:80ch}
 
@@ -1318,7 +1427,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.12</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.13</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open explore panel"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1362,7 +1471,8 @@ html.kbd .touch-only{display:none}
       <nav class="tabs rv-s" aria-label="Explore sections">
         <button type="button" data-go="home" aria-selected="true">Overview</button>
         <button type="button" data-go="mine" aria-selected="false">My path</button>
-        <button type="button" data-go="paths" aria-selected="false">Career paths</button>
+        <button type="button" data-go="compare" aria-selected="false">Compare</button>
+        <button type="button" data-go="paths" aria-selected="false"><span class="tab-x">Career p</span><span class="tab-s">P</span>aths</button>
         <button type="button" data-go="cool" aria-selected="false">CG COOL<span class="tab-x"> funding</span></button>
         <span class="tab-ind" aria-hidden="true"></span>
       </nav>
@@ -1428,11 +1538,11 @@ html.kbd .touch-only{display:none}
             <span class="pc-art" aria-hidden="true"><span class="capsule" id="capsule"><b></b></span></span>
             <span class="pc-foot"><span class="go"><i>&rarr;</i>Open</span></span>
           </button>
-          <button type="button" class="mini soon-card rv-s" data-soon="Compare certs">
-            <span class="pc-top"><span class="lab">Tools</span><span class="meta">soon</span></span>
+          <button type="button" class="mini rv-s" data-go="compare">
+            <span class="pc-top"><span class="lab">Tools</span><span class="meta">2 certs</span></span>
             <span class="mini-title">Compare.</span>
             <span class="pc-art" aria-hidden="true"><span class="vs"><i>Sec+</i><span>VS</span><i>CySA+</i></span></span>
-            <span class="pc-foot"><span class="go"><i>&rarr;</i>Coming</span></span>
+            <span class="pc-foot"><span class="go"><i>&rarr;</i>Open</span></span>
           </button>
           <button type="button" class="mini soon-card rv-s" data-soon="Progress tracker">
             <span class="pc-top"><span class="lab">Tools</span><span class="meta">soon</span></span>
@@ -1450,6 +1560,11 @@ html.kbd .touch-only{display:none}
       <div class="sv" id="sv-mine" hidden>
         <p class="intro rv-s">Answer five quick questions and get your own cert roadmap: the order to take them, how long each takes at your pace, and which ones have a full guide. Your answers stay on this device.</p>
         <div class="mp rv-s" id="mp" aria-live="polite"></div>
+      </div>
+
+      <div class="sv" id="sv-compare" hidden>
+        <p class="intro rv-s">Put two certs side by side: level, study time, DoD level, the exam, renewal and what each one covers. Tap a name to swap in another cert.</p>
+        <div class="cm rv-s" id="cmp" aria-live="polite"></div>
       </div>
 
       <div class="sv" id="sv-paths" hidden>
@@ -2506,7 +2621,7 @@ function setSort(hard){
 
 /* ---------- explore sheet (pull up from the bottom) ---------- */
 var sheet=$("#sheet"), veil=$("#veil"), grab=$("#sh-grab"), shScroll=$("#sh-scroll");
-var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",paths:"Paths.",cool:"Funding."}, ORDER=["home","mine","paths","cool"];
+var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",paths:"Paths.",cool:"Funding."}, ORDER=["home","mine","compare","paths","cool"];
 var PATHS=[
   {name:"Stay 20",tag:"IT rating career",line:"Make rate, stay qualified for any IT billet, and retire with a full résumé.",steps:[["A+","A+"],["Network+","Network+"],["Security+","Security+"],["CySA+","CySA+"],["CISSP","CISSP"]]},
   {name:"Cloud",tag:"Contractor track",line:"Build toward defense-contractor cloud security roles after your enlistment.",steps:[["Security+","Security+"],["Cloud+","Cloud+"],["AWS Solutions Architect","Solutions Architect Associate"],["Azure Security Engineer","Azure Security Engineer"],["CCSP","CCSP"]]},
@@ -2632,6 +2747,7 @@ async function showView(name){
   if(name==="cool") countUp($("#cool-n"),4500,"$",1600);
   if(name==="home"){var c=$("#sb-count");c.textContent=c.dataset.n;}
   if(name==="mine"){mpFresh();mpRender(false);}
+  if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
 }
 
 /* drag the bar */
@@ -2786,6 +2902,153 @@ if(mpEl){
   });
 }
 $("#cta-path").addEventListener("click",function(){goPage("mine");});
+/* ---------- Compare: two certs side by side, facts only ---------- */
+var CMP_KEY="cgcp.compare", cmpEl=$("#cmp");
+var CMP_ALL=(function(){var o=[];VENDORS.slice(0,-1).forEach(function(v,i){v.certs.forEach(function(c){o.push({name:c[0],short:c[0].split(" · ")[0],v:i,c:c});});});return o;})();
+var CMP_PAIRS=[["Security+","CC"],["Security+","CySA+"],["CySA+","SAL1 · Security Analyst L1"],["Network+","CCNA"],["CCSP","CISSP"]];
+var cmp={a:"Security+",b:"CySA+",open:null,q:"",loaded:false};
+function cmpHas(n){return typeof n==="string"&&CMP_ALL.some(function(x){return x.name===n;});}
+function cmpShort(n){return String(n).split(" · ")[0];}
+function cmpInfo(name){
+  var f=findCert(name), c=f.c, v=VENDORS[f.v], G=GUIDES[name]||null, F={};
+  if(G&&G.facts) G.facts.forEach(function(x){F[x[0]]=x;});
+  var vk=G?Object.keys(G.versions):[], use=G?(G.planAll?vk:vk.slice(0,1)):[], covers=[];
+  use.forEach(function(k){var V=G.versions[k];(V.domains||[]).forEach(function(d){covers.push({name:(use.length>1?V.label+" · ":"")+d.name,w:+d.w||0});});});
+  var renew=null;if(G&&G.keep) G.keep.forEach(function(k){if(k.lab==="Renewal") renew=k;});
+  var price=F.Voucher?parseFloat(String(F.Voucher[1]).replace(/[^0-9.]/g,""))||0:0;
+  return {name:name,short:cmpShort(name),v:v,c:c,G:G,F:F,hours:mpHours(name),covers:covers,renew:renew,price:price,
+    code:use.map(function(k){return G.versions[k].code;}).join(" + "),
+    paths:PATHS.map(function(p){var k=-1;p.steps.forEach(function(s,i){if(s[1]===name) k=i;});return k<0?null:{name:p.name,i:k+1,n:p.steps.length};}).filter(Boolean)};
+}
+function cmpDots(n){var h='<span class="cm-dots" role="img" aria-label="Difficulty '+n+' of 5">';for(var i=1;i<=5;i++) h+='<i'+(i<=n?' class="on"':'')+'></i>';return h+'</span>';}
+function cmpFact(I,k){var x=I.F[k];return x?{v:x[1],s:x[2]}:null;}
+function cmpDod(I){
+  var d=I.F["DoD 8570"]||I.F["DoD 8140"];
+  if(d){var sub=String(d[2]||"").replace(/^\u00b7\s*/,"");return /^\d+$/.test(d[1])?{v:d[1]+" "+sub,s:d[0]}:{v:d[1],s:(sub?sub+" \u00b7 ":"")+d[0]};}
+  return I.c[4]?{v:I.c[4],s:"DoD 8570"}:null;
+}
+function cmpTake(A,B){
+  var out=[];
+  var shared=null;A.paths.forEach(function(p){B.paths.forEach(function(q){if(!shared&&p.name===q.name) shared={name:p.name,a:p.i,b:q.i};});});
+  if(shared){var f=shared.a<shared.b?A:B, s=f===A?B:A;out.push('On the <b>'+gEsc(shared.name)+'</b> path, <b>'+gEsc(f.short)+'</b> comes first and <b>'+gEsc(s.short)+'</b> builds on it.');}
+  else if(A.c[2]!==B.c[2]){var e=A.c[2]<B.c[2]?A:B, o=e===A?B:A;out.push('<b>'+gEsc(e.short)+'</b> is the easier start: '+gEsc(e.c[1].toLowerCase())+' level, difficulty '+e.c[2]+' of 5 against '+o.c[2]+' for '+gEsc(o.short)+'.');}
+  else out.push('Both sit at the same level of difficulty, so pick by the path you want.');
+  var dh=Math.round(Math.abs(A.hours-B.hours));
+  if(dh>=10){var q=A.hours<B.hours?A:B;out.push('<b>'+gEsc(q.short)+'</b> takes about <b>'+dh+' fewer study hours</b>, roughly '+Math.max(1,Math.round(dh/10))+(Math.round(dh/10)===1?' week':' weeks')+' less at 10 hours a week.');}
+  else out.push('They take about the same study time.');
+  if(A.price&&B.price&&A.price!==B.price){var ch=A.price<B.price?A:B;out.push('<b>'+gEsc(ch.short)+'</b>’s exam costs <b>$'+Math.abs(A.price-B.price)+' less</b>. Prices change, so check them before you book; CG COOL may cover either.');}
+  var miss=[A,B].filter(function(x){return !x.G;});
+  if(miss.length) out.push(miss.map(function(x){return '<b>'+gEsc(x.short)+'</b>';}).join(' and ')+(miss.length>1?' don’t':' doesn’t')+' have a full guide yet, so exam details show as a dash.');
+  return out;
+}
+function cmpBetter(a,b,tag){if(!a||!b||a===b) return null;return {k:a<b?"a":"b",tag:tag};}
+function cmpCell(x,win){
+  if(!x) return '<span class="cm-na">—</span>';
+  if(x.html) return x.html;
+  if(String(x.v).length>48) return '<p class="cm-long">'+gEsc(x.v)+'</p>';
+  return '<b>'+gEsc(x.v)+(win?'<em class="cm-tag">'+gEsc(win)+'</em>':'')+'</b>'+(x.s?'<small>'+gEsc(x.s)+'</small>':'');
+}
+function cmpRows(A,B){
+  var S=[];
+  function sec(t){S.push({sec:t});}
+  function row(lab,a,b,bt){S.push({lab:lab,a:a,b:b,bt:bt||null});}
+  sec("At a glance.");
+  row("Level",{html:'<b>'+gEsc(A.c[1])+'</b>'+cmpDots(A.c[2])},{html:'<b>'+gEsc(B.c[1])+'</b>'+cmpDots(B.c[2])});
+  row("Study time",{v:A.c[3],s:"≈ "+Math.max(1,Math.ceil(A.hours/10))+" weeks at 10 h a week"},{v:B.c[3],s:"≈ "+Math.max(1,Math.ceil(B.hours/10))+" weeks at 10 h a week"},cmpBetter(A.hours,B.hours,"Less time"));
+  row("DoD level",cmpDod(A),cmpDod(B));
+  function pathsOf(I){return I.paths.length?{html:I.paths.map(function(p){return '<b class="cm-p">'+gEsc(p.name)+'<small>step '+p.i+' of '+p.n+'</small></b>';}).join("")}:{html:'<span class="cm-na">Not on a CertPath track</span>'};}
+  row("Career paths",pathsOf(A),pathsOf(B));
+  row("WGU degree",{v:MP_WGU[A.name]?"Counts toward it":"Not part of it"},{v:MP_WGU[B.name]?"Counts toward it":"Not part of it"});
+  if(A.G||B.G){
+    sec("The exam.");
+    function codeOf(I){if(!I.G) return null;var k=Object.keys(I.G.versions)[0], st=String(I.G.versions[k].status||"").split(" \u00b7 ")[0];return {v:I.code,s:I.G.planAll?"Take both exams":(/^V\d/.test(st)?"":st)};}
+    row("Exam code",codeOf(A),codeOf(B));
+    if(A.F.Exams||B.F.Exams) row("Exams",cmpFact(A,"Exams")||(A.G?{v:"1"}:null),cmpFact(B,"Exams")||(B.G?{v:"1"}:null));
+    row("Questions",cmpFact(A,"Questions"),cmpFact(B,"Questions"));
+    row("Time",cmpFact(A,"Time"),cmpFact(B,"Time"));
+    row("Passing score",cmpFact(A,"Passing"),cmpFact(B,"Passing"));
+    row("Format",cmpFact(A,"Format"),cmpFact(B,"Format"));
+    row("Exam price",cmpFact(A,"Voucher"),cmpFact(B,"Voucher"),A.price&&B.price?cmpBetter(A.price,B.price,"Lower"):null);
+    sec("Keeping it.");
+    row("Valid for",cmpFact(A,"Valid"),cmpFact(B,"Valid"));
+    row("Renewal",A.renew?{v:A.renew.text}:null,B.renew?{v:B.renew.text}:null);
+    sec("What it covers.");
+    var mx=1;A.covers.concat(B.covers).forEach(function(d){if(d.w>mx) mx=d.w;});
+    function cov(I){if(!I.covers.length) return null;return {html:'<div class="cm-cov">'+I.covers.map(function(d){return '<div class="cm-d"><span>'+gEsc(d.name)+'</span><em>'+d.w+'%</em><i><b style="transform:scaleX('+(d.w/mx).toFixed(3)+')"></b></i></div>';}).join("")+'</div>'};}
+    row("Domains",cov(A),cov(B));
+  }
+  return S;
+}
+function cmpList(){
+  var q=snorm(cmp.q), other=cmp.open==="a"?cmp.b:cmp.a, h="", any=false;
+  VENDORS.slice(0,-1).forEach(function(v,i){
+    var items=CMP_ALL.filter(function(x){return x.v===i&&(!q||snorm(x.name+" "+(ALIAS[x.name]||"")+" "+v.name+" "+v.short).indexOf(q)>=0);});
+    if(!items.length) return;any=true;
+    h+='<p class="lab cm-g">'+gEsc(v.name)+'</p>'+items.map(function(x){var cur=x.name===cmp[cmp.open], dis=x.name===other;
+      return '<button type="button" class="cm-opt" data-cmp="pick" data-v="'+gEsc(x.name)+'" style="--vc:'+v.beacon+'"'+(dis?' disabled':'')+(cur?' aria-current="true"':'')+'><i></i><b>'+gEsc(x.short)+'</b><span>'+(dis?'Already picked':gEsc(x.c[1])+' · '+gEsc(x.c[3]))+'</span></button>';}).join("");
+  });
+  return any?h:'<p class="cm-none">No cert matches “'+gEsc(cmp.q)+'”.</p>';
+}
+function cmpSlot(k,I){
+  return '<button type="button" class="cm-slot cm-'+k+'" data-cmp="slot" data-k="'+k+'" style="--vc:'+I.v.beacon+'" aria-expanded="'+(cmp.open===k)+'" aria-label="'+(k==="a"?"First":"Second")+' cert: '+gEsc(I.short)+'. Change it">'+
+    '<span class="lab">'+gEsc(I.v.name)+'</span><b class="cm-nm">'+gEsc(I.short)+'</b>'+
+    '<span class="cm-chg">Change <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>';
+}
+function cmpRender(animate){
+  if(!cmpEl) return;
+  if(!cmp.loaded){cmp.loaded=true;var s=gGet(CMP_KEY);if(s&&typeof s==="object"&&!Array.isArray(s)&&cmpHas(s.a)&&cmpHas(s.b)&&s.a!==s.b){cmp.a=s.a;cmp.b=s.b;}}
+  var A=cmpInfo(cmp.a), B=cmpInfo(cmp.b);
+  var h='<div class="cm-grid cm-head"><div class="cm-side"><p class="lab">Side by side</p>'+
+    '<button type="button" class="cm-swap" data-cmp="swap" aria-label="Swap the two certs"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 5h9.5M10 2.5 12.5 5 10 7.5M13 11H3.5M6 8.5 3.5 11 6 13.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Swap</button></div>'+
+    cmpSlot("a",A)+cmpSlot("b",B)+'</div>';
+  if(cmp.open){
+    h+='<div class="cm-pick"><div class="cm-pick-top"><input id="cm-q" type="search" placeholder="Search '+CMP_ALL.length+' certs" aria-label="Search certs to compare" autocomplete="off" autocapitalize="off" spellcheck="false" value="'+gEsc(cmp.q)+'">'+
+      '<button type="button" class="cm-done" data-cmp="close">Done</button></div><div class="cm-list" role="group" aria-label="Certs">'+cmpList()+'</div></div>';
+  }else{
+    h+='<div class="cm-pairs"><span class="lab">Popular</span>'+CMP_PAIRS.map(function(p){var on=(p[0]===cmp.a&&p[1]===cmp.b)||(p[0]===cmp.b&&p[1]===cmp.a);
+      return '<button type="button" class="mp-chip" data-cmp="pair" data-a="'+gEsc(p[0])+'" data-b="'+gEsc(p[1])+'" aria-pressed="'+on+'">'+gEsc(cmpShort(p[0]))+' vs '+gEsc(cmpShort(p[1]))+'</button>';}).join("")+'</div>';
+  }
+  h+='<div class="cm-body"><div class="cm-take"><p class="lab">The short version</p><ul>'+cmpTake(A,B).map(function(t){return '<li>'+t+'</li>';}).join("")+'</ul></div>';
+  h+='<div class="cm-table">';var sn=0;
+  cmpRows(A,B).forEach(function(r){
+    if(r.sec){sn++;h+='<div class="cm-sec"><span>'+pad2(sn)+'</span><h3>'+gEsc(r.sec)+'</h3></div>';return;}
+    var wa=r.bt&&r.bt.k==="a"?r.bt.tag:null, wb=r.bt&&r.bt.k==="b"?r.bt.tag:null;
+    h+='<div class="cm-grid cm-row"><p class="lab cm-l">'+gEsc(r.lab)+'</p><div class="cm-c cm-ca'+(wa?' win':'')+'" style="--vc:'+A.v.beacon+'">'+cmpCell(r.a,wa)+'</div><div class="cm-c cm-cb'+(wb?' win':'')+'" style="--vc:'+B.v.beacon+'">'+cmpCell(r.b,wb)+'</div></div>';
+  });
+  function go(I){return '<button type="button" class="mp-btn'+(I.G?'':' ghost')+'" data-cert="'+gEsc(I.name)+'">'+(I.G?'Open the '+gEsc(I.short)+' guide':'See '+gEsc(I.short)+' on the globe')+' &rarr;</button>';}
+  h+='<div class="cm-grid cm-row cm-go"><p class="lab cm-l">Go deeper</p><div class="cm-c">'+go(A)+'</div><div class="cm-c">'+go(B)+'</div></div></div>';
+  h+='<p class="mp-note">Facts come from each cert’s guide, which lists its sources and check date. Certs without a guide show only roadmap data. Prices and DoD roles change; confirm them before you book.</p></div>';
+  cmpEl.innerHTML=h;
+  if(animate&&!reduced){
+    var b=cmpEl.querySelector(".cm-body");if(b) anim(b,[{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:520,easing:EZ});
+    cmpEl.querySelectorAll(".cm-d b").forEach(function(x,i){var t=x.style.transform;anim(x,[{transform:"scaleX(0)"},{transform:t}],{duration:900,delay:120+i*25,easing:EZ,fill:"backwards"});});
+  }
+}
+function cmpSet(a,b){
+  if(!cmpHas(a)||!cmpHas(b)||a===b) return;
+  var changed=a!==cmp.a||b!==cmp.b;cmp.a=a;cmp.b=b;cmp.open=null;cmp.q="";gSet(CMP_KEY,{a:a,b:b});cmpRender(changed);
+}
+if(cmpEl){
+  cmpEl.addEventListener("click",function(e){
+    var t=e.target.closest&&e.target.closest("[data-cmp]");if(!t||!cmpEl.contains(t)) return;
+    var act=t.dataset.cmp;
+    if(act==="slot"){var k=t.dataset.k;cmp.open=cmp.open===k?null:k;cmp.q="";cmpRender(false);if(cmp.open){var inp=$("#cm-q");if(inp&&finePointer) inp.focus({preventScroll:true});var cur=cmpEl.querySelector('.cm-opt[aria-current="true"]');if(cur&&cur.parentNode) cur.parentNode.scrollTop=Math.max(0,cur.offsetTop-60);}else{var sl=cmpEl.querySelector('.cm-slot[data-k="'+k+'"]');if(sl) sl.focus({preventScroll:true});}}
+    else if(act==="close"){var k2=cmp.open;cmp.open=null;cmp.q="";cmpRender(false);var s2=cmpEl.querySelector('.cm-slot[data-k="'+k2+'"]');if(s2) s2.focus({preventScroll:true});}
+    else if(act==="pick"){var v=t.dataset.v, k3=cmp.open;if(k3==="a") cmpSet(v,cmp.b);else if(k3==="b") cmpSet(cmp.a,v);var s3=cmpEl.querySelector('.cm-slot[data-k="'+k3+'"]');if(s3) s3.focus({preventScroll:true});}
+    else if(act==="swap") cmpSet(cmp.b,cmp.a);
+    else if(act==="pair") cmpSet(t.dataset.a,t.dataset.b);
+  });
+  cmpEl.addEventListener("input",function(e){
+    if(e.target.id!=="cm-q") return;cmp.q=e.target.value.slice(0,60);var l=cmpEl.querySelector(".cm-list");if(l){l.innerHTML=cmpList();l.scrollTop=0;}
+  });
+  /* Esc closes the picker first (capture phase, so the sheet doesn't close too) */
+  window.addEventListener("keydown",function(e){
+    if(!cmp.open||sheetP<.5||!cmpEl.querySelector(".cm-pick")||$("#sv-compare").hidden) return;
+    if(e.key==="Escape"){e.preventDefault();e.stopImmediatePropagation();var k=cmp.open;cmp.open=null;cmp.q="";cmpRender(false);var s=cmpEl.querySelector('.cm-slot[data-k="'+k+'"]');if(s) s.focus({preventScroll:true});}
+    else if(e.key==="Enter"&&e.target.id==="cm-q"){e.preventDefault();var f=cmpEl.querySelector(".cm-opt:not([disabled])");if(f) f.click();}
+  },true);
+  setTimeout(function(){cmpRender(false);},0);
+}
 
 /* reactive card art in the Explore sheet */
 (function(){
@@ -5570,6 +5833,7 @@ var SIDX=[];
     SIDX.push({kind:"vendor",key:"v:"+v.id,name:v.name,v:i,fields:[[snorm(v.name),90],[snorm(v.short+" "+v.id+(v.id==="thm"?" try hack me":"")+(v.id==="aws"?" amazon web services":"")),60],[snorm(v.blurb),10]]});
   });
   SIDX.push({kind:"page",key:"p:cool",page:"cool",name:"CG COOL funding",sub:"Explore · how to get certs paid for",fields:[[snorm("cg cool funding"),95],[snorm("cool credentialing opportunities online tuition voucher reimbursement pay paid money funding exam fee"),55]]});
+  SIDX.push({kind:"page",key:"p:compare",page:"compare",name:"Compare certs",sub:"Explore · two certs side by side",fields:[[snorm("compare certs"),95],[snorm("compare versus vs side by side difference which is better which cert harder cheaper"),60]]});
   SIDX.push({kind:"page",key:"p:mine",page:"mine",name:"My path",sub:"Explore · 5 questions, your own cert roadmap",fields:[[snorm("my path"),95],[snorm("build my path quiz where do i start what cert first next which cert plan personal roadmap"),60]]});
   SIDX.push({kind:"page",key:"p:paths",page:"paths",name:"Career paths",sub:"Explore · stay 20, cloud, network, cyber",fields:[[snorm("career paths"),95],[snorm("roadmap road map stay 20 cloud network cyber civilian contractor plan"),55]]});
 })();
@@ -5749,6 +6013,7 @@ function setViewNow(name){
   var cur=$("#sv-"+shView);cur.hidden=true;cur.classList.remove("drawn");
   $("#sv-"+name).hidden=false;shView=name;setTabs(name);$("#ed-title").textContent=TITLES[name];
   if(name==="mine"){mpFresh();mpRender(false);}
+  if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
 }
 async function goPage(name){
   if(state==="open") await back();
