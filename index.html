@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-axa0V5iaLnNY9EKjkChz0IPmTeEwjq5OCn4cgakt6Po=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-NEuUSbJykrzA/wAdO1xpe8wGyFAtn8QnHDjNh3T4nmQ=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -381,6 +381,9 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 @media (hover:hover) and (pointer:fine){.ed-close:hover{border-color:rgba(255,255,255,.4);color:var(--ink);transform:translateY(2px)}}
 .tabs{position:relative;display:flex;gap:28px;margin-top:28px;border-bottom:1px solid var(--hair);overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
+.tabs.more-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent)}
+.tabs.more-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 44px);mask-image:linear-gradient(90deg,transparent,#000 44px)}
+.tabs.more-l.more-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 44px,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,transparent,#000 44px,#000 calc(100% - 44px),transparent)}
 .tabs button{flex:none;padding:0 0 14px;font:500 13px var(--f-ui);color:var(--ink-3);white-space:nowrap;transition:color .45s var(--ez)}
 .tabs button[aria-selected="true"]{color:var(--ink)}
 @media (hover:hover) and (pointer:fine){.tabs button:hover{color:var(--ink)}}
@@ -721,22 +724,6 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .ptree{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px 40px;align-items:start;border-top:1px solid var(--hair);padding-top:26px}
 .pt-map{position:relative;aspect-ratio:400/230;width:100%;max-width:480px;position:sticky;top:12px}
 .pt-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.pt-b{fill:none;stroke:rgba(255,255,255,.1);stroke-width:1.3;transition:stroke .45s var(--ez),stroke-width .45s var(--ez)}
-.pt-b.on{stroke:rgba(188,214,234,.55);stroke-width:1.8}
-.pt-f{fill:none;stroke:#ecebe8;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:10 308;animation:flow 3.2s linear infinite;opacity:.35;transition:opacity .45s var(--ez),stroke .45s var(--ez)}
-.pt-f.on{opacity:1;stroke:var(--powder);animation-duration:2.2s}
-.pt-root{position:absolute;left:10%;top:50%;transform:translate(-50%,-50%);display:grid;justify-items:center;pointer-events:none}
-.pt-root i{width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center}
-.pt-root i::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--powder);box-shadow:0 0 12px rgba(188,214,234,.8)}
-.pt-root b{position:absolute;top:30px;font:600 9.5px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
-.pt-tk{position:absolute;display:flex;align-items:center;gap:10px;min-height:40px;padding:0 10px 0 0;transform:translate(-20px,-50%);border-radius:999px;font:600 10px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;transition:color .3s var(--ez)}
-.pt-tk i{flex:none;width:22px;height:22px;margin-left:9px;border-radius:50%;border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;transition:border-color .3s var(--ez),box-shadow .3s var(--ez),transform .3s var(--ez)}
-.pt-tk i::after{content:"";width:8px;height:8px;border-radius:50%;background:rgba(236,235,232,.55);transition:background .3s var(--ez),transform .3s var(--ez)}
-.pt-tk.on{color:var(--ink)}
-.pt-tk.on i{border-color:var(--powder);box-shadow:0 0 0 4px rgba(188,214,234,.12),0 0 18px rgba(188,214,234,.35);transform:scale(1.08)}
-.pt-tk.on i::after{background:var(--powder);transform:scale(1.15)}
-@media (hover:hover) and (pointer:fine){.pt-tk:not(.on):hover{color:var(--ink-2)}.pt-tk:not(.on):hover i{border-color:rgba(255,255,255,.45)}}
-.pt-tk:active i{transform:scale(.92);transition-duration:.1s}
 .pt-head{display:grid;gap:10px;margin-bottom:18px}
 .pt-head .lab span{color:var(--accent)}
 .pt-head h3{margin:0;font:700 40px/.95 var(--f-disp);letter-spacing:-.05em;color:var(--ink)}
@@ -785,6 +772,196 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .pt-acts{padding:2px 0 18px}
 @media (max-width:900px){.ptree{grid-template-columns:minmax(0,1fr)}.pt-map{position:relative;top:auto;max-width:440px;justify-self:center}}
 @media (max-width:720px){.ptree{padding-top:18px;gap:18px}.pt-head h3{font-size:34px}.pt-tk{font-size:9.5px;letter-spacing:.13em}.pt-n{grid-template-columns:40px minmax(0,1fr) auto 14px;gap:10px}.pt-in{padding-left:50px}}
+/* ---------- exam countdown (v2.19) ---------- */
+.ex{display:grid;gap:18px;max-width:760px}
+.ex-hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 28px;align-items:end;padding:22px 22px 20px;border:1px solid var(--hair);border-radius:16px;overflow:hidden;background:radial-gradient(120% 140% at 0% 0%,color-mix(in srgb,var(--c) 16%,transparent),transparent 60%),rgba(255,255,255,.02)}
+.ex-hero::before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:var(--c);opacity:.85}
+.ex-top{display:grid;gap:6px;min-width:0}
+.ex-top .lab{margin:0}
+.ex-top h4{margin:0;font:700 clamp(30px,5vw,46px)/.95 var(--f-disp);letter-spacing:-.045em;color:var(--ink);overflow-wrap:anywhere}
+.ex-when{margin:0;font:500 12px/1.3 var(--f-mono);color:var(--ink-2)}
+.ex-cd{display:flex;gap:8px}
+.ex-u{display:grid;justify-items:center;gap:6px;min-width:58px;padding:10px 6px 8px;border:1px solid var(--hair-2);border-radius:10px;background:rgba(0,0,0,.18)}
+.ex-u b{font:700 30px/1 var(--f-disp);letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
+.ex-u span{font:600 8.5px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.ex-u.done{min-width:120px}
+.ex-st{margin:0;padding:11px 13px;border-radius:10px;font-size:13px;line-height:1.5;border:1px solid var(--hair);color:var(--ink-2)}
+.ex-st.ok{border-color:rgba(95,211,148,.35);color:#bfe9cf;background:rgba(95,211,148,.06)}
+.ex-st.warn{border-color:rgba(240,163,124,.4);color:#f3cdb8;background:rgba(240,163,124,.06)}
+.ex-st.bad{border-color:rgba(255,99,99,.4);color:#f6c0c0;background:rgba(255,99,99,.06)}
+.ex-prog{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px}
+.ex-prog .lab{margin:0}
+.ex-bar{position:relative;height:5px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.ex-bar i{position:absolute;inset:0;background:var(--powder);transform-origin:0 50%;transition:transform .5s var(--ez)}
+.ex-pn{font:500 11px/1 var(--f-mono);color:var(--ink-3)}
+.ex-today{display:grid;gap:10px}
+.ex-today .lab,.ex-list .lab{margin:0}
+.ex-rest{margin:0;color:var(--ink-2);font-size:13.5px}
+.ex-list{display:grid;gap:8px}
+.ex-wk{margin:10px 0 0;font:600 9.5px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.ex-day{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start;padding:11px 12px;border:1px solid var(--hair);border-radius:10px;transition:opacity .3s var(--ez),border-color .3s var(--ez)}
+.ex-day.big{padding:15px 14px;border-color:color-mix(in srgb,var(--powder) 40%,transparent);background:rgba(188,214,234,.04)}
+.ex-day.done{opacity:.55}
+.ex-day.k-practice .ex-dti b{color:#f3cf7a}
+.ex-day.k-review .ex-dti b{color:#9fd8ff}
+.ex-ck{width:24px;height:24px;margin-top:1px;border-radius:7px;border:1.5px solid var(--hair-2);display:grid;place-items:center;transition:background .2s var(--ez),border-color .2s var(--ez)}
+.ex-ck[aria-checked="true"]{background:#5fd394;border-color:#5fd394}
+.ex-ck[aria-checked="true"]::after{content:"";width:9px;height:5px;border-left:2px solid #0b1016;border-bottom:2px solid #0b1016;transform:translateY(-1px) rotate(-45deg)}
+.ex-ck:active{transform:scale(.9);transition-duration:.1s}
+.ex-dm{display:grid;gap:4px;min-width:0}
+.ex-dt{margin:0;font:500 10.5px/1.2 var(--f-mono);color:var(--ink-3)}
+.ex-dti{margin:0;font-size:13.5px;line-height:1.35;color:var(--ink-2)}
+.ex-dti b{color:var(--ink);font-weight:600}
+.ex-dm ul{margin:2px 0 0;padding-left:16px;display:grid;gap:2px;font-size:12.5px;line-height:1.45;color:var(--ink-2)}
+.ex-dm li.more{list-style:none;margin-left:-16px;color:var(--ink-3)}
+.ex-more{justify-self:start;margin-top:4px}
+.ex-past{margin:6px 0 0;font:500 11px/1.3 var(--f-mono);color:var(--ink-3)}
+.ex-acts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.ex-form{display:grid;gap:16px;padding:20px;border:1px solid var(--hair);border-radius:16px;background:rgba(255,255,255,.02)}
+.ex-f{display:grid;gap:8px;min-width:0}
+.ex-f .lab{margin:0}
+.ex-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px}
+.ex-form .g-sel select,.ex-form input{width:100%;box-sizing:border-box;min-height:44px;padding:10px 12px;border-radius:10px;border:1px solid var(--hair-2);background:#151a22;color:var(--ink);font:500 14px/1.2 var(--f-ui);color-scheme:dark}
+@media (pointer:coarse){.ex-form .g-sel select,.ex-form input{font-size:16px}}
+.ex-wd{display:flex;gap:6px;flex-wrap:wrap}
+.ex-wd button{width:40px;height:40px;border-radius:50%;border:1px solid var(--hair-2);font:600 12px/1 var(--f-ui);color:var(--ink-3);transition:background .2s var(--ez),color .2s var(--ez),border-color .2s var(--ez)}
+.ex-wd button[aria-pressed="true"]{background:var(--powder);border-color:var(--powder);color:#0b1016}
+.ex-wd button:active{transform:scale(.92);transition-duration:.1s}
+.ex-hseg{justify-self:start}
+.ex-prev{margin:0;font-size:13px;line-height:1.5;color:var(--ink-2)}
+.ex-prev.ok{color:#bfe9cf}.ex-prev.warn{color:#f3cdb8}.ex-prev.bad{color:#f6c0c0}
+.g-exam{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 18px;margin-top:22px;padding:16px 18px;border:1px solid var(--v-line);border-radius:12px}
+.g-exam p{margin:0;color:var(--v-muted);font-size:13.5px;max-width:52ch}
+.g-exam p b{color:var(--v-fg)}
+.exart{display:grid;justify-items:center;gap:4px}
+.exart b{font:700 34px/1 var(--f-disp);letter-spacing:-.04em;color:var(--ink);font-variant-numeric:tabular-nums}
+.exart i{font:600 8.5px/1 var(--f-ui);font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+@media (max-width:720px){.ex-hero{grid-template-columns:minmax(0,1fr);padding:18px 16px 16px}.ex-cd{gap:6px}.ex-u{min-width:0;flex:1;padding:9px 4px 7px}.ex-u b{font-size:24px}.ex-row{grid-template-columns:1fr 1fr;gap:10px}.ex-form{padding:16px 14px}.ex-wd button{width:38px;height:38px}}
+/* ---------- path tree v2.19: IT root -> fields -> jobs, with job data ---------- */
+.ptree .pt-map{aspect-ratio:400/340;max-width:500px}
+.pt-head .pt-sum{max-width:none}
+.ptn{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;display:grid;place-items:center;border-radius:50%;z-index:1;-webkit-tap-highlight-color:transparent;
+  transition:left .64s var(--ez),top .64s var(--ez),opacity .42s var(--ez),transform .5s var(--ez);transition-delay:var(--d,0ms)}
+.ptn>i{width:22px;height:22px;box-sizing:border-box;border-radius:50%;border:1px solid rgba(255,255,255,.24);background:#11161d;display:grid;place-items:center;transition:transform .6s var(--ez),border-color .3s var(--ez),box-shadow .4s var(--ez)}
+.ptn>i::after{content:"";width:8px;height:8px;border-radius:50%;background:rgba(236,235,232,.55);transition:background .3s var(--ez),transform .3s var(--ez)}
+.ptn-l{position:absolute;left:22px;top:22px;display:grid;gap:4px;text-align:left;white-space:nowrap;transform:translate(14px,-50%);transition:transform .64s var(--ez);transition-delay:var(--d,0ms)}
+.ptn-l b{font:600 13.5px/1.1 var(--f-disp);letter-spacing:-.01em;color:var(--ink-2);transition:color .3s var(--ez),font-size .5s var(--ez)}
+.ptn-l small{font:500 10px/1.2 var(--f-mono);color:var(--ink-3);letter-spacing:.01em}
+.ptn-l em{font:600 8px/1 var(--f-ui);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(188,214,234,.35);border-radius:2px;padding:3px 5px;margin-left:7px;vertical-align:2px}
+.ptn.is-root>i{transform:scale(1.5);border-color:var(--powder);box-shadow:0 0 0 4px rgba(188,214,234,.1),0 0 22px rgba(188,214,234,.38)}
+.ptn.is-root>i::after{background:var(--powder);transform:scale(1.1)}
+.ptn.is-root .ptn-l{transform:translate(-30px,30px)}
+.ptn.is-root .ptn-l b{font-size:19px;color:var(--ink);letter-spacing:-.03em}
+.ptn.is-parent>i{transform:scale(.78);border-style:dashed;border-color:rgba(188,214,234,.5)}
+.ptn.is-parent .ptn-l{transform:translate(8px,-50%)}
+.ptn.is-parent .ptn-l b{font-size:12px}
+.ptn.on>i{border-color:var(--powder);box-shadow:0 0 0 4px rgba(188,214,234,.12),0 0 18px rgba(188,214,234,.35);transform:scale(1.1)}
+.ptn.on>i::after{background:var(--powder);transform:scale(1.15)}
+.ptn.on .ptn-l b{color:var(--ink)}
+.ptn.goal>i{border-color:rgba(188,214,234,.6)}
+@media (hover:hover) and (pointer:fine){.ptn:not(.is-root):hover>i{border-color:rgba(255,255,255,.55);transform:scale(1.12)}.ptn.is-root:hover>i{transform:scale(1.58)}.ptn:hover .ptn-l b{color:var(--ink)}}
+.ptn:active>i{transform:scale(.9);transition-duration:.1s}
+.ptree[data-level="it"] .ptn.is-root{cursor:default}
+.ptn.is-new{opacity:0;transform:scale(.45)}
+.ptn.is-out{opacity:0;transform:scale(.6);pointer-events:none;transition-delay:0ms}
+#pt-lines{transition:opacity .26s var(--ez)}
+#pt-lines.fade{opacity:0}
+.pt-b{fill:none;stroke:rgba(255,255,255,.13);stroke-width:1.3;transition:stroke .45s var(--ez),stroke-width .45s var(--ez)}
+.pt-b.on{stroke:rgba(188,214,234,.6);stroke-width:1.8}
+.pt-f{fill:none;stroke:#ecebe8;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:3 97;animation:ptFlow 2.8s linear infinite;opacity:.35;transition:opacity .45s var(--ez),stroke .45s var(--ez)}
+.pt-f.on{opacity:1;stroke:var(--powder);animation-duration:1.9s}
+.pt-up{fill:none;stroke:rgba(188,214,234,.32);stroke-width:1.2}
+#pt-lines.draw .pt-b,#pt-lines.draw .pt-up{stroke-dasharray:100 100;animation:ptDraw .7s var(--ez) both;animation-delay:calc(var(--k,0) * 45ms + 120ms)}
+#pt-lines.draw .pt-f{animation:ptFlow 2.8s linear infinite,ptFade .5s .65s var(--ez) both}
+@keyframes ptFlow{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes ptDraw{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes ptFade{from{opacity:0}}
+.pt-crumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:0 0 12px;font:600 10px/1 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.pt-crumb button{padding:8px 0;color:var(--ink-3);letter-spacing:inherit;font:inherit;transition:color .2s var(--ez)}
+.pt-crumb [aria-current]{color:var(--ink)}
+.pt-crumb i{font-style:normal;opacity:.5}
+@media (hover:hover) and (pointer:fine){.pt-crumb button:hover{color:var(--ink)}}
+.pt-list{display:grid;border-top:1px solid var(--hair);margin:0 0 16px}
+.pt-row{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto 14px;gap:8px 16px;align-items:center;padding:14px 4px 14px 2px;border-bottom:1px solid var(--hair);text-align:left;border-radius:6px;transition:background .2s var(--ez)}
+.pt-rt{display:grid;gap:4px;min-width:0}
+.pt-rt b{font:600 16px/1.2 var(--f-disp);letter-spacing:-.015em;color:var(--ink)}
+.pt-rt b em{font:600 8px/1 var(--f-ui);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(188,214,234,.35);border-radius:2px;padding:3px 5px;margin-left:6px;vertical-align:2px}
+.pt-rt small{font:400 11.5px/1.35 var(--f-ui);color:var(--ink-3)}
+.pt-rp{display:grid;gap:4px;justify-items:end;text-align:right}
+.pt-rp b,.pt-s3 b{font:700 17px/1 var(--f-disp);letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.pt-rp small,.pt-s3 small{font:500 9.5px/1.2 var(--f-ui);color:var(--ink-3);letter-spacing:.02em}
+.pt-s3{display:grid;grid-template-columns:repeat(3,auto);gap:16px;text-align:right}
+.pt-s3>span{display:grid;gap:4px;justify-items:end}
+.pt-s3 b.up{color:#7fe0a6}.pt-s3 b.down{color:#f0a37c}
+.pt-ra{font-size:13px;color:var(--ink-3);transition:transform .25s var(--ez),color .25s var(--ez)}
+@media (hover:hover) and (pointer:fine){.pt-row:hover{background:rgba(255,255,255,.03)}.pt-row:hover .pt-ra{transform:translateX(3px);color:var(--accent)}}
+.pt-row:active{background:rgba(255,255,255,.05);transition-duration:.1s}
+.pt-jobs{border:1px solid var(--hair);border-radius:14px;padding:16px 16px 14px;margin:0 0 20px;background:rgba(255,255,255,.02);display:grid;gap:12px}
+.pt-jobs>.lab{margin:0}
+.pt-job{display:grid;gap:10px}
+.pt-jt{margin:0;font:600 14px/1.3 var(--f-disp);color:var(--ink);letter-spacing:-.01em}
+.pt-js{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pt-js2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pt-js>div{display:grid;gap:4px;align-content:start;min-width:0}
+.pt-js b{font:700 22px/1 var(--f-disp);letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
+.pt-js b.up{color:#7fe0a6}
+.pt-js b.down{color:#f0a37c}
+.pt-js span{font:500 10.5px/1.3 var(--f-ui);color:var(--ink-3)}
+.pt-js small{font:500 10px/1.2 var(--f-mono);color:var(--ink-3)}
+.pt-bar{position:relative;display:block;height:4px;border-radius:2px;background:rgba(255,255,255,.08);margin-top:3px}
+.pt-bar>i{position:absolute;inset:0;border-radius:2px;background:var(--powder);transform-origin:0 50%}
+.pt-bar>s{position:absolute;top:-3px;bottom:-3px;width:1.5px;background:rgba(255,255,255,.55);text-decoration:none}
+.pt-jn{margin:0;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.pt-pen{margin:0 0 10px;padding-left:12px;border-left:2px solid var(--powder);max-width:60ch}
+.pt-src{margin:0;font:400 10.5px/1.5 var(--f-ui);color:var(--ink-3)}
+.pt-src a{color:var(--ink-2);text-decoration:underline;text-decoration-color:rgba(255,255,255,.25);text-underline-offset:2px}
+.pt-src a svg{width:9px;height:9px;margin-left:2px;vertical-align:0}
+.pt-trunkrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:0 0 16px}
+.pt-trunkrow .lab{margin:0 4px 0 0}
+.pt-trunkrow i{font-style:normal;color:var(--ink-3);font-size:12px}
+.pt-trunkrow button{padding:7px 11px;border-radius:999px;border:1px solid var(--hair-2);font:500 12px/1 var(--f-ui);color:var(--ink-2);transition:border-color .2s var(--ez),color .2s var(--ez)}
+.pt-trunkrow button.have{color:#5fd394;border-color:rgba(95,211,148,.45)}
+@media (hover:hover) and (pointer:fine){.pt-trunkrow button:hover{border-color:var(--powder);color:var(--ink)}}
+.pt-trunkrow button:active{opacity:.7;transition-duration:.1s}
+.pt-none{margin:0 0 16px;padding-left:12px;border-left:2px solid var(--powder);color:var(--ink-2);font-size:13.5px;line-height:1.55;max-width:56ch}
+.pt-back{margin:6px 0 0}
+.pt-bk{padding:10px 0;font:500 12.5px/1 var(--f-ui);color:var(--ink-2);transition:color .2s var(--ez)}
+@media (hover:hover) and (pointer:fine){.pt-bk:hover{color:var(--ink)}}
+.pt-trail.draw .pt-row{animation:ptIn .55s var(--ez) both}
+.pt-trail.draw .pt-row:nth-child(2){animation-delay:50ms}.pt-trail.draw .pt-row:nth-child(3){animation-delay:100ms}.pt-trail.draw .pt-row:nth-child(4){animation-delay:150ms}.pt-trail.draw .pt-row:nth-child(5){animation-delay:200ms}
+@media (max-width:720px){
+  .pt-js b{font-size:19px}.pt-js{gap:8px}.pt-jobs{padding:14px 13px 12px}
+  .pt-jrow{grid-template-columns:minmax(0,1fr) 14px}
+  .pt-jrow .pt-s3,.pt-jrow .pt-rp{grid-column:1;grid-row:2;justify-content:start;justify-items:start;text-align:left}
+  .pt-jrow .pt-s3>span{justify-items:start}
+  .pt-jrow .pt-ra{grid-column:2;grid-row:1/3}
+  .ptn-l b{font-size:12.5px}.ptn.is-root .ptn-l b{font-size:17px}
+}
+@media (max-width:380px){.pt-js{grid-template-columns:1fr 1fr}.pt-js>div:last-child{grid-column:1/-1}.pt-js2>div:last-child{grid-column:auto}}
+@media (prefers-reduced-motion:reduce){.ptn,.ptn-l,.ptn>i{transition:none}.pt-f{animation:none;opacity:0}}
+/* mini tree on each cert's page */
+.ptm{margin-top:18px;border:1px solid var(--v-line);border-radius:12px;padding:14px 16px 12px;display:grid;gap:12px}
+.ptm-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 14px}
+.ptm-h .lab{margin:0}
+.ptm-h span{font:500 10.5px/1.3 var(--f-mono);color:var(--v-muted)}
+.ptm-tree{display:grid;gap:8px;justify-items:start}
+.ptm-it{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--v-accent);display:grid;place-items:center;font:700 11px/1 var(--f-disp);color:var(--v-fg);box-shadow:0 0 14px color-mix(in srgb,var(--v-accent) 30%,transparent);transition:transform .25s var(--ez)}
+.ptm-rows{display:grid;gap:10px;margin-left:15px;justify-self:stretch}
+.ptm-row{position:relative;display:grid;justify-items:start;gap:8px;padding-left:22px}
+.ptm-row::before{content:"";position:absolute;left:0;top:15px;width:16px;height:1.5px;background:var(--v-line)}
+.ptm-row::after{content:"";position:absolute;left:0;top:-10px;bottom:-10px;width:1.5px;background:var(--v-line)}
+.ptm-row:first-child::after{top:-8px}
+.ptm-row:last-child::after{bottom:auto;height:25px}
+.ptm-row:only-child::after{top:-8px;height:23px}
+.ptm-f{min-height:30px;padding:0 12px;border-radius:999px;border:1px solid color-mix(in srgb,var(--v-accent) 50%,transparent);background:color-mix(in srgb,var(--v-accent) 14%,transparent);font:600 12px/1 var(--f-ui);color:var(--v-fg);transition:border-color .2s var(--ez)}
+.ptm-js{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding-left:12px;border-left:1.5px dotted var(--v-line);margin-left:12px}
+@media (min-width:900px){.ptm-row{grid-template-columns:auto minmax(0,1fr);align-items:start}.ptm-js{border-left:0;margin-left:0;padding:0;min-height:30px}.ptm-js::before{content:"\2192";font-size:11px;color:var(--v-muted);margin-right:2px}}
+.ptm-j{display:inline-flex;align-items:baseline;gap:6px;padding:7px 10px;border-radius:999px;border:1px solid var(--v-line);font:500 12px/1 var(--f-ui);color:var(--v-fg);transition:border-color .2s var(--ez)}
+.ptm-j small{font:500 10.5px/1 var(--f-mono);color:var(--v-muted)}
+.ptm-all{font:500 11px/1 var(--f-mono);color:var(--v-muted)}
+.ptm-src{margin:0;font-size:11px;line-height:1.5;color:var(--v-muted)}
+@media (hover:hover) and (pointer:fine){.ptm-j:hover,.ptm-f:hover{border-color:var(--v-accent)}.ptm-it:hover{transform:scale(1.06)}}
+.ptm-j:active,.ptm-f:active,.ptm-it:active{opacity:.7;transition-duration:.1s}
 .pcol{padding:24px 22px 28px;border-right:1px solid var(--hair);display:grid;gap:14px;align-content:start;min-width:0}
 .pcol:first-child{padding-left:0}
 .pcol:last-child{border-right:0;padding-right:0}
@@ -1549,7 +1726,6 @@ html.kbd .touch-only{display:none}
 <div id="splash" aria-hidden="true">
   <canvas id="sp-cv"></canvas>
   <div class="sp-meta" id="sp-meta">
-    <p class="sp-top"><span class="sp-brand"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg>(CG_CERT_PATH)</span><span>Certifications &middot; Paths &middot; Funding</span></p>
     <div class="sp-bot"><span class="sp-bar"><i id="sp-fill"></i></span><span class="sp-n" id="sp-n">000</span></div>
   </div>
 </div>
@@ -1565,7 +1741,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.18</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.19</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1612,12 +1788,13 @@ html.kbd .touch-only{display:none}
     <div class="sh-in">
       <div class="sh-glow" id="sh-glow" aria-hidden="true"></div>
       <header class="ed-head rv-s">
-        <div class="ed-tw"><p class="lab">(CG_CERT_PATH) &nbsp;/&nbsp; Categories</p><h2 class="ed-title" id="ed-title">Explore.</h2></div>
+        <div class="ed-tw"><h2 class="ed-title" id="ed-title">Explore.</h2></div>
         <div class="ed-acts"><button type="button" class="ed-close ed-srch" data-search aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg></button><button type="button" class="ed-close" data-close aria-label="Close explore panel">&darr;</button></div>
       </header>
       <nav class="tabs rv-s" aria-label="Explore sections">
         <button type="button" data-go="home" aria-selected="true">Overview</button>
         <button type="button" data-go="mine" aria-selected="false">My path</button>
+        <button type="button" data-go="exam" aria-selected="false">Countdown</button>
         <button type="button" data-go="compare" aria-selected="false">Compare</button>
         <button type="button" data-go="paths" aria-selected="false"><span class="tab-x">Career p</span><span class="tab-s">P</span>aths</button>
         <button type="button" data-go="cool" aria-selected="false">CG COOL<span class="tab-x"> funding</span></button>
@@ -1629,14 +1806,14 @@ html.kbd .touch-only{display:none}
           <button type="button" class="pcard rv-s" data-go="paths">
             <span class="pc-rail" aria-hidden="true"><span class="pc-mark"></span><span class="pc-dots">&middot;&middot;&middot;</span><span class="pc-num">01</span></span>
             <span class="pc-main">
-              <span class="pc-top"><span class="lab">Categories / Paths</span><span class="meta">04 tracks</span></span>
+              <span class="pc-top"><span class="lab">Categories / Paths</span><span class="meta">05 fields</span></span>
               <span class="pc-title">Paths.</span>
               <span class="pc-art" aria-hidden="true">
                 <svg class="pmap" viewBox="0 0 400 220"><g id="pmap-lines"></g>
                   <circle cx="44" cy="110" r="12" class="pn-ring"/><circle cx="44" cy="110" r="4.5" class="pl-start"/>
-                  <text x="44" y="140" class="pl-lbl" text-anchor="middle">A-SCHOOL</text></svg>
+                  <text x="44" y="140" class="pl-lbl" text-anchor="middle">IT</text></svg>
               </span>
-              <span class="pc-foot"><span class="go"><i>&rarr;</i>Explore the paths</span><span class="meta">A-school &rarr; 20 yrs</span></span>
+              <span class="pc-foot"><span class="go"><i>&rarr;</i>Explore the paths</span><span class="meta">IT &rarr; 5 fields</span></span>
             </span>
           </button>
           <button type="button" class="pcard rv-s" data-go="cool">
@@ -1677,11 +1854,11 @@ html.kbd .touch-only{display:none}
             <span class="pc-art" aria-hidden="true"><span class="vs"><i>Sec+</i><span>VS</span><i>CySA+</i></span></span>
             <span class="pc-foot"><span class="go"><i>&rarr;</i>Open</span></span>
           </button>
-          <button type="button" class="mini soon-card rv-s" data-soon="Progress tracker">
-            <span class="pc-top"><span class="lab">Tools</span><span class="meta">soon</span></span>
-            <span class="mini-title">Progress.</span>
-            <span class="pc-art" aria-hidden="true"><span class="segs"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span></span>
-            <span class="pc-foot"><span class="go"><i>&rarr;</i>Coming</span></span>
+          <button type="button" class="mini rv-s" data-go="exam">
+            <span class="pc-top"><span class="lab">Tools</span><span class="meta">exam date</span></span>
+            <span class="mini-title">Countdown.</span>
+            <span class="pc-art" aria-hidden="true"><span class="exart"><b id="ex-mini">--</b><i id="ex-mini-l">days to go</i></span></span>
+            <span class="pc-foot"><span class="go"><i>&rarr;</i>Plan it</span></span>
           </button>
         </div>
         <div class="hatch rv-s" aria-hidden="true"></div>
@@ -1689,7 +1866,7 @@ html.kbd .touch-only{display:none}
           <p class="lab">By the numbers</p>
           <div class="n2">
             <div><b id="sb-count">0</b><span>certs mapped across <span id="sb-lines">7</span> vendor lines</span></div>
-            <div><b>4</b><span>career paths, from A-school to 20 years</span></div>
+            <div><b>5</b><span>career fields off one IT root, with 14 civilian jobs and 5 Coast Guard ranks</span></div>
             <div><b>$4,500*</b><span>credentialing assistance CG COOL can cover each fiscal year</span></div>
             <div><b>IAT II</b><span>the DoD baseline Security+ meets</span></div>
             <div><b>9</b><span>certs built into the WGU cyber degree</span></div>
@@ -1711,14 +1888,18 @@ html.kbd .touch-only{display:none}
       </div>
 
       <div class="sv" id="sv-paths" hidden>
-        <p class="intro rv-s">Every path starts at A-school. Pick a track, then follow it cert by cert; tap a cert for what it covers and where it leads.<span class="draft">Draft</span></p>
+        <p class="intro rv-s">Every career grows from IT and starts with the same three certs: A+, Network+ and Security+. Tap a field to open it and see the jobs inside; tap a job for what it pays, how fast it's growing and the certs that get you there, from official government data. Tap the field again to go back.<span class="draft">Draft</span></p>
         <button type="button" class="mp-cta rv-s" data-go="mine"><span>Not sure which track?</span><b>Build my path &rarr;</b></button>
-        <div class="ptree rv-s" id="ptree">
-          <div class="pt-map" id="pt-map"><svg class="pt-svg" viewBox="0 0 400 230" aria-hidden="true"><g id="pt-lines"></g></svg>
-            <span class="pt-root" aria-hidden="true"><i></i><b>A-school</b></span>
-            <div class="pt-tracks" id="pt-tracks" role="group" aria-label="Tracks"></div></div>
+        <div class="ptree rv-s" id="ptree" data-level="it">
+          <div class="pt-map" id="pt-map"><svg class="pt-svg" viewBox="0 0 400 340" aria-hidden="true"><g id="pt-lines"></g></svg>
+            <div class="pt-tracks" id="pt-tracks" role="group" aria-label="Career tree: IT, fields and jobs"></div></div>
           <div class="pt-trail" id="pt-trail" aria-live="polite"></div>
         </div>
+      </div>
+
+      <div class="sv" id="sv-exam" hidden>
+        <p class="intro rv-s">Pick the exam you're taking and your test date. CertPath counts down to it and lays out what to study each day, from the guide's domains. It all stays on this device.</p>
+        <div class="ex rv-s" id="ex" aria-live="polite"></div>
       </div>
 
       <div class="sv" id="sv-cool" hidden>
@@ -1783,15 +1964,15 @@ var VENDORS = [
   {id:"comptia", name:"CompTIA", short:"CompTIA", lat:36, lon:-92, beacon:"#ff3b30",
    pal:{fg:"#1b1514",muted:"#6e6260",line:"#e2d8d5",surface:"#ffffff",accent:"#d71920",on:"#ffffff"}, grad:["#ffffff","#f6f2f0","#ead8d3"],
    blurb:"Vendor-neutral foundations. Security+ is the most widely used DoD 8140 baseline, so most IT careers in the Guard start here.",
-   certs:[["A+","Entry",2,"120–200 h","IAT I",["Stay 20"]],["Network+","Entry",2,"80–120 h","IAT I",["Stay 20","Network eng"]],["Security+","Core",3,"60–100 h","IAT II",["Stay 20","Cyber eng"]],["Cloud+","Intermediate",3,"60–90 h","",["Cloud security"]],["CySA+","Intermediate",4,"80–120 h","IAT II",["Cyber eng","Stay 20"]],["PenTest+","Intermediate",4,"80–120 h","",["Cyber eng"]],["SecurityX","Advanced",5,"120–180 h","IAT III",["Cyber eng","Stay 20"]]]},
+   certs:[["A+","Entry",2,"120–200 h","IAT I",["20 year career"]],["Network+","Entry",2,"80–120 h","IAT I",["20 year career","Network eng"]],["Security+","Core",3,"60–100 h","IAT II",["20 year career","Cyber eng"]],["Cloud+","Intermediate",3,"60–90 h","",["Cloud security"]],["CySA+","Intermediate",4,"80–120 h","IAT II",["Cyber eng","20 year career"]],["PenTest+","Intermediate",4,"80–120 h","",["Cyber eng"]],["SecurityX","Advanced",5,"120–180 h","IAT III",["Cyber eng","20 year career"]]]},
   {id:"isc2", name:"ISC2", short:"ISC2", lat:-14, lon:-44, beacon:"#6f9dff",
    pal:{fg:"#eef4ff",muted:"#a7bad6",line:"#25457a",surface:"#10305e",accent:"#5fa8ff",on:"#06162e"}, grad:["#1b4d94","#0b2347","#040c1d"],
    blurb:"Senior security and management. CISSP qualifies for advanced roles across most of the DoD 8140 framework.",
-   certs:[["CC","Entry",1,"20–40 h","",["All paths"]],["SSCP","Associate",3,"60–90 h","IAT II",["Stay 20","Cyber eng"]],["CCSP","Expert",5,"120–160 h","",["Cloud security"]],["CISSP","Expert",5,"150–250 h","IAT III",["Cyber eng","Stay 20"]]]},
+   certs:[["CC","Entry",1,"20–40 h","",["All paths"]],["SSCP","Associate",3,"60–90 h","IAT II",["20 year career","Cyber eng"]],["CCSP","Expert",5,"120–160 h","",["Cloud security"]],["CISSP","Expert",5,"150–250 h","IAT III",["Cyber eng","20 year career"]]]},
   {id:"cisco", name:"Cisco", short:"CISCO", lat:42, lon:2, beacon:"#1fc7f0",
    pal:{fg:"#e8f8ff",muted:"#96bfce",line:"#17506a",surface:"#0a3549",accent:"#1fc7f0",on:"#04212d"}, grad:["#0c5470","#062a3a","#021218"],
    blurb:"The network engineer's line. Start with CCST, then aim for CCNA.",
-   certs:[["CCST Networking","Entry",1,"30–50 h","",["Network eng","Stay 20"]],["CCST Cybersecurity","Entry",2,"30–50 h","",["Cyber eng"]],["CyberOps Associate","Associate",3,"80–120 h","",["Cyber eng"]],["CCNA","Associate",4,"150–250 h","",["Network eng","Stay 20"]],["CCNP Security","Professional",5,"200+ h","IAT III",["Network eng","Cyber eng"]]]},
+   certs:[["CCST Networking","Entry",1,"30–50 h","",["Network eng","20 year career"]],["CCST Cybersecurity","Entry",2,"30–50 h","",["Cyber eng"]],["CyberOps Associate","Associate",3,"80–120 h","",["Cyber eng"]],["CCNA","Associate",4,"150–250 h","",["Network eng","20 year career"]],["CCNP Security","Professional",5,"200+ h","IAT III",["Network eng","Cyber eng"]]]},
   {id:"thm", name:"TryHackMe", short:"THM", lat:12, lon:48, beacon:"#a3ea2a",
    pal:{fg:"#eef3f8",muted:"#9aa7ba",line:"#26334a",surface:"#172133",accent:"#a3ea2a",on:"#10180a"}, grad:["#203048","#111826","#06090f"],
    blurb:"Hands-on, lab-based certs. Proves you can work a SOC queue or a pentest, not just pass a quiz.",
@@ -1799,7 +1980,7 @@ var VENDORS = [
   {id:"lpi", name:"Linux (LPI)", short:"LPI", lat:48, lon:92, beacon:"#f3b61f",
    pal:{fg:"#f6f0e2",muted:"#bbb096",line:"#3a3119",surface:"#1d180d",accent:"#f3b61f",on:"#1a1404"}, grad:["#33290f","#15120a","#070604"],
    blurb:"Linux fundamentals every analyst and admin leans on.",
-   certs:[["Linux Essentials","Entry",1,"20–40 h","",["All paths"]],["LPIC-1","Associate",3,"100–150 h","",["Stay 20","Cloud security"]]]},
+   certs:[["Linux Essentials","Entry",1,"20–40 h","",["All paths"]],["LPIC-1","Associate",3,"100–150 h","",["20 year career","Cloud security"]]]},
   {id:"aws", name:"AWS", short:"AWS", lat:-22, lon:134, beacon:"#ff9d1a",
    pal:{fg:"#f2f4f7",muted:"#a2adbc",line:"#2a3852",surface:"#182235",accent:"#ff9900",on:"#1a1000"}, grad:["#26354f","#121a27","#06090e"],
    blurb:"The cloud line for defense-contractor cloud security roles.",
@@ -1807,7 +1988,7 @@ var VENDORS = [
   {id:"azure", name:"Microsoft Azure", short:"AZURE", lat:22, lon:-178, beacon:"#4cb4ff",
    pal:{fg:"#0d1b2a",muted:"#52657a",line:"#cfdff0",surface:"#ffffff",accent:"#0a6fd1",on:"#ffffff"}, grad:["#ffffff","#eef5fc","#d3e5f7"],
    blurb:"Microsoft cloud, common across government tenants.",
-   certs:[["Azure Fundamentals","Entry",1,"15–30 h","",["Cloud security"]],["Azure Administrator","Associate",3,"60–100 h","",["Cloud security","Stay 20"]],["Azure Security Engineer","Associate",4,"60–100 h","",["Cloud security","Cyber eng"]]]},
+   certs:[["Azure Fundamentals","Entry",1,"15–30 h","",["Cloud security"]],["Azure Administrator","Associate",3,"60–100 h","",["Cloud security","20 year career"]],["Azure Security Engineer","Associate",4,"60–100 h","",["Cloud security","Cyber eng"]]]},
   {id:"wgu", name:"WGU degree line", short:"WGU", lat:-8, lon:-134, beacon:"#e0bd6a",
    pal:{fg:"#f1f4f8",muted:"#a6b6c9",line:"#24406a",surface:"#12263f",accent:"#d6b25e",on:"#1a1404"}, grad:["#1a4170","#0c1d33","#050b15"],
    blurb:"Certs built into the BS Cybersecurity and Information Assurance. Earn them in the Guard, then transfer them in.",
@@ -2370,6 +2551,18 @@ function watchReadout(){
 /* phone held sideways: wide but short. Laid out like desktop, compressed (see the matching CSS media query) */
 function isShort(){return !!(window.matchMedia&&matchMedia("(orientation: landscape) and (max-height: 500px)").matches);}
 function wrapPi(a){while(a>Math.PI)a-=2*Math.PI;while(a<-Math.PI)a+=2*Math.PI;return a;}
+var focusI=-1, fq=null, fe=null, fc=null;
+/* rotY/rotX that put beacon i exactly in the middle of the globe as seen by the camera, after the mouse lean (leanG) is applied */
+function faceAnglesL(i,ref){
+  if(!fq){fq=new THREE.Quaternion();fe=new THREE.Euler();fc=new THREE.Vector3();}
+  var p=beacons[i].local, r=p.length(), R=Math.hypot(p.x,p.z)||1e-6;
+  fe.set(smooth.y*.22,smooth.x*.32,0);fq.setFromEuler(fe).invert();
+  fc.set(0,-leanG.position.y,camDist).normalize().applyQuaternion(fq);
+  var phi=Math.atan2(p.x,p.z), s=Math.max(-1,Math.min(1,fc.x*r/R));
+  var y=Math.asin(s)-phi;y=ref+wrapPi(y-ref);
+  var qz=R*Math.cos(Math.asin(s)), x=Math.atan2(fc.z,fc.y)-Math.atan2(qz,p.y);
+  return {y:y,x:wrapPi(x)};
+}
 function faceAngles(i){var p=beacons[i].local;return {y:rotY+wrapPi(Math.atan2(-p.x,p.z)-rotY),x:Math.atan2(p.y,Math.hypot(p.x,p.z))};}
 
 /* ---------- per frame ---------- */
@@ -2417,7 +2610,8 @@ function frame(now){
   smooth.x+=((lean?mouse.nx:0)-smooth.x)*kL;smooth.y+=((lean?mouse.ny:0)-smooth.y)*kL;
   if(state==="idle"){
     if(dragging){var kd=damp(18,dt);rotY+=(dragY-rotY)*kd;rotX+=(dragX-rotX)*kd;}
-    else if(!steering){var tgt=(now<holdUntil)?0:AUTO;velY+=(tgt-velY)*damp(1.4,dt);rotY+=velY*dt;rotX+=(TILT-rotX)*damp(holdUntil>now?0:1.2,dt);}
+    else if(!steering&&focusI>=0&&now<holdUntil){var fh=faceAnglesL(focusI,rotY),kh=damp(14,dt);velY=0;rotY+=(fh.y-rotY)*kh;rotX+=(fh.x-rotX)*kh;}
+    else if(!steering){if(focusI>=0&&now>=holdUntil) focusI=-1;var tgt=(now<holdUntil)?0:AUTO;velY+=(tgt-velY)*damp(1.4,dt);rotY+=velY*dt;rotX+=(TILT-rotX)*damp(holdUntil>now?0:1.2,dt);}
     var target=zoomT+(dragging&&dragMoved>6&&pointers.size<2?.06:0);
     zoom+=(target-zoom)*damp(5,dt);
     camDist=baseDist*zoom*introCam.v;
@@ -2463,8 +2657,8 @@ function onDown(e){
   canvas.setPointerCapture&&canvas.setPointerCapture(e.pointerId);
   pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
   if(pointers.size===2){var p=Array.from(pointers.values());pinch0=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);zoom0=zoomT;return;}
-  steerId++;steering=false;holdUntil=0;
-  dragging=true;dragMoved=0;lastX=e.clientX;lastY=e.clientY;dragY=rotY;dragX=rotX;samples=[{t:performance.now(),y:dragY}];
+  steerId++;steering=false;holdUntil=0;focusI=-1;
+  dragging=true;focusI=-1;dragMoved=0;lastX=e.clientX;lastY=e.clientY;dragY=rotY;dragX=rotX;samples=[{t:performance.now(),y:dragY}];
   canvas.classList.add("grabbing");
 }
 function onMove(e){
@@ -2505,10 +2699,11 @@ function tapAt(cx,cy){
 function focusVendor(i){
   if(state!=="idle") return;
   setFront(i);
-  if(!has3D||reduced){if(has3D){var g=faceAngles(i);rotY=g.y;rotX=g.x;holdUntil=performance.now()+3500;}return;}
-  var id=++steerId, f=faceAngles(i), y0=rotY, x0=rotX;
-  steering=true;velY=0;
-  tween(1100,function(k){if(id!==steerId) return;rotY=y0+(f.y-y0)*k;rotX=x0+(f.x-x0)*k;},E.inOutCubic).then(function(){
+  if(!has3D||reduced){if(has3D){var g=faceAnglesL(i,rotY);rotY=g.y;rotX=g.x;focusI=i;holdUntil=performance.now()+3500;}return;}
+  var id=++steerId, y0=rotY, x0=rotX;
+  steering=true;velY=0;focusI=i;
+  /* aim at the live target every frame, so the lean never leaves it off center */
+  tween(1100,function(k){if(id!==steerId) return;var f=faceAnglesL(i,y0);rotY=y0+(f.y-y0)*k;rotX=x0+(f.x-x0)*k;},E.inOutCubic).then(function(){
     if(id===steerId){steering=false;holdUntil=performance.now()+3500;}
   });
 }
@@ -2609,7 +2804,7 @@ function openPanel(i,certName){
   panel.innerHTML=
    '<div class="p-inner"><div class="p-frame">'+
     '<header class="p-top"><span class="p-mark" aria-hidden="true"></span><button type="button" class="p-back" id="p-back"><span class="ar">&larr;</span><span class="pb-l">Globe</span></button>'+
-    '<span class="p-crumb" id="p-crumb"></span><span class="p-mock">Mock data</span>'+
+    
     '<div class="p-arrows"><button type="button" class="p-arr p-srch p-exp" id="p-exp" aria-label="Go to paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg><span class="ps-l">Paths &middot; Funding &middot; Compare</span></button><button type="button" class="p-arr p-srch" id="p-srch" aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="ps-l">Search</span></button><button type="button" class="p-arr" id="p-prev" aria-label="Previous vendor">&larr;</button><button type="button" class="p-arr" id="p-next" aria-label="Next vendor">&rarr;</button></div></header>'+
     '<div class="p-body" id="p-body"></div></div>'+
     '<p class="p-foot">Not an official U.S. Coast Guard or DoD site &middot; Not affiliated with or endorsed by the Coast Guard or any cert vendor &middot; Names are trademarks of their owners &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span></p>'+
@@ -2634,8 +2829,6 @@ function openPanel(i,certName){
 function renderBody(i){
   var v=VENDORS[i];
   guideName=null;panel.classList.remove("in-guide");setBackLabel("Globe");if(gIO){gIO.disconnect();gIO=null;}
-  var mk=panel.querySelector(".p-mock");if(mk){mk.textContent="Mock data";mk.classList.remove("ok");}
-  panel.querySelector("#p-crumb").textContent="(CG_CERT_PATH) / "+v.name;
   var body=panel.querySelector("#p-body");
   asideCur="";
   body.innerHTML=
@@ -2686,9 +2879,6 @@ async function switchVendor(dir,to,g){
   var n=(to!=null)?to:(current+dir+VENDORS.length)%VENDORS.length, body=panel.querySelector("#p-body");
   current=n;
   morphPalette(n,1000);
-  var crumb=panel.querySelector("#p-crumb");
-  anim(crumb,[{opacity:1},{opacity:0},{opacity:1}],{duration:600,easing:"ease-in-out"});
-  setTimeout(function(){crumb.textContent="(CG_CERT_PATH) / "+VENDORS[n].name;},300);
   var out=anim(body,[{opacity:1,transform:"none",filter:"blur(0px)"},{opacity:0,transform:"translateX("+(-dir*36)+"px)",filter:"blur(6px)"}],{duration:300,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"});
   await done(out);
   if(state!=="open"||!panel.querySelector("#p-body")){switching=false;return;}
@@ -2752,6 +2942,7 @@ function buildCerts(v){
         (GUIDES[c[0]]?'<p>The full guide is ready: objectives, a study plan, resources, a quiz, PBQs and a roadmap.</p><button type="button" class="g-btn g-open" data-guide="'+c[0]+'"><span class="g-btn-l">Open the '+c[0]+' guide &rarr;</span></button>':
         '<p>Each cert gets its own page with these sections:</p>'+
         '<div class="tags">'+PLANNED.map(function(t){return '<span class="tag plan">'+t+'</span>';}).join("")+'</div>')+
+        ptCertMini(c[0])+
       '</div></div></div></li>';
   }).join("");
   var items=sortedItems(Array.from(ol.children));
@@ -2759,7 +2950,7 @@ function buildCerts(v){
   ol.querySelectorAll(".cert").forEach(function(li){
     li.querySelector(".c-row").addEventListener("click",function(){setOpen(li,!li.classList.contains("open"));});
   });
-  ol.addEventListener("click",function(e){var b=e.target.closest(".g-open");if(b) openGuide(b.dataset.guide);});
+  ol.addEventListener("click",function(e){var pt=e.target.closest("[data-ptf]");if(pt){ptTarget(+pt.dataset.ptf,pt.dataset.ptj!=null?+pt.dataset.ptj:-1);goPage("paths");return;}var b=e.target.closest(".g-open");if(b) openGuide(b.dataset.guide);});
 }
 function placeSeg(seg){
   var b=seg.querySelector('[aria-pressed="true"]'), ind=seg.querySelector(".seg-ind");
@@ -2786,9 +2977,9 @@ function setSort(hard){
 
 /* ---------- explore sheet (pull up from the bottom) ---------- */
 var sheet=$("#sheet"), veil=$("#veil"), grab=$("#sh-grab"), shScroll=$("#sh-scroll");
-var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",paths:"Paths.",cool:"Funding."}, ORDER=["home","mine","compare","paths","cool"];
+var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",paths:"Paths.",cool:"Funding.",exam:"Countdown."}, ORDER=["home","mine","compare","paths","cool","exam"];
 var PATHS=[
-  {name:"Stay 20",tag:"IT rating career",line:"Make rate, stay qualified for any IT billet, and retire with a full résumé.",steps:[["A+","A+"],["Network+","Network+"],["Security+","Security+"],["CySA+","CySA+"],["CISSP","CISSP"]]},
+  {name:"20 year career",tag:"IT rating career",line:"Make rate, stay qualified for any IT billet, and retire with a full résumé.",steps:[["A+","A+"],["Network+","Network+"],["Security+","Security+"],["CySA+","CySA+"],["CISSP","CISSP"]]},
   {name:"Cloud",tag:"Contractor track",line:"Build toward defense-contractor cloud security roles after your enlistment.",steps:[["Security+","Security+"],["Cloud+","Cloud+"],["AWS Solutions Architect","Solutions Architect Associate"],["Azure Security Engineer","Azure Security Engineer"],["CCSP","CCSP"]]},
   {name:"Network",tag:"Infrastructure",line:"Routers, switches, and the backbone every unit runs on.",steps:[["Network+","Network+"],["CCST Networking","CCST Networking"],["CCNA","CCNA"],["CCNP Security","CCNP Security"]]},
   {name:"Cyber",tag:"Defense + offense",line:"SOC analysis, threat hunting, and offensive security.",steps:[["Security+","Security+"],["SAL1","SAL1 · Security Analyst L1"],["CySA+","CySA+"],["PenTest+","PenTest+"],["SecurityX","SecurityX"]]}
@@ -2809,8 +3000,8 @@ function findCert(name){for(var i=0;i<VENDORS.length-1;i++){for(var k=0;k<VENDOR
   });
   orb.insertAdjacentHTML("afterbegin",html);
   $("#capsule").insertAdjacentHTML("afterbegin",[.75,.6,.45,.3,.18].map(function(a,i){return '<i style="--c:rgba(236,235,232,'+a+');--i:'+i+'"></i>';}).join(""));
-  var ys=[36,84,136,184], svg="";
-  PATHS.forEach(function(pth,i){
+  var ys=[22,66,110,154,198], svg="";
+  ["20 year career","Cyber","Networking","Cloud","Admin"].map(function(n){return {name:n};}).forEach(function(pth,i){
     var y=ys[i], d="M44 110 C 150 110, 170 "+y+", 296 "+y;
     svg+='<path class="pl-base" d="'+d+'"/><path class="pl-flow" d="'+d+'" style="--d:'+(3+i*.5)+'s;animation-delay:-'+(i*.8)+'s"/>'+
       '<circle cx="296" cy="'+y+'" r="9" class="pn-ring"/><circle cx="296" cy="'+y+'" r="3.5" class="pn" style="animation-delay:-'+(i*.6)+'s"/>'+
@@ -2819,45 +3010,373 @@ function findCert(name){for(var i=0;i<VENDORS.length-1;i++){for(var k=0;k<VENDOR
   $("#pmap-lines").innerHTML=svg;
 })();
 
-/* ---------- Career paths tree (v2.17): A-school branches into the four tracks; the picked track runs as a path through its certs ---------- */
-var PT={track:-1,open:-1,ready:false}, PT_Y=[38,90,142,194], PT_X=300;
-function ptInit(){
-  if(PT.ready||!$("#ptree")) return;PT.ready=true;
-  var svg="";
-  PATHS.forEach(function(pth,i){
-    var y=PT_Y[i], d="M40 115 C 150 115, 170 "+y+", "+PT_X+" "+y;
-    svg+='<path class="pt-b" data-b="'+i+'" d="'+d+'"/><path class="pt-f" data-b="'+i+'" d="'+d+'" style="animation-delay:-'+(i*.7)+'s"/>';
-  });
-  $("#pt-lines").innerHTML=svg;
-  $("#pt-tracks").innerHTML=PATHS.map(function(pth,i){
-    return '<button type="button" class="pt-tk" data-ptrack="'+i+'" aria-pressed="false" style="left:'+(PT_X/4)+'%;top:'+(PT_Y[i]/2.3).toFixed(2)+'%"><i aria-hidden="true"></i><span>'+gEsc(pth.name)+'</span></button>';
-  }).join("");
-  var sv=null;try{sv=mpLoad();}catch(err){sv=null;}
-  var start=0;if(sv){PATHS.forEach(function(p,i){if(p.name===sv.goal) start=i;});}
-  ptShow(start,-1,false);
-  $("#ptree").addEventListener("click",function(e){
-    var tk=e.target.closest("[data-ptrack]");
-    if(tk){e.stopPropagation();var ti=+tk.dataset.ptrack, op=tk.dataset.pstep!=null?+tk.dataset.pstep:-1;if(ti!==PT.track||op>=0) ptShow(ti,op,true);return;}
-    var st=e.target.closest("[data-pstep]");
-    if(st){var k=+st.dataset.pstep;ptOpen(PT.open===k?-1:k);}
-  });
+/* ---------- Exam countdown + day-by-day plan (v2.19). Saved as localStorage cgcp.exam, validated on read. ---------- */
+var EX_KEY="cgcp.exam", EX_HPD=[1,1.5,2,3], EX_WD=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], EX_WD1=["S","M","T","W","T","F","S"];
+var ex={pre:"",edit:false,timer:0,all:false,form:null};
+function exPad(n){return (n<10?"0":"")+n;}
+function exISO(d){return d.getFullYear()+"-"+exPad(d.getMonth()+1)+"-"+exPad(d.getDate());}
+function exParse(iso){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(iso||"");if(!m) return null;var d=new Date(+m[1],+m[2]-1,+m[3]);return d.getMonth()===+m[2]-1?d:null;}
+function exCertList(){
+  var out=[];VENDORS.forEach(function(v){if(v.id==="wgu") return;out.push({v:v.name,c:v.certs.map(function(c){return c[0];})});});return out;
 }
+function exKnown(n){return !!findCert(n).c;}
+function exLoad(){
+  var d=gGet(EX_KEY);if(!d||typeof d!=="object"||Array.isArray(d)) return null;
+  if(typeof d.c!=="string"||!exKnown(d.c)||!exParse(d.d)||typeof d.t!=="string"||!/^\d{2}:\d{2}$/.test(d.t)) return null;
+  if(!Array.isArray(d.w)) return null;var w=d.w.filter(function(x,i,a){return typeof x==="number"&&x>=0&&x<=6&&x===Math.floor(x)&&a.indexOf(x)===i;});if(!w.length) return null;
+  if(EX_HPD.indexOf(d.h)<0) return null;
+  var done=Array.isArray(d.done)?d.done.filter(function(x){return typeof x==="string"&&!!exParse(x);}).slice(0,800):[];
+  return {c:d.c,d:d.d,t:d.t,w:w.sort(),h:d.h,done:done};
+}
+function exSave(E){gSet(EX_KEY,E);}
+function exTarget(E){var d=exParse(E.d), p=E.t.split(":");d.setHours(+p[0],+p[1],0,0);return d;}
+/* study domains for a cert: the guide's domains (both exams for two-exam certs), else null */
+function exDomains(name){
+  var G=GUIDES[name];if(!G) return null;
+  var keys=Object.keys(G.versions), use=keys.slice(0,1);
+  if(G.planAll) use=keys;else{var sv=gGet("cgcp."+G.id+".ver");if(typeof sv==="string"&&keys.indexOf(sv)>=0) use=[sv];}
+  var out=[];use.forEach(function(k){var V=G.versions[k];V.domains.forEach(function(d){out.push({n:d.n,name:(use.length>1?V.label+" · ":"")+d.name,w:d.w/use.length,obj:d.obj.map(function(o){return o[0];}),num:V.numbered});});});
+  return out;
+}
+function exPlan(E,now){
+  now=now||new Date();
+  var target=exTarget(E), start=new Date(now.getFullYear(),now.getMonth(),now.getDate()), end=exParse(E.d), dates=[];
+  for(var d=new Date(start);d<end&&dates.length<400;d.setDate(d.getDate()+1)){if(E.w.indexOf(d.getDay())>=0) dates.push(new Date(d));}
+  var N=dates.length, need=mpHours(E.c)||60, have=N*E.h, days=[];
+  var review=N>=3?1:0, practice=N>=4?Math.max(1,Math.round(N*.2)):0, learn=N-review-practice;
+  var doms=exDomains(E.c);
+  var tasks=[];
+  if(learn>0){
+    if(doms&&doms.length){
+      var W=0;doms.forEach(function(x){W+=x.w;});
+      if(learn<doms.length){
+        var per=Math.ceil(doms.length/learn);
+        for(var i=0;i<learn;i++){var grp=doms.slice(i*per,(i+1)*per);if(!grp.length) grp=[doms[doms.length-1]];
+          tasks.push({k:"learn",title:"Learn "+grp.map(function(g){return g.n;}).join(" + "),focus:grp.map(function(g){return g.name;}).join(" · "),items:[].concat.apply([],grp.map(function(g){return g.obj;}))});}
+      }else{
+        var raw=doms.map(function(x){return x.w/W*learn;}), alloc=raw.map(function(r){return Math.max(1,Math.floor(r));}), sum=alloc.reduce(function(a,b){return a+b;},0);
+        var order=raw.map(function(r,i){return [r-Math.floor(r),i];}).sort(function(a,b){return b[0]-a[0];});
+        for(var q=0;sum<learn;q=(q+1)%order.length){alloc[order[q][1]]++;sum++;}
+        for(var q2=doms.length-1;sum>learn;q2=(q2-1+doms.length)%doms.length){if(alloc[q2]>1){alloc[q2]--;sum--;}}
+        doms.forEach(function(dm,di){
+          var D=alloc[di], O=dm.obj.length;
+          for(var j=0;j<D;j++){
+            var a=Math.floor(j*O/D), b=Math.floor((j+1)*O/D), items=dm.obj.slice(a,b);
+            if(items.length) tasks.push({k:"learn",title:"Learn "+dm.n+(D>1?" · part "+(j+1)+" of "+D:""),focus:dm.name,items:items});
+            else tasks.push({k:"lab",title:"Hands-on "+dm.n,focus:dm.name,items:["Do a lab or practice room on this domain","Make flashcards for anything you had to look up"]});
+          }
+        });
+      }
+    }else{
+      for(var i2=0;i2<learn;i2++) tasks.push({k:"learn",title:"Study block "+(i2+1)+" of "+learn,focus:"Official exam objectives",items:["Work through the next part of the official objectives","Note anything you need to review"]});
+    }
+  }
+  var P=[{t:"Practice test",i:["Take the guide's quiz, then a timed practice exam","Write down every topic you missed"]},{t:"Fix weak spots",i:["Reread the objectives you missed","Redo the missed questions without notes"]},{t:"Hands-on practice",i:["Work the PBQs or labs again","Time yourself"]}];
+  for(var p=0;p<practice;p++) tasks.push({k:"practice",title:P[p%3].t,focus:"Practice",items:P[p%3].i});
+  if(review) tasks.push({k:"review",title:"Light review",focus:"Day before the exam",items:["Skim your flashcards and weak spots, nothing new","Check your ID, the test location or online setup, and sleep"]});
+  dates.forEach(function(dt,i){var t=tasks[i];days.push({iso:exISO(dt),date:dt,k:t.k,title:t.title,focus:t.focus,items:t.items});});
+  return {days:days,need:need,have:have,n:N,target:target};
+}
+function exStatus(P,E){
+  if(!P.n) return {cls:"bad",t:"No study days left before the exam. Move the date or add study days."};
+  var perDay=P.need/P.n;
+  if(P.have>=P.need*.95) return {cls:"ok",t:"On track: the plan needs about "+P.need+" h and you'll have "+Math.round(P.have)+" h."};
+  var hh=Math.ceil(perDay*2)/2;
+  return {cls:"warn",t:"Tight: the plan needs about "+P.need+" h, and at "+E.h+" h a day you'll have "+Math.round(P.have)+" h. Study about "+hh+" h a day, add days, or move the date."};
+}
+function exFmtDate(d){return EX_WD[d.getDay()]+", "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()]+" "+d.getDate();}
+function exRender(){
+  var box=$("#ex");if(!box) return;
+  var E=exLoad();
+  if(!E||ex.edit){box.innerHTML=exFormHTML(E);exFormWire(box,E);return;}
+  var now=new Date(), P=exPlan(E,now), st=exStatus(P,E), today=exISO(now), f=findCert(E.c), col=VENDORS[f.v].beacon;
+  var done=P.days.filter(function(x){return E.done.indexOf(x.iso)>=0;}).length;
+  var h='<div class="ex-hero" style="--c:'+gEsc(col)+'"><div class="ex-top"><p class="lab">'+gEsc(VENDORS[f.v].name)+' &middot; exam</p><h4>'+gEsc(E.c)+'</h4><p class="ex-when">'+gEsc(exFmtDate(P.target))+' &middot; '+gEsc(E.t)+'</p></div>'+
+    '<div class="ex-cd" id="ex-cd" role="timer" aria-live="off">'+exCdHTML(P.target,now)+'</div></div>';
+  h+='<p class="ex-st '+st.cls+'">'+gEsc(st.t)+'</p>';
+  h+='<div class="ex-prog"><span class="lab">Plan</span><span class="ex-bar"><i style="transform:scaleX('+(P.n?(done/P.n).toFixed(3):0)+')"></i></span><span class="ex-pn">'+done+' of '+P.n+' study days done</span></div>';
+  var tIdx=-1;P.days.forEach(function(x,i){if(x.iso===today) tIdx=i;});
+  var td=tIdx>=0?P.days[tIdx]:null;
+  h+='<div class="ex-today"><p class="lab">Today &middot; '+gEsc(exFmtDate(now))+'</p>'+(td?exDayHTML(td,E,true):'<p class="ex-rest">'+(P.target-now<0?'Exam time has passed. How did it go? Set a new date for your next cert.':'Rest day. '+(P.days.length?'Next: '+gEsc(exFmtDate(P.days.find(function(x){return x.iso>today;})?P.days.find(function(x){return x.iso>today;}).date:P.target))+'.':''))+'</p>')+'</div>';
+  var rest=P.days.filter(function(x){return x.iso!==today;}), past=rest.filter(function(x){return x.iso<today;}), next=rest.filter(function(x){return x.iso>today;});
+  var show=ex.all?next:next.slice(0,14);
+  h+='<div class="ex-list"><p class="lab">Day by day</p>';
+  var wk="";
+  show.forEach(function(x){var m=new Date(x.date);m.setDate(m.getDate()-((m.getDay()+6)%7));var key=exISO(m);
+    if(key!==wk){wk=key;var e=new Date(m);e.setDate(e.getDate()+6);h+='<p class="ex-wk">Week of '+gEsc(exFmtDate(m))+'</p>';}
+    h+=exDayHTML(x,E,false);});
+  if(!ex.all&&next.length>show.length) h+='<button type="button" class="g-link ex-more" data-ex="all">Show all '+next.length+' days</button>';
+  if(past.length){var miss=past.filter(function(x){return E.done.indexOf(x.iso)<0;}).length;h+='<p class="ex-past">'+past.length+' earlier day'+(past.length===1?'':'s')+(miss?' &middot; '+miss+' not ticked':'')+'</p>';}
+  h+='</div><div class="ex-acts"><button type="button" class="g-btn" data-ex="edit"><span class="g-btn-l">Change exam or date</span></button>'+
+    (GUIDES[E.c]?'<button type="button" class="g-btn ghost" data-cert="'+gEsc(E.c)+'"><span class="g-btn-l">Open the guide &rarr;</span></button>':'')+
+    '<button type="button" class="g-link" data-ex="clear">Clear countdown</button></div>'+
+    '<p class="pt-src">The plan splits your study days by the guide\'s domain weights, saves about a fifth for practice, and keeps the last day light. Hours come from the guide\'s study plan. Saved only on this device.</p>';
+  box.innerHTML=h;exTick();
+}
+function exCdHTML(target,now){
+  var ms=target-now;
+  if(ms<=0) return '<div class="ex-u done"><b>'+(ms>-86400000?'Today':'Done')+'</b><span>'+(ms>-86400000?'good luck':'exam passed')+'</span></div>';
+  var s=Math.floor(ms/1000), d=Math.floor(s/86400), hh=Math.floor(s%86400/3600), mm=Math.floor(s%3600/60), ss=s%60;
+  return [[d,"days"],[hh,"hours"],[mm,"min"],[ss,"sec"]].map(function(u,i){return '<div class="ex-u"><b>'+(i?exPad(u[0]):u[0])+'</b><span>'+u[1]+'</span></div>';}).join("");
+}
+function exDayHTML(x,E,big){
+  var on=E.done.indexOf(x.iso)>=0;
+  return '<div class="ex-day k-'+x.k+(on?' done':'')+(big?' big':'')+'"><button type="button" class="ex-ck" role="checkbox" aria-checked="'+on+'" data-exday="'+x.iso+'" aria-label="'+gEsc("Mark "+exFmtDate(x.date)+" done")+'"></button>'+
+    '<div class="ex-dm"><p class="ex-dt">'+gEsc(exFmtDate(x.date))+' &middot; '+gEsc(E.h+" h")+'</p><p class="ex-dti"><b>'+gEsc(x.title)+'</b> <span>'+gEsc(x.focus)+'</span></p>'+
+    (big||x.items.length<=3?'<ul>'+x.items.map(function(it){return '<li>'+gEsc(it)+'</li>';}).join("")+'</ul>':'<ul><li>'+gEsc(x.items[0])+'</li><li class="more">+ '+(x.items.length-1)+' more</li></ul>')+'</div></div>';
+}
+function exTick(){
+  clearInterval(ex.timer);
+  ex.timer=setInterval(function(){
+    var cd=document.getElementById("ex-cd");
+    if(!cd||shView!=="exam"||!sheet.classList.contains("live")||document.hidden){clearInterval(ex.timer);return;}
+    var E=exLoad();if(!E){clearInterval(ex.timer);return;}cd.innerHTML=exCdHTML(exTarget(E),new Date());
+  },1000);
+}
+function exFormHTML(E){
+  var now=new Date(), def=new Date(now);def.setDate(def.getDate()+42);
+  var F=ex.form||{c:ex.pre||(E&&E.c)||"Security+",d:(E&&E.d)||exISO(def),t:(E&&E.t)||"08:00",w:(E&&E.w)||[1,2,3,4,5],h:(E&&E.h)||1.5};
+  ex.form=F;
+  var opts=exCertList().map(function(g){return '<optgroup label="'+gEsc(g.v)+'">'+g.c.map(function(c){return '<option value="'+gEsc(c)+'"'+(c===F.c?' selected':'')+'>'+gEsc(c)+(GUIDES[c]?' (guide)':'')+'</option>';}).join("")+'</optgroup>';}).join("");
+  return '<div class="ex-form"><label class="ex-f"><span class="lab">Exam</span><span class="g-sel"><select id="ex-c">'+opts+'</select></span></label>'+
+    '<div class="ex-row"><label class="ex-f"><span class="lab">Test date</span><input type="date" id="ex-d" value="'+gEsc(F.d)+'" min="'+exISO(now)+'"></label>'+
+    '<label class="ex-f"><span class="lab">Start time</span><input type="time" id="ex-t" value="'+gEsc(F.t)+'"></label></div>'+
+    '<div class="ex-f"><span class="lab">Study days</span><div class="ex-wd" role="group" aria-label="Study days">'+EX_WD1.map(function(l,i){return '<button type="button" data-wd="'+i+'" aria-pressed="'+(F.w.indexOf(i)>=0)+'" aria-label="'+EX_WD[i]+'">'+l+'</button>';}).join("")+'</div></div>'+
+    '<div class="ex-f"><span class="lab">Hours per study day</span><div class="seg ex-hseg" role="group" aria-label="Hours per study day">'+EX_HPD.map(function(n){return '<button type="button" data-hd="'+n+'" aria-pressed="'+(n===F.h)+'">'+n+' h</button>';}).join("")+'<span class="seg-ind" aria-hidden="true"></span></div></div>'+
+    '<p class="ex-prev" id="ex-prev"></p>'+
+    '<div class="ex-acts"><button type="button" class="g-btn" data-ex="save"><span class="g-btn-l">Start the countdown &rarr;</span></button>'+(E?'<button type="button" class="g-link" data-ex="cancel">Cancel</button>':'')+'</div></div>';
+}
+function exFormRead(box){
+  var F=ex.form;F.c=box.querySelector("#ex-c").value;F.d=box.querySelector("#ex-d").value;F.t=box.querySelector("#ex-t").value||"08:00";
+  return F;
+}
+function exPreview(box){
+  var F=exFormRead(box), out=box.querySelector("#ex-prev");
+  if(!exParse(F.d)){out.textContent="Pick a test date.";out.className="ex-prev bad";return;}
+  var E={c:F.c,d:F.d,t:F.t,w:F.w,h:F.h,done:[]}, P=exPlan(E), st=exStatus(P,E);
+  out.textContent=P.n+" study day"+(P.n===1?"":"s")+" before the exam. "+st.t;out.className="ex-prev "+st.cls;
+}
+function exFormWire(box,E){
+  var seg=box.querySelector(".ex-hseg");requestAnimationFrame(function(){if(seg) gPlaceSeg(seg);});
+  exPreview(box);
+}
+function exEnter(){if(!ex.pre) ex.edit=false;ex.all=false;ex.form=null;exRender();}
+function exPreset(name){ex.pre=exKnown(name)?name:"";var E=exLoad();ex.edit=!E||E.c!==name;ex.form=null;if(shView==="exam") exRender();}
+(function(){
+  var box=$("#ex");if(!box) return;
+  box.addEventListener("click",function(e){
+    var t=e.target.closest("[data-ex],[data-wd],[data-hd],[data-exday]");if(!t) return;
+    if(t.dataset.wd!=null){var F=exFormRead(box), i=+t.dataset.wd, k=F.w.indexOf(i);if(k>=0){if(F.w.length>1) F.w.splice(k,1);}else F.w.push(i);F.w.sort();
+      box.querySelectorAll("[data-wd]").forEach(function(b){b.setAttribute("aria-pressed",String(F.w.indexOf(+b.dataset.wd)>=0));});exPreview(box);return;}
+    if(t.dataset.hd!=null){var F2=exFormRead(box);F2.h=+t.dataset.hd;box.querySelectorAll("[data-hd]").forEach(function(b){b.setAttribute("aria-pressed",String(+b.dataset.hd===F2.h));});gPlaceSeg(box.querySelector(".ex-hseg"));exPreview(box);return;}
+    if(t.dataset.exday){var E=exLoad();if(!E) return;var k2=E.done.indexOf(t.dataset.exday);if(k2>=0) E.done.splice(k2,1);else E.done.push(t.dataset.exday);exSave(E);
+      var on=k2<0;document.querySelectorAll('#ex [data-exday="'+t.dataset.exday+'"]').forEach(function(b){b.setAttribute("aria-checked",String(on));b.closest(".ex-day").classList.toggle("done",on);});
+      var P=exPlan(E), dn=P.days.filter(function(x){return E.done.indexOf(x.iso)>=0;}).length, bar=box.querySelector(".ex-bar i"), pn=box.querySelector(".ex-pn");
+      if(bar) bar.style.transform="scaleX("+(P.n?(dn/P.n).toFixed(3):0)+")";if(pn) pn.textContent=dn+" of "+P.n+" study days done";
+      if(typeof stRender==="function") stRender();return;}
+    var a=t.dataset.ex;
+    if(a==="save"){var F3=exFormRead(box);if(!exParse(F3.d)){exPreview(box);return;}
+      var old=exLoad();exSave({c:F3.c,d:F3.d,t:F3.t,w:F3.w,h:F3.h,done:old&&old.c===F3.c&&old.d===F3.d?old.done:[]});ex.edit=false;ex.form=null;ex.pre="";exRender();
+      if(typeof stRender==="function") stRender();toast("Countdown started");}
+    else if(a==="cancel"){ex.edit=false;ex.form=null;ex.pre="";exRender();}
+    else if(a==="edit"){ex.edit=true;ex.form=null;exRender();}
+    else if(a==="all"){ex.all=true;exRender();}
+    else if(a==="clear"){try{localStorage.removeItem(EX_KEY);}catch(err){}ex.edit=false;ex.form=null;exRender();if(typeof stRender==="function") stRender();toast("Countdown cleared");}
+  });
+  box.addEventListener("change",function(e){if(e.target.closest("#ex-c,#ex-d,#ex-t")) exPreview(box);});
+  box.addEventListener("input",function(e){if(e.target.closest("#ex-d,#ex-t")) exPreview(box);});
+  setTimeout(exRender,0);
+})();
+
+/* ---------- Path tree (v2.19): IT at the root, five fields, then the jobs inside each field.
+   Tap a field and it takes IT's place with its jobs branching off; tap it again (or IT) to go back.
+   Pay, growth and openings come from official government data: the BLS Occupational Outlook Handbook
+   (May 2025 pay, 2025-35 projections) and the DFAS 2026 basic pay table for Coast Guard ranks. ---------- */
+var JOBS={
+  isa:{t:"Information security analysts",pay:129180,g:21,gl:"Much faster than average",op:14100,url:"https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm"},
+  cna:{t:"Computer network architects",pay:134050,g:8,gl:"Much faster than average",op:9600,url:"https://www.bls.gov/ooh/computer-and-information-technology/computer-network-architects.htm"},
+  nsa:{t:"Network and computer systems administrators",pay:99130,g:-4,gl:"Declining",op:13400,url:"https://www.bls.gov/ooh/computer-and-information-technology/network-and-computer-systems-administrators.htm"},
+  nss:{t:"Computer network support specialists",pay:76220,g:1,gl:"",op:48700,opAll:true,url:"https://www.bls.gov/ooh/computer-and-information-technology/computer-support-specialists.htm"},
+  hd:{t:"Computer user support specialists",pay:61860,g:-3,gl:"Declining",op:48700,opAll:true,url:"https://www.bls.gov/ooh/computer-and-information-technology/computer-support-specialists.htm"},
+  mgr:{t:"Computer and information systems managers",pay:175140,g:16,gl:"Much faster than average",op:53500,url:"https://www.bls.gov/ooh/management/computer-and-information-systems-managers.htm"}
+};
+var JOB_ALL={pay:50980,g:3};
+var BLS_SRC="U.S. Bureau of Labor Statistics, Occupational Outlook Handbook (May 2025 pay, 2025&ndash;35 projections; checked Nov 10, 2026)";
+var MIL_SRC="DFAS 2026 basic pay table (3.8% raise, effective Jan 1, 2026; checked Nov 10, 2026)";
+var TRUNK=[["A+","A+"],["Network+","Network+"],["Security+","Security+"]];
+var FIELDS=[
+  {id:"cg20",name:"20 year career",short:"20 year career",tag:"Coast Guard IT rating",mil:true,
+   line:"Stay in, make rate and retire at 20 with a pension for life. Each step up pays more and opens bigger billets.",
+   jobs:[
+    {id:"it2",name:"IT3 · IT2",sub:"E-4 · E-5",line:"Petty officer. You work the tickets, the network closets and the accounts at your unit, and qualify on bigger systems.",pay:[["E-4","over 4 years",3658.5],["E-5","over 6 years",4110]],steps:[["A+","A+"],["Network+","Network+"],["Security+","Security+"]]},
+    {id:"it1",name:"IT1",sub:"E-6",line:"First class petty officer: the senior technician who trains the juniors and owns a system or a shop.",pay:[["E-6","over 10 years",4759.5],["E-6","over 20 years",5267.7]],steps:[["CySA+","CySA+"],["CCNA","CCNA"]]},
+    {id:"itc",name:"ITC",sub:"E-7",line:"Chief petty officer. You lead the division, plan the work and answer for your unit's IT.",pay:[["E-7","over 14 years",5835],["E-7","over 20 years",6245.7]],steps:[["SecurityX","SecurityX"],["SSCP","SSCP"]]},
+    {id:"itcs",name:"ITCS · ITCM",sub:"E-8 · E-9",line:"Senior and master chief: IT leadership at the command level and the rating's senior advisors.",pay:[["E-8","over 20 years",6995.4],["E-9","over 20 years",8105.1]],steps:[["CISSP","CISSP"]]},
+    {id:"cwo",name:"Chief warrant officer",sub:"W-2 and up",line:"The officer track for experienced enlisted members. You become the command's technical expert.",pay:[["W-2","over 12 years",6509.4],["W-3","over 20 years",8476.5]],steps:[["CISSP","CISSP"],["CCSP","CCSP"]]}
+   ]},
+  {id:"cyber",name:"Cyber",short:"Cyber",tag:"Defend and attack",
+   line:"Protect networks and data: watch for attacks, test the defenses and keep systems approved and compliant.",
+   jobs:[
+    {id:"soc",name:"SOC analyst",occ:"isa",line:"Watch the alerts, dig into what's real and stop attacks while they happen. The most common first cyber job.",steps:[["CCST Cybersecurity","CCST Cybersecurity"],["SAL1","SAL1 · Security Analyst L1"],["CyberOps Associate","CyberOps Associate"],["CySA+","CySA+"]]},
+    {id:"pen",name:"Pen tester",occ:"isa",line:"Break in with written permission, then write the report that gets the holes fixed.",steps:[["PT1","PT1 · Junior Pentester"],["PenTest+","PenTest+"]]},
+    {id:"eng",name:"Security engineer",occ:"isa",line:"Design and harden the systems everyone else depends on: identity, endpoints, networks and zero trust.",steps:[["CySA+","CySA+"],["SecurityX","SecurityX"],["CISSP","CISSP"]]},
+    {id:"grc",name:"GRC analyst",occ:"isa",line:"Governance, risk and compliance: policies, audits and getting systems approved, like RMF packages and ATOs.",steps:[["CC","CC"],["SSCP","SSCP"],["CISSP","CISSP"]]},
+    {id:"smgr",name:"Security manager",occ:"mgr",line:"Run the security program: the people, the budget and the risk calls. ISSMs and CISOs.",steps:[["CISSP","CISSP"]]}
+   ]},
+  {id:"net",name:"Networking",short:"Networking",tag:"Infrastructure",
+   line:"Routers, switches, firewalls and the links every unit runs on.",
+   jobs:[
+    {id:"nst",name:"Network support tech",occ:"nss",exact:true,line:"Keep the network up for users: troubleshoot links, swap gear and escalate what you can't fix.",steps:[["CCST Networking","CCST Networking"],["CCNA","CCNA"]]},
+    {id:"nad",name:"Network admin",occ:"nsa",exact:true,line:"Run the routers, switches and firewalls day to day: changes, patches, monitoring and backups.",steps:[["CCNA","CCNA"]]},
+    {id:"nen",name:"Network engineer",occ:"cna",line:"Design the network: how sites connect, how traffic is secured and how it grows.",steps:[["CCNA","CCNA"],["CCNP Security","CCNP Security"]]}
+   ]},
+  {id:"cloud",name:"Cloud",short:"Cloud",tag:"Contractor track",
+   line:"Run and secure AWS and Azure. Strong demand at defense contractors and in government clouds.",
+   jobs:[
+    {id:"cad",name:"Cloud admin",occ:"nsa",line:"Run cloud tenants: accounts, virtual machines, storage, backups and costs.",steps:[["Azure Fundamentals","Azure Fundamentals"],["Azure Administrator","Azure Administrator"],["Cloud+","Cloud+"]]},
+    {id:"car",name:"Cloud architect",occ:"cna",line:"Design how workloads run in AWS or Azure: networks, identity and how they survive failures.",steps:[["Cloud Practitioner","Cloud Practitioner"],["Solutions Architect Associate","Solutions Architect Associate"]]},
+    {id:"csec",name:"Cloud security engineer",occ:"isa",line:"Lock down cloud accounts and workloads, and prove they meet government security rules.",steps:[["AWS Security Specialty","Security Specialty"],["Azure Security Engineer","Azure Security Engineer"],["CCSP","CCSP"]]}
+   ]},
+  {id:"admin",name:"Admin",short:"Admin",tag:"Systems and support",
+   line:"Keep people, servers and accounts working. Where most IT careers start.",
+   jobs:[
+    {id:"hd",name:"Help desk",occ:"hd",exact:true,line:"First line of IT support: accounts, laptops, printers and phones, and knowing when to escalate. The usual first IT job.",steps:[],stepsNote:"A+ is usually all you need to get hired, and it's the first cert on the trunk."},
+    {id:"sad",name:"Systems admin",occ:"nsa",exact:true,line:"Keep servers, accounts and patches in order, on premises and in the cloud.",steps:[["Linux Essentials","Linux Essentials"],["LPIC-1","LPIC-1"],["Azure Administrator","Azure Administrator"]]},
+    {id:"itm",name:"IT manager",occ:"mgr",exact:true,line:"Run an IT shop: people, budgets, projects and priorities. Most of these jobs also ask for a bachelor's degree.",steps:[["Project+","Project+"],["CISSP","CISSP"]]}
+   ]}
+];
+var PT_GOAL={"Cyber":"cyber","Cloud":"cloud","Network":"net","20 year career":"cg20"};
+var PT={f:-1,j:-1,open:-1,ready:false,goal:-1,t:0};
+var PT_RX=46, PT_RY=170, PT_CX=192, PT_PX=24, PT_PY=30, PT_W=400, PT_H=340;
+
 function ptMeta(name){
-  var f=findCert(name), c=f.c, v=VENDORS[f.v];
-  return {v:v,c:c,col:v?v.beacon:"#bcd6ea",lvl:c?c[1]:"",dif:c?c[2]:0,hrs:c?c[3]:"",iat:c&&c[4]?c[4]:"",d8:is8140(name),g:!!GUIDES[name]};
+  var f=findCert(name), c=f.c, v=c?VENDORS[f.v]:null;
+  if(!c){var w=VENDORS[VENDORS.length-1];w.certs.forEach(function(x){if(x[0]===name){c=x;}});if(c) v=VENDORS[0];}
+  return {v:v,c:c,col:v?v.beacon:"#bcd6ea",lvl:f.c?f.c[1]:"",dif:c?c[2]:0,hrs:c?c[3]:"",d8:is8140(name),g:!!GUIDES[name]};
 }
-function ptShow(i,openStep,anim1){
-  PT.track=i;PT.open=-1;
-  var pth=PATHS[i], sv=null;try{sv=mpLoad();}catch(err){sv=null;}
-  document.querySelectorAll("#pt-lines [data-b]").forEach(function(p){p.classList.toggle("on",+p.dataset.b===i);});
-  document.querySelectorAll("#pt-tracks .pt-tk").forEach(function(b){var on=+b.dataset.ptrack===i;b.classList.toggle("on",on);b.setAttribute("aria-pressed",String(on));});
-  var hrs=0;pth.steps.forEach(function(st){hrs+=mpHours(st[1])||0;});
-  var weeks=Math.max(1,Math.ceil(hrs/10));
-  var h='<div class="pt-head"><p class="lab"><span>'+pad2(i+1)+'</span> &nbsp;/&nbsp; '+gEsc(pth.tag)+'</p><h3>'+gEsc(pth.name)+'.</h3><p>'+gEsc(pth.line)+'</p>'+
-    '<p class="pt-sum">'+pth.steps.length+' certs &middot; about '+weeks+' weeks at 10 h a week</p></div><ol class="pt-steps">';
-  pth.steps.forEach(function(st,k){
-    var name=st[1], m=ptMeta(name), nx=pth.steps[k+1]?ptMeta(pth.steps[k+1][1]).col:m.col, have=!!(sv&&sv.have.indexOf(name)>=0);
-    var also=PATHS.map(function(p,pi){if(pi===i) return null;var at=-1;p.steps.forEach(function(x,xi){if(x[1]===name) at=xi;});return at<0?null:[pi,at,p.name];}).filter(Boolean);
+function ptMoney(n){return "$"+Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");}
+function ptK(n){return "$"+Math.round(n/1000)+"K";}
+function ptGrowth(g){return (g>0?"+":(g<0?"&minus;":""))+Math.abs(g)+"%";}
+function ptGcls(g){return g>=JOB_ALL.g?"up":(g<0?"down":"");}
+function ptJobSub(F,J){
+  if(F.mil) return J.sub;
+  var o=JOBS[J.occ];return ptK(o.pay)+" &middot; "+ptGrowth(o.g);
+}
+function ptFieldRange(F){
+  if(F.mil){var lo=1e9,hi=0;F.jobs.forEach(function(J){J.pay.forEach(function(p){lo=Math.min(lo,p[2]);hi=Math.max(hi,p[2]);});});return ["$"+(lo/1000).toFixed(1)+"K&ndash;$"+(hi/1000).toFixed(1)+"K",lo,hi];}
+  var a=1e9,b=0;F.jobs.forEach(function(J){var p=JOBS[J.occ].pay;a=Math.min(a,p);b=Math.max(b,p);});
+  return [a===b?ptK(a):ptK(a)+"&ndash;"+ptK(b),a,b];
+}
+function ptFieldSub(F){return F.mil?F.jobs.length+" ranks":F.jobs.length+" jobs &middot; "+ptFieldRange(F)[0];}
+function ptOccNote(J){
+  var o=JOBS[J.occ];
+  if(J.exact) return o.opAll?"BLS figures for "+o.t.toLowerCase()+". Openings are for all computer support jobs combined; BLS doesn't split them.":"";
+  return "BLS doesn't track "+J.name.replace(/^[A-Z][a-z]/,function(m){return m.toLowerCase();})+"s on their own. These figures are for "+o.t.toLowerCase()+", the closest BLS occupation.";
+}
+
+/* ---- the map: keyed nodes that glide between root, child and parent spots ---- */
+function ptLayout(){
+  var f=PT.f, out=[], kids=f<0?FIELDS:FIELDS[f].jobs, n=kids.length, gap=n>4?60:(n>3?68:74);
+  if(f<0) out.push({key:"it",role:"root",x:PT_RX,y:PT_RY,lab:"IT",sub:"5 fields"});
+  else{
+    out.push({key:"it",role:"parent",x:PT_PX,y:PT_PY,lab:"IT",sub:"all fields"});
+    out.push({key:"f"+f,role:"root",x:PT_RX,y:PT_RY,lab:FIELDS[f].short,sub:ptFieldSub(FIELDS[f])});
+  }
+  kids.forEach(function(K,k){
+    var y=PT_RY+(k-(n-1)/2)*gap;
+    if(f<0) out.push({key:"f"+k,role:"kid",x:PT_CX,y:y,lab:K.short,sub:ptFieldSub(K),goal:k===PT.goal});
+    else out.push({key:"f"+f+"j"+k,role:"kid",x:PT_CX,y:y,lab:K.name,sub:ptJobSub(FIELDS[f],K),on:k===PT.j});
+  });
+  return out;
+}
+function ptLines(L){
+  var root=null, svg="";L.forEach(function(n){if(n.role==="root") root=n;});
+  L.forEach(function(n,i){
+    if(n.role==="kid"){var d="M"+root.x+" "+root.y+" C "+(root.x+64)+" "+root.y+", "+(n.x-70)+" "+n.y+", "+n.x+" "+n.y;
+      svg+='<path class="pt-b'+(n.on?' on':'')+'" pathLength="100" d="'+d+'" style="--k:'+i+'"/><path class="pt-f'+(n.on?' on':'')+'" pathLength="100" d="'+d+'" style="animation-delay:-'+(i*.55).toFixed(2)+'s"/>';}
+    if(n.role==="parent") svg+='<path class="pt-up" pathLength="100" d="M'+n.x+" "+n.y+" C "+n.x+" "+(n.y+80)+", "+root.x+" "+(root.y-90)+", "+root.x+" "+root.y+'"/>';
+  });
+  return svg;
+}
+function ptNodeHTML(n){
+  return '<i aria-hidden="true"></i><span class="ptn-l"><b>'+gEsc(n.lab)+(n.goal?'<em>Your goal</em>':'')+'</b><small>'+n.sub+'</small></span>';
+}
+function ptAria(n){
+  if(n.role==="parent") return "Back to IT, all fields";
+  if(n.role==="root") return PT.f<0?"IT, the root: five fields":n.lab+". Tap to go back to IT";
+  return n.lab+(PT.f<0?", open this field":", see this job");
+}
+function ptMap(animate){
+  var host=$("#pt-tracks"), L=ptLayout(), have={}, mv=animate&&!reduced, root=null;
+  L.forEach(function(n){if(n.role==="root") root=n;});
+  host.querySelectorAll(".ptn").forEach(function(el){have[el.dataset.ptk]=el;});
+  var keep={};
+  L.forEach(function(n,i){
+    var el=have[n.key], fresh=!el;
+    if(fresh){el=document.createElement("button");el.type="button";el.className="ptn";el.dataset.ptk=n.key;host.appendChild(el);
+      if(mv){el.classList.add("is-new");el.style.left=(root.x/PT_W*100)+"%";el.style.top=(root.y/PT_H*100)+"%";}}
+    keep[n.key]=1;
+    el.innerHTML=ptNodeHTML(n);
+    el.className="ptn is-"+n.role+(n.on?" on":"")+(n.goal?" goal":"")+(fresh&&mv?" is-new":"");
+    el.setAttribute("aria-label",ptAria(n));
+    if(n.role==="kid"&&PT.f>=0) el.setAttribute("aria-pressed",String(!!n.on));else el.removeAttribute("aria-pressed");
+    el.style.setProperty("--d",(fresh&&mv?(240+i*55):0)+"ms");
+    var place=function(){el.style.left=(n.x/PT_W*100).toFixed(2)+"%";el.style.top=(n.y/PT_H*100).toFixed(2)+"%";el.classList.remove("is-new");};
+    if(fresh&&mv){void el.offsetWidth;requestAnimationFrame(function(){requestAnimationFrame(place);});}else place();
+  });
+  Object.keys(have).forEach(function(k){if(keep[k]) return;var el=have[k];
+    if(!mv){el.remove();return;}
+    el.classList.add("is-out");el.disabled=true;setTimeout(function(){if(el.classList.contains("is-out")) el.remove();},420);});
+  var g=$("#pt-lines"), svg=ptLines(L);
+  if(!mv){g.innerHTML=svg;g.classList.remove("draw");return;}
+  var t=++PT.t;g.classList.add("fade");
+  setTimeout(function(){if(t!==PT.t) return;g.innerHTML=svg;g.classList.remove("fade");g.classList.remove("draw");void g.getBoundingClientRect();g.classList.add("draw");},260);
+}
+function ptMarkJob(){
+  document.querySelectorAll("#pt-tracks .ptn.is-kid").forEach(function(el){var on=PT.f>=0&&el.dataset.ptk===("f"+PT.f+"j"+PT.j);el.classList.toggle("on",on);if(PT.f>=0) el.setAttribute("aria-pressed",String(on));});
+  document.querySelectorAll("#pt-lines .pt-b, #pt-lines .pt-f").forEach(function(p,k){var idx=Math.floor(k/2);p.classList.toggle("on",PT.f>=0&&idx===PT.j);});
+}
+
+/* ---- the trail: what the selected node means ---- */
+function ptCrumb(){
+  if(PT.f<0) return "";
+  var c='<button type="button" data-ptf="-1"'+(PT.f<0?' aria-current="true"':'')+'>IT</button>';
+  if(PT.f>=0) c+='<i aria-hidden="true">/</i><button type="button" data-ptf="'+PT.f+'"'+(PT.j<0?' aria-current="true"':'')+'>'+gEsc(FIELDS[PT.f].short)+'</button>';
+  if(PT.f>=0&&PT.j>=0) c+='<i aria-hidden="true">/</i><span aria-current="true">'+gEsc(FIELDS[PT.f].jobs[PT.j].name)+'</span>';
+  return '<p class="pt-crumb">'+c+'</p>';
+}
+function ptTrunkRow(sv,label){
+  return '<p class="pt-trunkrow"><span class="lab">'+label+'</span>'+TRUNK.map(function(t){var have=!!(sv&&sv.have.indexOf(t[1])>=0);
+    return '<button type="button" data-cert="'+gEsc(t[1])+'"'+(have?' class="have"':'')+'>'+(have?'&#10003; ':'')+gEsc(t[0])+'</button>';}).join('<i aria-hidden="true">&rarr;</i>')+'</p>';
+}
+function ptStats3(o){
+  return '<span class="pt-s3"><span><b>'+ptK(o.pay)+'</b><small>median pay</small></span><span><b class="'+ptGcls(o.g)+'">'+ptGrowth(o.g)+'</b><small>growth</small></span><span><b>'+o.op.toLocaleString("en-US")+'</b><small>openings/yr</small></span></span>';
+}
+function ptJobCard(J){
+  var o=JOBS[J.occ], maxPay=Math.max(o.pay,140000), note=ptOccNote(J);
+  return '<div class="pt-jobs"><p class="lab">What it pays &middot; BLS data</p>'+
+    '<div class="pt-job"><p class="pt-jt">'+gEsc(o.t)+'</p><div class="pt-js">'+
+      '<div><b>'+ptMoney(o.pay)+'</b><span>median pay a year</span><i class="pt-bar" aria-hidden="true"><i style="transform:scaleX('+(o.pay/maxPay).toFixed(3)+')"></i><s style="left:'+(JOB_ALL.pay/maxPay*100).toFixed(1)+'%"></s></i></div>'+
+      '<div><b class="'+ptGcls(o.g)+'">'+ptGrowth(o.g)+'</b><span>job growth, 2025&ndash;35</span>'+(o.gl?'<small>'+gEsc(o.gl)+'</small>':'')+'</div>'+
+      '<div><b>'+o.op.toLocaleString("en-US")+'</b><span>openings a year'+(o.opAll?', all support jobs':'')+'</span></div></div></div>'+
+    (note?'<p class="pt-jn">'+gEsc(note)+'</p>':'')+
+    '<p class="pt-src">Source: '+BLS_SRC+'. Median pay for all U.S. jobs: '+ptMoney(JOB_ALL.pay)+' (the tick on the bar); average growth: '+JOB_ALL.g+'%. <a href="'+gEsc(o.url)+'" target="_blank" rel="noopener noreferrer">'+gEsc(o.t)+G_ICON_EXT+'</a></p></div>';
+}
+function ptMilCard(J){
+  return '<div class="pt-jobs"><p class="lab">What it pays &middot; 2026 military pay table</p>'+
+    '<div class="pt-job"><p class="pt-jt">Basic pay a month, '+gEsc(J.sub)+'</p><div class="pt-js pt-js2">'+
+      J.pay.map(function(p){return '<div><b>'+ptMoney(p[2])+'</b><span>'+gEsc(p[0])+' &middot; '+gEsc(p[1])+'</span></div>';}).join("")+'</div></div>'+
+    '<p class="pt-jn">Basic pay only. Tax-free housing (BAH) and food (BAS) allowances come on top, and special pays can add more.</p>'+
+    '<p class="pt-src">Source: '+MIL_SRC+'. Growth and openings don\'t apply: the Coast Guard sets its own manning.</p></div>';
+}
+function ptStepsHTML(F,J,sv){
+  var steps=J.steps, h='';
+  if(!steps.length) return '<p class="pt-none">'+gEsc(J.stepsNote||"")+'</p>';
+  h+='<ol class="pt-steps">';
+  steps.forEach(function(st,k){
+    var name=st[1], m=ptMeta(name), nx=steps[k+1]?ptMeta(steps[k+1][1]).col:m.col, have=!!(sv&&sv.have.indexOf(name)>=0);
+    var also=[];FIELDS.forEach(function(F2,fi){F2.jobs.forEach(function(J2,ji){if(F2===F&&J2===J) return;J2.steps.forEach(function(s2){if(s2[1]===name) also.push([fi,ji,J2.name]);});});});
+    var nextTxt=k+1<steps.length?'Next: <b>'+gEsc(steps[k+1][0])+'</b>':'Top of the '+gEsc(J.name)+' path';
     var dots="";for(var d=1;d<=5;d++) dots+='<i class="'+(d<=m.dif?"on":"")+'"></i>';
     h+='<li class="pt-st'+(have?' have':'')+'" style="--c:'+gEsc(m.col)+';--n:'+gEsc(nx)+';--k:'+k+'">'+
       '<button type="button" class="pt-n" data-pstep="'+k+'" aria-expanded="false" aria-controls="pt-m'+k+'">'+
@@ -2867,18 +3386,50 @@ function ptShow(i,openStep,anim1){
         '<span class="pt-chev" aria-hidden="true">+</span></button>'+
       '<div class="pt-more" id="pt-m'+k+'" inert><div class="pt-in">'+
         '<p>'+gEsc(CERT_NOTE[name]||"")+'</p>'+
-        '<p class="pt-dif"><span class="lab">Difficulty</span><span class="pt-dd" aria-label="'+m.dif+' of 5">'+dots+'</span>'+(k+1<pth.steps.length?'<span class="pt-next">Next: <b>'+gEsc(pth.steps[k+1][0])+'</b></span>':'<span class="pt-next">Top of the '+gEsc(pth.name)+' track</span>')+'</p>'+
-        (also.length?'<p class="pt-also"><span class="lab">Also on</span>'+also.map(function(a){return '<button type="button" data-ptrack="'+a[0]+'" data-pstep="'+a[1]+'">'+gEsc(a[2])+' &middot; step '+(a[1]+1)+'</button>';}).join("")+'</p>':'')+
+        '<p class="pt-dif"><span class="lab">Difficulty</span><span class="pt-dd" aria-label="'+m.dif+' of 5">'+dots+'</span><span class="pt-next">'+nextTxt+'</span></p>'+
+        (also.length?'<p class="pt-also"><span class="lab">Also on</span>'+also.slice(0,6).map(function(a){return '<button type="button" data-ptf="'+a[0]+'" data-ptj="'+a[1]+'">'+gEsc(a[2])+'</button>';}).join("")+'</p>':'')+
         '<div class="pt-acts"><button type="button" class="g-btn" data-cert="'+gEsc(name)+'"><span class="g-btn-l">'+(m.g?'Open the guide &rarr;':'See it on the globe &rarr;')+'</span></button></div>'+
       '</div></div></li>';
   });
-  h+='</ol>';
-  var tr=$("#pt-trail");tr.innerHTML=h;
-  if(anim1&&!reduced){
-    tr.classList.remove("draw");void tr.offsetWidth;tr.classList.add("draw");
-    anim(tr.querySelector(".pt-head"),[{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:520,easing:EZ});
+  return h+'</ol>';
+}
+function ptTrail(animate){
+  var sv=null;try{sv=mpLoad();}catch(err){sv=null;}
+  var f=PT.f, j=PT.j, h=ptCrumb();
+  if(f<0){
+    h+='<div class="pt-head"><h3>IT.</h3><p>Every Coast Guard IT career starts at the same root, then splits into five fields. Tap a field to see the jobs inside it, what they pay and the certs that get you there.</p></div>'+
+      ptTrunkRow(sv,"Every field starts with")+
+      '<div class="pt-list" role="list">'+FIELDS.map(function(F,i){var r=ptFieldRange(F);
+        return '<button type="button" class="pt-row" role="listitem" data-ptf="'+i+'"><span class="pt-rt"><b>'+gEsc(F.name)+(i===PT.goal?' <em>Your goal</em>':'')+'</b><small>'+gEsc(F.tag)+' &middot; '+(F.mil?F.jobs.length+' ranks':F.jobs.length+' jobs')+'</small></span>'+
+          '<span class="pt-rp"><b>'+r[0]+'</b><small>'+(F.mil?'basic pay a month':'median pay a year')+'</small></span><span class="pt-ra" aria-hidden="true">&rarr;</span></button>';}).join("")+'</div>'+
+      '<p class="pt-src">Pay: '+BLS_SRC+'; Coast Guard ranks: '+MIL_SRC+'.</p>';
+  }else if(j<0){
+    var F=FIELDS[f];
+    h+='<div class="pt-head"><p class="lab"><span>'+pad2(f+1)+'</span> &nbsp;/&nbsp; '+gEsc(F.tag)+'</p><h3>'+gEsc(F.name)+'.</h3><p>'+gEsc(F.line)+'</p>'+
+      '<p class="pt-sum">'+(F.mil?F.jobs.length+' ranks, from petty officer to warrant officer':F.jobs.length+' jobs &middot; tap one for its full path')+'</p></div>'+
+      (F.mil?'':ptTrunkRow(sv,"Starts with"))+
+      '<div class="pt-list" role="list">'+F.jobs.map(function(J,k){
+        return '<button type="button" class="pt-row pt-jrow" role="listitem" data-ptf="'+f+'" data-ptj="'+k+'"><span class="pt-rt"><b>'+gEsc(J.name)+'</b><small>'+(F.mil?gEsc(J.sub):gEsc(JOBS[J.occ].t))+'</small></span>'+
+          (F.mil?'<span class="pt-rp"><b>'+ptMoney(J.pay[J.pay.length-1][2])+'</b><small>'+gEsc(J.pay[J.pay.length-1][0])+' a month, '+gEsc(J.pay[J.pay.length-1][1])+'</small></span>':ptStats3(JOBS[J.occ]))+
+          '<span class="pt-ra" aria-hidden="true">&rarr;</span></button>';}).join("")+'</div>'+
+      (F.mil?'<p class="pt-jn pt-pen">Retire at 20 and the pension pays for life: under the Blended Retirement System, 2% of your highest three years of basic pay for each year served, so 40% at 20 years.</p><p class="pt-src">Source: '+MIL_SRC+'. Rank duties vary by unit and billet.</p>':
+        '<p class="pt-src">Source: '+BLS_SRC+'. Growth is 2025&ndash;35; average for all jobs is '+JOB_ALL.g+'%.</p>');
+  }else{
+    var F2=FIELDS[f], J=F2.jobs[j], hrs=0;
+    (F2.mil?J.steps:TRUNK.concat(J.steps)).forEach(function(st){hrs+=mpHours(st[1])||0;});
+    var weeks=Math.max(1,Math.ceil(hrs/10));
+    h+='<div class="pt-head"><p class="lab"><span>'+pad2(j+1)+'</span> &nbsp;/&nbsp; '+gEsc(F2.name)+'</p><h3>'+gEsc(J.name)+'.</h3><p>'+gEsc(J.line)+'</p>'+
+      '<p class="pt-sum">'+(F2.mil?(J.steps.length+' suggested cert'+(J.steps.length===1?'':'s')+' for this rank'):('Trunk + '+J.steps.length+' cert'+(J.steps.length===1?'':'s')+' &middot; about '+weeks+' weeks at 10 h a week'))+'</p></div>'+
+      (F2.mil?ptMilCard(J):ptJobCard(J))+
+      (F2.mil?'':ptTrunkRow(sv,"After the trunk"))+
+      ptStepsHTML(F2,J,sv)+
+      '<p class="pt-back"><button type="button" class="pt-bk" data-ptf="'+f+'">&larr; All '+gEsc(F2.short)+' '+(F2.mil?'ranks':'jobs')+'</button></p>';
   }
-  if(openStep>=0) setTimeout(function(){ptOpen(openStep);var b=tr.querySelector('[data-pstep="'+openStep+'"]');if(b){b.focus({preventScroll:true});b.scrollIntoView({block:"nearest",behavior:reduced?"auto":"smooth"});}},anim1&&!reduced?380:0);
+  var tr=$("#pt-trail");tr.innerHTML=h;
+  if(animate&&!reduced){
+    tr.classList.remove("draw");void tr.offsetWidth;tr.classList.add("draw");
+    anim(tr,[{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:520,easing:EZ});
+  }
 }
 function ptOpen(k){
   PT.open=k;
@@ -2887,6 +3438,57 @@ function ptOpen(k){
     li.classList.toggle("open",on);b.setAttribute("aria-expanded",String(on));
     if(on) m.removeAttribute("inert");else m.setAttribute("inert","");
   });
+}
+/* move to a field (f) and job (j); -1 means "none" */
+function ptGo(f,j,animate){
+  f=f==null?-1:f;j=j==null?-1:j;
+  if(f>=FIELDS.length||f<-1) f=-1;if(f<0||j>=FIELDS[f].jobs.length) j=-1;
+  var sameMap=f===PT.f;
+  PT.f=f;PT.j=j;PT.open=-1;
+  $("#ptree").dataset.level=f<0?"it":(j<0?"field":"job");
+  if(sameMap&&animate) ptMarkJob();else ptMap(animate);
+  ptTrail(animate);
+}
+function ptTarget(f,j){PT.f=f;PT.j=j==null?-1:j;PT.open=-1;ptRender(false);}
+function ptRender(animate){if(!PT.ready) return;ptMap(false);ptMarkJob();ptTrail(animate);$("#ptree").dataset.level=PT.f<0?"it":(PT.j<0?"field":"job");}
+function ptInit(){
+  if(PT.ready||!$("#ptree")) return;PT.ready=true;
+  var sv=null;try{sv=mpLoad();}catch(err){sv=null;}
+  if(sv&&PT_GOAL[sv.goal]) FIELDS.forEach(function(F,i){if(F.id===PT_GOAL[sv.goal]) PT.goal=i;});
+  ptRender(false);
+  $("#ptree").addEventListener("click",function(e){
+    var n=e.target.closest(".ptn");
+    if(n){var k=n.dataset.ptk;
+      if(n.classList.contains("is-parent")||(n.classList.contains("is-root")&&PT.f>=0)){ptGo(-1,-1,true);return;}
+      if(n.classList.contains("is-root")) return;
+      var m=k.match(/^f(\d+)(?:j(\d+))?$/);if(!m) return;
+      if(m[2]==null) ptGo(+m[1],-1,true);
+      else{ptGo(+m[1],+m[2],true);if(window.innerWidth<=900){var tr=$("#pt-trail");setTimeout(function(){tr.scrollIntoView({block:"start",behavior:reduced?"auto":"smooth"});},80);}}
+      return;}
+    var b=e.target.closest("[data-ptf]");
+    if(b){var f=+b.dataset.ptf, j=b.dataset.ptj!=null?+b.dataset.ptj:-1;ptGo(f,j,true);
+      if(window.innerWidth<=900){var to=j>=0?$("#pt-trail"):$("#pt-map");if(to.getBoundingClientRect().top<0) to.scrollIntoView({block:"start",behavior:reduced?"auto":"smooth"});}
+      return;}
+    var st=e.target.closest("[data-pstep]");
+    if(st){var kk=+st.dataset.pstep;ptOpen(PT.open===kk?-1:kk);}
+  });
+}
+/* small tree for a cert's own page: IT -> the fields -> the jobs it leads to */
+function ptCertMini(name){
+  var trunk=TRUNK.some(function(t){return t[1]===name;}), rows={}, order=[];
+  var add=function(fi){if(!rows[fi]){rows[fi]=[];order.push(fi);}};
+  if(trunk) FIELDS.forEach(function(F,fi){if(!F.mil) add(fi);});
+  FIELDS.forEach(function(F,fi){F.jobs.forEach(function(J,ji){J.steps.forEach(function(s){if(s[1]===name){add(fi);if(rows[fi].indexOf(ji)<0) rows[fi].push(ji);}});});});
+  if(!order.length) return '';
+  order.sort(function(a,b){return a-b;});
+  var nj=0;order.forEach(function(fi){nj+=rows[fi].length;});
+  return '<div class="ptm"><div class="ptm-h"><p class="lab">On the career tree</p><span>'+(trunk?'Trunk cert &middot; every field starts here':'Leads to '+nj+' job'+(nj===1?'':'s')+' in '+order.length+' field'+(order.length===1?'':'s'))+'</span></div>'+
+    '<div class="ptm-tree"><button type="button" class="ptm-it" data-ptf="-1" aria-label="Open the career tree at IT">IT</button><div class="ptm-rows">'+
+    order.map(function(fi){var F=FIELDS[fi];
+      return '<div class="ptm-row"><button type="button" class="ptm-f" data-ptf="'+fi+'">'+gEsc(F.short)+'</button><span class="ptm-js">'+
+        (rows[fi].length?rows[fi].map(function(ji){var J=F.jobs[ji];return '<button type="button" class="ptm-j" data-ptf="'+fi+'" data-ptj="'+ji+'"><b>'+gEsc(J.name)+'</b><small>'+(F.mil?gEsc(J.sub):ptK(JOBS[J.occ].pay))+'</small></button>';}).join(""):'<small class="ptm-all">starts here</small>')+
+      '</span></div>';}).join("")+
+    '</div></div><p class="ptm-src">Pay is the BLS median for the closest occupation; Coast Guard ranks show the rank. Tap a job for growth, openings and its full path.</p></div>';
 }
 setTimeout(ptInit,0);
 
@@ -2929,9 +3531,10 @@ function setSheet(p){
 }
 function placeTab(){
   var t=sheet.querySelector('.tabs [aria-selected="true"]'), ind=sheet.querySelector(".tab-ind");
-  if(!t||!ind) return;ind.style.transform="translateX("+t.offsetLeft+"px) scaleX("+(t.offsetWidth/100)+")";
+  if(!ind) return;ind.style.opacity=t?"":"0";if(!t) return;ind.style.transform="translateX("+t.offsetLeft+"px) scaleX("+(t.offsetWidth/100)+")";
 }
-function setTabs(name){sheet.querySelectorAll(".tabs [data-go]").forEach(function(b){b.setAttribute("aria-selected",String(b.dataset.go===name));});placeTab();}
+function setTabs(name){var cur=null;sheet.querySelectorAll(".tabs [data-go]").forEach(function(b){var on=b.dataset.go===name;b.setAttribute("aria-selected",String(on));if(on) cur=b;});placeTab();
+  var bar=sheet.querySelector(".tabs");if(cur&&bar&&bar.scrollWidth>bar.clientWidth+2){var l=cur.offsetLeft-24, r=cur.offsetLeft+cur.offsetWidth+24-bar.clientWidth;if(bar.scrollLeft>l) bar.scrollTo({left:Math.max(0,l),behavior:reduced?"auto":"smooth"});else if(bar.scrollLeft<r) bar.scrollTo({left:r,behavior:reduced?"auto":"smooth"});}}
 function swapTitle(txt){
   var h=$("#ed-title");
   var a=anim(h,[{opacity:1,transform:"none"},{opacity:0,transform:"translateY(-12px)"}],{duration:220,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"});
@@ -2977,7 +3580,8 @@ async function showView(name){
   if(name==="home"){var c=$("#sb-count");c.textContent=c.dataset.n;}
   if(name==="mine") mpEnter();
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
-  if(name==="paths"&&PT.ready) ptShow(PT.track,-1,true);
+  if(name==="paths") ptRender(true);
+  if(name==="exam") exEnter();
 }
 
 /* drag the bar */
@@ -3045,6 +3649,7 @@ var MP_Q=[
 function mpLoad(){
   var d=gGet(MP_KEY);if(!d||typeof d!=="object"||Array.isArray(d)) return null;
   var goals=PATHS.map(function(p){return p.name;});
+  if(d.goal==="Stay 20") d.goal="20 year career";   /* renamed in v2.19 */
   if(["new","mid","sr"].indexOf(d.exp)<0||goals.indexOf(d.goal)<0||[6,10,15].indexOf(d.hpw)<0||["yes","no"].indexOf(d.wgu)<0||!Array.isArray(d.have)) return null;
   return {exp:d.exp,goal:d.goal,hpw:d.hpw,wgu:d.wgu,have:d.have.filter(function(x,i,arr){return typeof x==="string"&&MP_CERTS.label.hasOwnProperty(x)&&arr.indexOf(x)===i;}).slice(0,40)};
 }
@@ -3319,13 +3924,16 @@ sheet.addEventListener("click",function(e){
     try{navigator.clipboard.writeText(txt).then(function(){toast("Copied "+txt);},fallback);}catch(err){fallback();}
     return;
   }
-  if(t.dataset.cert){var f=findCert(t.dataset.cert), name=t.dataset.cert;closeSheet().then(function(){dive(f.v,name);});return;}
+  if(t.dataset.cert){var f=findCert(t.dataset.cert), name=t.dataset.cert, vi=f.c?f.v:VENDORS.length-1;closeSheet().then(function(){dive(vi,name);});return;}
   var g=t.dataset.go;
   if(ORDER.indexOf(g)>=0) showView(g);
   else if(g==="vendors") closeSheet().then(function(){shine(cta);});
   else if(g==="wgu") closeSheet().then(function(){dive(VENDORS.length-1);});
 });
-window.addEventListener("resize",function(){setSheet(sheetP);placeTab();});
+function tabsEdge(){var b=sheet.querySelector(".tabs");if(!b) return;var x=b.scrollLeft, m=b.scrollWidth-b.clientWidth;b.classList.toggle("more-l",x>2);b.classList.toggle("more-r",m>2&&x<m-2);}
+sheet.querySelector(".tabs").addEventListener("scroll",tabsEdge,{passive:true});
+window.addEventListener("resize",function(){setSheet(sheetP);placeTab();tabsEdge();});
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(tabsEdge);tabsEdge();
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(placeTab);
 setSheet(0);
 
@@ -3533,7 +4141,7 @@ var GUIDES={
 
 GUIDES["A+"]={
   id:"aplus",
-  lead:"Where most IT careers start, and the first cert on the Stay 20 path. Two exams prove you can build, fix and support the hardware, networks and operating systems every unit runs on.",
+  lead:"Where most IT careers start, and the first cert on the 20 year career path. Two exams prove you can build, fix and support the hardware, networks and operating systems every unit runs on.",
   checked:"Nov 6, 2026",
   verLabel:"Exam (take both)",
   objSub:"A+ is two exams. Switch between Core 1 and Core 2 above; each has its own domains and its own progress. Tick objectives off as you study; your progress stays on this device.",
@@ -3725,8 +4333,8 @@ GUIDES["A+"]={
        {src:"Ticket 4476",text:"A new password policy was pushed, but this PC hasn't picked it up. Apply it now.",a:6,why:"gpupdate /force reapplies all Group Policy settings immediately."}]}
   ],
   before:[["Tech+","Optional if you've never worked in IT. It replaced ITF+.",0]],
-  hereNote:"The first cert on the Stay 20 path",
-  mapSub:"A+ starts the Stay 20 path and sets up every other one. Tap any cert to jump to it.",
+  hereNote:"The first cert on the 20 year career path",
+  mapSub:"A+ starts the 20 year career path and sets up every other one. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 20 continuing education units (CEUs), or by earning a higher CompTIA cert such as Network+ or Security+."},
     {lab:"DoD 8570",big:"IAT I",text:"Under the old 8570 baseline, which many job posts still quote."},
@@ -3904,8 +4512,8 @@ GUIDES["Network+"]={
        {src:"Workstation, nslookup + ping",log:"> nslookup intranet\nServer: 10.10.20.9\n*** Request to 10.10.20.9 timed out\n> ping 10.10.20.40   (intranet's IP)\nReply from 10.10.20.40: time<1ms",a:4,why:"The host itself is reachable by IP; only name lookups fail, so DNS is misconfigured or unreachable."}]}
   ],
   before:[["A+","CompTIA recommends A+ plus 9–12 months of hands-on networking work"]],
-  hereNote:"Second step on the Stay 20 path, first on the Network path",
-  mapSub:"Network+ is the foundation for the Stay 20 and Network paths, and everything above them. Tap any cert to jump to it.",
+  hereNote:"Second step on the 20 year career path, first on the Network path",
+  mapSub:"Network+ is the foundation for the 20 year career and Network paths, and everything above them. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 30 continuing education units (CEUs), or by earning a higher CompTIA cert such as Security+."},
     {lab:"DoD 8570",big:"IAT I",text:"Under the old 8570 baseline, which many job posts still quote."},
@@ -4106,7 +4714,7 @@ GUIDES["CySA+"]={
   lead:"The blue-team analyst cert. It proves you can work a SOC: spot malicious activity, run vulnerability management, respond to incidents and report what happened. The natural next step after Security+.",
   checked:"Nov 6, 2026",
   planHours:100,
-  laneOnly:["Stay 20","Cyber"],
+  laneOnly:["20 year career","Cyber"],
   versions:{
     v4:{code:"CS0-004",label:"V4",status:"Launched Jun 23, 2026 · passing 750",
       note:"The new version. Adds AI in security operations and more identity and cloud detection. Pick this if you'll test after December 22, 2026.",
@@ -4280,7 +4888,7 @@ GUIDES["CySA+"]={
        {req:"Antivirus caught the EICAR test file on a help desk laptop. Ticket #8812 says IT is testing AV coverage today.",a:[1,3],why:"EICAR is a harmless test file and the activity is approved. Close it and note the ticket so the record shows why."}]}
   ],
   before:[["Security+","The foundation CySA+ builds on"],["SAL1","TryHackMe's hands-on SOC cert is great practice first","SAL1 · Security Analyst L1"]],
-  hereNote:"The analyst step on the Stay 20 and Cyber paths",
+  hereNote:"The analyst step on the 20 year career and Cyber paths",
   mapSub:"CySA+ turns Security+ knowledge into analyst skills, and leads to CISSP, PenTest+ and SecurityX. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 60 continuing education units (CEUs), or by earning a higher CompTIA cert such as SecurityX."},
@@ -4891,7 +5499,7 @@ GUIDES["SSCP"]={
   checked:"Nov 7, 2026",
   planHours:75,
   planSub:"Set how many hours a week you can give it. The plan splits about 75 hours across the seven domains by exam weight, then saves the last stretch for practice tests and PBQs.",
-  laneOnly:["Stay 20","Cyber"],
+  laneOnly:["20 year career","Cyber"],
   versions:{
     v25:{code:"SSCP",label:"2025 outline",status:"In effect since Oct 1, 2025 · passing 700",
       note:"Since October 1, 2025 the SSCP is an adaptive (CAT) exam: 100 to 125 questions in 2 hours. Older books may describe the earlier fixed-length exam, and may call Domain 1 by its old name, Security Operations and Administration. The weights didn't change.",
@@ -5342,11 +5950,11 @@ GUIDES["CCSP"]={
 
 GUIDES["CISSP"]={
   id:"cissp",
-  lead:"ISC2's flagship cert, Certified Information Systems Security Professional. It proves you can design, run and lead a whole security program, from risk and policy to architecture, identity and operations. It caps the Stay 20 path and is built for experienced people moving into senior and leadership roles.",
+  lead:"ISC2's flagship cert, Certified Information Systems Security Professional. It proves you can design, run and lead a whole security program, from risk and policy to architecture, identity and operations. It caps the 20 year career path and is built for experienced people moving into senior and leadership roles.",
   checked:"Nov 7, 2026",
   planHours:200,
   planSub:"Set how many hours a week you can give it. The plan splits about 200 hours across the eight domains by exam weight, then saves the last stretch for practice tests and PBQs.",
-  laneOnly:["Stay 20"],
+  laneOnly:["20 year career"],
   versions:{
     v24:{code:"CISSP",label:"2024 outline",status:"In effect since Apr 15, 2024 · passing 700",
       note:"ISC2 says a new CISSP outline takes effect April 15, 2027. Testing before then? Use this one. Testing on or after it? Check ISC2's new outline first; early reports describe small weight shifts and more on passwordless sign-in, post-quantum crypto and AI. Since September 2026, ISC2's exam guidance also weaves AI security into all eight domains.",
@@ -5590,7 +6198,7 @@ GUIDES["CISSP"]={
   before:[["Security+","The DoD baseline. It can also waive a year of CISSP experience"],["CySA+","Analyst skills, and it's on the experience waiver list too"],["SSCP","ISC2's practitioner step before CISSP"]],
   next:[["CCSP","Cloud security. An active CISSP covers CCSP's whole experience requirement"],["SecurityX","Hands-on enterprise security engineering"]],
   hereNote:"The senior security and leadership cert",
-  mapSub:"CISSP caps the Stay 20 path. Most people get there through Security+, CySA+ and years of hands-on work. Tap any cert to jump to it.",
+  mapSub:"CISSP caps the 20 year career path. Most people get there through Security+, CySA+ and years of hands-on work. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Earn 120 continuing professional education (CPE) credits every three years. ISC2 suggests about 40 a year."},
     {lab:"Yearly fee",big:"$135",text:"CISSP holders pay a $135 annual maintenance fee (AMF), due each year on your certification anniversary.",after:"One AMF covers all your ISC2 certs, so adding CCSP or SSCP doesn't add a second fee."},
@@ -6060,9 +6668,7 @@ function renderGuide(i,name){
   guideName=name;panel.classList.add("in-guide");gSet("cgcp.last",{k:"g",g:name,t:Date.now()});
   if(flex){flex.destroy();flex=null;}
   if(gIO){gIO.disconnect();gIO=null;}
-  panel.querySelector("#p-crumb").textContent="(CG_CERT_PATH) / "+v.name+" / "+name;
   setBackLabel(v.name);
-  var mk=panel.querySelector(".p-mock");if(mk){mk.textContent="Checked "+G.checked;mk.classList.add("ok");}
   gVer=gGet("cgcp."+G.id+".ver");if(typeof gVer!=="string"||!Object.prototype.hasOwnProperty.call(G.versions,gVer)) gVer=Object.keys(G.versions)[0];
   gHpw=gGet("cgcp."+G.id+".hpw");if([6,10,15].indexOf(gHpw)<0) gHpw=10;
   var c=v.certs.filter(function(x){return x[0]===name;})[0]||["",""," ","",""];
@@ -6091,6 +6697,7 @@ function renderGuide(i,name){
   h+='<section class="g-sec" id="g-plan" data-sec="plan">'+head(2,"plan","Your study plan.",gEsc(G.planSub||"Set how many hours a week you can give it. The plan splits about 80 hours across the domains by exam weight, then saves the last stretch for practice tests and PBQs."))+
      '<div class="g-hpw g-rv"><span class="lab">Hours per week</span><div class="seg" id="g-hseg" role="group" aria-label="Hours per week">'+[6,10,15].map(function(n){return '<button type="button" data-h="'+n+'" aria-pressed="'+(n===gHpw)+'">'+n+' h</button>';}).join("")+'<span class="seg-ind" aria-hidden="true"></span></div><span class="g-hpw-out" id="g-hpw-out"></span></div>'+
      '<ol class="g-weeks g-rv" id="g-weeks"></ol>'+
+     '<div class="g-exam g-rv"><p><b>Booked your exam?</b> Set the date and get a countdown with a day-by-day plan built from this guide.</p><button type="button" class="g-btn ghost" data-goto="exam" data-excert="'+gEsc(name)+'"><span class="g-btn-l">Set my exam date &rarr;</span></button></div>'+
      '<div class="g-method g-rv">'+G.method.map(function(m,k){return '<div class="g-m"><span class="g-m-n">'+pad2(k+1)+'</span><b>'+gEsc(m[0])+'</b><p>'+gEsc(m[1])+'</p></div>';}).join("")+'</div>'+
      '<div class="g-tips g-rv"><p class="lab">Exam day</p><ul>'+G.tips.map(function(t){return '<li><b>'+gEsc(t[0])+'.</b> '+gEsc(t[1])+'</li>';}).join("")+'</ul></div></section>';
   // 03 resources
@@ -6137,8 +6744,9 @@ function renderGuide(i,name){
   body.querySelector("#g-ptabs").addEventListener("click",function(e){var b=e.target.closest("[data-p]");if(!b) return;gSyncSeg(this,"p",b.dataset.p);gPbq(G,+b.dataset.p,true);});
   if(!body.dataset.gwired) body.dataset.gwired="1", body.addEventListener("click",function(e){
     if(!guideName) return;
-    var t=e.target.closest("[data-goto],[data-gocert]");if(!t||!body.contains(t)) return;
-    if(t.dataset.goto) goPage(t.dataset.goto);
+    var t=e.target.closest("[data-goto],[data-gocert],[data-ptf]");if(!t||!body.contains(t)) return;
+    if(t.dataset.ptf!=null){ptTarget(+t.dataset.ptf,t.dataset.ptj!=null?+t.dataset.ptj:-1);goPage("paths");return;}
+    if(t.dataset.goto){if(t.dataset.excert) exPreset(t.dataset.excert);goPage(t.dataset.goto);}
     else{var en=sByName(t.dataset.gocert);if(en) openCertFrom(en);}
   });
   gVersion(G,false);gPlan(G,false);gQuizStart(G,false);gPbq(G,0,false);gRoad(G);
@@ -6418,6 +7026,7 @@ function gRoad(G){
   el.innerHTML='<div class="g-rcol"><p class="lab">Before</p>'+(before.length?before.map(function(b){return '<div class="g-rb">'+(b[2]===0?'<span class="g-node off">'+gEsc(b[0])+'</span>':node(b[0],typeof b[2]==="string"?b[2]:b[0]))+'<small>'+gEsc(b[1])+'</small></div>';}).join(""):'<small>Nothing required.</small>')+'</div>'+
     '<div class="g-rcol g-rhere"><p class="lab">You are here</p><div class="g-node here" aria-current="true">'+gEsc(name)+'</div><small>'+gEsc(G.hereNote||"")+'</small></div>'+
     '<div class="g-rcol g-rnext"><p class="lab">'+(G.next?'Next':'Next, by path')+'</p>'+(G.next?G.next.map(function(b){return '<div class="g-rb">'+node(b[0],typeof b[2]==="string"?b[2]:b[0])+'<small>'+gEsc(b[1])+'</small></div>';}).join(""):'')+(G.next?[]:lanes).map(function(l){return '<div class="g-lane"><span class="g-lname">'+gEsc(l.name)+'<small>'+gEsc(l.tag)+'</small></span><span class="g-lsteps">'+l.steps.map(function(s,k){return '<span class="g-step">'+(k?'<i aria-hidden="true">&rarr;</i>':'')+node(s[0],s[1])+'</span>';}).join("")+'</span></div>';}).join("")+'<button type="button" class="g-link mp-road" data-goto="mine">Not sure what\'s next? Build my path &rarr;</button></div>';
+  el.insertAdjacentHTML("beforeend",ptCertMini(name));
   specScan(el);
 }
 
@@ -6543,7 +7152,7 @@ var ALIAS={"A+":"a plus core 1 core 2 220-1101 220-1102 220-1201 220-1202 v15 he
  "Security Specialty":"scs-c02 scs-c03 aws amazon","Azure Fundamentals":"az-900 microsoft","Azure Administrator":"az-104 microsoft","Azure Security Engineer":"az-500 microsoft",
  "Project+":"project plus pk0-005 project management"};
 var POPULAR=["Security+","Network+","CCNA","CISSP","SAL1 · Security Analyst L1","Cloud Practitioner"];
-var FILTERS=[["all","All"],["Stay 20","Stay 20"],["Cyber eng","Cyber"],["Cloud security","Cloud"],["Network eng","Network"],["d8140","DoD 8140"]];
+var FILTERS=[["all","All"],["20 year career","20 year career"],["Cyber eng","Cyber"],["Cloud security","Cloud"],["Network eng","Network"],["d8140","DoD 8140"]];
 function snorm(s){return String(s).toLowerCase().replace(/\+/g," plus ").replace(/[^a-z0-9]+/g," ").trim();}
 function sesc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 var SIDX=[];
@@ -6565,9 +7174,11 @@ var SIDX=[];
     SIDX.push({kind:"vendor",key:"v:"+v.id,name:v.name,v:i,fields:[[snorm(v.name),90],[snorm(v.short+" "+v.id+(v.id==="thm"?" try hack me":"")+(v.id==="aws"?" amazon web services":"")),60],[snorm(v.blurb),10]]});
   });
   SIDX.push({kind:"page",key:"p:cool",page:"cool",name:"CG COOL funding",sub:"Explore · how to get certs paid for",fields:[[snorm("cg cool funding"),95],[snorm("cool credentialing opportunities online tuition voucher reimbursement pay paid money funding exam fee"),55]]});
+  SIDX.push({kind:"page",key:"p:exam",page:"exam",name:"Exam countdown",sub:"Explore · test date, countdown, day-by-day plan",fields:[[snorm("exam countdown"),95],[snorm("exam date test date countdown study plan schedule calendar day by day days left when is my exam"),60]]});
   SIDX.push({kind:"page",key:"p:compare",page:"compare",name:"Compare certs",sub:"Explore · two certs side by side",fields:[[snorm("compare certs"),95],[snorm("compare versus vs side by side difference which is better which cert harder cheaper"),60]]});
   SIDX.push({kind:"page",key:"p:mine",page:"mine",name:"My path",sub:"Explore · 5 questions, your own cert roadmap",fields:[[snorm("my path"),95],[snorm("build my path quiz where do i start what cert first next which cert plan personal roadmap"),60]]});
-  SIDX.push({kind:"page",key:"p:paths",page:"paths",name:"Career paths",sub:"Explore · stay 20, cloud, network, cyber",fields:[[snorm("career paths"),95],[snorm("roadmap road map stay 20 cloud network cyber civilian contractor plan"),55]]});
+  SIDX.push({kind:"page",key:"p:paths",page:"paths",name:"Career paths",sub:"Explore · IT tree: 5 fields, the jobs and their pay",fields:[[snorm("career paths"),95],[snorm("roadmap road map path tree branch trunk soc analyst pen testing pentest security engineering grc governance risk compliance systems admin salary pay jobs job growth openings bls stay 20 twenty year career 20 year career cloud network cyber civilian contractor plan"),55]]});
+  FIELDS.forEach(function(F,fi){F.jobs.forEach(function(J,ji){SIDX.push({kind:"page",key:"p:job:"+J.id,page:"paths",pt:[fi,ji],name:J.name,sub:"Career tree · "+F.name+" · "+(F.mil?J.sub:"$"+Math.round(JOBS[J.occ].pay/1000)+"K median pay"),fields:[[snorm(J.name),90],[snorm(F.name+" job career salary pay "+(J.occ?JOBS[J.occ].t:"coast guard rank enlisted")),40]]});});});
 })();
 function sTok(tok,f){
   var t=f[0];if(!t) return 0;
@@ -6737,16 +7348,17 @@ async function srchPick(e){
   if(!e) return;
   sRemember(e);
   await srchClose(true);
-  if(e.kind==="page"){goPage(e.page);return;}
+  if(e.kind==="page"){if(e.pt) ptTarget(e.pt[0],e.pt[1]);goPage(e.page);return;}
   openCertFrom(e);
 }
 function setViewNow(name){
-  if(name===shView) return;
+  if(name===shView){if(name==="exam") exEnter();return;}
   var cur=$("#sv-"+shView);cur.hidden=true;cur.classList.remove("drawn");
   $("#sv-"+name).hidden=false;shView=name;setTabs(name);$("#ed-title").textContent=TITLES[name];
   if(name==="mine") mpEnter();
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
-  if(name==="paths"&&PT.ready) ptShow(PT.track,-1,false);
+  if(name==="paths") ptRender(false);
+  if(name==="exam") exEnter();
 }
 async function goExplore(){
   if(state!=="open"||switching||guideBusy) return;
@@ -6756,7 +7368,7 @@ async function goExplore(){
 async function goPage(name){
   if(state==="open") await back();
   if(state!=="idle") return;
-  if(sheet.classList.contains("live")){openSheet();showView(name);return;}
+  if(sheet.classList.contains("live")){openSheet();if(name===shView){if(name==="exam") exEnter();}else showView(name);return;}
   setViewNow(name);openSheet();
 }
 srchIn.addEventListener("input",function(){srchRender();});
@@ -7512,7 +8124,17 @@ function stRender(){
   if(!stEl) return;
   var L=null;try{L=stLast();}catch(err){L=null;}
   var h, links='';
-  if(L&&L.k==="g"){
+  var EX=null, exMs=0;try{EX=exLoad();if(EX) exMs=exTarget(EX)-new Date();}catch(err){EX=null;}
+  var mini=document.getElementById("ex-mini"), miniL=document.getElementById("ex-mini-l");
+  if(mini){if(EX&&exMs>0){var dl=Math.ceil(exMs/86400000);mini.textContent=dl;miniL.textContent=(dl===1?"day":"days")+" to "+EX.c.split(" ")[0];}else{mini.textContent="--";miniL.textContent="days to go";}}
+  if(EX&&exMs>-86400000){
+    var EP=exPlan(EX), tdy=exISO(new Date()), tk=EP.days.filter(function(x){return x.iso===tdy;})[0], dn=EP.days.filter(function(x){return EX.done.indexOf(x.iso)>=0;}).length;
+    var dleft=Math.ceil(exMs/86400000), when=exMs<=0?"is today":(dleft===1?"in 1 day":"in "+dleft+" days");
+    var sub2=exMs<=0?"Good luck. You've got this.":(tk?"Today: "+tk.title+" · "+EX.h+" h"+(EX.done.indexOf(tdy)>=0?" · done":""):"Rest day today");
+    h='<button type="button" class="st-card" data-st="exam" style="--c:'+gEsc(VENDORS[findCert(EX.c).v].beacon)+';--p:'+(EP.n?(dn/EP.n):0).toFixed(3)+'" aria-label="'+gEsc("Exam countdown. "+EX.c+" "+when+". "+sub2)+'">'+
+      '<span class="k">Exam countdown</span><span class="n">'+gEsc(EX.c.split(" · ")[0]+" "+when)+'</span><span class="s">'+gEsc(sub2)+'</span><span class="go" aria-hidden="true">&rarr;</span><span class="bar" aria-hidden="true"><i></i></span></button>';
+    links='<button type="button" data-st="path">My path</button>';
+  }else if(L&&L.k==="g"){
     var g=stGuide(L.g);
     h='<button type="button" class="st-card" data-st="guide" data-g="'+gEsc(g.name)+'" style="--c:'+gEsc(g.c)+';--p:'+g.p.toFixed(3)+'" aria-label="'+gEsc("Continue the "+g.name+" guide. "+g.sub)+'">'+
       '<span class="k">Pick up where you left off</span><span class="n">'+gEsc(g.name)+'</span><span class="s">'+gEsc(g.sub)+'</span><span class="go" aria-hidden="true">&rarr;</span><span class="bar" aria-hidden="true"><i></i></span></button>';
@@ -7537,6 +8159,7 @@ if(stEl){
     if(b.id==="st-cool"){goPage("cool");return;}
     var k=b.dataset.st;
     if(k==="path") goPage("mine");
+    else if(k==="exam") goPage("exam");
     else if(k==="saved"){mpWantSaved=true;if(shView==="mine") mpEnter();goPage("mine");}
     else if(k==="guide"){var n=b.dataset.g;if(GUIDES[n]) dive(findCert(n).v,n);}
     else if(k==="vendors") dive(frontIdx<0?0:frontIdx);
