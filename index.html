@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-yszqyKZaCAoSoy9sCtePPEQp/kNoiRYI0CCgdmrO4wQ=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-inYJv1Lj6XnyqKhX754J9OCfsfiXz6zyPQSLjpKpJIA=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -247,8 +247,21 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .bl button{position:absolute;left:-36px;top:-36px;width:72px;height:72px;border-radius:50%;pointer-events:auto}
 .bl.off button{pointer-events:none}
 
-.nogl{position:absolute;inset:0;display:grid;place-items:center;z-index:1;pointer-events:none}
-.nogl p{font-family:var(--f-mono);font-size:12px;color:var(--muted);text-align:center;max-width:32ch;line-height:1.6}
+/* still globe for Lite mode and browsers without WebGL (v2.26): one 2D drawing, redrawn only on resize or vendor change */
+#gstill{z-index:0}
+.lite-pill{display:none;align-self:center;position:relative;top:-1px;margin-left:2px;padding:4px 9px 4px 8px;border-radius:999px;border:1px solid rgba(188,214,234,.3);background:rgba(188,214,234,.07);
+  font:600 9.5px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--powder);cursor:pointer}
+.lite-pill.on{display:inline-flex;align-items:center;gap:6px}
+.lite-pill::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.8}
+@media (hover:hover) and (pointer:fine){.lite-pill:hover{background:rgba(188,214,234,.14)}}
+.lite-pill:active{transform:scale(.96)}
+#lite-tip{position:fixed;left:50%;bottom:calc(var(--sab) + 18px);z-index:41;transform:translateX(-50%);width:min(440px,calc(100vw - 28px));box-sizing:border-box;
+  display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:12px 12px 12px 16px;border-radius:16px;
+  background:#141a22;border:1px solid rgba(188,214,234,.22);box-shadow:0 20px 50px -20px rgba(0,0,0,.9);color:var(--ink);font:400 12.5px/1.45 var(--f-ui)}
+#lite-tip[hidden]{display:none}
+#lite-tip b{font-weight:600}
+#lite-tip .mp-btn{padding:9px 14px;font-size:11.5px}
+#lite-tip .lt-x{width:30px;height:30px;border-radius:50%;color:var(--ink-3);font-size:16px;line-height:1}
 
 /* color bloom + vendor panel share one backdrop */
 #flood{position:fixed;inset:0;z-index:20;pointer-events:none;visibility:hidden;
@@ -1272,6 +1285,7 @@ html.kbd .touch-only{display:none}
 #srch.on .sr-card{opacity:1;transform:none;transition-duration:.35s,.55s}
 @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){.sr-card{background:linear-gradient(180deg,#232a35 0%,#171c24 100%)}.sr-bg{background:rgba(6,8,12,.7)}}
 #srch.snap,#srch.snap .sr-bg,#srch.snap .sr-card{transition:none!important}
+@media (max-width:720px) and (pointer:coarse){.sr-card{height:100%}}
 .sr-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;padding:18px 18px 16px 22px;border-bottom:1px solid rgba(255,255,255,.08)}
 .sr-ic{display:grid;color:var(--ink-3)}
 .sr-ic svg{width:18px;height:18px}
@@ -1285,7 +1299,7 @@ html.kbd .touch-only{display:none}
   transition:background .4s var(--ez),color .4s var(--ez),border-color .4s var(--ez)}
 @media (hover:hover) and (pointer:fine){.sr-chip:hover{color:#fff;border-color:rgba(255,255,255,.32)}}
 .sr-chip[aria-pressed="true"]{background:#eef0f3;border-color:#eef0f3;color:#12161d}
-.sr-list{position:relative;overflow-y:auto;overscroll-behavior:contain;min-height:0;max-height:min(54vh,460px);padding:6px 10px 10px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.14) transparent}
+.sr-list{position:relative;overflow-y:auto;overscroll-behavior:contain;contain:content;min-height:0;max-height:min(54vh,460px);padding:6px 10px 10px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.14) transparent}
 .sr-hl{position:absolute;left:10px;right:10px;top:0;height:0;border-radius:12px;background:rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),inset 0 0 0 1px rgba(255,255,255,.06);pointer-events:none;opacity:0;
   transition:transform .16s var(--ez),height .16s var(--ez),opacity .2s var(--ez)}
 .sr-hl::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:2px;border-radius:2px;background:var(--hc,#fff);transition:background .4s var(--ez)}
@@ -1335,6 +1349,9 @@ html.kbd .touch-only{display:none}
   #srch-in{font-size:19px}
   .sr-chips{padding:10px 16px}
   .sr-list{max-height:none;flex:1;padding:4px 6px 8px}
+  /* phones (v2.26): one blur layer instead of two, and a panel that keeps its height while you type */
+  .sr-bg{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(6,8,12,.62)}
+  .sr-card{-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);background:linear-gradient(180deg,rgba(255,255,255,.1) 0%,rgba(255,255,255,.03) 38%,rgba(255,255,255,.02) 100%),rgba(20,25,33,.72)}
   .sr-hl{left:6px;right:6px}
   .sr-opt{grid-template-columns:18px minmax(0,1fr) auto;gap:10px;padding:12px 10px}
   .sr-bars,.sr-hrs,.sr-go{display:none}
@@ -1830,6 +1847,54 @@ html.kbd .touch-only{display:none}
   #srch *{transition-property:opacity,color,background-color,border-color!important}
   .glass::after{display:none}
 }
+/* Lite mode (v2.26): the calm motion of reduced motion, plus no blur, no particles and no launch screen */
+html.lite *,html.lite *::before,html.lite *::after{transition-property:opacity,color,background-color,border-color,visibility!important;transition-duration:.2s!important;transition-delay:0s!important;animation-duration:.01ms!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.lite #srch *{transition-property:opacity,color,background-color,border-color!important}
+html.lite .glass::after{display:none}
+html.lite .ptn,html.lite .ptn-l,html.lite .ptn>i{transition:none}
+html.lite .pt-f{animation:none;opacity:0}
+html.lite .g-rv{opacity:1;transform:none}
+html.lite .g-reel{transition:none}
+html.lite #splash,html.lite #pk-back,html.lite #pk-front{display:none}
+html.lite .sr-card{background:linear-gradient(180deg,#232a35 0%,#171c24 100%)}
+html.lite .sr-bg{background:rgba(6,8,12,.72)}
+html.lite .gshadow{filter:none}
+
+/* ---------- Settings view (v2.26) ---------- */
+.set{padding:24px 0 26px;border-top:1px solid var(--hair)}
+.set:first-of-type{border-top:0;padding-top:4px}
+.set-h{margin:8px 0 6px;font:600 19px/1.2 var(--f-disp);letter-spacing:-.02em;color:var(--ink)}
+.set-p{margin:0 0 16px;color:var(--ink-2);font-size:13.5px;line-height:1.6;max-width:60ch}
+.set-seg{display:inline-flex;padding:3px;border-radius:999px;border:1px solid var(--hair-2);background:rgba(255,255,255,.03)}
+.set-seg button{min-width:74px;padding:10px 16px;border-radius:999px;font:600 12px/1 var(--f-disp);color:var(--ink-2);transition:background .25s var(--ez),color .25s var(--ez)}
+.set-seg button[aria-checked="true"]{background:var(--ink);color:#101317}
+@media (hover:hover) and (pointer:fine){.set-seg button:not([aria-checked="true"]):hover{color:var(--ink)}}
+.set-s{margin:12px 0 0;font:500 11px/1.55 var(--f-mono);color:var(--ink-3);max-width:62ch}
+.set-s b{color:var(--powder);font-weight:600}
+.set-sum{list-style:none;margin:0 0 18px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.set-sum li{padding:12px 14px;border:1px solid var(--hair);border-radius:12px;background:rgba(255,255,255,.02)}
+.set-sum b{display:block;font:600 20px/1.1 var(--f-disp);letter-spacing:-.02em;color:var(--ink)}
+.set-sum span{display:block;margin-top:4px;font-size:11.5px;line-height:1.35;color:var(--ink-3)}
+.set-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.set-acts[hidden]{display:none}
+.set-box{margin-top:14px;padding:16px;border:1px solid var(--hair-2);border-radius:14px;background:rgba(255,255,255,.025)}
+.set-box[hidden]{display:none}
+.set-box p{margin:0 0 12px;font-size:13px;line-height:1.55;color:var(--ink-2)}
+.set-box p b{color:var(--ink)}
+.set-box textarea{display:block;width:100%;box-sizing:border-box;min-height:110px;resize:vertical;padding:12px;border-radius:10px;border:1px solid var(--hair-2);background:#0e1218;color:var(--ink);
+  font:400 16px/1.4 var(--f-mono)}
+@media (min-width:720px){.set-box textarea{font-size:12px}}
+.set-box textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+.set-err{color:#ffb4a8!important}
+.set-box.warn{border-color:rgba(255,196,120,.35)}
+
+/* search hit: the guide line you picked from search glows for a moment (v2.26) */
+.sr-hit{animation:srHit 3.4s var(--ez) 1 both;border-radius:10px}
+@keyframes srHit{0%,45%{background:rgba(188,214,234,.16);box-shadow:0 0 0 1px rgba(188,214,234,.55)}100%{background:transparent;box-shadow:0 0 0 1px rgba(188,214,234,0)}}
+@media (prefers-reduced-motion:reduce){.sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0 0 1px rgba(188,214,234,.45)}}
+html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0 0 1px rgba(188,214,234,.45)}
+@media (max-width:720px){.k-content .sr-name{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.2}}
+.k-content .sr-tag{font:500 9.5px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:4px 7px;border:1px solid var(--hair-2);border-radius:999px;white-space:nowrap}
 
 /* press feedback for touch: snaps in on press, eases back out on release */
 .hdr-btn:active{transform:scale(.94)}
@@ -1858,7 +1923,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.25</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.26</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1916,6 +1981,7 @@ html.kbd .touch-only{display:none}
         <button type="button" data-go="paths" aria-selected="false"><span class="tab-x">Career p</span><span class="tab-s">P</span>aths</button>
         <button type="button" data-go="cool" aria-selected="false">Funding</button>
         <button type="button" data-go="out" aria-selected="false">Getting out</button>
+        <button type="button" data-go="settings" aria-selected="false">Settings</button>
         <span class="tab-ind" aria-hidden="true"></span>
       </nav>
 
@@ -2096,6 +2162,48 @@ html.kbd .touch-only{display:none}
         </div>
       </div>
 
+      <div class="sv" id="sv-settings" hidden>
+        <p class="intro rv-s">How CertPath runs on this device, and a backup of everything you've saved here.</p>
+        <section class="set rv-s" aria-labelledby="set-lite-h">
+          <p class="lab">Display</p>
+          <h3 class="set-h" id="set-lite-h">Lite mode</h3>
+          <p class="set-p">Swaps the 3D globe for a still one and turns off particles, blur, smooth scrolling and the launch animation. Good for older phones, work computers, remote desktops and slow connections. Guides, search and your progress work the same.</p>
+          <div class="set-seg" id="set-lite" role="radiogroup" aria-labelledby="set-lite-h">
+            <button type="button" role="radio" data-lite="auto" aria-checked="false">Auto</button><button type="button" role="radio" data-lite="on" aria-checked="false">On</button><button type="button" role="radio" data-lite="off" aria-checked="false">Off</button>
+          </div>
+          <p class="set-s" id="set-lite-s" aria-live="polite"></p>
+        </section>
+        <section class="set rv-s" aria-labelledby="set-bk-h">
+          <p class="lab">Your progress</p>
+          <h3 class="set-h" id="set-bk-h">Back up and restore</h3>
+          <p class="set-p">Your progress is saved only in this browser. Save a backup to move it to a new phone or computer, or to keep it safe if the browser's data gets cleared.</p>
+          <ul class="set-sum" id="set-sum"></ul>
+          <div class="set-acts">
+            <button type="button" class="mp-btn" id="bk-save">Save backup file</button>
+            <button type="button" class="mp-btn ghost" id="bk-copy">Copy as text</button>
+          </div>
+          <div class="set-acts">
+            <button type="button" class="mp-btn ghost" id="bk-load">Restore from file</button>
+            <button type="button" class="mp-btn ghost" id="bk-paste">Paste backup text</button>
+            <input type="file" id="bk-file" accept=".json,application/json,text/plain" hidden>
+          </div>
+          <div class="set-box" id="bk-pbox" hidden>
+            <p><label for="bk-ta">Paste the backup text you copied from CertPath.</label></p>
+            <textarea id="bk-ta" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+            <div class="set-acts"><button type="button" class="mp-btn" id="bk-check">Check backup</button><button type="button" class="mp-btn ghost" id="bk-pcancel">Cancel</button></div>
+          </div>
+          <div class="set-box" id="bk-cbox" hidden>
+            <p id="bk-cmsg" aria-live="polite"></p>
+            <div class="set-acts" id="bk-cacts"><button type="button" class="mp-btn" id="bk-yes">Replace my progress</button><button type="button" class="mp-btn ghost" id="bk-no">Cancel</button></div>
+          </div>
+          <div class="set-box" id="bk-tbox" hidden>
+            <p>Your browser didn't allow copying. Select all of this text and copy it into a note or an email to yourself.</p>
+            <textarea id="bk-out" readonly spellcheck="false"></textarea>
+          </div>
+        </section>
+        <p class="fine rv-s">A backup is a small text file with only your CertPath progress: ticked objectives, quiz bests, your path, exam date, compare picks and recent searches. Nothing is uploaded; the file stays wherever you save it. Lite mode is a setting for this device and isn't part of the backup.</p>
+      </div>
+
       <div class="sv" id="sv-out" hidden>
         <p class="intro rv-s">SkillBridge lets you spend up to your last 180 days of active duty training or working with a civilian employer while the Coast Guard still pays you. It's the bridge from your certs to a civilian job, so start planning about a year out.<span class="draft">Draft &middot; verify</span></p>
         <div class="cool-grid rv-s">
@@ -2139,6 +2247,7 @@ html.kbd .touch-only{display:none}
 <div id="flood" aria-hidden="true"></div>
 <section id="panel" hidden role="dialog" aria-modal="true" aria-labelledby="p-title"></section>
 <div id="toast" role="status"></div>
+<div id="lite-tip" role="dialog" aria-label="Lite mode suggestion" hidden><p style="margin:0"><b>Running slow?</b> Lite mode turns off the 3D effects. You can change it anytime in Settings.</p><button type="button" class="mp-btn" id="lt-on">Use Lite</button><button type="button" class="lt-x" id="lt-x" aria-label="Dismiss">&times;</button></div>
 <div id="srch" aria-hidden="true" inert>
   <div class="sr-bg" data-sr-close></div>
   <div class="sr-card" role="dialog" aria-modal="true" aria-label="Search certifications">
@@ -2359,6 +2468,36 @@ function toHex(c){return "#"+c.map(function(x){return Math.round(x).toString(16)
 function lerpHex(a,b,k){var A=hexRgb(a),B=hexRgb(b);return toHex(A.map(function(x,i){return x+(B[i]-x)*k;}));}
 function damp(k,dt){return 1-Math.exp(-k*dt);}
 var reduced=!!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches);
+/* ---------- Lite mode (v2.26) ----------
+   Saved as cgcp.lite: "on", "off", or nothing for Auto. Auto turns Lite on when the browser has no WebGL, when the
+   graphics run in software (remote desktops, VMs, locked-down PCs: SwiftShader, llvmpipe, Microsoft Basic Render)
+   or when the browser asks to save data. Lite: no 3D globe (a still one instead), no particles, no launch animation,
+   no blur, no smooth scrolling, calm motion everywhere. Everything else works the same. */
+function probeGL(){
+  try{
+    var c=document.createElement("canvas"), g=c.getContext("webgl")||c.getContext("experimental-webgl");
+    if(!g) return {ok:false,soft:false,r:""};
+    var r="";try{var ext=g.getExtension("WEBGL_debug_renderer_info");r=String(g.getParameter(ext?ext.UNMASKED_RENDERER_WEBGL:g.RENDERER)||"");}catch(e){}
+    var soft=/swiftshader|llvmpipe|softpipe|software|basic render|mesa offscreen/i.test(r);
+    try{var lc=g.getExtension("WEBGL_lose_context");if(lc) lc.loseContext();}catch(e){}
+    return {ok:true,soft:soft,r:r};
+  }catch(e){return {ok:false,soft:false,r:""};}
+}
+var LITE=(function(){
+  var pref=null;try{pref=localStorage.getItem("cgcp.lite");}catch(e){}
+  if(pref!=="on"&&pref!=="off") pref="auto";
+  var why="";
+  if(pref==="auto"){
+    var gl=probeGL(), cn=navigator.connection;
+    why=!gl.ok?"nogl":gl.soft?"soft":(cn&&cn.saveData)?"data":"";
+  }
+  return {pref:pref,why:why,on:pref==="on"||(pref==="auto"&&why!=="")};
+})();
+var still={cv:null,ctx:null,R:0,lon:-40,lat:22,rings:null,on:false};   /* the still globe (see stillDraw) */
+if(LITE.on){
+  reduced=true;document.documentElement.classList.add("lite");
+  (function(){var sp=document.getElementById("splash");if(sp&&sp.parentNode) sp.parentNode.removeChild(sp);})();
+}
 var finePointer=!!(window.matchMedia&&matchMedia("(pointer: fine)").matches);
 var EZ="cubic-bezier(.16,1,.3,1)";
 /* iOS Safari only shows :active press states once the page listens for touches */
@@ -2456,6 +2595,7 @@ VENDORS.forEach(function(v,i){
 function setFront(i){
   if(i===frontIdx) return;
   var first=frontIdx<0;frontIdx=i;
+  if(!has3D&&still.on) stillFace(i);
   var v=VENDORS[i];
   roNum.textContent=pad2(i+1);roName.textContent=v.name;ctaName.textContent=v.name;
   roCerts.textContent=vCount(v);roBlurb.textContent=v.blurb;
@@ -2783,6 +2923,7 @@ function loadWorld(){
   worldP=new Promise(function(res){
     window.echarts={registerMap:function(name,geo){
       if(String(name).toLowerCase()!=="world") return;
+      if(!has3D){stillGeo(geo);res();return;}
       if(splashBusy) lateGeo=geo; else addWorld(geo);
       res();
     }};
@@ -2798,6 +2939,93 @@ function lateWorld(){
   setTimeout(function(){var go=function(){addWorld(g);};if(window.requestIdleCallback) requestIdleCallback(go,{timeout:1200});else go();},1400);
 }
 
+/* ---------- still globe (v2.26): Lite mode and browsers without WebGL ----------
+   An orthographic 2D drawing of the same planet: grid, country outlines, vendor dots and a rim light.
+   Drawn once, then again only on resize, when the outlines arrive, or when the picked vendor changes (it turns to face you). */
+function stillInit(){
+  if(still.cv) return;
+  var c=document.createElement("canvas");c.id="gstill";c.className="layer";c.setAttribute("aria-hidden","true");
+  canvas.parentNode.insertBefore(c,canvas.nextSibling);canvas.style.display="none";
+  still.cv=c;still.ctx=c.getContext("2d");still.on=!!still.ctx;
+}
+function stillGeo(geo){
+  /* decode the ECharts outlines once into flat lon/lat arrays (every 2nd point is plenty at this size) */
+  try{
+    var scale=geo.UTF8Scale||1024, rings=[];
+    geo.features.forEach(function(f){
+      var g=f.geometry;if(!g) return;
+      var polys=g.type==="Polygon"?[g.coordinates]:(g.type==="MultiPolygon"?g.coordinates:[]);
+      var offs=g.type==="Polygon"?[g.encodeOffsets]:g.encodeOffsets;
+      polys.forEach(function(poly,pi){poly.forEach(function(ring,ri){
+        var pts=(typeof ring==="string")?decodeRing(ring,(offs&&offs[pi]&&offs[pi][ri])||[0,0],scale):ring;
+        if(pts.length<3) return;
+        var a=new Float32Array(Math.ceil(pts.length/2)*2+2), n=0;
+        for(var k=0;k<pts.length;k+=2){a[n++]=pts[k][0];a[n++]=pts[k][1];}
+        a[n++]=pts[0][0];a[n++]=pts[0][1];
+        rings.push(a.subarray(0,n));
+      });});
+    });
+    still.rings=rings;stillDraw();
+  }catch(e){}
+}
+function stillFace(i){
+  var v=VENDORS[i];
+  if(v&&v.lat!=null&&v.id!=="colleges"){still.lon=v.lon;still.lat=Math.max(-25,Math.min(35,v.lat*.7));}
+  stillDraw();
+}
+function stillDraw(){
+  if(!still.on) return;
+  var c=still.cv, x=still.ctx, dpr=Math.min(window.devicePixelRatio||1,2), R=still.R;
+  c.width=Math.round(W*dpr);c.height=Math.round(H*dpr);
+  x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,H);
+  if(R<10) return;
+  var cx=gcx, cy=gcy, D=Math.PI/180, l0=still.lon*D, p0=still.lat*D, sp0=Math.sin(p0), cp0=Math.cos(p0);
+  function proj(lon,lat,o){var l=lon*D-l0, p=lat*D, cp=Math.cos(p), sp=Math.sin(p), cl=Math.cos(l);
+    o[2]=sp0*sp+cp0*cp*cl;o[0]=cx+R*cp*Math.sin(l);o[1]=cy-R*(cp0*sp-sp0*cp*cl);return o;}
+  /* halo + body */
+  var halo=x.createRadialGradient(cx,cy,R*.92,cx,cy,R*1.22);
+  halo.addColorStop(0,"rgba(188,214,234,.16)");halo.addColorStop(1,"rgba(188,214,234,0)");
+  x.fillStyle=halo;x.beginPath();x.arc(cx,cy,R*1.22,0,6.2832);x.fill();
+  var body=x.createRadialGradient(cx-R*.35,cy-R*.4,R*.05,cx,cy,R);
+  body.addColorStop(0,"#1d2531");body.addColorStop(.7,"#10151c");body.addColorStop(1,"#0a0d12");
+  x.fillStyle=body;x.beginPath();x.arc(cx,cy,R,0,6.2832);x.fill();
+  x.save();x.beginPath();x.arc(cx,cy,R,0,6.2832);x.clip();
+  var o=[0,0,0];
+  function line(pts,style,w){
+    x.strokeStyle=style;x.lineWidth=w;x.beginPath();var pen=false;
+    for(var k=0;k<pts.length;k+=2){proj(pts[k],pts[k+1],o);if(o[2]>0){if(pen) x.lineTo(o[0],o[1]);else{x.moveTo(o[0],o[1]);pen=true;}}else pen=false;}
+    x.stroke();
+  }
+  /* graticule every 15 degrees */
+  var g=[],lo,la,k;
+  for(lo=-180;lo<180;lo+=15){g=[];for(la=-90;la<=90;la+=3) g.push(lo,la);line(g,"rgba(150,185,225,.13)",.8);}
+  for(la=-75;la<=75;la+=15){g=[];for(lo=-180;lo<=180;lo+=3) g.push(lo,la);line(g,"rgba(150,185,225,.13)",.8);}
+  /* country outlines */
+  if(still.rings){
+    x.strokeStyle="rgba(236,242,250,.62)";x.lineWidth=Math.max(.7,R/420);x.lineJoin="round";x.beginPath();
+    still.rings.forEach(function(r){var pen=false;
+      for(k=0;k<r.length;k+=2){proj(r[k],r[k+1],o);if(o[2]>.02){if(pen) x.lineTo(o[0],o[1]);else{x.moveTo(o[0],o[1]);pen=true;}}else pen=false;}});
+    x.stroke();
+  }
+  /* vendor dots */
+  VENDORS.forEach(function(v,i){
+    if(v.lat==null||v.id==="colleges") return;proj(v.lon,v.lat,o);if(o[2]<.08) return;
+    var r=Math.max(3,R*.022), gl=x.createRadialGradient(o[0],o[1],0,o[0],o[1],r*4.5), a=i===frontIdx?1:.55;
+    gl.addColorStop(0,v.beacon);gl.addColorStop(1,"rgba(0,0,0,0)");
+    x.globalAlpha=.55*a*o[2];x.fillStyle=gl;x.beginPath();x.arc(o[0],o[1],r*4.5,0,6.2832);x.fill();
+    x.globalAlpha=a;x.fillStyle=v.beacon;x.beginPath();x.arc(o[0],o[1],r*(i===frontIdx?1.25:1),0,6.2832);x.fill();
+    x.globalAlpha=1;
+  });
+  /* rim light, brighter top-left like the 3D globe */
+  var rim=x.createRadialGradient(cx,cy,R*.78,cx,cy,R);
+  rim.addColorStop(0,"rgba(210,232,255,0)");rim.addColorStop(1,"rgba(210,232,255,.16)");
+  x.fillStyle=rim;x.fillRect(cx-R,cy-R,R*2,R*2);
+  x.restore();
+  var edge=x.createLinearGradient(cx-R,cy-R,cx+R,cy+R);
+  edge.addColorStop(0,"rgba(210,232,255,.55)");edge.addColorStop(.55,"rgba(210,232,255,.14)");edge.addColorStop(1,"rgba(210,232,255,.3)");
+  x.strokeStyle=edge;x.lineWidth=1.2;x.beginPath();x.arc(cx,cy,R-.6,0,6.2832);x.stroke();
+}
+
 /* ---------- sizing ---------- */
 function resize(){
   var ar=app.getBoundingClientRect(), sr=stageEl.getBoundingClientRect();
@@ -2806,8 +3034,16 @@ function resize(){
   appLeft=ar.left;appTop=ar.top;
   (function(){var sh=isShort(),mb=W<720&&!sh,r=Math.max(70,mb?Math.min(W*.46,sr.height*.46):sh?Math.min(sr.width*.4,sr.height*.47):Math.min(W*.28,sr.height*.52));
     app.style.setProperty("--gx",gcx.toFixed(1)+"px");app.style.setProperty("--gy",gcy.toFixed(1)+"px");app.style.setProperty("--gr",r.toFixed(1)+"px");})();
-  fieldBack.resize(W,H);fieldFront.resize(W,H);
-  if(!has3D){if(tt) tt.resize(W,H,gcy,isShort()?{cx:gcx,w:sr.width}:null);placeReadout();return;}
+  if(!LITE.on){fieldBack.resize(W,H);fieldFront.resize(W,H);}
+  if(!has3D){
+    var sh0=isShort(), mb0=W<720&&!sh0, R0=Math.max(70,mb0?Math.min(W*.46,sr.height*.46):sh0?Math.min(sr.width*.4,sr.height*.47):Math.min(W*.28,sr.height*.52));
+    if(still.on){
+      still.R=R0;stillDraw();
+      var sw0=R0*1.7, shh=R0*.3;gshadow.style.transform="translate("+(gcx-sw0/2).toFixed(1)+"px,"+(gcy+R0*1.06-shh/2).toFixed(1)+"px) scale("+(sw0/200).toFixed(4)+","+(shh/40).toFixed(4)+")";
+      if(tt) tt.resize(W,H,mb0?gcy-R0*.86:sh0?gcy+R0*.42:gcy-H*.04,sh0?{cx:gcx,w:sr.width}:null);
+    } else if(tt) tt.resize(W,H,gcy,sh0?{cx:gcx,w:sr.width}:null);
+    placeReadout();return;
+  }
   renderer.setSize(W,H,false);
   camera.aspect=W/H;
   var short=isShort(), mobile=W<720&&!short;
@@ -2946,12 +3182,14 @@ function frame(now){
         var inside=state==="idle"&&!dragging&&mouse.px>-999&&!!w&&hy>w.top-50&&hy<w.bottom+50&&!onSphere(hx,hy);
         tt.pointer(hx,hy,inside);
       }
-      tt.setDisc(gcx,gcy,has3D?sphereR()*.995:0);
+      tt.setDisc(gcx,gcy,sphereR()*.995);
       tt.step(dt);
     }
     var R=W<720?110:170;
-    fieldBack.step(dt,tClock,{x:-smooth.x*24,y:-smooth.y*24},R);
-    fieldFront.step(dt,tClock,{x:smooth.x*60,y:smooth.y*60},R);
+    if(!LITE.on){
+      fieldBack.step(dt,tClock,{x:-smooth.x*24,y:-smooth.y*24},R);
+      fieldFront.step(dt,tClock,{x:smooth.x*60,y:smooth.y*60},R);
+    }
   }
   if(flex&&(state==="open"||state==="diving")) flex.step(dt);
   if(lenis) lenis.raf(now);
@@ -3399,7 +3637,7 @@ function setSort(hard){
 
 /* ---------- explore sheet (pull up from the bottom) ---------- */
 var sheet=$("#sheet"), veil=$("#veil"), grab=$("#sh-grab"), shScroll=$("#sh-scroll");
-var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",paths:"Paths.",cool:"Funding.",out:"Getting out.",exam:"Countdown."}, ORDER=["home","mine","exam","compare","paths","cool","out"], fundPane="ta";
+var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",paths:"Paths.",cool:"Funding.",out:"Getting out.",exam:"Countdown.",settings:"Settings."}, ORDER=["home","mine","exam","compare","paths","cool","out","settings"], fundPane="ta";
 var PATHS=[
   {name:"20 year career",tag:"IT rating career",line:"Make rate, stay qualified for any IT billet, and retire with a full résumé.",steps:[["A+","A+"],["Network+","Network+"],["Security+","Security+"],["CySA+","CySA+"],["CISSP","CISSP"]]},
   {name:"Cloud",tag:"Contractor track",line:"Build toward defense-contractor cloud security roles after your enlistment.",steps:[["Security+","Security+"],["Cloud+","Cloud+"],["AWS Solutions Architect","Solutions Architect Associate"],["Azure Cloud and AI Security","Cloud and AI Security Engineer"],["CCSP","CCSP"]]},
@@ -4051,6 +4289,7 @@ async function showView(name){
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
   if(name==="paths") ptRender(true);
   if(name==="exam") exEnter();
+  if(name==="settings") setEnter();
 }
 
 /* drag the bar */
@@ -10707,6 +10946,7 @@ var SIDX=[];
   SIDX.push({kind:"page",key:"p:fund",page:"cool",fund:"ta",name:"Funding",sub:"Explore · Tuition Assistance for college, CG COOL for certs",fields:[[snorm("funding"),95],[snorm("tuition assistance ta college class classes degree school money pay paid mycg ed eso dodmou mou clep dsst dantes jst"),60]]});
   SIDX.push({kind:"page",key:"p:cool",page:"cool",fund:"cool",name:"CG COOL funding",sub:"Explore · get your certs paid for",fields:[[snorm("cg cool funding"),95],[snorm("cool credentialing assistance ca opportunities online reimbursement of 1164 pay paid money funding exam fee voucher"),58]]});
   SIDX.push({kind:"page",key:"p:out",page:"out",name:"Getting out",sub:"Explore · SkillBridge in your last 180 days",fields:[[snorm("getting out"),95],[snorm("skillbridge skill bridge separation separating transition tap leaving civilian job internship employer last 180 days ets eoe retire retirement"),60]]});
+  SIDX.push({kind:"page",key:"p:settings",page:"settings",name:"Settings",sub:"Explore · Lite mode, back up and restore your progress",fields:[[snorm("settings"),95],[snorm("lite mode light mode slow lag laggy battery data saver 3d globe off backup back up restore export import transfer move progress new phone new device save my progress"),60]]});
   SIDX.push({kind:"page",key:"p:colleges",col:true,name:"Colleges",sub:"Degrees · "+COLLEGES.length+" schools, what you pay after TA",fields:[[snorm("colleges"),95],[snorm("college colleges university universities school schools degree degrees bachelor bachelors associate online tuition assistance ta wgu"),58]]});
   COLLEGES.forEach(function(c){
     SIDX.push({kind:"college",key:"k:"+c.id,name:c.name,v:WG,sub:"Colleges · "+c.short+" · "+(c.pay<0?"free, no TA needed":c.id==="wgu"?"flat rate per term":c.payTxt+" a credit after TA"),
@@ -10719,19 +10959,23 @@ function sTok(tok,f){
   if(t.indexOf(tok)===0) return f[1];
   if((" "+t).indexOf(" "+tok)>=0) return f[1]*.8;
   if(tok.length>3&&t.indexOf(tok)>=0) return f[1]*.45;
+  /* plurals: "groups" still finds "security group" */
+  if(tok.length>4&&tok.charAt(tok.length-1)==="s") return sTok(tok.slice(0,-1),f)*.9;
   return 0;
 }
+/* each field's text without spaces, made once and kept (was rebuilt for every entry on every keystroke) */
+function sComp(f){return f[2]!=null?f[2]:(f[2]=f[0].replace(/ /g,""));}
 function sSubseq(tok,t){if(tok.length<4) return false;var j=0;for(var i=0;i<t.length&&j<tok.length;i++){if(t.charCodeAt(i)===tok.charCodeAt(j)) j++;}return j===tok.length;}
 function sScore(e,toks,qc){
   var tot=0,ok=true,i,f,b;
   for(i=0;i<toks.length;i++){
     b=0;for(f=0;f<e.fields.length;f++) b=Math.max(b,sTok(toks[i],e.fields[f]));
-    if(!b&&sSubseq(toks[i],e.fields[0][0].replace(/ /g,""))) b=14;
+    if(!b&&sSubseq(toks[i],sComp(e.fields[0]))) b=14;
     if(!b){ok=false;break;}
     tot+=toks[i]==="plus"?b*.25:b;
   }
   var comp=0;
-  if(qc.length>=2) for(f=0;f<e.fields.length;f++){var fc=e.fields[f][0].replace(/ /g,"");if(fc.indexOf(qc)===0) comp=Math.max(comp,e.fields[f][1]*1.1*toks.length);else if(qc.length>=3&&fc.indexOf(qc)>=0) comp=Math.max(comp,e.fields[f][1]*.6*toks.length);}
+  if(qc.length>=2) for(f=0;f<e.fields.length;f++){var fc=sComp(e.fields[f]);if(fc.indexOf(qc)===0) comp=Math.max(comp,e.fields[f][1]*1.1*toks.length);else if(qc.length>=3&&fc.indexOf(qc)>=0) comp=Math.max(comp,e.fields[f][1]*.6*toks.length);}
   if(!ok&&!comp) return 0;
   var sc=Math.max(ok?tot:0,comp);
   if(e.fields[0][0]===toks.join(" ")) sc+=80;
@@ -10777,10 +11021,13 @@ function sGroups(){
   SIDX.forEach(function(e){if(!sPass(e)) return;var sc=sScore(e,toks,qc);if(sc>0) hits.push({e:e,s:sc});});
   hits.sort(function(a,b){return b.s-a.s;});
   if(hits.length){var top=hits[0].s;hits=hits.filter(function(h){return h.s>=top*.4;});}
-  var by={cert:[],vendor:[],page:[],college:[]}, best={cert:0,vendor:0,page:0,college:0};
+  var by={cert:[],vendor:[],page:[],college:[],content:[]}, best={cert:0,vendor:0,page:0,college:0,content:0};
   hits.forEach(function(h){by[h.e.kind].push(h.e);best[h.e.kind]=Math.max(best[h.e.kind],h.s);});
-  ["cert","vendor","page","college"].sort(function(a,b){return best[b]-best[a];}).forEach(function(k){
-    if(by[k].length) groups.push({label:{cert:"Certifications",vendor:"Vendor lines",page:"Pages",college:"Colleges"}[k],items:by[k].slice(0,24)});
+  /* a query that is exactly a cert, vendor or page name ("security+", "aws", "settings") is about that thing, not the lines inside guides */
+  var exact=hits.some(function(h){return h.e.fields[0][0]===toks.join(" ");});
+  if(!exact) cHits(toks,qc).forEach(function(h){by.content.push(h.e);best.content=Math.max(best.content,h.s*.9);});
+  ["cert","vendor","page","college","content"].sort(function(a,b){return best[b]-best[a];}).forEach(function(k){
+    if(by[k].length) groups.push({label:{cert:"Certifications",vendor:"Vendor lines",page:"Pages",college:"Colleges",content:"In the guides"}[k],items:by[k].slice(0,24)});
   });
   return {groups:groups,raw:raw};
 }
@@ -10790,15 +11037,18 @@ function sRow(e,i,raw){
     sub=e.vendor+" · "+e.lvl+(GUIDES[e.name]?" · Full guide":"")+(e.wgu?" · in a WGU degree":"");
     var bars="";for(var j=1;j<=5;j++) bars+='<i class="'+(j<=e.d?"on":"")+'"></i>';
     meta='<span class="sr-meta"><span class="sr-bars" aria-hidden="true">'+bars+'</span><span class="sr-hrs">'+e.hrs+'</span><span class="sr-iat'+(e.d8?"":" none")+'" title="'+(e.d8?"On the DoD 8140 matrix":"Not on the DoD 8140 matrix")+'">'+(e.d8?"8140":"—")+'</span></span>';
+  } else if(e.kind==="content"){
+    sub=e.sub;meta='<span class="sr-meta"><span class="sr-tag">'+sesc(e.tag)+'</span></span>';
   } else if(e.kind==="vendor"){
     var V=VENDORS[e.v];sub="Vendor line · "+V.certs.length+" certs";meta='<span class="sr-meta"><span class="sr-hrs">'+pad2(e.v+1)+' / '+pad2(VENDORS.length)+'</span></span>';
   } else {sub=e.sub;meta='<span class="sr-meta"></span>';}
-  var label=e.name+(e.kind==="cert"?", "+e.vendor+", "+e.lvl+", difficulty "+e.d+" of 5, "+e.hrs+(e.d8?", on the DoD 8140 matrix":""):e.kind==="vendor"?", vendor line":e.kind==="college"?", college":", page");
+  var label=e.name+(e.kind==="cert"?", "+e.vendor+", "+e.lvl+", difficulty "+e.d+" of 5, "+e.hrs+(e.d8?", on the DoD 8140 matrix":""):e.kind==="vendor"?", vendor line":e.kind==="college"?", college":e.kind==="content"?", "+e.tag+" in the "+e.cert+" guide":", page");
   return '<div class="sr-opt k-'+e.kind+'" role="option" id="sr-o-'+i+'" data-i="'+i+'" aria-selected="false" aria-label="'+sesc(label)+'" style="--vc:'+vc+'">'+
     '<span class="sr-dot" aria-hidden="true"></span><span class="sr-main" aria-hidden="true"><span class="sr-name">'+name+'</span><span class="sr-sub">'+sesc(sub)+'</span></span>'+meta+
     '<span class="sr-go" aria-hidden="true">↵</span></div>';
 }
-function srchRender(force){
+function srchRender(force,intro){
+  if(srchRaf){cancelAnimationFrame(srchRaf);srchRaf=0;}
   var key=srchIn.value+"|"+srchFilter;
   if(!force&&key===srchLastQ) return;srchLastQ=key;
   var r=sGroups(), html='<span class="sr-hl" aria-hidden="true"></span>', n=0;
@@ -10810,7 +11060,7 @@ function srchRender(force){
   });
   if(!n){
     var q=sesc(srchIn.value.trim());
-    html+='<div class="sr-empty"><b>No match for “'+q+'”</b><p>Try a cert name, a vendor, or an exam code like <button type="button" data-try="SY0-701">SY0-701</button>.'+
+    html+='<div class="sr-empty"><b>No match for “'+q+'”</b><p>Try a cert name, an exam code like <button type="button" data-try="SY0-701">SY0-701</button>, or a topic like <button type="button" data-try="port 3389">port 3389</button>.'+
       (srchFilter!=="all"?' Or <button type="button" data-try-all>search all paths</button>.':'')+'</p></div>';
   }
   srchList.innerHTML=html;srchHl=srchList.querySelector(".sr-hl");
@@ -10818,13 +11068,18 @@ function srchRender(force){
   var cert=srchRes.filter(function(e){return e.kind==="cert";}).length;
   srchN.textContent=srchIn.value.trim()?(n?n+" result"+(n===1?"":"s"):"No results"):(srchFilter==="all"?SIDX.filter(function(e){return e.kind==="cert";}).length+" certs indexed":cert+" certs");
   srchAct=-1;setAct(n?0:-1,false,true);
-  if(!reduced){
+  /* rows rise in only when search opens or a filter changes; while typing they swap in place, so nothing flickers */
+  if(intro&&!reduced){
     srchList.querySelectorAll(".sr-grp,.sr-opt,.sr-empty").forEach(function(el,k){
-      if(k>11) return;
-      anim(el,[{opacity:0,transform:"translateY(6px)"},{opacity:1,transform:"none"}],{duration:420,delay:k*16,easing:EZ,fill:"backwards"});
+      if(k>9) return;
+      anim(el,[{opacity:0,transform:"translateY(6px)"},{opacity:1,transform:"none"}],{duration:360,delay:k*14,easing:EZ,fill:"backwards"});
     });
   }
 }
+/* typing: one render per frame at most, however fast the keys come (phones fire input on every letter and autocorrect) */
+var srchRaf=0;
+function srchQueue(){if(!srchRaf) srchRaf=requestAnimationFrame(function(){srchRaf=0;srchRender();});}
+function srchFlush(){if(srchRaf) srchRender();}
 function setAct(i,scroll,instant){
   if(i===srchAct&&!instant) return;
   var prev=srchList.querySelector(".sr-opt.on");if(prev){prev.classList.remove("on");prev.setAttribute("aria-selected","false");}
@@ -10850,7 +11105,7 @@ function setChips(){
 srchChipsEl.innerHTML=FILTERS.map(function(f){return '<button type="button" class="sr-chip" data-f="'+f[0]+'" aria-pressed="false">'+f[1]+'</button>';}).join("");
 srchChipsEl.addEventListener("click",function(e){
   var b=e.target.closest(".sr-chip");if(!b) return;
-  srchFilter=(srchFilter===b.dataset.f&&b.dataset.f!=="all")?"all":b.dataset.f;setChips();srchRender();
+  srchFilter=(srchFilter===b.dataset.f&&b.dataset.f!=="all")?"all":b.dataset.f;setChips();srchRender(false,true);
   if(finePointer) srchIn.focus({preventScroll:true});
 });
 function srchShow(from,kbd){
@@ -10859,27 +11114,32 @@ function srchShow(from,kbd){
   srchOpen=true;srchOpener=from||document.activeElement;
   clearTimeout(srchT);
   srchIn.value="";srchFilter="all";setChips();
-  srchIn.placeholder=window.innerWidth<520?"Search certs or exam codes":"Search certs, vendors, exam codes";
+  srchIn.placeholder=window.innerWidth<520?"Search certs, codes or topics":"Search certs, exam codes, ports, topics";
   srch.inert=false;srch.setAttribute("aria-hidden","false");
   [app,sheet,panel].forEach(function(el){el.inert=true;});
   srch.classList.add("on");
   srchIn.focus({preventScroll:true});
-  srchRender(true);
+  srchFit();
+  srchRender(true,true);
   srchT=setTimeout(function(){if(srchOpen) srchFull=true;},520);
+  /* build the in-guide index while the panel animates in, so the first letter typed doesn't wait for it */
+  if(!CIDX){var bi=function(){if(srchOpen) cIndex();};if(window.requestIdleCallback) requestIdleCallback(bi,{timeout:700});else setTimeout(bi,350);}
 }
 function srchClose(picked,kbd){
   if(!srchOpen) return Promise.resolve();
   srch.classList.toggle("snap",!!kbd);
   srchOpen=false;srchFull=false;clearTimeout(srchT);
+  if(srchRaf){cancelAnimationFrame(srchRaf);srchRaf=0;}
   srch.classList.remove("on");srch.setAttribute("aria-hidden","true");
   [app,sheet,panel].forEach(function(el){el.inert=false;});
   if(srchIn===document.activeElement) srchIn.blur();
   if(!picked&&srchOpener&&srchOpener.isConnected&&srchOpener.focus) srchOpener.focus({preventScroll:true});
-  srchT=setTimeout(function(){if(!srchOpen) srch.inert=true;},500);
+  srchT=setTimeout(function(){if(!srchOpen){srch.inert=true;srchFit();}},500);
   return wait(reduced||kbd?0:200);
 }
 async function srchPick(e){
   if(!e) return;
+  if(e.kind==="content"){await srchClose(true);cGo(e);return;}
   sRemember(e);
   await srchClose(true);
   if(e.kind==="page"){if(e.col){openCertFrom({kind:"vendor",v:VENDORS.length-1});return;}if(e.pt) ptTarget(e.pt[0],e.pt[1]);if(e.fund){goFund(e.fund);return;}goPage(e.page);return;}
@@ -10893,6 +11153,7 @@ function setViewNow(name){
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
   if(name==="paths") ptRender(false);
   if(name==="exam") exEnter();
+  if(name==="settings") setEnter();
 }
 async function goExplore(){
   if(state!=="open"||switching||guideBusy) return;
@@ -10905,10 +11166,26 @@ async function goPage(name){
   if(sheet.classList.contains("live")){openSheet();if(name===shView){if(name==="exam") exEnter();}else showView(name);return;}
   setViewNow(name);openSheet();
 }
-srchIn.addEventListener("input",function(){srchRender();});
+srchIn.addEventListener("input",srchQueue);
+/* phones: keep the panel above the on-screen keyboard (iOS lays the keyboard over the page instead of resizing it) */
+function srchFit(){
+  var vv=window.visualViewport;
+  if(!vv||finePointer||!srchOpen){srch.style.height="";srch.style.bottom="";srch.style.transform="";return;}
+  srch.style.bottom="auto";srch.style.height=Math.round(vv.height)+"px";srch.style.transform=vv.offsetTop?"translateY("+Math.round(vv.offsetTop)+"px)":"";
+}
+if(window.visualViewport){
+  var srchFitRaf=0, fitQ=function(){if(!srchOpen||srchFitRaf) return;srchFitRaf=requestAnimationFrame(function(){srchFitRaf=0;srchFit();});};
+  visualViewport.addEventListener("resize",fitQ);visualViewport.addEventListener("scroll",fitQ);
+}
+/* phones: dragging the results drops the keyboard so you can see more of them */
+(function(){
+  var y0=null;
+  srchList.addEventListener("touchstart",function(e){y0=e.touches[0].clientY;},{passive:true});
+  srchList.addEventListener("touchmove",function(e){if(y0!=null&&Math.abs(e.touches[0].clientY-y0)>10){y0=null;if(document.activeElement===srchIn) srchIn.blur();}},{passive:true});
+})();
 srch.addEventListener("click",function(e){
   if(e.target.closest("[data-sr-close]")){srchClose();return;}
-  var t=e.target.closest("[data-try]");if(t){srchIn.value=t.dataset.try;srchRender();srchIn.focus({preventScroll:true});return;}
+  var t=e.target.closest("[data-try]");if(t){srchIn.value=t.dataset.try;srchRender(false,true);srchIn.focus({preventScroll:true});return;}
   if(e.target.closest("[data-try-all]")){srchFilter="all";setChips();srchRender();srchIn.focus({preventScroll:true});return;}
   var o=e.target.closest(".sr-opt");if(o) srchPick(srchRes[+o.dataset.i]);
 });
@@ -10929,6 +11206,7 @@ document.addEventListener("keydown",function(e){
   }
   if(k==="Escape"){e.preventDefault();e.stopPropagation();srchClose(false,true);return;}
   if((e.metaKey||e.ctrlKey)&&(k==="k"||k==="K")){e.preventDefault();srchClose();return;}
+  if(k==="ArrowDown"||k==="ArrowUp"||k==="Enter") srchFlush();
   if(k==="ArrowDown"||k==="ArrowUp"){
     e.preventDefault();if(!srchRes.length) return;
     var n=srchRes.length, i=srchAct<0?0:(srchAct+(k==="ArrowDown"?1:-1)+n)%n;setAct(i,true);return;
@@ -10943,12 +11221,291 @@ document.addEventListener("keydown",function(e){
 },true);
 window.addEventListener("resize",function(){if(srchOpen&&srchAct>=0) setAct(srchAct,false,true);});
 
+/* ---------- search inside the guides (v2.26) ----------
+   Objectives, must-know cards (ports, acronyms, steps), PBQs, study resources, exam-day tips and renewal notes.
+   Built the first time someone types, kept in memory. Picking a result opens the guide, opens the right
+   domain, version or PBQ, scrolls to the line and lights it up for a moment. */
+var CIDX=null;
+function cIndex(){
+  if(CIDX) return CIDX;
+  CIDX=[];
+  Object.keys(GUIDES).forEach(function(name){
+    var G=GUIDES[name], ce=sByName(name);if(!ce) return;
+    var v=ce.v, cn=snorm(name+" "+(ALIAS[name]||"")), title=G.title||name;
+    function add(o,t,d,w){
+      o.kind="content";o.cert=name;o.v=v;o.key="c:"+G.id+":"+o.at.join(":");
+      o.fields=[[snorm(t),w||70],[snorm(d||""),24],[cn,10]];
+      CIDX.push(o);
+    }
+    /* objectives: the version this person reads first, then lines only found in other versions */
+    var saved=gGet("cgcp."+G.id+".ver"), vers=Object.keys(G.versions), seen={};
+    if(typeof saved==="string"&&vers.indexOf(saved)>0){vers.splice(vers.indexOf(saved),1);vers.unshift(saved);}
+    vers.forEach(function(ver){
+      var V=G.versions[ver];
+      V.domains.forEach(function(d,k){d.obj.forEach(function(o,j){
+        var sig=snorm(o[0]);if(seen[sig]) return;seen[sig]=1;
+        var num=o[3]?o[3]:V.numbered?(k+1)+"."+(j+1):"";
+        add({at:["o",ver,k,j],ver:ver,name:o[0],sub:title+" · "+(vers.length>1?V.label+" · ":"")+d.n+" "+d.name+(num?" · "+num:""),tag:"Objective"},o[0],o[1]+" "+d.name);
+      });});
+    });
+    (G.extras||[]).forEach(function(x,xi){
+      x.rows.forEach(function(r,ri){
+        if(x.kind==="steps") add({at:["x",xi,ri],name:String(r).length>90?String(r).slice(0,88)+"…":String(r),sub:title+" · "+x.title,tag:"Step"},r,x.title,40);
+        else if(x.kind==="ports") add({at:["x",xi,ri],name:"Port "+r[0]+" · "+r[2],sub:title+" · "+x.title+" · "+r[1],tag:"Port"},"port "+r[0]+" "+r[2],r[1]+" "+x.title,78);
+        else add({at:["x",xi,ri],name:r[0]+" · "+r[1],sub:title+" · "+x.title,tag:"Must-know"},r[0]+" "+r[1],r[2]+" "+x.title,76);
+      });
+    });
+    (G.pbqs||[]).forEach(function(p,pi){add({at:["p",pi],name:"PBQ "+pad2(pi+1)+" · "+p.title,sub:title+" · Performance-based practice",tag:"PBQ"},p.title+" "+p.short+" pbq",p.scenario||"",66);});
+    (G.resources||[]).forEach(function(g,gi){g.items.forEach(function(r,ri){add({at:["r",gi,ri],name:r[0],sub:title+" · Where to study · "+r[1],tag:r[3]||"Resource"},r[0]+" "+r[1],r[4]+" "+g.group+" study resource",56);});});
+    (G.tips||[]).forEach(function(t,ti){add({at:["t",ti],name:t[0],sub:title+" · Exam day tips",tag:"Tip"},t[0],t[1]+" exam day tip",50);});
+    (G.keep||[]).forEach(function(kc,ki){add({at:["k",ki],name:kc.lab+" · "+kc.big,sub:title+" · Keep it, use it",tag:"Renewal"},kc.lab+" "+kc.big,kc.text+" "+(kc.after||"")+" "+(kc.list||[]).join(" ")+" renew renewal keep",52);});
+  });
+  return CIDX;
+}
+/* a result counts only if the words hit the line itself, not just the cert's name */
+function cOwn(e,toks){for(var i=0;i<toks.length;i++){if(sTok(toks[i],e.fields[0])||sTok(toks[i],e.fields[1])) return true;}return false;}
+function cHits(toks,qc){
+  if(!toks.length||srchFilter!=="all"||toks.join("").length<2) return [];
+  var out=[];
+  cIndex().forEach(function(e){if(!cOwn(e,toks)) return;var sc=sScore(e,toks,qc);if(sc>0) out.push({e:e,s:sc});});
+  out.sort(function(a,b){return b.s-a.s;});
+  if(out.length){var top=out[0].s;out=out.filter(function(h){return h.s>=top*.5;});}
+  return out.slice(0,12);
+}
+function waitFor(test,ms){
+  return new Promise(function(res){var t0=performance.now();(function poll(){if(test()) return res(true);if(performance.now()-t0>ms) return res(false);setTimeout(poll,60);})();});
+}
+async function cGo(e){
+  var name=e.cert;
+  if(!(state==="open"&&guideName===name)){
+    var ce=sByName(name);if(!ce) return;
+    openCertFrom(ce);
+  }
+  var ok=await waitFor(function(){return state==="open"&&guideName===name&&!guideBusy&&!switching&&panel.querySelector("#g-doms .g-dom");},6000);
+  if(!ok) return;
+  var at=e.at, body=panel.querySelector("#p-body"), el=null;
+  if(at[0]==="o"){
+    if(at[1]!==gVer){var vb=body.querySelector('.g-vseg [data-ver="'+at[1]+'"]');if(vb) vb.click();}
+    var d=body.querySelector('.g-dom[data-k="'+at[2]+'"]');if(!d) return;
+    if(!d.classList.contains("open")){d.classList.add("open");d.querySelector(".g-dh").setAttribute("aria-expanded","true");d.querySelector(".g-dd").inert=false;}
+    el=d.querySelectorAll(".g-o")[at[3]]||d;
+  } else if(at[0]==="x"){
+    var ex=body.querySelectorAll(".g-ex")[at[1]];el=ex?(ex.querySelectorAll("li")[at[2]]||ex):null;
+  } else if(at[0]==="p"){
+    var pb=body.querySelector('#g-ptabs [data-p="'+at[1]+'"]');if(pb&&pb.getAttribute("aria-pressed")!=="true") pb.click();
+    el=body.querySelector("#g-pbqv");
+  } else if(at[0]==="r"){
+    var rg=body.querySelectorAll(".g-rgrp")[at[1]];el=rg?(rg.querySelectorAll("li")[at[2]]||rg):null;
+  } else if(at[0]==="t"){
+    el=body.querySelectorAll(".g-tips li")[at[1]]||null;
+  } else if(at[0]==="k"){
+    el=body.querySelectorAll(".g-kc")[at[1]]||null;
+  }
+  if(!el) return;
+  var sec=el.closest(".g-sec");if(sec) sec.classList.add("in");
+  /* wait a frame so an opened domain has its height, then bring the line to a third of the way down */
+  await new Promise(function(r){requestAnimationFrame(function(){requestAnimationFrame(r);});});
+  var sid=sec?sec.dataset.sec:null;if(sid) gNavSet(sid);
+  var off=-Math.max(gNavH()+24,Math.round(panel.clientHeight*.28)), tgt=panel.scrollTop+el.getBoundingClientRect().top+off, d=tgt-panel.scrollTop, near=panel.clientHeight*.9;
+  /* far away (a long guide on a phone): jump most of the way, then glide the last screen, so it lands in well under a second */
+  if(!reduced&&Math.abs(d)>near*1.6){
+    var pre=tgt-(d>0?1:-1)*near;
+    if(lenis) lenis.scrollTo(pre,{immediate:true,force:true});else panel.scrollTop=pre;
+    await new Promise(function(r){requestAnimationFrame(r);});
+  }
+  scrollPanelTo(el,off);
+  body.querySelectorAll(".sr-hit").forEach(function(x){x.classList.remove("sr-hit");});
+  /* light the line once the scroll has settled, so the glow is seen */
+  var lastY=-1, still=0, t0=performance.now();
+  await new Promise(function(res){(function poll(){var y=panel.scrollTop;still=Math.abs(y-lastY)<.5?still+1:0;lastY=y;if(still>=3||performance.now()-t0>1600) return res();requestAnimationFrame(poll);})();});
+  void el.offsetWidth;el.classList.add("sr-hit");
+  setTimeout(function(){el.classList.remove("sr-hit");},reduced?4000:3500);
+}
+
+/* ---------- Settings: Lite mode + progress backup (v2.26) ---------- */
+var BK_RE=/^cgcp\.[A-Za-z0-9_.+\-]{1,64}$/, BK_SKIP=/^cgcp\.lite/;
+function bkKeys(){var out=[];try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&BK_RE.test(k)&&!BK_SKIP.test(k)) out.push(k);}}catch(e){}return out.sort();}
+function bkLocal(){var m={};bkKeys().forEach(function(k){try{var v=localStorage.getItem(k);if(v!=null) m[k]=v;}catch(e){}});return m;}
+function bkJ(m,k){try{return m[k]!=null?JSON.parse(m[k]):null;}catch(e){return null;}}
+function bkSummary(m){
+  var ticks=0, guides=0, bests=0;
+  Object.keys(GUIDES).forEach(function(n){
+    var G=GUIDES[n], t=0, seen={};
+    Object.keys(G.versions).forEach(function(ver){var d=bkJ(m,"cgcp."+G.id+"."+ver+".done");if(Array.isArray(d)) d.forEach(function(x){if(typeof x==="string"&&x.length<12&&!seen[ver+x]){seen[ver+x]=1;t++;}});});
+    var b=bkJ(m,"cgcp."+G.id+".quizbest");if(typeof b==="number"&&isFinite(b)) bests++;
+    if(t) guides++;ticks+=t;
+  });
+  var path=bkJ(m,"cgcp.mypath"), ex=bkJ(m,"cgcp.exam"), cmp=bkJ(m,"cgcp.compare");
+  var exTxt=null, dd=ex&&typeof ex==="object"&&typeof ex.c==="string"&&typeof ex.d==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(ex.d)?new Date(ex.d+"T12:00:00"):null;
+  if(dd&&!isNaN(dd)) exTxt=ex.c.slice(0,60)+" on "+dd.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+  return {ticks:ticks,guides:guides,bests:bests,path:!!(path&&typeof path==="object"),exam:exTxt,cmp:!!(cmp&&typeof cmp==="object"&&(cmp.a||cmp.b)),keys:Object.keys(m).length};
+}
+function bkSumHTML(S){
+  var it=[[S.ticks,"objectives ticked"+(S.guides?" in "+S.guides+" guide"+(S.guides===1?"":"s"):"")],[S.bests,"quiz best score"+(S.bests===1?"":"s")],[S.path?"Saved":"None","My path"],[S.exam?"Set":"None",S.exam?"Exam countdown: "+S.exam:"Exam countdown"],[S.cmp?"Saved":"None","Compare picks"]];
+  return it.map(function(x){return '<li><b>'+gEsc(String(x[0]))+'</b><span>'+gEsc(x[1])+'</span></li>';}).join("");
+}
+function bkSumLine(S){
+  var p=[];
+  if(S.ticks) p.push(S.ticks+" objective"+(S.ticks===1?"":"s")+" ticked in "+S.guides+" guide"+(S.guides===1?"":"s"));
+  if(S.bests) p.push(S.bests+" quiz best"+(S.bests===1?"":"s"));
+  if(S.path) p.push("your path");
+  if(S.exam) p.push("an exam countdown ("+S.exam+")");
+  if(S.cmp) p.push("compare picks");
+  return p.length?p.join(", "):"no guide progress yet";
+}
+function bkText(){
+  return JSON.stringify({app:"CertPath",kind:"backup",v:1,exported:new Date().toISOString(),from:(document.querySelector(".mark span")||{}).textContent||"",data:bkLocal()},null,1);
+}
+function bkName(){var d=new Date();return "certpath-backup-"+d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate())+".json";}
+function bkDownload(txt,name){
+  try{
+    var u=URL.createObjectURL(new Blob([txt],{type:"application/json"})), a=document.createElement("a");
+    a.href=u;a.download=name;a.rel="noopener";a.style.display="none";document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(u);if(a.parentNode) a.parentNode.removeChild(a);},5000);
+    toast("Backup saved: "+name);
+  }catch(e){bkShowText(txt);}
+}
+function bkShowText(txt){var b=$("#bk-tbox"), o=$("#bk-out");o.value=txt;b.hidden=false;o.focus({preventScroll:true});o.select();}
+function bkSave(){
+  var txt=bkText(), name=bkName(), file=null;
+  try{file=new File([txt],name,{type:"application/json"});}catch(e){file=null;}
+  /* phones: the share sheet (Save to Files on iPhone). Computers: a normal download. */
+  if(file&&!finePointer&&navigator.canShare&&navigator.share){
+    var ok=false;try{ok=navigator.canShare({files:[file]});}catch(e){ok=false;}
+    if(ok){navigator.share({files:[file],title:"CertPath backup"}).then(function(){toast("Backup saved");},function(err){if(err&&err.name==="AbortError") return;bkDownload(txt,name);});return;}
+  }
+  bkDownload(txt,name);
+}
+function bkCopy(){
+  var txt=bkText();
+  var fail=function(){bkShowText(txt);};
+  try{if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function(){toast("Backup copied. Paste it into a note to keep it.");$("#bk-tbox").hidden=true;},fail);else fail();}catch(e){fail();}
+}
+var bkPending=null;
+function bkParse(txt){
+  if(typeof txt!=="string"||!txt.trim()) return {err:"That's empty. Paste the whole backup text, starting with {"};
+  if(txt.length>1024*1024) return {err:"That's too big to be a CertPath backup."};
+  var o;try{o=JSON.parse(txt.trim());}catch(e){return {err:"That isn't a CertPath backup. Paste the whole text, from the first { to the last }."};}
+  if(!o||typeof o!=="object"||Array.isArray(o)||o.app!=="CertPath"||o.v!==1||!o.data||typeof o.data!=="object"||Array.isArray(o.data)) return {err:"That isn't a CertPath backup."};
+  var m={}, n=0;
+  Object.keys(o.data).forEach(function(k){
+    var v=o.data[k];if(n>=500||!BK_RE.test(k)||BK_SKIP.test(k)||typeof v!=="string"||v.length>200000) return;
+    try{JSON.parse(v);}catch(e){return;}
+    m[k]=v;n++;
+  });
+  if(!n) return {err:"That backup has no saved progress in it."};
+  var when=typeof o.exported==="string"?new Date(o.exported):null;
+  return {data:m,when:when&&!isNaN(when)?when:null};
+}
+function bkOffer(res){
+  var box=$("#bk-cbox"), msg=$("#bk-cmsg"), acts=$("#bk-cacts");
+  box.hidden=false;box.classList.toggle("warn",!!res.err);
+  if(res.err){bkPending=null;msg.innerHTML='<span class="set-err">'+gEsc(res.err)+'</span>';acts.hidden=true;return;}
+  bkPending=res.data;acts.hidden=false;
+  var S=bkSummary(res.data), now=bkSummary(bkLocal());
+  msg.innerHTML='<b>Backup'+(res.when?' from '+gEsc(res.when.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"})):'')+'</b>: '+gEsc(bkSumLine(S))+'.<br>'+
+    'Restoring replaces what’s saved on this device now ('+gEsc(bkSumLine(now))+').';
+  box.scrollIntoView({block:"nearest",behavior:reduced?"auto":"smooth"});
+}
+function bkRestore(){
+  if(!bkPending) return;
+  var m=bkPending;bkPending=null;
+  try{
+    bkKeys().forEach(function(k){localStorage.removeItem(k);});
+    Object.keys(m).forEach(function(k){localStorage.setItem(k,m[k]);});
+  }catch(e){toast("Couldn't restore: this browser's storage is full or blocked.");return;}
+  setReload("Progress restored");
+}
+function setReload(msg){
+  try{sessionStorage.setItem("cgcp-reopen",JSON.stringify({v:"settings",msg:msg}));}catch(e){}
+  toast(msg+". Reloading…");
+  setTimeout(function(){location.reload();},reduced?250:600);
+}
+var LITE_WHY={nogl:"this browser has WebGL turned off, so the 3D globe can't run",soft:"its graphics run in software (common on work computers and remote desktops), which makes the 3D globe slow",data:"the browser's data saver is on"};
+function setEnter(){
+  var seg=$("#set-lite");
+  seg.querySelectorAll("[data-lite]").forEach(function(b){var on=b.dataset.lite===LITE.pref;b.setAttribute("aria-checked",String(on));b.tabIndex=on?0:-1;});
+  var st=LITE.pref==="on"?"Lite is <b>on</b> for this device.":
+    LITE.pref==="off"?"Lite is <b>off</b> for this device."+(has3D?"":" The 3D globe still needs WebGL, so this browser shows the still globe."):
+    LITE.on?"Auto picked <b>Lite</b> for this device: "+LITE_WHY[LITE.why]+".":"Auto picked the <b>full</b> version: this device runs the 3D globe.";
+  $("#set-lite-s").innerHTML=st;
+  $("#set-sum").innerHTML=bkSumHTML(bkSummary(bkLocal()));
+  ["#bk-pbox","#bk-cbox","#bk-tbox"].forEach(function(s){$(s).hidden=true;});bkPending=null;
+}
+function setLite(v){
+  if(v===LITE.pref) return;
+  try{if(v==="auto") localStorage.removeItem("cgcp.lite");else localStorage.setItem("cgcp.lite",v);}catch(e){toast("Couldn't save that setting in this browser.");return;}
+  $("#set-lite").querySelectorAll("[data-lite]").forEach(function(b){b.setAttribute("aria-checked",String(b.dataset.lite===v));});
+  setReload(v==="on"?"Lite mode on":v==="off"?"Lite mode off":"Lite mode set to Auto");
+}
+(function(){
+  var seg=$("#set-lite");
+  seg.addEventListener("click",function(e){var b=e.target.closest("[data-lite]");if(b) setLite(b.dataset.lite);});
+  seg.addEventListener("keydown",function(e){
+    if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"&&e.key!=="ArrowDown"&&e.key!=="ArrowUp") return;
+    e.preventDefault();var bs=[].slice.call(seg.querySelectorAll("[data-lite]")), i=bs.indexOf(document.activeElement);
+    var n=bs[(i+(e.key==="ArrowRight"||e.key==="ArrowDown"?1:-1)+bs.length)%bs.length];n.focus();
+  });
+  $("#bk-save").addEventListener("click",bkSave);
+  $("#bk-copy").addEventListener("click",bkCopy);
+  var fi=$("#bk-file");
+  $("#bk-load").addEventListener("click",function(){fi.value="";fi.click();});
+  fi.addEventListener("change",function(){
+    var f=fi.files&&fi.files[0];if(!f) return;
+    $("#bk-pbox").hidden=true;
+    if(f.size>1024*1024){bkOffer({err:"That file is too big to be a CertPath backup."});return;}
+    var r=new FileReader();r.onload=function(){bkOffer(bkParse(String(r.result||"")));};r.onerror=function(){bkOffer({err:"Couldn't read that file."});};r.readAsText(f);
+  });
+  $("#bk-paste").addEventListener("click",function(){$("#bk-cbox").hidden=true;$("#bk-pbox").hidden=false;$("#bk-ta").value="";$("#bk-ta").focus({preventScroll:true});});
+  $("#bk-pcancel").addEventListener("click",function(){$("#bk-pbox").hidden=true;});
+  $("#bk-check").addEventListener("click",function(){bkOffer(bkParse($("#bk-ta").value));});
+  $("#bk-yes").addEventListener("click",bkRestore);
+  $("#bk-no").addEventListener("click",function(){bkPending=null;$("#bk-cbox").hidden=true;});
+})();
+
+/* after a Lite switch or a restore: skip the launch screen, say what happened, reopen Settings */
+var setReopen=null;
+try{setReopen=JSON.parse(sessionStorage.getItem("cgcp-reopen")||"null");sessionStorage.removeItem("cgcp-reopen");}catch(e){setReopen=null;}
+if(setReopen&&typeof setReopen==="object"){var spR=document.getElementById("splash");if(spR&&spR.parentNode) spR.parentNode.removeChild(spR);}
+function setReopenGo(){
+  if(!setReopen||typeof setReopen!=="object") return;
+  var r=setReopen, tries=0;setReopen=null;
+  (function poll(){
+    if(state==="idle"&&!document.getElementById("splash")){if(r.v==="settings") goPage("settings");if(typeof r.msg==="string") setTimeout(function(){toast(r.msg.slice(0,60));},400);return;}
+    if(++tries<60) setTimeout(poll,100);
+  })();
+}
+
+/* slow device on Auto: offer Lite once (never on this device again after Use Lite or dismiss) */
+function liteWatch(){
+  if(LITE.pref!=="auto"||LITE.on||!has3D) return;
+  try{if(localStorage.getItem("cgcp.litetip")) return;}catch(e){return;}
+  var tip=$("#lite-tip"), times=[], last=0, t0=performance.now();
+  function seen(){try{localStorage.setItem("cgcp.litetip","1");}catch(e){}}
+  function sample(now){
+    if(performance.now()-t0>30000) return;
+    var calm=state==="idle"&&sheetP<.02&&!srchOpen&&document.visibilityState==="visible";
+    if(calm&&last) times.push(now-last);else if(!calm) times.length=0;
+    last=now;
+    if(times.length>=90){
+      var s=times.slice().sort(function(a,b){return a-b;}), med=s[s.length>>1];
+      if(med>55){tip.hidden=false;seen();
+        $("#lt-on").onclick=function(){tip.hidden=true;setLite("on");};
+        $("#lt-x").onclick=function(){tip.hidden=true;};
+      }
+      return;
+    }
+    requestAnimationFrame(sample);
+  }
+  setTimeout(function(){requestAnimationFrame(sample);},4500);
+}
+
 /* ---------- giant interactive wordmark (vanilla port of React Bits TechText) ---------- */
 function makeTechText(cv,cvF){
   var ctx=cv.getContext("2d"), ctxF=cvF?cvF.getContext("2d"):null, disc={x:0,y:0,r:0};
   var S={text:"CertPath",family:"'Inter Tight','Geist',system-ui,-apple-system,sans-serif",weight:700,ls:-.055,ink:"#f3f5f8",accent:"#ffffff",dash:4,gap:2,stroke:1.5,specks:14,bounce:.4,introDur:2.6};
   var LABEL="10px 'IBM Plex Mono',ui-monospace,Menlo,monospace", SPRING=320, KICK_DECAY=.62;
-  var W=1,H=1,dpr=1,cy=0,box=null,word=null,glyphs=[],frame={x1:0,y1:0,x2:0,y2:0,alpha:0,index:-1},lens={x:0,y:0},ptr={x:0,y:0,inside:false};
+  var W=1,H=1,dpr=1,cy=0,hdrB=0,box=null,word=null,glyphs=[],frame={x1:0,y1:0,x2:0,y2:0,alpha:0,index:-1},lens={x:0,y:0},ptr={x:0,y:0,inside:false};
   var sweepHold=0,drag=-1,grabP={x:0,y:0},kicks=[],clock=0,pulse=0,placed=false,introT=0,fontsOK=!document.fonts,dirty=true,press=null;
   function ap(c,t,dt,sec){return c+(t-c)*(1-Math.exp(-dt/sec));}
   function c01(v){return Math.min(1,Math.max(0,+v||0));}
@@ -10965,11 +11522,41 @@ function makeTechText(cv,cvF){
     else{c.fillStyle=S.ink;c.fillText(base.ch,base.x,baseline);}
     return {image:im,left:left,top:top};
   }
+  /* Optical spacing guard: the tight -0.055 tracking makes some pairs touch ("rt" overlaps in Inter Tight,
+     and fallback fonts differ). Measure the real ink gap of each pair at 100px and open any pair that is
+     closer than KERN_MIN of the em. Cached per font state; any failure leaves the spacing as designed. */
+  var kernCache={}, KERN_MIN=.8;
+  function kernGuard(chars,widths){
+    var none=chars.map(function(){return 0;}), key=fontAt(100)+"|"+(fontsOK?1:0)+"|"+(document.fonts&&document.fonts.check?document.fonts.check(fontAt(40)):1);
+    if(kernCache[key]) return kernCache[key];
+    try{
+      var Wc=220,Hc=170,ox=60,base=130,c=document.createElement("canvas");c.width=Wc;c.height=Hc;
+      var g=c.getContext("2d",{willReadFrequently:true});if(!g) return none;
+      var prof=chars.map(function(ch){
+        g.clearRect(0,0,Wc,Hc);g.font=fontAt(100);g.textBaseline="alphabetic";g.textAlign="left";g.fillStyle="#000";g.fillText(ch,ox,base);
+        var d=g.getImageData(0,0,Wc,Hc).data,L=[],R=[];
+        for(var y=0;y<Hc;y++){var l=-1,r=-1;
+          for(var x=0;x<Wc;x++){if(d[(y*Wc+x)*4+3]>60){l=x;break;}}
+          if(l>=0) for(var x2=Wc-1;x2>=l;x2--){if(d[(y*Wc+x2)*4+3]>60){r=x2;break;}}
+          L.push(l<0?null:l-ox);R.push(r<0?null:r-ox+1);}
+        return {L:L,R:R};
+      });
+      var out=none.slice();
+      for(var i=0;i<chars.length-1;i++){
+        if(!chars[i].trim()||!chars[i+1].trim()) continue;
+        var gap=Infinity,shift=widths[i]+S.ls*100;
+        for(var y=0;y<Hc;y++){var a=prof[i].R[y],b=prof[i+1].L[y];if(a!=null&&b!=null) gap=Math.min(gap,shift+b-a);}
+        if(gap<Infinity) out[i]=Math.min(8,Math.max(0,KERN_MIN-gap));
+      }
+      kernCache[key]=out;return out;
+    }catch(e){return none;}
+  }
+  var layN=0, calmAt=null;
   function layout(){
-    dirty=false;
+    dirty=false;layN++;
     ctx.setTransform(1,0,0,1,0,0);ctx.textBaseline="alphabetic";ctx.textAlign="left";ctx.font=fontAt(100);
-    var chars=Array.from(S.text), widths=chars.map(function(c){return ctx.measureText(c).width;});
-    var adv=widths.reduce(function(a,b){return a+b;},0)+S.ls*100*(chars.length-1);
+    var chars=Array.from(S.text), widths=chars.map(function(c){return ctx.measureText(c).width;}), extra=kernGuard(chars,widths);
+    var adv=widths.reduce(function(a,b){return a+b;},0)+S.ls*100*(chars.length-1)+extra.reduce(function(a,b){return a+b;},0);
     var m=ctx.measureText(S.text), asc=m.actualBoundingBoxAscent||72, desc=m.actualBoundingBoxDescent||0;
     var mobile=W<720;
     var size=box?Math.min(box.w*.96/adv*100,H*.22/(asc+desc)*100,220):Math.min(W*(mobile?.9:.88)/adv*100,H*(mobile?.15:.3)/(asc+desc)*100,380), k=size/100;
@@ -10990,7 +11577,7 @@ function makeTechText(cv,cvF){
         base.fill=sprite(base,size,baseline,false);base.dash=sprite(base,size,baseline,true);
         glyphs.push(base);
       }
-      gx+=widths[i]*k+S.ls*size;
+      gx+=widths[i]*k+S.ls*size+extra[i]*k;
     });
     drag=-1;frame.index=-1;
   }
@@ -11048,7 +11635,9 @@ function makeTechText(cv,cvF){
     if(S.specks>0) drawSpecks(a);
     ctx.font=LABEL;ctx.textAlign="left";ctx.textBaseline="bottom";ctx.fillStyle=S.accent;ctx.globalAlpha=.62*a;
     var label=moved>1?sgn(Math.round(g.off.x))+", "+sgn(Math.round(-g.off.y)):g.ch+"  "+Math.round(g.box.x2-g.box.x1)+" × "+Math.round(g.box.y2-g.box.y1);
-    ctx.fillText(label,Math.round(frame.x1),Math.round(frame.y1)-7);
+    /* the label sits above the frame unless that would run into the header (phones): then below it */
+    if(frame.y1-20<hdrB){ctx.textBaseline="top";ctx.fillText(label,Math.round(frame.x1),Math.round(frame.y2)+8);}
+    else ctx.fillText(label,Math.round(frame.x1),Math.round(frame.y1)-7);
     ctx.globalAlpha=1;ctx.setTransform(1,0,0,1,0,0);
   }
   function drawLines(alpha,growth){
@@ -11121,6 +11710,11 @@ function makeTechText(cv,cvF){
     }
     frame.alpha=ap(frame.alpha,focus>=0?1:0,dt,.1);
     glyphs.forEach(function(g,i){var t=!introducing&&i===focus&&i!==drag?1:0;g.outline=ap(g.outline,t,dt,.09);if(Math.abs(g.outline-t)<.002) g.outline=t;});
+    /* nothing moving (reduced motion / Lite, no pointer on the word): skip repainting the same picture every frame */
+    var calm=!introducing&&focus<0&&drag<0&&frame.alpha<.004&&!kicks.length&&glyphs.every(function(g){return g.off.x===0&&g.off.y===0&&g.outline===0;});
+    var stamp=layN+"|"+disc.x+"|"+disc.y+"|"+disc.r;
+    if(calm&&calmAt===stamp) return;
+    calmAt=calm?stamp:null;
 
     ctx.setTransform(1,0,0,1,0,0);ctx.globalCompositeOperation="source-over";ctx.globalAlpha=1;ctx.clearRect(0,0,cv.width,cv.height);
     glyphs.forEach(function(g){var mv=Math.hypot(g.off.x,g.off.y);if(mv>1){ctx.globalAlpha=Math.min(1,mv/24)*.55;blit(g.dash,0,0);ctx.globalAlpha=1;}});
@@ -11147,7 +11741,7 @@ function makeTechText(cv,cvF){
   return {
     setDisc:function(x,y,r){disc.x=x;disc.y=y;disc.r=r;},
     step:step,
-    resize:function(w,h,center,area){W=w;H=h;cy=center;box=area||null;dpr=Math.min(window.devicePixelRatio||1,2);cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);if(cvF){cvF.width=cv.width;cvF.height=cv.height;}dirty=true;},
+    resize:function(w,h,center,area){W=w;H=h;cy=center;box=area||null;try{var hb=document.querySelector("header.top");hdrB=hb?hb.getBoundingClientRect().bottom-cv.getBoundingClientRect().top:0;}catch(e){hdrB=0;}dpr=Math.min(window.devicePixelRatio||1,2);cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);if(cvF){cvF.width=cv.width;cvF.height=cv.height;}dirty=true;},
     fontReady:function(){fontsOK=true;dirty=true;},
     snap:function(){if(dirty) layout();return word?{word:word,glyphs:glyphs.map(function(g){return g.fill;}),dpr:dpr,rect:cv.getBoundingClientRect()}:null;},
     skipIntro:function(){introT=S.introDur+1;sweepHold=1e9;},
@@ -11172,7 +11766,7 @@ if(document.fonts&&document.fonts.load){
 /* the readout slides in on load: measure again once that motion has settled */
 setTimeout(placeReadout,2600);setTimeout(placeReadout,4200);
 function sphereR(){
-  if(!has3D) return 0;
+  if(!has3D) return still.on?still.R:0;
   return (H/2)/Math.tan(camera.fov*Math.PI/360)/Math.sqrt(Math.max(camDist*camDist-1,.01));
 }
 function onSphere(x,y){return has3D&&Math.hypot(x-gcx,y-gcy)<sphereR()*1.02;}
@@ -11251,7 +11845,7 @@ function makeFlex(host,v){
     }};
   }
   var cv=document.createElement("canvas");cv.className="flex-cv";cv.setAttribute("aria-hidden","true");host.insertBefore(cv,host.firstChild);
-  var gl=null;try{gl=cv.getContext("webgl2",{alpha:true,premultipliedAlpha:true,antialias:false,depth:false,stencil:false});}catch(e){gl=null;}
+  var gl=null;if(!LITE.on) try{gl=cv.getContext("webgl2",{alpha:true,premultipliedAlpha:true,antialias:false,depth:false,stencil:false});}catch(e){gl=null;}
   if(!gl){cv.remove();return fallback();}
   var CARD_VS="#version 300 es\nin vec2 position;in vec2 uv;uniform vec4 uRect;uniform vec2 uResolution;out vec2 vUv;out vec2 vLocal;\nvoid main(){vUv=uv;vLocal=vec2(position.x,-position.y)*uRect.zw;vec2 px=uRect.xy+vLocal;gl_Position=vec4(px.x/uResolution.x*2.0-1.0,1.0-px.y/uResolution.y*2.0,0.0,1.0);}";
   var CARD_FS=`#version 300 es
@@ -11557,7 +12151,7 @@ var specUntil=0;
 function specWake(){specUntil=performance.now()+1400;}
 function specStep(dt){
   var now=performance.now();
-  if(now>specUntil) return;
+  if(now>specUntil||LITE.on) return;
   var known=mouse.px>-999, vh=window.innerHeight, live=[], i, sp;
   var sheetOn=sheetP>.02, homeOn=state!=="open"&&sheetP<.98, panelOn=state==="open";
   for(i=0;i<specs.length;i++){
@@ -11614,7 +12208,7 @@ specScan(document);
 
 /* ---------- boot ---------- */
 setPalette(0);
-has3D=init3D();
+has3D=LITE.on?false:init3D();
 if(has3D){
   canvas.addEventListener("pointerdown",onDown);
   canvas.addEventListener("pointermove",onMove);
@@ -11622,9 +12216,12 @@ if(has3D){
   canvas.addEventListener("pointercancel",onUp);
   canvas.addEventListener("wheel",function(e){if(state!=="idle")return;e.preventDefault();zoomT=clamp(zoomT+e.deltaY*.0008,1,1.25);},{passive:false});
 }else{
-  var n=document.createElement("div");n.className="nogl";
-  n.innerHTML="<p>The 3D globe needs WebGL, which this browser has turned off. Pick a vendor below.</p>";
-  app.insertBefore(n,labelsEl);
+  /* no WebGL, or Lite mode: the still globe, and a small pill by the version that opens Settings */
+  stillInit();
+  var lp=$("#lite-pill");
+  if(lp){lp.classList.add("on");lp.textContent=LITE.on?"Lite":"3D off";
+    lp.setAttribute("aria-label",(LITE.on?"Lite mode is on":"The 3D globe is off in this browser")+". Open settings");
+    lp.addEventListener("click",function(){goPage("settings");});}
 }
 resize();camDist=baseDist*introCam.v;
 window.addEventListener("resize",resize);
@@ -11714,7 +12311,9 @@ function startHome(lead){
   setTimeout(function(){document.querySelectorAll(".ui .glass").forEach(function(g,n){setTimeout(function(){shine(g);},n*70);});},(lead||0)+1500);
 }
 requestAnimationFrame(frame);
+setReopenGo();liteWatch();
 if(has3D) loadWorld();
+else setTimeout(function(){var go=function(){loadWorld();};if(window.requestIdleCallback) requestIdleCallback(go,{timeout:1500});else go();},LITE.on?300:1200);
 runSplash();
 
 /* ---------- launch screen: CertPath rises in, then flies into its place behind the globe ---------- */
