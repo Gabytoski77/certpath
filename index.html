@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-toRAJimFSg5QQn6YKDZYL3ecstNF9cLEzp5HSvIUgLk=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-WMuoT6ISJmq6wzvtidV1E4KdvmVyBSWc6e9n/WUc67E=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -960,6 +960,26 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .ptm-j small{font:500 10.5px/1 var(--f-mono);color:var(--v-muted)}
 .ptm-all{font:500 11px/1 var(--f-mono);color:var(--v-muted)}
 .ptm-src{margin:0;font-size:11px;line-height:1.5;color:var(--v-muted)}
+.g-road.wl-on{display:block;border:0}
+.wl{list-style:none;margin:0;padding:0;display:grid}
+.wl-s{position:relative;display:grid;gap:8px;padding:0 0 26px 34px}
+.wl-s::before{content:"";position:absolute;left:0;top:2px;width:12px;height:12px;border-radius:50%;border:1.5px solid var(--v-line);background:transparent}
+.wl-s::after{content:"";position:absolute;left:6.5px;top:18px;bottom:2px;width:1.5px;margin-left:-.75px;background:var(--v-line)}
+.wl-s:last-child{padding-bottom:4px}
+.wl-s:last-child::after{display:none}
+.wl-s.here::before{border-color:var(--v-accent);background:var(--v-accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--v-accent) 22%,transparent)}
+.wl-k{font:500 10px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--v-muted)}
+.wl-c{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.wl-c i{font-style:normal;font-size:12px;color:var(--v-muted)}
+.wl-c small{flex-basis:100%;font:400 12px/1.5 var(--f-ui);color:var(--v-muted)}
+.wl-c .ptm-j{white-space:nowrap;padding:9px 13px;font-size:13px}
+.wl-c .ptm-f{min-height:34px;font-size:13px}
+.wl-links{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:10px;padding-top:14px;border-top:1px solid var(--v-line)}
+.ptt-c{min-height:32px;padding:0 13px;border-radius:999px;border:1px solid var(--v-line);font:500 13px/1 var(--f-ui);color:var(--v-fg);display:inline-flex;align-items:center;transition:border-color .2s var(--ez)}
+.ptt-c.here{border-color:var(--v-accent);background:color-mix(in srgb,var(--v-accent) 18%,transparent);font-weight:600;min-height:38px;padding:0 16px;font-size:15px}
+.ptt-c.off{color:var(--v-muted);border-style:dashed}
+@media (hover:hover) and (pointer:fine){button.ptt-c:hover{border-color:var(--v-accent)}}
+button.ptt-c:active{opacity:.7;transition-duration:.1s}
 @media (hover:hover) and (pointer:fine){.ptm-j:hover,.ptm-f:hover{border-color:var(--v-accent)}.ptm-it:hover{transform:scale(1.06)}}
 .ptm-j:active,.ptm-f:active,.ptm-it:active{opacity:.7;transition-duration:.1s}
 .pcol{padding:24px 22px 28px;border-right:1px solid var(--hair);display:grid;gap:14px;align-content:start;min-width:0}
@@ -1741,7 +1761,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b>cg cert path<sup>&deg;</sup></b><span>v.2.20</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.21</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -3491,6 +3511,33 @@ function ptCertMini(name){
       '</span></div>';}).join("")+
     '</div></div><p class="ptm-src">Pay is the BLS median for the closest occupation; Coast Guard ranks show the rank. Tap a job for growth, openings and its full path.</p></div>';
 }
+/* a guide's "Where it leads" (v2.20): one simple line from before -> here -> next certs -> jobs. The full tree lives on the Career paths tab. */
+function gLeads(G,name){
+  var ti=-1;TRUNK.forEach(function(t,k){if(t[1]===name) ti=k;});
+  var jobs=[], next=[], seen={}, f0=-1;
+  function addNext(s){if(s[1]!==name&&!seen[s[1]]){seen[s[1]]=1;next.push(s);}}
+  FIELDS.forEach(function(F,fi){F.jobs.forEach(function(J,ji){var at=-1;J.steps.forEach(function(s,k){if(s[1]===name) at=k;});
+    if(at<0) return;if(f0<0) f0=fi;jobs.push([fi,ji]);J.steps.slice(at+1).forEach(addNext);});});
+  if(ti>=0){next=[];seen={};TRUNK.slice(ti+1).forEach(addNext);}
+  if(!next.length&&G.next) G.next.forEach(function(b){addNext([b[0],typeof b[2]==="string"?b[2]:b[0]]);});
+  if(!next.length) PATHS.forEach(function(p){p.steps.forEach(function(st,k){if(st[1]===name&&p.steps[k+1]) addNext(p.steps[k+1]);});});
+  next=next.slice(0,4);
+  function cert(s){return '<button type="button" class="ptt-c" data-gocert="'+gEsc(s[1])+'">'+gEsc(s[0])+'</button>';}
+  function step(k,body,cls){return '<li class="wl-s'+(cls?" "+cls:"")+'"><span class="wl-k">'+k+'</span><div class="wl-c">'+body+'</div></li>';}
+  var before=G.before||[], h='<ol class="wl">';
+  if(before.length) h+=step("Before",before.map(function(b){return b[2]===0?'<span class="ptt-c off">'+gEsc(b[0])+'</span>':cert([b[0],typeof b[2]==="string"?b[2]:b[0]]);}).join(""));
+  h+=step("You are here",'<span class="ptt-c here" aria-current="true">'+gEsc(name)+'</span>'+(G.hereNote?'<small>'+gEsc(G.hereNote)+'</small>':''),"here");
+  if(next.length) h+=step(ti>=0&&ti<TRUNK.length-1?"Next on the trunk":"Next certs",next.map(function(s,k){return (k?'<i aria-hidden="true">or</i>':'')+cert(s);}).join("").replace(/<i aria-hidden="true">or<\/i>/g,ti>=0&&ti<TRUNK.length-1?'<i aria-hidden="true">&rarr;</i>':'<i aria-hidden="true">&middot;</i>'));
+  else h+=step("Next certs",'<small>This is the top cert on its path.</small>');
+  if(ti>=0){
+    h+=step("Opens every field",FIELDS.map(function(F,fi){return '<button type="button" class="ptm-f" data-ptf="'+fi+'">'+gEsc(F.short)+'</button>';}).join("")+'<small>'+FIELDS.reduce(function(n,F){return n+F.jobs.length;},0)+' jobs across '+FIELDS.length+' fields grow from the trunk.</small>');
+  } else if(jobs.length){
+    var shown=jobs.slice(0,3);
+    h+=step(jobs.some(function(p){return FIELDS[p[0]].mil;})?"Jobs and ranks it leads to":"Jobs it leads to",shown.map(function(p){var F=FIELDS[p[0]],J=F.jobs[p[1]];return '<button type="button" class="ptm-j" data-ptf="'+p[0]+'" data-ptj="'+p[1]+'"><b>'+gEsc(J.name)+'</b><small>'+(F.mil?gEsc(J.sub):ptK(JOBS[J.occ].pay))+'</small></button>';}).join("")+(jobs.length>3?'<small>+'+(jobs.length-3)+' more on the career tree</small>':''));
+  }
+  h+='</ol><div class="wl-links"><button type="button" class="g-link" data-ptf="'+(ti>=0?-1:f0)+'">See the full career tree &rarr;</button><button type="button" class="g-link mp-road" data-goto="mine">Not sure what\'s next? Build my path &rarr;</button></div>';
+  return h;
+}
 setTimeout(ptInit,0);
 
 var safeProbe=document.createElement("div");safeProbe.style.cssText="position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;padding-top:var(--sat);padding-bottom:var(--sab)";document.body.appendChild(safeProbe);
@@ -3535,7 +3582,12 @@ function placeTab(){
   if(!ind) return;ind.style.opacity=t?"":"0";if(!t) return;ind.style.transform="translateX("+t.offsetLeft+"px) scaleX("+(t.offsetWidth/100)+")";
 }
 function setTabs(name){var cur=null;sheet.querySelectorAll(".tabs [data-go]").forEach(function(b){var on=b.dataset.go===name;b.setAttribute("aria-selected",String(on));if(on) cur=b;});placeTab();
-  var bar=sheet.querySelector(".tabs");if(cur&&bar&&bar.scrollWidth>bar.clientWidth+2){var l=cur.offsetLeft-24, r=cur.offsetLeft+cur.offsetWidth+24-bar.clientWidth;if(bar.scrollLeft>l) bar.scrollTo({left:Math.max(0,l),behavior:reduced?"auto":"smooth"});else if(bar.scrollLeft<r) bar.scrollTo({left:r,behavior:reduced?"auto":"smooth"});}}
+  var bar=sheet.querySelector(".tabs");if(cur&&bar&&bar.scrollWidth>bar.clientWidth+2){
+    /* keep the picked tab and its neighbors in view, so the next tab (like CG COOL after Paths) shows without a swipe */
+    var all=[].slice.call(bar.querySelectorAll("[data-go]")), k=all.indexOf(cur), pv=all[k-1], nx=all[k+1], m=48;
+    var l=(pv?pv.offsetLeft:cur.offsetLeft)-m, r=(nx?nx.offsetLeft+nx.offsetWidth:cur.offsetLeft+cur.offsetWidth)+m-bar.clientWidth;
+    var t=bar.scrollLeft;if(t>l) t=l;if(t<r) t=Math.min(r,cur.offsetLeft-16);t=Math.max(0,Math.min(t,bar.scrollWidth-bar.clientWidth));
+    if(Math.abs(t-bar.scrollLeft)>1) bar.scrollTo({left:t,behavior:reduced?"auto":"smooth"});}}
 function swapTitle(txt){
   var h=$("#ed-title");
   var a=anim(h,[{opacity:1,transform:"none"},{opacity:0,transform:"translateY(-12px)"}],{duration:220,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"});
@@ -7780,7 +7832,7 @@ function renderGuide(i,name){
        return '<li>'+(r[2]?'<a class="g-r" href="'+gEsc(r[2])+'" target="_blank" rel="noopener noreferrer">'+inner+'<span class="g-r-go">'+G_ICON_EXT+'</span></a>':'<div class="g-r">'+inner+'<span class="g-r-go"></span></div>')+'</li>';}).join("")+'</ul></div>';}).join("")+
      '<div class="g-fund g-rv"><div><p class="lab">Funding</p><p>CG COOL can pay for the exam voucher. Get approval before you book.</p></div><button type="button" class="g-btn ghost" data-goto="cool"><span class="g-btn-l">How CG COOL works &rarr;</span></button></div></section>';
   // 04 quiz
-  h+='<section class="g-sec" id="g-quiz" data-sec="quiz">'+head(4,"quiz",(function(){var k=Object.keys(G.versions)[0],n=G.quiz.filter(function(q){return !q.v||q.v===k;}).length,w=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen"][n];return (w||n)+"-question check.";})(),"Original questions written at or above exam difficulty. Answer order shuffles every attempt, and every option has an explanation.")+
+  h+='<section class="g-sec" id="g-quiz" data-sec="quiz">'+head(4,"quiz",(function(){var n=G.quiz.length,w=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen"][n];return (w||n)+"-question check.";})(),"Original questions written at or above exam difficulty. Answer order shuffles every attempt, and every option has an explanation.")+
      '<div class="g-quiz g-rv" id="g-qz" aria-live="polite"></div></section>';
   // 05 PBQs
   h+='<section class="g-sec" id="g-pbq" data-sec="pbq">'+head(5,"pbq","Performance-based practice.",gEsc(G.pbqSub||"Hands-on tasks like the ones at the start of the exam. Work them, then check your answers."))+
@@ -8091,14 +8143,7 @@ function gPbqCheck(p,box,shown){
 /* roadmap */
 function gRoad(G){
   var el=panel.querySelector("#g-road");if(!el) return;
-  var name=guideName, before=G.before||[], bset={};before.forEach(function(b){bset[b[0]]=1;});
-  var lanes=PATHS.map(function(p){var i=-1;p.steps.forEach(function(s,k){if(s[1]===name) i=k;});
-    return {name:p.name,tag:p.tag,steps:(i>=0?p.steps.slice(i+1):p.steps.filter(function(s){return s[1]!==name&&!bset[s[1]];}))};}).filter(function(l){return l.steps.length&&(!G.laneOnly||G.laneOnly.indexOf(l.name)>=0);});
-  function node(lbl,full,cls){return '<button type="button" class="g-node '+(cls||"")+'" data-gocert="'+gEsc(full)+'">'+gEsc(lbl)+'</button>';}
-  el.innerHTML='<div class="g-rcol"><p class="lab">Before</p>'+(before.length?before.map(function(b){return '<div class="g-rb">'+(b[2]===0?'<span class="g-node off">'+gEsc(b[0])+'</span>':node(b[0],typeof b[2]==="string"?b[2]:b[0]))+'<small>'+gEsc(b[1])+'</small></div>';}).join(""):'<small>Nothing required.</small>')+'</div>'+
-    '<div class="g-rcol g-rhere"><p class="lab">You are here</p><div class="g-node here" aria-current="true">'+gEsc(name)+'</div><small>'+gEsc(G.hereNote||"")+'</small></div>'+
-    '<div class="g-rcol g-rnext"><p class="lab">'+(G.next?'Next':'Next, by path')+'</p>'+(G.next?G.next.map(function(b){return '<div class="g-rb">'+node(b[0],typeof b[2]==="string"?b[2]:b[0])+'<small>'+gEsc(b[1])+'</small></div>';}).join(""):'')+(G.next?[]:lanes).map(function(l){return '<div class="g-lane"><span class="g-lname">'+gEsc(l.name)+'<small>'+gEsc(l.tag)+'</small></span><span class="g-lsteps">'+l.steps.map(function(s,k){return '<span class="g-step">'+(k?'<i aria-hidden="true">&rarr;</i>':'')+node(s[0],s[1])+'</span>';}).join("")+'</span></div>';}).join("")+'<button type="button" class="g-link mp-road" data-goto="mine">Not sure what\'s next? Build my path &rarr;</button></div>';
-  el.insertAdjacentHTML("beforeend",ptCertMini(name));
+  el.classList.add("wl-on");el.innerHTML=gLeads(G,guideName);
   specScan(el);
 }
 
@@ -8245,12 +8290,13 @@ var SIDX=[];
   VENDORS.forEach(function(v,i){
     SIDX.push({kind:"vendor",key:"v:"+v.id,name:v.name,v:i,fields:[[snorm(v.name),90],[snorm(v.short+" "+v.id+(v.id==="thm"?" try hack me":"")+(v.id==="aws"?" amazon web services":"")),60],[snorm(v.blurb),10]]});
   });
-  SIDX.push({kind:"page",key:"p:cool",page:"cool",name:"CG COOL funding",sub:"Explore · how to get certs paid for",fields:[[snorm("cg cool funding"),95],[snorm("cool credentialing opportunities online tuition voucher reimbursement pay paid money funding exam fee"),55]]});
+  SIDX.push({kind:"page",key:"p:home",page:"home",name:"Explore overview",sub:"Explore · cards for every section",fields:[[snorm("explore overview"),95],[snorm("explore home menu sections start overview"),55]]});
+  SIDX.push({kind:"page",key:"p:mine",page:"mine",name:"My path",sub:"Explore · 5 questions, your own cert roadmap",fields:[[snorm("my path"),95],[snorm("build my path quiz where do i start what cert first next which cert plan personal roadmap"),60]]});
   SIDX.push({kind:"page",key:"p:exam",page:"exam",name:"Exam countdown",sub:"Explore · test date, countdown, day-by-day plan",fields:[[snorm("exam countdown"),95],[snorm("exam date test date countdown study plan schedule calendar day by day days left when is my exam"),60]]});
   SIDX.push({kind:"page",key:"p:compare",page:"compare",name:"Compare certs",sub:"Explore · two certs side by side",fields:[[snorm("compare certs"),95],[snorm("compare versus vs side by side difference which is better which cert harder cheaper"),60]]});
-  SIDX.push({kind:"page",key:"p:mine",page:"mine",name:"My path",sub:"Explore · 5 questions, your own cert roadmap",fields:[[snorm("my path"),95],[snorm("build my path quiz where do i start what cert first next which cert plan personal roadmap"),60]]});
   SIDX.push({kind:"page",key:"p:paths",page:"paths",name:"Career paths",sub:"Explore · IT tree: 5 fields, the jobs and their pay",fields:[[snorm("career paths"),95],[snorm("roadmap road map path tree branch trunk soc analyst pen testing pentest security engineering grc governance risk compliance systems admin salary pay jobs job growth openings bls stay 20 twenty year career 20 year career cloud network cyber civilian contractor plan"),55]]});
-  FIELDS.forEach(function(F,fi){F.jobs.forEach(function(J,ji){SIDX.push({kind:"page",key:"p:job:"+J.id,page:"paths",pt:[fi,ji],name:J.name,sub:"Career tree · "+F.name+" · "+(F.mil?J.sub:"$"+Math.round(JOBS[J.occ].pay/1000)+"K median pay"),fields:[[snorm(J.name),90],[snorm(F.name+" job career salary pay "+(J.occ?JOBS[J.occ].t:"coast guard rank enlisted")),40]]});});});
+  SIDX.push({kind:"page",key:"p:cool",page:"cool",name:"CG COOL funding",sub:"Explore · how to get certs paid for",fields:[[snorm("cg cool funding"),95],[snorm("cool credentialing opportunities online tuition voucher reimbursement pay paid money funding exam fee"),55]]});
+  /* career tree jobs are not search results (v2.20): the Career paths entry covers them */
 })();
 function sTok(tok,f){
   var t=f[0];if(!t) return 0;
