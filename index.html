@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-pR8ccHETad4nhLPbh8AOU9SAR85hopHRO0eIAlIK14Y=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-yszqyKZaCAoSoy9sCtePPEQp/kNoiRYI0CCgdmrO4wQ=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1858,7 +1858,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.24</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.25</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2189,7 +2189,7 @@ var VENDORS = [
   {id:"azure", name:"Microsoft Azure", short:"AZURE", lat:22, lon:-178, beacon:"#4cb4ff",
    pal:{fg:"#0d1b2a",muted:"#52657a",line:"#cfdff0",surface:"#ffffff",accent:"#0a6fd1",on:"#ffffff"}, grad:["#ffffff","#eef5fc","#d3e5f7"],
    blurb:"Microsoft cloud, common across government tenants.",
-   certs:[["Azure Fundamentals","Entry",1,"15–30 h","",["Cloud security"]],["Azure Administrator","Associate",3,"60–100 h","",["Cloud security","20 year career"]],["Azure Security Engineer","Associate",4,"60–100 h","",["Cloud security","Cyber eng"]]]},
+   certs:[["Azure Fundamentals","Entry",1,"15–30 h","",["Cloud security"]],["Azure Administrator","Associate",3,"60–100 h","",["Cloud security","20 year career"]],["Cloud and AI Security Engineer","Associate",4,"80–120 h","",["Cloud security","Cyber eng"]]]},
   {id:"colleges", name:"Colleges", short:"COLLEGES", lat:-8, lon:-134, beacon:"#e0bd6a",
    pal:{fg:"#f1f4f8",muted:"#a6b6c9",line:"#24406a",surface:"#12263f",accent:"#d6b25e",on:"#1a1404"}, grad:["#1a4170","#0c1d33","#050b15"],
    blurb:"Where to earn an IT or cyber degree while you serve. Tap a school for its military rate, what's left after Tuition Assistance, credit for your Coast Guard training, and official links.",
@@ -2344,7 +2344,7 @@ var CERT_NOTE={
   "Security Specialty":"AWS security in depth: identity, logging, data protection, infrastructure security and incident response.",
   "Azure Fundamentals":"Microsoft's foundational cloud cert. Cloud concepts, core Azure services, security and governance.",
   "Azure Administrator":"Run Azure day to day: identities, storage, compute, networking and monitoring.",
-  "Azure Security Engineer":"Secure Azure: identity and access, networking, compute, data and security operations."
+  "Cloud and AI Security Engineer":"Microsoft's Azure security cert, exam SC-500. It replaced Azure Security Engineer (AZ-500), retired Aug 31, 2026, and adds securing AI apps and agents."
 };
 
 /* ---------- helpers ---------- */
@@ -3402,7 +3402,7 @@ var sheet=$("#sheet"), veil=$("#veil"), grab=$("#sh-grab"), shScroll=$("#sh-scro
 var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",paths:"Paths.",cool:"Funding.",out:"Getting out.",exam:"Countdown."}, ORDER=["home","mine","exam","compare","paths","cool","out"], fundPane="ta";
 var PATHS=[
   {name:"20 year career",tag:"IT rating career",line:"Make rate, stay qualified for any IT billet, and retire with a full résumé.",steps:[["A+","A+"],["Network+","Network+"],["Security+","Security+"],["CySA+","CySA+"],["CISSP","CISSP"]]},
-  {name:"Cloud",tag:"Contractor track",line:"Build toward defense-contractor cloud security roles after your enlistment.",steps:[["Security+","Security+"],["Cloud+","Cloud+"],["AWS Solutions Architect","Solutions Architect Associate"],["Azure Security Engineer","Azure Security Engineer"],["CCSP","CCSP"]]},
+  {name:"Cloud",tag:"Contractor track",line:"Build toward defense-contractor cloud security roles after your enlistment.",steps:[["Security+","Security+"],["Cloud+","Cloud+"],["AWS Solutions Architect","Solutions Architect Associate"],["Azure Cloud and AI Security","Cloud and AI Security Engineer"],["CCSP","CCSP"]]},
   {name:"Network",tag:"Infrastructure",line:"Routers, switches, and the backbone every unit runs on.",steps:[["Network+","Network+"],["CCST Networking","CCST Networking"],["CCNA","CCNA"],["CCNP Security","CCNP Security"]]},
   {name:"Cyber",tag:"Defense + offense",line:"SOC analysis, threat hunting, and offensive security.",steps:[["Security+","Security+"],["SAL1","SAL1 · Security Analyst L1"],["CySA+","CySA+"],["PenTest+","PenTest+"],["SecurityX","SecurityX"]]}
 ];
@@ -3445,6 +3445,7 @@ function exKnown(n){return !!findCert(n).c;}
 function exLoad(){
   var d=gGet(EX_KEY);if(!d||typeof d!=="object"||Array.isArray(d)) return null;
   if(d.c==="CyberOps Associate") d.c="CCNA Cybersecurity";   /* renamed in v2.20 */
+  if(d.c==="Azure Security Engineer") d.c="Cloud and AI Security Engineer";   /* AZ-500 retired; SC-500 replaces it (v2.25) */
   if(typeof d.c!=="string"||!exKnown(d.c)||!exParse(d.d)||typeof d.t!=="string"||!/^\d{2}:\d{2}$/.test(d.t)) return null;
   if(!Array.isArray(d.w)) return null;var w=d.w.filter(function(x,i,a){return typeof x==="number"&&x>=0&&x<=6&&x===Math.floor(x)&&a.indexOf(x)===i;});if(!w.length) return null;
   if(EX_HPD.indexOf(d.h)<0) return null;
@@ -3658,7 +3659,7 @@ var FIELDS=[
    jobs:[
     {id:"cad",name:"Cloud admin",occ:"nsa",line:"Run cloud tenants: accounts, virtual machines, storage, backups and costs.",steps:[["Azure Fundamentals","Azure Fundamentals"],["Azure Administrator","Azure Administrator"],["Cloud+","Cloud+"]]},
     {id:"car",name:"Cloud architect",occ:"cna",line:"Design how workloads run in AWS or Azure: networks, identity and how they survive failures.",steps:[["Cloud Practitioner","Cloud Practitioner"],["Solutions Architect Associate","Solutions Architect Associate"]]},
-    {id:"csec",name:"Cloud security engineer",occ:"isa",line:"Lock down cloud accounts and workloads, and prove they meet government security rules.",steps:[["AWS Security Specialty","Security Specialty"],["Azure Security Engineer","Azure Security Engineer"],["CCSP","CCSP"]]}
+    {id:"csec",name:"Cloud security engineer",occ:"isa",line:"Lock down cloud accounts and workloads, and prove they meet government security rules.",steps:[["AWS Security Specialty","Security Specialty"],["Azure Cloud and AI Security","Cloud and AI Security Engineer"],["CCSP","CCSP"]]}
    ]},
   {id:"admin",name:"Admin",short:"Admin",tag:"Systems and support",
    line:"Keep people, servers and accounts working. Where most IT careers start.",
@@ -4118,7 +4119,7 @@ function mpLoad(){
   var d=gGet(MP_KEY);if(!d||typeof d!=="object"||Array.isArray(d)) return null;
   var goals=PATHS.map(function(p){return p.name;});
   if(d.goal==="Stay 20") d.goal="20 year career";   /* renamed in v2.19 */
-  if(Array.isArray(d.have)) d.have=d.have.map(function(x){return x==="CyberOps Associate"?"CCNA Cybersecurity":x;});   /* renamed in v2.20 */
+  if(Array.isArray(d.have)) d.have=d.have.map(function(x){return x==="CyberOps Associate"?"CCNA Cybersecurity":x==="Azure Security Engineer"?"Cloud and AI Security Engineer":x;});   /* renamed in v2.20 and v2.25 */
   if(d.wgu==="yes") d.wgu="wgu";   /* v2.23: the degree question now has three answers */
   if(["new","mid","sr"].indexOf(d.exp)<0||goals.indexOf(d.goal)<0||[6,10,15].indexOf(d.hpw)<0||["wgu","other","no"].indexOf(d.wgu)<0||!Array.isArray(d.have)) return null;
   return {exp:d.exp,goal:d.goal,hpw:d.hpw,wgu:d.wgu,have:d.have.filter(function(x,i,arr){return typeof x==="string"&&MP_CERTS.label.hasOwnProperty(x)&&arr.indexOf(x)===i;}).slice(0,40)};
@@ -4307,7 +4308,7 @@ function cmpSlot(k,I){
 }
 function cmpRender(animate){
   if(!cmpEl) return;
-  if(!cmp.loaded){cmp.loaded=true;var s=gGet(CMP_KEY);if(s&&typeof s==="object"&&!Array.isArray(s)&&cmpHas(s.a)&&cmpHas(s.b)&&s.a!==s.b){cmp.a=s.a;cmp.b=s.b;}}
+  if(!cmp.loaded){cmp.loaded=true;var s=gGet(CMP_KEY);if(s&&typeof s==="object"&&!Array.isArray(s)){["a","b"].forEach(function(k){if(s[k]==="Azure Security Engineer") s[k]="Cloud and AI Security Engineer";});}if(s&&typeof s==="object"&&!Array.isArray(s)&&cmpHas(s.a)&&cmpHas(s.b)&&s.a!==s.b){cmp.a=s.a;cmp.b=s.b;}}
   var A=cmpInfo(cmp.a), B=cmpInfo(cmp.b);
   var h='<div class="cm-grid cm-head"><div class="cm-side"><p class="lab">Side by side</p>'+
     '<button type="button" class="cm-swap" data-cmp="swap" aria-label="Swap the two certs"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 5h9.5M10 2.5 12.5 5 10 7.5M13 11H3.5M6 8.5 3.5 11 6 13.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Swap</button></div>'+
@@ -6407,7 +6408,7 @@ GUIDES["CCSP"]={
        {req:"Fix an injection flaw in code you deployed to a managed app platform.",a:[2,2],why:"In PaaS your own application code is your responsibility."}]}
   ],
   before:[["Security+","The DoD baseline most people start with"],["Cloud+","Vendor-neutral cloud skills"],["AWS Solutions Architect","Hands-on design on a real platform","Solutions Architect Associate"],["SSCP","ISC2's practitioner step, if you're on that track"]],
-  next:[["CISSP","ISC2's senior cert; many cloud leads hold both"],["Security Specialty","Deep AWS security on a real platform"],["Azure Security Engineer","Deep Azure security on a real platform"]],
+  next:[["CISSP","ISC2's senior cert; many cloud leads hold both"],["Security Specialty","Deep AWS security on a real platform"],["Cloud and AI Security Engineer","Deep Azure security on a real platform"]],
   hereNote:"Senior cloud security for experienced people",
   mapSub:"CCSP caps the Cloud path. Most people get there through Security+, Cloud+ and a platform cert. Tap any cert to jump to it.",
   keep:[
@@ -9567,7 +9568,7 @@ GUIDES["Security Specialty"]={
        {req:"Identity policy allows kms:Decrypt, but the key policy doesn't mention the role and doesn't let IAM policies grant access.",a:[2],why:"A KMS key policy must allow access itself, or delegate to IAM. Here it does neither."}]}
   ],
   before:[["Solutions Architect Associate","The usual AWS step before this one"],["Security+","Security basics and the DoD baseline"],["CySA+","Detection and incident response skills"]],
-  next:[["CCSP","Vendor-neutral cloud security, on the DoD 8140 matrix"],["Azure Security Engineer","The same skills on Microsoft's cloud"],["CISSP","Senior security leadership"]],
+  next:[["CCSP","Vendor-neutral cloud security, on the DoD 8140 matrix"],["Cloud and AI Security Engineer","The same skills on Microsoft's cloud"],["CISSP","Senior security leadership"]],
   hereNote:"Deep AWS security for cloud security engineers",
   mapSub:"Security Specialty is the top of the AWS line for cloud security. Tap any cert to jump to it.",
   keep:[
@@ -9583,6 +9584,615 @@ GUIDES["Security Specialty"]={
     ["AWS: Policy evaluation logic","https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html"],
     ["AWS: Exam reimbursement for US veterans","https://aws.amazon.com/certification/veterans-reimbursement/"],
     ["Tutorials Dojo: SCS-C03 dates and task statements (Dec 2, 2025)","https://tutorialsdojo.com/?p=35149"],
+    ["DoD CIO: DoD 8140 qualification matrices","https://public.cyber.mil/wid/dod8140/qualifications-matrices"]]
+};
+
+GUIDES["Azure Fundamentals"]={
+  id:"az900",
+  lead:"Microsoft's entry cloud cert. It proves you can explain cloud concepts, the core parts of Azure, and how Azure handles identity, security, cost and governance. No hands-on work is required, and it never expires. A good first step if your unit runs Microsoft 365 or Azure, which most of government does.",
+  checked:"Nov 11, 2026",
+  planHours:25,
+  objSub:"Three skill areas and 11 objectives from Microsoft's AZ-900 study guide (skills measured as of July 20, 2026). Tick them off as you study; progress saves on this device.",
+  versions:{
+    cur:{code:"AZ-900",label:"Jul 2026",status:"Skills as of Jul 20, 2026 · passing 700",
+      note:"Microsoft updates the skills list a few times a year and keeps the same exam code. Check the study guide's date before you book. There's no retirement announced for AZ-900.",
+      numbered:true,onote:"Official Microsoft skill areas and objectives, in plain words. Microsoft gives weight ranges (25–30%, 35–40%, 30–35%); the bars use the middle of each range.",
+      domains:[
+        {n:"1.0",name:"Describe cloud concepts",w:28,obj:[
+          ["Cloud computing","What the cloud is; the shared responsibility model; public, private and hybrid clouds; the consumption-based model (pay for what you use); pricing models; serverless."],
+          ["Benefits of cloud services","High availability and scalability, reliability and predictability, security and governance, and manageability."],
+          ["Cloud service types","IaaS, PaaS and SaaS, and a real use case for each."]]},
+        {n:"2.0",name:"Describe Azure architecture and services",w:38,obj:[
+          ["Core architectural components","Regions, region pairs and sovereign regions (like Azure Government); availability zones; datacenters; resources and resource groups; subscriptions; management groups, and how they nest."],
+          ["Compute and networking","Containers vs VMs vs Functions; VMs, scale sets, availability sets and Azure Virtual Desktop; hosting web apps; virtual networks, subnets, peering, Azure DNS, VPN Gateway and ExpressRoute; public vs private endpoints."],
+          ["Storage","Azure Storage services; access tiers (hot, cool, cold, archive); redundancy (LRS, ZRS, GRS, GZRS); storage account types; moving files with AzCopy, Storage Explorer and File Sync; migrating with Azure Migrate and Data Box."],
+          ["Identity, access and security","Microsoft Entra ID and Entra Domain Services; single sign-on, MFA and passwordless; external identities; Conditional Access; role-based access control (RBAC); Zero Trust; defense in depth; Microsoft Defender for Cloud."]]},
+        {n:"3.0",name:"Describe Azure management and governance",w:34,obj:[
+          ["Cost management","What drives cost; the pricing calculator; Cost Management budgets and alerts; tags to sort spending."],
+          ["Governance and compliance","Microsoft Purview, Azure Policy and resource locks: what each one is for."],
+          ["Managing and deploying resources","Azure portal, Cloud Shell, Azure CLI and PowerShell; Azure Arc for servers outside Azure; infrastructure as code with Azure Resource Manager (ARM) and ARM templates."],
+          ["Monitoring tools","Azure Advisor, Azure Service Health, and Azure Monitor (Log Analytics, alerts, Application Insights)."]]}
+      ]}
+  },
+  extras:[
+    {kind:"rows",title:"How Azure nests",sub:"2.0 · biggest to smallest",rows:[
+      ["Mgmt group","Top","Groups subscriptions; policy and access set here flow down"],
+      ["Subscription","Billing","A billing and access boundary"],
+      ["Resource group","Container","Resources that share a life cycle; can't nest"],
+      ["Resource","Item","A VM, storage account, database or network"]]},
+    {kind:"rows",title:"Storage redundancy",sub:"2.0 · cheapest first",rows:[
+      ["LRS","3 copies","One datacenter"],
+      ["ZRS","3 copies","Spread across availability zones in one region"],
+      ["GRS","6 copies","LRS here plus LRS in the paired region"],
+      ["GZRS","6 copies","ZRS here plus LRS in the paired region"],
+      ["RA- prefix","Read access","Lets you read the secondary copy any time"]]},
+    {kind:"rows",title:"Which governance tool?",sub:"3.0",wide:true,rows:[
+      ["Azure Policy","Rules","Allow or deny settings: regions, VM sizes, required tags"],
+      ["Resource lock","Safety","Stop deletes (CanNotDelete) or all changes (ReadOnly)"],
+      ["RBAC","Who","Who can do what, at which scope"],
+      ["Tags","Labels","Sort costs and resources by unit or project"],
+      ["Purview","Data","Find, classify and govern data"],
+      ["Advisor","Advice","Tips for cost, security, reliability and performance"]]}
+  ],
+  facts:[["Questions","40–60","typical"],["Time","45","minutes"],["Passing","700","on a 1–1,000 scale"],["Format","MCQ","+ drag and drop"],["Study","15–30","hours"],["Voucher","$99","US price"],["Valid","For life","never expires"],["DoD 8140","Not listed","Security+ is"]],
+  method:[
+    ["Map","Use the three skill areas above. Architecture and services is the biggest at 35–40%."],
+    ["Learn","Do Microsoft Learn's free AZ-900 learning path. It's written by the same team that writes the exam."],
+    ["Do","Open a personal Azure free account, set a budget alert, create a resource group, a VM and a storage account, then delete the whole group."],
+    ["Recall","Flashcards: one service per card, plus the hierarchy, the redundancy types and the governance tools."],
+    ["Test","Take Microsoft's free practice assessment until you score 80%+, then try the exam sandbox to see the question types."]],
+  tips:[
+    ["Know the names","Microsoft renames things often: Azure AD is now Microsoft Entra ID. The exam uses the new names."],
+    ["Policy vs RBAC","Policy controls WHAT can be created. RBAC controls WHO can do things. Questions love to mix them up."],
+    ["Read every word","Short questions turn on one word, like “zone” vs “region” or “read” vs “restore.”"],
+    ["Free vouchers","Microsoft sometimes gives free AZ-900 exam vouchers to people who attend its free Virtual Training Days. Check before you pay."]],
+  resources:[
+    {group:"Official and free",items:[
+      ["AZ-900 study guide","Microsoft Learn","https://learn.microsoft.com/credentials/certifications/resources/study-guides/az-900","Free","The official skills list and change log."],
+      ["Azure Fundamentals certification page","Microsoft Learn","https://learn.microsoft.com/credentials/certifications/azure-fundamentals/","Free","Exam details, the free learning path and scheduling."],
+      ["Practice assessments","Microsoft Learn","https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications","Free","Microsoft's own free practice questions."],
+      ["Exam sandbox","Microsoft","https://aka.ms/examdemo","Free","Try the exam screens and question types before test day."]]},
+    {group:"Hands-on",items:[
+      ["Azure free account","Microsoft","https://azure.microsoft.com/free/","Free","Use a personal account and card, never a government card or work data. Set a budget alert first."]]},
+    {group:"Paid",items:[
+      ["Practice exams","Tutorials Dojo","https://portal.tutorialsdojo.com/","Paid","Extra practice with explanations."],
+      ["Video course","Udemy (several authors)","","Paid","Optional. The free Microsoft Learn path is enough for most people."]]}
+  ],
+  quiz:[
+    {d:"1.0",q:"Your unit moves its email to a SaaS service. Under the shared responsibility model, which task is still YOURS?",
+     o:[["Managing user accounts, access and your data","Right. In every model, including SaaS, you own your identities, who has access, and your information."],
+        ["Patching the email servers' operating system","In SaaS the provider runs and patches everything under the app."],
+        ["Replacing failed hardware","Physical hardware is always the provider's job."],
+        ["Securing the datacenter network","The provider owns its physical network in every model."]],a:0},
+    {d:"1.0",q:"Which statement describes the consumption-based model?",
+     o:[["You pay only for the resources you use, with no upfront hardware cost","Right. That's the cloud's operating expense (OpEx) model."],
+        ["You buy servers up front and own them for five years","That's the capital expense (CapEx) model of running your own datacenter."],
+        ["You pay the same monthly fee no matter how much you use","A flat fee isn't based on consumption."],
+        ["You must reserve capacity for three years before using any","Reservations are an optional discount, not the consumption model."]],a:0},
+    {d:"1.0",q:"Developers want to deploy their web app's code without managing operating systems or patching servers. Which service type fits?",
+     o:[["PaaS","Right. Platform as a service (like Azure App Service) runs the platform; you bring the code."],
+        ["IaaS","With IaaS (VMs) you still manage the operating system and patches."],
+        ["SaaS","SaaS is a finished app you use, not a place to deploy your own code."],
+        ["On-premises","That means running your own servers, which is what they want to avoid."]],a:0},
+    {d:"2.0",q:"An app on Azure VMs must keep running if one datacenter in the region fails, with the least cost and effort. What should you use?",
+     o:[["Availability zones","Right. Zones are separate datacenters in the same region with their own power and network."],
+        ["A second region in the region pair","That protects against a whole region failing, but costs more and takes more work than the requirement needs."],
+        ["A resource group","Resource groups organize resources. They don't add any resilience."],
+        ["A management group","Management groups organize subscriptions for policy and access."]],a:0},
+    {d:"2.0",q:"What is the correct order from the LARGEST scope to the smallest?",
+     o:[["Management groups, subscriptions, resource groups, resources","Right. Policies and access set at a higher level flow down to everything below."],
+        ["Subscriptions, management groups, resource groups, resources","Management groups sit above subscriptions."],
+        ["Resource groups, subscriptions, management groups, resources","Resource groups sit inside subscriptions."],
+        ["Management groups, resource groups, subscriptions, resources","Resource groups live inside a subscription, not the other way around."]],a:0},
+    {d:"2.0",q:"Data must survive a full region outage, and an app must be able to READ the copy in the other region at any time. Which redundancy?",
+     o:[["RA-GRS","Right. Geo-redundant storage with read access lets you read the secondary region any time."],
+        ["LRS","Three copies in one datacenter. A region outage takes them all."],
+        ["ZRS","Copies across zones in ONE region. A full region outage takes them all."],
+        ["GRS","It copies to the other region, but you can't read that copy until a failover."]],a:0},
+    {d:"2.0",q:"Leadership wants MFA required only when people sign in from outside the unit's network. What enforces that?",
+     o:[["Conditional Access","Right. Conditional Access applies rules based on signals like location, device and risk."],
+        ["Role-based access control (RBAC)","RBAC decides what someone can do in Azure, not how they sign in."],
+        ["Microsoft Entra Domain Services","That provides domain join and group policy for legacy apps."],
+        ["Azure Policy","Azure Policy governs resource settings, not sign-ins."]],a:0},
+    {d:"2.0",q:"A unit needs a private, dedicated connection from its on-premises datacenter to Azure that does not go over the internet. What should it use?",
+     o:[["ExpressRoute","Right. ExpressRoute is a private circuit through a connectivity provider."],
+        ["VPN Gateway","A VPN is encrypted, but it travels over the public internet."],
+        ["Virtual network peering","Peering connects Azure virtual networks to each other."],
+        ["Azure DNS","DNS resolves names. It isn't a connection."]],a:0},
+    {d:"3.0",q:"No one should be able to create resources outside the East US and West US regions. What enforces that?",
+     o:[["Azure Policy","Right. A policy like “Allowed locations” denies anything created in other regions."],
+        ["A resource lock","Locks stop deletes or changes to existing resources. They don't control where new ones go."],
+        ["An RBAC role","RBAC controls who can create resources, not where."],
+        ["Tags","Tags label resources. They don't block anything."]],a:0},
+    {d:"3.0",q:"You need to stop anyone, even an Owner, from deleting a production storage account by accident, while still allowing changes to it. What should you add?",
+     o:[["A CanNotDelete (delete) lock","Right. A delete lock blocks deletion but still allows reads and changes."],
+        ["A ReadOnly lock","That blocks deletes AND changes, which is more than you want."],
+        ["An Azure Policy deny rule","Policy is for resource settings. A lock is the tool for preventing deletion."],
+        ["Remove everyone's Owner role","It's drastic, and Contributors can still delete resources."]],a:0},
+    {d:"3.0",q:"Before deploying anything, you need an estimate of the monthly cost of five VMs and a database. Which tool?",
+     o:[["The Azure pricing calculator","Right. It estimates the cost of services before you deploy them."],
+        ["Microsoft Cost Management","Cost Management tracks what you're actually spending after you deploy."],
+        ["Azure Advisor","Advisor recommends savings on resources you already run."],
+        ["Azure Service Health","Service Health reports Azure outages and maintenance."]],a:0},
+    {d:"3.0",q:"You want to be alerted when an Azure outage affects the regions and services YOUR unit uses. Which tool?",
+     o:[["Azure Service Health","Right. It reports outages, planned maintenance and advisories that affect your own resources."],
+        ["Azure Monitor metrics","Metrics show how your resources perform, not Azure-wide incidents."],
+        ["Azure Advisor","Advisor gives best-practice recommendations."],
+        ["The public Azure status page","It shows broad outages, not ones tied to your own subscriptions."]],a:0},
+    {d:"3.0",q:"Your unit wants to manage its on-premises servers and some servers in another cloud from the Azure portal, applying the same Azure Policy. What makes that possible?",
+     o:[["Azure Arc","Right. Arc projects servers outside Azure into Azure so you can govern them the same way."],
+        ["Azure Migrate","Migrate moves servers into Azure. It doesn't manage them where they are."],
+        ["ExpressRoute","ExpressRoute is a network connection."],
+        ["ARM templates","Templates deploy Azure resources. They don't manage outside servers."]],a:0}
+  ],
+  pbqs:[
+    {id:"models",kind:"table",short:"Service types",title:"IaaS, PaaS or SaaS?",dom:"1.0",
+     scenario:"Your unit is moving six workloads to the cloud. Pick the service type for each.",
+     cols:["Type"],
+     opts:[["IaaS","PaaS","SaaS"]],
+     rows:[
+       {req:"Lift and shift a legacy server onto an Azure VM, exactly as it is",a:[0],why:"A VM is infrastructure. You still manage the OS and software."},
+       {req:"Deploy the unit's web app code to Azure App Service",a:[1],why:"App Service runs the platform; you only bring the code."},
+       {req:"Move everyone's email and Office apps to Microsoft 365",a:[2],why:"Microsoft 365 is a finished app you sign in to and use."},
+       {req:"Run the app's database on Azure SQL Database, with no server to patch",a:[1],why:"A managed database is a platform service."},
+       {req:"Use an online ticketing system that you just sign in to",a:[2],why:"Software you use as-is is SaaS."},
+       {req:"Build a virtual network with VMs and your own firewall appliance",a:[0],why:"Networks and VMs you configure yourself are infrastructure."}]},
+    {id:"gov",kind:"match",short:"Pick the tool",title:"Pick the governance tool",dom:"2.0 · 3.0",
+     scenario:"Each request came from your division chief. Pick the Azure tool that does it. Each answer is used once; four are distractors.",
+     pick:"Tool",choices:["RBAC","Tags","Azure Policy","Azure Advisor","Cost Management","Microsoft Purview","Resource lock","Service Health","Pricing calculator","Azure Arc"],
+     items:[
+       {src:"Request 1",text:"Give the help desk read-only access to one resource group.",a:0,why:"RBAC assigns a role (Reader) at a scope (the resource group)."},
+       {src:"Request 2",text:"Show the bill split by unit and by project.",a:1,why:"Tags label resources so costs can be grouped by them."},
+       {src:"Request 3",text:"Block anyone from creating VMs bigger than a set size.",a:2,why:"Azure Policy can deny resources that break a rule."},
+       {src:"Request 4",text:"Recommend ways to cut costs and fix security gaps on what we already run.",a:3,why:"Advisor reviews your resources and suggests improvements."},
+       {src:"Request 5",text:"Track this month's actual spending and email us at 80% of budget.",a:4,why:"Cost Management tracks spending and runs budgets and alerts."},
+       {src:"Request 6",text:"Find and label sensitive data across our storage and databases.",a:5,why:"Purview discovers, classifies and governs data."}]},
+    {id:"redund",kind:"table",short:"Redundancy",title:"Pick the storage redundancy",dom:"2.0",
+     scenario:"Four storage accounts need a redundancy setting. Pick the cheapest one that still meets each need.",
+     cols:["Redundancy"],
+     opts:[["LRS","ZRS","GRS","RA-GRS"]],
+     rows:[
+       {req:"Test data. Cheapest possible; losing a datacenter is acceptable.",a:[0],why:"LRS keeps three copies in one datacenter, at the lowest price."},
+       {req:"Must survive one datacenter failing, and the data must stay in one region.",a:[1],why:"ZRS spreads copies across availability zones in the same region."},
+       {req:"Must survive a full region outage; nobody needs to read the copy until a failover.",a:[2],why:"GRS copies to the paired region, readable after failover."},
+       {req:"Must survive a region outage, and reports must read the backup copy any time.",a:[3],why:"Read-access GRS makes the secondary copy readable at all times."}]}
+  ],
+  before:[["A+","Optional. Basic IT terms help"],["Network+","Optional. Makes networking questions easier"]],
+  next:[["Azure Administrator","The hands-on Azure cert"],["Cloud+","Vendor-neutral cloud, and on the DoD 8140 matrix"],["Security+","The DoD baseline for most IT billets"]],
+  hereNote:"The first step on Microsoft's cloud, no experience needed",
+  mapSub:"Azure Fundamentals opens the Microsoft cloud line. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"Never",text:"Microsoft Fundamentals certifications don't expire, so there's nothing to renew.",after:"Microsoft still updates the exam's skills list over time. Your cert stays valid either way."},
+    {lab:"DoD 8140",big:"Not listed",text:"No Azure cert is on the DoD 8140 matrix (V2.1). For a coded billet, you still need one that is, like Security+ or Cloud+.",after:"AZ-900 is still worth it as a cheap way to learn Azure before the Administrator exam."},
+    {lab:"Pay for it",big:"$99",text:"Check that CG COOL lists the credential before you request funding, and look for a free voucher from a Microsoft Virtual Training Day first.",after:"Government work often runs in Azure Government, a separate Azure cloud for U.S. agencies. The skills are the same."}],
+  sources:[
+    ["Microsoft Learn: AZ-900 study guide (skills as of Jul 20, 2026, passing 700)","https://learn.microsoft.com/credentials/certifications/resources/study-guides/az-900"],
+    ["Microsoft Learn: Exam duration and exam experience (45 minutes)","https://learn.microsoft.com/credentials/support/exam-duration-exam-experience"],
+    ["Microsoft Learn: Certification renewal (Fundamentals don't expire)","https://learn.microsoft.com/credentials/renew-your-microsoft-certification"],
+    ["Crucial Exams: Microsoft exam prices ($99 Fundamentals, $165 others)","https://crucialexams.com/posts/blog/how-much-are-azure-certifications"],
+    ["DoD CIO: DoD 8140 qualification matrices","https://public.cyber.mil/wid/dod8140/qualifications-matrices"]]
+};
+
+GUIDES["Azure Administrator"]={
+  id:"az104",
+  lead:"Microsoft's hands-on Azure cert. It proves you can run an Azure environment day to day: users and access, governance, storage, virtual machines and apps, networking, monitoring and backup. It's a common requirement in Azure job posts, and the base for Microsoft's security and architect certs.",
+  checked:"Nov 11, 2026",
+  planHours:90,
+  objSub:"Five skill areas and 15 objectives from Microsoft's AZ-104 study guide (skills measured as of April 17, 2026). Tick them off as you study; progress saves on this device.",
+  versions:{
+    cur:{code:"AZ-104",label:"Apr 2026",status:"Skills as of Apr 17, 2026 · passing 700",
+      note:"Same five areas and weights as before; the April 2026 update made small wording changes inside storage, compute, networking and monitoring. No retirement announced. Check the study guide's date before you book.",
+      numbered:true,onote:"Official Microsoft skill areas and objectives, in plain words. Microsoft gives weight ranges (20–25%, 15–20%, 20–25%, 15–20%, 10–15%); the bars use the middle of each range.",
+      domains:[
+        {n:"1.0",name:"Manage Azure identities and governance",w:24,obj:[
+          ["Manage Microsoft Entra users and groups","Create users and groups, manage their properties and licenses, invite external (guest) users, and set up self-service password reset (SSPR)."],
+          ["Manage access to Azure resources","Built-in roles, assigning roles at the right scope, and reading who has which access."],
+          ["Manage subscriptions and governance","Azure Policy, resource locks, tags, resource groups and subscriptions, budgets and cost alerts, Advisor recommendations, and management groups."]]},
+        {n:"2.0",name:"Implement and manage storage",w:19,obj:[
+          ["Configure access to storage","Storage firewalls and virtual networks, shared access signature (SAS) tokens, stored access policies, access keys, and identity-based access for Azure Files."],
+          ["Configure and manage storage accounts","Create storage accounts; set redundancy, object replication and encryption; move data with Storage Explorer and AzCopy."],
+          ["Configure Azure Files and Blob Storage","File shares and blob containers, access tiers, snapshots and soft delete for Azure Files, blob lifecycle rules and versioning."]]},
+        {n:"3.0",name:"Deploy and manage Azure compute resources",w:24,obj:[
+          ["Automate deployment with ARM templates or Bicep","Read and change ARM templates and Bicep files, deploy from them, export a deployment, and convert ARM to Bicep."],
+          ["Create and configure virtual machines","Create VMs, encrypt disks, move VMs between groups, subscriptions or regions, resize and add disks, use availability zones and sets, and run scale sets."],
+          ["Provision and manage containers","Azure Container Registry, Azure Container Instances and Azure Container Apps, including sizing and scaling."],
+          ["Create and configure Azure App Service","App Service plans and scaling, web apps, TLS certificates, custom domain names, backups, networking and deployment slots."]]},
+        {n:"4.0",name:"Implement and manage virtual networking",w:19,obj:[
+          ["Configure and manage virtual networks","Virtual networks and subnets, peering, public IP addresses, user-defined routes, and troubleshooting connectivity."],
+          ["Configure secure access to virtual networks","Network security groups (NSGs) and application security groups, effective security rules, Azure Bastion, and service and private endpoints."],
+          ["Configure name resolution and load balancing","Azure DNS, internal and public load balancers, and troubleshooting load balancing."]]},
+        {n:"5.0",name:"Monitor and maintain Azure resources",w:14,obj:[
+          ["Monitor resources in Azure","Metrics and log settings in Azure Monitor, log queries, alert rules and action groups, Insights for VMs, storage and networks, and Network Watcher."],
+          ["Implement backup and recovery","Recovery Services and Backup vaults, backup policies, backup and restore, Azure Site Recovery failover to another region, and backup reports and alerts."]]}
+      ]}
+  },
+  extras:[
+    {kind:"rows",title:"Roles and scope",sub:"1.0 · least privilege",rows:[
+      ["Reader","View","See everything at that scope; change nothing"],
+      ["Contributor","Manage","Create and change resources; can't grant access"],
+      ["Owner","Full","Everything, including granting access"],
+      ["Access Admin","Access","User Access Administrator: grants access, can't manage resources"],
+      ["VM Contributor","VMs","Manage VMs, but not the network or storage they use"]]},
+    {kind:"rows",title:"Storage access",sub:"2.0",rows:[
+      ["Access key","Master key","Full access to everything. Rotate it; don't share it"],
+      ["SAS token","Limited","Set rights and an expiry for one service, container or blob"],
+      ["Stored policy","Revocable","SAS tokens tied to it can be changed or revoked at once"],
+      ["Entra + RBAC","Identity","Best choice: no keys, access by user or managed identity"]]},
+    {kind:"steps",title:"NSG rule checks",sub:"4.0 · how a packet is judged",rows:[
+      "Inbound: the subnet's NSG is checked first, then the NIC's NSG. Both must allow it.",
+      "Outbound: the NIC's NSG first, then the subnet's.",
+      "Inside each NSG, rules run by priority: the lowest number wins and checking stops.",
+      "Default rules sit at 65000 and up: allow traffic within the VNet, allow the Azure load balancer, deny all other inbound.",
+      "Use effective security rules or IP flow verify in Network Watcher to see the result."]},
+    {kind:"rows",title:"Network Watcher tools",sub:"5.0",wide:true,rows:[
+      ["IP flow verify","Allow/deny?","Is this packet allowed to or from a VM, and by which rule"],
+      ["Next hop","Routing","Where Azure sends traffic from a VM next"],
+      ["Conn. monitor","Ongoing","Watch reachability and latency over time, with alerts"],
+      ["Packet capture","Packets","Record traffic on a VM to read in Wireshark"],
+      ["Flow logs","History","Log the traffic flows through a VNet or NSG"]]}
+  ],
+  facts:[["Questions","40–60","typical"],["Time","100","minutes"],["Passing","700","on a 1–1,000 scale"],["Format","MCQ","+ case studies"],["Study","60–100","hours"],["Voucher","$165","US price"],["Valid","1","year, free renewal"],["DoD 8140","Not listed","Security+ is"]],
+  method:[
+    ["Map","Use the five skill areas above. Identity and compute are the biggest at 20–25% each."],
+    ["Learn","Do Microsoft Learn's free AZ-104 learning paths, then a full video course or an exam cram to tie it together."],
+    ["Build","Work through Microsoft's free AZ-104 GitHub labs in a personal Azure account. Delete each resource group when you're done so it doesn't cost money."],
+    ["Recall","Flashcards for roles, storage access options, redundancy, NSG rule order and which backup tool does what."],
+    ["Test","Microsoft's free practice assessment, then timed practice exams. Rebuild in the portal anything you missed."]],
+  tips:[
+    ["Use Microsoft Learn","Associate exams let you open Microsoft Learn during the test. It's slow, so use it only to confirm a detail, not to learn a topic."],
+    ["Mind the scope","Many questions turn on the scope of a role or policy: management group, subscription, resource group or resource."],
+    ["Watch the sections","Some sections, like case studies, can't be reopened once you finish them. Answer everything in a section before you move on."],
+    ["Do it, don't read it","If you've never created a peering, an NSG rule or a backup policy in the portal, do it before exam day."]],
+  resources:[
+    {group:"Official and free",items:[
+      ["AZ-104 study guide","Microsoft Learn","https://learn.microsoft.com/credentials/certifications/resources/study-guides/az-104","Free","The official skills list and change log."],
+      ["Azure Administrator certification page","Microsoft Learn","https://learn.microsoft.com/credentials/certifications/azure-administrator/","Free","Exam details, free learning paths and scheduling."],
+      ["Practice assessments","Microsoft Learn","https://learn.microsoft.com/credentials/certifications/practice-assessments-for-microsoft-certifications","Free","Microsoft's own free practice questions."],
+      ["AZ-104 labs","Microsoft Learning on GitHub","https://github.com/MicrosoftLearning/AZ-104-MicrosoftAzureAdministrator","Free","Microsoft's step-by-step lab instructions. Run them in your own account."]]},
+    {group:"Hands-on",items:[
+      ["Azure free account","Microsoft","https://azure.microsoft.com/free/","Free","Use a personal account and card, never a government card or work data. Set a budget alert first."],
+      ["Exam sandbox","Microsoft","https://aka.ms/examdemo","Free","Try case studies and the other question types before test day."]]},
+    {group:"Paid",items:[
+      ["Practice exams","Tutorials Dojo","https://portal.tutorialsdojo.com/","Paid","Scenario questions with explanations."],
+      ["Video course","Udemy (several authors)","","Paid","Pick one full course with labs and finish it."]]}
+  ],
+  quiz:[
+    {d:"1.0",q:"A tech must be able to start, stop and resize the VMs in the ops-rg resource group, and nothing else. What's the BEST assignment?",
+     o:[["Virtual Machine Contributor at the ops-rg scope","Right. It covers managing VMs, and the resource group scope keeps it to those VMs."],
+        ["Contributor at the subscription scope","It works, but it lets the tech change every resource in the subscription."],
+        ["Owner at the ops-rg scope","Owner can also grant access to others. That's more than the tech needs."],
+        ["Reader at the ops-rg scope","Reader can see the VMs but can't start, stop or resize them."]],a:0},
+    {d:"1.0",q:"Every new resource group must have a CostCenter tag, and creating one without it should fail. What should you use?",
+     o:[["An Azure Policy with the Deny effect that requires the tag on resource groups","Right. Deny blocks anything that doesn't meet the rule."],
+        ["A resource lock on the subscription","Locks stop deletes or changes. They don't require tags."],
+        ["A custom RBAC role","RBAC controls who can act, not what settings a resource must have."],
+        ["An Azure Policy with the Audit effect","Audit only reports non-compliant resources. They still get created."]],a:0},
+    {d:"1.0",q:"Users should be able to reset their own passwords after verifying with the Authenticator app, without calling the help desk. What do you configure?",
+     o:[["Self-service password reset (SSPR)","Right. SSPR lets users reset their password after proving who they are."],
+        ["Conditional Access","Conditional Access sets sign-in rules. It doesn't reset passwords."],
+        ["Privileged Identity Management","PIM gives just-in-time admin roles."],
+        ["Guest user invitations","Invitations add external users."]],a:0},
+    {d:"2.0",q:"An outside app needs read-only access to one blob container for 24 hours. You must not share the account key. What should you give it?",
+     o:[["A SAS token with read permission and a 24-hour expiry","Right. A shared access signature limits the rights, the target and the time."],
+        ["The storage account access key","That gives full access to the whole account, with no expiry."],
+        ["Make the container public","Then anyone on the internet can read it, forever."],
+        ["Owner role on the storage account","Far too much access for a read-only, temporary need."]],a:0},
+    {d:"2.0",q:"Dozens of SAS tokens were issued from a stored access policy, and one leaked. What's the fastest way to make all of them stop working without affecting other apps?",
+     o:[["Change or delete the stored access policy","Right. Tokens tied to a stored access policy are revoked when the policy changes."],
+        ["Regenerate the storage account key","It revokes the tokens, but it also breaks every other app that uses that key."],
+        ["Delete the blobs","That destroys the data, not the tokens."],
+        ["Make the container private","SAS tokens still work on a private container."]],a:0},
+    {d:"2.0",q:"Blobs not changed for 30 days should move to the Cool tier and be deleted after 365 days, automatically. What should you set up?",
+     o:[["A lifecycle management policy","Right. Lifecycle rules move and delete blobs based on age."],
+        ["Object replication","That copies blobs to another account."],
+        ["Soft delete","Soft delete keeps deleted data for a while. It doesn't move data by age."],
+        ["A nightly AzCopy script","It could work, but it's custom code to maintain when a built-in rule does the job."]],a:0},
+    {d:"3.0",q:"Two VMs running the same app must survive a datacenter failure in the region. Which option gives the highest availability?",
+     o:[["Put them in different availability zones","Right. Zones are separate datacenters; Microsoft's SLA for VMs across two or more zones is 99.99%."],
+        ["Put them in an availability set","Sets spread VMs across racks in one datacenter. They don't survive losing the datacenter."],
+        ["Put them in a scale set in one zone","One zone means one datacenter failure takes both."],
+        ["Use one larger VM","A single VM is a single point of failure."]],a:0},
+    {d:"3.0",q:"You must deploy the same virtual network and VMs to dev, test and prod, the same way every time. What should you use?",
+     o:[["A Bicep file or ARM template with parameters for each environment","Right. Infrastructure as code deploys the same design repeatedly, changing only the parameters."],
+        ["Build each one by hand in the portal","Slow, and the three will drift apart."],
+        ["Clone the dev VMs","Cloning VMs doesn't rebuild the network and settings."],
+        ["Azure Advisor","Advisor makes recommendations. It doesn't deploy anything."]],a:0},
+    {d:"3.0",q:"You want to test a new version of a web app in App Service, then move it into production with no downtime. What should you use?",
+     o:[["Deployment slots, then swap","Right. You deploy to a staging slot, test it, then swap it with production."],
+        ["Scale out to more instances","That adds capacity. It doesn't stage a new version."],
+        ["Back up and restore the app","Restoring isn't a release process and causes downtime."],
+        ["Map a custom domain","Domains change the URL, not the version."]],a:0},
+    {d:"3.0",q:"You need to run one container quickly, without managing servers or a Kubernetes cluster. What's the simplest choice?",
+     o:[["Azure Container Instances","Right. ACI runs a container on demand with nothing else to set up."],
+        ["Azure Kubernetes Service","AKS runs a whole cluster. That's far more than one container needs."],
+        ["A VM with Docker installed","Then you're managing a server."],
+        ["Azure Container Registry","ACR stores images. It doesn't run them."]],a:0},
+    {d:"4.0",q:"VNet A is peered with VNet B, and VNet B is peered with VNet C. Can a VM in A reach a VM in C?",
+     o:[["No. Peering isn't transitive; peer A with C, or route through a hub with a firewall or gateway","Right. Each peering only connects the two networks in it."],
+        ["Yes. Traffic flows through B automatically","Peering doesn't pass traffic through a middle network."],
+        ["Yes, but only for DNS traffic","There's no such exception."],
+        ["Only if all three are in the same region","Region doesn't matter. Peering is never transitive."]],a:0},
+    {d:"4.0",q:"A VM can't be reached on port 443. Both its subnet and its network interface have NSGs. What's the fastest way to see what's blocking it?",
+     o:[["Check the effective security rules, or run IP flow verify in Network Watcher","Right. They combine both NSGs and name the rule that allows or denies the traffic."],
+        ["Set up Connection Monitor","That watches reachability over time. It's not the quickest way to find a blocking rule."],
+        ["Check Azure DNS","DNS resolves names. It doesn't block ports."],
+        ["Delete both NSGs","That removes all your protection. Never fix it that way."]],a:0},
+    {d:"4.0",q:"An app in a VNet must reach Azure SQL Database over a private IP address, and public network access to the database must be turned off. What should you use?",
+     o:[["A private endpoint","Right. It gives the database a private IP inside your VNet."],
+        ["A service endpoint","Traffic stays on Microsoft's network, but the database still uses its public endpoint."],
+        ["An NSG rule","An NSG filters traffic. It doesn't give the database a private address."],
+        ["A VPN Gateway","A VPN connects networks. It doesn't put the database in the VNet."]],a:0},
+    {d:"5.0",q:"The on-call team must get an email when a VM's CPU stays above 90% for 10 minutes. What do you create?",
+     o:[["A metric alert rule with an action group that emails the team","Right. The rule watches the metric; the action group decides who gets told and how."],
+        ["A diagnostic setting","That sends logs somewhere. It doesn't alert anyone."],
+        ["An Azure Advisor recommendation","Advisor gives advice, not real-time alerts."],
+        ["A Log Analytics workspace","A workspace stores logs. You still need an alert rule."]],a:0},
+    {d:"5.0",q:"VMs must keep replicating to another region so you can fail over quickly during a regional outage. What should you use?",
+     o:[["Azure Site Recovery","Right. Site Recovery replicates VMs and handles failover and failback."],
+        ["Azure Backup","Backup restores data from recovery points. It isn't built for fast regional failover."],
+        ["Disk snapshots","Snapshots are point-in-time copies, not ongoing replication with failover."],
+        ["A VM scale set","Scale sets add instances in one region."]],a:0}
+  ],
+  pbqs:[
+    {id:"rbac",kind:"table",short:"Role and scope",title:"Pick the role and the scope",dom:"1.0",
+     scenario:"Five people need Azure access. Pick the least-privilege built-in role and the narrowest scope that still works.",
+     cols:["Role","Scope"],
+     opts:[["Reader","Contributor","Owner","VM Contributor","User Access Admin"],["Subscription","Resource group","One resource"]],
+     rows:[
+       {req:"An auditor must see everything in the subscription but change nothing.",a:[0,0],why:"Reader at the subscription lets them see it all without changing anything."},
+       {req:"A tech starts, stops and resizes VMs in ops-rg only.",a:[3,1],why:"VM Contributor covers VMs; the resource group scope keeps it there."},
+       {req:"A team lead manages everything in app-rg and gives teammates access to it.",a:[2,1],why:"Granting access needs Owner (or User Access Admin). Scope it to app-rg."},
+       {req:"A developer manages one web app and must not grant access.",a:[1,2],why:"Contributor can manage but can't grant access; scope it to that one app."},
+       {req:"A security admin manages role assignments across the subscription, not the resources.",a:[4,0],why:"User Access Administrator handles access only, at the subscription scope."}]},
+    {id:"nw",kind:"match",short:"Network Watcher",title:"Pick the Network Watcher tool",dom:"4.0 · 5.0",
+     scenario:"Six troubleshooting tasks. Pick the tool for each. Each answer is used once; two are distractors.",
+     pick:"Tool",choices:["IP flow verify","Next hop","Effective rules","Packet capture","Flow logs","Connection monitor","Azure DNS","Service Health"],
+     items:[
+       {src:"Task 1",text:"Is TCP 443 from 10.1.0.4 to this VM allowed or denied, and by which rule?",a:0,why:"IP flow verify tests one flow and names the rule that decides it."},
+       {src:"Task 2",text:"Traffic from a VM never reaches the office network. Where does Azure send it next?",a:1,why:"Next hop shows the route Azure picks, like a gateway or a firewall."},
+       {src:"Task 3",text:"See every NSG rule that applies to a NIC, combined from the subnet and the NIC.",a:2,why:"Effective security rules merge both NSGs into one list."},
+       {src:"Task 4",text:"Record five minutes of real traffic on a VM to open in Wireshark.",a:3,why:"Packet capture records the traffic itself."},
+       {src:"Task 5",text:"Keep a record of every allowed and denied flow for later review.",a:4,why:"Flow logs record traffic flows to storage for analysis."},
+       {src:"Task 6",text:"Watch a website's reachability and latency all week and alert if it drops.",a:5,why:"Connection monitor checks continuously and can alert."}]},
+    {id:"stor",kind:"table",short:"Storage requests",title:"Pick the storage feature",dom:"2.0",
+     scenario:"Six requests came in about the unit's storage accounts. Pick the feature that handles each one. Each is used once; one is a distractor.",
+     cols:["Feature"],
+     opts:[["SAS token","Stored access policy","Lifecycle rule","Soft delete","Storage firewall","Azure File Sync","Object replication"]],
+     rows:[
+       {req:"A vendor needs to upload to one container for 7 days, without the account key.",a:[0],why:"A SAS token sets the rights, the container and the expiry."},
+       {req:"You want to be able to revoke a whole group of SAS tokens at once.",a:[1],why:"Tokens tied to a stored access policy stop working when you change the policy."},
+       {req:"Old blobs should move to Cool, then Archive, then be deleted.",a:[2],why:"Lifecycle rules act on blobs by age."},
+       {req:"Someone deleted a file share last week; get it back.",a:[3],why:"Soft delete keeps deleted shares for a set number of days."},
+       {req:"Only the unit's VNet and office IP may reach the account.",a:[4],why:"The storage firewall limits access to chosen networks and IPs."},
+       {req:"Keep an on-premises file server in sync with an Azure file share.",a:[5],why:"Azure File Sync caches and syncs Azure Files on Windows servers."}]}
+  ],
+  before:[["Azure Fundamentals","Optional. Learn the Azure terms first"],["Network+","Subnets, routing and DNS show up everywhere"],["A+","Basic OS and hardware knowledge"]],
+  next:[["Cloud and AI Security Engineer","Microsoft's Azure security cert (SC-500)"],["Security+","The DoD baseline cert"],["Solutions Architect Associate","The same work on AWS"]],
+  hereNote:"The hands-on Azure cert on the Cloud path",
+  mapSub:"Azure Administrator is the core of the Microsoft cloud line. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"1 year",text:"Microsoft role-based certs last one year. Renew for free by passing a short, open-book online assessment on Microsoft Learn.",after:"The assessment opens 6 months before your cert expires, and you can retake it as often as you need until then. Passing adds one year."},
+    {lab:"DoD 8140",big:"Not listed",text:"No Azure cert is on the DoD 8140 matrix (V2.1). For a coded billet, you still need one that is, like Security+ or Cloud+.",after:"Government Azure work often runs in Azure Government, a separate cloud for U.S. agencies. The admin skills are the same."},
+    {lab:"Pay for it",big:"$165",text:"Check that CG COOL lists the credential before you request funding.",after:"Renewals are free, so the exam fee is the only cost."}],
+  sources:[
+    ["Microsoft Learn: AZ-104 study guide (skills as of Apr 17, 2026, passing 700)","https://learn.microsoft.com/ja-jp/credentials/certifications/resources/study-guides/az-104"],
+    ["Microsoft Learn: AZ-104 study guide (English; objectives)","https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104"],
+    ["Microsoft Learn: Exam duration and exam experience (100 minutes)","https://learn.microsoft.com/credentials/support/exam-duration-exam-experience"],
+    ["Microsoft Learn: Certification renewal","https://learn.microsoft.com/credentials/renew-your-microsoft-certification"],
+    ["Crucial Exams: Microsoft exam prices ($165)","https://crucialexams.com/posts/blog/how-much-are-azure-certifications"],
+    ["Open Exam Prep: April 17, 2026 AZ-104 change log summary","https://open-exam-prep.com/study-guides/azure-az-104/exam-orientation-and-microsoft-learn-source-control/current-az-104-exam-facts"],
+    ["DoD CIO: DoD 8140 qualification matrices","https://public.cyber.mil/wid/dod8140/qualifications-matrices"]]
+};
+
+GUIDES["Cloud and AI Security Engineer"]={
+  id:"sc500",
+  lead:"Microsoft's Azure security cert, exam SC-500. It proves you can lock down identity, data, networks and compute in Azure and hybrid clouds, secure AI apps and agents, and run security posture and monitoring with Defender for Cloud and Microsoft Sentinel. It replaced Azure Security Engineer (AZ-500), which retired on Aug 31, 2026.",
+  checked:"Nov 11, 2026",
+  planHours:100,
+  objSub:"Four skill areas and 12 objectives from Microsoft's SC-500 study guide. Tick them off as you study; progress saves on this device.",
+  versions:{
+    cur:{code:"SC-500",label:"2026",status:"New in 2026 · passing 700",
+      note:"Replaced AZ-500, which retired Aug 31, 2026; AZ-500 can't be taken or renewed anymore, and it wasn't converted. Microsoft's certification page still showed SC-500 as beta when we checked, while training providers say it went live Jul 21, 2026. Check the page before you book.",
+      numbered:true,onote:"Official Microsoft skill areas and objectives, in plain words. Microsoft gives weight ranges (20–25%, 25–30%, 20–25%, 20–25%); the bars use the middle of each range.",
+      domains:[
+        {n:"1.0",name:"Manage identity, access, and governance",w:24,obj:[
+          ["Secure access with Microsoft Entra ID","Privileged Identity Management (PIM), Conditional Access, MFA and passwordless, app registrations and enterprise apps, OAuth consent settings, and managed identities."],
+          ["Secure secrets and keys with Azure Key Vault","Deploy and configure Key Vault, its access and firewall settings, keys, secrets and certificates; scan for exposed secrets with Defender CSPM; turn on Defender for Key Vault."],
+          ["Governance for security and compliance","Azure Policy (built-in and custom), regulatory compliance in Defender for Cloud, resource locks, built-in and custom roles, fixing over-privileged access, secure backups, and security controls in infrastructure as code."]]},
+        {n:"2.0",name:"Secure storage, databases, and networking",w:29,obj:[
+          ["Storage accounts","Storage account security settings, storage firewall rules, Defender for Storage, and access policies."],
+          ["Databases","Platform security for Azure SQL, auditing for Azure SQL Database and Managed Instance, and Defender for Databases."],
+          ["Network services","NSGs and application security groups, Azure Virtual Network Manager policies, Virtual WAN and VPN security, Entra Private Access, private endpoints and Private Link, Azure Firewall, and checking effective rules with Network Watcher."]]},
+        {n:"3.0",name:"Secure compute",w:24,obj:[
+          ["Security for AI","Find oversharing in SharePoint, AI data risks with Purview DSPM, real-time protection for Copilot Studio agents, Entra Agent ID (Conditional Access, risk and access), an AI gateway in API Management for Microsoft Foundry, Defender for AI Services, agent guardrails in Foundry, and the Data and AI security dashboard."],
+          ["Servers and virtual machines","Disk encryption, Azure Bastion, just-in-time (JIT) VM access, Azure Arc for hybrid and multicloud servers, Defender for Servers (vulnerability scanning and EDR), agentless scanning, secure boot and vTPM, and machine configuration."],
+          ["Application platforms","Defender for Containers, AKS, Container Registry, Container Instances and Container Apps, Azure Functions, Logic Apps, App Service, Web Application Firewall, and API Management back-end protection."]]},
+        {n:"4.0",name:"Manage and monitor security posture",w:23,obj:[
+          ["Posture with Defender for Cloud","Find risks with Defender CSPM, check compliance against frameworks, turn on workload protection plans, connect AWS and Google Cloud, configure Defender Vulnerability Management, and find exposed assets with Defender EASM."],
+          ["Event collection in Microsoft Sentinel","Workspaces and roles, content hub solutions, data connectors for Azure, syslog and CEF collection, Windows security events with data collection rules, custom log tables, automation rules and playbooks, data retention, and Purview Audit in Defender XDR."],
+          ["Microsoft Security Copilot","Workspaces, permissions and roles, plugins, and Microsoft and Security Store agents."]]}
+      ]}
+  },
+  extras:[
+    {kind:"rows",title:"Microsoft security tools",sub:"what each one is for",wide:true,rows:[
+      ["Defender Cloud","Posture","Secure score, recommendations, compliance and workload protection plans"],
+      ["Defender CSPM","Attack paths","Which exposed resources can reach sensitive data, including AI"],
+      ["For Servers","VMs","EDR, vulnerability scanning and JIT access"],
+      ["For Containers","AKS + ACR","Image scanning and runtime threat detection"],
+      ["For AI","AI apps","Threats like prompt injection against AI models"],
+      ["Purview DSPM","Data + AI","Sensitive data showing up in Copilot and AI app use"],
+      ["Sentinel","SIEM + SOAR","Collect logs, detect, investigate and automate the response"],
+      ["Sec. Copilot","AI assist","AI help for analysts, with plugins and agents"]]},
+    {kind:"rows",title:"Access, done right",sub:"1.0",rows:[
+      ["PIM","Just in time","Admin roles only when needed, with approval and MFA"],
+      ["Cond. Access","Sign-in rules","Allow, block or require MFA by user, device, place, risk"],
+      ["Managed ID","No secrets","An Azure identity for an app; nothing to store or rotate"],
+      ["Key Vault","Secrets","Keys, secrets and certs behind RBAC and a firewall"],
+      ["Agent ID","AI agents","An identity for each AI agent, with its own access rules"]]},
+    {kind:"steps",title:"Lock down a VM",sub:"3.0 · in order",rows:[
+      "No public IP. Admins connect through Azure Bastion.",
+      "Turn on just-in-time access so RDP and SSH open only on approved request.",
+      "Use a Trusted launch VM: secure boot and vTPM on.",
+      "Encrypt the disks.",
+      "Onboard it to Defender for Servers for EDR and vulnerability scanning.",
+      "Enforce settings with machine configuration and Azure Policy."]},
+    {kind:"steps",title:"How an NSG decides",sub:"2.0",rows:[
+      "Inbound traffic must pass the subnet NSG, then the NIC NSG.",
+      "Rules run lowest priority number first; the first match wins.",
+      "Default rules (65000+): allow traffic inside the VNet, allow the Azure load balancer, deny everything else inbound.",
+      "Outbound to the internet is allowed by default. Add rules or Azure Firewall to limit it."]}
+  ],
+  facts:[["Questions","40–60","typical"],["Time","100–120","minutes (120 with labs)"],["Passing","700","on a 1–1,000 scale"],["Format","MCQ","+ case studies, labs"],["Study","80–120","hours"],["Voucher","$165","US price"],["Valid","1","year, free renewal"],["DoD 8140","Not listed","CCSP is"]],
+  method:[
+    ["Map","Use the four skill areas above. Storage, databases and networking is the biggest at 25–30%."],
+    ["Learn","Read the SC-500 study guide line by line, then the Microsoft Learn docs for each tool. Use AZ-500 material only for the parts that didn't change."],
+    ["Build","In a personal Azure account: Key Vault with a managed identity, an NSG with ASGs, a private endpoint, Bastion with JIT, Defender for Cloud and a Sentinel workspace with one connector."],
+    ["Recall","Flashcards for the security tools table, Entra access features, NSG rule order and what each Defender plan protects."],
+    ["Test","Try the exam sandbox, then timed practice questions labeled SC-500. Microsoft's own practice assessment wasn't out yet when we checked."]],
+  tips:[
+    ["New AI topics","About a quarter of the compute area is AI: Copilot Studio agents, Entra Agent ID, Foundry and Defender for AI. Most older courses skip it."],
+    ["Prevent vs detect","If the question says “prevent” or “ensure,” look for Azure Policy (Deny), Conditional Access or a lock. Defender and Sentinel find problems after they happen."],
+    ["Least privilege","The best answer usually gives the narrowest role, for the shortest time (PIM), with no stored secret (managed identity)."],
+    ["Use Microsoft Learn","Associate exams let you open Microsoft Learn during the test. Use it to confirm a setting, not to learn a topic."]],
+  resources:[
+    {group:"Official and free",items:[
+      ["SC-500 study guide","Microsoft Learn","https://learn.microsoft.com/credentials/certifications/resources/study-guides/sc-500","Free","The official skills list. Study straight from it."],
+      ["Cloud and AI Security Engineer certification page","Microsoft Learn","https://learn.microsoft.com/credentials/certifications/cloud-and-ai-security-engineer-associate/","Free","Exam status, details and scheduling."],
+      ["Microsoft Defender for Cloud docs","Microsoft Learn","https://learn.microsoft.com/azure/defender-for-cloud/","Free","Posture, CSPM, workload plans and multicloud connectors."],
+      ["Microsoft Sentinel docs","Microsoft Learn","https://learn.microsoft.com/azure/sentinel/","Free","Connectors, analytics, automation rules and playbooks."],
+      ["Exam sandbox","Microsoft","https://aka.ms/examdemo","Free","Try case studies and the other question types."]]},
+    {group:"Hands-on",items:[
+      ["Azure free account","Microsoft","https://azure.microsoft.com/free/","Free","Use a personal account and card, never a government card or work data. Defender plans and Sentinel cost money after their trials, so set a budget alert and clean up."]]},
+    {group:"Paid",items:[
+      ["Practice exams","Several vendors","","Paid","Make sure it says SC-500, not AZ-500. Much of the AI content is new."],
+      ["Video course","Udemy or Microsoft training partners","","Paid","Check the course was updated for SC-500 in 2026."]]}
+  ],
+  quiz:[
+    {d:"1.0",q:"Admins should hold Global Administrator only when they need it, for a few hours, after approval and MFA. What should you use?",
+     o:[["Privileged Identity Management with eligible assignments","Right. PIM makes admins eligible, and they activate the role just in time with approval and MFA."],
+        ["Permanent role assignments plus a Conditional Access policy","Conditional Access protects sign-in, but the admin rights are still always on."],
+        ["A custom role with fewer permissions","Fewer permissions is good, but it's still standing access, not time-limited."],
+        ["A break-glass account for every admin","Break-glass accounts are for emergencies, and only one or two should exist."]],a:0},
+    {d:"1.0",q:"A function app must read secrets from Key Vault without storing any credential in its settings. What's the BEST approach?",
+     o:[["Give the function app a managed identity and the Key Vault Secrets User role on the vault","Right. Azure manages the identity's credentials, and the role grants read access to secrets only."],
+        ["Put a client secret for an app registration in the app settings","That's a stored credential that can leak and must be rotated."],
+        ["Use the storage account key","Unrelated to Key Vault, and it's a secret too."],
+        ["Make the Key Vault public with no firewall","Public access doesn't give the app permission, and it weakens the vault."]],a:0},
+    {d:"1.0",q:"No one may create a storage account that allows public blob access. Which control stops it at creation time?",
+     o:[["An Azure Policy with the Deny effect","Right. Deny blocks the create or update request if it breaks the rule."],
+        ["An Azure Policy with the Audit effect","Audit only flags it after it's created."],
+        ["A Defender for Cloud recommendation","Recommendations tell you about the problem. They don't block it."],
+        ["A resource lock on the subscription","Locks stop deletes and changes, not risky settings on new resources."]],a:0},
+    {d:"2.0",q:"Web VMs may talk to database VMs only on TCP 1433. VMs are added to both tiers often. How do you write the NSG rule with the least upkeep?",
+     o:[["Use application security groups: source ASG web, destination ASG db, port 1433","Right. New VMs just join the right ASG; the rule never changes."],
+        ["List every VM's IP address in the rule","You'd edit the rule every time a VM is added or replaced."],
+        ["Use only Azure Firewall for traffic inside the subnet","Overkill for VM-to-VM rules, and traffic inside a subnet doesn't go through it by default."],
+        ["Turn off the NSGs and rely on the database's login","That removes the network control entirely."]],a:0},
+    {d:"2.0",q:"A storage account must be reachable only from inside the unit's VNet, with public network access turned off. What do you configure?",
+     o:[["A private endpoint, and set public network access to Disabled","Right. The account gets a private IP in the VNet, and the public endpoint stops answering."],
+        ["A service endpoint","Traffic stays on Microsoft's network, but the account still uses its public endpoint."],
+        ["A SAS token","A SAS controls what a caller can do, not which network it comes from."],
+        ["A firewall rule that allows all networks","That's the opposite of what's needed."]],a:0},
+    {d:"2.0",q:"Auditors want every login and query against Azure SQL Database recorded in a Log Analytics workspace. What do you turn on?",
+     o:[["Auditing on the server or database, sending to Log Analytics","Right. SQL auditing records database events and can send them to a workspace."],
+        ["Defender for SQL","Defender adds threat detection and vulnerability assessment. It isn't the audit log."],
+        ["Transparent Data Encryption","TDE encrypts data at rest. It doesn't log activity."],
+        ["Always Encrypted","It protects sensitive columns from the database's own admins. It doesn't log activity."]],a:0},
+    {d:"2.0",q:"Outbound traffic from many VNets must be filtered centrally by domain name, with threat intelligence blocking known bad sites. What fits?",
+     o:[["Azure Firewall in a hub VNet, with routes sending traffic through it","Right. Azure Firewall filters by FQDN and has threat intelligence."],
+        ["NSGs on every subnet","NSGs filter by IP and port, not domain names, and aren't central."],
+        ["Web Application Firewall","WAF protects inbound web traffic to your apps, not outbound browsing."],
+        ["Azure Bastion","Bastion is for admin RDP and SSH."]],a:0},
+    {d:"3.0",q:"RDP and SSH must be closed by default and open only on request, for a set time, from the requester's IP. What should you use?",
+     o:[["Just-in-time VM access in Defender for Servers","Right. JIT opens the port briefly for an approved request, then closes it."],
+        ["A permanent NSG rule allowing 3389 from the office","The port is open all the time."],
+        ["Azure Bastion alone","Bastion avoids public IPs, but it doesn't open and close ports on request."],
+        ["A VPN Gateway","A VPN reaches the network, but the ports stay open behind it."]],a:0},
+    {d:"3.0",q:"Admins need RDP and SSH into VMs that have no public IP, without opening 3389 or 22 to the internet. What should you deploy?",
+     o:[["Azure Bastion","Right. Bastion connects through the portal over TLS to VMs on private IPs."],
+        ["A public IP on each VM with an NSG","That exposes every VM to the internet."],
+        ["Microsoft Sentinel","Sentinel monitors. It doesn't provide access."],
+        ["A jump box with a public IP","It works, but it's one more internet-facing server to patch and protect."]],a:0},
+    {d:"3.0",q:"You need alerts when someone tries prompt injection or other attacks against your AI model deployments in Microsoft Foundry. What should you enable?",
+     o:[["Defender for AI Services in Defender for Cloud","Right. It detects threats against AI workloads, like prompt injection and data leakage."],
+        ["Defender for Storage","It protects storage accounts, not AI models."],
+        ["Microsoft Purview DSPM","Purview tracks sensitive data in AI use. It isn't a threat detector for model attacks."],
+        ["An NSG on the Foundry subnet","NSGs filter network traffic. A prompt is valid traffic."]],a:0},
+    {d:"3.0",q:"Leadership wants to know which sensitive data people are pasting into Copilot and other AI apps. Which tool shows that?",
+     o:[["Microsoft Purview Data Security Posture Management (DSPM) for AI","Right. It shows sensitive data in AI interactions and the risky activity around it."],
+        ["Defender for AI Services","That watches for attacks on your AI deployments, not what users share."],
+        ["Azure Monitor","Monitor shows performance and logs, not data sensitivity."],
+        ["Conditional Access","It controls sign-in, not what users type."]],a:0},
+    {d:"3.0",q:"You must scan images in Azure Container Registry for vulnerabilities and detect threats in running AKS clusters. Which plan?",
+     o:[["Defender for Containers","Right. It covers registry scanning, AKS hardening checks and runtime threat detection."],
+        ["Defender for Servers","It protects VMs and servers, not the container layer."],
+        ["Azure Policy alone","Policy enforces settings. It doesn't scan images or detect attacks."],
+        ["Defender EASM","EASM finds your internet-facing assets from the outside."]],a:0},
+    {d:"4.0",q:"You need Linux syslog and firewall CEF logs flowing into Microsoft Sentinel. What do you set up?",
+     o:[["The Azure Monitor Agent with a data collection rule, through Sentinel's syslog and CEF connectors","Right. The agent collects the logs, the data collection rule says what to send, and the connector brings them in."],
+        ["Defender CSPM","CSPM is posture management. It doesn't collect syslog."],
+        ["Microsoft Purview Audit","Purview Audit covers Microsoft 365 activity."],
+        ["Defender EASM","EASM scans your external attack surface."]],a:0},
+    {d:"4.0",q:"When a Sentinel incident shows a user account is compromised, the account should be disabled and the SOC channel notified automatically. What do you build?",
+     o:[["An automation rule that runs a playbook (a Logic App)","Right. Automation rules trigger on incidents; playbooks take the actions."],
+        ["An analytics rule only","Analytics rules create incidents. They don't take response actions."],
+        ["A workbook","Workbooks are dashboards."],
+        ["A watchlist","Watchlists hold reference data, like VIP users."]],a:0},
+    {d:"4.0",q:"The unit also runs workloads in AWS and wants the same security recommendations and secure score for them. What should you do?",
+     o:[["Connect the AWS accounts to Defender for Cloud","Right. Defender for Cloud has native AWS and Google Cloud connectors for posture and protection."],
+        ["Only install Azure Arc on the AWS servers","Arc helps with servers, but the native connector covers the AWS account and its services."],
+        ["Add the AWS connector to Sentinel only","That brings in AWS logs, not posture recommendations."],
+        ["Use Defender EASM","EASM finds exposed assets. It doesn't assess AWS configuration."]],a:0}
+  ],
+  pbqs:[
+    {id:"ctrl",kind:"match",short:"Pick the control",title:"Pick the control",dom:"1.0 · 2.0 · 3.0",
+     scenario:"Six requirements from the security plan. Pick the control that meets each one. Each answer is used once; four are distractors.",
+     pick:"Control",choices:["PIM","Conditional Access","Managed identity","Azure Policy (Deny)","Private endpoint","Azure Bastion","Resource lock","JIT VM access","Key Vault firewall","Defender for AI"],
+     items:[
+       {src:"Req 1",text:"Admins get Global Administrator only for two hours, after approval.",a:0,why:"PIM gives just-in-time, time-limited admin roles with approval."},
+       {src:"Req 2",text:"Block sign-ins from outside the U.S. unless the device is compliant.",a:1,why:"Conditional Access decides sign-ins by location, device and risk."},
+       {src:"Req 3",text:"An app signs in to Azure services with no client secret or certificate to manage.",a:2,why:"A managed identity's credentials are handled by Azure."},
+       {src:"Req 4",text:"Nobody can create a storage account that allows public blob access.",a:3,why:"A Deny policy blocks the create request."},
+       {src:"Req 5",text:"Reach Azure SQL only over a private IP inside the VNet.",a:4,why:"A private endpoint puts the service on a private IP in your VNet."},
+       {src:"Req 6",text:"RDP to VMs that have no public IP, from the Azure portal.",a:5,why:"Bastion connects to private VMs through the portal."}]},
+    {id:"where",kind:"table",short:"Where to look",title:"Which tool shows it?",dom:"3.0 · 4.0",
+     scenario:"Five questions from your commanding officer. Pick the Microsoft tool that answers each one. Each is used once; one is a distractor.",
+     cols:["Tool"],
+     opts:[["Defender CSPM","Defender for Servers","Defender for AI","Purview DSPM for AI","Microsoft Sentinel","Network Watcher"]],
+     rows:[
+       {req:"Which internet-exposed VMs have a path to our sensitive data?",a:[0],why:"Defender CSPM's attack path analysis shows exposed routes to sensitive resources."},
+       {req:"Which VMs have a critical vulnerability, and did EDR fire on any of them?",a:[1],why:"Defender for Servers brings vulnerability scanning and EDR."},
+       {req:"Did anyone try a prompt injection against our Foundry model?",a:[2],why:"Defender for AI Services alerts on attacks against AI workloads."},
+       {req:"Did anyone paste sensitive data into a Copilot chat?",a:[3],why:"Purview DSPM for AI tracks sensitive data in AI interactions."},
+       {req:"Tie the firewall logs, sign-ins and alerts together into one incident.",a:[4],why:"Sentinel correlates data from many sources into incidents."}]},
+    {id:"nsg",kind:"table",short:"NSG verdicts",title:"Allowed or denied?",dom:"2.0",
+     scenario:"For each flow, decide what the NSGs do. Unless stated, only the default rules exist besides the ones listed.",
+     cols:["Result"],
+     opts:[["Allowed","Denied"]],
+     rows:[
+       {req:"Inbound 3389 from the internet. Rules: priority 100 Deny 3389 from any; priority 200 Allow 3389 from Internet.",a:[1],why:"Priority 100 is checked first and matches, so the traffic is denied."},
+       {req:"Inbound 443 from the internet. The only custom rule allows 443 from VirtualNetwork.",a:[1],why:"The internet isn't VirtualNetwork, so the default DenyAllInbound blocks it."},
+       {req:"Outbound 443 to the internet. No custom outbound rules.",a:[0],why:"The default AllowInternetOutBound rule allows it."},
+       {req:"Inbound 1433 from a web VM in the same VNet. The subnet NSG allows it; the NIC NSG has no custom rules.",a:[0],why:"The NIC NSG's default AllowVnetInBound rule allows traffic between VNet addresses."},
+       {req:"Inbound health probe from the Azure load balancer. No custom rules.",a:[0],why:"The default AllowAzureLoadBalancerInBound rule allows it."}]}
+  ],
+  before:[["Azure Administrator","Microsoft recommends Azure admin experience first"],["Security+","Security basics and the DoD baseline"],["Azure Fundamentals","Optional. Learn the Azure terms first"]],
+  next:[["CCSP","Vendor-neutral cloud security, on the DoD 8140 matrix"],["Security Specialty","The same skills on AWS"],["CISSP","Senior security leadership"]],
+  hereNote:"Azure and AI security for cloud security engineers",
+  mapSub:"Cloud and AI Security Engineer is the top of the Microsoft cloud line. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"1 year",text:"Microsoft role-based certs last one year. Renew for free by passing a short, open-book online assessment on Microsoft Learn.",after:"The assessment opens 6 months before your cert expires. Passing adds one year."},
+    {lab:"Old AZ-500",big:"Retired",text:"AZ-500 and the Azure Security Engineer Associate cert retired on Aug 31, 2026. Holders can't renew it, and it wasn't converted to SC-500.",after:"If you hold AZ-500, keep listing it with its dates. SC-500 is the way to stay current."},
+    {lab:"DoD 8140",big:"Not listed",text:"No Azure cert is on the DoD 8140 matrix (V2.1). For a coded billet, pair it with one that is, like CCSP or CISSP.",after:"Defense contractors often ask for both: an 8140 cert for the contract and a platform cert for the work."},
+    {lab:"Pay for it",big:"$165",text:"Check that CG COOL lists the new credential before you request funding. New certs can take time to appear.",after:"Renewals are free, so the exam fee is the only cost."}],
+  sources:[
+    ["Microsoft Learn: SC-500 study guide (skills, weights, passing 700)","https://learn.microsoft.com/credentials/certifications/resources/study-guides/sc-500"],
+    ["Microsoft Learn: Cloud and AI Security Engineer Associate (beta label, prerequisites)","https://learn.microsoft.com/credentials/certifications/cloud-and-ai-security-engineer-associate/"],
+    ["Microsoft Learn: AZ-500 study guide (retired Aug 31, 2026)","https://learn.microsoft.com/certifications/resources/study-guides/az-500"],
+    ["Microsoft Learn: Exam duration and exam experience","https://learn.microsoft.com/credentials/support/exam-duration-exam-experience"],
+    ["Microsoft Learn: Certification renewal","https://learn.microsoft.com/credentials/renew-your-microsoft-certification"],
+    ["Training Camp: SC-500 live since Jul 21, 2026; AZ-500 renewal retired too","https://trainingcamp.com/articles/az-500-retires-august-31-2026-sc-500-replaces-it-2/"],
+    ["Lumify Work: AZ-500 can't be earned or renewed after Aug 31, 2026","https://www.lumifywork.com/en-nz/certifications/microsoft-certified-azure-security-engineer-associate"],
     ["DoD CIO: DoD 8140 qualification matrices","https://public.cyber.mil/wid/dod8140/qualifications-matrices"]]
 };
 
@@ -10068,7 +10678,7 @@ var ALIAS={"A+":"a plus core 1 core 2 220-1101 220-1102 220-1201 220-1202 v15 he
  "CCST Cybersecurity":"100-160 cisco certified support technician ccst cyber security guide","CCNA Cybersecurity":"200-201 ccnacbr cbrops cyberops associate cyber ops cisco certified cybersecurity associate soc analyst blue team guide","CCNA":"200-301 cisco certified network associate routing switching ospf vlan v1.1 v2.0 guide",
  "CCNP Security":"350-701 scor v2.0 cisco certified network professional security sncf sise ssca sdsi 300-710 300-715 300-740 300-745 ise firepower guide","SAL1 · Security Analyst L1":"sal1 sal 1 soc analyst level 1 blue team soc simulator tryhackme thm guide","PT1 · Junior Pentester":"pt1 pt 1 jr junior pentest penetration tester red team tryhackme thm guide",
  "Linux Essentials":"010-200 010-160 lpi le linux essentials 2.0 1.6 linux basics command line guide","LPIC-1":"lpic1 lpic 1 101-500 102-500 101 102 lpi linux administrator sysadmin guide","Cloud Practitioner":"clf-c02 clf c02 ccp aws amazon cloud practitioner foundational guide","Solutions Architect Associate":"saa saa-c03 c03 aws amazon solutions architect associate guide",
- "Security Specialty":"scs-c03 scs-c02 scs aws amazon security specialty cloud security guide","Azure Fundamentals":"az-900 microsoft","Azure Administrator":"az-104 microsoft","Azure Security Engineer":"az-500 microsoft",
+ "Security Specialty":"scs-c03 scs-c02 scs aws amazon security specialty cloud security guide","Azure Fundamentals":"az-900 az900 microsoft azure fundamentals foundational guide","Azure Administrator":"az-104 az104 microsoft azure administrator associate admin guide","Cloud and AI Security Engineer":"sc-500 sc500 az-500 az500 azure security engineer cloud and ai security engineer microsoft entra defender sentinel guide",
  "Project+":"project plus pk0-005 v5 project management pm agile scrum waterfall guide"};
 var POPULAR=["Security+","Network+","CCNA","CISSP","SAL1 · Security Analyst L1","Cloud Practitioner"];
 var FILTERS=[["all","All"],["20 year career","20 year career"],["Cyber eng","Cyber"],["Cloud security","Cloud"],["Network eng","Network"],["d8140","DoD 8140"]];
