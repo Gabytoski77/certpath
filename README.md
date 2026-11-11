@@ -1,7 +1,7 @@
 # CG Cert Path
 
 Certifications, career paths and CG COOL funding for Coast Guard IT, with full study guides
-(objectives, study plan, resources, quiz, PBQs, roadmap) for CompTIA A+, Network+, Security+, Cloud+, CySA+, PenTest+, SecurityX, ISC2 CC, SSCP, CCSP and CISSP, and TryHackMe SAL1 and PT1.
+(objectives, study plan, resources, quiz, PBQs, roadmap) for CompTIA A+, Network+, Security+, Cloud+, CySA+, PenTest+, SecurityX, ISC2 CC, SSCP, CCSP and CISSP, Cisco CCST Networking, CCST Cybersecurity, CCNA Cybersecurity, CCNA and CCNP Security, and TryHackMe SAL1 and PT1.
 
 **Not an official U.S. Coast Guard site.** Public information only. Vendor names are trademarks of their owners.
 Quiz and PBQ questions are original.
