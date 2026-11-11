@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-WMuoT6ISJmq6wzvtidV1E4KdvmVyBSWc6e9n/WUc67E=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-l/tSTQupyWghGmAMtJM0avOrG5YFQZS9/akyINudzwA=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -191,7 +191,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 @media (hover:hover) and (pointer:fine){.st-card:hover{border-color:rgba(188,214,234,.6);background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.045))}.st-card:hover .go{transform:translateX(3px)}}
 .st-card:active{transform:scale(.98);transition-duration:.1s}
 .st-disc{margin:2px 0 0;font:500 9.5px/1.4 var(--f-mono);color:#7f8996;letter-spacing:.04em}
-.ro-pick{display:none;margin:0;font:500 9.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#8d97a5}
+.ro-pick{display:none;margin:0;font:500 9.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#8d97a5;padding-left:.12em}
 .readout{grid-area:ro;align-self:end;justify-self:end;width:min(290px,100%);display:grid;gap:12px;padding-bottom:2.5vh;pointer-events:auto;position:relative;z-index:1}
 .ro-head{display:grid;gap:inherit;justify-items:inherit;min-width:0}
 /* when the big CertPath wordmark would cover the vendor text, the text moves above the wordmark and the crests + buttons stay below it (placeReadout) */
@@ -1024,6 +1024,32 @@ button.ptt-c:active{opacity:.7;transition-duration:.1s}
 .copy{flex:none;padding:9px 13px;border:1px solid var(--hair-2);border-radius:999px;font:600 9.5px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);transition:border-color .4s var(--ez),color .4s var(--ez)}
 @media (hover:hover) and (pointer:fine){.copy:hover{border-color:rgba(255,255,255,.4);color:var(--ink)}}
 .srcs{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:22px;font:500 12px var(--f-ui)}
+/* funding switch: TA first, then CG COOL (v2.22) */
+.fsw{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 26px;max-width:520px}
+.fsw button{display:grid;gap:6px;justify-items:start;text-align:left;padding:14px 16px;border:1px solid var(--hair-2);border-radius:14px;background:rgba(255,255,255,.02);transition:border-color .25s var(--ez),background .25s var(--ez),transform .25s var(--ez)}
+.fsw b{font:600 15px/1.15 var(--f-disp);letter-spacing:-.01em;color:var(--ink-2)}
+.fsw span{font:500 10px/1.2 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.fsw button[aria-pressed="true"]{border-color:var(--powder);background:rgba(188,214,234,.08)}
+.fsw button[aria-pressed="true"] b{color:var(--ink)}
+.fsw button[aria-pressed="true"] span{color:var(--powder)}
+@media (hover:hover) and (pointer:fine){.fsw button[aria-pressed="false"]:hover{border-color:rgba(255,255,255,.34)}}
+.fsw button:active{transform:scale(.98);transition-duration:.1s}
+.fnotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:30px;border-top:1px solid var(--hair)}
+.fnotes .fact{padding:17px 20px 17px 0;border-bottom:1px solid var(--hair)}
+.fnotes .fact:nth-child(even){padding-left:20px;padding-right:0;border-left:1px solid var(--hair)}
+.fnotes .fact:last-child{border-bottom:1px solid var(--hair)}
+/* getting out (v2.22) */
+.o-h{margin:40px 0 18px;font:600 10px/1.35 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.o-p{margin:-6px 0 16px;color:var(--ink-2);font-size:14px;line-height:1.6;max-width:62ch}
+.otl,.ocerts{--v-line:var(--hair-2);--v-accent:var(--powder);--v-muted:var(--ink-3);--v-fg:var(--ink)}
+.otl{max-width:640px}
+.otl .wl-s b{font:600 16px/1.25 var(--f-disp);letter-spacing:-.01em;color:var(--ink)}
+.otl .wl-s p{margin:0;font-size:13.5px;line-height:1.55;color:var(--ink-2);max-width:60ch}
+.ocerts{display:flex;flex-wrap:wrap;gap:8px}
+.ocerts .ptt-c{min-height:38px}
+.octa{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:22px}
+.octa .g-link{color:var(--ink-2);border-bottom-color:var(--hair-2)}
+@media (hover:hover) and (pointer:fine){.octa .g-link:hover{color:var(--ink);border-bottom-color:var(--powder)}}
 .srcs a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--hair-2);padding-bottom:2px;transition:color .4s var(--ez),border-color .4s var(--ez)}
 @media (hover:hover) and (pointer:fine){.srcs a:hover{color:var(--ink);border-color:var(--ink)}}
 
@@ -1052,6 +1078,8 @@ button.ptt-c:active{opacity:.7;transition-duration:.1s}
   .pcol,.pcol:first-child,.pcol:nth-child(3){padding:22px 0;border-right:0;border-bottom:1px solid var(--hair)}
   .pcol:last-child{border-bottom:0}
   .cline+.cline{border-left:0;border-top:1px solid var(--hair);padding-left:0}
+  .fnotes{grid-template-columns:minmax(0,1fr)}
+  .fnotes .fact,.fnotes .fact:nth-child(even){padding:16px 0;border-left:0}
   .coolart{gap:16px}
   .gauge{width:124px;height:124px}
   .vstack{width:112px}
@@ -1095,6 +1123,7 @@ button.ptt-c:active{opacity:.7;transition-duration:.1s}
   .st-lead{font-size:17.5px}
   .st-head{gap:8px}
   .st-cool{justify-content:center;text-align:center}
+  .st-links{justify-content:center;width:100%}
   .st-main{padding:15px 26px 15px 28px}
   .st-card{max-width:340px}
   .st-disc{display:none}
@@ -1761,7 +1790,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.21</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.22</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1817,7 +1846,8 @@ html.kbd .touch-only{display:none}
         <button type="button" data-go="exam" aria-selected="false">Countdown</button>
         <button type="button" data-go="compare" aria-selected="false">Compare</button>
         <button type="button" data-go="paths" aria-selected="false"><span class="tab-x">Career p</span><span class="tab-s">P</span>aths</button>
-        <button type="button" data-go="cool" aria-selected="false">CG COOL<span class="tab-x"> funding</span></button>
+        <button type="button" data-go="cool" aria-selected="false">Funding</button>
+        <button type="button" data-go="out" aria-selected="false">Getting out</button>
         <span class="tab-ind" aria-hidden="true"></span>
       </nav>
 
@@ -1839,16 +1869,16 @@ html.kbd .touch-only{display:none}
           <button type="button" class="pcard rv-s" data-go="cool">
             <span class="pc-rail" aria-hidden="true"><span class="pc-mark"></span><span class="pc-dots">&middot;&middot;&middot;</span><span class="pc-num">02</span></span>
             <span class="pc-main">
-              <span class="pc-top"><span class="lab">Categories / Funding</span><span class="meta">05 steps</span></span>
-              <span class="pc-title">CG COOL.</span>
+              <span class="pc-top"><span class="lab">Categories / Funding</span><span class="meta">TA + COOL</span></span>
+              <span class="pc-title">Funding.</span>
               <span class="pc-art" aria-hidden="true">
                 <span class="coolart">
-                  <span class="vstack"><i>CREDENTIAL<b>Security+</b></i><i>MYCG ED<b>CA request</b></i><i>ETQC<b>Approved <span>&#10003;</span></b></i></span>
+                  <span class="vstack"><i>COLLEGE<b>Tuition (TA)</b></i><i>CERTS<b>CG COOL (CA)</b></i><i>ETQC<b>Approved <span>&#10003;</span></b></i></span>
                   <svg class="gauge" viewBox="0 0 150 150"><circle cx="75" cy="75" r="60" class="g-track"/><circle cx="75" cy="75" r="60" class="g-arc" transform="rotate(-90 75 75)"/>
-                    <text x="75" y="80" class="g-n">$4.5K</text><text x="75" y="99" class="g-l">PER FY</text></svg>
+                    <text x="75" y="80" class="g-n">$4.5K</text><text x="75" y="99" class="g-l">EACH / FY</text></svg>
                 </span>
               </span>
-              <span class="pc-foot"><span class="go"><i>&rarr;</i>Get it funded</span><span class="meta">ETQC &middot; MyCG Ed</span></span>
+              <span class="pc-foot"><span class="go"><i>&rarr;</i>Get it funded</span><span class="meta">College &middot; Certs</span></span>
             </span>
           </button>
         </div>
@@ -1887,12 +1917,12 @@ html.kbd .touch-only{display:none}
           <div class="n2">
             <div><b id="sb-count">0</b><span>certs mapped across <span id="sb-lines">7</span> vendor lines</span></div>
             <div><b>5</b><span>career fields off one IT root, with 14 civilian jobs and 5 Coast Guard ranks</span></div>
-            <div><b>$4,500*</b><span>credentialing assistance CG COOL can cover each fiscal year</span></div>
+            <div><b>2&times;$4.5K</b><span>a fiscal year: Tuition Assistance for college and CG COOL for certs</span></div>
             <div><b>IAT II</b><span>the DoD baseline Security+ meets</span></div>
             <div><b>9</b><span>certs built into the WGU cyber degree</span></div>
           </div>
         </div>
-        <p class="fine rv-s">*Amount reported by approved CG COOL training vendors; confirm the current cap with ETQC. All roadmap data is a draft and gets verified before launch.</p>
+        <p class="fine rv-s">Funding amounts come from the official CG COOL and FORCECOM pages; confirm the current rules with your ESO. All roadmap data is a draft and gets verified before launch.</p>
         <p class="fine rv-s">Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the U.S. Coast Guard, CompTIA, ISC2, Cisco, TryHackMe, LPI, AWS, Microsoft or WGU. All names are trademarks of their owners. <span class="nw">&copy; 2026 Gabriel Rodriguez</span>. All rights reserved.</p>
         <p class="fine rv-s">Your data stays on your device. CertPath has no accounts, cookies or analytics; your progress is saved in your browser and you can clear it anytime. The site is hosted on GitHub Pages, which keeps standard server logs.</p>
       </div>
@@ -1923,33 +1953,115 @@ html.kbd .touch-only{display:none}
       </div>
 
       <div class="sv" id="sv-cool" hidden>
-        <p class="intro rv-s">Credentialing Assistance (CA) through CG COOL can pay exam fees for credentials listed on the CG COOL site. Confirm each step with ETQC before you rely on it.<span class="draft">Draft &middot; verify</span></p>
+        <p class="intro rv-s">The Coast Guard has two separate pots of money for your education, and you can use both in the same year: <b>Tuition Assistance (TA)</b> for college classes and <b>Credentialing Assistance (CA)</b> through CG COOL for certs. Each pays up to $4,500 a fiscal year (Oct 1 to Sep 30).<span class="draft">Draft &middot; verify</span></p>
+        <div class="fsw rv-s" role="group" aria-label="Type of funding">
+          <button type="button" data-fund="ta" aria-pressed="true"><b>College classes</b><span>Tuition Assistance</span></button>
+          <button type="button" data-fund="cool" aria-pressed="false"><b>Certs</b><span>CG COOL</span></button>
+        </div>
+
+        <div class="fpane" id="fp-ta">
+          <div class="cool-grid rv-s">
+            <div class="cool-n"><div><p class="lab">Tuition assistance</p><b id="ta-n">$4,500</b></div><p>Per member, per fiscal year. TA is paid straight to the school, for tuition only.</p></div>
+            <div class="facts">
+              <div class="fact"><p class="lab">Rate caps</p><span>Up to $250 per semester hour, $166.67 per quarter hour or $16.67 per clock hour. Fees and books aren't covered.</span></div>
+              <div class="fact"><p class="lab">Who can use it</p><span>Active duty and SELRES who are keeping up with unit and watch-station quals and have had good conduct for the 6 months before class. Enlisted: your last evaluation can't be marked Not Recommended.</span></div>
+              <div class="fact"><p class="lab">What it pays for</p><span>Classes toward a certificate, an associate, a bachelor's or your first master's. Nothing past a master's. The school needs a DoD MOU (check dodmou.com).</span></div>
+            </div>
+          </div>
+          <ol class="tl rv-s">
+            <li><span class="n">01</span><h4>Talk to your ESO</h4><p>Pick a school with a DoD MOU and a program. Pull your Joint Services Transcript (JST) first: your CG training may already count as college credit.</p></li>
+            <li><span class="n">02</span><h4>Get a plan on file</h4><p>Certificate programs need the plan before the first class. For a degree, get an evaluated degree plan from the school early, or TA stops after your first couple of classes.</p></li>
+            <li><span class="n">03</span><h4>Apply in MyCG Ed</h4><p>One application per class, 7 to 90 days before it starts. Class dates must match the school's term. Start a class without approval and you pay for it.</p></li>
+            <li><span class="n">04</span><h4>Command approves</h4><p>Your CO or OIC approves, often through the ESO. Then ETQC authorizes it and the school is paid.</p></li>
+            <li><span class="n">05</span><h4>Pass and close out</h4><p>Get a C or better (B for grad classes, Pass for pass/fail) or you repay the TA. Grades are due within 30 days of the class ending.</p></li>
+          </ol>
+          <div class="fnotes rv-s">
+            <div class="fact"><p class="lab">Service you owe</p><span>Enlisted must finish the class before the enlistment ends. Officers owe 2 years after the class.</span></div>
+            <div class="fact"><p class="lab">Dropping a class</p><span>Tell your ESO and ETQC right away. If you repay a failed class, you can retake it once.</span></div>
+            <div class="fact"><p class="lab">Credits for less</p><span>DANTES pays your first try at each CLEP and DSST exam. Pass one and you skip that class.</span></div>
+            <div class="fact"><p class="lab">Fees and books</p><span>TA won't pay them. The CGMA Supplemental Education Grant can help with fees, books and study guides.</span></div>
+          </div>
+          <div class="contact rv-s">
+            <div class="cline"><div><p class="lab">ETQC tuition assistance</p><code>ETQC-SMB-TAG@USCG.MIL</code></div><button type="button" class="copy" data-copy="ETQC-SMB-TAG@USCG.MIL">Copy</button></div>
+            <div class="cline"><div><p class="lab">Transcripts after your degree</p><code>ETQC-SMB-RO@USCG.MIL</code></div><button type="button" class="copy" data-copy="ETQC-SMB-RO@USCG.MIL">Copy</button></div>
+          </div>
+          <div class="srcs rv-s">
+            <a href="https://www.forcecom.uscg.mil/Our-Organization/FORCECOM-UNITS/ETQC/Voluntary-Education/Tuition-Assistance/" target="_blank" rel="noopener">Tuition Assistance (FORCECOM) &nearr;</a>
+            <a href="https://content.govdelivery.com/accounts/USDHSCG/bulletins/3f33eba" target="_blank" rel="noopener">FY26 TA policy, ALCOAST 390/25 &nearr;</a>
+            <a href="https://www.dodmou.com/" target="_blank" rel="noopener">DoD MOU school list &nearr;</a>
+            <a href="https://jst.doded.mil/" target="_blank" rel="noopener">Joint Services Transcript &nearr;</a>
+            <a href="https://www.dantes.mil/" target="_blank" rel="noopener">DANTES (CLEP, DSST) &nearr;</a>
+            <a href="https://www.mycgma.org/" target="_blank" rel="noopener">CG Mutual Assistance &nearr;</a>
+          </div>
+          <div class="hatch rv-s" aria-hidden="true"></div>
+          <p class="fine rv-s">Draft built from the FORCECOM Tuition Assistance page and the FY26 TA policy (ALCOAST 390/25). The FY27 policy (ALCOAST 359/26) came out in November 2026; check what changed with your ESO.</p>
+        </div>
+
+        <div class="fpane" id="fp-cool" hidden>
+          <div class="cool-grid rv-s">
+            <div class="cool-n"><div><p class="lab">Credentialing assistance</p><b id="cool-n">$4,500</b></div><p>Per fiscal year, separate from TA. First come, first served: once the year's money runs out, approvals stop until Oct 1.</p></div>
+            <div class="facts">
+              <div class="fact"><p class="lab">Pay, then get paid back</p><span>CA is a reimbursement. After ETQC approves, you pay the fees yourself, then claim them back in MyCG Ed.</span></div>
+              <div class="fact"><p class="lab">What it covers</p><span>Exam fees, renewal and maintenance fees, study materials and training courses for any credential listed on CG COOL. Voluntary certs only, not ones your CG job requires.</span></div>
+              <div class="fact"><p class="lab">Not listed?</p><span>Email CGCOOL@USCG.MIL with the cert name and the vendor's site to ask for it to be added. There's no limit on how many requests you send.</span></div>
+            </div>
+          </div>
+          <ol class="tl rv-s">
+            <li><span class="n">01</span><h4>Find your credential</h4><p>Meet your ESO and search CG COOL. Check the cert's eligibility rules and when you could test.</p></li>
+            <li><span class="n">02</span><h4>Request approval</h4><p>Apply in MyCG Ed at least 14 days before the exam or class. Exams and courses each need their own request. ETQC authorizes it after your command approves.</p></li>
+            <li><span class="n">03</span><h4>Pay, then claim it</h4><p>Once it's authorized, pay the fees. Within 30 days, upload the receipt and a signed OF-1164 reimbursement form to MyCG Ed.</p></li>
+            <li><span class="n">04</span><h4>Take the exam</h4><p>Register and test with the cert vendor. The cert's page on CG COOL has the testing info.</p></li>
+            <li><span class="n">05</span><h4>Report the result</h4><p>Upload your result and certificate to MyCG Ed within 30 days of earning it, so ETQC can add it to your record.</p></li>
+          </ol>
+          <div class="contact rv-s">
+            <div class="cline"><div><p class="lab">ETQC credentialing</p><code>ETQC-SMB-CGCOOL@USCG.MIL</code></div><button type="button" class="copy" data-copy="ETQC-SMB-CGCOOL@USCG.MIL">Copy</button></div>
+            <div class="cline"><div><p class="lab">Phone</p><code>757-756-5300</code></div><button type="button" class="copy" data-copy="757-756-5300">Copy</button></div>
+          </div>
+          <div class="srcs rv-s">
+            <a href="https://www.cool.osd.mil/uscg/costs_and_funding/index.html" target="_blank" rel="noopener">CG COOL: costs and funding &nearr;</a>
+            <a href="https://www.cool.osd.mil/uscg/credential_steps/index.html" target="_blank" rel="noopener">CG COOL: steps to apply &nearr;</a>
+            <a href="https://www.cool.osd.mil/uscg/index.html" target="_blank" rel="noopener">CG COOL site &nearr;</a>
+          </div>
+          <div class="hatch rv-s" aria-hidden="true"></div>
+          <p class="fine rv-s">Draft built from the official CG COOL pages. Exam fees run from under $100 to over $1,000, and the GI Bill can also pay for some credentials.</p>
+        </div>
+      </div>
+
+      <div class="sv" id="sv-out" hidden>
+        <p class="intro rv-s">SkillBridge lets you spend up to your last 180 days of active duty training or working with a civilian employer while the Coast Guard still pays you. It's the bridge from your certs to a civilian job, so start planning about a year out.<span class="draft">Draft &middot; verify</span></p>
         <div class="cool-grid rv-s">
-          <div class="cool-n"><div><p class="lab">Credentialing assistance</p><b id="cool-n">$0</b></div><p>Per fiscal year, as reported by approved CG COOL training vendors.</p></div>
+          <div class="cool-n"><div><p class="lab">SkillBridge</p><b id="out-n">180</b></div><p>Days at most, all inside your last 180 days of service, on full pay and benefits.</p></div>
           <div class="facts">
-            <div class="fact"><p class="lab">Voucher first</p><span>Don't register or pay for an exam on your own before ETQC approves your request.</span></div>
-            <div class="fact"><p class="lab">Any listed credential</p><span>It doesn't have to match your rating, as long as it's on CG COOL. Missing? Email CGCOOL@USCG.MIL with the cert name and vendor site.</span></div>
-            <div class="fact"><p class="lab">Policy</p><span>COMDTINST 1540.10, the Voluntary Credentialing Program.</span></div>
+            <div class="fact"><p class="lab">Your status</p><span>Permissive TDY, requested through Direct Access. Your command has to approve it.</span></div>
+            <div class="fact"><p class="lab">Leave</p><span>Leave taken during the program shortens it day for day. You can use leave before you start if your command allows, and you can sell leave back, but there are no waivers to carry it over.</span></div>
+            <div class="fact"><p class="lab">Your date is locked</p><span>Once approved, your separation date can't be moved or extended to finish a program.</span></div>
           </div>
         </div>
-        <ol class="tl rv-s">
-          <li><span class="n">01</span><h4>Find the credential</h4><p>Search CG COOL for the cert and confirm it's listed and approved for funding.</p></li>
-          <li><span class="n">02</span><h4>Request CA in MyCG Ed</h4><p>Submit the credentialing assistance request for the exam and enter the full authorized amount.</p></li>
-          <li><span class="n">03</span><h4>Wait for the voucher</h4><p>ETQC reviews the request. Hold off on scheduling until the approval and voucher come through.</p></li>
-          <li><span class="n">04</span><h4>Take the exam</h4><p>Book with the testing vendor using the voucher, then sit the exam.</p></li>
-          <li><span class="n">05</span><h4>Close it out</h4><p>Send your result or certificate the way ETQC instructs so the request is closed.</p></li>
+        <p class="o-h rv-s">A rough timeline</p>
+        <ol class="wl otl rv-s">
+          <li class="wl-s"><span class="wl-k">A year or more out</span><b>Start TAP</b><p>TAP has to start at least 365 days before you separate. Tell your command you want SkillBridge, and get your Work-Life transition manager involved.</p></li>
+          <li class="wl-s"><span class="wl-k">Next</span><b>Find a program</b><p>Search the DoD SkillBridge site for programs near you or remote. Pick one that fits the certs you hold, then apply with the employer.</p></li>
+          <li class="wl-s"><span class="wl-k">Then</span><b>Get it approved</b><p>Request it in Direct Access. Enlisted attach a statement of service from P&amp;A; officers attach the approved separation document. You also need an ethics brief within 12 months of your start.</p></li>
+          <li class="wl-s"><span class="wl-k">Before you start</span><b>Clear the paperwork</b><p>Book your Separation Health Assessment early. Terminal leave and out-processing all fit inside the same 180 days.</p></li>
+          <li class="wl-s here"><span class="wl-k">Your last 180 days</span><b>SkillBridge</b><p>Train or work with the employer on permissive TDY.</p></li>
+          <li class="wl-s"><span class="wl-k">Separation day</span><b>You're out</b><p>Many programs end with a job offer, but it isn't guaranteed.</p></li>
         </ol>
-        <div class="contact rv-s">
-          <div class="cline"><div><p class="lab">ETQC voluntary credentialing</p><code>ETQC-SMB-CGCOOL@USCG.MIL</code></div><button type="button" class="copy" data-copy="ETQC-SMB-CGCOOL@USCG.MIL">Copy</button></div>
-          <div class="cline"><div><p class="lab">Phone</p><code>757-756-5300</code></div><button type="button" class="copy" data-copy="757-756-5300">Copy</button></div>
+        <p class="o-h rv-s">Certs that help</p>
+        <p class="o-p rv-s">Most IT and cyber programs want Security+ at the least. Earn it, and whatever comes next on your path, while TA and CG COOL still pay.</p>
+        <div class="ocerts rv-s">
+          <button type="button" class="ptt-c" data-cert="Security+">Security+</button><button type="button" class="ptt-c" data-cert="CySA+">CySA+</button><button type="button" class="ptt-c" data-cert="CCNA">CCNA</button><button type="button" class="ptt-c" data-cert="Cloud Practitioner">Cloud Practitioner</button><button type="button" class="ptt-c" data-cert="Azure Fundamentals">Azure Fundamentals</button><button type="button" class="ptt-c" data-cert="Linux Essentials">Linux Essentials</button>
         </div>
+        <div class="octa rv-s"><button type="button" class="g-link" data-go="cool" data-fund="cool">Get your certs paid for &rarr;</button><button type="button" class="g-link" data-go="mine">Build my path &rarr;</button></div>
         <div class="srcs rv-s">
-          <a href="https://www.forcecom.uscg.mil/Portals/3/VCP%20FAQs_20%20Apr%202021_1.pdf" target="_blank" rel="noopener">CG COOL FAQs (FORCECOM) &nearr;</a>
-          <a href="https://www.reserve.uscg.mil/Portals/2/Reserve%20Info%20Bulletin%20-%20Promulgation%20of%20the%20Coast%20Guard%20Voluntary%20Program%20%28VCP%29.pdf" target="_blank" rel="noopener">Voluntary Credentialing Program bulletin &nearr;</a>
-          <a href="https://www.cool.osd.mil/" target="_blank" rel="noopener">COOL site &nearr;</a>
+          <a href="https://skillbridge.osd.mil/" target="_blank" rel="noopener">DoD SkillBridge: find a program &nearr;</a>
+          <a href="https://skillbridge.osd.mil/faq.htm" target="_blank" rel="noopener">SkillBridge FAQ &nearr;</a>
+          <a href="https://www.dcms.uscg.mil/Our-Organization/Assistant-Commandant-for-Human-Resources-CG-1/Health-Safety-and-Work-Life-CG-11/Office-of-Work-Life-CG-111/Transition-Assistance-Program/TAP-Skillbridge/" target="_blank" rel="noopener">CG Work-Life: SkillBridge &nearr;</a>
+          <a href="https://www.dcms.uscg.mil/Our-Organization/Assistant-Commandant-for-Human-Resources-CG-1/Health-Safety-and-Work-Life-CG-11/Office-of-Work-Life-CG-111/Transition-Assistance-Program/TAP-Contact" target="_blank" rel="noopener">Find your transition manager &nearr;</a>
+          <a href="https://content.govdelivery.com/accounts/USDHSCG/bulletins/41eb992" target="_blank" rel="noopener">ALCOAST 202/26 &nearr;</a>
+          <a href="https://media.defense.gov/2022/Feb/03/2002932607/-1/-1/0/CI_1040_7.PDF" target="_blank" rel="noopener">COMDTINST 1040.7 &nearr;</a>
         </div>
         <div class="hatch rv-s" aria-hidden="true"></div>
-        <p class="fine rv-s">Draft guide built from public sources. Steps 2 to 5 summarize the published FAQ and need a final check against current ETQC guidance.</p>
+        <p class="fine rv-s">Draft built from the DoD SkillBridge FAQ, COMDTINST 1040.7 and ALCOAST 202/26 (July 2026). The timeline is a rough guide; your command and the employer set the real deadlines.</p>
       </div>
     </div>
   </div>
@@ -2997,7 +3109,7 @@ function setSort(hard){
 
 /* ---------- explore sheet (pull up from the bottom) ---------- */
 var sheet=$("#sheet"), veil=$("#veil"), grab=$("#sh-grab"), shScroll=$("#sh-scroll");
-var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",paths:"Paths.",cool:"Funding.",exam:"Countdown."}, ORDER=["home","mine","compare","paths","cool","exam"];
+var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",paths:"Paths.",cool:"Funding.",out:"Getting out.",exam:"Countdown."}, ORDER=["home","mine","exam","compare","paths","cool","out"], fundPane="ta";
 var PATHS=[
   {name:"20 year career",tag:"IT rating career",line:"Make rate, stay qualified for any IT billet, and retire with a full résumé.",steps:[["A+","A+"],["Network+","Network+"],["Security+","Security+"],["CySA+","CySA+"],["CISSP","CISSP"]]},
   {name:"Cloud",tag:"Contractor track",line:"Build toward defense-contractor cloud security roles after your enlistment.",steps:[["Security+","Security+"],["Cloud+","Cloud+"],["AWS Solutions Architect","Solutions Architect Associate"],["Azure Security Engineer","Azure Security Engineer"],["CCSP","CCSP"]]},
@@ -3599,12 +3711,24 @@ function revealIn(el,base){
   });
 }
 function countUp(el,to,prefix,dur){tween(dur,function(k){el.textContent=(prefix||"")+Math.round(to*k).toLocaleString("en-US");},E.outQuart,250);}
+/* Funding view: TA first, CG COOL second (v2.22). Cert links open straight to CG COOL. */
+function fundShow(p,count){
+  if(p!=="ta"&&p!=="cool") p="ta";fundPane=p;
+  var sv=$("#sv-cool");if(!sv) return;
+  sv.querySelectorAll("[data-fund]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.fund===p));});
+  $("#fp-ta").hidden=p!=="ta";$("#fp-cool").hidden=p!=="cool";
+  var n=$(p==="ta"?"#ta-n":"#cool-n");
+  if(count&&!reduced){n.textContent="$0";countUp(n,4500,"$",1400);}else n.textContent="$4,500";
+}
+function goFund(p){var live=shView==="cool"&&sheet.classList.contains("live");fundShow(p,live);goPage("cool");}
+function outCount(){var n=$("#out-n");if(!n) return;if(reduced){n.textContent="180";return;}n.textContent="0";countUp(n,180,"",1400);}
 function onSheetOpen(){
   sheet.querySelectorAll(".ed-head,.tabs").forEach(function(x,n){anim(x,[{opacity:0,transform:"translateY(18px)"},{opacity:1,transform:"none"}],{duration:900,delay:40+n*60,easing:EZ,fill:"backwards"});});
   revealIn($("#sv-"+shView),160);
   requestAnimationFrame(function(){placeTab();sheet.classList.add("live");if(shView!=="home") $("#sv-"+shView).classList.add("drawn");});
   if(shView==="home"){var c=$("#sb-count");countUp(c,+c.dataset.n,"",1500);}
-  else if(shView==="cool"){var cn=$("#cool-n");cn.textContent="$0";countUp(cn,4500,"$",1600);}
+  else if(shView==="cool") fundShow(fundPane,true);
+  else if(shView==="out") outCount();
 }
 function animSheet(to,dur){
   var id=++sheetId, from=sheetP;
@@ -3614,7 +3738,7 @@ function animSheet(to,dur){
 function openSheet(){if(state!=="idle") return Promise.resolve();return animSheet(1,760);}
 function closeSheet(){return animSheet(0,580);}
 function resetSheet(){
-  sheet.classList.remove("live");
+  sheet.classList.remove("live");fundPane="ta";
   if(shView!=="home"){$("#sv-"+shView).hidden=true;$("#sv-"+shView).classList.remove("drawn");$("#sv-home").hidden=false;shView="home";$("#ed-title").textContent=TITLES.home;setTabs("home");}
   shScroll.scrollTop=0;
 }
@@ -3629,7 +3753,8 @@ async function showView(name){
   anim(nx,[{opacity:0,transform:"translateX("+(dir*36)+"px)"},{opacity:1,transform:"none"}],{duration:800,easing:EZ});
   revealIn(nx,60);
   requestAnimationFrame(function(){nx.classList.add("drawn");});
-  if(name==="cool") countUp($("#cool-n"),4500,"$",1600);
+  if(name==="cool") fundShow(fundPane,true);
+  if(name==="out") outCount();
   if(name==="home"){var c=$("#sb-count");c.textContent=c.dataset.n;}
   if(name==="mine") mpEnter();
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
@@ -3769,7 +3894,7 @@ function mpResult(){
       '<span class="nm">'+gEsc(x.label)+(x.guide&&!x.done?'<em class="mp-g">Guide</em>':'')+(x.why?'<small>'+gEsc(x.why)+'</small>':'')+'</span>'+
       '<span class="mt">'+meta+'</span><span class="ar" aria-hidden="true">&rarr;</span></button></li>';}).join("")+'</ol>';
   h+='<p class="mp-note">Time estimates use each cert\'s typical study hours at your pace. Tap any cert to fly to it, or open its guide.</p>'+
-    '<div class="mp-acts"><button type="button" class="mp-btn" data-go="cool">Get it funded &rarr;</button><button type="button" class="mp-btn ghost" data-mp="retake">Retake</button></div></div>';
+    '<div class="mp-acts"><button type="button" class="mp-btn" data-go="cool" data-fund="cool">Get it funded &rarr;</button><button type="button" class="mp-btn ghost" data-mp="retake">Retake</button></div></div>';
   mpEl.innerHTML=h;
 }
 function mpNext(){
@@ -3980,9 +4105,16 @@ sheet.addEventListener("click",function(e){
   }
   if(t.dataset.cert){var f=findCert(t.dataset.cert), name=t.dataset.cert, vi=f.c?f.v:VENDORS.length-1;closeSheet().then(function(){dive(vi,name);});return;}
   var g=t.dataset.go;
+  if(g==="cool"&&t.dataset.fund&&!t.closest(".fsw")){if(shView==="cool") fundShow(t.dataset.fund,true); else fundPane=t.dataset.fund;}
   if(ORDER.indexOf(g)>=0) showView(g);
   else if(g==="vendors") closeSheet().then(function(){shine(cta);});
   else if(g==="wgu") closeSheet().then(function(){dive(VENDORS.length-1);});
+});
+$("#sv-cool").addEventListener("click",function(e){
+  var b=e.target.closest(".fsw [data-fund]");if(!b||b.dataset.fund===fundPane) return;
+  var pane=$(b.dataset.fund==="ta"?"#fp-ta":"#fp-cool");fundShow(b.dataset.fund,true);
+  if(!reduced) anim(pane,[{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:520,easing:EZ});
+  pane.classList.add("drawn");
 });
 function tabsEdge(){var b=sheet.querySelector(".tabs");if(!b) return;var x=b.scrollLeft, m=b.scrollWidth-b.clientWidth;b.classList.toggle("more-l",x>2);b.classList.toggle("more-r",m>2&&x<m-2);}
 sheet.querySelector(".tabs").addEventListener("scroll",tabsEdge,{passive:true});
@@ -7830,7 +7962,7 @@ function renderGuide(i,name){
        var tag='<span class="g-tag'+(/Paid/.test(r[3])?' paid':'')+'">'+gEsc(r[3])+'</span>';
        var inner='<span class="g-r-main"><b>'+gEsc(r[0])+'</b><small>'+gEsc(r[1])+'</small></span><span class="g-r-desc">'+gEsc(r[4])+'</span>'+tag;
        return '<li>'+(r[2]?'<a class="g-r" href="'+gEsc(r[2])+'" target="_blank" rel="noopener noreferrer">'+inner+'<span class="g-r-go">'+G_ICON_EXT+'</span></a>':'<div class="g-r">'+inner+'<span class="g-r-go"></span></div>')+'</li>';}).join("")+'</ul></div>';}).join("")+
-     '<div class="g-fund g-rv"><div><p class="lab">Funding</p><p>CG COOL can pay for the exam voucher. Get approval before you book.</p></div><button type="button" class="g-btn ghost" data-goto="cool"><span class="g-btn-l">How CG COOL works &rarr;</span></button></div></section>';
+     '<div class="g-fund g-rv"><div><p class="lab">Funding</p><p>CG COOL can pay you back for this exam, up to $4,500 a fiscal year. Get approval in MyCG Ed before you pay.</p></div><button type="button" class="g-btn ghost" data-goto="cool" data-fund="cool"><span class="g-btn-l">How CG COOL works &rarr;</span></button></div></section>';
   // 04 quiz
   h+='<section class="g-sec" id="g-quiz" data-sec="quiz">'+head(4,"quiz",(function(){var n=G.quiz.length,w=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen"][n];return (w||n)+"-question check.";})(),"Original questions written at or above exam difficulty. Answer order shuffles every attempt, and every option has an explanation.")+
      '<div class="g-quiz g-rv" id="g-qz" aria-live="polite"></div></section>';
@@ -7870,7 +8002,7 @@ function renderGuide(i,name){
     if(!guideName) return;
     var t=e.target.closest("[data-goto],[data-gocert],[data-ptf]");if(!t||!body.contains(t)) return;
     if(t.dataset.ptf!=null){ptTarget(+t.dataset.ptf,t.dataset.ptj!=null?+t.dataset.ptj:-1);goPage("paths");return;}
-    if(t.dataset.goto){if(t.dataset.excert) exPreset(t.dataset.excert);goPage(t.dataset.goto);}
+    if(t.dataset.goto){if(t.dataset.excert) exPreset(t.dataset.excert);if(t.dataset.fund){goFund(t.dataset.fund);return;}goPage(t.dataset.goto);}
     else{var en=sByName(t.dataset.gocert);if(en) openCertFrom(en);}
   });
   gVersion(G,false);gPlan(G,false);gQuizStart(G,false);gPbq(G,0,false);gRoad(G);
@@ -8295,7 +8427,9 @@ var SIDX=[];
   SIDX.push({kind:"page",key:"p:exam",page:"exam",name:"Exam countdown",sub:"Explore · test date, countdown, day-by-day plan",fields:[[snorm("exam countdown"),95],[snorm("exam date test date countdown study plan schedule calendar day by day days left when is my exam"),60]]});
   SIDX.push({kind:"page",key:"p:compare",page:"compare",name:"Compare certs",sub:"Explore · two certs side by side",fields:[[snorm("compare certs"),95],[snorm("compare versus vs side by side difference which is better which cert harder cheaper"),60]]});
   SIDX.push({kind:"page",key:"p:paths",page:"paths",name:"Career paths",sub:"Explore · IT tree: 5 fields, the jobs and their pay",fields:[[snorm("career paths"),95],[snorm("roadmap road map path tree branch trunk soc analyst pen testing pentest security engineering grc governance risk compliance systems admin salary pay jobs job growth openings bls stay 20 twenty year career 20 year career cloud network cyber civilian contractor plan"),55]]});
-  SIDX.push({kind:"page",key:"p:cool",page:"cool",name:"CG COOL funding",sub:"Explore · how to get certs paid for",fields:[[snorm("cg cool funding"),95],[snorm("cool credentialing opportunities online tuition voucher reimbursement pay paid money funding exam fee"),55]]});
+  SIDX.push({kind:"page",key:"p:fund",page:"cool",fund:"ta",name:"Funding",sub:"Explore · Tuition Assistance for college, CG COOL for certs",fields:[[snorm("funding"),95],[snorm("tuition assistance ta college class classes degree school money pay paid mycg ed eso dodmou mou clep dsst dantes jst"),60]]});
+  SIDX.push({kind:"page",key:"p:cool",page:"cool",fund:"cool",name:"CG COOL funding",sub:"Explore · get your certs paid for",fields:[[snorm("cg cool funding"),95],[snorm("cool credentialing assistance ca opportunities online reimbursement of 1164 pay paid money funding exam fee voucher"),58]]});
+  SIDX.push({kind:"page",key:"p:out",page:"out",name:"Getting out",sub:"Explore · SkillBridge in your last 180 days",fields:[[snorm("getting out"),95],[snorm("skillbridge skill bridge separation separating transition tap leaving civilian job internship employer last 180 days ets eoe retire retirement"),60]]});
   /* career tree jobs are not search results (v2.20): the Career paths entry covers them */
 })();
 function sTok(tok,f){
@@ -8466,7 +8600,7 @@ async function srchPick(e){
   if(!e) return;
   sRemember(e);
   await srchClose(true);
-  if(e.kind==="page"){if(e.pt) ptTarget(e.pt[0],e.pt[1]);goPage(e.page);return;}
+  if(e.kind==="page"){if(e.pt) ptTarget(e.pt[0],e.pt[1]);if(e.fund){goFund(e.fund);return;}goPage(e.page);return;}
   openCertFrom(e);
 }
 function setViewNow(name){
@@ -9274,7 +9408,7 @@ function stRender(){
 if(stEl){
   stEl.addEventListener("click",function(e){
     var b=e.target.closest("[data-st],#st-cool");if(!b||state!=="idle") return;
-    if(b.id==="st-cool"){goPage("cool");return;}
+    if(b.id==="st-cool"){goFund("cool");return;}
     var k=b.dataset.st;
     if(k==="path") goPage("mine");
     else if(k==="exam") goPage("exam");
