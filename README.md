@@ -1,7 +1,7 @@
 # CG Cert Path
 
-Certifications, career paths, funding (Tuition Assistance and CG COOL) and SkillBridge for Coast Guard IT, with full study guides
-(objectives, study plan, resources, quiz, PBQs, roadmap) for CompTIA A+, Network+, Security+, Cloud+, CySA+, PenTest+, SecurityX, ISC2 CC, SSCP, CCSP and CISSP, Cisco CCST Networking, CCST Cybersecurity, CCNA Cybersecurity, CCNA and CCNP Security, and TryHackMe SAL1 and PT1.
+Certifications, career paths, funding (Tuition Assistance and CG COOL), colleges and SkillBridge for Coast Guard IT, with full study guides
+(objectives, study plan, resources, quiz, PBQs, roadmap) for CompTIA A+, Network+, Security+, Cloud+, CySA+, PenTest+, Project+ and SecurityX, ISC2 CC, SSCP, CCSP and CISSP, Cisco CCST Networking, CCST Cybersecurity, CCNA Cybersecurity, CCNA and CCNP Security, TryHackMe SAL1 and PT1, and LPI Linux Essentials and LPIC-1.
 
 **Not an official U.S. Coast Guard site.** Public information only. Vendor names are trademarks of their owners.
 Quiz and PBQ questions are original.
@@ -22,7 +22,7 @@ Everything the app needs is served from this repo: no outside servers. Libraries
 
 ## Disclaimer
 
-Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the U.S. Coast Guard, CompTIA, ISC2, Cisco, TryHackMe, LPI, AWS, Microsoft or WGU. All names are trademarks of their owners. Quiz questions and PBQs are original; no real exam content is used.
+Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the U.S. Coast Guard, CompTIA, ISC2, Cisco, TryHackMe, LPI, AWS, Microsoft, WGU or any college listed. All names are trademarks of their owners. Quiz questions and PBQs are original; no real exam content is used.
 
 ## Your data
 

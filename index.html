@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-l/tSTQupyWghGmAMtJM0avOrG5YFQZS9/akyINudzwA=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-YkeJXsH89/rNa/6bV0yWUe+OpOF2FoG/ybV7U+y63RE=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -219,6 +219,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .crest circle{fill:var(--c)}
 .cr-n{position:relative;font:700 9px/1 var(--f-ui);letter-spacing:.02em;color:color-mix(in srgb,var(--c) 55%,#fff);white-space:nowrap;max-width:44px;overflow:hidden;text-overflow:clip}
 .cr-c{position:relative;font:500 7.5px/1 var(--f-mono);color:var(--c);margin-top:3px}
+.cr-n.long{font-size:7.6px;letter-spacing:0}
 .crest:focus-visible{opacity:.92;transform:scale(1.02)}
 @media (hover:hover) and (pointer:fine){.crest:hover{opacity:.92;transform:scale(1.02)}}
 .crest[aria-current="true"]{opacity:1;transform:scale(1.08)}
@@ -327,6 +328,68 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .tag{font:600 9.5px/1 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--v-line);border-radius:2px;padding:6px 8px;color:var(--v-fg)}
 .tag.plan{border-style:dashed;color:var(--v-muted)}
 .p-note{margin:24px 0 0;font:400 11.5px/1.65 var(--f-ui);color:var(--v-muted);max-width:72ch}
+/* Colleges page (v2.23) */
+.col-ta{display:flex;justify-content:space-between;align-items:center;gap:18px 28px;flex-wrap:wrap;margin:6px 0 4px;padding:20px 22px;border-radius:10px;border:1px solid color-mix(in srgb,var(--v-accent) 35%,var(--v-line));
+  background:radial-gradient(120% 140% at 0% 0%,color-mix(in srgb,var(--v-accent) 12%,transparent),transparent 60%)}
+.col-ta-n{display:flex;flex-wrap:wrap;gap:14px 34px}
+.col-ta-n div{display:grid;gap:4px;min-width:120px}
+.col-ta-n b{font:700 22px/1 var(--f-disp);letter-spacing:-.02em;color:var(--v-fg);font-variant-numeric:tabular-nums}
+.col-ta-n span{font:400 11.5px/1.4 var(--f-ui);color:var(--v-muted);max-width:22ch}
+.col-tools{align-items:flex-end}
+.col-flt{display:flex;flex-wrap:wrap;gap:8px}
+.col-flt button{font:600 10px/1 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;padding:9px 12px;border-radius:999px;border:1px solid var(--v-line);color:var(--v-muted);transition:color .3s var(--ez),border-color .3s var(--ez),background .3s var(--ez)}
+.col-flt button[aria-pressed="true"]{color:var(--v-fg);border-color:color-mix(in srgb,var(--v-accent) 70%,transparent);background:color-mix(in srgb,var(--v-accent) 14%,transparent)}
+@media (hover:hover) and (pointer:fine){.col-flt button:hover{color:var(--v-fg)}}
+.col-flt button:active{transform:scale(.97);transition-duration:.1s}
+.col-sort{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.col-sort .lab{color:var(--v-muted)}
+@media (min-width:721px){.col-head,.cert.col .c-row{grid-template-columns:4ch minmax(0,1fr) 128px 112px 40px 18px}}
+.col-rate{white-space:nowrap}
+.col-pay{display:grid;gap:3px}
+.col-pay b{font:600 15px/1 var(--f-disp);color:var(--v-fg);font-variant-numeric:tabular-nums}
+.col-pay.z b{color:var(--ok)}
+.col-pay small{font:500 9px/1.2 var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--v-muted)}
+.cert.col[hidden]{display:none}
+.c-pad .col-lead{font-size:14.5px;line-height:1.55;color:var(--v-fg);max-width:70ch}
+.col-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px 26px;margin:2px 0 4px}
+.col-facts div{display:grid;gap:5px;align-content:start;padding-top:12px;border-top:1px solid var(--v-line)}
+.col-facts dt{font:600 9.5px/1.3 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--v-muted)}
+.col-facts dd{margin:0;font:400 13.5px/1.55 var(--f-ui);color:#d4d7dc}
+.c-pad .col-lab{color:var(--v-muted);margin-bottom:8px;font:600 9.5px/1.3 var(--f-ui);letter-spacing:.14em}
+@media (pointer:coarse){.col-cert{padding:9px 10px}.col-cert.g{padding-right:18px}}
+.col-links{display:flex;flex-wrap:wrap;gap:8px}
+.col-links a{display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border-radius:999px;border:1px solid var(--v-line);color:var(--v-fg);text-decoration:none;font:500 12.5px/1.2 var(--f-ui);transition:background .3s var(--ez),border-color .3s var(--ez)}
+.col-links a svg{width:10px;height:10px;flex:none;color:var(--v-muted)}
+@media (hover:hover) and (pointer:fine){.col-links a:hover{background:rgba(255,255,255,.04);border-color:color-mix(in srgb,var(--v-accent) 55%,var(--v-line))}}
+.col-links a:active{transform:scale(.97);transition-duration:.1s}
+.col-chk{font:500 10.5px/1.5 var(--f-mono)!important;color:var(--v-muted)}
+.col-wgu{display:grid;gap:16px;padding:16px 0 4px;border-top:1px solid var(--v-line)}
+.cw-deg{display:grid;gap:10px}
+.cw-n{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--v-fg);text-decoration:none;font:500 15px/1.3 var(--f-ui);justify-self:start}
+.cw-n small{font:600 9.5px var(--f-ui);letter-spacing:.14em;color:var(--v-accent)}
+.cw-n svg{width:10px;height:10px;color:var(--v-muted)}
+.cw-tr{display:grid;gap:7px}
+.cw-tl{font:600 9.5px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--v-muted)}
+.col-cert{position:relative;font:600 9.5px/1 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;border:1px solid color-mix(in srgb,var(--v-accent) 55%,var(--v-line));background:color-mix(in srgb,var(--v-accent) 10%,transparent);border-radius:2px;padding:6px 8px;color:var(--v-fg);transition:background .3s var(--ez)}
+.col-cert.g{padding-right:16px}
+.col-cert.g::after{content:"";position:absolute;right:6px;top:50%;width:4px;height:4px;margin-top:-2px;border-radius:50%;background:var(--ok)}
+@media (hover:hover) and (pointer:fine){.col-cert:hover{background:color-mix(in srgb,var(--v-accent) 22%,transparent)}}
+.col-cert:active{transform:scale(.96);transition-duration:.1s}
+.c-pad .cw-note{font-size:12px;line-height:1.5}
+.col-empty{margin:18px 4px 0;font:400 13px var(--f-ui);color:var(--v-muted)}
+.col-srcs a{color:var(--v-muted)}
+@media (max-width:720px){
+  .col-ta{padding:16px;gap:14px}
+  .col-ta-n{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%}
+  .col-ta-n div{min-width:0}
+  .col-ta-n b{font-size:17px}
+  .col-ta-n span{font-size:10.5px}
+  .col-tools{align-items:flex-start}
+  .cert.col .c-meta-m{gap:12px}
+  .col-pay{grid-auto-flow:column;align-items:baseline;gap:6px}
+}
+.fund-col{display:flex;justify-content:space-between;align-items:center;gap:14px 20px;flex-wrap:wrap;margin:0 0 26px;padding:16px 18px;border:1px solid var(--hair-2);border-radius:10px}
+.fund-col p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-2);max-width:46ch}
 .p-foot{margin:22px 0 0;font:600 9.5px/1.4 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--v-muted)}
 @media (max-width:720px){
   .p-body{padding:0 16px 20px}
@@ -823,7 +886,8 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .ex-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px}
 .ex-form .g-sel select,.ex-form input{width:100%;box-sizing:border-box;min-height:44px;padding:10px 12px;border-radius:10px;border:1px solid var(--hair-2);background:#151a22;color:var(--ink);font:500 14px/1.2 var(--f-ui);color-scheme:dark}
 @media (pointer:coarse){.ex-form .g-sel select,.ex-form input{font-size:16px}}
-.ex-wd{display:flex;gap:6px;flex-wrap:wrap}
+.ex-form input[type=date],.ex-form input[type=time]{display:block;min-width:0;max-width:100%;-webkit-appearance:none;appearance:none;text-align:left}
+.ex-form input::-webkit-date-and-time-value{text-align:left;margin:0}.ex-wd{display:flex;gap:6px;flex-wrap:wrap}
 .ex-wd button{width:40px;height:40px;border-radius:50%;border:1px solid var(--hair-2);font:600 12px/1 var(--f-ui);color:var(--ink-3);transition:background .2s var(--ez),color .2s var(--ez),border-color .2s var(--ez)}
 .ex-wd button[aria-pressed="true"]{background:var(--powder);border-color:var(--powder);color:#0b1016}
 .ex-wd button:active{transform:scale(.92);transition-duration:.1s}
@@ -836,7 +900,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .exart{display:grid;justify-items:center;gap:4px}
 .exart b{font:700 34px/1 var(--f-disp);letter-spacing:-.04em;color:var(--ink);font-variant-numeric:tabular-nums}
 .exart i{font:600 8.5px/1 var(--f-ui);font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
-@media (max-width:720px){.ex-hero{grid-template-columns:minmax(0,1fr);padding:18px 16px 16px}.ex-cd{gap:6px}.ex-u{min-width:0;flex:1;padding:9px 4px 7px}.ex-u b{font-size:24px}.ex-row{grid-template-columns:1fr 1fr;gap:10px}.ex-form{padding:16px 14px}.ex-wd button{width:38px;height:38px}}
+@media (max-width:720px){.ex-hero{grid-template-columns:minmax(0,1fr);padding:18px 16px 16px}.ex-cd{gap:6px}.ex-u{min-width:0;flex:1;padding:9px 4px 7px}.ex-u b{font-size:24px}.ex-row{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:10px}.ex-form{padding:16px 14px}.ex-wd button{width:38px;height:38px}}
 /* ---------- path tree v2.19: IT root -> fields -> jobs, with job data ---------- */
 .ptree .pt-map{aspect-ratio:400/340;max-width:500px}
 .pt-head .pt-sum{max-width:none}
@@ -1136,6 +1200,7 @@ button.ptt-c:active{opacity:.7;transition-duration:.1s}
   .crest{flex:none;width:50px;height:54px;scroll-snap-align:center}
   .cr-n{font-size:7.5px;max-width:36px}
   .cr-c{font-size:6.5px}
+  .cr-n.long{font-size:6.3px;letter-spacing:0}
   .cta{justify-self:center}
   .foot{justify-content:center}
   .m-disc{display:block}
@@ -1459,6 +1524,7 @@ html.kbd .touch-only{display:none}
 .g-qbar{height:2px;background:var(--v-line);border-radius:2px;margin:16px 0 22px;overflow:hidden}
 .g-qbar i{display:block;height:100%;width:100%;background:var(--v-accent);transform-origin:0 0;transition:transform .5s var(--ez)}
 .g-qq{margin:0 0 20px;max-width:70ch;font:500 clamp(17px,2vw,20px)/1.45 var(--f-ui);letter-spacing:-.01em;color:var(--v-fg);text-wrap:pretty}
+.g-qcode{margin:-6px 0 20px;max-width:70ch;padding:12px 14px;border-radius:8px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.06);font:400 12.5px/1.6 var(--f-mono);color:#d6dbe2;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere}
 .g-qopts{display:grid;gap:8px}
 .g-qo{display:grid;grid-template-columns:30px minmax(0,1fr) 20px;align-items:center;gap:12px;width:100%;text-align:left;padding:13px 14px;border-radius:10px;border:1px solid var(--v-line);background:rgba(255,255,255,.015);
   font:400 14px/1.45 var(--f-ui);color:var(--v-fg);transition:border-color .25s var(--ez),background .25s var(--ez),opacity .3s var(--ez),transform .25s var(--ez)}
@@ -1746,6 +1812,7 @@ html.kbd .touch-only{display:none}
   .crest{flex:none;width:48px;height:52px;scroll-snap-align:center}
   .cr-n{font-size:7.5px;max-width:36px}
   .cr-c{font-size:6.5px}
+  .cr-n.long{font-size:6.3px;letter-spacing:0}
   .cta{padding:10px 22px}
   .cta-row{justify-self:start;justify-content:flex-start}
   .cta2{padding:10px 16px}
@@ -1760,6 +1827,7 @@ html.kbd .touch-only{display:none}
 @media (prefers-reduced-motion:reduce){
   /* keep soft fades and color changes, drop anything that moves */
   *,*::before,*::after{transition-property:opacity,color,background-color,border-color,visibility!important;transition-duration:.2s!important;transition-delay:0s!important;animation-duration:.01ms!important}
+  #srch *{transition-property:opacity,color,background-color,border-color!important}
   .glass::after{display:none}
 }
 
@@ -1790,7 +1858,7 @@ html.kbd .touch-only{display:none}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.22</span></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.23</span></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1892,9 +1960,9 @@ html.kbd .touch-only{display:none}
             <span class="pc-art" aria-hidden="true"><span class="orbit" id="orbit"><span class="core"></span></span></span>
             <span class="pc-foot"><span class="go"><i>&rarr;</i>Browse</span></span>
           </button>
-          <button type="button" class="mini rv-s" data-go="wgu">
-            <span class="pc-top"><span class="lab">Degree</span><span class="meta">09 certs</span></span>
-            <span class="mini-title">WGU line.</span>
+          <button type="button" class="mini rv-s" data-go="colleges">
+            <span class="pc-top"><span class="lab">Degrees</span><span class="meta">11 schools</span></span>
+            <span class="mini-title">Colleges.</span>
             <span class="pc-art" aria-hidden="true"><span class="capsule" id="capsule"><b></b></span></span>
             <span class="pc-foot"><span class="go"><i>&rarr;</i>Open</span></span>
           </button>
@@ -1919,11 +1987,11 @@ html.kbd .touch-only{display:none}
             <div><b>5</b><span>career fields off one IT root, with 14 civilian jobs and 5 Coast Guard ranks</span></div>
             <div><b>2&times;$4.5K</b><span>a fiscal year: Tuition Assistance for college and CG COOL for certs</span></div>
             <div><b>IAT II</b><span>the DoD baseline Security+ meets</span></div>
-            <div><b>9</b><span>certs built into the WGU cyber degree</span></div>
+            <div><b>11</b><span>schools for IT and cyber degrees, with what you pay after TA</span></div>
           </div>
         </div>
         <p class="fine rv-s">Funding amounts come from the official CG COOL and FORCECOM pages; confirm the current rules with your ESO. All roadmap data is a draft and gets verified before launch.</p>
-        <p class="fine rv-s">Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the U.S. Coast Guard, CompTIA, ISC2, Cisco, TryHackMe, LPI, AWS, Microsoft or WGU. All names are trademarks of their owners. <span class="nw">&copy; 2026 Gabriel Rodriguez</span>. All rights reserved.</p>
+        <p class="fine rv-s">Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the U.S. Coast Guard, CompTIA, ISC2, Cisco, TryHackMe, LPI, AWS, Microsoft or any school listed. All names are trademarks of their owners. <span class="nw">&copy; 2026 Gabriel Rodriguez</span>. All rights reserved.</p>
         <p class="fine rv-s">Your data stays on your device. CertPath has no accounts, cookies or analytics; your progress is saved in your browser and you can clear it anytime. The site is hosted on GitHub Pages, which keeps standard server logs.</p>
       </div>
 
@@ -1968,6 +2036,7 @@ html.kbd .touch-only{display:none}
               <div class="fact"><p class="lab">What it pays for</p><span>Classes toward a certificate, an associate, a bachelor's or your first master's. Nothing past a master's. The school needs a DoD MOU (check dodmou.com).</span></div>
             </div>
           </div>
+          <div class="fund-col rv-s"><p>Still picking a school? Compare military rates, what's left after TA, and Coast Guard ties.</p><button type="button" class="mp-btn" data-go="colleges">See colleges &rarr;</button></div>
           <ol class="tl rv-s">
             <li><span class="n">01</span><h4>Talk to your ESO</h4><p>Pick a school with a DoD MOU and a program. Pull your Joint Services Transcript (JST) first: your CG training may already count as college credit.</p></li>
             <li><span class="n">02</span><h4>Get a plan on file</h4><p>Certificate programs need the plan before the first class. For a degree, get an evaluated degree plan from the school early, or TA stops after your first couple of classes.</p></li>
@@ -2096,7 +2165,7 @@ var VENDORS = [
   {id:"comptia", name:"CompTIA", short:"CompTIA", lat:36, lon:-92, beacon:"#ff3b30",
    pal:{fg:"#1b1514",muted:"#6e6260",line:"#e2d8d5",surface:"#ffffff",accent:"#d71920",on:"#ffffff"}, grad:["#ffffff","#f6f2f0","#ead8d3"],
    blurb:"Vendor-neutral foundations. Security+ is the most widely used DoD 8140 baseline, so most IT careers in the Guard start here.",
-   certs:[["A+","Entry",2,"120–200 h","IAT I",["20 year career"]],["Network+","Entry",2,"80–120 h","IAT I",["20 year career","Network eng"]],["Security+","Core",3,"60–100 h","IAT II",["20 year career","Cyber eng"]],["Cloud+","Intermediate",3,"60–90 h","",["Cloud security"]],["CySA+","Intermediate",4,"80–120 h","IAT II",["Cyber eng","20 year career"]],["PenTest+","Intermediate",4,"80–120 h","",["Cyber eng"]],["SecurityX","Advanced",5,"120–180 h","IAT III",["Cyber eng","20 year career"]]]},
+   certs:[["A+","Entry",2,"120–200 h","IAT I",["20 year career"]],["Network+","Entry",2,"80–120 h","IAT I",["20 year career","Network eng"]],["Security+","Core",3,"60–100 h","IAT II",["20 year career","Cyber eng"]],["Cloud+","Intermediate",3,"60–90 h","",["Cloud security"]],["CySA+","Intermediate",4,"80–120 h","IAT II",["Cyber eng","20 year career"]],["PenTest+","Intermediate",4,"80–120 h","",["Cyber eng"]],["Project+","Entry",2,"40–60 h","",["20 year career"]],["SecurityX","Advanced",5,"120–180 h","IAT III",["Cyber eng","20 year career"]]]},
   {id:"isc2", name:"ISC2", short:"ISC2", lat:-14, lon:-44, beacon:"#6f9dff",
    pal:{fg:"#eef4ff",muted:"#a7bad6",line:"#25457a",surface:"#10305e",accent:"#5fa8ff",on:"#06162e"}, grad:["#1b4d94","#0b2347","#040c1d"],
    blurb:"Senior security and management. CISSP qualifies for advanced roles across most of the DoD 8140 framework.",
@@ -2121,16 +2190,128 @@ var VENDORS = [
    pal:{fg:"#0d1b2a",muted:"#52657a",line:"#cfdff0",surface:"#ffffff",accent:"#0a6fd1",on:"#ffffff"}, grad:["#ffffff","#eef5fc","#d3e5f7"],
    blurb:"Microsoft cloud, common across government tenants.",
    certs:[["Azure Fundamentals","Entry",1,"15–30 h","",["Cloud security"]],["Azure Administrator","Associate",3,"60–100 h","",["Cloud security","20 year career"]],["Azure Security Engineer","Associate",4,"60–100 h","",["Cloud security","Cyber eng"]]]},
-  {id:"wgu", name:"WGU degree line", short:"WGU", lat:-8, lon:-134, beacon:"#e0bd6a",
+  {id:"colleges", name:"Colleges", short:"COLLEGES", lat:-8, lon:-134, beacon:"#e0bd6a",
    pal:{fg:"#f1f4f8",muted:"#a6b6c9",line:"#24406a",surface:"#12263f",accent:"#d6b25e",on:"#1a1404"}, grad:["#1a4170","#0c1d33","#050b15"],
-   blurb:"Certs built into the BS Cybersecurity and Information Assurance. Earn them in the Guard, then transfer them in.",
-   certs:[["A+","CompTIA",2,"120–200 h","IAT I",["In BS CSIA"]],["Network+","CompTIA",2,"80–120 h","IAT I",["In BS CSIA"]],["Security+","CompTIA",3,"60–100 h","IAT II",["In BS CSIA"]],["CySA+","CompTIA",4,"80–120 h","IAT II",["In BS CSIA"]],["PenTest+","CompTIA",4,"80–120 h","",["In BS CSIA"]],["Linux Essentials","LPI",1,"20–40 h","",["In BS CSIA"]],["SSCP","ISC2",3,"60–90 h","IAT II",["In BS CSIA"]],["CCSP","ISC2",5,"120–160 h","",["In BS CSIA"]],["Project+","CompTIA",2,"40–60 h","",["In BS CSIA"]]]}
+   blurb:"Where to earn an IT or cyber degree while you serve. Tap a school for its military rate, what's left after Tuition Assistance, credit for your Coast Guard training, and official links.",
+   certs:[]}
 ];
 VENDORS.forEach(function(v){
   v.pal={fg:"#eef0f3",muted:"#8f98a5",line:"#2a313c",surface:"#1b212a",accent:v.beacon,on:"#11151b"};
   v.grad=[lerpHex(v.beacon,"#1a2029",.84),"#171c24","#0f1318"];
 });
 var PLANNED=["Objectives","How to study","Free resources","10-question quiz","2 PBQs","Best roadmap"];
+/* ---------- Colleges (v2.23): schools for IT and cyber degrees, replaces the WGU degree line.
+   Facts checked Nov 10, 2026 on each school's own pages (links on every card). Rates change every year. ---------- */
+var COL_CHECKED="Nov 10, 2026";
+var COLLEGES=[
+  {id:"apus",name:"American Public University",short:"APU · AMU",rate:"$250 / credit",pay:0,payTxt:"$0",cg:true,
+   lead:"Fully online, with classes starting every month. Its military rate matches the TA cap, so TA can cover all of the tuition.",
+   facts:[["Military rate","$250 per credit for undergrad and master's courses (Preferred Military Rate). Ebooks are free, and there's no application or transfer-credit fee."],
+          ["Coast Guard ties","Has a Coast Guard page, and works with the CG Maritime Law Enforcement Academy and the Coast Guard Institute on military credit."],
+          ["Credit for your training","Uses your Joint Services Transcript (JST). Up to 90 credits can transfer into the BS in Cybersecurity."]],
+   programs:[["BS Cybersecurity","https://www.apu.apus.edu/academic/schools/science-technology-engineering-and-math/bachelors/cybersecurity.html"]],
+   links:[["Coast Guard page","https://www.apu.apus.edu/military/coast-guard.html"],["Military benefits","https://www.apu.apus.edu/military/index.html"]],
+   alias:"apu amu apus american military university"},
+  {id:"csug",name:"Colorado State University Global",short:"CSU Global",rate:"$250 / credit",pay:0,payTxt:"$0",
+   lead:"A fully online state university with monthly starts and 8-week classes. Its military rate matches the TA cap, and it charges no mandatory fees.",
+   facts:[["Military rate","$250 per credit for undergrad, for active duty, Guard and Reserve. No mandatory student or per-course fees."],
+          ["Coast Guard ties","Takes federal military TA. Its pages don't name the Coast Guard, so confirm with your ESO first."],
+          ["Credit for your training","Up to 90 credits can transfer into a bachelor's. Send transcripts from every source, your JST included, to get a degree plan."]],
+   programs:[["BS Cybersecurity","https://csuglobal.edu/undergraduate/bachelors-degrees/cybersecurity"]],
+   links:[["Military tuition","https://csuglobal.edu/tuition-discounts/military-benefits/"]],
+   alias:"csu global colorado state"},
+  {id:"excelsior",name:"Excelsior University",short:"Excelsior",rate:"$250 / credit",pay:0,payTxt:"$0",cg:true,
+   lead:"Built for adults who already have credit. It partners with the Coast Guard Institute, and its military rate matches the TA cap.",
+   facts:[["Military rate","$250 per credit for undergrad, plus a $28 per credit technology fee. TA doesn't pay fees."],
+          ["Coast Guard ties","Partners with the Coast Guard Institute (CGI) to serve active-duty members and CG civilians."],
+          ["Credit for your training","Evaluates Coast Guard enlisted ratings for credit. The BS in Cybersecurity takes up to 113 transfer credits."]],
+   programs:[["BS Cybersecurity","https://www.excelsior.edu/program/bachelor-of-science-in-cybersecurity/"],["IT and computer degrees","https://www.excelsior.edu/programs/computer-technology/"]],
+   links:[["Coast Guard page","https://www.excelsior.edu/military-and-veterans/coast-guard/"],["Military tuition","https://www.excelsior.edu/?p=27359"],["Credit for military training","https://www.excelsior.edu/?p=27194"]],
+   alias:"excelsior college"},
+  {id:"psu",name:"Penn State World Campus",short:"Penn State",rate:"$390 / credit",pay:140,payTxt:"$140",
+   lead:"Penn State's online campus. Even with its military grant, you pay part of each class.",
+   facts:[["Military rate","The Military Grant-in-Aid cuts undergrad tuition to $390 per credit (2026–27). Send in the grant form every semester."],
+          ["After TA","About $140 per credit is left for you to pay."],
+          ["Coast Guard ties","The grant is open to every branch, and Penn State's military brochure names the Coast Guard."],
+          ["Credit for your training","Awards credit for military training and takes CLEP and DSST exams."]],
+   programs:[["BS Cybersecurity Analytics and Operations","https://www.worldcampus.psu.edu/degrees-and-certificates/penn-state-online-cybersecurity-analytics-and-operations-bachelor-of-science-degree"]],
+   links:[["Military Grant-in-Aid and TA","https://student.worldcampus.psu.edu/military-students/military-grant-aid-and-tuition-assistance"]],
+   alias:"penn state psu world campus pennsylvania"},
+  {id:"purdue",name:"Purdue Global",short:"Purdue Global",rate:"$165 / qtr credit",pay:0,payTxt:"$0",cg:true,
+   lead:"Purdue's online university. It has mapped every Coast Guard rating to its degrees, and the military rate sits under the TA cap.",
+   facts:[["Military rate","$165 per quarter credit for current service members. TA pays up to $166.67 per quarter hour. Purdue Global counts in quarter credits: a bachelor's is 180."],
+          ["Coast Guard ties","Has a Coast Guard page and has evaluated every Coast Guard occupation for credit (PME2Degree)."],
+          ["Credit for your training","Use its Military Transfer Credit Estimator. The BS in Cybersecurity is ABET accredited."]],
+   programs:[["BS Cybersecurity","https://www.purdueglobal.edu/degree-programs/information-technology/bachelor-cybersecurity/"]],
+   links:[["Coast Guard page","https://purdueglobal.edu/military/coast-guard"],["Military tuition","https://purdueglobal.edu/military/tuition-reduction/"]],
+   alias:"purdue global kaplan pme2degree"},
+  {id:"snhu",name:"Southern New Hampshire University",short:"SNHU",rate:"$250 / credit",pay:0,payTxt:"$0",
+   lead:"One of the largest online schools, with 8-week terms. Its active-duty rate matches the TA cap.",
+   facts:[["Military rate","$250 per credit for online undergrad (2026–27), for active duty, Guard and Selected Reserve."],
+          ["Coast Guard ties","Takes TA from every branch, the Coast Guard included. No Coast Guard–specific program."],
+          ["Credit for your training","Free official credit evaluation of your transfer credits. SNHU is an NSA Center of Academic Excellence in Cyber Defense, and the BS in Cybersecurity is its validated program."]],
+   programs:[["BS Cybersecurity","https://www.snhu.edu/online-degrees/bachelors/cyber-security/"]],
+   links:[["Military discounts","https://www.snhu.edu/student-experience/military-student-experience/military-discounts-and-partnerships"],["Tuition","https://snhu.edu/tuition"]],
+   alias:"snhu southern new hampshire"},
+  {id:"suny",name:"SUNY Empire State University",short:"SUNY Empire",rate:"$250 / credit",pay:0,payTxt:"$0",cg:true,
+   lead:"The only school found with a degree plan built for the IT rating.",
+   facts:[["Built for ITs","Associate of Science in Science, Mathematics and Technology with a computer information systems concentration, made for the Coast Guard IT rating."],
+          ["Military rate","$250 net per credit for undergrad after its $45 military grant. Fees, like the $194 per term technology fee, aren't covered by TA."],
+          ["Next step","After the associate, look at its BS in Information Technology. Talk to your ESO before you start."]],
+   programs:[["AS in Science, Math and Technology (IT rating)","https://sunyempire.edu/veteran-military/other-groups-served/coast-guard"],["BS Information Technology","https://www.sunyempire.edu/academics/undergraduate-academics/information-technology.html"]],
+   links:[["Coast Guard page","https://sunyempire.edu/veteran-military/other-groups-served/coast-guard"],["Tuition and fees","https://catalog.sunyempire.edu/undergraduate/tuition-fees/"]],
+   alias:"suny empire state college esc new york"},
+  {id:"tesu",name:"Thomas Edison State University",short:"TESU",rate:"$250 / credit",pay:0,payTxt:"$0",cg:true,
+   lead:"Known for turning what you already know into credit. Has degree roadmaps for Coast Guard ratings.",
+   facts:[["Military rate","$250 per credit for non-nursing undergrad programs."],
+          ["Coast Guard ties","Has a Coast Guard page with rating degree roadmaps. Most are for non-IT rates, so ask about an IT plan."],
+          ["Credit for your training","Evaluates your JST and Coast Guard Institute records, plus CLEP, DSST and its own TECEP exams."]],
+   programs:[["BS Cybersecurity","https://tesu.edu/degrees-programs/bachelors/bs-cybersecurity.php"]],
+   links:[["Coast Guard page","https://www.tesu.edu/military/coast-guard"],["Military tuition","https://www.tesu.edu/military/Tuition-Fees"]],
+   alias:"tesu thomas edison new jersey tecep"},
+  {id:"umgc",name:"University of Maryland Global Campus",short:"UMGC",rate:"$250 / credit",pay:0,payTxt:"$0",
+   lead:"A large public online university. Its military rate matches the TA cap.",
+   facts:[["Military rate","$250 per credit for undergrad (summer 2026 to spring 2027). Send proof of military status within 30 days of applying."],
+          ["Coast Guard ties","A partner school for the Naval Community College's cybersecurity associate degree."],
+          ["Credit for your training","Up to 90 credits can transfer into a bachelor's. UMGC says its BS in Cybersecurity Technology prepares you for certs like A+ and Security+."]],
+   programs:[["BS Cybersecurity Technology","https://www.umgc.edu/online-degrees/bachelors/cybersecurity-technology"],["BS Cybersecurity Management and Policy","https://www.umgc.edu/online-degrees/bachelors/cybersecurity-management-policy"]],
+   links:[["Tuition","https://www.umgc.edu/tuition-financial-assistance/tuition"],["Military rate rules","https://www.umgc.edu/military-and-veterans/benefits-and-financial-aid/military-tuition-rate-eligibility.cfm"]],
+   alias:"umgc university of maryland umuc"},
+  {id:"usncc",name:"U.S. Naval Community College",short:"USNCC",rate:"Free",pay:-1,payTxt:"Free",cg:true,free:true,
+   lead:"The community college for the Navy, Marine Corps and Coast Guard. No tuition, fees or books, and it doesn't use your TA.",
+   facts:[["Who can apply","Enlisted members on active duty, and enlisted Coast Guard Reservists. You need command approval."],
+          ["Cost","No tuition, course fees or material costs. It's separate from TA, so your $4,500 can still go to other classes."],
+          ["Cyber degrees","Cybersecurity associate degrees through partner schools (WGU and UMGC have both taught them). Every degree includes the 15-credit Naval Studies Certificate."]],
+   programs:[["Programs and application","https://www.usncc.edu/"]],
+   links:[["NAVADMIN 191/24","https://www.mynavyhr.navy.mil/Portals/55/Messages/NAVADMIN/NAV2024/NAV24191.txt"],["MyCG: first Coast Guard graduate","https://www.mycg.uscg.mil/News/Article/3720040/us-naval-community-college-propels-coast-guard-member-to-reach-goals/"]],
+   alias:"usncc naval community college navy community college ncc free associate"},
+  {id:"wgu",name:"Western Governors University",short:"WGU",rate:"$3,835+ / term",pay:500,payTxt:"Varies",certs:true,
+   lead:"One flat price per 6-month term, for as many classes as you can finish. Its IT degrees include cert exam vouchers.",
+   facts:[["Tuition","$3,835 to $4,410 per 6-month term for its IT bachelor's degrees, plus a $200 resource fee (rates from Jan 1, 2026)."],
+          ["With TA","TA tops out at $4,500 a fiscal year and two terms cost more than that, so plan on paying part of each year. WGU applies your expected TA as a credit on your bill."],
+          ["Getting in","Degree-seeking only, no single classes. Transcripts, your JST included, are due by the 1st of the month before you start. Terms start the 1st of every month."],
+          ["Part time","Only members using TA can enroll part time."]],
+   programs:[],
+   links:[["Military TA at WGU","https://www.wgu.edu/financial-aid-tuition/military-va/tuition-assistance.html"],["IT bachelor's degrees and tuition","https://www.wgu.edu/online-it-degrees/bachelors-programs.html"],["Part time with TA","https://www.wgu.edu/student-experience/military/part-time-options.html"],["Certs in each degree","https://wgu.edu/online-it-degrees/it-certifications.html"]],
+   alias:"wgu western governors bscsia bsit bscne competency"}
+];
+/* WGU IT degrees and the certs built into them. Names match CertPath certs where the cert is on the site. */
+var WGU_DEG=[
+  {k:"BSCSIA",n:"BS Cybersecurity and Information Assurance",url:"https://www.wgu.edu/online-it-degrees/cybersecurity-information-assurance-bachelors-program.html",
+   tracks:[["",["A+","Network+","Security+","CySA+","PenTest+","Project+","Linux Essentials","SSCP","CCSP"],["Data+","ITIL 4 Foundation","CompTIA stackable certs"]]],
+   note:"SSCP and CCSP start as Associate of ISC2 until you have the work experience."},
+  {k:"BSIT",n:"BS Information Technology",url:"https://www.wgu.edu/online-it-degrees/information-technology-bachelors-program.html",
+   tracks:[["",["A+","Network+","Security+","Project+","Cloud+","Linux Essentials","Cloud Practitioner"],["ITIL 4 Foundation","CompTIA stackable certs"]]]},
+  {k:"BSCNE",n:"BS Cloud and Network Engineering",url:"https://www.wgu.edu/online-it-degrees/cloud-network-engineering-bachelors-program.html",
+   tracks:[["General",["A+","Network+","Security+","Cloud+","Linux Essentials"],["ITIL 4 Foundation","CompTIA stackable certs"]],
+           ["Cisco",["CCNA","CCNA Cybersecurity","A+","Cloud+","Linux Essentials"],["Cisco DevNet Associate","ITIL 4 Foundation"]],
+           ["AWS",["Cloud Practitioner","Solutions Architect Associate","A+","Network+","Security+","Linux Essentials"],["AWS CloudOps Engineer Associate","ITIL 4 Foundation"]],
+           ["Azure",["Azure Fundamentals","Azure Administrator","A+","Network+","Security+","Linux Essentials"],["Azure infrastructure design","ITIL 4 Foundation"]]]}
+];
+/* cert name -> the WGU degree codes it is part of */
+var WGU_IN=(function(){var m={};WGU_DEG.forEach(function(d){d.tracks.forEach(function(t){t[1].forEach(function(c){m[c]=m[c]||[];if(m[c].indexOf(d.k)<0) m[c].push(d.k);});});});return m;})();
+function vCount(v){return v.id==="colleges"?COLLEGES.length+" schools":v.certs.length+" certs";}
+function vNum(v){return v.id==="colleges"?COLLEGES.length:v.certs.length;}
 /* one short line per cert for the vendor page's "From the roadmap" panel (shown on hover / select) */
 /* certs on the DoD 8140 foundational qualification matrix (V2.1, effective Sep 19, 2025) for at least one work role.
    Checked Nov 10, 2026 against vendor pages (CompTIA, ISC2, Cisco) and a matrix export. Everything else is NOT listed. */
@@ -2261,8 +2442,8 @@ var CREST_HEX='<svg viewBox="0 0 60 64" aria-hidden="true"><polygon class="h1" p
 var crestHoverT=0;
 VENDORS.forEach(function(v,i){
   var b=document.createElement("button");b.type="button";b.className="crest";b.style.setProperty("--c",v.beacon);
-  b.setAttribute("aria-label","Open "+v.name+", "+v.certs.length+" certs");
-  b.innerHTML=CREST_HEX+'<span class="cr-n">'+v.short.toUpperCase()+'</span><span class="cr-c">'+pad2(v.certs.length)+'</span>';
+  b.setAttribute("aria-label","Open "+v.name+", "+vCount(v));
+  b.innerHTML=CREST_HEX+'<span class="cr-n'+(v.short.length>7?' long':'')+'">'+v.short.toUpperCase()+'</span><span class="cr-c">'+pad2(vNum(v))+'</span>';
   b.addEventListener("pointerenter",function(e){
     if(e.pointerType!=="mouse"||state!=="idle") return;
     clearTimeout(crestHoverT);crestHoverT=setTimeout(function(){if(frontIdx!==i) focusVendor(i);},70);
@@ -2277,7 +2458,7 @@ function setFront(i){
   var first=frontIdx<0;frontIdx=i;
   var v=VENDORS[i];
   roNum.textContent=pad2(i+1);roName.textContent=v.name;ctaName.textContent=v.name;
-  roCerts.textContent=v.certs.length+" certs";roBlurb.textContent=v.blurb;
+  roCerts.textContent=vCount(v);roBlurb.textContent=v.blurb;
   midEl.style.setProperty("--c",v.beacon);
   roDots.querySelectorAll("button").forEach(function(b,k){b.setAttribute("aria-current",k===i?"true":"false");});
   if(roDots.scrollWidth>roDots.clientWidth+2){var ab=roDots.children[i];roDots.scrollTo({left:ab.offsetLeft-(roDots.clientWidth-ab.offsetWidth)/2,behavior:first||reduced?"auto":"smooth"});}
@@ -2415,7 +2596,7 @@ function drawBadge(cv,v){
   g.fillStyle=tint(v.beacon,.72);g.shadowColor=v.beacon;g.shadowBlur=S*.05;
   g.fillText(v.short,c,c-S*.02);g.shadowBlur=0;
   g.font="500 "+(S*.048)+"px 'IBM Plex Mono', ui-monospace, monospace";
-  g.fillStyle=v.beacon;g.fillText(pad2(v.certs.length)+" CERTS",c,c+S*.105);
+  g.fillStyle=v.beacon;g.fillText(pad2(vNum(v))+(v.id==="colleges"?" SCHOOLS":" CERTS"),c,c+S*.105);
 }
 
 var coreMat=null;
@@ -2939,7 +3120,7 @@ function openPanel(i,certName){
     
     '<div class="p-arrows"><button type="button" class="p-arr p-srch p-exp" id="p-exp" aria-label="Go to paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg><span class="ps-l">Paths &middot; Funding &middot; Compare</span></button><button type="button" class="p-arr p-srch" id="p-srch" aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="ps-l">Search</span></button><button type="button" class="p-arr" id="p-prev" aria-label="Previous vendor">&larr;</button><button type="button" class="p-arr" id="p-next" aria-label="Next vendor">&rarr;</button></div></header>'+
     '<div class="p-body" id="p-body"></div></div>'+
-    '<p class="p-foot">Not an official U.S. Coast Guard or DoD site &middot; Not affiliated with or endorsed by the Coast Guard or any cert vendor &middot; Names are trademarks of their owners &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span></p>'+
+    '<p class="p-foot">Not an official U.S. Coast Guard or DoD site &middot; Not affiliated with or endorsed by the Coast Guard, any cert vendor or any school &middot; Names are trademarks of their owners &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span></p>'+
    '</div>';
   panel.querySelector("#p-back").addEventListener("click",function(){if(guideName) closeGuide();else back();});
   panel.querySelector("#p-srch").addEventListener("click",function(){srchShow(this);});
@@ -2961,6 +3142,7 @@ function openPanel(i,certName){
 function renderBody(i){
   var v=VENDORS[i];
   guideName=null;panel.classList.remove("in-guide");setBackLabel("Globe");if(gIO){gIO.disconnect();gIO=null;}
+  if(v.id==="colleges"){asideCur="";renderColleges(i);return;}
   var body=panel.querySelector("#p-body");
   asideCur="";
   body.innerHTML=
@@ -2991,6 +3173,114 @@ function renderBody(i){
   specScan(panel);
   body.querySelector("#s-hard").addEventListener("click",function(){setSort(true);});
   body.querySelector("#s-easy").addEventListener("click",function(){setSort(false);});
+}
+/* ---------- Colleges page: a filterable list of schools in place of the cert carousel ---------- */
+var colSort="az", colFlt="all";
+var COL_FLT=[["all","All"],["zero","$0 tuition after TA"],["cg","Coast Guard ties"],["certs","Certs built in"]];
+function colPass(c){return colFlt==="all"||(colFlt==="zero"&&c.pay<=0)||(colFlt==="cg"&&!!c.cg)||(colFlt==="certs"&&!!c.certs);}
+function colLinks(list){return '<div class="col-links">'+list.map(function(l){return '<a href="'+gEsc(l[1])+'" target="_blank" rel="noopener noreferrer">'+gEsc(l[0])+G_ICON_EXT+'</a>';}).join("")+'</div>';}
+function colChip(n){
+  if(findCert(n).c) return '<button type="button" class="col-cert'+(GUIDES[n]?' g':'')+'" data-colcert="'+gEsc(n)+'" aria-label="Open '+gEsc(n)+(GUIDES[n]?', full guide':'')+'">'+gEsc(n.split(" · ")[0])+'</button>';
+  return '<span class="tag plan">'+gEsc(n)+'</span>';
+}
+function colWgu(){
+  return '<div class="col-wgu"><p class="lab col-lab">Certs built into WGU IT degrees</p>'+WGU_DEG.map(function(d){
+    return '<div class="cw-deg"><a class="cw-n" href="'+gEsc(d.url)+'" target="_blank" rel="noopener noreferrer">'+gEsc(d.n)+' <small>'+gEsc(d.k)+'</small>'+G_ICON_EXT+'</a>'+
+      d.tracks.map(function(t){return '<div class="cw-tr">'+(t[0]?'<span class="cw-tl">'+gEsc(t[0])+' track</span>':'')+'<div class="tags">'+t[1].map(colChip).join("")+t[2].map(function(x){return '<span class="tag plan">'+gEsc(x)+'</span>';}).join("")+'</div></div>';}).join("")+
+      (d.note?'<p class="cw-note">'+gEsc(d.note)+'</p>':'')+'</div>';}).join("")+
+    '<p class="cw-note">Solid chips open the cert on CertPath (a dot means its full guide is ready). Dashed ones aren\'t on the site yet. Lists come from WGU\'s program pages, which sometimes disagree with each other, so confirm with a WGU enrollment counselor.</p></div>';
+}
+function colRow(c,k){
+  var id="cd-col-"+c.id;
+  return '<li class="cert col" data-col="'+c.id+'" data-k="'+k+'">'+
+    '<button type="button" class="c-row" aria-expanded="false" aria-controls="'+id+'">'+
+      '<span class="c-rank">00</span>'+
+      '<span class="c-main"><span class="c-name">'+gEsc(c.name)+'</span><span class="c-level">'+(c.name.indexOf(c.short)<0?gEsc(c.short):'')+'</span>'+(c.certs?'<span class="c-guide">Certs built in</span>':'')+(c.free?'<span class="c-guide">No cost</span>':'')+'</span>'+
+      '<span class="c-meta-m"><span class="c-hrs col-rate">'+gEsc(c.rate)+'</span>'+
+        '<span class="col-pay'+(c.pay<=0?' z':'')+'"><b>'+gEsc(c.payTxt)+'</b><small>'+(c.pay<0?'no TA needed':c.id==="wgu"?'TA covers part':'after TA')+'</small></span>'+
+        '<span class="c-iat'+(c.cg?'':' none')+'" title="'+(c.cg?'Has a Coast Guard program, partnership or page':'No Coast Guard-specific program')+'">'+(c.cg?'CG':'—')+'</span></span>'+
+      '<span class="c-chev" aria-hidden="true">+</span>'+
+    '</button>'+
+    '<div class="c-detail" id="'+id+'" aria-hidden="true" inert><div class="c-in"><div class="c-pad">'+
+      '<p class="col-lead">'+gEsc(c.lead)+'</p>'+
+      '<dl class="col-facts">'+c.facts.map(function(f){return '<div><dt>'+gEsc(f[0])+'</dt><dd>'+gEsc(f[1])+'</dd></div>';}).join("")+'</dl>'+
+      (c.id==="wgu"?colWgu():'')+
+      (c.programs.length?'<div><p class="lab col-lab">IT and cyber degrees</p>'+colLinks(c.programs)+'</div>':'')+
+      '<div><p class="lab col-lab">Official links</p>'+colLinks(c.links)+'</div>'+
+      '<p class="col-chk">Checked '+COL_CHECKED+'. Rates change every year, so confirm with the school and your ESO.</p>'+
+    '</div></div></div></li>';
+}
+function colOrder(items){
+  return items.slice().sort(function(a,b){
+    var A=COLLEGES[+a.dataset.k], B=COLLEGES[+b.dataset.k];
+    if(colSort==="cost") return (A.pay-B.pay)||(parseInt(A.rate.replace(/\D/g,""),10)||0)-(parseInt(B.rate.replace(/\D/g,""),10)||0)||A.name.localeCompare(B.name);
+    return A.name.localeCompare(B.name);
+  });
+}
+function colApply(animate){
+  var ol=panel.querySelector("#cols");if(!ol) return;
+  var items=Array.from(ol.children), first=animate&&!reduced?new Map(items.map(function(li){return [li,li.hidden?null:li.getBoundingClientRect().top];})):null;
+  var order=colOrder(items), n=0;
+  order.forEach(function(li){
+    ol.appendChild(li);
+    var c=COLLEGES[+li.dataset.k], show=colPass(c);
+    if(!show&&li.classList.contains("open")) setOpen(li,false);
+    li.hidden=!show;if(show) li.querySelector(".c-rank").textContent=pad2(++n);
+  });
+  var em=panel.querySelector("#col-empty");if(em) em.hidden=n>0;
+  panel.querySelectorAll(".col-flt button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.cf===colFlt));});
+  var ct=panel.querySelector("#col-n");if(ct) ct.textContent=n===COLLEGES.length?"All "+n+" schools":n+(n===1?" school":" schools");
+  if(!first) return;
+  order.forEach(function(li){
+    if(li.hidden) return;
+    var was=first.get(li);
+    if(was==null){anim(li,[{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:420,easing:EZ});return;}
+    var dy=was-li.getBoundingClientRect().top;
+    if(Math.abs(dy)>.5) anim(li,[{transform:"translateY("+dy+"px)"},{transform:"none"}],{duration:650,easing:EZ});
+  });
+}
+function colSetSort(s){
+  if(s===colSort) return;colSort=s;
+  panel.querySelector("#s-az").setAttribute("aria-pressed",String(s==="az"));
+  panel.querySelector("#s-cost").setAttribute("aria-pressed",String(s==="cost"));
+  placeSeg(panel.querySelector("#seg"));colApply(true);
+}
+function renderColleges(i){
+  var v=VENDORS[i], body=panel.querySelector("#p-body");
+  if(flex){flex.destroy();flex=null;}
+  colFlt="all";
+  body.innerHTML=
+    '<div class="p-hero"><div class="p-hero-main"><p class="p-eyebrow pr"><span>'+pad2(i+1)+'</span> / '+pad2(VENDORS.length)+' &nbsp;&middot;&nbsp; Degrees &nbsp;&middot;&nbsp; '+COLLEGES.length+' schools</p>'+
+    '<h2 id="p-title" aria-label="Colleges"><span aria-hidden="true">'+splitTitle("Colleges.")+'</span></h2></div>'+
+    '<aside class="p-aside pr"><div class="pa-stack"><div class="pa-v on"><p class="lab">How to use it</p><p class="p-blurb">'+gEsc(v.blurb)+'</p></div></div></aside></div>'+
+    '<div class="col-ta pr"><div class="col-ta-n"><div><b>$250</b><span>most TA pays per semester credit</span></div><div><b>$4,500</b><span>a fiscal year (Oct 1 to Sep 30)</span></div><div><b>Tuition</b><span>only. No fees or books</span></div></div>'+
+      '<button type="button" class="g-btn ghost" data-colfund="ta"><span class="g-btn-l">How to apply for TA &rarr;</span></button></div>'+
+    '<div class="p-tools pr col-tools"><div class="col-flt" role="group" aria-label="Filter schools">'+COL_FLT.map(function(f){return '<button type="button" data-cf="'+f[0]+'" aria-pressed="'+(f[0]===colFlt)+'">'+gEsc(f[1])+'</button>';}).join("")+'</div>'+
+      '<div class="col-sort"><span class="lab" id="col-n" aria-live="polite"></span><div class="seg" id="seg" role="group" aria-label="Sort order">'+
+      '<button type="button" id="s-az" aria-pressed="'+(colSort==="az")+'">A to Z</button>'+
+      '<button type="button" id="s-cost" aria-pressed="'+(colSort==="cost")+'">Lowest cost</button><span class="seg-ind" aria-hidden="true"></span></div></div></div>'+
+    '<div class="c-head col-head pr" aria-hidden="true"><span>#</span><span>School</span><span>Military rate</span><span>You pay</span><span>CG</span><span></span></div>'+
+    '<ol class="certs" id="cols">'+COLLEGES.map(colRow).join("")+'</ol>'+
+    '<p class="col-empty" id="col-empty" hidden>No school matches that filter.</p>'+
+    '<p class="p-note pr">There\'s no short "approved" list: TA works at any school that has signed the DoD MOU. "You pay" is tuition per credit after TA at the school\'s military rate. Fees, books and anything past $4,500 a year are extra. CG marks a Coast Guard program, partnership or page. CertPath isn\'t paid by or tied to any school, and the list isn\'t a ranking. Talk to your ESO before you enroll.</p>'+
+    '<div class="srcs col-srcs pr">'+
+      '<a href="https://www.dodmou.com/" target="_blank" rel="noopener">DoD MOU school list &nearr;</a>'+
+      '<a href="https://www.forcecom.uscg.mil/Our-Organization/FORCECOM-UNITS/ETQC/Voluntary-Education/Tuition-Assistance/" target="_blank" rel="noopener">Tuition Assistance (FORCECOM) &nearr;</a>'+
+      '<a href="https://jst.doded.mil/" target="_blank" rel="noopener">Joint Services Transcript &nearr;</a>'+
+      '<a href="https://nces.ed.gov/collegenavigator/" target="_blank" rel="noopener">College Navigator (Dept. of Education) &nearr;</a></div>';
+  var ol=body.querySelector("#cols");
+  colApply(false);
+  ol.querySelectorAll(".cert").forEach(function(li){li.querySelector(".c-row").addEventListener("click",function(){setOpen(li,!li.classList.contains("open"));});});
+  requestAnimationFrame(function(){var sg=panel.querySelector("#seg");if(sg) placeSeg(sg);});
+  if(!body.dataset.cwired) body.dataset.cwired="1", body.addEventListener("click",function(e){
+    if(guideName||!VENDORS[current]||VENDORS[current].id!=="colleges") return;
+    var t=e.target.closest("[data-colcert],[data-colfund],[data-cf],#s-az,#s-cost");if(!t||!body.contains(t)) return;
+    if(t.dataset.colcert){var en=sByName(t.dataset.colcert);if(en) openCertFrom(en);return;}
+    if(t.dataset.colfund){goFund(t.dataset.colfund);return;}
+    if(t.dataset.cf){if(t.dataset.cf!==colFlt){colFlt=t.dataset.cf;colApply(true);}return;}
+    colSetSort(t.id==="s-cost"?"cost":"az");
+  });
+  specScan(panel);
 }
 function revealBody(dir,base){
   var body=panel.querySelector("#p-body");
@@ -3816,20 +4106,21 @@ veil.addEventListener("click",function(){closeSheet();});
 var MP_KEY="cgcp.mypath", mpEl=$("#mp"), mp={step:0,view:"quiz",t:0,a:{exp:"",goal:"",have:[],hpw:"",wgu:""}};
 var MP_CERTS=(function(){var m={},o=[];function add(n,l){if(!m.hasOwnProperty(n)){m[n]=l||n;o.push(n);}}
   add("A+");add("CC");add("Network+");add("Security+");add("SSCP");PATHS.forEach(function(p){p.steps.forEach(function(st){add(st[1],st[0]);});});add("CISSP");return {label:m,order:o};})();
-var MP_WGU=(function(){var w={};VENDORS[VENDORS.length-1].certs.forEach(function(c){w[c[0]]=1;});return w;})();
+var MP_WGU=(function(){var w={};Object.keys(WGU_IN).forEach(function(c){w[c]=1;});return w;})();
 var MP_Q=[
   {k:"exp",h:"How long have you worked in IT?",o:[["new","Brand new","A-School or my first unit"],["mid","1–4 years","I know the basics"],["sr","5+ years","Ready for senior certs"]]},
   {k:"goal",h:"Where do you want this to take you?",o:PATHS.map(function(p){return [p.name,p.name,p.line];})},
   {k:"have",h:"Which certs do you already hold?",multi:true},
   {k:"hpw",h:"How many hours a week can you study?",o:[[6,"6 hours","A busy schedule"],[10,"10 hours","Steady progress"],[15,"15 hours","All in"]]},
-  {k:"wgu",h:"Interested in a degree?",o:[["yes","Yes, the WGU cyber degree","Certs that also count toward it get flagged"],["no","Not right now","Just the certs"]]}
+  {k:"wgu",h:"Planning on college too?",o:[["wgu","Yes, at WGU","Certs that count toward a WGU IT degree get flagged"],["other","Yes, somewhere else","Your path links to the Colleges page"],["no","Not right now","Just the certs"]]}
 ];
 function mpLoad(){
   var d=gGet(MP_KEY);if(!d||typeof d!=="object"||Array.isArray(d)) return null;
   var goals=PATHS.map(function(p){return p.name;});
   if(d.goal==="Stay 20") d.goal="20 year career";   /* renamed in v2.19 */
   if(Array.isArray(d.have)) d.have=d.have.map(function(x){return x==="CyberOps Associate"?"CCNA Cybersecurity":x;});   /* renamed in v2.20 */
-  if(["new","mid","sr"].indexOf(d.exp)<0||goals.indexOf(d.goal)<0||[6,10,15].indexOf(d.hpw)<0||["yes","no"].indexOf(d.wgu)<0||!Array.isArray(d.have)) return null;
+  if(d.wgu==="yes") d.wgu="wgu";   /* v2.23: the degree question now has three answers */
+  if(["new","mid","sr"].indexOf(d.exp)<0||goals.indexOf(d.goal)<0||[6,10,15].indexOf(d.hpw)<0||["wgu","other","no"].indexOf(d.wgu)<0||!Array.isArray(d.have)) return null;
   return {exp:d.exp,goal:d.goal,hpw:d.hpw,wgu:d.wgu,have:d.have.filter(function(x,i,arr){return typeof x==="string"&&MP_CERTS.label.hasOwnProperty(x)&&arr.indexOf(x)===i;}).slice(0,40)};
 }
 function mpHours(name){
@@ -3846,7 +4137,7 @@ function mpBuild(a){
   if(a.exp==="new"&&a.goal==="Cyber"&&!has("CC")) st.unshift({label:"CC",name:"CC",why:"Optional first step: core security ideas, no experience needed"});
   if(a.exp==="sr"&&!has("CISSP")) st.push({label:"CISSP",name:"CISSP",why:"Senior goal. ISC2 requires 5 years of paid security work"});
   var wk=0;
-  st.forEach(function(x){x.done=a.have.indexOf(x.name)>=0;x.hours=mpHours(x.name);x.weeks=Math.max(1,Math.ceil(x.hours/a.hpw));x.wgu=a.wgu==="yes"&&!!MP_WGU[x.name];x.guide=!!GUIDES[x.name];if(!x.done) wk+=x.weeks;});
+  st.forEach(function(x){x.done=a.have.indexOf(x.name)>=0;x.hours=mpHours(x.name);x.weeks=Math.max(1,Math.ceil(x.hours/a.hpw));x.wgu=a.wgu==="wgu"&&!!MP_WGU[x.name];x.guide=!!GUIDES[x.name];if(!x.done) wk+=x.weeks;});
   var todo=st.filter(function(x){return !x.done;});
   return {steps:st,weeks:wk,todo:todo.length,guides:todo.filter(function(x){return x.guide;}).length,first:todo[0]||null};
 }
@@ -3894,7 +4185,7 @@ function mpResult(){
       '<span class="nm">'+gEsc(x.label)+(x.guide&&!x.done?'<em class="mp-g">Guide</em>':'')+(x.why?'<small>'+gEsc(x.why)+'</small>':'')+'</span>'+
       '<span class="mt">'+meta+'</span><span class="ar" aria-hidden="true">&rarr;</span></button></li>';}).join("")+'</ol>';
   h+='<p class="mp-note">Time estimates use each cert\'s typical study hours at your pace. Tap any cert to fly to it, or open its guide.</p>'+
-    '<div class="mp-acts"><button type="button" class="mp-btn" data-go="cool" data-fund="cool">Get it funded &rarr;</button><button type="button" class="mp-btn ghost" data-mp="retake">Retake</button></div></div>';
+    '<div class="mp-acts"><button type="button" class="mp-btn" data-go="cool" data-fund="cool">Get it funded &rarr;</button>'+(a.wgu!=="no"?'<button type="button" class="mp-btn ghost" data-go="colleges">Compare colleges &rarr;</button>':'')+'<button type="button" class="mp-btn ghost" data-mp="retake">Retake</button></div></div>';
   mpEl.innerHTML=h;
 }
 function mpNext(){
@@ -3977,7 +4268,8 @@ function cmpRows(A,B){
   row("DoD 8570",cmpDod(A),cmpDod(B));
   function pathsOf(I){return I.paths.length?{html:I.paths.map(function(p){return '<b class="cm-p">'+gEsc(p.name)+'<small>step '+p.i+' of '+p.n+'</small></b>';}).join("")}:{html:'<span class="cm-na">Not on a CertPath track</span>'};}
   row("Career paths",pathsOf(A),pathsOf(B));
-  row("WGU degree",{v:MP_WGU[A.name]?"Counts toward it":"Not part of it"},{v:MP_WGU[B.name]?"Counts toward it":"Not part of it"});
+  function wguOf(I){var d=WGU_IN[I.name];return d?{v:"Yes",s:d.join(" · ")}:{v:"No"};}
+  row("In a WGU degree",wguOf(A),wguOf(B));
   if(A.G||B.G){
     sec("The exam.");
     function codeOf(I){if(!I.G) return null;var k=Object.keys(I.G.versions)[0], st=String(I.G.versions[k].status||"").split(" \u00b7 ")[0];return {v:I.code,s:I.G.planAll?"Take both exams":(/^V\d/.test(st)?"":st)};}
@@ -4103,12 +4395,12 @@ sheet.addEventListener("click",function(e){
     try{navigator.clipboard.writeText(txt).then(function(){toast("Copied "+txt);},fallback);}catch(err){fallback();}
     return;
   }
-  if(t.dataset.cert){var f=findCert(t.dataset.cert), name=t.dataset.cert, vi=f.c?f.v:VENDORS.length-1;closeSheet().then(function(){dive(vi,name);});return;}
+  if(t.dataset.cert){var f=findCert(t.dataset.cert), name=t.dataset.cert, vi=f.c?f.v:0;closeSheet().then(function(){dive(vi,name);});return;}
   var g=t.dataset.go;
   if(g==="cool"&&t.dataset.fund&&!t.closest(".fsw")){if(shView==="cool") fundShow(t.dataset.fund,true); else fundPane=t.dataset.fund;}
   if(ORDER.indexOf(g)>=0) showView(g);
   else if(g==="vendors") closeSheet().then(function(){shine(cta);});
-  else if(g==="wgu") closeSheet().then(function(){dive(VENDORS.length-1);});
+  else if(g==="colleges") closeSheet().then(function(){dive(VENDORS.length-1);});
 });
 $("#sv-cool").addEventListener("click",function(e){
   var b=e.target.closest(".fsw [data-fund]");if(!b||b.dataset.fund===fundPane) return;
@@ -7916,6 +8208,734 @@ GUIDES["CCNP Security"]={
     ["Cisco: recertification policy","https://www.cisco.com/site/us/en/learn/training-certifications/certifications/recertification/index.html"]]
 };
 
+GUIDES["Linux Essentials"]={
+  id:"linuxe",
+  lead:"LPI's entry-level Linux cert. It proves you can work at the Linux command line: move around the file system, handle files and permissions, read logs, write a short script and log in over SSH. Most SOC tools and servers run Linux, so this is skill you'll use every day.",
+  checked:"Nov 10, 2026",
+  verLabel:"Objectives version",
+  planHours:30,
+  objSub:"Both versions earn the same certificate. Version 2.0 is current; 1.6 stays open until April 2027. Pick the one you'll test on, then tick objectives as you study. Progress saves on this device.",
+  versions:{
+    v20:{code:"010-200",label:"Ver 2.0",status:"Current · 40 questions · 60 min",
+      note:"The new version. It adds systemd services, journalctl, SSH keys, sudo, and Linux in VMs and the cloud, and drops old tools like ifconfig and netstat. Study this one unless you already prepared for 1.6. At launch it's in English; LPI says French, German, Italian, Japanese, Portuguese and Spanish follow within a few months.",
+      numbered:true,onote:"Official LPI objectives, version 2.0. Each objective's weight is about how many of the 40 questions it gets (shown at the start of each line). The bars show each topic's share.",
+      domains:[
+        {n:"011",name:"The Linux Operating System and Open Source Software",w:18,obj:[
+          ["Linux Distributions","Weight 2. Kernel vs userspace, distro families (Debian, Enterprise Linux, SUSE, Alpine), release types like LTS, stable and rolling, and how Android relates to Linux.",0,"011.1"],
+          ["Major Open Source Applications","Weight 2. Common desktop, web and server apps (Firefox, LibreOffice, Apache, NGINX, PostgreSQL, Samba), languages like Python and C, and package tools: apt, dnf, zypper, apk.",0,"011.2"],
+          ["Open Source Software and Licensing","Weight 1. Free and open source ideas, copyleft (GPL) vs permissive (BSD) licenses, Creative Commons, the FSF and OSI.",0,"011.3"],
+          ["Linux Usage","Weight 2. Where Linux runs (desktops, servers, VMs, cloud, embedded), the vi and nano editors, and safe habits: strong passwords, password managers, MFA, passkeys, HTTPS, careful USB use.",0,"011.4"]]},
+        {n:"012",name:"Command Line Basics",w:22,obj:[
+          ["Command Line Usage","Weight 3. Bash syntax, variables, quoting, echo, history, PATH and export, and how a built-in differs from a program (type).",0,"012.1"],
+          ["Documentation, Man Pages and Usage Information","Weight 2. man pages, -h and --help, and the docs in /usr/share/doc.",0,"012.2"],
+          ["Files, Directories and Paths","Weight 2. ls and its options, cd, absolute vs relative paths, . and .., ~, hidden files, and finding files by name with find.",0,"012.3"],
+          ["File and Directory Management","Weight 2. cp, mv, rm, touch, mkdir, rmdir, case sensitivity and simple wildcards (globbing).",0,"012.4"]]},
+        {n:"013",name:"Data Processing",w:22,obj:[
+          ["File Archives and Compression","Weight 2. Create, list and extract tar and zip archives; gzip, bzip2 and xz.",0,"013.1"],
+          ["Redirections and String Processing","Weight 3. Pipes, input and output redirection, and filtering text with grep (and grep -E), less, cat, head, tail, sort, uniq, cut and wc.",0,"013.2"],
+          ["Shell Scripting Basics","Weight 4, the heaviest single objective. Scripts with #!/bin/bash, variables, arguments, if tests on files and variables, for loops over lists and wildcards, and exit status.",0,"013.3"]]},
+        {n:"014",name:"Linux System Administration Basics",w:20,obj:[
+          ["Linux Installation and Provisioning","Weight 1. Installing on hardware, VMs and cloud instances; ISO files and images; dual boot; Windows Subsystem for Linux (WSL).",0,"014.1"],
+          ["Computer Hardware and Device Access","Weight 2. CPUs (x86, ARM), storage, NICs, drivers and kernel modules, device files in /dev, plus /boot, /sys, /dev/null, /dev/zero and /dev/urandom.",0,"014.2"],
+          ["Processes and Log Messages","Weight 3. ps, top and free; start, stop and check services with systemctl; read logs with journalctl, dmesg and /var/log; /proc and /etc.",true,"014.3"],
+          ["Network Configuration","Weight 2. IPv4 and IPv6 basics, routes, DNS, ip addr and ip route, ss, /etc/hosts and /etc/resolv.conf, resolvectl, DHCP and SLAAC, ping and host.",0,"014.4"]]},
+        {n:"015",name:"Security and File System Permissions",w:18,obj:[
+          ["Remote Logins, File Transfers and Elevated Permissions","Weight 2. Root, standard and system users; sudo and su; ssh, scp, ssh-keygen and ~/.ssh/authorized_keys.",true,"015.1"],
+          ["User and Group Management","Weight 2. /etc/passwd, /etc/shadow, /etc/group and /etc/skel; useradd, groupadd and passwd; who's logged in with id, w and last.",0,"015.2"],
+          ["File System Permissions and Ownership","Weight 2. Read ls -l, change permissions with chmod and ownership with chown.",0,"015.3"],
+          ["Special Directories and Files","Weight 1. /tmp and /var/tmp, the sticky bit, and symbolic links with ln -s.",0,"015.4"]]}
+      ]},
+    v16:{code:"010-160",label:"Ver 1.6",status:"Available until Apr 2027 · 40 questions · 60 min",
+      note:"The previous version, still open until April 2027. Pick it only if you've already studied for 1.6 and will test before then. More languages are available for it today (English, German, Japanese and Brazilian Portuguese).",
+      numbered:true,onote:"Official LPI objectives, version 1.6. Each objective's weight is about how many of the 40 questions it gets.",
+      domains:[
+        {n:"1.0",name:"The Linux Community and a Career in Open Source",w:18,obj:[
+          ["Linux Evolution and Popular Operating Systems","Weight 2. Distributions, embedded systems and Linux in the cloud."],
+          ["Major Open Source Applications","Weight 2. Desktop and server apps, development languages and package management tools."],
+          ["Open Source Software and Licensing","Weight 1. Open source communities, GPL, BSD, Creative Commons, and open source business models."],
+          ["ICT Skills and Working in Linux","Weight 2. Desktop skills, getting to the command line, industry uses of Linux, privacy and password basics."]]},
+        {n:"2.0",name:"Finding Your Way on a Linux System",w:22,obj:[
+          ["Command Line Basics","Weight 3. Shell syntax, variables, quoting, echo, history and PATH."],
+          ["Using the Command Line to Get Help","Weight 2. man and info pages, /usr/share/doc and locate."],
+          ["Using Directories and Listing Files","Weight 2. Files and directories, hidden files, home, absolute and relative paths, ls."],
+          ["Creating, Moving and Deleting Files","Weight 2. cp, mv, rm, touch, mkdir, rmdir, case sensitivity and globbing."]]},
+        {n:"3.0",name:"The Power of the Command Line",w:22,obj:[
+          ["Archiving Files on the Command Line","Weight 2. tar, gzip, bzip2, xz, zip and unzip."],
+          ["Searching and Extracting Data from Files","Weight 3. Pipes, redirection, grep, basic regular expressions, less, cut, sort, wc, head and tail."],
+          ["Turning Commands into a Script","Weight 4. Simple bash scripts, variables, if and for, exit status, and the vi and nano editors."]]},
+        {n:"4.0",name:"The Linux Operating System",w:20,obj:[
+          ["Choosing an Operating System","Weight 1. Windows, macOS and Linux compared; distribution life cycles."],
+          ["Understanding Computer Hardware","Weight 2. CPU, memory, storage, drivers and peripherals."],
+          ["Where Data is Stored","Weight 3. Programs and config files, processes, memory, logs (/var/log, dmesg, syslog) and /proc."],
+          ["Your Computer on the Network","Weight 2. IP addresses, DNS and routes; ip, ifconfig, route, netstat, ss, ping and /etc/resolv.conf."]]},
+        {n:"5.0",name:"Security and File Permissions",w:18,obj:[
+          ["Basic Security and Identifying User Types","Weight 2. Root, standard and system users; /etc/passwd, /etc/shadow, /etc/group; id, last, who and w."],
+          ["Creating Users and Groups","Weight 2. useradd, groupadd, passwd and /etc/skel."],
+          ["Managing File Permissions and Ownership","Weight 2. ls -l, chmod and chown."],
+          ["Special Directories and Files","Weight 1. /tmp, the sticky bit and symbolic links."]]}
+      ]}
+  },
+  extras:[
+    {kind:"rows",title:"Commands to know",sub:"012 · 013 · 014 · 015",wide:true,rows:[
+      ["ls -la","List","Every file, hidden ones too, with permissions and owners"],
+      ["cd · pwd","Move","cd .. goes up one level; pwd prints where you are"],
+      ["cp mv rm","Files","Copy · move or rename · delete (there's no recycle bin)"],
+      ["grep","Search","Lines that match. -i ignores case, -E allows extended patterns"],
+      ["head · tail","Peek","First or last lines. tail -f keeps following a log"],
+      ["sort · uniq","Count","sort | uniq -c counts repeats. Sort first: uniq only merges neighbors"],
+      ["tar","Archive","-czf creates · -tzf lists · -xzf extracts a .tar.gz"],
+      ["chmod","Perms","chmod changes permissions; chown changes the owner"],
+      ["systemctl","Services","systemctl status sshd: running or not, plus the latest log lines"],
+      ["journalctl","Logs","journalctl -u sshd: log entries for one service"],
+      ["ip","Network","ip addr shows addresses; ip route shows routes and the gateway"],
+      ["ssh","Remote","ssh logs in · scp copies files · ssh-keygen makes a key pair"]]},
+    {kind:"rows",title:"Permissions decoder",sub:"015.3 · ls -l",rows:[
+      ["r = 4","Read","Open a file · list a directory"],
+      ["w = 2","Write","Change a file · add or delete files in a directory"],
+      ["x = 1","Execute","Run a file · enter a directory"],
+      ["644","rw-r--r--","Normal files"],
+      ["755","rwxr-xr-x","Programs and shared directories"],
+      ["600","rw-------","Private keys and secrets"],
+      ["1777","rwxrwxrwt","/tmp: anyone writes, only owners delete (sticky bit)"]]},
+    {kind:"rows",title:"Where things live",sub:"014 · the file system",rows:[
+      ["/etc","Config","System and service settings"],
+      ["/var/log","Logs","Log files; also check journalctl"],
+      ["/home","Users","Each user's files (~ is yours)"],
+      ["/tmp","Temporary","Shared scratch space"],
+      ["/dev","Devices","Disks, terminals, /dev/null"],
+      ["/proc","Processes","Live kernel and process info"],
+      ["/usr/bin","Programs","Most commands you run"],
+      ["/boot","Boot","The kernel and boot loader files"]]},
+    {kind:"rows",title:"Redirection",sub:"013.2",rows:[
+      [">","Overwrite","Send output to a file, replacing it"],
+      [">>","Append","Add output to the end of a file"],
+      ["2>","Errors","Send error messages to a file"],
+      ["2>/dev/null","Discard","Throw error messages away"],
+      ["2>&1","Combine","Send errors wherever output is going"],
+      ["|","Pipe","Feed output into the next command"]]}
+  ],
+  facts:[["Questions","40","in one exam"],["Time","60","minutes"],["Passing","500","of 800 (scaled)"],["Delivery","VUE","center or OnVUE online"],["Study","20–40","hours"],["Voucher","$120","US price"],["Valid","Lifetime","no renewal"],["DoD 8140","Not listed","not on the matrix"]],
+  method:[
+    ["Map","Use the five topics above as your checklist. Scripting (013.3) carries the most weight of any single objective."],
+    ["Learn","Read LPI's free Learning Materials for each objective. They're written by LPI and follow the objectives exactly."],
+    ["Do","Type every command yourself in WSL or a VM. Linux sticks when your fingers know it, not just your eyes."],
+    ["Recall","Flashcards for commands and options, permission numbers, and where files live."],
+    ["Test","Timed 40-question sets in 60 minutes. Review every miss and run the command to see why."]],
+  tips:[
+    ["Know the options","Questions often turn on one flag: -r, -f, -l, -i. Know what the common ones do."],
+    ["Read the output","When a question shows ls -l or ps output, the answer is usually in one column."],
+    ["Mind the order","2>&1 and > in the wrong order give a different result. Practice redirection until it's automatic."],
+    ["Never leave a blank","There's no penalty for a wrong answer, so always pick something."]],
+  resources:[
+    {group:"Official",items:[
+      ["Linux Essentials exam page","Linux Professional Institute","https://www.lpi.org/our-certifications/linux-essentials-overview/","Free","Versions, exam facts, languages and voucher links."],
+      ["Exam 010 objectives (version 2.0)","Linux Professional Institute","https://www.lpi.org/our-certifications/exam-010-objectives/","Free","Every objective with its weight and the commands it covers."],
+      ["LPI Learning Materials","Linux Professional Institute","https://learning.lpi.org","Free","LPI's own lessons and exercises for each objective."],
+      ["What changed from 1.6 to 2.0","LPI Wiki","https://wiki.lpi.org/wiki/LinuxEssentials_Summary_Version_1.6_To_2.0","Free","Renamed, added and removed topics."]]},
+    {group:"Hands-on",items:[
+      ["Windows Subsystem for Linux","Microsoft Learn","https://learn.microsoft.com/en-us/windows/wsl/install","Free","Run Ubuntu on your Windows laptop with one command. WSL is even on the 2.0 objectives."],
+      ["Bandit wargame","OverTheWire","https://overthewire.org/wargames/bandit/","Free","Short command-line puzzles over SSH. Great practice for find, grep, permissions and pipes."],
+      ["Linux Fundamentals module","TryHackMe","https://tryhackme.com/module/linux-fundamentals","Free tier","Browser labs that teach the shell from zero."]]},
+    {group:"Books and courses",items:[
+      ["The Linux Command Line","William Shotts","https://linuxcommand.org/tlcl.php","Free","A full book on the shell and scripting, free to read online."],
+      ["Linux Essentials 2.0 course and practice exams","Dion Training","","Paid","Video course built on the 2.0 objectives."]]}
+  ],
+  quiz:[
+    {v:"v20",d:"013",q:"What does this script print?",code:"#!/bin/bash\nfor f in /var/log/*.log; do\n  if [ -s \"$f\" ]; then echo \"$f\"; fi\ndone",
+     o:[["The name of every .log file in /var/log that is not empty","Right. The loop walks the matching files, and -s is true when a file exists and its size is greater than zero."],
+        ["The name of every empty .log file in /var/log","That would be ! -s. The -s test is true for files that have data."],
+        ["Every .log file in /var/log and all of its subdirectories","The wildcard only matches files directly in /var/log. It doesn't search subdirectories."],
+        ["The first non-empty .log file, then it stops","Nothing ends the loop early, so every matching file is checked."]],a:0},
+    {v:"v20",d:"013",q:"failed.txt has one IP address per line, one line per failed SSH login. Which pipeline shows the 5 addresses with the MOST failures?",
+     o:[["sort failed.txt | uniq -c | sort -nr | head -5","Right. sort groups identical lines, uniq -c counts each group, sort -nr puts the biggest counts first, and head keeps the top 5."],
+        ["uniq -c failed.txt | sort -nr | head -5","uniq only merges lines that are next to each other. Without sorting first, the same IP gets counted in many separate pieces."],
+        ["sort -u failed.txt | head -5","-u removes duplicates, so you lose the counts. You'd just get the first 5 addresses in order."],
+        ["sort failed.txt | uniq | wc -l","That counts how many different addresses there are, not which ones failed most."]],a:0},
+    {v:"v20",d:"013",q:"Which command saves the list of .conf files to found.txt and throws away the “Permission denied” errors?",
+     o:[["find / -name \"*.conf\" > found.txt 2>/dev/null","Right. > sends normal output to the file and 2>/dev/null discards the error stream."],
+        ["find / -name \"*.conf\" 2> found.txt","That saves only the errors to the file. The results still print on screen."],
+        ["find / -name \"*.conf\" > found.txt 2>&1","2>&1 sends the errors into found.txt as well, mixed in with the results."],
+        ["find / -name \"*.conf\" | tee found.txt","tee saves the results, but the errors still print on screen. Pipes carry only normal output."]],a:0},
+    {v:"v20",d:"013",q:"You're handed evidence.tar.gz. You want to see what's inside WITHOUT extracting or changing it. Which command?",
+     o:[["tar -tzf evidence.tar.gz","Right. -t lists the contents, -z handles gzip and -f names the file. Nothing is written to disk."],
+        ["tar -xzf evidence.tar.gz","-x extracts everything into the current directory, which is what you wanted to avoid."],
+        ["tar -czf evidence.tar.gz","-c creates an archive. Run like this, it would try to overwrite the evidence file."],
+        ["gzip -d evidence.tar.gz","That decompresses the file and replaces it with evidence.tar, so the original is changed."]],a:0},
+    {v:"v20",d:"015",q:"User jdoe is in the soc group but isn't root. What can jdoe do with triage.sh?",code:"$ ls -l triage.sh\n-rwxr-x--- 1 root soc 812 Nov  9 08:14 triage.sh",
+     o:[["Read and run it, but not change it","Right. The middle set (r-x) applies to the soc group: read and execute, no write."],
+        ["Nothing at all","The last set (---) is for everyone else. jdoe is in the group, so the group set applies."],
+        ["Read it only","The group set also has x, so jdoe can run it."],
+        ["Read, change and run it","Only the owner (root) has w. The group set has no write permission."]],a:0},
+    {v:"v20",d:"015",q:"A file holds an API key. The owner must read and write it, and nobody else should have any access. Which command fits BEST?",
+     o:[["chmod 600 apikey.txt","Right. 6 (4+2) gives the owner read and write; 0 and 0 give the group and others nothing."],
+        ["chmod 700 apikey.txt","It blocks everyone else, but it also makes the file executable, which a key file doesn't need."],
+        ["chmod 644 apikey.txt","644 lets the group and everyone else read the key."],
+        ["chmod 666 apikey.txt","666 lets every user on the system read and change it."]],a:0},
+    {v:"v20",d:"015",q:"You made a key pair with ssh-keygen on your laptop so you can log in to server1 without a password. What goes where?",
+     o:[["The public key (.pub) goes into ~/.ssh/authorized_keys on server1; the private key stays on your laptop","Right. The server checks your login against the public keys in authorized_keys. The private key never leaves your machine."],
+        ["The private key goes into authorized_keys on server1","Never copy the private key anywhere. Anyone who has it can log in as you."],
+        ["The public key goes into known_hosts on your laptop","known_hosts stores the SERVERS' host keys so your laptop can spot an impostor. It doesn't log you in."],
+        ["Both keys go into /etc/ssh on server1","/etc/ssh holds the server's own host keys and settings, not user login keys."]],a:0},
+    {v:"v20",d:"014",q:"The SSH service on a server stopped answering. Which ONE command shows whether it's running AND its most recent log lines?",
+     o:[["systemctl status sshd","Right. It shows active or failed, the main PID, and the last several journal lines for the unit."],
+        ["journalctl -u sshd","It shows the service's logs, but not whether it's running right now."],
+        ["systemctl start sshd","That tries to start it. It doesn't tell you what went wrong."],
+        ["ps aux","It lists processes, but shows no service state and no logs."]],a:0},
+    {v:"v20",d:"014",q:"A Linux host can ping 8.8.8.8, but ping intranet.example.com fails with “Name or service not known.” What should you check first?",
+     o:[["The DNS servers in /etc/resolv.conf (or with resolvectl)","Right. Reaching an outside IP proves addressing and routing work. Only name lookups fail, so look at DNS."],
+        ["The default route with ip route show","Traffic already reaches 8.8.8.8, so the default route works."],
+        ["The machine's own name in /etc/hostname","That's this machine's name. It doesn't affect looking up other names."],
+        ["The network card driver","A driver problem would stop the ping to 8.8.8.8 too."]],a:0},
+    {v:"v20",d:"014",q:"Which directory holds live, kernel-generated information about running processes, like /…/1234/status for PID 1234?",
+     o:[["/proc","Right. /proc is a virtual file system the kernel builds on the fly. Every running process gets a numbered directory."],
+        ["/dev","/dev holds device files such as disks and terminals."],
+        ["/var/log","/var/log holds log files that services write. It isn't live process state."],
+        ["/boot","/boot holds the kernel and boot loader files."]],a:0},
+    {v:"v20",d:"012",q:"You're in /home/analyst/cases. Which command takes you to /home/analyst/tools?",
+     o:[["cd ../tools","Right. .. goes up to /home/analyst, then into tools."],
+        ["cd /tools","The leading / makes it absolute: it looks for /tools at the top of the file system."],
+        ["cd ./tools","./ means inside the current directory, so it looks for /home/analyst/cases/tools."],
+        ["cd ~tools","~tools means the home directory of a user named tools."]],a:0},
+    {v:"v20",d:"012",q:"You type scan and get “command not found.” The program is /opt/tools/scan and it IS executable. What's the cause?",
+     o:[["/opt/tools isn't in your PATH. Run /opt/tools/scan or add it with export PATH=$PATH:/opt/tools","Right. The shell only searches the directories listed in PATH for bare command names."],
+        ["You need to run it with sudo","sudo changes who runs it, not where the shell looks. You'd get the same error."],
+        ["It needs chmod +x","It's already executable. The shell simply can't find it."],
+        ["Its man page is missing","Man pages are only documentation. They don't affect running a program."]],a:0},
+    {v:"v20",d:"011",q:"Your team changes a GPL-licensed tool and gives the changed version to other units. What does the GPL require?",
+     o:[["Make the source code of your changed version available under the GPL too","Right. The GPL is copyleft: if you distribute a modified version, its source must go along under the same license."],
+        ["Nothing, as long as you don't charge for it","The GPL's terms apply when you distribute, whether you charge or not."],
+        ["You may keep your changes private and relicense the tool","That's allowed by permissive licenses like BSD, not by the GPL."],
+        ["Pay a license fee to the Free Software Foundation","The GPL doesn't charge fees. The FSF wrote the license; it doesn't sell it."]],a:0}
+  ],
+  pbqs:[
+    {id:"cmds",kind:"match",short:"Pick the command",title:"Pick the command for each task",dom:"012 · 013 · 014 · 015",
+     scenario:"You're on shift with a Linux terminal open. Pick the command that does each task. Each answer is used once; three are distractors.",
+     pick:"Command",choices:["tail -f","find","wc -l","grep","top","id","man","less","locate","history"],
+     items:[
+       {src:"Task 1",text:"Watch /var/log/auth.log and see new lines the moment they're written.",a:0,why:"tail -f keeps the file open and prints new lines as they arrive."},
+       {src:"Task 2",text:"Search /home for every file whose name ends in .sh.",a:1,why:"find /home -name \"*.sh\" walks the directory tree and matches names. (locate was dropped from the 2.0 objectives and relies on a database that may be stale.)"},
+       {src:"Task 3",text:"Count how many lines are in users.txt.",a:2,why:"wc -l counts lines."},
+       {src:"Task 4",text:"Show only the lines in auth.log that contain “Failed password.”",a:3,why:"grep prints the lines that match a pattern."},
+       {src:"Task 5",text:"See which processes are using the most CPU right now, updating live.",a:4,why:"top shows a live, sorted view of processes and resource use."},
+       {src:"Task 6",text:"Check your user ID and every group you belong to.",a:5,why:"id prints your UID, primary group and every group membership."},
+       {src:"Task 7",text:"Read the full manual for chmod.",a:6,why:"man chmod opens the manual page."}]},
+    {id:"perms",kind:"table",short:"Set permissions",title:"Set the right permissions",dom:"015.3",
+     scenario:"For each file or directory, pick the chmod number and the matching ls -l permission string.",
+     cols:["chmod","ls -l shows"],
+     opts:[["600","640","644","700","750","755","770","440"],["rwxr-x---","r--r-----","rw-------","rwxrwx---","rw-r--r--","rwxr-xr-x","rw-r-----","rwx------"]],
+     rows:[
+       {req:"A private SSH key: only the owner can read and write it.",a:[0,2],why:"600 shows as rw------- in ls -l. SSH refuses to use a private key that other users can read."},
+       {req:"A team script: the owner has full control, the group can read and run it, others get nothing.",a:[4,0],why:"750 shows as rwxr-x---. 7 is rwx, 5 is r-x, 0 is nothing."},
+       {req:"A web page: everyone can read it, only the owner can change it.",a:[2,4],why:"644 shows as rw-r--r--, the normal setting for files."},
+       {req:"A case directory: the owner and the soc group can do everything in it, nobody else can enter.",a:[6,3],why:"770 shows as rwxrwx---. A directory needs x before anyone can enter it."},
+       {req:"An evidence file: the owner and group can read it, nobody can change it.",a:[7,1],why:"440 shows as r--r-----. Read-only for owner and group helps prevent accidental edits."},
+       {req:"A tool every user can run, but only the owner can change.",a:[5,5],why:"755 shows as rwxr-xr-x, the normal setting for programs."}]},
+    {id:"logs",kind:"match",short:"Read the logs",title:"Read the Linux logs",dom:"014.3 · 015",
+     scenario:"These lines came from journalctl and /var/log on a server you're watching. Pick what each one shows. Each answer is used once; two are distractors.",
+     pick:"What it shows",choices:["Password guessing","Key-based login","Root command via sudo","New account created","Service crashed","USB storage plugged in","Disk full","Scheduled job ran"],
+     items:[
+       {src:"/var/log/auth.log",log:"sshd[2231]: Failed password for invalid user admin from 203.0.113.45 port 51122 ssh2\nsshd[2231]: Failed password for invalid user admin from 203.0.113.45 port 51130 ssh2\nsshd[2231]: message repeated 38 times",a:0,why:"Many failed logins for a user that doesn't exist, from one outside address, is password guessing (brute force)."},
+       {src:"/var/log/auth.log",log:"sshd[3310]: Accepted publickey for analyst from 10.4.2.15 port 50544 ssh2: ED25519 SHA256:q8V2...",a:1,why:"“Accepted publickey” means the login used an SSH key, not a password."},
+       {src:"/var/log/auth.log",log:"sudo: jdoe : TTY=pts/1 ; PWD=/home/jdoe ; USER=root ; COMMAND=/usr/bin/cat /etc/shadow",a:2,why:"jdoe ran a command as root through sudo, here reading the password hash file. Worth asking why."},
+       {src:"journalctl",log:"useradd[4102]: new user: name=svc_backup, UID=1005, GID=1005, home=/home/svc_backup, shell=/bin/bash",a:3,why:"useradd logged a new account. An unexpected new account with a login shell is a classic persistence sign."},
+       {src:"journalctl -u nginx",log:"systemd[1]: nginx.service: Main process exited, code=exited, status=1/FAILURE\nsystemd[1]: nginx.service: Failed with result 'exit-code'.",a:4,why:"systemd reports the service's main process exited with an error. Check systemctl status nginx and its config."},
+       {src:"dmesg",log:"usb 1-2: new high-speed USB device number 7 using xhci_hcd\nusb-storage 1-2:1.0: USB Mass Storage device detected",a:5,why:"The kernel detected a USB mass storage device. Many units restrict removable media, so this may need a report."}]}
+  ],
+  before:[],
+  next:[["LPIC-1","The full Linux admin cert, two exams"],["SAL1","Hands-on SOC work that uses these skills daily","SAL1 · Security Analyst L1"],["Security+","The core security cert on the DoD 8140 matrix"]],
+  hereNote:"Linux basics for every path",
+  mapSub:"Linux Essentials supports every path. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"Lifetime",text:"Linux Essentials doesn't expire, so there's nothing to renew.",after:"A certificate earned on version 1.6 stays valid after 2.0 arrives."},
+    {lab:"DoD 8140",big:"Not listed",text:"Linux Essentials isn't on the DoD 8140 qualification matrix and was never on the old 8570 list.",after:"For a coded billet, pair it with a cert that is on the matrix, such as Security+."},
+    {lab:"Use it",big:"$120",text:"A cheap, quick proof that you can work in a Linux shell. Use CG COOL to pay for the voucher.",after:"Then build on it with LPIC-1 for admin work or the TryHackMe SAL1 for SOC work."}],
+  sources:[
+    ["LPI: Linux Essentials overview (versions, 40 questions, 60 minutes, lifetime)","https://www.lpi.org/our-certifications/linux-essentials-overview/"],
+    ["LPI: Exam 010 objectives, version 2.0 (weights)","https://www.lpi.org/our-certifications/exam-010-objectives/"],
+    ["LPI Wiki: Linux Essentials objectives V2.0","https://wiki.lpi.org/wiki/Linux_Essentials_Objectives_V2.0"],
+    ["LPI Wiki: Linux Essentials objectives V1.6","https://wiki.lpi.org/wiki/Linux_Essentials_Objectives_V1.6"],
+    ["LPI Wiki: changes from 1.6 to 2.0","https://wiki.lpi.org/wiki/LinuxEssentials_Summary_Version_1.6_To_2.0"],
+    ["LPI: exam price tiers (US $120 for Essentials)","https://www.lpi.org/articles/linux-professional-insitute-lpi-adjusting-exam-prices/"],
+    ["Pearson VUE: LPI exams","https://www.pearsonvue.com/us/en/lpi.html"]]
+};
+
+GUIDES["LPIC-1"]={
+  id:"lpic1",
+  lead:"LPI's first professional Linux cert, earned over two exams. It proves you can run a Linux system from the command line: install software, manage disks, users and services, read logs, set up networking and lock the box down. It's vendor-neutral, so it works on Ubuntu, Red Hat and the Linux servers behind most clouds.",
+  checked:"Nov 10, 2026",
+  verLabel:"Exam (take both)",
+  objSub:"LPIC-1 is two exams. Switch between 101 and 102 above; each has its own topics and its own progress. Tick objectives as you study; your progress stays on this device.",
+  planHours:140, planAll:true,
+  planSub:"Set how many hours a week you can give it. The plan covers both exams, about 70 hours each: topics split by exam weight, then a practice stretch before each test.",
+  versions:{
+    e101:{code:"101-500",label:"Exam 101",status:"Version 5.0 · 60 questions · 90 min",
+      note:"System architecture, installing Linux and managing packages, GNU and Unix commands, and devices, file systems and the directory layout. Commands are almost half of this exam. You can take 101 and 102 in either order.",
+      numbered:true,onote:"Official LPI objectives, version 5.0. Each objective's weight is about how many of the 60 questions it gets. LPI removed 104.4, so the numbers skip it.",
+      domains:[
+        {n:"101",name:"System Architecture",w:13,obj:[
+          ["Determine and configure hardware settings","Weight 2. Enable devices, read hardware info from /sys, /proc and /dev, and use lsmod, modprobe, lspci and lsusb.",0,"101.1"],
+          ["Boot the system","Weight 3. Firmware to boot loader to kernel to init; SysVinit vs systemd; read boot messages with dmesg and journalctl.",0,"101.2"],
+          ["Change runlevels / boot targets and shutdown or reboot","Weight 3. Set the default target, switch targets (including rescue), shutdown, reboot and wall.",0,"101.3"]]},
+        {n:"102",name:"Linux Installation and Package Management",w:20,obj:[
+          ["Design hard disk layout","Weight 2. Partitions for /, /var, /home and /boot, the EFI system partition, swap and basic LVM.",0,"102.1"],
+          ["Install a boot manager","Weight 2. GRUB 2 basics: grub-install, grub-mkconfig, and editing boot options.",0,"102.2"],
+          ["Manage shared libraries","Weight 1. ldd, ldconfig, /etc/ld.so.conf and LD_LIBRARY_PATH.",0,"102.3"],
+          ["Use Debian package management","Weight 3. dpkg, apt-get and apt-cache: install, remove, find which package owns a file, list a package's files.",0,"102.4"],
+          ["Use RPM and YUM package management","Weight 3. rpm, yum, dnf and zypper: install, query, verify signatures and map files to packages.",0,"102.5"],
+          ["Linux as a virtualization guest","Weight 1. VMs vs containers, cloud instances, what to change on a cloned VM (SSH host keys, machine ID), cloud-init.",0,"102.6"]]},
+        {n:"103",name:"GNU and Unix Commands",w:43,obj:[
+          ["Work on the command line","Weight 4. Variables, export, env, set, history, type and which, and running programs inside and outside PATH.",0,"103.1"],
+          ["Process text streams using filters","Weight 2. cat, cut, sort, uniq, tr, head, tail, wc, sed, nl, split, zcat, and checksums with sha256sum.",0,"103.2"],
+          ["Perform basic file management","Weight 4. cp, mv, rm, mkdir, find by type, size and time, tar, cpio, dd, gzip, bzip2 and xz.",0,"103.3"],
+          ["Use streams, pipes and redirects","Weight 4. Redirect stdin, stdout and stderr; pipes; tee and xargs.",0,"103.4"],
+          ["Create, monitor and kill processes","Weight 4. Jobs with &, bg, fg and nohup; ps, top, pgrep; signals with kill, pkill and killall; screen and tmux.",0,"103.5"],
+          ["Modify process execution priorities","Weight 2. nice and renice; reading priority in ps and top.",0,"103.6"],
+          ["Search text files using regular expressions","Weight 3. Basic vs extended regex; grep, grep -E and sed substitutions.",0,"103.7"],
+          ["Basic file editing","Weight 3. vi modes, moving, editing, searching and saving (:w, :q!, ZZ); setting EDITOR.",0,"103.8"]]},
+        {n:"104",name:"Devices, Linux Filesystems, Filesystem Hierarchy Standard",w:24,obj:[
+          ["Create partitions and filesystems","Weight 2. MBR and GPT with fdisk, gdisk and parted; mkfs for ext4, XFS, VFAT and exFAT; mkswap.",0,"104.1"],
+          ["Maintain the integrity of filesystems","Weight 2. df and du for space and inodes; fsck, e2fsck, tune2fs and xfs_repair.",0,"104.2"],
+          ["Control mounting and unmounting of filesystems","Weight 3. mount, umount, /etc/fstab, UUIDs and labels with blkid and lsblk; systemd mount units.",0,"104.3"],
+          ["Manage file permissions and ownership","Weight 3. chmod, chown, chgrp and umask; SUID, SGID and the sticky bit.",0,"104.5"],
+          ["Create and change hard and symbolic links","Weight 2. ln and ln -s; hard vs soft links; copy vs link.",0,"104.6"],
+          ["Find system files and place files in the correct location","Weight 2. The FHS layout; find, locate and updatedb, whereis, which and type.",0,"104.7"]]}
+      ]},
+    e102:{code:"102-500",label:"Exam 102",status:"Version 5.0 · 60 questions · 90 min",
+      note:"Shells and scripting, desktops and accessibility, admin tasks like users, cron and time zones, essential services (time, logging, mail, printing), networking and security.",
+      numbered:true,onote:"Official LPI objectives, version 5.0. Each objective's weight is about how many of the 60 questions it gets.",
+      domains:[
+        {n:"105",name:"Shells and Shell Scripting",w:13,obj:[
+          ["Customize and use the shell environment","Weight 4. /etc/profile, ~/.bashrc and ~/.bash_profile, aliases, functions, export and source; /etc/skel.",0,"105.1"],
+          ["Customize or write simple scripts","Weight 4. for, while, if and test, read, seq, command substitution, exit codes, && and ||, and the shebang.",0,"105.2"]]},
+        {n:"106",name:"User Interfaces and Desktops",w:7,obj:[
+          ["Install and configure X11","Weight 2. X11 vs Wayland, xorg.conf, DISPLAY, xhost and xauth.",0,"106.1"],
+          ["Graphical Desktops","Weight 1. KDE, GNOME and Xfce; remote desktops with VNC, RDP, Spice and XDMCP.",0,"106.2"],
+          ["Accessibility","Weight 1. High contrast and large print, screen readers, magnifiers, on-screen keyboards, sticky and slow keys.",0,"106.3"]]},
+        {n:"107",name:"Administrative Tasks",w:20,obj:[
+          ["Manage user and group accounts and related system files","Weight 5, the heaviest objective. useradd, usermod, userdel, groupadd, passwd, chage and getent; /etc/passwd, /etc/shadow and /etc/group.",0,"107.1"],
+          ["Automate system administration tasks by scheduling jobs","Weight 4. crontab and /etc/cron.*, at, cron.allow and cron.deny, and systemd timers.",0,"107.2"],
+          ["Localisation and internationalisation","Weight 3. Locales (LANG, LC_ALL), time zones with timedatectl and /etc/localtime, UTF-8 and iconv.",0,"107.3"]]},
+        {n:"108",name:"Essential System Services",w:20,obj:[
+          ["Maintain system time","Weight 3. date, hwclock and timedatectl; NTP with chrony or ntpd.",0,"108.1"],
+          ["System logging","Weight 4. rsyslog facilities and priorities, logger, logrotate, and querying the journal with journalctl.",0,"108.2"],
+          ["Mail Transfer Agent (MTA) basics","Weight 3. Aliases and forwarding with ~/.forward and newaliases; mail and mailq; Postfix, Sendmail and Exim.",0,"108.3"],
+          ["Manage printers and printing","Weight 2. CUPS, lpr, lpq and lprm.",0,"108.4"]]},
+        {n:"109",name:"Networking Fundamentals",w:23,obj:[
+          ["Fundamentals of internet protocols","Weight 4. Subnetting and CIDR, private ranges, TCP vs UDP vs ICMP, common ports, IPv4 vs IPv6.",0,"109.1"],
+          ["Persistent network configuration","Weight 4. NetworkManager and nmcli, hostnamectl, /etc/hosts, /etc/resolv.conf and /etc/nsswitch.conf.",0,"109.2"],
+          ["Basic network troubleshooting","Weight 4. ip, ss, ping, traceroute, tracepath and netcat; the older ifconfig, netstat and route.",0,"109.3"],
+          ["Configure client side DNS","Weight 2. host, dig and getent; resolution order; systemd-resolved.",0,"109.4"]]},
+        {n:"110",name:"Security",w:17,obj:[
+          ["Perform security administration tasks","Weight 3. Find SUID and SGID files, password aging, open ports (ss, lsof, nmap), ulimit, who is logged in, and sudo.",0,"110.1"],
+          ["Setup host security","Weight 3. Shadow passwords, turning off unused services, /etc/nologin, TCP wrappers.",0,"110.2"],
+          ["Securing data with encryption","Weight 4. OpenSSH client and keys (ssh-keygen, ssh-agent), host keys, SSH tunnels, and GnuPG to encrypt, sign and verify.",0,"110.3"]]}
+      ]}
+  },
+  extras:[
+    {kind:"rows",title:"Debian vs RPM",sub:"102.4 · 102.5 · task · Debian/Ubuntu · Red Hat/Rocky",wide:true,rows:[
+      ["Install","apt-get install nginx","dnf install nginx (yum on older systems)"],
+      ["Install file","dpkg -i agent.deb","rpm -i agent.rpm"],
+      ["Remove","apt-get remove nginx","dnf remove nginx · rpm -e nginx"],
+      ["File's owner","dpkg -S /usr/sbin/nginx","rpm -qf /usr/sbin/nginx"],
+      ["List files","dpkg -L nginx","rpm -ql nginx"],
+      ["All installed","dpkg -l","rpm -qa"],
+      ["Refresh","apt-get update","dnf check-update"]]},
+    {kind:"rows",title:"Signals",sub:"103.5 · kill -SIGNAL PID",rows:[
+      ["1 SIGHUP","Hang up","Many services reload their config"],
+      ["2 SIGINT","Interrupt","What Ctrl+C sends"],
+      ["9 SIGKILL","Kill","Can't be caught or cleaned up. Last resort"],
+      ["15 SIGTERM","Terminate","The default for kill. Lets it shut down cleanly"],
+      ["19 SIGSTOP","Stop","Pause a process; can't be caught"],
+      ["18 SIGCONT","Continue","Resume a stopped process"]]},
+    {kind:"rows",title:"Targets and runlevels",sub:"101.3 · systemd ↔ SysVinit",rows:[
+      ["0","poweroff.target","Shut down"],
+      ["1","rescue.target","Single user, for repairs"],
+      ["3","multi-user.target","Text console with networking"],
+      ["5","graphical.target","Multi-user with a GUI"],
+      ["6","reboot.target","Reboot"]]},
+    {kind:"rows",title:"Crontab line",sub:"107.2 · minute hour day month weekday command",rows:[
+      ["Minute","0–59","First field"],
+      ["Hour","0–23","24-hour clock"],
+      ["Day of month","1–31",""],
+      ["Month","1–12","Or jan–dec"],
+      ["Weekday","0–7","0 and 7 are Sunday; 1-5 is Mon–Fri"],
+      ["30 2 * * 1-5","Example","2:30 a.m. every weekday"]]},
+    {kind:"ports",title:"Ports to know",sub:"109.1",rows:[
+      ["20/21","FTP","File transfer"],["22","SSH","Secure shell"],["23","Telnet","Clear-text shell"],["25","SMTP","Send mail"],
+      ["53","DNS","Name lookups"],["80","HTTP","Web"],["110","POP3","Download mail"],["123","NTP","Time sync"],
+      ["139","NetBIOS","Windows sharing"],["143","IMAP","Mail on the server"],["161/162","SNMP","Device monitoring"],["389","LDAP","Directory"],
+      ["443","HTTPS","Encrypted web"],["465","SMTPS","Mail over TLS"],["514","Syslog","Remote logging"],["636","LDAPS","Directory over TLS"],
+      ["993","IMAPS","IMAP over TLS"],["995","POP3S","POP3 over TLS"]]}
+  ],
+  facts:[["Exams","2","101 + 102"],["Questions","60","per exam"],["Time","90","min per exam"],["Passing","500","of 800, each exam"],["Study","100–150","hours, both"],["Voucher","$200","per exam, US"],["Valid","5","years"],["DoD 8140","Not listed","not on the matrix"]],
+  method:[
+    ["Map","Use the topics above as your checklist, one exam at a time. Topic 103 (commands) is 43% of exam 101."],
+    ["Learn","Work through LPI's free Learning Materials objective by objective. Add a study guide book for depth."],
+    ["Do","Run two VMs: one Debian or Ubuntu, one Rocky Linux. The exams test both package families, and you only learn the differences by using both."],
+    ["Recall","Flashcards for command options, config file paths, signals, cron fields and ports."],
+    ["Test","Timed 60-question sets in 90 minutes. For every fill-in-the-blank you miss, type the command in a VM until it's right."]],
+  tips:[
+    ["Expect fill-in-the-blank","Some questions make you type a command or path with no options to pick from. Spelling counts."],
+    ["Know both families","If a question doesn't name the distro, think about whether it's asking for the Debian or the RPM tool."],
+    ["Watch the order","Redirection order (2>&1), cron fields and find tests are easy to get backwards. Slow down on them."],
+    ["Never leave a blank","There's no penalty for guessing, so always answer."]],
+  resources:[
+    {group:"Official",items:[
+      ["LPIC-1 exam page","Linux Professional Institute","https://www.lpi.org/our-certifications/lpic-1-overview/","Free","Exam facts, languages and voucher links."],
+      ["LPIC-1 objectives V5.0 (both exams)","LPI Wiki","https://wiki.lpi.org/wiki/LPIC-1_Objectives_V5.0","Free","Every objective with its weight, key knowledge and the files and commands it covers."],
+      ["LPI Learning Materials","Linux Professional Institute","https://learning.lpi.org","Free","LPI's own lessons and exercises for every 101 and 102 objective."]]},
+    {group:"Hands-on",items:[
+      ["Rocky Linux","Rocky Enterprise Software Foundation","https://rockylinux.org","Free","A free Red Hat-compatible distro for practicing rpm, dnf and systemd."],
+      ["Ubuntu Server","Canonical","https://ubuntu.com/download/server","Free","A Debian-family server for practicing dpkg and apt."],
+      ["VirtualBox","Oracle","https://www.virtualbox.org","Free","Run both distros side by side and snapshot them before you break something."],
+      ["Bandit wargame","OverTheWire","https://overthewire.org/wargames/bandit/","Free","Command-line puzzles over SSH: find, permissions, pipes, SSH keys."]]},
+    {group:"Books and courses",items:[
+      ["The Linux Command Line","William Shotts","https://linuxcommand.org/tlcl.php","Free","A full book on the shell and scripting, free to read online. Strong for topics 103 and 105."],
+      ["LPIC-1 Study Guide (101-500 and 102-500)","Sybex","","Paid","A complete book for both exams with review questions."],
+      ["LPIC-1 video course","CBT Nuggets","","Paid","Video training for both exams."]]}
+  ],
+  quiz:[
+    {v:"e101",d:"101",q:"A server boots to a graphical login. From now on it should boot to a text console with networking. Which command makes that change?",
+     o:[["systemctl set-default multi-user.target","Right. set-default changes the target used at every boot."],
+        ["systemctl isolate multi-user.target","isolate switches to that target right now, but the next boot goes back to the GUI."],
+        ["telinit 3","The old SysVinit way to switch runlevels now. It doesn't change the default for future boots."],
+        ["systemctl enable multi-user.target","enable is for units with an install section, like services. It doesn't set the default boot target."]],a:0},
+    {v:"e101",d:"102",q:"On an Ubuntu server, which command tells you which installed package owns /usr/bin/ssh?",
+     o:[["dpkg -S /usr/bin/ssh","Right. dpkg -S searches installed packages for the file and names the owner."],
+        ["rpm -qf /usr/bin/ssh","That's the right idea on Red Hat-family systems, but Ubuntu uses dpkg."],
+        ["dpkg -L /usr/bin/ssh","-L lists the files in a package you name. It expects a package name, not a file path."],
+        ["apt-cache search ssh","That searches package descriptions in the repositories, not which installed package owns a file."]],a:0},
+    {v:"e101",d:"103",q:"You suspect a web shell was dropped on a web server. Which command lists regular files under /var/www that were MODIFIED in the last 24 hours?",
+     o:[["find /var/www -type f -mtime -1","Right. -mtime -1 means changed less than one day ago, and -type f limits it to regular files."],
+        ["find /var/www -type f -mtime +1","+1 means MORE than one day ago, the opposite of what you want."],
+        ["find /var/www -type f -atime -1","-atime is the last ACCESS time. Every visitor reading a page changes it, and it doesn't show changes."],
+        ["locate -mtime -1 /var/www","locate searches a name database. It has no time filters."]],a:0},
+    {v:"e101",d:"103",q:"Which command sends BOTH the normal output and the error messages of ./scan.sh into scan.log?",
+     o:[["./scan.sh > scan.log 2>&1","Right. Redirects run left to right: stdout goes to the file, then stderr is pointed wherever stdout now goes."],
+        ["./scan.sh 2>&1 > scan.log","Order matters. stderr is copied to the terminal BEFORE stdout moves to the file, so errors still print on screen."],
+        ["./scan.sh > scan.log 2> scan.log","The file is opened twice separately, so the two streams overwrite each other and the log gets garbled."],
+        ["./scan.sh | tee scan.log","A pipe carries only stdout. The errors still print on screen and never reach the file."]],a:0},
+    {v:"e101",d:"103",q:"You start a long packet capture over SSH and it must keep running after you log out. Which is the BEST way to start it?",
+     o:[["nohup tcpdump -w cap.pcap &","Right. nohup makes it ignore the hangup signal sent at logout, and & runs it in the background. (screen or tmux also work.)"],
+        ["tcpdump -w cap.pcap &","It runs in the background but can still be killed by the hangup signal when your session ends."],
+        ["Start it, press Ctrl+Z, then type bg","That moves it to the background, but it's still tied to your session."],
+        ["nice -n 19 tcpdump -w cap.pcap","nice only lowers its priority. It doesn't protect it from your logout."]],a:0},
+    {v:"e101",d:"103",q:"Which command replaces EVERY http:// with https:// in urls.txt and saves the change in the file itself?",
+     o:[["sed -i 's|http://|https://|g' urls.txt","Right. -i edits the file in place and g replaces every match on each line. Using | as the delimiter avoids escaping the slashes."],
+        ["sed 's|http://|https://|g' urls.txt","Without -i, sed prints the changed text to the screen and leaves the file alone."],
+        ["sed -i 's|http://|https://|' urls.txt","Without g, only the first match on each line is replaced."],
+        ["grep -E 's/http/https/' urls.txt","grep only finds lines. It can't substitute text."]],a:0},
+    {v:"e101",d:"104",q:"What does the s in this listing mean, and why do security reviewers care about it?",code:"$ ls -l /usr/bin/passwd\n-rwsr-xr-x 1 root root 68208 Feb  6  2026 /usr/bin/passwd",
+     o:[["SUID: the program runs with its owner's (root's) rights, so any flaw in it can become root access","Right. passwd needs root to update /etc/shadow. An unexpected SUID-root file is a common privilege-escalation path."],
+        ["The sticky bit: only the owner can delete the file","The sticky bit shows as t in the others position, and it matters on directories like /tmp."],
+        ["SGID: it runs with the group's rights","SGID shows as s in the GROUP position (----rws---). Here it's in the owner position."],
+        ["It's a socket file","A socket shows s as the FIRST character (srwx...). This one starts with -, a regular file."]],a:0},
+    {v:"e101",d:"104",q:"A new data disk must mount at /data at every boot, even if its device name changes from sdb1 to sdc1. What should the /etc/fstab line use to identify it?",
+     o:[["UUID=… (find it with blkid or lsblk -f)","Right. The UUID is stored in the file system itself and never changes when disks are added or reordered."],
+        ["/dev/sdb1","Device names depend on the order disks are detected. They can change between boots."],
+        ["A mount command in ~/.bashrc","That runs only when that user opens a shell, not at boot, and needs root anyway."],
+        ["An entry in /etc/mtab","/etc/mtab shows what's mounted right now. It isn't read at boot."]],a:0},
+    {v:"e102",d:"105",q:"A script must stop with an error if the cp command just before this line failed. Which test belongs right after cp?",
+     o:[["if [ $? -ne 0 ]; then exit 1; fi","Right. $? holds the exit status of the last command; anything other than 0 means it failed."],
+        ["if [ $# -ne 0 ]; then exit 1; fi","$# is how many arguments the script got, not whether cp worked."],
+        ["if [ $0 -ne 0 ]; then exit 1; fi","$0 is the script's own name."],
+        ["if [ $! -ne 0 ]; then exit 1; fi","$! is the PID of the last background job."]],a:0},
+    {v:"e102",d:"107",q:"A contractor's account must stop working automatically at the end of Dec 31, 2026, but stay usable until then. Which command?",
+     o:[["chage -E 2026-12-31 contractor","Right. -E sets the account expiration date. usermod -e does the same."],
+        ["passwd -l contractor","That locks the password right now."],
+        ["chage -M 90 contractor","-M sets the maximum password age, forcing a password change, not an account end date."],
+        ["userdel contractor","That deletes the account immediately."]],a:0},
+    {v:"e102",d:"107",q:"Which crontab line runs /opt/backup.sh at 2:30 a.m. every weekday, Monday through Friday?",
+     o:[["30 2 * * 1-5 /opt/backup.sh","Right. Minute 30, hour 2, any day of the month, any month, weekdays 1 to 5."],
+        ["2 30 * * 1-5 /opt/backup.sh","Minute comes first. This tries hour 30, which doesn't exist."],
+        ["30 2 1-5 * * /opt/backup.sh","1-5 in the third field means days 1 to 5 of each month, not weekdays."],
+        ["30 14 * * 1-5 /opt/backup.sh","Hour 14 is 2:30 p.m."]],a:0},
+    {v:"e102",d:"108",q:"You want only error-level (and worse) messages from the SSH service since yesterday. Which command?",
+     o:[["journalctl -u sshd -p err --since yesterday","Right. -u picks the unit, -p err keeps priority err and higher, --since sets the start time."],
+        ["journalctl -k -p err","-k shows kernel messages only."],
+        ["tail -f /var/log/messages | grep sshd","It follows new lines only and can't filter by priority."],
+        ["dmesg | grep sshd","dmesg is the kernel ring buffer. sshd's messages aren't there."]],a:0},
+    {v:"e102",d:"109",q:"A host is 172.16.5.130/25. What is its network address, and how many usable host addresses does that subnet have?",
+     o:[["172.16.5.128, with 126 usable hosts","Right. A /25 splits the last octet into blocks of 128 (.0 and .128). 128 addresses minus network and broadcast leaves 126."],
+        ["172.16.5.0, with 254 usable hosts","That's a /24. With /25, .130 falls in the upper half."],
+        ["172.16.5.128, with 128 usable hosts","128 is the block size. Two addresses go to the network and broadcast."],
+        ["172.16.5.130, with 126 usable hosts","The network address is where the block starts, .128, not the host's own address."]],a:0},
+    {v:"e102",d:"109",q:"App servers on the network can't connect to the database. ss -tlnp on the database server shows this. What's the MOST likely cause?",code:"$ ss -tlnp\nLISTEN 0 128 127.0.0.1:5432 0.0.0.0:* users:((\"postgres\",pid=812,fd=6))",
+     o:[["PostgreSQL is listening only on localhost, so remote connections are refused","Right. 127.0.0.1 means only programs on the same machine can reach it. It needs to listen on the server's network address."],
+        ["The firewall blocks port 5432","Possible on some servers, but this output already shows a cause: it isn't listening on the network at all."],
+        ["The database service isn't running","It's running and listening, just not on a network address."],
+        ["DNS can't resolve the database server's name","Nothing here points to DNS. The listener itself is local only."]],a:0},
+    {v:"e102",d:"110",q:"As part of a hardening review, you need every SUID-root regular file on the system. Which command?",
+     o:[["find / -perm -4000 -user root -type f 2>/dev/null","Right. -perm -4000 matches files with the SUID bit set (along with any other bits), owned by root."],
+        ["find / -perm -2000 -user root -type f 2>/dev/null","2000 is SGID, not SUID."],
+        ["find / -perm -1000 -type f 2>/dev/null","1000 is the sticky bit."],
+        ["chmod -R u-s /","That REMOVES the SUID bit from everything and would break programs like passwd and sudo."]],a:0},
+    {v:"e102",d:"110",q:"A vendor sent report.pdf and report.pdf.sig, and you've imported their public key. Which command checks that the file wasn't changed AND came from them?",
+     o:[["gpg --verify report.pdf.sig report.pdf","Right. It checks the detached signature against the file using the vendor's public key."],
+        ["gpg --decrypt report.pdf","The file isn't encrypted, and decrypting doesn't prove who sent it."],
+        ["sha256sum report.pdf","A hash shows whether the file changed only if you have a trusted hash to compare. It says nothing about who sent it."],
+        ["gpg --sign report.pdf","That signs the file with YOUR key. It doesn't check theirs."]],a:0}
+  ],
+  pbqs:[
+    {id:"pkgs",kind:"table",short:"Debian vs RPM",title:"Same task, two package families",dom:"Exam 101 · 102.4 · 102.5",
+     scenario:"Your shop runs Ubuntu and Rocky Linux servers. For each task, pick the command for each family.",
+     cols:["Debian / Ubuntu","Red Hat / Rocky"],
+     opts:[["dpkg -L","apt-get update","dpkg -i","apt-cache search","apt-get install","dpkg -S"],["rpm -qf","dnf install","rpm -qa","rpm -ql","dnf check-update","rpm -i"]],
+     rows:[
+       {req:"Install nmap from the configured repositories.",a:[4,1],why:"apt-get install nmap on Debian; dnf install nmap on Rocky (yum on older releases)."},
+       {req:"Find which installed package owns /usr/bin/curl.",a:[5,0],why:"dpkg -S /usr/bin/curl and rpm -qf /usr/bin/curl both map a file to its package."},
+       {req:"List every file the openssh-server package installed.",a:[0,3],why:"dpkg -L openssh-server and rpm -ql openssh-server list a package's files."},
+       {req:"Install a vendor's agent from a downloaded package file.",a:[2,5],why:"dpkg -i agent.deb and rpm -i agent.rpm install a local file. (dnf install ./agent.rpm also works and pulls dependencies.)"},
+       {req:"Refresh the list of available packages before patching.",a:[1,4],why:"apt-get update downloads fresh package lists; dnf check-update refreshes metadata and shows pending updates."}]},
+    {id:"triage",kind:"match",short:"Read the output",title:"Triage six server problems",dom:"Exam 101 and 102 · 103 · 104 · 109 · 110",
+     scenario:"Each snippet comes from a different server ticket. Pick what it shows. Each answer is used once; two are distractors.",
+     pick:"What it shows",choices:["Disk full","Out-of-memory kill","Localhost-only listener","Suspicious SUID file","No default route","File system errors","Wrong DNS server","Expired password"],
+     items:[
+       {src:"df -h · web2",log:"Filesystem      Size  Used Avail Use% Mounted on\n/dev/sda3        20G   20G     0 100% /var",a:0,why:"/var is at 100%. Logs and databases there will start failing. Find the space with du and clean or grow it."},
+       {src:"journalctl -k · app4",log:"kernel: Out of memory: Killed process 4812 (java) total-vm:8123456kB, anon-rss:6020112kB",a:1,why:"The kernel's OOM killer ended the biggest process to free memory. Check free -m and the app's memory settings."},
+       {src:"ss -tlnp · db1",log:"LISTEN 0  151  127.0.0.1:3306  0.0.0.0:*  users:((\"mysqld\",pid=901,fd=21))",a:2,why:"MySQL accepts connections only from the same host. Remote app servers will be refused until it listens on a network address."},
+       {src:"find / -perm -4000 · ws07",log:"-rwsr-xr-x 1 root root 1183448 Nov  9 03:12 /tmp/.cache/bash",a:3,why:"A SUID-root copy of bash hidden in /tmp gives anyone a root shell. Classic attacker persistence: escalate it as an incident."},
+       {src:"ip route · branch3",log:"10.20.0.0/24 dev eth0 proto kernel scope link src 10.20.0.15",a:4,why:"Only the local subnet route exists. With no default route, the host can't reach anything off 10.20.0.0/24."},
+       {src:"dmesg · nas1",log:"EXT4-fs error (device sdb1): ext4_lookup:1601: inode #131074: comm ls: deleted inode referenced: 131590",a:5,why:"The kernel found file system corruption. Unmount the file system and run fsck (e2fsck) on it."}]}
+  ],
+  before:[["Linux Essentials","Optional, if the Linux command line is new to you"]],
+  next:[["Security+","The core security cert on the DoD 8140 matrix"],["Azure Administrator","Run Linux and Windows servers in the cloud"],["SAL1","Use your Linux skills on SOC work","SAL1 · Security Analyst L1"]],
+  hereNote:"The Linux admin cert for servers and cloud",
+  mapSub:"LPIC-1 is the Linux admin step on the systems and cloud paths. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"5 years",text:"LPIC-1 stays active for 5 years. Renew it by passing the current 101 and 102 again, by earning LPIC-2 (which renews LPIC-1 to the same date), or with an LPI membership plus 20 professional development units (PDUs) a year.",after:"Your LPIC-1 must still be active when you earn LPIC-2."},
+    {lab:"DoD 8140",big:"Not listed",text:"LPIC-1 isn't on the DoD 8140 qualification matrix, so on its own it won't qualify you for a coded billet.",after:"Pair it with a cert that is on the matrix, such as Security+. Some positions also want proof you can run the operating system you'll manage, and LPIC-1 shows that for Linux."},
+    {lab:"Use it",big:"Cloud",text:"Most cloud servers run Linux. LPIC-1 plus an AWS or Azure cert is a strong pair for cloud admin and cloud security jobs.",after:"Use CG COOL for both vouchers."}],
+  sources:[
+    ["LPI: LPIC-1 overview (version 5.0, 60 questions, 90 minutes, 5 years)","https://www.lpi.org/our-certifications/lpic-1-overview/"],
+    ["LPI Wiki: LPIC-1 objectives V5.0 (weights)","https://wiki.lpi.org/wiki/LPIC-1_Objectives_V5.0"],
+    ["LPI: renewal options (retake, higher level, membership with 20 PDUs a year)","https://www.lpi.org/our-certifications/renewal/"],
+    ["LPI: exam price tiers (US $200 per LPIC exam)","https://www.lpi.org/articles/linux-professional-insitute-lpi-adjusting-exam-prices/"],
+    ["Pearson VUE: LPI exams (languages, question types)","https://www.pearsonvue.com/us/en/lpi.html"]]
+};
+
+GUIDES["Project+"]={
+  id:"projplus",
+  lead:"CompTIA's entry-level project management cert. It proves you can run a small or medium IT project from start to finish: scope, schedule, budget, risk, change control and communication, in both waterfall and agile. Useful the first time you're put in charge of a cutover, a hardware refresh or a new system.",
+  checked:"Nov 10, 2026",
+  planHours:50,
+  objSub:"Four domains and 24 objectives from CompTIA's PK0-005 objectives. Tick objectives as you study; progress saves on this device.",
+  versions:{
+    v5:{code:"PK0-005",label:"V5",status:"V5 · launched Nov 8, 2022 · passing 710",
+      note:"The only version on sale. CompTIA hasn't announced a retirement date or a new version yet. It says exams usually retire about three years after launch, so check the exam page before you buy a voucher.",
+      numbered:true,onote:"Official CompTIA objectives (PK0-005), in plain words. Domain weights are from CompTIA's exam page.",
+      domains:[
+        {n:"1.0",name:"Project Management Concepts",w:33,obj:[
+          ["Project characteristics, methodologies and frameworks","Projects are temporary and unique, with a start and finish; programs and portfolios; waterfall, Scrum, Kanban, XP, SAFe, PRINCE2, DevOps, DevSecOps and the SDLC."],
+          ["Agile vs waterfall","Choosing by tolerance for change, how clear the requirements are, budget and schedule; team makeup and roles; how communication differs."],
+          ["Change control","Log and review change requests, assess the impact, take them to the decision maker or change control board, update the plan, then validate and communicate. Product vs project change; scope creep."],
+          ["Risk management","Known and unknown risks; qualitative vs quantitative analysis; responses to threats (avoid, mitigate, transfer, accept) and opportunities (exploit, enhance, share, accept); risk owners."],
+          ["Issue management","Issue logs, owners and escalation paths; root cause analysis, contingency plans and workarounds; documenting the outcome."],
+          ["Schedule development and management","Milestones, activities and sprint goals; dependencies like finish-to-start; estimates, story points and buffers; critical path; revise the baseline vs rebaseline."],
+          ["Quality and performance management","Retrospectives and lessons learned; SLAs, KPIs and OKRs; cost and schedule variance; audits; unit, smoke, regression, stress and user acceptance testing."],
+          ["Communication management","Synchronous vs asynchronous, formal vs informal, internal vs external; time zones and language; keeping records; revising the communication plan."],
+          ["Meeting management","Workshops, stand-ups, demos, status and steering meetings; agendas, timeboxing, facilitator and scribe; minutes and action items."],
+          ["Team and resource management","Functional, matrix and projectized organizations; resource gaps; forming, storming, norming, performing, adjourning; sponsor, product owner, Scrum master, SMEs."],
+          ["Procurement and vendor selection","Build, buy, lease or subscribe; RFI, RFQ, RFP and RFB; best value vs lowest cost; fixed price, time and materials, cost plus; MSA, SOW, PO and NDA."]]},
+        {n:"2.0",name:"Project Life Cycle Phases",w:30,obj:[
+          ["Discovery and concept artifacts","Business case and ROI, current vs future state, prequalified vendors and existing contracts, SOWs, CapEx vs OpEx."],
+          ["Initiation","Project charter with objectives, success criteria and preliminary scope; stakeholders; a RACI matrix; access requirements; the kickoff meeting."],
+          ["Planning","Assign resources; communication plan, scope statement, WBS or backlog, schedule, budget, quality plan, risk assessment, transition and release plans; baselines."],
+          ["Execution","Work the plan; organizational change (training, adoption); manage vendors; track progress, budget and timeline; resolve conflict; phase gate reviews."],
+          ["Closing","Validate deliverables, close contracts, remove access, release resources, write the closeout report, archive documents, reconcile the budget, get sign-off."]]},
+        {n:"3.0",name:"Tools and Documentation",w:19,obj:[
+          ["Project tools","Gantt, burndown, PERT and network diagrams, milestone charts; issue, defect and change logs; risk register; status reports, dashboards, task boards and a requirements traceability matrix."],
+          ["Productivity tools","Communication, collaboration, meeting, office, scheduling and ticketing tools, in the cloud or on premises."],
+          ["Quality and performance charts","Histograms, Pareto, run, control and scatter charts, fishbone diagrams, burnup and burndown, velocity charts and decision trees."]]},
+        {n:"4.0",name:"Basics of IT and Governance",w:18,obj:[
+          ["ESG factors","A project's effect on the environment, regulations and standards, company values and brand."],
+          ["Information security","Physical (devices, media, facility access), operational (screening, clearances), digital (permissions, remote access, MFA) and data security (classification, need to know)."],
+          ["Compliance and privacy","PII and PHI, legal and regulatory requirements, privacy laws by country and state, industry rules."],
+          ["IT concepts","Infrastructure (compute, multitier, networking, storage), IaaS, PaaS and SaaS, and enterprise software like ERP, CRM and databases."],
+          ["Operational change control","Maintenance windows, user notifications, rollback plans and validation checks; software change approval and testing; CI/CD; production vs staging."]]}
+      ]}
+  },
+  extras:[
+    {kind:"rows",title:"Risk responses",sub:"1.4 · threats and opportunities",rows:[
+      ["Avoid","Threat","Change the plan so the risk can't happen"],
+      ["Mitigate","Threat","Lower the chance or the impact"],
+      ["Transfer","Threat","Shift the impact to someone else: insurance, contract, vendor"],
+      ["Accept","Either","Do nothing now; keep a contingency ready"],
+      ["Exploit","Opportunity","Make sure it happens"],
+      ["Enhance","Opportunity","Raise the chance or the benefit"],
+      ["Share","Opportunity","Team up with someone who can help capture it"]]},
+    {kind:"steps",title:"Change control",sub:"1.3 · in order",rows:[
+      "Receive the change request and log it.",
+      "Assess the impact on scope, schedule, cost, quality and risk.",
+      "Recommend a decision and take it to the decision maker or change control board.",
+      "If approved, update the plan and baselines.",
+      "Implement the change and validate it.",
+      "Tell stakeholders the result and close the request."]},
+    {kind:"rows",title:"Documents by phase",sub:"2.0 · 3.1",wide:true,rows:[
+      ["Business case","Discovery","Why do it: costs, ROI, current vs future state"],
+      ["Charter","Initiation","Authorizes the project and names the PM"],
+      ["RACI matrix","Initiation","Who's Responsible, Accountable (only one), Consulted, Informed"],
+      ["WBS","Planning","Breaks the scope into work packages you can estimate"],
+      ["Risk register","Planning on","Every risk, its owner, its response"],
+      ["Issue log","Execution","Problems happening now, with owners"],
+      ["Change log","Execution","Every change request and its decision"],
+      ["Closeout report","Closing","Results, lessons learned, sign-off"]]},
+    {kind:"rows",title:"Schedule and cost math",sub:"1.6 · 1.7",rows:[
+      ["Critical path","Longest path","Zero float. Any slip delays the whole project"],
+      ["Float (slack)","LS − ES","How long a task can slip without delaying the end"],
+      ["Cost variance","EV − AC","Negative means over budget"],
+      ["Schedule variance","EV − PV","Negative means behind schedule"],
+      ["CPI","EV ÷ AC","Below 1 means over budget"],
+      ["SPI","EV ÷ PV","Below 1 means behind schedule"]]}
+  ],
+  facts:[["Questions","90","maximum"],["Time","90","minutes"],["Passing","710","on a 100–900 scale"],["Format","MCQ","+ PBQs"],["Study","40–60","hours"],["Voucher","$390","US list price"],["Valid","3","years (since Oct 2025)"],["DoD 8140","Not listed","Security+ is"]],
+  method:[
+    ["Map","Use the four domains above as your checklist. Domains 1.0 and 2.0 are almost two-thirds of the exam."],
+    ["Learn","Pick one book or video course and finish it. Learn the vocabulary exactly: CompTIA's answers turn on the right term."],
+    ["Do","Run a real small project at your unit, or plan a pretend one: write a charter, a WBS, a RACI, a Gantt chart and a risk register."],
+    ["Recall","Flashcards for risk responses, documents by phase, chart types, contract types and the change control steps."],
+    ["Test","Timed practice exams. Review every miss, especially the “what should the PM do FIRST” questions."]],
+  tips:[
+    ["Follow the process","When a stakeholder asks for a change, the answer is almost never “just do it.” It goes through change control."],
+    ["Know the phase","Many questions are really asking which phase you're in. Name the phase first, then pick the action."],
+    ["Read the qualifier","FIRST, BEST and NEXT change the answer. Several options can be true; only one fits the qualifier."],
+    ["Flag the PBQs","Performance-based questions can eat time. Flag them, finish the multiple choice, then come back."]],
+  resources:[
+    {group:"Official",items:[
+      ["Project+ exam page","CompTIA","https://www.comptia.org/en-us/certifications/project/","Free","Exam details, the domain summary and voucher options."],
+      ["Project+ moves to continuing education","CompTIA Help Center","https://help.comptia.org/hc/en-us/articles/40383243876500-Server-and-Project-Transition-to-CE-Certifications","Free","What changed on Oct 1, 2025 and the renewal deadline for existing holders."],
+      ["CompTIA CertMaster","CompTIA","","Paid","CompTIA's own course and practice. The difficulty reference for this site's questions."]]},
+    {group:"Books",items:[
+      ["CompTIA Project+ Study Guide: Exam PK0-005","Sybex","","Paid","A full study guide with review questions."],
+      ["CompTIA Project+ All-in-One Exam Guide (PK0-005)","McGraw Hill","","Paid","Another complete book with practice questions."]]},
+    {group:"Free practice",items:[
+      ["The Scrum Guide","Scrum.org and Scrum Inc.","https://scrumguides.org","Free","The short official definition of Scrum roles, events and artifacts."],
+      ["Agile Coach","Atlassian","https://www.atlassian.com/agile","Free","Plain-language articles on Scrum, Kanban, sprints, backlogs and burndown charts."],
+      ["ProjectLibre","ProjectLibre","https://www.projectlibre.com","Free","Free desktop scheduling tool. Build a Gantt chart and watch the critical path change."]]}
+  ],
+  quiz:[
+    {d:"1.0",q:"A server cutover is scheduled for the same week as an exercise that could pull your key techs away. The PM moves the cutover two weeks later so the conflict can't happen. Which risk response is this?",
+     o:[["Avoid","Right. Changing the plan so the risk can no longer occur is avoidance."],
+        ["Mitigate","Mitigation lowers the chance or impact, like cross-training a backup tech. Here the risk is removed entirely."],
+        ["Transfer","Transfer shifts the impact to a third party, like a contract or insurance."],
+        ["Accept","Accepting means keeping the date and living with the risk."]],a:0},
+    {d:"1.0",q:"A new contract vehicle would cut hardware costs 20% if the order is placed before month end. The PM assigns a buyer full time to make sure it's placed in time. Which response is this?",
+     o:[["Exploit","Right. Exploit means acting to make sure a positive risk (an opportunity) actually happens."],
+        ["Enhance","Enhance raises the chance or size of the benefit without making it certain."],
+        ["Share","Share means teaming up with another party to capture the opportunity."],
+        ["Mitigate","Mitigate is a response to threats, not opportunities."]],a:0},
+    {d:"1.0",q:"Midway through a project, a division chief asks one of your techs directly to add a new reporting feature. What should happen FIRST?",
+     o:[["Submit a change request so it's logged and its impact is assessed","Right. Every change goes through change control: log it, assess scope, schedule, cost and risk, then get a decision."],
+        ["Add it if the tech says it's small","That's scope creep. Small unplanned changes add up and nobody approved them."],
+        ["Update the schedule baseline to include it","The baseline changes only after a change is approved."],
+        ["Have the sponsor approve it right away","The decision maker needs the impact analysis first. Approval comes after assessment."]],a:0},
+    {d:"1.0",q:"Task A (3 days) starts the project. Tasks B (5 days) and C (2 days) both follow A. Task D (4 days) follows C. Task E (2 days) follows both B and D. What is the project's length, and which task has float?",
+     o:[["11 days; task B has 1 day of float","Right. A-C-D-E = 3+2+4+2 = 11 days is the critical path. A-B-E = 10 days, so B can slip 1 day."],
+        ["10 days; task C has 1 day of float","A-B-E is 10 days, but the longest path sets the length. A-C-D-E is 11, and C is on it."],
+        ["11 days; no task has float","B isn't on the critical path, so it has float."],
+        ["16 days; every task is critical","You don't add every task: B and the C-D chain run at the same time."]],a:0},
+    {d:"1.0",q:"Two weeks into a project, team members argue over roles and push back on the PM's decisions. Which stage of team development is this?",
+     o:[["Storming","Right. Conflict over roles and authority is storming. The PM helps the team work through it."],
+        ["Forming","Forming is the polite, getting-to-know-you start."],
+        ["Norming","In norming the team has settled its roles and works together."],
+        ["Adjourning","Adjourning is when the project ends and the team breaks up."]],a:0},
+    {d:"1.0",q:"A unit is replacing on-premises email with a cloud suite. A policy fixes the requirements, the contract has a firm delivery date, and users can't test until cutover. Which approach fits BEST?",
+     o:[["Waterfall","Right. Fixed requirements, a fixed date and one big delivery with no chance for frequent user feedback suit a predictive, phase-by-phase plan."],
+        ["Scrum","Scrum fits changing requirements and users who can review working pieces every sprint."],
+        ["Kanban","Kanban suits a steady flow of ongoing work, like a help desk queue."],
+        ["Extreme Programming (XP)","XP is a set of software development practices, not a fit for a fixed service migration."]],a:0},
+    {d:"2.0",q:"Which document formally authorizes a project, names the project manager and states its high-level objectives?",
+     o:[["Project charter","Right. The charter is the initiation document that gives the PM authority to use resources."],
+        ["Statement of work (SOW)","A SOW describes the work a vendor or team will deliver. It doesn't authorize the project."],
+        ["Business case","The business case justifies the project in discovery, before it's authorized."],
+        ["Project management plan","That's built during planning, after the charter."]],a:0},
+    {d:"2.0",q:"In a draft RACI for a network refresh, three techs, the PM and the division chief are all marked A on the cutover task. What's wrong?",
+     o:[["Each task should have exactly one Accountable person","Right. Many people can be Responsible, but one person is Accountable so there's no confusion over who owns the result."],
+        ["Everyone doing the work should be marked A","People doing the work are Responsible (R)."],
+        ["Every task needs at least one Informed person","Not required, and it doesn't fix the problem of five owners."],
+        ["Consulted and Informed should be merged","C (asked before) and I (told after) are different on purpose."]],a:0},
+    {d:"2.0",q:"The customer has accepted the deliverables. Which of these is a CLOSING activity?",
+     o:[["Remove project access, release resources and archive the documents","Right. Closing also includes closing contracts, the closeout report, lessons learned and sign-off."],
+        ["Hold the kickoff meeting","Kickoff is at the end of initiation."],
+        ["Add newly found risks to the risk register","That's ongoing risk work during planning and execution."],
+        ["Run a phase gate review before the next phase","Phase gates sit between phases during execution."]],a:0},
+    {d:"2.0",q:"Leadership would rather pay monthly for a cloud service than buy servers up front. In budget terms, the project is shifting from:",
+     o:[["CapEx to OpEx","Right. Buying servers is a capital expense; a monthly subscription is an operating expense."],
+        ["OpEx to CapEx","That's backwards. Up-front purchases are capital expenses."],
+        ["Fixed price to time and materials","Those are contract types, not budget categories."],
+        ["ROI to TCO","Those are ways to evaluate cost and value, not types of expense."]],a:0},
+    {d:"3.0",q:"The help desk logged 400 outage tickets by cause. You want to show leadership the few causes behind most of the tickets so the team fixes those first. Which chart?",
+     o:[["Pareto chart","Right. Bars sorted from most to least, plus a cumulative line, show the vital few causes (the 80/20 rule)."],
+        ["Histogram","A histogram shows a distribution but isn't sorted to highlight the top causes."],
+        ["Fishbone diagram","A fishbone brainstorms the possible causes of ONE problem. It doesn't count tickets."],
+        ["Scatter diagram","A scatter diagram shows whether two variables are related."]],a:0},
+    {d:"3.0",q:"On a 10-day sprint burndown chart, the remaining-work line stays flat for days 1 to 4, then drops steeply. What does it MOST likely show?",
+     o:[["Work wasn't being completed early on, so the sprint goal is at risk. Look for blockers","Right. A flat line means nothing is being finished. A late cliff often means rushed work or late updates."],
+        ["The team is ahead of schedule","Ahead would put the line below the ideal line early, not flat."],
+        ["Work was added to the sprint","Added scope makes the line go UP, not stay flat."],
+        ["Velocity went up for the next sprint","One sprint's shape doesn't set the next sprint's velocity."]],a:0},
+    {d:"4.0",q:"A security patch must go to production servers. Which plan BEST follows operational change control?",
+     o:[["Test it in staging, schedule it in an approved maintenance window, notify users and keep a rollback plan","Right. Testing, approval, notification, a window and a way back are the core of IT change control."],
+        ["Install it in production during business hours so the team can watch it","Untested changes during peak hours put users at risk and skip approval."],
+        ["Try it on one production server first, without approval","Production isn't a test bed, and skipping approval breaks change control."],
+        ["Skip the notice because patching is routine","Users still need to know about outages and reboots."]],a:0},
+    {d:"4.0",q:"A vendor needs a list of users to create accounts. Your spreadsheet has names, SSNs, home addresses and duty phone numbers. What should the PM do?",
+     o:[["Send only the fields the vendor needs, through an approved encrypted channel, after confirming the contract covers handling PII","Right. Need to know and data minimization: share the least data, securely, under an agreement."],
+        ["Email the whole spreadsheet, since the vendor signed an NDA","An NDA doesn't make it OK to share SSNs and addresses the vendor doesn't need."],
+        ["Post it to the team's shared site so the vendor can download it","That exposes PII to everyone with access to the site."],
+        ["Refuse to give the vendor any data","The project still needs accounts. The answer is minimum data, shared safely."]],a:0}
+  ],
+  pbqs:[
+    {id:"phase",kind:"table",short:"Phase and document",title:"Name the phase and the document",dom:"2.0 · 3.1",
+     scenario:"You're running a network refresh for your unit. For each moment, pick the phase you're in and the document you'd use.",
+     cols:["Phase","Document"],
+     opts:[["Discovery","Initiation","Planning","Execution","Closing"],["Risk register","Charter","Closeout report","Business case","WBS","Issue log","RACI matrix","Change log"]],
+     rows:[
+       {req:"Leadership wants to know why the refresh is worth funding: costs, ROI, and today vs after.",a:[0,3],why:"The business case justifies the project during discovery, before it's approved."},
+       {req:"The commanding officer formally approves the project and names you project manager.",a:[1,1],why:"The charter authorizes the project and the PM. It's the key initiation document."},
+       {req:"Decide who does, who owns, who's asked and who's told for each task.",a:[1,6],why:"The RACI is built in initiation, alongside identifying stakeholders."},
+       {req:"Break the scope into small work packages the team can estimate.",a:[2,4],why:"The work breakdown structure is a planning document."},
+       {req:"The switches arrive damaged. You record it, assign an owner and track it to resolution.",a:[3,5],why:"A problem happening now is an issue, tracked in the issue log during execution."},
+       {req:"Record the results, the lessons learned and the sign-off.",a:[4,2],why:"The closeout report wraps up the project."}]},
+    {id:"risk",kind:"match",short:"Risk responses",title:"Pick the risk response",dom:"1.4",
+     scenario:"Each line is a decision you made on a project. Pick the risk response. Each answer is used once; one is a distractor.",
+     pick:"Response",choices:["Avoid","Mitigate","Transfer","Accept","Exploit","Enhance","Share"],
+     items:[
+       {src:"Risk 1 · threat",text:"Your only firewall expert might transfer mid-project. You pair a second tech with them now so the knowledge isn't lost.",a:1,why:"Mitigate: you can't stop the transfer, but you lower its impact."},
+       {src:"Risk 2 · threat",text:"Migrating an unsupported old system could break the cutover, so you drop it from scope.",a:0,why:"Avoid: changing the scope removes the risk entirely."},
+       {src:"Risk 3 · threat",text:"The contract makes the vendor pay for any delay their late hardware causes.",a:2,why:"Transfer: the financial impact shifts to the vendor through the contract."},
+       {src:"Risk 4 · threat",text:"There's a small chance the training room projector fails. You decide to live with it.",a:3,why:"Accept: the impact is low, so you take no action now."},
+       {src:"Risk 5 · opportunity",text:"A sister unit is buying the same licenses. You combine the orders so both units get the volume discount.",a:6,why:"Share: you team up with another party to capture an opportunity."},
+       {src:"Risk 6 · opportunity",text:"Finishing early would let your unit join a pilot program. You add a second shift to raise the odds.",a:5,why:"Enhance: you raise the chance of the good outcome without guaranteeing it."}]},
+    {id:"charts",kind:"match",short:"Choose the chart",title:"Choose the chart",dom:"3.1 · 3.3",
+     scenario:"Each request came from your sponsor. Pick the chart or tool that answers it. Each answer is used once; two are distractors.",
+     pick:"Chart",choices:["Gantt chart","Burndown chart","Pareto chart","Fishbone diagram","Scatter diagram","Control chart","Histogram","Decision tree"],
+     items:[
+       {src:"Request 1",text:"Show every task on a timeline with its dates and dependencies.",a:0,why:"A Gantt chart shows tasks as bars over time, with dependencies."},
+       {src:"Request 2",text:"Show how much sprint work is left each day compared with the ideal pace.",a:1,why:"A burndown chart tracks remaining work against an ideal line."},
+       {src:"Request 3",text:"Find the few causes behind most of the outage tickets.",a:2,why:"A Pareto chart sorts causes by count with a cumulative line."},
+       {src:"Request 4",text:"Brainstorm every possible cause of slow logins, grouped by people, process and technology.",a:3,why:"A fishbone (cause and effect) diagram groups possible causes of one problem."},
+       {src:"Request 5",text:"Check whether more users online means longer page load times.",a:4,why:"A scatter diagram shows whether two variables move together."},
+       {src:"Request 6",text:"Compare the expected value of buying vs leasing, with the chances of each outcome.",a:7,why:"A decision tree weighs options by probability and value."}]}
+  ],
+  before:[["A+","Optional. Helps you understand the IT work you'll manage"]],
+  next:[["Security+","The cert the DoD 8140 matrix accepts for IT project manager roles"],["CISSP","Senior security leadership"]],
+  hereNote:"Project management skills for leading IT work",
+  mapSub:"Project+ adds PM skills to any path. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"3 years",text:"Earned on or after Oct 1, 2025: renew every 3 years with 30 continuing education units (CEUs) and the CE fee, or by passing the current Project+ exam again.",after:"Earned by Sep 30, 2025: it's good for life. CompTIA also gave those holders a Project+ ce version they can keep active (first deadline Oct 1, 2028). Renewing Project+ doesn't renew any other CompTIA cert."},
+    {lab:"DoD 8140",big:"Not listed",text:"Project+ isn't on the DoD 8140 matrix. For the IT Project Manager (802) and Program Manager (801) work roles, CompTIA lists Security+ and SecurityX as the approved certs.",after:"If you're filling a coded project billet, get Security+ first. Project+ adds the project skills on top."},
+    {lab:"Use it",big:"PM basics",text:"Good for anyone who leads cutovers, refreshes or installs. Use CG COOL for the voucher.",after:"If you go civilian, it's a first step toward PMI's CAPM and PMP."}],
+  sources:[
+    ["CompTIA: Project+ exam page (V5, PK0-005, 90 questions, 90 minutes, 710)","https://www.comptia.org/en-us/certifications/project/"],
+    ["CompTIA: PK0-005 exam objectives (PDF)","https://lecbyo.files.cmp.optimizely.com/download/1e3fdde6bef111ef9a101a9f1320ff57"],
+    ["CompTIA: the new Project+, your questions answered (launch date, weights)","https://www.comptia.org/en/blog/the-new-comptia-project-your-questions-answered/"],
+    ["CompTIA Help Center: Server+ and Project+ move to CE (Oct 1, 2025)","https://help.comptia.org/hc/en-us/articles/40383243876500-Server-and-Project-Transition-to-CE-Certifications"],
+    ["CompTIA: CEUs required by cert (Project+ 30)","https://www.comptia.org/en/resources/ce/choose/renewing-with-multiple-activities/it-industry-participation/"],
+    ["CompTIA: certifications aligned to DoD 8140 work roles","https://www.comptia.org/en/resources/comptia-framework-alignment/"],
+    ["CBT Nuggets: Project+ exam fee ($390)","https://www.cbtnuggets.com/certification-playlist/comptia/project-plus"]]
+};
+
 var G_SECS=[["obj","Objectives"],["plan","Study plan"],["res","Resources"],["quiz","Quiz"],["pbq","PBQs"],["map","Roadmap"],["keep","Keep it"]];
 var G_ICON_EXT='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
 
@@ -7928,8 +8948,8 @@ function renderGuide(i,name){
   gVer=gGet("cgcp."+G.id+".ver");if(typeof gVer!=="string"||!Object.prototype.hasOwnProperty.call(G.versions,gVer)) gVer=Object.keys(G.versions)[0];
   gHpw=gGet("cgcp."+G.id+".hpw");if([6,10,15].indexOf(gHpw)<0) gHpw=10;
   var c=v.certs.filter(function(x){return x[0]===name;})[0]||["",""," ","",""];
-  /* the exam's publisher (not the WGU line the guide may have been opened from) */
-  var pub=(VENDORS.filter(function(x){return x.id!=="wgu"&&x.certs.some(function(cc){return cc[0]===name;});})[0]||v).name;
+  /* the exam's publisher (not the page the guide may have been opened from) */
+  var pub=(VENDORS.filter(function(x){return x.id!=="colleges"&&x.certs.some(function(cc){return cc[0]===name;});})[0]||v).name;
   var h='';
   h+='<nav class="g-nav pr" aria-label="Guide sections"><button type="button" class="g-nav-back" id="g-nav-back" aria-label="Back to '+gEsc(v.name)+'"><span class="ar" aria-hidden="true">&larr;</span><span class="gb-full">'+gEsc(v.name)+'</span><span class="gb-short" aria-hidden="true">'+gEsc(v.short)+'</span></button><span class="g-nav-lab" aria-hidden="true">Jump to</span><div class="g-nav-in" id="g-nav">'+G_SECS.map(function(s,k){return '<button type="button" data-sec="'+s[0]+'"'+(k?'':' aria-current="true"')+'><span>'+pad2(k+1)+'</span>'+s[1]+'</button>';}).join("")+'<span class="g-nav-ind" aria-hidden="true"></span></div></nav>';
   h+='<div class="p-hero g-hero"><div class="p-hero-main"><p class="p-eyebrow pr"><span>'+gEsc(v.name)+'</span> / '+gEsc(c[1])+' &nbsp;&middot;&nbsp; Cert guide</p>'+
@@ -8108,7 +9128,7 @@ function gObjectives(G,anim1){
       '<button type="button" class="g-dh" aria-expanded="'+op+'" aria-controls="'+id+'"><span class="g-dn">'+d.n+'</span><span class="g-dt">'+gEsc(d.name)+'</span>'+
       '<span class="g-dw"><b>'+d.w+'</b>%</span><span class="g-dc" data-dc="'+k+'">0/'+d.obj.length+'</span><span class="g-dchev" aria-hidden="true">+</span></button>'+
       '<div class="g-dd" id="'+id+'"'+(op?'':' inert')+'><div class="g-din"><ul class="g-olist">'+d.obj.map(function(o,j){
-        var oid=k+"-"+j, isDone=done.indexOf(oid)>=0, num=V.numbered?(k+1)+"."+(j+1):pad2(j+1);
+        var oid=k+"-"+j, isDone=done.indexOf(oid)>=0, num=o[3]?gEsc(o[3]):V.numbered?(k+1)+"."+(j+1):pad2(j+1);
         return '<li class="g-o'+(isDone?' done':'')+'"><button type="button" class="g-ck" role="checkbox" aria-checked="'+isDone+'" data-id="'+oid+'" aria-label="Mark studied: '+gEsc(o[0])+'"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4 5 8.8l4.6-5.4"/></svg></button>'+
           '<span class="g-on">'+num+'</span><span class="g-ot"><b>'+gEsc(o[0])+(o[2]?' <em class="g-new">New</em>':'')+'</b><small>'+gEsc(o[1])+'</small></span></li>';}).join("")+
       '</ul>'+(V.onote?'<p class="g-onote">'+gEsc(V.onote)+'</p>':'')+'</div></div></div>';
@@ -8171,7 +9191,7 @@ function gQuizRender(anim1){
   box.innerHTML=
     '<div class="g-qtop"><span class="lab">Question <b>'+pad2(gQ.i+1)+'</b> / '+pad2(n)+'</span><span class="g-qd">'+(q.v?gEsc(G.versions[q.v].label)+' &middot; ':'Domain ')+q.d+'</span>'+(best!=null?'<span class="g-qbest">Best '+best+'/'+n+'</span>':'')+'</div>'+
     '<div class="g-qbar"><i style="transform:scaleX('+(gQ.i/n)+')"></i></div>'+
-    '<p class="g-qq" id="g-qq">'+gEsc(q.q)+'</p>'+
+    '<p class="g-qq" id="g-qq">'+gEsc(q.q)+'</p>'+(q.code?'<pre class="g-qcode">'+gEsc(q.code)+'</pre>':'')+
     '<div class="g-qopts" role="radiogroup" aria-labelledby="g-qq">'+ord.map(function(j,m){return '<button type="button" class="g-qo" role="radio" aria-checked="false" data-j="'+j+'"><span class="g-ql">'+"ABCD"[m]+'</span><span class="g-qt">'+gEsc(q.o[j][0])+'</span><span class="g-qm" aria-hidden="true"></span></button>';}).join("")+'</div>'+
     '<div class="g-qx" id="g-qx"><div class="g-qx-in"></div></div>'+
     '<div class="g-qact"><span class="g-qhint">Pick an answer, then check it.</span><button type="button" class="g-btn" id="g-qgo" disabled><span class="g-btn-l">Check answer</span></button></div>';
@@ -8374,7 +9394,7 @@ async function closeGuide(o){
 })();
 /* go to a cert/vendor from anywhere (search, roadmap) */
 async function openCertFrom(e){
-  var name=e.kind==="cert"?e.name:null, hasG=!!(name&&GUIDES[name]);
+  var name=(e.kind==="cert"||e.kind==="college")?e.name:null, hasG=!!(name&&e.kind==="cert"&&GUIDES[name]);
   if(state==="open"){
     if(e.v!==current){await switchVendor(e.v>current?1:-1,e.v,hasG?name:null);if(name&&!hasG) setTimeout(function(){revealCert(name);},380);}
     else if(hasG){if(guideName===name) scrollPanelTo(0);else openGuide(name);}
@@ -8397,9 +9417,9 @@ var ALIAS={"A+":"a plus core 1 core 2 220-1101 220-1102 220-1201 220-1202 v15 he
  "CCSP":"certified cloud security professional ccsp isc2 cloud security 2026 outline cat adaptive shared responsibility csa ccsk guide","CISSP":"certified information systems security professional cissp isc2 2024 outline cat adaptive associate of isc2 risk management leadership manager guide","CCST Networking":"100-150 cisco certified support technician ccst net networking basics guide",
  "CCST Cybersecurity":"100-160 cisco certified support technician ccst cyber security guide","CCNA Cybersecurity":"200-201 ccnacbr cbrops cyberops associate cyber ops cisco certified cybersecurity associate soc analyst blue team guide","CCNA":"200-301 cisco certified network associate routing switching ospf vlan v1.1 v2.0 guide",
  "CCNP Security":"350-701 scor v2.0 cisco certified network professional security sncf sise ssca sdsi 300-710 300-715 300-740 300-745 ise firepower guide","SAL1 · Security Analyst L1":"sal1 sal 1 soc analyst level 1 blue team soc simulator tryhackme thm guide","PT1 · Junior Pentester":"pt1 pt 1 jr junior pentest penetration tester red team tryhackme thm guide",
- "Linux Essentials":"010-160 lpi","LPIC-1":"lpic1 101-500 102-500","Cloud Practitioner":"clf-c02 ccp aws amazon","Solutions Architect Associate":"saa saa-c03 aws amazon",
+ "Linux Essentials":"010-200 010-160 lpi le linux essentials 2.0 1.6 linux basics command line guide","LPIC-1":"lpic1 lpic 1 101-500 102-500 101 102 lpi linux administrator sysadmin guide","Cloud Practitioner":"clf-c02 ccp aws amazon","Solutions Architect Associate":"saa saa-c03 aws amazon",
  "Security Specialty":"scs-c02 scs-c03 aws amazon","Azure Fundamentals":"az-900 microsoft","Azure Administrator":"az-104 microsoft","Azure Security Engineer":"az-500 microsoft",
- "Project+":"project plus pk0-005 project management"};
+ "Project+":"project plus pk0-005 v5 project management pm agile scrum waterfall guide"};
 var POPULAR=["Security+","Network+","CCNA","CISSP","SAL1 · Security Analyst L1","Cloud Practitioner"];
 var FILTERS=[["all","All"],["20 year career","20 year career"],["Cyber eng","Cyber"],["Cloud security","Cloud"],["Network eng","Network"],["d8140","DoD 8140"]];
 function snorm(s){return String(s).toLowerCase().replace(/\+/g," plus ").replace(/[^a-z0-9]+/g," ").trim();}
@@ -8409,17 +9429,14 @@ var SIDX=[];
   var WG=VENDORS.length-1;
   function iatAlt(i){if(!i) return "";var n={"I":1,"II":2,"III":3}[i.split(" ")[1]];return i+" iat"+n+" iat "+n+" dod 8570 baseline";}
   function addCert(c,i,label){
-    var e={kind:"cert",key:"c:"+c[0],name:c[0],v:i,vendor:label,lvl:c[1],d:c[2],hrs:c[3],iat:c[4],d8:is8140(c[0]),tags:c[5].slice(),wgu:i===WG,
+    var e={kind:"cert",key:"c:"+c[0],name:c[0],v:i,vendor:label,lvl:c[1],d:c[2],hrs:c[3],iat:c[4],d8:is8140(c[0]),tags:c[5].slice(),wgu:!!WGU_IN[c[0]],
       fields:[[snorm(c[0]),100],[snorm(ALIAS[c[0]]||""),70],[snorm(label+" "+VENDORS[i].short+" "+VENDORS[i].name),40],[snorm(c[1]+" "+iatAlt(c[4])+(is8140(c[0])?" dod 8140 approved":"")+" "+c[5].join(" ")),30]]};
-    if(i===WG) e.fields.push([snorm("wgu degree bs csia"),25]);
+    if(WGU_IN[c[0]]) e.fields.push([snorm("wgu degree "+WGU_IN[c[0]].join(" ")),25]);
     SIDX.push(e);
   }
   VENDORS.forEach(function(v,i){if(i!==WG) v.certs.forEach(function(c){addCert(c,i,v.name);});});
-  VENDORS[WG].certs.forEach(function(c){
-    var hit=null;SIDX.forEach(function(e){if(e.name===c[0]) hit=e;});
-    if(hit){hit.wgu=true;hit.fields.push([snorm("wgu degree bs csia"),25]);} else addCert(c,WG,c[1]);
-  });
   VENDORS.forEach(function(v,i){
+    if(i===WG) return;   /* the Colleges page has its own page entry below */
     SIDX.push({kind:"vendor",key:"v:"+v.id,name:v.name,v:i,fields:[[snorm(v.name),90],[snorm(v.short+" "+v.id+(v.id==="thm"?" try hack me":"")+(v.id==="aws"?" amazon web services":"")),60],[snorm(v.blurb),10]]});
   });
   SIDX.push({kind:"page",key:"p:home",page:"home",name:"Explore overview",sub:"Explore · cards for every section",fields:[[snorm("explore overview"),95],[snorm("explore home menu sections start overview"),55]]});
@@ -8430,6 +9447,11 @@ var SIDX=[];
   SIDX.push({kind:"page",key:"p:fund",page:"cool",fund:"ta",name:"Funding",sub:"Explore · Tuition Assistance for college, CG COOL for certs",fields:[[snorm("funding"),95],[snorm("tuition assistance ta college class classes degree school money pay paid mycg ed eso dodmou mou clep dsst dantes jst"),60]]});
   SIDX.push({kind:"page",key:"p:cool",page:"cool",fund:"cool",name:"CG COOL funding",sub:"Explore · get your certs paid for",fields:[[snorm("cg cool funding"),95],[snorm("cool credentialing assistance ca opportunities online reimbursement of 1164 pay paid money funding exam fee voucher"),58]]});
   SIDX.push({kind:"page",key:"p:out",page:"out",name:"Getting out",sub:"Explore · SkillBridge in your last 180 days",fields:[[snorm("getting out"),95],[snorm("skillbridge skill bridge separation separating transition tap leaving civilian job internship employer last 180 days ets eoe retire retirement"),60]]});
+  SIDX.push({kind:"page",key:"p:colleges",col:true,name:"Colleges",sub:"Degrees · "+COLLEGES.length+" schools, what you pay after TA",fields:[[snorm("colleges"),95],[snorm("college colleges university universities school schools degree degrees bachelor bachelors associate online tuition assistance ta wgu"),58]]});
+  COLLEGES.forEach(function(c){
+    SIDX.push({kind:"college",key:"k:"+c.id,name:c.name,v:WG,sub:"Colleges · "+c.short+" · "+(c.pay<0?"free, no TA needed":c.id==="wgu"?"flat rate per term":c.payTxt+" a credit after TA"),
+      fields:[[snorm(c.name),100],[snorm(c.short+" "+c.alias),80],[snorm("college university school degree"),20]]});
+  });
   /* career tree jobs are not search results (v2.20): the Career paths entry covers them */
 })();
 function sTok(tok,f){
@@ -8495,23 +9517,23 @@ function sGroups(){
   SIDX.forEach(function(e){if(!sPass(e)) return;var sc=sScore(e,toks,qc);if(sc>0) hits.push({e:e,s:sc});});
   hits.sort(function(a,b){return b.s-a.s;});
   if(hits.length){var top=hits[0].s;hits=hits.filter(function(h){return h.s>=top*.4;});}
-  var by={cert:[],vendor:[],page:[]}, best={cert:0,vendor:0,page:0};
+  var by={cert:[],vendor:[],page:[],college:[]}, best={cert:0,vendor:0,page:0,college:0};
   hits.forEach(function(h){by[h.e.kind].push(h.e);best[h.e.kind]=Math.max(best[h.e.kind],h.s);});
-  ["cert","vendor","page"].sort(function(a,b){return best[b]-best[a];}).forEach(function(k){
-    if(by[k].length) groups.push({label:{cert:"Certifications",vendor:"Vendor lines",page:"Pages"}[k],items:by[k].slice(0,24)});
+  ["cert","vendor","page","college"].sort(function(a,b){return best[b]-best[a];}).forEach(function(k){
+    if(by[k].length) groups.push({label:{cert:"Certifications",vendor:"Vendor lines",page:"Pages",college:"Colleges"}[k],items:by[k].slice(0,24)});
   });
   return {groups:groups,raw:raw};
 }
 function sRow(e,i,raw){
   var vc=e.kind==="page"?"#c9ced6":VENDORS[e.v].beacon, name=raw?sMark(e.name,raw):sesc(e.name), sub="", meta="";
   if(e.kind==="cert"){
-    sub=e.vendor+" · "+e.lvl+(GUIDES[e.name]?" · Full guide":"")+(e.v===VENDORS.length-1?" · WGU degree line":(e.wgu?" · also in WGU degree":""));
+    sub=e.vendor+" · "+e.lvl+(GUIDES[e.name]?" · Full guide":"")+(e.wgu?" · in a WGU degree":"");
     var bars="";for(var j=1;j<=5;j++) bars+='<i class="'+(j<=e.d?"on":"")+'"></i>';
     meta='<span class="sr-meta"><span class="sr-bars" aria-hidden="true">'+bars+'</span><span class="sr-hrs">'+e.hrs+'</span><span class="sr-iat'+(e.d8?"":" none")+'" title="'+(e.d8?"On the DoD 8140 matrix":"Not on the DoD 8140 matrix")+'">'+(e.d8?"8140":"—")+'</span></span>';
   } else if(e.kind==="vendor"){
     var V=VENDORS[e.v];sub="Vendor line · "+V.certs.length+" certs";meta='<span class="sr-meta"><span class="sr-hrs">'+pad2(e.v+1)+' / '+pad2(VENDORS.length)+'</span></span>';
   } else {sub=e.sub;meta='<span class="sr-meta"></span>';}
-  var label=e.name+(e.kind==="cert"?", "+e.vendor+", "+e.lvl+", difficulty "+e.d+" of 5, "+e.hrs+(e.d8?", on the DoD 8140 matrix":""):e.kind==="vendor"?", vendor line":", page");
+  var label=e.name+(e.kind==="cert"?", "+e.vendor+", "+e.lvl+", difficulty "+e.d+" of 5, "+e.hrs+(e.d8?", on the DoD 8140 matrix":""):e.kind==="vendor"?", vendor line":e.kind==="college"?", college":", page");
   return '<div class="sr-opt k-'+e.kind+'" role="option" id="sr-o-'+i+'" data-i="'+i+'" aria-selected="false" aria-label="'+sesc(label)+'" style="--vc:'+vc+'">'+
     '<span class="sr-dot" aria-hidden="true"></span><span class="sr-main" aria-hidden="true"><span class="sr-name">'+name+'</span><span class="sr-sub">'+sesc(sub)+'</span></span>'+meta+
     '<span class="sr-go" aria-hidden="true">↵</span></div>';
@@ -8600,7 +9622,7 @@ async function srchPick(e){
   if(!e) return;
   sRemember(e);
   await srchClose(true);
-  if(e.kind==="page"){if(e.pt) ptTarget(e.pt[0],e.pt[1]);if(e.fund){goFund(e.fund);return;}goPage(e.page);return;}
+  if(e.kind==="page"){if(e.col){openCertFrom({kind:"vendor",v:VENDORS.length-1});return;}if(e.pt) ptTarget(e.pt[0],e.pt[1]);if(e.fund){goFund(e.fund);return;}goPage(e.page);return;}
   openCertFrom(e);
 }
 function setViewNow(name){
