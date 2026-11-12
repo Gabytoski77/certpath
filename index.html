@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Ffh5DLJWCVapvVK81lJ/1/g6ceQCqdoM/JeE9bwA83I=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-N7veMul3SafCpNut6OMIA8WMslTuGXNlKIo3mAYNz34=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1925,7 +1925,7 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.27</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.28</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -4219,14 +4219,26 @@ function safeTop(){return parseFloat(getComputedStyle(safeProbe).paddingTop)||0;
   window.addEventListener("resize",apply);
 })();
 function sheetTravel(){return Math.max(1,sheet.offsetHeight-grab.offsetHeight-safeBottom());}
+/* v2.28: open/close taps run on the compositor (Web Animations), so a busy main thread (globe render, count-ups,
+   reveals) can't make the sheet stutter. Dragging still sets styles directly, one write per frame. */
+var shAnims=null, SH_EASE="cubic-bezier(.25,1,.5,1)";   /* = E.outQuart */
+function shLook(p,tr){return {s:"translateY("+((1-p)*tr).toFixed(1)+"px)",v:(p*.66).toFixed(3),a:"translateY("+(-16*p).toFixed(1)+"px) scale("+(1-.05*p).toFixed(4)+")",o:Math.min(1,p/.08)};}
+function shStopAnims(){if(shAnims){shAnims.forEach(function(a){a.cancel();});shAnims=null;}}
 function setSheet(p){
-  sheetP=clamp(p,0,1);
+  shStopAnims();
+  shState(p);
   if(typeof specWake==="function") specWake();
-  sheet.style.transform="translateY("+((1-sheetP)*sheetTravel()).toFixed(1)+"px)";
-  shScroll.style.opacity=sheetP>=.08?"":String(Math.min(1,sheetP/.08).toFixed(3));
-  veil.style.opacity=(sheetP*.66).toFixed(3);
+  var L=shLook(sheetP,sheetTravel());
+  sheet.style.transform=L.s;
+  shScroll.style.opacity=sheetP>=.08?"":L.o.toFixed(3);
+  veil.style.opacity=L.v;
+  app.style.transform=sheetP>.001?L.a:"";
+  app.style.willChange=sheetP>.001?"transform":"";   /* no re-raster of the home scene at every scale step */
+}
+/* progress, classes and pointer events only: no styles that move anything */
+function shState(p){
+  sheetP=clamp(p,0,1);
   veil.style.pointerEvents=sheetP>.02?"auto":"none";
-  app.style.transform=sheetP>.001?"translateY("+(-16*sheetP).toFixed(1)+"px) scale("+(1-.05*sheetP).toFixed(4)+")":"";
   var open=sheetP>.5;
   if(open!==sheet.classList.contains("is-open")){
     sheet.classList.toggle("is-open",open);grab.setAttribute("aria-expanded",String(open));
@@ -4278,7 +4290,27 @@ function onSheetOpen(){
 function animSheet(to,dur){
   var id=++sheetId, from=sheetP;
   if(to===1&&!sheet.classList.contains("live")) onSheetOpen();
-  return tween(dur,function(k){if(id===sheetId) setSheet(from+(to-from)*k);},E.outQuart).then(function(){if(id===sheetId&&to===0) resetSheet();});
+  if(reduced||!sheet.animate||Math.abs(to-from)<.001){
+    return tween(dur,function(k){if(id===sheetId) setSheet(from+(to-from)*k);},E.outQuart).then(function(){if(id===sheetId&&to===0) resetSheet();});
+  }
+  /* one layout read, then hand the motion to the compositor */
+  shStopAnims();
+  var tr=sheetTravel(), A=shLook(from,tr), B=shLook(to,tr), T={duration:dur,easing:SH_EASE,fill:"both"};
+  var cut=(.08-from)/(to-from), fade=[{opacity:A.o},{opacity:B.o}];
+  if(cut>0&&cut<1) fade=to>from?[{opacity:A.o,offset:0},{opacity:1,offset:cut},{opacity:1,offset:1}]:[{opacity:A.o,offset:0},{opacity:1,offset:cut},{opacity:B.o,offset:1}];
+  app.style.willChange="transform";
+  if(typeof specWake==="function") specWake();
+  shAnims=[
+    sheet.animate([{transform:A.s},{transform:B.s}],T),
+    veil.animate([{opacity:A.v},{opacity:B.v}],T),
+    app.animate([{transform:A.a},{transform:B.a}],T),
+    shScroll.animate(fade,T)
+  ];
+  return tween(dur,function(k){if(id===sheetId) shState(from+(to-from)*k);},E.outQuart).then(function(){
+    if(id!==sheetId) return;
+    setSheet(to);   /* pins the end state in inline styles and drops the animations, same frame */
+    if(to===0) resetSheet();
+  });
 }
 function openSheet(){if(state!=="idle") return Promise.resolve();return animSheet(1,760);}
 function closeSheet(){return animSheet(0,580);}
@@ -4313,7 +4345,8 @@ var gdrag=null;
 function velOf(sm){var a=sm[0],b=sm[sm.length-1];return (a&&b&&b[0]>a[0])?(b[1]-a[1])/((b[0]-a[0])/1000):0;}
 grab.addEventListener("pointerdown",function(e){
   if(state!=="idle") return;
-  gdrag={y0:e.clientY,p0:sheetP,moved:0,sm:[[performance.now(),sheetP]]};sheetId++;
+  sheetId++;if(shAnims) setSheet(sheetP);   /* catch the sheet where it is */
+  gdrag={y0:e.clientY,p0:sheetP,moved:0,sm:[[performance.now(),sheetP]]};
   if(sheetP<.05&&!sheet.classList.contains("live")) onSheetOpen();
   grab.setPointerCapture&&grab.setPointerCapture(e.pointerId);
 });
@@ -4347,7 +4380,7 @@ shScroll.addEventListener("touchstart",function(e){if(sheetP<.98) return;tdrag={
 shScroll.addEventListener("touchmove",function(e){
   if(!tdrag) return;
   var y=e.touches[0].clientY;
-  if(!tdrag.on){if(shScroll.scrollTop<=0&&y-tdrag.y0>8){tdrag.on=true;tdrag.y0=y;sheetId++;}else return;}
+  if(!tdrag.on){if(shScroll.scrollTop<=0&&y-tdrag.y0>8){tdrag.on=true;tdrag.y0=y;sheetId++;if(shAnims) setSheet(sheetP);}else return;}
   e.preventDefault();
   setSheet(1-Math.max(0,y-tdrag.y0)/sheetTravel());
   var now=performance.now();tdrag.sm.push([now,sheetP]);while(tdrag.sm.length>2&&now-tdrag.sm[0][0]>100) tdrag.sm.shift();
@@ -4666,7 +4699,7 @@ $("#sv-cool").addEventListener("click",function(e){
 });
 function tabsEdge(){var b=sheet.querySelector(".tabs");if(!b) return;var x=b.scrollLeft, m=b.scrollWidth-b.clientWidth;b.classList.toggle("more-l",x>2);b.classList.toggle("more-r",m>2&&x<m-2);}
 sheet.querySelector(".tabs").addEventListener("scroll",tabsEdge,{passive:true});
-window.addEventListener("resize",function(){setSheet(sheetP);placeTab();tabsEdge();});
+window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeTab();tabsEdge();});
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(tabsEdge);tabsEdge();
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(placeTab);
 setSheet(0);
