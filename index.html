@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-inYJv1Lj6XnyqKhX754J9OCfsfiXz6zyPQSLjpKpJIA=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Ffh5DLJWCVapvVK81lJ/1/g6ceQCqdoM/JeE9bwA83I=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -162,6 +162,8 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 /* like the vendor readout: when the CertPath wordmark would cover the start block, the promise moves above the wordmark and the buttons stay below it (placeStart) */
 .start{position:relative}
 .start.split .st-head{position:absolute;left:0;right:0;bottom:var(--st-lift,100%)}
+/* no room to lift the text above the wordmark: give it a dark glass backing so it stays readable over the letters */
+.start.over .st-head{margin:-10px -12px;padding:10px 12px;border-radius:14px;background:rgba(14,18,24,.74);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(255,255,255,.06)}
 .st-lead{margin:0;max-width:300px;font:600 19px/1.24 var(--f-disp);letter-spacing:-.02em;color:#f4f7fa;text-wrap:balance}
 .st-cool{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:3px 7px;font:500 12.5px/1.35 var(--f-ui);color:#c4cdd7;text-align:left;border-radius:6px}
 .st-cool i{flex:none;align-self:center;width:6px;height:6px;border-radius:50%;background:var(--powder);box-shadow:0 0 10px rgba(188,214,234,.8)}
@@ -1923,7 +1925,7 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.26</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.27</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2268,6 +2270,20 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
 <script>
 (function(){
 "use strict";
+
+/* ---------- anti-framing (v2.27) ----------
+   On the live site, CertPath refuses to run inside another site's frame (clickjacking defense; GitHub Pages
+   can't send the X-Frame-Options / frame-ancestors header, and a CSP meta tag can't set frame-ancestors).
+   It tries to break out to the top window; if the frame blocks that, it shows a link instead of the app.
+   Only on the real hosts, so the claude.ai preview (which is itself a frame) keeps working. */
+if(/(^|\.)gabytoski77\.github\.io$|^localhost$/.test(location.hostname)){
+  var framed=true;try{framed=window.top!==window.self;}catch(e){framed=true;}
+  if(framed){
+    try{window.top.location.replace(window.location.href);}catch(e){}
+    document.documentElement.innerHTML='<head><meta name="viewport" content="width=device-width,initial-scale=1"><title>CertPath</title></head><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#12161d;color:#e8f1f8;font:15px/1.5 system-ui,sans-serif;text-align:center;padding:24px;box-sizing:border-box"><p>CertPath can\u2019t be shown inside another site.<br><a href="'+location.href.replace(/[<>"']/g,"")+'" target="_top" rel="noopener" style="color:#bcd6ea">Open CertPath on its own page \u2192</a></p></body>';
+    return;
+  }
+}
 
 /* ---------- data (mock; verify before launch) ---------- */
 var VENDORS = [
@@ -3079,7 +3095,7 @@ function placeReadout(){
 function placeStart(){
   var st=document.getElementById("start");if(!st) return;
   var head=st.querySelector(".st-head");
-  st.classList.remove("split");st.style.removeProperty("--st-lift");
+  st.classList.remove("split","over");st.style.removeProperty("--st-lift");
   if(!tt||!tt.bounds||W<720||isShort()) return;
   var w=tt.bounds();if(!w) return;
   var ar=app.getBoundingClientRect(), pad=14, bandTop=ar.top+w.top-pad, bandBot=ar.top+w.bottom+pad, wl=ar.left+w.left, wr=ar.left+w.right;
@@ -3088,7 +3104,7 @@ function placeStart(){
   var hh=head.getBoundingClientRect().height;
   st.classList.add("split");r=st.getBoundingClientRect();
   /* only split when both halves then clear the wordmark */
-  if(r.top<bandBot-pad||bandTop-hh<midEl.getBoundingClientRect().top-4){st.classList.remove("split");return;}
+  if(r.top<bandBot-pad||bandTop-hh<midEl.getBoundingClientRect().top-4){st.classList.remove("split");st.classList.add("over");return;}
   st.style.setProperty("--st-lift",Math.round(r.bottom-bandTop)+"px");
 }
 function watchReadout(){
@@ -12308,6 +12324,9 @@ function startHome(lead){
     el.style.opacity="";
     anim(el,[{opacity:0,transform:"translateY(16px)"},{opacity:1,transform:"none"}],{duration:1100,delay:(lead||0)+250+n*80,easing:EZ,fill:"backwards"});
   });
+  /* the text was measured while the fade-in still had it shifted down: measure again once it has settled, and after the fonts load */
+  setTimeout(placeReadout,(lead||0)+250+rvEls.length*80+1150);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){placeReadout();});
   setTimeout(function(){document.querySelectorAll(".ui .glass").forEach(function(g,n){setTimeout(function(){shine(g);},n*70);});},(lead||0)+1500);
 }
 requestAnimationFrame(frame);
