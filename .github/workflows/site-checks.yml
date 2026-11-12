@@ -1,0 +1,29 @@
+# Runs on every pull request and every push to main.
+# It checks the built site; it does not build or deploy anything.
+name: Site checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Least privilege: the job can read the repo and nothing else.
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Pinned to an exact commit (v7.0.1) so a changed tag cannot swap in different code.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0             # full history, needed to compare with the previous version
+          persist-credentials: false # do not leave a token behind in the checkout
+
+      - name: Check the built site
+        env:
+          # The commit to compare against: the PR's target, or main before this push.
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: python3 .github/scripts/check_site.py
