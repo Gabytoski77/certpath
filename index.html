@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-i/Z15Mmk4DaRBLx81AVXgAnV+xj1Phz1XVi+MXEGETc=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-bWZrUv7aeaPzPoFIJ1VxnfPtmWBtB4mLoi0D0+4C3+c=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1238,7 +1238,7 @@ button.ptt-c:active{opacity:.7;transition-duration:.1s}
 .spec>.spec-h{z-index:2;padding:5px;filter:blur(3px);opacity:.55;
   background:radial-gradient(circle var(--sr,40px) at var(--sx,0px) var(--sy,0px),rgba(255,255,255,calc(var(--lvl,.35) * .7)),rgba(255,255,255,0) 100%),
     radial-gradient(circle calc(var(--sr,40px) * .8) at var(--bx,100%) var(--by,100%),rgba(255,255,255,calc(var(--lvl,.35) * .3)),rgba(255,255,255,0) 100%)}
-.pcard.spec,.mini.spec{border-color:transparent!important;--sb:.1;--bw:1px}
+.pcard.spec,.mini.spec,.q8card.spec{border-color:transparent!important;--sb:.1;--bw:1px}
 .p-arr.spec,.ed-close.spec,.copy.spec,.flex-open.spec{border-color:transparent!important;--bw:1px}
 .g-node.spec{--bw:1px}
 .g-node.spec:not(.here){border-color:transparent}
@@ -1977,7 +1977,7 @@ button.r8:active{opacity:.7;transition-duration:.1s}
 }
 @media (min-width:721px){.g-keep:has(>.g-kc:nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* Explore overview: DoD 8140 card */
-.q8card{display:grid;grid-template-columns:50px minmax(0,1fr) minmax(0,.9fr);width:100%;text-align:left;margin-top:14px;border:1px solid var(--hair);border-radius:6px;overflow:hidden;background:#1a2029;transition:border-color .35s var(--ez),transform .4s var(--ez)}
+.q8card{display:grid;grid-template-columns:50px minmax(0,1fr) minmax(0,.9fr);width:100%;text-align:left;margin-top:14px;border:1px solid var(--hair);border-radius:6px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,0) 40%),#1a2029;transition:border-color .35s var(--ez),transform .4s var(--ez)}
 .q8card .pc-rail{grid-row:1/3}
 .q8card-m{display:grid;align-content:space-between;gap:16px;padding:18px 20px 17px;min-width:0}
 .q8card-t{display:block;font:700 clamp(34px,4.2vw,46px)/.92 var(--f-disp);letter-spacing:-.055em;color:var(--ink)}
@@ -1987,7 +1987,7 @@ button.r8:active{opacity:.7;transition-duration:.1s}
 .q8card-art>span>i{display:block;height:6px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden}
 .q8card-art>span>i::before{content:"";display:block;height:100%;width:var(--w);border-radius:3px;background:var(--l8c);transform-origin:0 50%;transition:transform .9s var(--ez)}
 .q8card-art .l8{justify-self:start}
-@media (hover:hover) and (pointer:fine){.q8card:hover{border-color:var(--hair-2)}.q8card:hover .q8card-art>span>i::before{transform:scaleX(1.06)}}
+@media (hover:hover) and (pointer:fine){.q8card:hover{border-color:var(--hair-2);transform:translateY(-3px)}.q8card:hover .q8card-art>span>i::before{transform:scaleX(1.06)}}
 .q8card:active{transform:scale(.992)}
 @media (max-width:720px){
   .q8card{grid-template-columns:42px minmax(0,1fr)}
@@ -2106,7 +2106,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.29</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.30</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -4007,7 +4007,9 @@ function findCert(name){for(var i=0;i<VENDORS.length-1;i++){for(var k=0;k<VENDOR
     var y=ys[i], d="M44 110 C 150 110, 170 "+y+", 296 "+y;
     svg+='<path class="pl-base" d="'+d+'"/><path class="pl-flow" d="'+d+'" style="--d:'+(3+i*.5)+'s;animation-delay:-'+(i*.8)+'s"/>'+
       '<circle cx="296" cy="'+y+'" r="9" class="pn-ring"/><circle cx="296" cy="'+y+'" r="3.5" class="pn" style="animation-delay:-'+(i*.6)+'s"/>'+
-      '<text x="314" y="'+(y+3.5)+'" class="pl-lbl">'+pth.name.toUpperCase()+'</text>';
+      (/^\d+ /.test(pth.name)   /* "20 year career": the number on its own line, so the label never runs into the card edge */
+        ?'<text x="314" y="'+(y-2.5)+'" class="pl-lbl"><tspan x="314">'+pth.name.split(" ")[0]+'</tspan><tspan x="314" dy="12">'+pth.name.split(" ").slice(1).join(" ").toUpperCase()+'</tspan></text>'
+        :'<text x="314" y="'+(y+3.5)+'" class="pl-lbl">'+pth.name.toUpperCase()+'</text>');
   });
   $("#pmap-lines").innerHTML=svg;
 })();
@@ -12672,7 +12674,7 @@ void main(){
 }
 
 /* ---------- specular rim light on buttons and cards ---------- */
-var SPEC_SEL=".cta,.hdr-btn,.ed-close,.copy,.pcard,.mini,.p-back,.p-arr,.flex-open,.g-btn,.g-node", specs=[];
+var SPEC_SEL=".cta,.hdr-btn,.ed-close,.copy,.pcard,.mini,.q8card,.p-back,.p-arr,.flex-open,.g-btn,.g-node", specs=[];
 function wrap1(v){return v-Math.floor(v);}
 function loopPos(x,y,hx,hy,r){
   var ix=hx-r,iy=hy-r,arc=Math.PI/2*r,q4=ix+iy+arc,ax=Math.abs(x),ay=Math.abs(y),qx=ax-ix,qy=ay-iy,sv;
