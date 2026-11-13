@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-N7veMul3SafCpNut6OMIA8WMslTuGXNlKIo3mAYNz34=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-i/Z15Mmk4DaRBLx81AVXgAnV+xj1Phz1XVi+MXEGETc=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1905,6 +1905,187 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
 .plist button:active,.c-row:active,.g-dh:active,a.g-r:active{background:rgba(255,255,255,.05)}
 .g-nav button:active,.seg button:active,.tabs button:active{opacity:.72}
 :is(.st-main,.st-card,.hdr-btn,.srch-btn,.p-srch,.ed-srch,.ed-close,.sr-x,.sr-chip,.copy,.flex-open,.g-node,.g-qo,.g-btn,.cta,.crest,.p-arr,.g-ck,.plist button,.c-row,.g-dh,a.g-r,.g-nav button,.seg button,.tabs button):active{transition-duration:.1s}
+/* ---------- DoD 8140 levels (v2.29): bronze Basic, silver Intermediate, gold Advanced ---------- */
+:root{--l8B:#c98a5c;--l8I:#c3ccd7;--l8A:#e4bb52;--l8ink:#16120c}
+.l8{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 9px 0 7px;border-radius:999px;background:var(--l8c,#888);color:var(--l8ink);
+  font:700 9.5px/1 var(--f-ui);letter-spacing:.11em;text-transform:uppercase;white-space:nowrap;box-shadow:inset 0 0 0 1px rgba(0,0,0,.16),0 1px 0 rgba(255,255,255,.18) inset;vertical-align:middle;flex:none}
+.l8>b{font:inherit;font-weight:700;letter-spacing:inherit;color:var(--l8ink)!important}
+.l8.en>b{color:inherit!important}
+.l8-B{--l8c:linear-gradient(180deg,#dba27a,#b9774a)}
+.l8-I{--l8c:linear-gradient(180deg,#e3e8ee,#aeb8c4)}
+.l8-A{--l8c:linear-gradient(180deg,#f3d27a,#d4a536)}
+.l8.s{width:20px;padding:0;justify-content:center;gap:0}
+.l8.s .l8b{display:none}
+.l8b{display:inline-flex;align-items:flex-end;gap:1.5px;height:9px}
+.l8b i{display:block;width:2.5px;border-radius:1px;background:rgba(22,18,12,.26)}
+.l8b i:nth-child(1){height:4px}.l8b i:nth-child(2){height:6.5px}.l8b i:nth-child(3){height:9px}
+.l8b i.on{background:var(--l8ink)}
+.l8.en{background:transparent;color:inherit;box-shadow:inset 0 0 0 1px currentColor;opacity:.8;letter-spacing:.12em}
+/* vendor list: DoD column */
+.c-iat .l8{height:17px;padding:0 7px 0 6px;font-size:8.5px;gap:5px;margin-top:4px}
+.c-iat .l8 .l8b{height:8px}.c-iat .l8 .l8b i:nth-child(3){height:8px}
+.c-iat small.q8n{margin-top:4px}
+/* cert row detail: work roles */
+.q8c{margin-top:16px;padding-top:14px;border-top:1px solid var(--v-line)}
+.q8c-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 10px}
+.q8c-h .lab{color:var(--v-muted)}
+.q8c-s{font:500 12px/1.3 var(--f-ui);color:var(--v-fg)}
+.q8c-list{display:flex;flex-wrap:wrap;gap:6px}
+.r8{display:inline-flex;align-items:center;gap:7px;min-height:30px;padding:0 11px 0 5px;border-radius:999px;border:1px solid var(--v-line);background:rgba(255,255,255,.03);
+  font:600 12px/1 var(--f-mono);color:var(--v-fg);transition:border-color .2s var(--ez)}
+.r8 .l8{height:20px}
+@media (hover:hover) and (pointer:fine){button.r8:hover{border-color:var(--v-accent)}}
+button.r8:active{opacity:.7;transition-duration:.1s}
+.q8c-p{margin:10px 0 0;font:400 12px/1.55 var(--f-ui);color:var(--v-muted)}
+.q8c-go{margin-top:8px}
+/* guide: Keep it, use it -> DoD 8140 work roles */
+.q8g{margin-top:34px;border-top:1px solid var(--v-line);padding-top:22px}
+.q8g-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px}
+.q8g-top h4{margin:8px 0 0;font:700 clamp(24px,3.4vw,32px)/1 var(--f-disp);letter-spacing:-.04em;color:var(--v-fg)}
+.q8g-sum{display:flex;align-items:center;gap:10px;margin:0;font:500 13px/1.3 var(--f-ui);color:var(--v-muted)}
+.q8g-sum b{color:var(--v-fg);font-weight:600}
+.q8g-leg{display:flex;flex-wrap:wrap;gap:8px 14px;margin:16px 0 4px;font:400 11.5px/1.4 var(--f-ui);color:var(--v-muted)}
+.q8g-leg span{display:inline-flex;align-items:center;gap:7px}
+.q8g-el{margin-top:22px}
+.q8g-elh{margin:0 0 4px;font:600 10px/1.35 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--v-muted)}
+.q8g-list{list-style:none;margin:0;padding:0}
+.q8g-li{border-bottom:1px solid var(--v-line)}
+.q8g-r{width:100%;display:grid;grid-template-columns:48px minmax(0,1fr) auto 18px;align-items:center;gap:14px;padding:15px 2px;text-align:left;transition:background .4s var(--ez)}
+@media (hover:hover) and (pointer:fine){.q8g-r:hover{background:rgba(255,255,255,.025)}}
+.q8g-c{font:600 13px/1 var(--f-mono);color:var(--v-fg);letter-spacing:.02em}
+.q8g-n{font:500 15px/1.3 var(--f-ui);letter-spacing:-.01em;color:var(--v-fg)}
+.q8g-chev{font:300 18px var(--f-ui);color:var(--v-muted);transition:transform .3s var(--ez),color .3s var(--ez)}
+.q8g-li.open .q8g-chev{transform:rotate(45deg);color:var(--v-accent)}
+.q8g-x{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ez)}
+.q8g-li.open .q8g-x{grid-template-rows:1fr}
+.q8g-x>div{overflow:hidden;min-height:0}
+.q8g-xi{padding:0 2px 18px 62px;display:grid;gap:12px}
+.q8g-xi p{margin:0;font:400 13px/1.6 var(--f-ui);color:var(--v-muted);max-width:64ch}
+.q8g-also{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.q8g-also .lab{flex-basis:100%;color:var(--v-muted)}
+.q8g-also .ptt-c{gap:7px;padding:0 11px 0 5px;min-height:30px;font-size:12.5px}
+.q8g-en{margin:18px 0 0;padding:14px 16px;border:1px dashed var(--v-line);border-radius:10px;font:400 12.5px/1.6 var(--f-ui);color:var(--v-muted)}
+.q8g-en b{color:var(--v-fg);font-weight:600}
+.q8g-acts{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:18px}
+@media (max-width:720px){
+  .q8g-r{grid-template-columns:40px minmax(0,1fr) auto 14px;gap:10px}
+  .q8g-n{font-size:14px}
+  .q8g-xi{padding-left:50px}
+  .q8g-r .l8{padding:0;width:20px;justify-content:center;gap:0}
+  .q8g-r .l8 .l8b,.q8g-r .l8 b{display:none}
+  .q8g-r .l8::after{content:attr(data-l)}
+}
+@media (min-width:721px){.g-keep:has(>.g-kc:nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Explore overview: DoD 8140 card */
+.q8card{display:grid;grid-template-columns:50px minmax(0,1fr) minmax(0,.9fr);width:100%;text-align:left;margin-top:14px;border:1px solid var(--hair);border-radius:6px;overflow:hidden;background:#1a2029;transition:border-color .35s var(--ez),transform .4s var(--ez)}
+.q8card .pc-rail{grid-row:1/3}
+.q8card-m{display:grid;align-content:space-between;gap:16px;padding:18px 20px 17px;min-width:0}
+.q8card-t{display:block;font:700 clamp(34px,4.2vw,46px)/.92 var(--f-disp);letter-spacing:-.055em;color:var(--ink)}
+.q8card-p{display:block;margin-top:10px;font:400 13.5px/1.5 var(--f-ui);color:var(--ink-2);max-width:40ch}
+.q8card-art{display:grid;align-content:center;gap:10px;padding:20px 22px;border-left:1px solid var(--hair)}
+.q8card-art>span{display:grid;grid-template-columns:118px minmax(0,1fr);align-items:center;gap:12px}
+.q8card-art>span>i{display:block;height:6px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden}
+.q8card-art>span>i::before{content:"";display:block;height:100%;width:var(--w);border-radius:3px;background:var(--l8c);transform-origin:0 50%;transition:transform .9s var(--ez)}
+.q8card-art .l8{justify-self:start}
+@media (hover:hover) and (pointer:fine){.q8card:hover{border-color:var(--hair-2)}.q8card:hover .q8card-art>span>i::before{transform:scaleX(1.06)}}
+.q8card:active{transform:scale(.992)}
+@media (max-width:720px){
+  .q8card{grid-template-columns:42px minmax(0,1fr)}
+  .q8card-art{grid-column:2;border-left:0;border-top:1px solid var(--hair);padding:14px 16px}
+  .q8card-m{padding:16px 16px 14px}
+}
+/* Explore: DoD 8140 view */
+.q8-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 22px;max-width:520px}
+.q8-lv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 26px}
+.q8-lv>div{display:grid;gap:8px;align-content:start;padding:14px 16px;border:1px solid var(--hair);border-radius:12px;background:rgba(255,255,255,.02)}
+.q8-lv .l8{justify-self:start}
+.q8-lv p{margin:0;font:400 12.5px/1.5 var(--f-ui);color:var(--ink-2)}
+.q8-how{list-style:none;margin:0 0 30px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.q8-how li{padding:16px 18px 18px;border-left:1px solid var(--hair);display:grid;gap:6px;align-content:start}
+.q8-how li:first-child{border-left:0;padding-left:0}
+.q8-how b{font:600 15px/1.2 var(--f-disp);color:var(--ink)}
+.q8-how span{font:500 10px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--powder)}
+.q8-how p{margin:0;font:400 12.5px/1.5 var(--f-ui);color:var(--ink-3)}
+.q8-els{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.q8-els button{min-height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--hair-2);font:600 12.5px/1 var(--f-disp);color:var(--ink-2);transition:background .25s var(--ez),color .25s var(--ez),border-color .25s var(--ez)}
+.q8-els button[aria-pressed="true"]{background:var(--ink);color:#101317;border-color:var(--ink)}
+.q8-els button small{font:500 10px var(--f-mono);margin-left:6px;opacity:.7}
+.q8-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:0 0 20px}
+.q8-rb{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:center;text-align:left;padding:12px 14px;border:1px solid var(--hair);border-radius:12px;background:rgba(255,255,255,.02);
+  transition:border-color .25s var(--ez),background .25s var(--ez),transform .25s var(--ez)}
+.q8-rb b{font:600 14px/1 var(--f-mono);color:var(--ink)}
+.q8-rb span{font:500 12.5px/1.3 var(--f-ui);color:var(--ink-2);min-width:0}
+.q8-rb small{grid-column:2;font:500 9.5px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.q8-rb[aria-pressed="true"]{border-color:var(--powder);background:rgba(188,214,234,.08)}
+.q8-rb[aria-pressed="true"] span{color:var(--ink)}
+@media (hover:hover) and (pointer:fine){.q8-rb:hover{border-color:var(--hair-2)}.q8-els button:not([aria-pressed="true"]):hover{border-color:var(--ink-3);color:var(--ink)}}
+.q8-rb:active,.q8-els button:active{transform:scale(.98);transition-duration:.1s}
+.q8-card{border:1px solid var(--hair-2);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));padding:22px 22px 20px;margin:0 0 18px}
+.q8-card-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.q8-card-h b{font:600 15px var(--f-mono);color:var(--powder)}
+.q8-card-h h3{margin:0;font:700 clamp(24px,3.2vw,32px)/1.02 var(--f-disp);letter-spacing:-.04em;color:var(--ink)}
+.q8-card-d{margin:10px 0 0;font:400 13.5px/1.6 var(--f-ui);color:var(--ink-2);max-width:64ch}
+.q8-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
+.q8-col{display:grid;gap:10px;align-content:start;padding:14px;border-radius:12px;background:rgba(0,0,0,.18);border:1px solid var(--hair)}
+.q8-col-h{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.q8-col-h small{font:500 10px var(--f-mono);color:var(--ink-3)}
+.q8-chips{display:flex;flex-wrap:wrap;gap:6px}
+.q8-cp{display:inline-flex;align-items:center;min-height:30px;padding:0 11px;border-radius:999px;border:1px solid var(--hair-2);font:500 12.5px/1 var(--f-ui);color:var(--ink);background:rgba(255,255,255,.04);transition:border-color .2s var(--ez)}
+.q8-cp.here{border-color:color-mix(in srgb,var(--powder) 70%,transparent);background:rgba(188,214,234,.12);font-weight:600}
+.q8-cp.here::after{content:"\2192";margin-left:6px;font-size:11px;color:var(--powder)}
+.q8-cp.ext{border-color:var(--hair);color:var(--ink-3);font-size:12px}
+@media (hover:hover) and (pointer:fine){button.q8-cp:hover{border-color:var(--powder)}}
+button.q8-cp:active{opacity:.7;transition-duration:.1s}
+.q8-none{margin:0;font:400 12px/1.5 var(--f-ui);color:var(--ink-3)}
+.q8-none a{color:var(--ink-2)}
+.q8-more{background:none;border:0;padding:4px 0;font:600 10px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);justify-self:start}
+.q8-ladder{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--hair);display:grid;gap:10px}
+.q8-ladder ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.q8-ladder li{display:inline-flex;align-items:center;gap:8px}
+.q8-ladder li+li::before{content:"\2192";color:var(--ink-3);font-size:13px}
+.q8-ladder .q8-cp{gap:7px;padding-left:5px}
+.q8-ladder .q8-cp.here::after{display:none}
+.q8-note{margin:14px 0 0;font:400 12px/1.55 var(--f-ui);color:var(--ink-3)}
+.q8-certs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.q8-certs button{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 13px 0 6px;border-radius:999px;border:1px solid var(--hair-2);font:600 12.5px/1 var(--f-ui);color:var(--ink-2);transition:background .25s var(--ez),border-color .25s var(--ez),color .25s var(--ez)}
+.q8-certs button[aria-pressed="true"]{border-color:var(--powder);background:rgba(188,214,234,.1);color:var(--ink)}
+.q8-certs .off{padding-left:13px;border-style:dashed;color:var(--ink-3)}
+.q8-rt{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--hair)}
+.q8-rt li{display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:12px;border-bottom:1px solid var(--hair)}
+.q8-rt button{display:contents;text-align:left}
+.q8-rt li>*{padding:13px 0}
+.q8-rt b{font:600 13px var(--f-mono);color:var(--ink)}
+.q8-rt span{font:500 14px/1.3 var(--f-ui);color:var(--ink-2)}
+.q8-rt small{display:block;font:500 9.5px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
+.q8-iat{margin-top:40px;padding-top:26px;border-top:1px solid var(--hair);scroll-margin-top:20px}
+.q8-iat h3{margin:8px 0 12px;font:700 clamp(26px,3.6vw,36px)/1 var(--f-disp);letter-spacing:-.045em;color:var(--ink)}
+.q8-iat .facts{margin-bottom:24px;padding:0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.q8-iat blockquote{margin:0 0 24px;padding:14px 18px;border-left:2px solid var(--powder);font:400 14px/1.6 var(--f-ui);color:var(--ink);background:rgba(188,214,234,.05);border-radius:0 10px 10px 0}
+.q8-iat blockquote small{display:block;margin-top:6px;font:500 10px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+#sv-dod .wl{--v-line:var(--hair-2);--v-accent:var(--powder);--v-muted:var(--ink-3)}
+#sv-dod .wl-s b{font:600 15px/1.25 var(--f-disp);color:var(--ink)}
+#sv-dod .wl-s p{margin:0;font:400 13px/1.55 var(--f-ui);color:var(--ink-2)}
+.q8-hit{animation:q8hit 1.8s var(--ez)}
+@keyframes q8hit{0%{box-shadow:0 0 0 0 rgba(188,214,234,0)}25%{box-shadow:0 0 0 4px rgba(188,214,234,.35)}100%{box-shadow:0 0 0 0 rgba(188,214,234,0)}}
+@media (max-width:720px){
+  .q8-lv{grid-template-columns:minmax(0,1fr)}
+  .q8-lv>div{grid-template-columns:auto minmax(0,1fr);align-items:center;gap:12px}
+  .q8-how{grid-template-columns:minmax(0,1fr)}
+  .q8-how li{border-left:0;padding-left:0;border-top:1px solid var(--hair)}
+  .q8-how li:first-child{border-top:0}
+  .q8-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .q8-rb{grid-template-columns:minmax(0,1fr);padding:11px 12px}
+  .q8-rb small{grid-column:1}
+  .q8-cols{grid-template-columns:minmax(0,1fr)}
+  .q8-card{padding:18px 16px 16px;border-radius:14px}
+}
+@media (prefers-reduced-motion:reduce){.q8-hit{animation:none}.q8card-art>span>i::before{transition:none}}
+@media (max-width:720px){.q8card .pc-foot .meta{display:none}}
+.q8-a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--hair-2)}
+.sr-l8{display:inline-grid;place-items:center;width:15px;height:15px;margin-left:5px;border-radius:50%;background:var(--l8c);color:var(--l8ink);font:700 8.5px/1 var(--f-ui);font-style:normal;letter-spacing:0;vertical-align:-3px}
+.cm-r8{display:flex;flex-wrap:wrap;gap:5px}
+.cm-r8 .r8{border-color:var(--hair-2);color:var(--ink);min-height:28px;font-size:11.5px}
+.cm-q8{display:block}
 </style>
 
 <div id="splash" aria-hidden="true">
@@ -1925,7 +2106,7 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.28</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.29</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -1980,6 +2161,7 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
         <button type="button" data-go="mine" aria-selected="false">My path</button>
         <button type="button" data-go="exam" aria-selected="false">Countdown</button>
         <button type="button" data-go="compare" aria-selected="false">Compare</button>
+        <button type="button" data-go="dod" aria-selected="false">DoD 8140</button>
         <button type="button" data-go="paths" aria-selected="false"><span class="tab-x">Career p</span><span class="tab-s">P</span>aths</button>
         <button type="button" data-go="cool" aria-selected="false">Funding</button>
         <button type="button" data-go="out" aria-selected="false">Getting out</button>
@@ -2019,6 +2201,15 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
           </button>
         </div>
 
+        <button type="button" class="q8card rv-s" data-go="dod">
+          <span class="pc-rail" aria-hidden="true"><span class="pc-mark"></span><span class="pc-dots">&middot;&middot;&middot;</span><span class="pc-num">03</span></span>
+          <span class="q8card-m">
+            <span><span class="lab">Billets / Work roles</span><span class="q8card-t">DoD 8140.</span><span class="q8card-p">Find the cert for your billet's work role and level: Basic, Intermediate or Advanced. Straight from the official DoD 8140 matrix.</span></span>
+            <span class="pc-foot" style="padding:0;border:0"><span class="go"><i>&rarr;</i>Find my work role</span><span class="meta">17 roles mapped</span></span>
+          </span>
+          <span class="q8card-art" aria-hidden="true"><span class="l8-B"><span class="l8 l8-B" title="DoD 8140 Basic"><span class="l8b" aria-hidden="true"><i class="on"></i><i></i><i></i></span><b>Basic</b></span><i style="--w:40%"></i></span><span class="l8-I"><span class="l8 l8-I" title="DoD 8140 Intermediate"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><b>Intermediate</b></span><i style="--w:68%"></i></span><span class="l8-A"><span class="l8 l8-A" title="DoD 8140 Advanced"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Advanced</b></span><i style="--w:94%"></i></span></span>
+        </button>
+
         <p class="pull rv-s">Certs, clearances, funding <b>and a plan that outlasts the enlistment.</b></p>
 
         <div class="minis">
@@ -2054,7 +2245,7 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
             <div><b id="sb-count">0</b><span>certs mapped across <span id="sb-lines">7</span> vendor lines</span></div>
             <div><b>5</b><span>career fields off one IT root, with 14 civilian jobs and 5 Coast Guard ranks</span></div>
             <div><b>2&times;$4.5K</b><span>a fiscal year: Tuition Assistance for college and CG COOL for certs</span></div>
-            <div><b>IAT II</b><span>the DoD baseline Security+ meets</span></div>
+            <div><b id="sb-8140">13</b><span>DoD 8140 work roles Security+ counts for, up to Intermediate</span></div>
             <div><b>11</b><span>schools for IT and cyber degrees, with what you pay after TA</span></div>
           </div>
         </div>
@@ -2074,7 +2265,7 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
       </div>
 
       <div class="sv" id="sv-paths" hidden>
-        <p class="intro rv-s">Every career grows from IT and starts with the same three certs: A+, Network+ and Security+. Tap a field to open it and see the jobs inside; tap a job for what it pays, how fast it's growing and the certs that get you there, from official government data. Tap the field again to go back.<span class="draft">Draft</span></p>
+        <p class="intro rv-s">Every career grows from IT and starts with the same three certs: A+, Network+ and Security+. Tap a field to open it and see the jobs inside; tap a job for what it pays, how fast it's growing and the certs that get you there, from official government data. Tap the field again to go back.</p>
         <button type="button" class="mp-cta rv-s" data-go="mine"><span>Not sure which track?</span><b>Build my path &rarr;</b></button>
         <div class="ptree rv-s" id="ptree" data-level="it">
           <div class="pt-map" id="pt-map"><svg class="pt-svg" viewBox="0 0 400 340" aria-hidden="true"><g id="pt-lines"></g></svg>
@@ -2088,8 +2279,51 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
         <div class="ex rv-s" id="ex" aria-live="polite"></div>
       </div>
 
+      <div class="sv" id="sv-dod" hidden>
+        <p class="intro rv-s">Every cyber billet is coded with a DCWF work role and a proficiency level. Pick the role on your billet to see which certs meet it, or pick a cert to see every role it counts for. Straight from the official DoD 8140 matrix.</p>
+        <div class="q8-lv rv-s" aria-label="DoD 8140 proficiency levels">
+          <div><span class="l8 l8-B" title="DoD 8140 Basic"><span class="l8b" aria-hidden="true"><i class="on"></i><i></i><i></i></span><b>Basic</b></span><p>Knows the fundamentals and does routine work in the role with guidance.</p></div>
+          <div><span class="l8 l8-I" title="DoD 8140 Intermediate"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><b>Intermediate</b></span><p>Works on their own and handles the role's everyday work.</p></div>
+          <div><span class="l8 l8-A" title="DoD 8140 Advanced"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Advanced</b></span><p>Leads, designs and checks others' work in the role.</p></div>
+        </div>
+        <ol class="q8-how rv-s" aria-label="How you qualify under DoD 8140">
+          <li><span>01 &middot; Within 9 months</span><b>Foundational</b><p>A cert, a degree or a training course listed for your work role and level.</p></li>
+          <li><span>02 &middot; Within 12 months</span><b>Residential</b><p>Prove you can do the job at your unit: your command's on-the-job qualification.</p></li>
+          <li><span>03 &middot; Every year</span><b>Keep it up</b><p>At least 20 hours of learning a year to stay qualified.</p></li>
+        </ol>
+        <div class="rv-s" id="q8-app"></div>
+        <section class="q8-iat rv-s" id="q8-iat" aria-labelledby="q8-iat-h">
+          <p class="lab">The old labels</p>
+          <h3 id="q8-iat-h">Where did IAT go?</h3>
+          <p class="o-p" style="margin:0 0 20px">IAT, IAM, IASAE and CSSP levels came from DoD 8570.01-M. That manual was cancelled on February 15, 2023, when DoD Manual 8140.03 replaced it. Instead of one cert for a broad category and level, every cyber position is now coded to DCWF work roles, and each role has its own Basic, Intermediate and Advanced options.</p>
+          <blockquote>&ldquo;There is no direct comparison, or mapping, between 8570 IA functional categories and the DCWF work roles.&rdquo;<small>DoD CIO &middot; 8570 to 8140 transition guide, Aug 2024</small></blockquote>
+          <div class="facts">
+            <div class="fact"><p class="lab">Job posts</p><span>Many still say &ldquo;IAT II&rdquo;. That usually meant Security+, but under 8140 what counts depends on the work role and level coded to the job, so ask for both.</span></div>
+            <div class="fact"><p class="lab">Certs you hold</p><span>Certs earned under 8570 still count if they're current and listed for your work role and level. &ldquo;Good for life&rdquo; certs don't.</span></div>
+            <div class="fact"><p class="lab">Coast Guard</p><span>COMDTINST 1500.2 builds Coast Guard cyber qualification on DoDM 8140.03 and the DCWF. The Cyberspace Qualification Insignia asks enlisted members (E-4 and up) for Intermediate in their assigned work role.</span></div>
+          </div>
+          <p class="o-h">The rollout</p>
+          <ol class="wl">
+            <li class="wl-s"><span class="wl-k">Feb 15, 2023</span><b>DoDM 8140.03 takes effect</b><p>The 8570 manual, and with it IAT, IAM and IASAE, is cancelled.</p></li>
+            <li class="wl-s"><span class="wl-k">Feb 15, 2025</span><b>Cybersecurity roles</b><p>Foundational qualification due for the Cybersecurity element.</p></li>
+            <li class="wl-s"><span class="wl-k">Feb 15, 2026</span><b>IT and the rest</b><p>Foundational due for IT, Cyber Effects, Intel and Enabler roles; residential due for Cybersecurity.</p></li>
+            <li class="wl-s here"><span class="wl-k">Feb 15, 2027 &middot; next</span><b>Residential for everyone</b><p>On-the-job qualification due for IT, Cyber Effects, Intel and Enabler roles.</p></li>
+          </ol>
+        </section>
+        <div class="srcs rv-s">
+          <a href="https://www.cyberworkforce.mil/DoD-8140/Supplemental-Guidance/" target="_blank" rel="noopener noreferrer">DoD 8140 qualification matrix &nearr;</a>
+          <a href="https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodm/814003p.PDF" target="_blank" rel="noopener noreferrer">DoDM 8140.03 &nearr;</a>
+          <a href="https://www.cyberworkforce.mil/Portals/157/8140/QM/documents/unclass-dod8570_ia_program_transition_dod8140_cwp.pdf" target="_blank" rel="noopener noreferrer">8570 to 8140 transition guide &nearr;</a>
+          <a href="https://dl.dod.cyber.mil/wp-content/uploads/8140/pdf/2025-11-24_DCWFENQualMemoV2.0.pdf" target="_blank" rel="noopener noreferrer">Cyber Enabler memo &nearr;</a>
+          <a href="https://media.defense.gov/2023/Oct/26/2003328273/-1/-1/0/CI_1500_2.PDF" target="_blank" rel="noopener noreferrer">COMDTINST 1500.2 &nearr;</a>
+          <a href="https://www.mycg.uscg.mil/News/Article/4586438/new-coast-guard-cyberspace-qualification-insignia-unveiled/" target="_blank" rel="noopener noreferrer">CG Cyberspace Qualification Insignia &nearr;</a>
+        </div>
+        <div class="hatch rv-s" aria-hidden="true"></div>
+        <p class="fine rv-s">Read from the official DoD 8140 foundational qualification matrix V2.1 (effective Sep 19, 2025) on cyberworkforce.mil, Nov 12, 2026. Options marked Pending there are left out. CertPath maps 17 IT and Cybersecurity work roles so far; for others, and for degree and training options, use the official matrix. Your billet's work role and level, and your command, decide what you need.</p>
+      </div>
+
       <div class="sv" id="sv-cool" hidden>
-        <p class="intro rv-s">The Coast Guard has two separate pots of money for your education, and you can use both in the same year: <b>Tuition Assistance (TA)</b> for college classes and <b>Credentialing Assistance (CA)</b> through CG COOL for certs. Each pays up to $4,500 a fiscal year (Oct 1 to Sep 30).<span class="draft">Draft &middot; verify</span></p>
+        <p class="intro rv-s">The Coast Guard has two separate pots of money for your education, and you can use both in the same year: <b>Tuition Assistance (TA)</b> for college classes and <b>Credentialing Assistance (CA)</b> through CG COOL for certs. Each pays up to $4,500 a fiscal year (Oct 1 to Sep 30).</p>
         <div class="fsw rv-s" role="group" aria-label="Type of funding">
           <button type="button" data-fund="ta" aria-pressed="true"><b>College classes</b><span>Tuition Assistance</span></button>
           <button type="button" data-fund="cool" aria-pressed="false"><b>Certs</b><span>CG COOL</span></button>
@@ -2207,7 +2441,7 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
       </div>
 
       <div class="sv" id="sv-out" hidden>
-        <p class="intro rv-s">SkillBridge lets you spend up to your last 180 days of active duty training or working with a civilian employer while the Coast Guard still pays you. It's the bridge from your certs to a civilian job, so start planning about a year out.<span class="draft">Draft &middot; verify</span></p>
+        <p class="intro rv-s">SkillBridge lets you spend up to your last 180 days of active duty training or working with a civilian employer while the Coast Guard still pays you. It's the bridge from your certs to a civilian job, so start planning about a year out.</p>
         <div class="cool-grid rv-s">
           <div class="cool-n"><div><p class="lab">SkillBridge</p><b id="out-n">180</b></div><p>Days at most, all inside your last 180 days of service, on full pay and benefits.</p></div>
           <div class="facts">
@@ -2289,16 +2523,16 @@ if(/(^|\.)gabytoski77\.github\.io$|^localhost$/.test(location.hostname)){
 var VENDORS = [
   {id:"comptia", name:"CompTIA", short:"CompTIA", lat:36, lon:-92, beacon:"#ff3b30",
    pal:{fg:"#1b1514",muted:"#6e6260",line:"#e2d8d5",surface:"#ffffff",accent:"#d71920",on:"#ffffff"}, grad:["#ffffff","#f6f2f0","#ead8d3"],
-   blurb:"Vendor-neutral foundations. Security+ is the most widely used DoD 8140 baseline, so most IT careers in the Guard start here.",
-   certs:[["A+","Entry",2,"120–200 h","IAT I",["20 year career"]],["Network+","Entry",2,"80–120 h","IAT I",["20 year career","Network eng"]],["Security+","Core",3,"60–100 h","IAT II",["20 year career","Cyber eng"]],["Cloud+","Intermediate",3,"60–90 h","",["Cloud security"]],["CySA+","Intermediate",4,"80–120 h","IAT II",["Cyber eng","20 year career"]],["PenTest+","Intermediate",4,"80–120 h","",["Cyber eng"]],["Project+","Entry",2,"40–60 h","",["20 year career"]],["SecurityX","Advanced",5,"120–180 h","IAT III",["Cyber eng","20 year career"]]]},
+   blurb:"Vendor-neutral foundations. Security+ counts for more DoD 8140 work roles than any other cert here, so most IT careers in the Guard start with CompTIA.",
+   certs:[["A+","Entry",2,"120–200 h","",["20 year career"]],["Network+","Entry",2,"80–120 h","",["20 year career","Network eng"]],["Security+","Core",3,"60–100 h","",["20 year career","Cyber eng"]],["Cloud+","Intermediate",3,"60–90 h","",["Cloud security"]],["CySA+","Intermediate",4,"80–120 h","",["Cyber eng","20 year career"]],["PenTest+","Intermediate",4,"80–120 h","",["Cyber eng"]],["Project+","Entry",2,"40–60 h","",["20 year career"]],["SecurityX","Advanced",5,"120–180 h","",["Cyber eng","20 year career"]]]},
   {id:"isc2", name:"ISC2", short:"ISC2", lat:-14, lon:-44, beacon:"#6f9dff",
    pal:{fg:"#eef4ff",muted:"#a7bad6",line:"#25457a",surface:"#10305e",accent:"#5fa8ff",on:"#06162e"}, grad:["#1b4d94","#0b2347","#040c1d"],
-   blurb:"Senior security and management. CISSP qualifies for advanced roles across most of the DoD 8140 framework.",
-   certs:[["CC","Entry",1,"20–40 h","",["All paths"]],["SSCP","Associate",3,"60–90 h","IAT II",["20 year career","Cyber eng"]],["CCSP","Expert",5,"120–160 h","",["Cloud security"]],["CISSP","Expert",5,"150–250 h","IAT III",["Cyber eng","20 year career"]]]},
+   blurb:"Senior security and management. CISSP is a DoD 8140 Advanced option for security managers and control assessors.",
+   certs:[["CC","Entry",1,"20–40 h","",["All paths"]],["SSCP","Associate",3,"60–90 h","",["20 year career","Cyber eng"]],["CCSP","Expert",5,"120–160 h","",["Cloud security"]],["CISSP","Expert",5,"150–250 h","",["Cyber eng","20 year career"]]]},
   {id:"cisco", name:"Cisco", short:"CISCO", lat:42, lon:2, beacon:"#1fc7f0",
    pal:{fg:"#e8f8ff",muted:"#96bfce",line:"#17506a",surface:"#0a3549",accent:"#1fc7f0",on:"#04212d"}, grad:["#0c5470","#062a3a","#021218"],
    blurb:"The network engineer's line. Start with CCST, aim for CCNA, then CCNP Security. CCNA Cybersecurity covers the SOC side.",
-   certs:[["CCST Networking","Entry",1,"30–50 h","",["Network eng","20 year career"]],["CCST Cybersecurity","Entry",2,"30–50 h","",["Cyber eng"]],["CCNA Cybersecurity","Associate",3,"80–120 h","",["Cyber eng"]],["CCNA","Associate",4,"150–250 h","",["Network eng","20 year career"]],["CCNP Security","Professional",5,"200+ h","IAT III",["Network eng","Cyber eng"]]]},
+   certs:[["CCST Networking","Entry",1,"30–50 h","",["Network eng","20 year career"]],["CCST Cybersecurity","Entry",2,"30–50 h","",["Cyber eng"]],["CCNA Cybersecurity","Associate",3,"80–120 h","",["Cyber eng"]],["CCNA","Associate",4,"150–250 h","",["Network eng","20 year career"]],["CCNP Security","Professional",5,"200+ h","",["Network eng","Cyber eng"]]]},
   {id:"thm", name:"TryHackMe", short:"THM", lat:12, lon:48, beacon:"#a3ea2a",
    pal:{fg:"#eef3f8",muted:"#9aa7ba",line:"#26334a",surface:"#172133",accent:"#a3ea2a",on:"#10180a"}, grad:["#203048","#111826","#06090f"],
    blurb:"Hands-on, lab-based certs. Proves you can work a SOC queue or a pentest, not just pass a quiz.",
@@ -2437,11 +2671,102 @@ var WGU_DEG=[
 var WGU_IN=(function(){var m={};WGU_DEG.forEach(function(d){d.tracks.forEach(function(t){t[1].forEach(function(c){m[c]=m[c]||[];if(m[c].indexOf(d.k)<0) m[c].push(d.k);});});});return m;})();
 function vCount(v){return v.id==="colleges"?COLLEGES.length+" schools":v.certs.length+" certs";}
 function vNum(v){return v.id==="colleges"?COLLEGES.length:v.certs.length;}
+/* ---------- DoD 8140 (v2.29): work roles and levels instead of the old IAT labels ----------
+   Source: the DoD CIO Workforce Innovation Directorate's interactive qualification matrix on cyberworkforce.mil
+   (Foundational Qualification Matrix V2.1, effective Sep 19, 2025), read Nov 12, 2026, Foundation = Certification.
+   Only approved options; anything marked Pending (*) is left out. Lists use CertPath's own cert names where the
+   cert has a guide here, else the matrix's short name (full names in Q8_FULL).
+   B/I/A = Basic / Intermediate / Advanced. [] = none listed (431 has no cert option above Basic). null would mean "not read yet".
+   A cert listed at a higher level also covers the lower levels of the same work role, never other roles. */
+var Q8={ver:"V2.1",eff:"Sep 19, 2025",checked:"Nov 12, 2026",
+  url:"https://www.cyberworkforce.mil/DoD-8140/Supplemental-Guidance/",
+  manual:"https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodm/814003p.PDF",
+  trans:"https://www.cyberworkforce.mil/Portals/157/8140/QM/documents/unclass-dod8570_ia_program_transition_dod8140_cwp.pdf",
+  enMemo:"https://dl.dod.cyber.mil/wp-content/uploads/8140/pdf/2025-11-24_DCWFENQualMemoV2.0.pdf",
+  cg:"https://media.defense.gov/2023/Oct/26/2003328273/-1/-1/0/CI_1500_2.PDF",
+  pin:"https://www.mycg.uscg.mil/News/Article/4586438/new-coast-guard-cyberspace-qualification-insignia-unveiled/"};
+var Q8_LV=["B","I","A"], Q8_LVN={B:"Basic",I:"Intermediate",A:"Advanced"}, Q8_LVS={B:"Basic",I:"Inter",A:"Adv"};
+var Q8_EL=[{id:"it",name:"IT (Cyberspace)",short:"IT"},{id:"cs",name:"Cybersecurity",short:"Cybersecurity"},{id:"en",name:"Cyber Enablers",short:"Enablers"}];
+var Q8_ROLES={
+  "411":{n:"Technical Support Specialist",el:"it",d:"Help desk and end-user support: hardware, software, accounts and first-line fixes.",
+    B:["A+","CC","GFACT","Network+","Security+"],I:["CND","GSEC"],A:["CCNP Security","CISA","FITSP-O","GICSP","SecurityX","SSCP"]},
+  "431":{n:"Knowledge Manager",el:"it",d:"Runs the tools and processes a unit uses to store, share and find information.",
+    B:["CC","Security+"],I:[],A:[]},
+  "441":{n:"Network Operations Specialist",el:"it",d:"Installs, configures, monitors and fixes the network: routers, switches, firewalls and links.",
+    B:["CC","Cloud+","CND","GFACT","GSEC","Network+","Security+"],I:["CCSP","CEH","GCIH","GICSP","GMON","SSCP"],A:["CCNA","CCNP Security","GCED","GCIA","GCLD","GDSA","SecurityX"]},
+  "451":{n:"System Administrator",el:"it",d:"Builds and runs servers and systems: accounts, patches, backups and hardening.",
+    B:["A+","CND","GFACT","GSEC","Linux+","Network+"],I:["CCSP","Cloud+","GICSP","Security+","SSCP"],A:["CCNP Security","CISSP-ISSAP","FITSP-O","SecurityX"]},
+  "632":{n:"Systems Developer",el:"it",d:"Designs, builds and tests information systems across their life cycle.",
+    B:["CND","GISF","GSEC"],I:["CCSP","CSSLP","GCLD","GCSA"],A:["FITSP-D","SSCP"]},
+  "641":{n:"Systems Requirements Planner",el:"it",d:"Turns mission needs into system requirements and works them with the builders.",
+    B:["CC","CND","GSEC","Security+"],I:["CCSP","CFR","CSSLP","FITSP-M","SSCP"],A:["CISSP","CISSP-ISSAP","CISSP-ISSEP","GCSA","GSLC","SecurityX"]},
+  "651":{n:"Enterprise Architect",el:"it",d:"Designs how the whole enterprise's systems, networks and data fit together.",
+    B:["CND"],I:["CCSP","Cloud+","CRISC","CSSLP","FITSP-D","GDSA","GSEC","SecurityX"],A:["CISSO","CISSP","CISSP-ISSAP","CISSP-ISSEP","GCIA","GCLD","GCSA","GICSP"]},
+  "661":{n:"Research and Development Specialist",el:"it",d:"Tests new technology and builds prototypes to see what the mission can use.",
+    B:["CC","SSCP"],I:["CCSP","CEH","CEH(P)","Security+"],A:["CISSP-ISSEP","CSSLP","GCLD","RCCE L1","SecurityX"]},
+  "671":{n:"System Testing and Evaluation Specialist",el:"it",d:"Plans and runs tests to prove a system works, and is secure, before it goes live.",
+    B:["CND","Network+","Security+"],I:["CEH","CFR","CGRC","Cloud+","GSEC","PenTest+","SSCP"],A:["CCSP"]},
+  "511":{n:"Cyber Defense Analyst",el:"cs",d:"Watches alerts, logs and traffic to find and report attacks: the SOC analyst.",
+    B:["CC","CEH","GFACT","GISF"],I:["CEH(P)","Cloud+","FITSP-O","GCED","GDSA","GMON","GRID","GSEC","PenTest+","Security+"],A:["CCNA Cybersecurity","CFR","CySA+","GCFA","GCIA","GICSP"]},
+  "521":{n:"Cyber Defense Infrastructure Support Specialist",el:"cs",d:"Installs and tunes the defense tools: IDS, firewalls, sensors and log collection.",
+    B:["A+","CC","CND","GCLD","GDSA","GFACT","Network+"],I:["CEH","Cloud+","CySA+","GMON","GRID","GSEC","PenTest+","Security+","SSCP"],A:["CISSP-ISSAP","CISSP-ISSEP","GCIA","GICSP"]},
+  "531":{n:"Cyber Defense Incident Responder",el:"cs",d:"Investigates incidents, contains them and helps the network recover.",
+    B:["CC","GDSA","GISF"],I:["CCNA Cybersecurity","CCSP","CEH","CEH(P)","Cloud+","ECIH","FITSP-O","GCED","GCIH","GRID","GSEC","PenTest+","RCCE L1","Security+"],A:["CFR","CySA+","GCFA","GCIA","GICSP"]},
+  "541":{n:"Vulnerability Assessment Analyst",el:"cs",d:"Scans and tests systems for weaknesses and recommends the fixes.",
+    B:["CEH"],I:["CEH(P)","Cloud+","CPTE","FITSP-A","GCED","GCIH","GCSA","GICSP","GSEC","PenTest+","RCCE L1","Security+"],A:["CFR","CISA","CISM","CySA+","GPEN","GSNA"]},
+  "612":{n:"Security Control Assessor",el:"cs",d:"Tests whether security controls actually work: the assessment step of RMF.",
+    B:[],I:["CGRC","CISSO","Cloud+","FITSP-A","GCSA","GSEC","PenTest+","Security+","SecurityX"],A:["CCISO","CISA","CISM","CISSP","CISSP-ISSEP","CySA+","GSLC","GSNA"]},
+  "631":{n:"Information Systems Security Developer",el:"cs",d:"Builds security into systems while they are designed and developed.",
+    B:["CC","CND","GISF","SSCP"],I:["CCSP","Cloud+","CSC","GCLD","GCSA","GSEC","SecurityX"],A:["CISSP-ISSEP","FITSP-D"]},
+  "652":{n:"Security Architect",el:"cs",d:"Designs the security architecture: zones, controls and how they fit the mission.",
+    B:["GCLD","GISF"],I:["CCSP","CISSO","Cloud+","CSSLP","FITSP-D","GCSA","GMON","GSEC","SecurityX"],A:["CCNP Enterprise","CISM","CISSP-ISSAP","CISSP-ISSEP","GCIA","GDSA","GICSP"]},
+  "722":{n:"Information Systems Security Manager",el:"cs",d:"Runs a command's cybersecurity program: the ISSM.",
+    B:["CC"],I:["CCISO","CCSP","CGRC","CISSO","Cloud+","GCSA","GMON","GSEC","Security+","SecurityX","SSCP"],A:["CISM","CISSP","CISSP-ISSMP","FITSP-M","GCIA","GCIH","GICSP","GSLC"]}
+};
+/* work roles in the IT and Cybersecurity elements that CertPath hasn't mapped yet */
+var Q8_TODO={it:[["421","Database Administrator"],["452","Secure Configuration Specialist"]],
+  cs:[["212","Cyber Defense Forensics Analyst"],["462","Control Systems Security Specialist"],["611","Authorizing Official"],["622","Secure Software Assessor"],["633","System Security Engineer"],["723","COMSEC Manager"]]};
+/* Cyber Enabler work roles: one interim rule covers them all (DoD CIO memo, Nov 24, 2025) */
+var Q8_EN=[["211","Forensics Analyst","Legal"],["221","Cyber Crime Investigator","Legal"],["731","Cyber Legal Advisor","Legal"],
+  ["711","Cyber Instructional Curriculum Developer","Training"],["712","Cyber Instructor","Training"],
+  ["732","Privacy Compliance Manager","Leadership"],["751","Cyber Workforce Developer and Manager","Leadership"],["752","Cyber Policy and Strategy Planner","Leadership"],["901","Executive Cyber Leader","Leadership"],
+  ["801","Program Manager","Acquisition"],["802","IT Project Manager","Acquisition"],["803","Product Support Manager","Acquisition"],["804","IT Investment / Portfolio Manager","Acquisition"],["805","IT Program Auditor","Acquisition"]];
+/* certs approved only in Enabler roles (none on CertPath since the Nov 12, 2026 read: CCNA turned out to be 441 Advanced) */
+var Q8_ENONLY={};
+var Q8_FULL={"GFACT":"GIAC Foundational Cybersecurity Technologies","GSEC":"GIAC Security Essentials","CND":"EC-Council Certified Network Defender","GISF":"GIAC Information Security Fundamentals",
+  "CEH":"EC-Council Certified Ethical Hacker","CEH(P)":"EC-Council CEH Practical","FITSP-O":"Federal IT Security Professional, Operator","FITSP-A":"Federal IT Security Professional, Auditor",
+  "FITSP-D":"Federal IT Security Professional, Designer","FITSP-M":"Federal IT Security Professional, Manager","GCED":"GIAC Certified Enterprise Defender","GDSA":"GIAC Defensible Security Architect",
+  "GMON":"GIAC Continuous Monitoring","GRID":"GIAC Response and Industrial Defense","CFR":"CertNexus CyberSec First Responder","GCFA":"GIAC Certified Forensic Analyst","GCIA":"GIAC Certified Intrusion Analyst",
+  "GICSP":"Global Industrial Cyber Security Professional","GCLD":"GIAC Cloud Security Essentials","ECIH":"EC-Council Certified Incident Handler","GCIH":"GIAC Certified Incident Handler",
+  "RCCE L1":"Rocheston Certified Cybersecurity Engineer, Level 1","CPTE":"Certified Penetration Testing Engineer","GCSA":"GIAC Cloud Security Automation","GPEN":"GIAC Penetration Tester",
+  "GSNA":"GIAC Systems and Network Auditor","CISA":"ISACA Certified Information Systems Auditor","CISM":"ISACA Certified Information Security Manager","CRISC":"ISACA Certified in Risk and Information Systems Control",
+  "CGRC":"ISC2 Certified in Governance, Risk and Compliance (formerly CAP)","CISSO":"Certified Information Systems Security Officer","CCISO":"EC-Council Certified Chief Information Security Officer",
+  "GSLC":"GIAC Security Leadership","CISSP-ISSAP":"CISSP concentration: Security Architecture","CISSP-ISSEP":"CISSP concentration: Security Engineering","CISSP-ISSMP":"CISSP concentration: Security Management",
+  "CSSLP":"ISC2 Certified Secure Software Lifecycle Professional","CSC":"CertNexus Cyber Secure Coder","Linux+":"CompTIA Linux+","CCNP Enterprise":"Cisco CCNP Enterprise"};
+/* which certs CertPath covers (names in VENDORS, minus the Colleges slot), filled once VENDORS exists */
+function q8Here(n){for(var i=0;i<VENDORS.length-1;i++){for(var k=0;k<VENDORS[i].certs.length;k++) if(VENDORS[i].certs[k][0]===n) return true;}return false;}
+var Q8_BY=null;   /* cert name -> [{r:"511",l:"A"}], strongest first */
+function q8By(){
+  if(Q8_BY) return Q8_BY;Q8_BY={};
+  Object.keys(Q8_ROLES).forEach(function(r){var R=Q8_ROLES[r];Q8_LV.forEach(function(l){(R[l]||[]).forEach(function(c){(Q8_BY[c]=Q8_BY[c]||[]).push({r:r,l:l});});});});
+  var rank={A:0,I:1,B:2}, elr={cs:0,it:1};
+  Object.keys(Q8_BY).forEach(function(c){Q8_BY[c].sort(function(a,b){return rank[a.l]-rank[b.l]||elr[Q8_ROLES[a.r].el]-elr[Q8_ROLES[b.r].el]||(+a.r)-(+b.r);});});
+  return Q8_BY;
+}
+function q8Roles(n){return q8By()[n]||[];}
+function is8140(n){return q8Roles(n).length>0||Object.prototype.hasOwnProperty.call(Q8_ENONLY,n);}
+/* highest level the cert reaches in any IT or Cybersecurity work role ("" = Enabler roles only) */
+function q8Top(n){var rs=q8Roles(n), t="";rs.forEach(function(x){if(x.l==="A"||(x.l==="I"&&t!=="A")||(x.l==="B"&&!t)) t=x.l;});return t;}
+/* level badge: s = letter only, m = short word, w = whole word */
+function q8Badge(l,size,extra){
+  if(!l) return '<span class="l8 en'+(extra?" "+extra:"")+'" title="Cyber Enabler roles">EN</span>';
+  var bars="";for(var i=0;i<3;i++) bars+='<i'+(i<=Q8_LV.indexOf(l)?' class="on"':'')+'></i>';
+  var t=size==="s"?l:size==="m"?Q8_LVS[l]:Q8_LVN[l];
+  return '<span class="l8 l8-'+l+(size==="s"?" s":"")+(extra?" "+extra:"")+'" title="DoD 8140 '+Q8_LVN[l]+'"><span class="l8b" aria-hidden="true">'+bars+'</span><b>'+t+'</b></span>';
+}
+function q8Sum(n){var rs=q8Roles(n), t=q8Top(n);if(!rs.length) return Q8_ENONLY[n]?"Cyber Enabler roles":"";return "Up to "+Q8_LVN[t]+" · "+rs.length+(rs.length===1?" work role":" work roles");}
+function q8Name(c){return Q8_FULL[c]||c;}
 /* one short line per cert for the vendor page's "From the roadmap" panel (shown on hover / select) */
-/* certs on the DoD 8140 foundational qualification matrix (V2.1, effective Sep 19, 2025) for at least one work role.
-   Checked Nov 10, 2026 against vendor pages (CompTIA, ISC2, Cisco) and a matrix export. Everything else is NOT listed. */
-var D8140=["A+","Network+","Security+","Cloud+","CySA+","PenTest+","SecurityX","CC","SSCP","CCSP","CISSP","CCNA Cybersecurity","CCNA","CCNP Security"];
-function is8140(n){return D8140.indexOf(n)>=0;}
 var CERT_NOTE={
   "A+":"Where most IT careers start. Two exams cover hardware, operating systems, networking basics and troubleshooting: the help-desk skills every unit leans on.",
   "Network+":"The networking cert for every IT rating. Subnetting, routing, switching, wireless and troubleshooting, and the setup for Security+ and CCNA.",
@@ -3406,7 +3731,7 @@ function renderBody(i){
       '<div class="pa-v on" data-cert=""><p class="lab">From the roadmap</p><p class="p-blurb">'+v.blurb+'</p></div>'+
       v.certs.map(function(c){var g=!!GUIDES[c[0]];return '<div class="pa-v" data-cert="'+gEsc(c[0])+'" aria-hidden="true"><p class="lab"><span class="pa-n">'+gEsc(c[0])+'</span> &middot; '+gEsc(c[1])+'</p>'+
         '<p class="p-blurb">'+gEsc(CERT_NOTE[c[0]]||v.blurb)+'</p>'+
-        '<p class="pa-meta"><span>'+gEsc(c[3])+'</span>'+(is8140(c[0])?'<span>DoD 8140</span>':'')+'<span class="'+(g?'g':'')+'">'+(g?(finePointer?'Guide ready &middot; click again to open':'Guide ready &middot; tap again to open'):'Guide coming soon')+'</span></p></div>';}).join("")+
+        '<p class="pa-meta"><span>'+gEsc(c[3])+'</span>'+(is8140(c[0])?'<span>DoD 8140 &middot; '+(q8Top(c[0])?Q8_LVN[q8Top(c[0])]:'Enabler roles')+'</span>':'')+'<span class="'+(g?'g':'')+'">'+(g?(finePointer?'Guide ready &middot; click again to open':'Guide ready &middot; tap again to open'):'Guide coming soon')+'</span></p></div>';}).join("")+
     '</div></aside></div>'+
     '<div class="flex pr" id="flex" tabindex="0" role="region" aria-roledescription="carousel" aria-label="'+v.name+' certifications">'+
       '<span class="flex-hint lab">'+(finePointer?'Drag to browse &nbsp;&middot;&nbsp; click to focus &nbsp;&middot;&nbsp; click again to open':'Drag &nbsp;&middot;&nbsp; tap to focus &nbsp;&middot;&nbsp; tap again to open')+'</span>'+
@@ -3419,7 +3744,7 @@ function renderBody(i){
       '<button type="button" id="s-easy" aria-pressed="'+(!hardestFirst)+'">Easiest first</button><span class="seg-ind" aria-hidden="true"></span></div></div>'+
     '<div class="c-head pr" aria-hidden="true"><span>#</span><span>Certification</span><span>Difficulty</span><span>Study time</span><span>DoD</span><span></span></div>'+
     '<ol class="certs" id="certs"></ol>'+
-    '<p class="p-note pr">Study hours are rough estimates. 8140 marks certs on the DoD 8140 qualification matrix (V2.1, checked Nov 10, 2026) for at least one work role; whether one counts for you depends on your billet\'s work role and level. The small IAT level under it is the old 8570 baseline that job posts still quote. A dash means not on the matrix.</p>';
+    '<p class="p-note pr">Study hours are rough estimates. The DoD column shows the highest DoD 8140 level a cert meets on the official matrix (V2.1): '+Q8_LV.map(function(l){return q8Badge(l,"m");}).join(" ")+'. Open a cert to see its work roles. Whether one counts for you depends on your billet\'s work role and level. A dash means not on the matrix.</p>';
   requestAnimationFrame(function(){var sg=panel.querySelector("#seg");if(sg) placeSeg(sg);});
   buildCerts(v);
   if(flex){flex.destroy();flex=null;}
@@ -3609,12 +3934,13 @@ function buildCerts(v){
         '<span class="c-meta-m">'+
           '<span class="c-diff" role="img" aria-label="Difficulty '+c[2]+' of 5">'+bars+'</span>'+
           '<span class="c-hrs">'+c[3]+'</span>'+
-          (is8140(c[0])?'<span class="c-iat" title="On the DoD 8140 qualification matrix"><b class="d8">8140</b>'+(c[4]?'<small>'+c[4]+'</small>':'')+'</span>':'<span class="c-iat none" title="Not on the DoD 8140 matrix">—</span>')+
+          (is8140(c[0])?'<span class="c-iat" title="DoD 8140: '+gEsc(q8Sum(c[0]))+'"><b class="d8">8140</b>'+q8Badge(q8Top(c[0]),"m")+'</span>':'<span class="c-iat none" title="Not on the DoD 8140 matrix">—</span>')+
         '</span>'+
         '<span class="c-chev" aria-hidden="true">+</span>'+
       '</button>'+
       '<div class="c-detail" id="'+id+'" aria-hidden="true" inert><div class="c-in"><div class="c-pad">'+
         '<div class="tags">'+c[5].map(function(t){return '<span class="tag">'+t+'</span>';}).join("")+'</div>'+
+        q8CertMini(c[0])+
         (GUIDES[c[0]]?'<p>The full guide is ready: objectives, a study plan, resources, a quiz, PBQs and a roadmap.</p><button type="button" class="g-btn g-open" data-guide="'+c[0]+'"><span class="g-btn-l">Open the '+c[0]+' guide &rarr;</span></button>':
         '<p>Each cert gets its own page with these sections:</p>'+
         '<div class="tags">'+PLANNED.map(function(t){return '<span class="tag plan">'+t+'</span>';}).join("")+'</div>')+
@@ -3626,7 +3952,7 @@ function buildCerts(v){
   ol.querySelectorAll(".cert").forEach(function(li){
     li.querySelector(".c-row").addEventListener("click",function(){setOpen(li,!li.classList.contains("open"));});
   });
-  ol.addEventListener("click",function(e){var pt=e.target.closest("[data-ptf]");if(pt){ptTarget(+pt.dataset.ptf,pt.dataset.ptj!=null?+pt.dataset.ptj:-1);goPage("paths");return;}var b=e.target.closest(".g-open");if(b) openGuide(b.dataset.guide);});
+  ol.addEventListener("click",function(e){var q8=e.target.closest("[data-q8r]");if(q8){q8Target(q8.dataset.q8r);goPage("dod");return;}var pt=e.target.closest("[data-ptf]");if(pt){ptTarget(+pt.dataset.ptf,pt.dataset.ptj!=null?+pt.dataset.ptj:-1);goPage("paths");return;}var b=e.target.closest(".g-open");if(b) openGuide(b.dataset.guide);});
 }
 function placeSeg(seg){
   var b=seg.querySelector('[aria-pressed="true"]'), ind=seg.querySelector(".seg-ind");
@@ -3653,7 +3979,7 @@ function setSort(hard){
 
 /* ---------- explore sheet (pull up from the bottom) ---------- */
 var sheet=$("#sheet"), veil=$("#veil"), grab=$("#sh-grab"), shScroll=$("#sh-scroll");
-var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",paths:"Paths.",cool:"Funding.",out:"Getting out.",exam:"Countdown.",settings:"Settings."}, ORDER=["home","mine","exam","compare","paths","cool","out","settings"], fundPane="ta";
+var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",dod:"DoD 8140.",paths:"Paths.",cool:"Funding.",out:"Getting out.",exam:"Countdown.",settings:"Settings."}, ORDER=["home","mine","exam","compare","dod","paths","cool","out","settings"], fundPane="ta";
 var PATHS=[
   {name:"20 year career",tag:"IT rating career",line:"Make rate, stay qualified for any IT billet, and retire with a full résumé.",steps:[["A+","A+"],["Network+","Network+"],["Security+","Security+"],["CySA+","CySA+"],["CISSP","CISSP"]]},
   {name:"Cloud",tag:"Contractor track",line:"Build toward defense-contractor cloud security roles after your enlistment.",steps:[["Security+","Security+"],["Cloud+","Cloud+"],["AWS Solutions Architect","Solutions Architect Associate"],["Azure Cloud and AI Security","Cloud and AI Security Engineer"],["CCSP","CCSP"]]},
@@ -4338,6 +4664,183 @@ async function showView(name){
   if(name==="paths") ptRender(true);
   if(name==="exam") exEnter();
   if(name==="settings") setEnter();
+  if(name==="dod") q8Enter();
+}
+
+/* ---------- DoD 8140 view: work role finder (v2.29) ---------- */
+var Q8S={m:"role",el:"cs",r:"511",c:"Security+",more:{},go:null};
+function q8Here8140(){   /* CertPath certs on the matrix, strongest first, then easiest */
+  var out=[], rank={A:0,I:1,B:2,"":3};
+  for(var i=0;i<VENDORS.length-1;i++) VENDORS[i].certs.forEach(function(c){if(is8140(c[0])) out.push(c);});
+  return out.sort(function(a,b){return rank[q8Top(a[0])]-rank[q8Top(b[0])]||q8Roles(b[0]).length-q8Roles(a[0]).length||a[2]-b[2];});
+}
+function q8Off(){var out=[];for(var i=0;i<VENDORS.length-1;i++) VENDORS[i].certs.forEach(function(c){if(!is8140(c[0])) out.push(c);});return out;}
+function q8Short(n){return String(n).split(" · ")[0];}
+/* the easiest CertPath cert listed at each level of a role */
+function q8Ladder(R){
+  var out=[];
+  Q8_LV.forEach(function(l){
+    /* easiest first; on a tie, the cert that counts for more work roles, then fewer study hours */
+    var best=null;(R[l]||[]).forEach(function(c){if(!q8Here(c)) return;var f=findCert(c);if(!f.c) return;var h=mpHours(c), n=q8Roles(c).length;
+      if(!best||f.c[2]<best.d||(f.c[2]===best.d&&(n>best.n2||(n===best.n2&&h<best.h)))) best={n:c,d:f.c[2],h:h,n2:n};});
+    if(best) out.push({l:l,n:best.n});
+  });
+  return out;
+}
+function q8Chip(c,extra){
+  if(q8Here(c)) return '<button type="button" class="q8-cp here'+(extra?" "+extra:"")+'" data-gcert="'+gEsc(c)+'" aria-label="'+gEsc(c)+', open its guide">'+gEsc(q8Short(c))+'</button>';
+  return '<span class="q8-cp ext" title="'+gEsc(q8Name(c))+'">'+gEsc(c)+'</span>';
+}
+function q8RoleCard(code){
+  var R=Q8_ROLES[code], el=Q8_EL.filter(function(e){return e.id===R.el;})[0];
+  var h='<article class="q8-card" id="q8-rc" aria-live="polite"><div class="q8-card-h"><b>'+code+'</b><h3>'+gEsc(R.n)+'</h3><span class="lab">'+gEsc(el.name)+'</span></div>'+
+    '<p class="q8-card-d">'+gEsc(R.d)+'</p><div class="q8-cols">';
+  Q8_LV.forEach(function(l){
+    var L=R[l];
+    h+='<div class="q8-col"><div class="q8-col-h">'+q8Badge(l,"w")+(L&&L.length?'<small>'+L.length+(L.length===1?' option':' options')+'</small>':'')+'</div>';
+    if(L===null) h+='<p class="q8-none">Not read into CertPath yet. <a href="'+Q8.url+'" target="_blank" rel="noopener noreferrer">Check the official matrix &nearr;</a></p>';
+    else if(!L.length) h+='<p class="q8-none">No cert option at this level.</p>';
+    else{
+      var here=L.filter(q8Here), rest=L.filter(function(c){return !q8Here(c);}), open=!!Q8S.more[code+l], cap=here.length>=6?0:Math.max(0,6-here.length);
+      var shown=open?rest:rest.slice(0,cap);
+      h+='<div class="q8-chips">'+here.map(function(c){return q8Chip(c);}).join("")+shown.map(function(c){return q8Chip(c);}).join("")+'</div>';
+      if(rest.length>shown.length) h+='<button type="button" class="q8-more" data-q8more="'+code+l+'">+ '+(rest.length-shown.length)+' more</button>';
+      else if(open&&rest.length>cap) h+='<button type="button" class="q8-more" data-q8more="'+code+l+'">Show fewer</button>';
+    }
+    h+='</div>';
+  });
+  h+='</div>';
+  var lad=q8Ladder(R);
+  if(lad.length) h+='<div class="q8-ladder"><p class="lab">Easiest CertPath route up this role</p><ol>'+lad.map(function(x){return '<li><button type="button" class="q8-cp here" data-gcert="'+gEsc(x.n)+'">'+q8Badge(x.l,"s")+gEsc(q8Short(x.n))+'</button></li>';}).join("")+'</ol></div>';
+  h+='<p class="q8-note">Highlighted certs have a full guide here; tap one to open it. A cert at a higher level also covers the lower levels of this role. A degree or a listed training course can also qualify you; see the official matrix.</p></article>';
+  return h;
+}
+function q8CertCard(name){
+  var rs=q8Roles(name), f=findCert(name), t=q8Top(name);
+  var h='<article class="q8-card" id="q8-cc" aria-live="polite"><div class="q8-card-h"><h3>'+gEsc(q8Short(name))+'</h3>'+(!is8140(name)?'<span class="lab">Not on the matrix</span>':t?q8Badge(t,"w"):q8Badge("","w"))+'</div>';
+  if(!is8140(name)){
+    h+='<p class="q8-card-d">Not on the DoD 8140 matrix. It can still teach you a lot, but on its own it won\'t qualify you for a coded billet. Pair it with a cert that is on the matrix.</p>';
+  } else if(!rs.length){
+    h+='<p class="q8-card-d">'+gEsc(Q8_ENONLY[name]||"")+'</p>';
+  } else {
+    h+='<p class="q8-card-d">Counts for <b>'+rs.length+'</b> IT and cybersecurity work roles mapped in CertPath, up to <b>'+Q8_LVN[t]+'</b>. It also meets the interim rule for Cyber Enabler roles.</p>';
+    ["cs","it"].forEach(function(el){
+      var sub=rs.filter(function(x){return Q8_ROLES[x.r].el===el;});if(!sub.length) return;
+      h+='<p class="o-h" style="margin:22px 0 0">'+gEsc(Q8_EL.filter(function(e){return e.id===el;})[0].name)+'</p><ul class="q8-rt">'+sub.map(function(x){
+        return '<li><button type="button" data-q8r="'+x.r+'" aria-label="'+x.r+' '+gEsc(Q8_ROLES[x.r].n)+', '+Q8_LVN[x.l]+'"><b>'+x.r+'</b><span>'+gEsc(Q8_ROLES[x.r].n)+'<small>See every cert for this role &rarr;</small></span>'+q8Badge(x.l,"m")+'</button></li>';}).join("")+'</ul>';
+    });
+  }
+  if(f.c&&GUIDES[name]) h+='<div class="octa" style="margin-top:18px"><button type="button" class="g-link" data-gcert="'+gEsc(name)+'">Open the '+gEsc(q8Short(name))+' guide &rarr;</button></div>';
+  return h+'</article>';
+}
+function q8EnCard(){
+  var groups={};Q8_EN.forEach(function(x){(groups[x[2]]=groups[x[2]]||[]).push(x);});
+  return '<article class="q8-card" id="q8-en"><div class="q8-card-h"><h3>One rule for every Enabler role.</h3>'+q8Badge("","w")+'</div>'+
+    '<p class="q8-card-d">Cyber Enablers support the cyber force: legal, training, leadership and acquisition jobs. Under the DoD CIO\'s interim guidance (Nov 24, 2025), <b>any one</b> of these meets the foundational requirement for an Enabler role:</p>'+
+    '<ul class="q8-rt">'+[["Cert","A cyber certification listed on the DoD 8140 matrix, kept current. Every cert marked 8140 on CertPath is one."],["Cyber 101","CY101, a free 40-hour course from the DoD Cyber Crime Center."],["Training","A cyber training course listed in the DoD 8140 repository."],["Degree","A listed degree earned in the past 5 years, or older with steady cyber work since."]].map(function(x,i){return '<li><b>0'+(i+1)+'</b><span>'+gEsc(x[0])+'<small>'+gEsc(x[1])+'</small></span><span></span></li>';}).join("")+'</ul>'+
+    Object.keys(groups).map(function(g){return '<p class="o-h" style="margin:22px 0 0">'+gEsc(g)+'</p><ul class="q8-rt">'+groups[g].map(function(x){return '<li><b>'+x[0]+'</b><span>'+gEsc(x[1])+'</span><span></span></li>';}).join("")+'</ul>';}).join("")+
+    '<p class="q8-note">Proof on the matrix: 211 Forensics Analyst at Advanced lists about 60 certs, including every 8140 cert on CertPath. Role 901 Executive Cyber Leader is Advanced only (O-6 / GS-15 and up). <a class="q8-a" href="'+Q8.enMemo+'" target="_blank" rel="noopener noreferrer">DoD CIO Enabler memo &nearr;</a></p></article>';
+}
+function q8Render(){
+  var host=$("#q8-app");if(!host) return;
+  var h='<div class="fsw q8-modes" role="group" aria-label="Look up by"><button type="button" data-q8m="role" aria-pressed="'+(Q8S.m==="role")+'"><span>I know my billet</span><b>By work role</b></button><button type="button" data-q8m="cert" aria-pressed="'+(Q8S.m==="cert")+'"><span>I have a cert</span><b>By cert</b></button></div>';
+  if(Q8S.m==="role"){
+    var cnt={it:0,cs:0};Object.keys(Q8_ROLES).forEach(function(r){cnt[Q8_ROLES[r].el]++;});
+    h+='<div class="q8-els" role="group" aria-label="Workforce element">'+[["cs","Cybersecurity",cnt.cs],["it","IT (Cyberspace)",cnt.it],["en","Enablers",Q8_EN.length]].map(function(x){return '<button type="button" data-q8el="'+x[0]+'" aria-pressed="'+(Q8S.el===x[0])+'">'+x[1]+'<small>'+x[2]+'</small></button>';}).join("")+'</div>';
+    if(Q8S.el==="en") h+=q8EnCard();
+    else{
+      var codes=Object.keys(Q8_ROLES).filter(function(r){return Q8_ROLES[r].el===Q8S.el;});
+      if(codes.indexOf(Q8S.r)<0) Q8S.r=codes[0];
+      h+='<div class="q8-grid" role="group" aria-label="Work roles">'+codes.map(function(r){var R=Q8_ROLES[r], n=0;Q8_LV.forEach(function(l){n+=(R[l]||[]).filter(q8Here).length;});
+        return '<button type="button" class="q8-rb" data-q8r="'+r+'" aria-pressed="'+(r===Q8S.r)+'"><b>'+r+'</b><span>'+gEsc(R.n)+'</span><small>'+n+' CertPath '+(n===1?'cert':'certs')+'</small></button>';}).join("")+'</div>';
+      h+=q8RoleCard(Q8S.r);
+      var td=Q8_TODO[Q8S.el];
+      if(td&&td.length) h+='<p class="q8-note">Not mapped in CertPath yet: '+td.map(function(x){return x[0]+' '+gEsc(x[1]);}).join(" · ")+'. <a class="q8-a" href="'+Q8.url+'" target="_blank" rel="noopener noreferrer">Check the official matrix &nearr;</a></p>';
+    }
+  } else {
+    h+='<div class="q8-certs" role="group" aria-label="Certs on the DoD 8140 matrix">'+q8Here8140().map(function(c){return '<button type="button" data-q8c="'+gEsc(c[0])+'" aria-pressed="'+(c[0]===Q8S.c)+'">'+q8Badge(q8Top(c[0]),"s")+gEsc(q8Short(c[0]))+'</button>';}).join("")+'</div>';
+    h+=q8CertCard(Q8S.c);
+    h+='<p class="o-h" style="margin:26px 0 12px">Not on the matrix</p><div class="q8-certs">'+q8Off().map(function(c){return '<button type="button" class="off" data-q8c="'+gEsc(c[0])+'" aria-pressed="'+(c[0]===Q8S.c)+'">'+gEsc(q8Short(c[0]))+'</button>';}).join("")+'</div>';
+  }
+  host.innerHTML=h;
+}
+function q8Scroll(el){
+  if(!el) return;
+  var top=el.getBoundingClientRect().top-shScroll.getBoundingClientRect().top+shScroll.scrollTop-18;
+  if(reduced) shScroll.scrollTop=top; else shScroll.scrollTo({top:top,behavior:"smooth"});
+  if(!reduced){el.classList.remove("q8-hit");void el.offsetWidth;el.classList.add("q8-hit");}
+}
+/* open the view on a role, a cert, or the IAT explainer (from search, guides and vendor pages) */
+function q8Target(code){
+  if(code==="iat") Q8S.go="iat";
+  else if(Q8_ROLES[code]){Q8S.m="role";Q8S.el=Q8_ROLES[code].el;Q8S.r=code;Q8S.go="rc";}
+  else if(code==="en"){Q8S.m="role";Q8S.el="en";Q8S.go="rc";}
+  if(shView==="dod") q8Enter();
+}
+function q8TargetCert(name){Q8S.m="cert";Q8S.c=name;Q8S.go="cc";if(shView==="dod") q8Enter();}
+function q8Enter(){
+  q8Render();
+  var go=Q8S.go;Q8S.go=null;if(!go) return;
+  setTimeout(function(){q8Scroll(go==="iat"?$("#q8-iat"):go==="cc"?$("#q8-cc"):($("#q8-rc")||$("#q8-en")));},reduced?0:520);
+}
+(function(){
+  var v=$("#sv-dod");if(!v) return;
+  v.addEventListener("click",function(e){
+    var t=e.target.closest("[data-q8m],[data-q8el],[data-q8r],[data-q8c],[data-q8more],[data-gcert]");if(!t||!v.contains(t)) return;
+    if(t.dataset.gcert){var en=sByName(t.dataset.gcert);if(en) openCertFrom(en);return;}
+    if(t.dataset.q8m){if(Q8S.m===t.dataset.q8m) return;Q8S.m=t.dataset.q8m;q8Render();return;}
+    if(t.dataset.q8el){if(Q8S.el===t.dataset.q8el) return;Q8S.el=t.dataset.q8el;q8Render();return;}
+    if(t.dataset.q8more){Q8S.more[t.dataset.q8more]=!Q8S.more[t.dataset.q8more];q8Render();return;}
+    if(t.dataset.q8r){var jump=Q8S.m!=="role";Q8S.m="role";Q8S.el=Q8_ROLES[t.dataset.q8r].el;Q8S.r=t.dataset.q8r;q8Render();var rc=$("#q8-rc");
+      if(rc&&(jump||rc.getBoundingClientRect().top>innerHeight*.8||rc.getBoundingClientRect().top<0)) q8Scroll(rc);return;}
+    if(t.dataset.q8c){Q8S.c=t.dataset.q8c;q8Render();var cc=$("#q8-cc");if(cc&&(cc.getBoundingClientRect().top>innerHeight*.8||cc.getBoundingClientRect().top<0)) q8Scroll(cc);}
+  });
+  var n=$("#sb-8140");if(n) n.textContent=String(q8Roles("Security+").length);
+})();
+/* vendor page: the cert row's dropdown lists its work roles */
+function q8CertMini(name){
+  if(!is8140(name)) return '<div class="q8c"><p class="q8c-h"><span class="lab">DoD 8140</span><span class="q8c-s">Not on the matrix</span></p></div>';
+  var rs=q8Roles(name);
+  if(!rs.length) return '<div class="q8c"><p class="q8c-h"><span class="lab">DoD 8140</span>'+q8Badge("","m")+'</p><p class="q8c-p">'+gEsc(Q8_ENONLY[name]||"")+'</p></div>';
+  return '<div class="q8c"><p class="q8c-h"><span class="lab">DoD 8140 work roles</span><span class="q8c-s">'+gEsc(q8Sum(name))+'</span></p>'+
+    '<div class="q8c-list">'+rs.map(function(x){return '<button type="button" class="r8" data-q8r="'+x.r+'" title="'+gEsc(Q8_ROLES[x.r].n)+' · '+Q8_LVN[x.l]+'" aria-label="'+x.r+' '+gEsc(Q8_ROLES[x.r].n)+', '+Q8_LVN[x.l]+'">'+q8Badge(x.l,"s")+x.r+'</button>';}).join("")+'</div>'+
+    '<p class="q8c-p">Tap a role to see every cert that meets it. Any cert on the matrix also counts for Cyber Enabler roles.</p></div>';
+}
+/* guide: the DoD 8140 card in "Keep it, use it" and the full role list under it */
+function q8KeepCards(name,keep){
+  var out=[], done=false;
+  (keep||[]).forEach(function(kc){
+    if(!/^DoD/.test(kc.lab)){out.push(kc);return;}
+    if(done) return;done=true;
+    if(!is8140(name)){out.push(kc);return;}
+    var rs=q8Roles(name), t=q8Top(name);
+    out.push(rs.length?{lab:"DoD 8140",big:"Up to "+Q8_LVN[t],text:"Counts for "+rs.length+(rs.length===1?" work role":" work roles")+" on the official DoD 8140 matrix ("+Q8.ver+"). Every role and level is listed below."}
+      :{lab:"DoD 8140",big:"Enabler roles",text:Q8_ENONLY[name]||""});
+  });
+  return out;
+}
+function q8GuideBlock(name){
+  if(!is8140(name)) return "";
+  var rs=q8Roles(name), t=q8Top(name), h='<div class="q8g g-rv" id="g-q8">';
+  h+='<div class="q8g-top"><div><p class="lab">DoD 8140 &middot; Matrix '+Q8.ver+'</p><h4>Work roles it counts for.</h4></div>'+
+    (rs.length?'<p class="q8g-sum"><b>'+rs.length+'</b> '+(rs.length===1?'role':'roles')+', up to '+q8Badge(t,"w")+'</p>':'<p class="q8g-sum">'+q8Badge("","w")+'</p>')+'</div>';
+  h+='<p class="q8g-leg">'+Q8_LV.map(function(l){return '<span>'+q8Badge(l,"s")+Q8_LVN[l]+'</span>';}).join("")+'<span>Your billet\'s work role sets the level you need.</span></p>';
+  if(!rs.length) h+='<p class="q8g-en">'+gEsc(Q8_ENONLY[name]||"")+'</p>';
+  ["cs","it"].forEach(function(el){
+    var sub=rs.filter(function(x){return Q8_ROLES[x.r].el===el;});if(!sub.length) return;
+    h+='<div class="q8g-el"><p class="q8g-elh">'+gEsc(Q8_EL.filter(function(e){return e.id===el;})[0].name)+'</p><ul class="q8g-list">'+sub.map(function(x){
+      var R=Q8_ROLES[x.r], others=[];
+      Q8_LV.forEach(function(l){(R[l]||[]).forEach(function(c){if(c!==name&&q8Here(c)) others.push({c:c,l:l});});});
+      var id="q8x-"+x.r;
+      return '<li class="q8g-li"><button type="button" class="q8g-r" aria-expanded="false" aria-controls="'+id+'"><span class="q8g-c">'+x.r+'</span><span class="q8g-n">'+gEsc(R.n)+'</span>'+q8Badge(x.l,"w").replace('class="l8','data-l="'+x.l+'" class="l8')+'<span class="q8g-chev" aria-hidden="true">+</span></button>'+
+        '<div class="q8g-x" id="'+id+'" inert><div><div class="q8g-xi"><p>'+gEsc(R.d)+'</p>'+
+        (others.length?'<div class="q8g-also"><span class="lab">Other CertPath certs for this role</span>'+others.map(function(o){return '<button type="button" class="ptt-c" data-gocert="'+gEsc(o.c)+'">'+q8Badge(o.l,"s")+gEsc(q8Short(o.c))+'</button>';}).join("")+'</div>':'')+
+        '<button type="button" class="g-link" data-goto="dod" data-q8r="'+x.r+'" style="justify-self:start">Every cert for '+x.r+' &rarr;</button></div></div></div></li>';}).join("")+'</ul></div>';
+  });
+  if(rs.length) h+='<p class="q8g-en"><b>Cyber Enabler roles too.</b> Legal, training, leadership and acquisition roles accept any cyber cert on the matrix under the DoD CIO\'s interim rule, so this one counts there as well.</p>';
+  h+='<div class="q8g-acts"><button type="button" class="g-btn ghost" data-goto="dod" data-q8c="'+gEsc(name)+'"><span class="g-btn-l">Open the work role finder &rarr;</span></button><button type="button" class="g-link" data-goto="dod" data-q8r="iat">Where did IAT go?</button></div>';
+  h+='<p class="g-fine">From the official DoD 8140 qualification matrix '+Q8.ver+' (effective '+Q8.eff+'), read on cyberworkforce.mil '+Q8.checked+'. Pending options are left out. A cert at a higher level also covers the lower levels of the same role. A cert is one way to meet the foundational step; your unit\'s on-the-job qualification and 20 hours a year of learning complete it.</p></div>';
+  return h;
 }
 
 /* drag the bar */
@@ -4519,12 +5022,9 @@ function cmpInfo(name){
 }
 function cmpDots(n){var h='<span class="cm-dots" role="img" aria-label="Difficulty '+n+' of 5">';for(var i=1;i<=5;i++) h+='<i'+(i<=n?' class="on"':'')+'></i>';return h+'</span>';}
 function cmpFact(I,k){var x=I.F[k];return x?{v:x[1],s:x[2]}:null;}
-function cmpD8(I){return is8140(I.name)?{v:"Approved",s:"on the DoD 8140 matrix"}:{v:"Not listed",s:"not on the 8140 matrix"};}
-function cmpDod(I){
-  var d=I.F["DoD 8570"];
-  if(d){var sub=String(d[2]||"").replace(/^\u00b7\s*/,"");return /^\d+$/.test(d[1])?{v:d[1]+" "+sub,s:d[0]}:{v:d[1],s:(sub?sub+" \u00b7 ":"")+d[0]};}
-  return I.c[4]?{v:I.c[4],s:"DoD 8570"}:null;
-}
+function cmpD8(I){if(!is8140(I.name)) return {v:"Not listed",s:"not on the 8140 matrix"};var t=q8Top(I.name),n=q8Roles(I.name).length;
+  return {html:'<b class="cm-q8">'+q8Badge(t,"w")+'</b><small>'+(n?"highest level \u00b7 "+n+(n===1?" work role":" work roles"):"Cyber Enabler roles")+'</small>'};}
+function cmpRolesOf(I){var rs=q8Roles(I.name);if(!rs.length) return null;return {html:'<span class="cm-r8">'+rs.map(function(x){return '<span class="r8" title="'+gEsc(Q8_ROLES[x.r].n)+' \u00b7 '+Q8_LVN[x.l]+'">'+q8Badge(x.l,"s")+x.r+'</span>';}).join("")+'</span>'};}
 function cmpTake(A,B){
   var out=[];
   var shared=null;A.paths.forEach(function(p){B.paths.forEach(function(q){if(!shared&&p.name===q.name) shared={name:p.name,a:p.i,b:q.i};});});
@@ -4554,7 +5054,7 @@ function cmpRows(A,B){
   row("Level",{html:'<b>'+gEsc(A.c[1])+'</b>'+cmpDots(A.c[2])},{html:'<b>'+gEsc(B.c[1])+'</b>'+cmpDots(B.c[2])});
   row("Study time",{v:A.c[3],s:"≈ "+Math.max(1,Math.ceil(A.hours/10))+" weeks at 10 h a week"},{v:B.c[3],s:"≈ "+Math.max(1,Math.ceil(B.hours/10))+" weeks at 10 h a week"},cmpBetter(A.hours,B.hours,"Less time"));
   row("DoD 8140",cmpD8(A),cmpD8(B));
-  row("DoD 8570",cmpDod(A),cmpDod(B));
+  row("8140 work roles",cmpRolesOf(A),cmpRolesOf(B));
   function pathsOf(I){return I.paths.length?{html:I.paths.map(function(p){return '<b class="cm-p">'+gEsc(p.name)+'<small>step '+p.i+' of '+p.n+'</small></b>';}).join("")}:{html:'<span class="cm-na">Not on a CertPath track</span>'};}
   row("Career paths",pathsOf(A),pathsOf(B));
   function wguOf(I){var d=WGU_IN[I.name];return d?{v:"Yes",s:d.join(" · ")}:{v:"No"};}
@@ -4787,7 +5287,7 @@ var GUIDES={
           ["Given a scenario, implement security awareness practices","Phishing campaigns, recognizing anomalous behavior, user guidance and training, reporting."]]}
       ]}
   },
-  facts:[["Questions","90","max"],["Time","90","minutes"],["Passing","750","of 900"],["Format","MCQ","+ PBQs"],["Study","60–100","hours"],["Voucher","$439","US retail"],["Valid","3","years"],["DoD 8570","IAT II","· IAM I"]],
+  facts:[["Questions","90","max"],["Time","90","minutes"],["Passing","750","of 900"],["Format","MCQ","+ PBQs"],["Study","60–100","hours"],["Voucher","$439","US retail"],["Valid","3","years"],["DoD 8140","",""]],
   method:[
     ["Map","Treat the objectives as your checklist. Every topic you study ties back to one line on it. Tick them off above as you go."],
     ["Learn","Pick one video course and finish it end to end. Take notes in your own words, not copied slides."],
@@ -4894,8 +5394,7 @@ var GUIDES={
   mapSub:"Security+ sits in the middle of every path on this site. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 50 continuing education units (CEUs), or by earning a higher CompTIA cert such as CySA+ or PenTest+."},
-    {lab:"DoD 8570",big:"IAT II \u00b7 IAM I",text:"Under the old 8570 baseline, which many job posts still quote."},
-    {lab:"DoD 8140",big:"Work roles",text:"Listed as a qualification for roles including:",list:["System Administrator (451)","Network Operations Specialist (441)","Technical Support Specialist (411)","Cyber Defense Analyst (511)","Cyber Defense Incident Responder (531)","Vulnerability Assessment Analyst (541)"],after:"The proficiency level needed depends on the role, so check the 8140 matrix for your billet."}],
+    {lab:"DoD 8140",big:"",text:""}],
   dod:{roles:["System Administrator (451)","Network Operations Specialist (441)","Technical Support Specialist (411)","Cyber Defense Analyst (511)","Cyber Defense Incident Responder (531)","Vulnerability Assessment Analyst (541)"]},
   sources:[
     ["CompTIA Security+ V8 page (exam details, objectives summary)","https://www.comptia.org/en/certifications/security/v8/"],
@@ -4975,7 +5474,7 @@ GUIDES["A+"]={
       "Verify full system functionality and, if applicable, put preventive measures in place.",
       "Document findings, actions and outcomes."]}
   ],
-  facts:[["Exams","2","Core 1 + Core 2"],["Questions","90","max per exam"],["Time","90","min per exam"],["Passing","675 · 700","Core 1 · Core 2"],["Study","120–200","hours, both"],["Voucher","$274","per exam, US"],["Valid","3","years"],["DoD 8570","IAT I","baseline"]],
+  facts:[["Exams","2","Core 1 + Core 2"],["Questions","90","max per exam"],["Time","90","min per exam"],["Passing","675 · 700","Core 1 · Core 2"],["Study","120–200","hours, both"],["Voucher","$274","per exam, US"],["Valid","3","years"],["DoD 8140","",""]],
   method:[
     ["Map","Use the domains above as your checklist, one core at a time. Core 1 first is the usual order."],
     ["Learn","Pick one video course per core and finish it end to end. Take notes in your own words."],
@@ -5104,8 +5603,7 @@ GUIDES["A+"]={
   mapSub:"A+ starts the 20 year career path and sets up every other one. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 20 continuing education units (CEUs), or by earning a higher CompTIA cert such as Network+ or Security+."},
-    {lab:"DoD 8570",big:"IAT I",text:"Under the old 8570 baseline, which many job posts still quote."},
-    {lab:"DoD 8140",big:"Work roles",text:"CompTIA lists A+ as approved for:",list:["Technical Support Specialist","System Administrator","Cyber Defense Infrastructure Support Specialist"],after:"The proficiency level needed depends on the role, so check the 8140 matrix for your billet."}],
+    {lab:"DoD 8140",big:"",text:""}],
   sources:[
     ["CompTIA A+ Core 1 (V15): exam details, objectives, 8140 roles","https://www.comptia.org/en/certifications/a/core-1-v15/"],
     ["CompTIA A+ Core 2 (V15): exam details, objectives","https://www.comptia.org/en/certifications/a/core-1-and-2-v15/"],
@@ -5179,7 +5677,7 @@ GUIDES["Network+"]={
       ["445","SMB","File sharing"],["514","Syslog","Log collection"],["587","SMTPS","Secure mail submission"],["636","LDAPS","Secure directory"],
       ["1433","SQL Server","Database"],["3389","RDP","Remote desktop"],["5060/5061","SIP","Voice over IP signaling"]]}
   ],
-  facts:[["Questions","90","max"],["Time","90","minutes"],["Passing","720","of 900"],["Format","MCQ","+ PBQs"],["Study","80–120","hours"],["Voucher","$399","US retail"],["Valid","3","years"],["DoD 8570","IAT I","baseline"]],
+  facts:[["Questions","90","max"],["Time","90","minutes"],["Passing","720","of 900"],["Format","MCQ","+ PBQs"],["Study","80–120","hours"],["Voucher","$399","US retail"],["Valid","3","years"],["DoD 8140","",""]],
   method:[
     ["Map","Use the domains above as your checklist. Troubleshooting and Networking Concepts carry almost half the exam."],
     ["Learn","Pick one video course and finish it end to end. Draw the diagrams yourself as you go."],
@@ -5283,8 +5781,7 @@ GUIDES["Network+"]={
   mapSub:"Network+ is the foundation for the 20 year career and Network paths, and everything above them. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 30 continuing education units (CEUs), or by earning a higher CompTIA cert such as Security+."},
-    {lab:"DoD 8570",big:"IAT I",text:"Under the old 8570 baseline, which many job posts still quote."},
-    {lab:"DoD 8140",big:"Work roles",text:"CompTIA lists Network+ for these work roles:",list:["Technical Support Specialist","Network Operations Specialist","System Administrator"],after:"The proficiency level needed depends on the role, so check the 8140 matrix for your billet."}],
+    {lab:"DoD 8140",big:"",text:""}],
   sources:[
     ["CompTIA Network+ (V9): exam details, objectives, 8140 roles","https://www.comptia.org/en-us/certifications/network/"],
     ["Infosec Institute: Network+ renewal (30 CEUs)","https://www.infosecinstitute.com/resources/network/maintaining-your-network-certification-renewal-requirements"],
@@ -5361,7 +5858,7 @@ GUIDES["Cloud+"]={
       ["Snap","Snapshot","Point-in-time copy of a disk. Fast, but not a backup if it lives in the same account or region."],
       ["Immutable","Immutable backup","A backup nobody can change or delete until it expires. Protects against ransomware."]]}
   ],
-  facts:[["Questions","90","max"],["Time","90","minutes"],["Passing","750","of 900"],["Format","MCQ","+ PBQs"],["Study","60–90","hours"],["Voucher","$399","US retail"],["Valid","3","years"],["DoD 8570","IAM I","CSSP-IS · CSSP-A"]],
+  facts:[["Questions","90","max"],["Time","90","minutes"],["Passing","750","of 900"],["Format","MCQ","+ PBQs"],["Study","60–90","hours"],["Voucher","$399","US retail"],["Valid","3","years"],["DoD 8140","",""]],
   method:[
     ["Map","Use the domains above as your checklist. Architecture, Deployment and Security carry over 60% of the exam."],
     ["Learn","Cloud+ is vendor-neutral, so learn the concept first, then see how AWS and Azure each name it."],
@@ -5467,12 +5964,10 @@ GUIDES["Cloud+"]={
   mapSub:"Cloud+ is the vendor-neutral step before AWS, Azure and CCSP on the Cloud path. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 50 continuing education units (CEUs), or by earning a qualifying higher-level CompTIA cert."},
-    {lab:"DoD 8570",big:"IAM I",text:"CompTIA lists Cloud+ as approved for IAM Level I, CSSP Infrastructure Support and CSSP Analyst under the old 8570 baseline."},
-    {lab:"DoD 8140",big:"Work roles",text:"CompTIA lists Cloud+ for these work roles:",list:["Network Operations Specialist","Systems Administrator","Enterprise Architect","Security Architect"],after:"The proficiency level needed depends on the role, so check the 8140 matrix for your billet."}],
+    {lab:"DoD 8140",big:"",text:""}],
   sources:[
     ["CompTIA Cloud+ (V4): exam details, objectives, work roles","https://www.comptia.org/en/certifications/cloud/"],
     ["CompTIA: Cloud+ renewal (50 CEUs)","https://www.comptia.org/en/resources/ce/renew-options/renewing-cloud-single/"],
-    ["CompTIA: Cloud+ DoD 8570 approval","https://comptia.org/blog/comptia-cloud-is-now-dod-8570-approved"],
     ["Crucial Exams: 2026 voucher prices","https://crucialexams.com/posts/blog/comptia-voucher-price-increase-2026"]]
 };
 
@@ -5555,7 +6050,7 @@ GUIDES["CySA+"]={
       ["S","Scope","U unchanged · C changed. Changed means it can break out to other components."],
       ["C/I/A","Impact","H high · L low · N none, for confidentiality, integrity and availability."]]}
   ],
-  facts:[["Questions","85","max"],["Time","165","minutes"],["Passing","750","of 900"],["Format","MCQ","+ PBQs"],["Study","80–120","hours"],["Voucher","$439","US retail"],["Valid","3","years"],["DoD 8570","IAT II","+ 4 CSSP roles"]],
+  facts:[["Questions","85","max"],["Time","165","minutes"],["Passing","750","of 900"],["Format","MCQ","+ PBQs"],["Study","80–120","hours"],["Voucher","$439","US retail"],["Valid","3","years"],["DoD 8140","",""]],
   method:[
     ["Map","Use the domains above as your checklist. Security Operations alone is a third of the exam."],
     ["Learn","Learn the analyst workflow, not just terms: alert, triage, investigate, contain, report."],
@@ -5659,14 +6154,12 @@ GUIDES["CySA+"]={
   mapSub:"CySA+ turns Security+ knowledge into analyst skills, and leads to CISSP, PenTest+ and SecurityX. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 60 continuing education units (CEUs), or by earning a higher CompTIA cert such as SecurityX."},
-    {lab:"DoD 8570",big:"IAT II",text:"Also covers four CSSP categories under the old 8570 baseline:",list:["CSSP Analyst","CSSP Incident Responder","CSSP Infrastructure Support","CSSP Auditor"]},
-    {lab:"DoD 8140",big:"Work roles",text:"Those CSSP categories line up with cyber defense work roles such as Cyber Defense Analyst and Cyber Defense Incident Responder.",after:"The proficiency level needed depends on the role, so check the 8140 matrix for your billet."}],
+    {lab:"DoD 8140",big:"",text:""}],
   sources:[
     ["CompTIA CySA+ (V4): exam details and objectives","https://www.comptia.org/en/certifications/cybersecurity-analyst/v4/"],
     ["CompTIA CySA+ CS0-003 (V3) exam objectives","https://www.comptia.jp/pdf/CompTIA%20CySA%2B%20CS0-003%20Exam%20Objectives.pdf"],
     ["ExamCert: CS0-003 retirement date (Dec 22, 2026)","https://www.examcert.app/blog/cysa-cs0-003-to-cs0-004-what-changed/"],
     ["CompTIA: CySA+ renewal (60 CEUs)","https://www.comptia.org/en/resources/ce/renew-options/renewing-cysa-multiple/"],
-    ["Infosec Institute: CySA+ and DoD 8570","https://www.infosecinstitute.com/resources/cysa/cysa-plus-ia-levels/"],
     ["Crucial Exams: 2026 voucher prices","https://crucialexams.com/posts/blog/comptia-voucher-price-increase-2026"]]
 };
 
@@ -5745,7 +6238,7 @@ GUIDES["PenTest+"]={
       ["OWASP","OWASP Top 10 and MASVS","The top web app risks, and the standard for testing mobile apps."],
       ["STRIDE","Threat modeling","Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege."]]}
   ],
-  facts:[["Questions","90","max"],["Time","165","minutes"],["Passing","750","of 900"],["Format","MCQ","+ PBQs"],["Study","80–120","hours"],["Voucher","$439","US retail"],["Valid","3","years"],["DoD 8570","CSSP","3 roles"]],
+  facts:[["Questions","90","max"],["Time","165","minutes"],["Passing","750","of 900"],["Format","MCQ","+ PBQs"],["Study","80–120","hours"],["Voucher","$439","US retail"],["Valid","3","years"],["DoD 8140","",""]],
   method:[
     ["Map","Use the domains above as your checklist. Attacks and Exploits alone is over a third of the exam."],
     ["Learn","Learn the whole engagement, not just the hacking: scope, recon, scan, exploit, post-exploit, report, clean up."],
@@ -5862,8 +6355,7 @@ GUIDES["PenTest+"]={
   mapSub:"PenTest+ turns security knowledge into hands-on offensive skills, and leads to SecurityX. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 60 continuing education units (CEUs), or by earning a higher CompTIA cert such as SecurityX."},
-    {lab:"DoD 8570",big:"CSSP",text:"Approved for three CSSP categories under the old 8570 baseline:",list:["CSSP Analyst","CSSP Incident Responder","CSSP Auditor"]},
-    {lab:"DoD 8140",big:"Work roles",text:"CompTIA maps PenTest+ to work roles such as Vulnerability Assessment Analyst and Security Control Assessor.",after:"The proficiency level needed depends on the role, so check the 8140 matrix for your billet."},
+    {lab:"DoD 8140",big:"",text:""},
     {lab:"The rules",big:"Written OK",text:"Testing a system without written permission is a federal crime under the Computer Fraud and Abuse Act. Practice only in legal labs and on machines you own.",after:"On Coast Guard networks, only authorized assessment teams test. Never scan a work network to practice."}],
   sources:[
     ["CompTIA PenTest+ (V3): exam details","https://www.comptia.org/en-em/certifications/pentest/"],
@@ -5940,7 +6432,7 @@ GUIDES["SecurityX"]={
       ["SOC 2","Service Organization Control 2","An audit report that shows customers a provider's controls work."],
       ["COBIT","IT governance","Ties IT goals and controls to business goals."]]}
   ],
-  facts:[["Questions","90","max"],["Time","165","minutes"],["Passing","Pass/fail","no scaled score"],["Format","MCQ","+ PBQs"],["Study","120–180","hours"],["Voucher","$544","US retail"],["Valid","3","years"],["DoD 8570","IAT III","+ IAM II, IASAE"]],
+  facts:[["Questions","90","max"],["Time","165","minutes"],["Passing","Pass/fail","no scaled score"],["Format","MCQ","+ PBQs"],["Study","120–180","hours"],["Voucher","$544","US retail"],["Valid","3","years"],["DoD 8140","",""]],
   method:[
     ["Map","Use the domains above as your checklist. Security Engineering is almost a third of the exam."],
     ["Think","Think like an architect: the BEST answer fixes the root cause at the right layer, and still fits the business."],
@@ -6057,14 +6549,12 @@ GUIDES["SecurityX"]={
   mapSub:"SecurityX caps CompTIA's security line. From here, most people add a senior cert like CISSP or a cloud specialty. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 75 continuing education units (CEUs), or by passing the latest SecurityX exam or another qualifying cert."},
-    {lab:"DoD 8570",big:"IAT III",text:"Listed under its old name, CASP+, for four categories under the old 8570 baseline:",list:["IAT Level III","IAM Level II","IASAE Level I","IASAE Level II"]},
-    {lab:"DoD 8140",big:"Work roles",text:"Under DoD 8140, it's used for advanced roles such as security architecture and engineering.",after:"The proficiency level needed depends on the role, so check the 8140 matrix for your billet."},
+    {lab:"DoD 8140",big:"",text:""},
     {lab:"New name",big:"CASP+",text:"SecurityX is the new name for CASP+ (CompTIA Advanced Security Practitioner). Older documents, job posts and DoD lists may still say CASP+."}],
   sources:[
     ["CompTIA SecurityX (V5): exam details","https://www.comptia.org/en/certifications/securityx/"],
     ["CompTIA SecurityX CAS-005 exam objectives","https://onlc.com/comptia/securityx-cas-005-exam-objectives-(3-0).pdf"],
     ["CompTIA: how long SecurityX lasts (75 CEUs)","https://www.comptia.org/en/blog/how-long-does-the-securityx-certification-last/"],
-    ["CompTIA: DoD 8570 approved certifications","https://partners.comptia.org/docs/default-source/resources/certification_dod_8570_flier"],
     ["Infosec Institute: SecurityX (CASP+) renewal","https://infosecinstitute.com/resources/securityx/maintaining-securityx-certification-renewal-requirements/"],
     ["Crucial Exams: 2026 voucher prices","https://crucialexams.com/posts/blog/comptia-voucher-price-increase-2026"]]
 };
@@ -6243,13 +6733,13 @@ GUIDES["CC"]={
        {req:"An admin account signed in at 03:00 from another country and created three new accounts.",a:[2,3],why:"A likely compromised admin account with persistence. This needs the incident response team's full process right away."}]}
   ],
   before:[["A+","Optional. Helpful if IT itself is new to you"]],
-  next:[["Security+","The DoD baseline most IT billets ask for"],["SSCP","ISC2's next step, once you have a year of security work"],["SAL1","Hands-on SOC practice to go with the theory","SAL1 · Security Analyst L1"]],
+  next:[["Security+","The DoD 8140 cert most IT billets ask for"],["SSCP","ISC2's next step, once you have a year of security work"],["SAL1","Hands-on SOC practice to go with the theory","SAL1 · Security Analyst L1"]],
   hereNote:"A no-experience first step into cyber",
   mapSub:"CC is a great first cert, and Security+ is the usual next one for DoD jobs. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Earn 45 continuing professional education (CPE) credits every three years. ISC2 suggests about 15 a year."},
     {lab:"Yearly fee",big:"$50",text:"CC holders pay a $50 annual maintenance fee on their certification anniversary.",after:"It goes up to $135 a year if you add another ISC2 cert like SSCP or CISSP."},
-    {lab:"DoD 8140",big:"20 roles",text:"ISC2 says CC counts toward six of the seven DoD cyber workforce areas and is tied to 20 work roles.",after:"Check the DoD 8140 matrix for your billet and the level it needs."},
+    {lab:"DoD 8140",big:"",text:""},
     {lab:"Ethics",big:"4 canons",text:"Every ISC2 member agrees to the Code of Ethics. Breaking it can cost you the cert.",list:["Protect society and the infrastructure","Act honorably, honestly, justly, responsibly and legally","Provide diligent and competent service to principals","Advance and protect the profession"]}],
   sources:[
     ["ISC2: Certified in Cybersecurity","https://www.isc2.org/certifications/cc"],
@@ -6356,7 +6846,7 @@ GUIDES["SSCP"]={
       ["VPN","Remote access","An encrypted tunnel back to the network, often with MFA."],
       ["VDI","Virtual desktop","The desktop runs in the data center; only the screen reaches the user."]]}
   ],
-  facts:[["Questions","100–125","adaptive"],["Time","2","hours"],["Passing","700","of 1000"],["Format","CAT","MCQ +"],["Study","60–90","hours"],["Voucher","$249","exam only"],["Valid","3","years"],["DoD 8570","IAT II","+ IAT I"]],
+  facts:[["Questions","100–125","adaptive"],["Time","2","hours"],["Passing","700","of 1000"],["Format","CAT","MCQ +"],["Study","60–90","hours"],["Voucher","$249","exam only"],["Valid","3","years"],["DoD 8140","",""]],
   method:[
     ["Map","Use the seven domains above as your checklist. They're close in weight, so no domain is safe to skip. Crypto is the smallest at 9%."],
     ["Learn","Learn how each control works and when you'd use it. SSCP asks what a practitioner should do, not just what a term means."],
@@ -6468,7 +6958,7 @@ GUIDES["SSCP"]={
        {req:"Keep building cameras and badge readers from reaching user workstations.",a:[0,1],why:"Putting IoT devices on their own segment (VLAN) isolates them from everything else."},
        {req:"Stop spreadsheets with Social Security numbers from leaving in outbound email.",a:[3,3],why:"DLP at the email gateway can spot sensitive data patterns and block the message."}]}
   ],
-  before:[["Security+","Most people take it first. It's the DoD baseline"],["CC","Optional first ISC2 step if cyber is new to you"],["Network+","Helpful for the networking domain"]],
+  before:[["Security+","Most people take it first. It's on the DoD 8140 matrix"],["CC","Optional first ISC2 step if cyber is new to you"],["Network+","Helpful for the networking domain"]],
   next:[["CySA+","Hands-on analyst work, if you're in a SOC"],["CISSP","ISC2's senior cert, once you have five years of security work"],["CCSP","Cloud security, if your work moves to the cloud"]],
   hereNote:"Hands-on security admin for people already doing the work",
   mapSub:"SSCP sits between entry certs like Security+ and CC and senior ones like CISSP. Tap any cert to jump to it.",
@@ -6476,15 +6966,14 @@ GUIDES["SSCP"]={
     {lab:"Renewal",big:"3 years",text:"Earn 60 continuing professional education (CPE) credits every three years. ISC2 suggests about 20 a year."},
     {lab:"Yearly fee",big:"$135",text:"Every ISC2 member who holds SSCP pays a $135 annual maintenance fee (AMF), due each year on your certification anniversary.",after:"One AMF covers all your ISC2 certs, so adding CISSP later doesn't add a second fee."},
     {lab:"Experience",big:"1 year",text:"You need one year of full-time paid work in at least one of the seven domains. A computer science or IT degree can count for that year. Part-time work and internships can count too.",list:["No experience yet? Pass the exam and you become an Associate of ISC2.","You then have two years to earn the one year of experience.","After you pass, finish the certification application, including endorsement by an ISC2-certified member, within nine months."]},
-    {lab:"DoD",big:"IAT I · II",text:"Under the old DoD 8570 list, SSCP counts for IAT Level I, IAT Level II and CSSP Infrastructure Support.",after:"ISC2 says SSCP meets DoD 8140 Intermediate for operational work roles and Advanced for Technical Support Specialists. Check the 8140 matrix for your billet."}],
+    {lab:"DoD 8140",big:"",text:""}],
   sources:[
     ["ISC2: SSCP certification","https://www.isc2.org/certifications/sscp"],
     ["ISC2: SSCP exam outline (effective Oct 1, 2025)","https://edge.sitecorecloud.io/internationf173-xmc4e73-prodbc0f-9660/media/Project/ISC2/Main/Media/documents/exam-outlines/MAR-EXAMS-SSCP-Exam_Outline-English---10012025---FINAL.pdf"],
     ["ISC2: SSCP moves to adaptive testing (Aug 2025)","https://www.isc2.org/insights/2025/08/new-exam-format-systems-security-certified-practitioner"],
     ["ISC2: Member policies (CPEs and AMF)","https://www.isc2.org/policies-procedures/member-policies"],
     ["ISC2: Apply for certification (endorsement)","https://www.isc2.org/en/Endorsement"],
-    ["ISC2: SSCP and DoD 8140","https://www.isc2.org/landing/sscp-ready-state-dod-8140"],
-    ["DoD: Approved 8570 baseline certifications","https://public.cyber.mil/wid/dod8140/dod-approved-8570-baseline-certifications/"]]
+    ["ISC2: SSCP and DoD 8140","https://www.isc2.org/landing/sscp-ready-state-dod-8140"]]
 };
 
 GUIDES["CCSP"]={
@@ -6583,7 +7072,7 @@ GUIDES["CCSP"]={
       ["Audit","Right to audit","Your right to check the provider, often met with their SOC 2 report."],
       ["Exit","Exit and portability","How you get your data back, in what format, and how theirs is destroyed."]]}
   ],
-  facts:[["Questions","100–150","adaptive"],["Time","3","hours"],["Passing","700","of 1000"],["Format","CAT","MCQ +"],["Study","120–160","hours"],["Voucher","$599","exam only"],["Valid","3","years"],["DoD 8570","IAT III","+ IASAE III"]],
+  facts:[["Questions","100–150","adaptive"],["Time","3","hours"],["Passing","700","of 1000"],["Format","CAT","MCQ +"],["Study","120–160","hours"],["Voucher","$599","exam only"],["Valid","3","years"],["DoD 8140","",""]],
   method:[
     ["Map","Use the six domains as your checklist. Cloud Data Security is the biggest at 20%, so give it the most time."],
     ["Think","CCSP asks what a security leader should do, not which button to click. Learn the reasons behind each control."],
@@ -6695,7 +7184,7 @@ GUIDES["CCSP"]={
        {req:"Set firewall rules (security groups) for the VMs you rent.",a:[1,2],why:"In IaaS you configure network access to your own instances."},
        {req:"Fix an injection flaw in code you deployed to a managed app platform.",a:[2,2],why:"In PaaS your own application code is your responsibility."}]}
   ],
-  before:[["Security+","The DoD baseline most people start with"],["Cloud+","Vendor-neutral cloud skills"],["AWS Solutions Architect","Hands-on design on a real platform","Solutions Architect Associate"],["SSCP","ISC2's practitioner step, if you're on that track"]],
+  before:[["Security+","The DoD 8140 cert most people start with"],["Cloud+","Vendor-neutral cloud skills"],["AWS Solutions Architect","Hands-on design on a real platform","Solutions Architect Associate"],["SSCP","ISC2's practitioner step, if you're on that track"]],
   next:[["CISSP","ISC2's senior cert; many cloud leads hold both"],["Security Specialty","Deep AWS security on a real platform"],["Cloud and AI Security Engineer","Deep Azure security on a real platform"]],
   hereNote:"Senior cloud security for experienced people",
   mapSub:"CCSP caps the Cloud path. Most people get there through Security+, Cloud+ and a platform cert. Tap any cert to jump to it.",
@@ -6703,7 +7192,7 @@ GUIDES["CCSP"]={
     {lab:"Renewal",big:"3 years",text:"Earn 90 continuing professional education (CPE) credits every three years. ISC2 suggests about 30 a year."},
     {lab:"Yearly fee",big:"$135",text:"CCSP holders pay a $135 annual maintenance fee (AMF), due each year on your certification anniversary.",after:"One AMF covers all your ISC2 certs, so holding SSCP or CISSP too doesn't add a second fee."},
     {lab:"Experience",big:"5 years",text:"You need five years of full-time paid IT work. Three must be in cybersecurity and one in a CCSP domain. Part-time work and internships can count too.",list:["A computer science or IT degree, or CSA's CCSK certificate, can waive one year. Only one year can be waived.","An active CISSP covers the whole experience requirement.","No experience yet? Pass the exam and you become an Associate of ISC2, with six years to earn the five.","After you pass, finish the certification application, including endorsement, within nine months."]},
-    {lab:"DoD",big:"IAT III",text:"Under the old DoD 8570 chart, CCSP counts for IAT Level III and IASAE Level III (senior architect and engineer).",after:"ISC2 says all of its certs are approved under DoD 8140. Check the 8140 matrix for your billet's work role and level."}],
+    {lab:"DoD 8140",big:"",text:""}],
   sources:[
     ["ISC2: CCSP certification","https://www.isc2.org/certifications/ccsp"],
     ["ISC2: CCSP exam outline (effective Aug 1, 2026)","https://edge.sitecorecloud.io/internationf173-xmc4e73-prodbc0f-9660/media/Project/ISC2/Main/Media/documents/exam-outlines/EXAMS-CCSP-Exam-Outline-English-01-2026-V2.pdf"],
@@ -6711,8 +7200,7 @@ GUIDES["CCSP"]={
     ["ISC2: Exam pricing","https://www.isc2.org/ISC2-Exam-Pricing"],
     ["ISC2: Member policies (CPEs and AMF)","https://www.isc2.org/policies-procedures/member-policies"],
     ["ISC2: Apply for certification (endorsement)","https://www.isc2.org/en/Endorsement"],
-    ["ISC2: All certifications approved under DoD 8140","https://www.isc2.org/insights/2024/11/all-isc2-certifications-and-trainings-approved-under-dod-8140"],
-    ["DoD: Approved 8570 baseline certifications","https://public.cyber.mil/wid/dod8140/dod-approved-8570-baseline-certifications/"]]
+    ["ISC2: All certifications approved under DoD 8140","https://www.isc2.org/insights/2024/11/all-isc2-certifications-and-trainings-approved-under-dod-8140"]]
 };
 
 GUIDES["CISSP"]={
@@ -6839,7 +7327,7 @@ GUIDES["CISSP"]={
       "Remediation: fix the root cause so it doesn't happen again.",
       "Lessons learned: review what happened and improve."]}
   ],
-  facts:[["Questions","100–150","adaptive"],["Time","3","hours"],["Passing","700","of 1000"],["Format","CAT","MCQ +"],["Study","150–250","hours"],["Voucher","$749","exam only"],["Valid","3","years"],["DoD 8570","IAT III","+ IAM, IASAE"]],
+  facts:[["Questions","100–150","adaptive"],["Time","3","hours"],["Passing","700","of 1000"],["Format","CAT","MCQ +"],["Study","150–250","hours"],["Voucher","$749","exam only"],["Valid","3","years"],["DoD 8140","",""]],
   method:[
     ["Map","Use the eight domains as your checklist. Security and Risk Management is the biggest at 16%, but every domain matters."],
     ["Think","Answer like a security leader advising the commander: protect people first, then follow policy and manage risk. Pick the answer that fixes the root cause, not the quick technical fix."],
@@ -6962,7 +7450,7 @@ GUIDES["CISSP"]={
        {src:"Supply",log:"One sailor submits a purchase request;\na different sailor must approve it.",a:5,why:"Splitting a sensitive task between two people is separation of duties."},
        {src:"Help desk",log:"Techs get password-reset rights only,\nnot full domain admin.",a:4,why:"Giving only the access the job needs is least privilege."}]}
   ],
-  before:[["Security+","The DoD baseline. It can also waive a year of CISSP experience"],["CySA+","Analyst skills, and it's on the experience waiver list too"],["SSCP","ISC2's practitioner step before CISSP"]],
+  before:[["Security+","On the DoD 8140 matrix. It can also waive a year of CISSP experience"],["CySA+","Analyst skills, and it's on the experience waiver list too"],["SSCP","ISC2's practitioner step before CISSP"]],
   next:[["CCSP","Cloud security. An active CISSP covers CCSP's whole experience requirement"],["SecurityX","Hands-on enterprise security engineering"]],
   hereNote:"The senior security and leadership cert",
   mapSub:"CISSP caps the 20 year career path. Most people get there through Security+, CySA+ and years of hands-on work. Tap any cert to jump to it.",
@@ -6970,7 +7458,7 @@ GUIDES["CISSP"]={
     {lab:"Renewal",big:"3 years",text:"Earn 120 continuing professional education (CPE) credits every three years. ISC2 suggests about 40 a year."},
     {lab:"Yearly fee",big:"$135",text:"CISSP holders pay a $135 annual maintenance fee (AMF), due each year on your certification anniversary.",after:"One AMF covers all your ISC2 certs, so adding CCSP or SSCP doesn't add a second fee."},
     {lab:"Experience",big:"5 years",text:"You need five years of full-time paid work in two or more of the eight domains. Part-time work and internships can count too.",list:["A computer science or IT degree, or a credential on ISC2's approved list, can waive one year. Only one year can be waived.","ISC2 trimmed that list on April 1, 2026. Reports say Security+, CySA+ and SecurityX still qualify; check ISC2's list before you apply.","No experience yet? Pass the exam and you become an Associate of ISC2, with six years to earn the five.","After you pass, finish the certification application, including endorsement, within nine months."]},
-    {lab:"DoD",big:"IAT III",text:"Under the old DoD 8570 chart, CISSP (or Associate) counts for IAT III, IAM II and III, and IASAE I and II.",after:"ISC2 says all of its certs are approved under DoD 8140. Check the 8140 matrix for your billet's work role and level."}],
+    {lab:"DoD 8140",big:"",text:""}],
   sources:[
     ["ISC2: CISSP certification","https://www.isc2.org/certifications/cissp"],
     ["ISC2: CISSP exam outline (effective Apr 15, 2024)","https://www.isc2.org/certifications/cissp/cissp-certification-exam-outline"],
@@ -6978,8 +7466,7 @@ GUIDES["CISSP"]={
     ["ISC2: CISSP experience waiver updates (Apr 2026)","https://www.isc2.org/insights/2026/05/cissp-experiene-waiver-updates"],
     ["Destination Certification: waiver list after Apr 2026 (verify)","https://destcert.com/resources/cissp-experience-waiver/"],
     ["ISC2: Member policies (CPEs and AMF)","https://www.isc2.org/policies-procedures/member-policies"],
-    ["ISC2: All certifications approved under DoD 8140","https://www.isc2.org/insights/2024/11/all-isc2-certifications-and-trainings-approved-under-dod-8140"],
-    ["DoD: Approved 8570 baseline certifications","https://public.cyber.mil/wid/dod8140/dod-approved-8570-baseline-certifications/"]]
+    ["ISC2: All certifications approved under DoD 8140","https://www.isc2.org/insights/2024/11/all-isc2-certifications-and-trainings-approved-under-dod-8140"]]
 };
 
 /* ---------- cert guide page (renders inside the vendor panel) ---------- */
@@ -6990,6 +7477,20 @@ function gDone(G){var d=gGet(gDoneKey(G));return Array.isArray(d)?d.filter(funct
 function gBest(G){var b=gGet("cgcp."+G.id+".quizbest");return (typeof b==="number"&&isFinite(b)&&b>=0&&b<=G.quiz.length)?Math.round(b):null;}
 function gSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(err){}}
 function gShuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+/* guide facts: the DoD cell always shows the current 8140 level (v2.29) */
+function q8Facts(name,facts){
+  return (facts||[]).map(function(f){
+    if(!/^DoD/.test(f[0])) return f;
+    if(!is8140(name)) return ["DoD 8140","Not listed","on the matrix"];
+    var t=q8Top(name),n=q8Roles(name).length;
+    return t?["DoD 8140",Q8_LVN[t],"highest · "+n+(n===1?" role":" roles")]:["DoD 8140","Enablers","work roles"];
+  });
+}
+function q8Sources(name,src){
+  var out=(src||[]).slice();
+  if(is8140(name)&&!out.some(function(x){return /cyberworkforce\.mil/.test(x[1]);})) out.push(["DoD 8140 qualification matrix "+Q8.ver+" (cyberworkforce.mil)",Q8.url]);
+  return out;
+}
 function gEsc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 /* keyboard focus goes to the visible back button: the Jump to bar's in a guide, the top bar's on a vendor page */
 function focusBack(){var b=panel.querySelector(guideName?"#g-nav-back":"#p-back");if(b) b.focus({preventScroll:true});}
@@ -7193,7 +7694,7 @@ GUIDES["SAL1 · Security Analyst L1"]={
   mapSub:"SAL1 turns Security+ knowledge into hands-on analyst skills, and sets you up for CySA+. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"TryHackMe certs are valid for 3 years from the day you start the exam. Today you renew by passing the exam again.",after:"TryHackMe says renewal through a more advanced cert or related rooms is coming."},
-    {lab:"DoD 8140",big:"Not listed",text:"SAL1 isn't on the DoD 8140 qualification matrix (V2.1), and it was never on the old 8570 list. On its own it won't qualify you for a coded billet.",after:"Pair it with Security+ or CySA+, which are on the matrix, for analyst work roles like Cyber Defense Analyst (511)."},
+    {lab:"DoD 8140",big:"Not listed",text:"SAL1 isn't on the DoD 8140 qualification matrix (V2.1). On its own it won't qualify you for a coded billet.",after:"Pair it with Security+ or CySA+, which are on the matrix, for analyst work roles like Cyber Defense Analyst (511)."},
     {lab:"Use it",big:"Show the work",text:"It proves you can triage a queue, which is exactly what Tier 1 interviews test. Add the badge to your résumé and LinkedIn with the verify link.",after:"In a Coast Guard SOC or a contractor interview, walk through one simulator case: alert, evidence, verdict, escalation."}],
   sources:[
     ["TryHackMe: SAL1 certification","https://tryhackme.com/certification/security-analyst-level-1"],
@@ -7414,7 +7915,7 @@ GUIDES["PT1 · Junior Pentester"]={
   mapSub:"PT1 is hands-on proof you can run a small pentest. Pair it with PenTest+, which DoD billets recognize. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"TryHackMe certs are valid for 3 years from the day you start the exam. Today you renew by passing the exam again.",after:"TryHackMe says renewal through a more advanced cert or related rooms is coming."},
-    {lab:"DoD 8140",big:"Not listed",text:"PT1 isn't on the DoD 8140 qualification matrix (V2.1), and it was never on the old 8570 list. On its own it won't qualify you for a coded billet.",after:"PenTest+ is on the matrix, for roles like Vulnerability Assessment Analyst (541). PT1 is great practice before it."},
+    {lab:"DoD 8140",big:"Not listed",text:"PT1 isn't on the DoD 8140 qualification matrix (V2.1). On its own it won't qualify you for a coded billet.",after:"PenTest+ is on the matrix, for roles like Vulnerability Assessment Analyst (541). PT1 is great practice before it."},
     {lab:"Use it",big:"Show the work",text:"A practical exam with a graded report is strong proof for junior pentest interviews. Add the badge with its verify link.",after:"Bring a sanitized sample report from a practice lab to interviews. It shows you can explain what you found."},
     {lab:"The rules",big:"Written OK",text:"Testing a system without written permission is a federal crime under the Computer Fraud and Abuse Act. Practice only in legal labs and on machines you own.",after:"On Coast Guard networks, only authorized assessment teams test. Never scan a work network to practice."}],
   sources:[
@@ -7611,7 +8112,7 @@ GUIDES["CCST Networking"]={
   mapSub:"CCST Networking is the on-ramp to CCNA. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"5 years",text:"A CCST earned on or after July 15, 2025 is valid for 5 years. One earned before that date doesn't expire.",after:"Renew by passing any current CCST, associate, professional or expert Cisco exam. Continuing education credits don't count for CCST, but passing CCNA renews it."},
-    {lab:"DoD 8140",big:"Not listed",text:"CCST isn't on the DoD 8140 qualification matrix, and it was never on the old 8570 list. On its own it won't qualify you for a coded billet.",after:"For networking work roles, pair it with Network+ or CCNA, which are on the matrix."},
+    {lab:"DoD 8140",big:"Not listed",text:"CCST isn't on the DoD 8140 qualification matrix. On its own it won't qualify you for a coded billet.",after:"For networking work roles, pair it with Network+ or CCNA, which are on the matrix."},
     {lab:"Use it",big:"Low cost",text:"At $125 it's a cheap, quick proof that you know the fundamentals, and good practice for Cisco's exam style before CCNA.",after:"Add the Credly badge to your résumé and LinkedIn."}],
   sources:[
     ["Cisco: 100-150 CCST Networking exam page","https://www.cisco.com/site/us/en/learn/training-certifications/exams/ccst-networking.html"],
@@ -7781,12 +8282,12 @@ GUIDES["CCST Cybersecurity"]={
        {src:"Microsoft Defender · LT-07",log:"Threat: Trojan:Win32/Wacatac\nFile: C:\\Users\\jdoe\\Downloads\\invoice.exe\nAction: Quarantine   Status: Succeeded",a:7,why:"Defender found a trojan and quarantined it. Still check how it arrived and whether anything ran."}]}
   ],
   before:[["CCST Networking","Optional. Network basics make the security side easier"]],
-  next:[["CCNA Cybersecurity","Cisco's associate SOC cert. CCST Cybersecurity is its first step"],["Security+","The DoD baseline most IT billets ask for"],["SAL1","Hands-on SOC practice","SAL1 · Security Analyst L1"]],
+  next:[["CCNA Cybersecurity","Cisco's associate SOC cert. CCST Cybersecurity is its first step"],["Security+","The DoD 8140 cert most IT billets ask for"],["SAL1","Hands-on SOC practice","SAL1 · Security Analyst L1"]],
   hereNote:"The entry security step in Cisco's line",
   mapSub:"CCST Cybersecurity is a low-cost first step toward CCNA Cybersecurity and Security+. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"5 years",text:"A CCST earned on or after July 15, 2025 is valid for 5 years. One earned before that date doesn't expire.",after:"Renew by passing any current CCST, associate, professional or expert Cisco exam. Continuing education credits don't count for CCST."},
-    {lab:"DoD 8140",big:"Not listed",text:"CCST isn't on the DoD 8140 qualification matrix, and it was never on the old 8570 list. On its own it won't qualify you for a coded billet.",after:"For cyber work roles, Security+ or CCNA Cybersecurity are on the matrix."},
+    {lab:"DoD 8140",big:"Not listed",text:"CCST isn't on the DoD 8140 qualification matrix. On its own it won't qualify you for a coded billet.",after:"For cyber work roles, Security+ or CCNA Cybersecurity are on the matrix."},
     {lab:"Use it",big:"Low cost",text:"At $125 it's a cheap way to prove the basics and get used to Cisco's exam style before CCNA Cybersecurity.",after:"Add the Credly badge to your résumé and LinkedIn."}],
   sources:[
     ["Cisco: 100-160 CCST Cybersecurity exam page","https://www.cisco.com/site/us/en/learn/training-certifications/exams/ccst-cybersecurity.html"],
@@ -7999,21 +8500,19 @@ GUIDES["CCNA Cybersecurity"]={
        {req:"IDS flagged beacon traffic from FIN-07; EDR confirms an unknown process making the connections every 60 seconds.",a:[0,0],why:"Two sources agree: it's real. Isolate the host and escalate with the evidence."},
        {req:"No alerts overnight on the DMZ, and a log review shows only normal web traffic.",a:[3,3],why:"No attack and no alert. Note the review and move on."}]}
   ],
-  before:[["Security+","The DoD baseline; it covers the same core ideas"],["CCST Cybersecurity","Cisco's entry step toward this cert"],["Network+","Reading packets is a big part of the exam"]],
+  before:[["Security+","On the DoD 8140 matrix; it covers the same core ideas"],["CCST Cybersecurity","Cisco's entry step toward this cert"],["Network+","Reading packets is a big part of the exam"]],
   next:[["CySA+","CompTIA's analyst cert, the next step up for SOC work"],["CCNP Security","The engineer side: building and running Cisco security"]],
   hereNote:"Cisco's SOC analyst step on the Cyber path",
   mapSub:"CCNA Cybersecurity proves SOC analyst skills and sits beside SAL1 and CySA+ on the Cyber path. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 30 Cisco continuing education (CE) credits, or by passing any current associate exam, a professional concentration exam or a core exam.",after:"Cisco's official CCNACBR course alone is worth 30 CE credits."},
-    {lab:"DoD 8570",big:"CSSP",text:"As CyberOps Associate, it was on the old 8570 baseline for two categories:",list:["CSSP Analyst","CSSP Incident Responder"]},
-    {lab:"DoD 8140",big:"511 · 521",text:"Cisco lists it as approved for two Cybersecurity work roles:",list:["511 Cyber Defense Analyst","521 Cyber Defense Infrastructure Support Specialist"],after:"The proficiency level depends on the role, so check the 8140 matrix for your billet."}],
+    {lab:"DoD 8140",big:"",text:""}],
   sources:[
     ["Cisco: 200-201 CCNACBR v1.2 exam topics","https://learningcontent.cisco.com/documents/marketing/exam-topics/200-201-CCNACBR-v1.2_02July2025.pdf"],
     ["Cisco: CCNACBR course outline (exam, 30 CE credits)","https://www.cisco.com/c/dam/en_us/training-events/training/courses/ccnacbr.pdf"],
     ["Cisco Live: migration to CCNA Cybersecurity on Feb 3, 2026","https://www.ciscolive.com/c/dam/r/ciscolive/global-event/docs/2025/pdf/CISCOU-1048.pdf"],
     ["Cisco: certifications approved for DoD 8140","https://www.cisco.com/site/us/en/learn/training-certifications/training/dod-8140.html"],
-    ["Cisco: recertification policy","https://www.cisco.com/site/us/en/learn/training-certifications/certifications/recertification/index.html"],
-    ["Cisco blog: CyberOps Associate on the DoD 8570 CSSP list","https://blogs.cisco.com/?p=444586"]]
+    ["Cisco: recertification policy","https://www.cisco.com/site/us/en/learn/training-certifications/certifications/recertification/index.html"]]
 };
 
 GUIDES["CCNA"]={
@@ -8270,19 +8769,17 @@ GUIDES["CCNA"]={
        {src:"R1 · show ip ospf neighbor",log:"Neighbor ID   Pri  State      Dead Time  Address    Interface\n2.2.2.2         1  FULL/BDR   00:00:35   10.1.1.2   Gi0/0",a:7,why:"FULL means the databases are synchronized. This neighbor is healthy, and the problem is elsewhere."}]}
   ],
   before:[["Network+","Vendor-neutral networking, and on the DoD 8140 matrix"],["CCST Networking","Cisco's first step toward CCNA"]],
-  next:[["CCNP Security","Professional-level Cisco security"],["CCNA Cybersecurity","Add the SOC analyst side"],["Security+","If you don't have it yet: the DoD baseline"]],
+  next:[["CCNP Security","Professional-level Cisco security"],["CCNA Cybersecurity","Add the SOC analyst side"],["Security+","If you don't have it yet: the DoD 8140 starter"]],
   hereNote:"The core step on the Network path",
   mapSub:"CCNA is the core of the Network path and the base for CCNP Security. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 30 Cisco continuing education (CE) credits, or by passing any current associate exam, a professional concentration exam or a core exam. You can mix exams and credits.",after:"Passing CCNA also renews any CCST you hold."},
-    {lab:"DoD 8570",big:"IAT I · II",text:"The old 8570 list named CCNA Security, which Cisco retired in 2020. A DoD waiver lets CCNA count at the same levels."},
-    {lab:"DoD 8140",big:"411",text:"Cisco lists CCNA as approved for Technical Support Specialist (411) in the Cyberspace IT workforce element.",after:"Some summaries also list Network Operations Specialist (441). Check the 8140 matrix for your billet."}],
+    {lab:"DoD 8140",big:"",text:""}],
   sources:[
     ["Cisco: 200-301 CCNA v2.0 exam topics","https://learningcontent.cisco.com/documents/marketing/exam-topics/200-301_CCNA_v2.0_Exam_Topics_PDF.pdf"],
     ["Cisco blog: v1.1 testing ends Feb 2, 2027; v2.0 starts Feb 3, 2027","https://blogs.cisco.com/?p=493864"],
     ["CCNA v1.1 exam topics (copy of Cisco's list)","https://ccna-exam200-301.pages.dev/"],
     ["Cisco: certifications approved for DoD 8140","https://www.cisco.com/site/us/en/learn/training-certifications/training/dod-8140.html"],
-    ["Cisco blog: CCNA and DoD 8570 IAT waiver","https://blogs.cisco.com/?p=444586"],
     ["Cisco: recertification policy","https://www.cisco.com/site/us/en/learn/training-certifications/certifications/recertification/index.html"]]
 };
 
@@ -8370,7 +8867,7 @@ GUIDES["CCNP Security"]={
       ["Server","ISE","Checks identity over RADIUS and sends the policy."],
       ["MAB","Fallback","For devices with no supplicant, like printers: it uses the MAC address."]]}
   ],
-  facts:[["Exams","2","core + concentration"],["Time","120","min (SCOR)"],["Passing","Scaled","cut not published"],["SCOR","$400","US price"],["Concentration","$300","US price"],["Study","200+","hours, both"],["Valid","3","years"],["DoD 8570","IAT III","baseline"]],
+  facts:[["Exams","2","core + concentration"],["Time","120","min (SCOR)"],["Passing","Scaled","cut not published"],["SCOR","$400","US price"],["Concentration","$300","US price"],["Study","200+","hours, both"],["Valid","3","years"],["DoD 8140","",""]],
   method:[
     ["Map","Use the six SCOR domains as your checklist. Network Security is a quarter of the exam."],
     ["Learn","Learn what each Cisco product does, where it sits and what problem it solves, then how to configure it."],
@@ -8480,20 +8977,18 @@ GUIDES["CCNP Security"]={
        {src:"Splunk · DNS search",log:"host=WS-44  query=6a1f3b9c0e7d2a5f.qz-sync.example  type=TXT\n(1,900 queries in 15 min, all unique subdomains)",a:0,why:"Huge numbers of unique, encoded-looking subdomains of one domain carry data out inside DNS."},
        {src:"ISE live log",log:"CoA-Reauth sent to 10.0.0.12 port Gi1/0/9\nReason: endpoint profile changed to Axis-Camera",a:5,why:"The profiler reclassified the device, so ISE sent a Change of Authorization to apply the right policy."}]}
   ],
-  before:[["CCNA","The networking base SCOR assumes"],["Security+","Security fundamentals and the DoD baseline"],["CCNA Cybersecurity","Optional. The SOC side of Cisco security"]],
+  before:[["CCNA","The networking base SCOR assumes"],["Security+","Security fundamentals, on the DoD 8140 matrix"],["CCNA Cybersecurity","Optional. The SOC side of Cisco security"]],
   next:[["CISSP","The senior cert for security architects and leaders"],["SecurityX","Hands-on enterprise security engineering"]],
   hereNote:"The top of the Network path, and Cisco's security engineer cert",
   mapSub:"CCNP Security caps the Network path. From here, most people go to CISSP or SecurityX. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"3 years",text:"Renew with 80 CE credits, or by passing one core exam, two concentration exams, or one concentration exam plus 40 CE credits. Passing a CCIE lab also works.",after:"Recertifying CCNP also renews the associate and specialist certs under it."},
-    {lab:"DoD 8570",big:"IAT III",text:"On the old 8570 baseline at IAT III, the top technical level."},
-    {lab:"DoD 8140",big:"3 roles",text:"Cisco's DoD 8140 page lists three work roles:",list:["631 Information Systems Security Developer","651 Enterprise Architect","652 Security Architect"],after:"Cisco's page says it's still adding these, so check the official 8140 matrix for your billet."}],
+    {lab:"DoD 8140",big:"",text:""}],
   sources:[
     ["Cisco: 350-701 SCOR v2.0 exam topics","https://learningcontent.cisco.com/documents/marketing/exam-topics/350-701-SCOR-v2.0.pdf"],
     ["Cisco blog: security certification updates, your questions answered","https://blogs.cisco.com/learning/cisco-security-certification-updates-your-questions-answered"],
     ["Cisco: CCNP Security exams and training","https://www.cisco.com/site/us/en/learn/training-certifications/certifications/security/ccnp-security/exams-and-training.html"],
     ["Cisco: certifications approved for DoD 8140","https://www.cisco.com/site/us/en/learn/training-certifications/training/dod-8140.html"],
-    ["DoD Cyber Exchange: approved 8570 baseline certifications","https://public.cyber.mil/wid/dod8140/dod-approved-8570-baseline-certifications/"],
     ["Cisco: recertification policy","https://www.cisco.com/site/us/en/learn/training-certifications/certifications/recertification/index.html"]]
 };
 
@@ -8736,7 +9231,7 @@ GUIDES["Linux Essentials"]={
   mapSub:"Linux Essentials supports every path. Tap any cert to jump to it.",
   keep:[
     {lab:"Renewal",big:"Lifetime",text:"Linux Essentials doesn't expire, so there's nothing to renew.",after:"A certificate earned on version 1.6 stays valid after 2.0 arrives."},
-    {lab:"DoD 8140",big:"Not listed",text:"Linux Essentials isn't on the DoD 8140 qualification matrix and was never on the old 8570 list.",after:"For a coded billet, pair it with a cert that is on the matrix, such as Security+."},
+    {lab:"DoD 8140",big:"Not listed",text:"Linux Essentials isn't on the DoD 8140 qualification matrix.",after:"For a coded billet, pair it with a cert that is on the matrix, such as Security+."},
     {lab:"Use it",big:"$120",text:"A cheap, quick proof that you can work in a Linux shell. Use CG COOL to pay for the voucher.",after:"Then build on it with LPIC-1 for admin work or the TryHackMe SAL1 for SOC work."}],
   sources:[
     ["LPI: Linux Essentials overview (versions, 40 questions, 60 minutes, lifetime)","https://www.lpi.org/our-certifications/linux-essentials-overview/"],
@@ -9855,7 +10350,7 @@ GUIDES["Security Specialty"]={
        {req:"The bucket policy allows IAM user Ana s3:GetObject. Ana's identity policies say nothing about S3.",a:[0],why:"In the same account, a resource policy that names the user is enough on its own."},
        {req:"Identity policy allows kms:Decrypt, but the key policy doesn't mention the role and doesn't let IAM policies grant access.",a:[2],why:"A KMS key policy must allow access itself, or delegate to IAM. Here it does neither."}]}
   ],
-  before:[["Solutions Architect Associate","The usual AWS step before this one"],["Security+","Security basics and the DoD baseline"],["CySA+","Detection and incident response skills"]],
+  before:[["Solutions Architect Associate","The usual AWS step before this one"],["Security+","Security basics, on the DoD 8140 matrix"],["CySA+","Detection and incident response skills"]],
   next:[["CCSP","Vendor-neutral cloud security, on the DoD 8140 matrix"],["Cloud and AI Security Engineer","The same skills on Microsoft's cloud"],["CISSP","Senior security leadership"]],
   hereNote:"Deep AWS security for cloud security engineers",
   mapSub:"Security Specialty is the top of the AWS line for cloud security. Tap any cert to jump to it.",
@@ -10046,7 +10541,7 @@ GUIDES["Azure Fundamentals"]={
        {req:"Must survive a region outage, and reports must read the backup copy any time.",a:[3],why:"Read-access GRS makes the secondary copy readable at all times."}]}
   ],
   before:[["A+","Optional. Basic IT terms help"],["Network+","Optional. Makes networking questions easier"]],
-  next:[["Azure Administrator","The hands-on Azure cert"],["Cloud+","Vendor-neutral cloud, and on the DoD 8140 matrix"],["Security+","The DoD baseline for most IT billets"]],
+  next:[["Azure Administrator","The hands-on Azure cert"],["Cloud+","Vendor-neutral cloud, and on the DoD 8140 matrix"],["Security+","The DoD 8140 cert most IT billets ask for"]],
   hereNote:"The first step on Microsoft's cloud, no experience needed",
   mapSub:"Azure Fundamentals opens the Microsoft cloud line. Tap any cert to jump to it.",
   keep:[
@@ -10255,7 +10750,7 @@ GUIDES["Azure Administrator"]={
        {req:"Keep an on-premises file server in sync with an Azure file share.",a:[5],why:"Azure File Sync caches and syncs Azure Files on Windows servers."}]}
   ],
   before:[["Azure Fundamentals","Optional. Learn the Azure terms first"],["Network+","Subnets, routing and DNS show up everywhere"],["A+","Basic OS and hardware knowledge"]],
-  next:[["Cloud and AI Security Engineer","Microsoft's Azure security cert (SC-500)"],["Security+","The DoD baseline cert"],["Solutions Architect Associate","The same work on AWS"]],
+  next:[["Cloud and AI Security Engineer","Microsoft's Azure security cert (SC-500)"],["Security+","The DoD 8140 cert most billets ask for"],["Solutions Architect Associate","The same work on AWS"]],
   hereNote:"The hands-on Azure cert on the Cloud path",
   mapSub:"Azure Administrator is the core of the Microsoft cloud line. Tap any cert to jump to it.",
   keep:[
@@ -10464,7 +10959,7 @@ GUIDES["Cloud and AI Security Engineer"]={
        {req:"Inbound 1433 from a web VM in the same VNet. The subnet NSG allows it; the NIC NSG has no custom rules.",a:[0],why:"The NIC NSG's default AllowVnetInBound rule allows traffic between VNet addresses."},
        {req:"Inbound health probe from the Azure load balancer. No custom rules.",a:[0],why:"The default AllowAzureLoadBalancerInBound rule allows it."}]}
   ],
-  before:[["Azure Administrator","Microsoft recommends Azure admin experience first"],["Security+","Security basics and the DoD baseline"],["Azure Fundamentals","Optional. Learn the Azure terms first"]],
+  before:[["Azure Administrator","Microsoft recommends Azure admin experience first"],["Security+","Security basics, on the DoD 8140 matrix"],["Azure Fundamentals","Optional. Learn the Azure terms first"]],
   next:[["CCSP","Vendor-neutral cloud security, on the DoD 8140 matrix"],["Security Specialty","The same skills on AWS"],["CISSP","Senior security leadership"]],
   hereNote:"Azure and AI security for cloud security engineers",
   mapSub:"Cloud and AI Security Engineer is the top of the Microsoft cloud line. Tap any cert to jump to it.",
@@ -10506,7 +11001,7 @@ function renderGuide(i,name){
      '<aside class="p-aside pr g-ver"><p class="lab">'+gEsc(G.verLabel||"Exam version")+'</p>'+
      (Object.keys(G.versions).length>1?'<div class="seg g-vseg" role="group" aria-label="'+gEsc(G.verLabel||"Exam version")+'">'+Object.keys(G.versions).map(function(k){var V=G.versions[k];return '<button type="button" data-ver="'+k+'" aria-pressed="'+(k===gVer)+'">'+V.label+' &middot; '+V.code+'</button>';}).join("")+'<span class="seg-ind" aria-hidden="true"></span></div>':'<p class="g-vone">'+gEsc(G.versions[gVer].label)+' &middot; '+gEsc(G.versions[gVer].code)+'</p>')+
      '<p class="g-vstat" id="g-vstat"></p><p class="g-vnote" id="g-vnote"></p></aside></div>';
-  h+='<dl class="g-facts pr">'+G.facts.map(function(f){return '<div><dt>'+gEsc(f[0])+'</dt><dd><b>'+gEsc(f[1])+'</b><small>'+gEsc(f[2])+'</small></dd></div>';}).join("")+'</dl>';
+  h+='<dl class="g-facts pr">'+q8Facts(name,G.facts).map(function(f){return '<div><dt>'+gEsc(f[0])+'</dt><dd><b>'+gEsc(f[1])+'</b><small>'+gEsc(f[2])+'</small></dd></div>';}).join("")+'</dl>';
   /* section number rolls from the previous number to its own as the heading comes in (gFx) */
   function head(k,id,title,sub){var reel='<span class="g-dig" aria-hidden="true"><span class="g-reel" style="--d:'+(k-1)+'">'+'0123456789'.split("").map(function(n){return "<span>"+n+"</span>";}).join("")+'</span></span>';
     return '<header class="g-sh" data-k="'+k+'"><p class="lab"><span class="g-num"><span aria-hidden="true">(0'+reel+')</span><span class="vh">('+pad2(k)+')</span></span> '+gEsc(G_SECS[k-1][1])+'</p><h3>'+title+'</h3>'+(sub?'<p class="g-sub">'+sub+'</p>':'')+'</header>';}
@@ -10544,9 +11039,9 @@ function renderGuide(i,name){
   // 07 keep it
   h+='<section class="g-sec" id="g-keep" data-sec="keep">'+head(7,"keep","Keep it, use it.","")+
      '<div class="g-keep g-rv">'+
-       (G.keep||[]).map(function(kc){return '<div class="g-kc"><p class="lab">'+gEsc(kc.lab)+'</p><b>'+gEsc(kc.big)+'</b><p>'+gEsc(kc.text)+'</p>'+(kc.list?'<ul class="g-roles">'+kc.list.map(function(r){return '<li>'+gEsc(r)+'</li>';}).join("")+'</ul>':'')+(kc.after?'<p>'+gEsc(kc.after)+'</p>':'')+'</div>';}).join("")+
-     '</div>'+
-     '<div class="g-src g-rv"><p class="lab">Sources &middot; checked '+gEsc(G.checked)+'</p><ul>'+G.sources.map(function(s){return '<li><a href="'+gEsc(s[1])+'" target="_blank" rel="noopener noreferrer">'+gEsc(s[0])+G_ICON_EXT+'</a></li>';}).join("")+'</ul>'+
+       q8KeepCards(name,G.keep).map(function(kc){return '<div class="g-kc"><p class="lab">'+gEsc(kc.lab)+'</p><b>'+gEsc(kc.big)+'</b><p>'+gEsc(kc.text)+'</p>'+(kc.list?'<ul class="g-roles">'+kc.list.map(function(r){return '<li>'+gEsc(r)+'</li>';}).join("")+'</ul>':'')+(kc.after?'<p>'+gEsc(kc.after)+'</p>':'')+'</div>';}).join("")+
+     '</div>'+q8GuideBlock(name)+
+     '<div class="g-src g-rv"><p class="lab">Sources &middot; checked '+gEsc(G.checked)+'</p><ul>'+q8Sources(name,G.sources).map(function(s){return '<li><a href="'+gEsc(s[1])+'" target="_blank" rel="noopener noreferrer">'+gEsc(s[0])+G_ICON_EXT+'</a></li>';}).join("")+'</ul>'+
      '<p class="g-fine">Exam facts come from '+gEsc(pub)+'. Prices, dates and DoD roles can change; confirm them with the sources above before you book. Domain and objective titles follow the official exam outline, &copy; '+gEsc(pub)+'. Descriptions, quiz questions and PBQs are original to this site.</p></div></section>';
   body.innerHTML='<div class="g" id="guide">'+h+'</div>';
 
@@ -10568,9 +11063,10 @@ function renderGuide(i,name){
   body.querySelector("#g-ptabs").addEventListener("click",function(e){var b=e.target.closest("[data-p]");if(!b) return;gSyncSeg(this,"p",b.dataset.p);gPbq(G,+b.dataset.p,true);});
   if(!body.dataset.gwired) body.dataset.gwired="1", body.addEventListener("click",function(e){
     if(!guideName) return;
+    var qr=e.target.closest(".q8g-r");if(qr&&body.contains(qr)){var qli=qr.closest(".q8g-li"),qop=!qli.classList.contains("open");qli.classList.toggle("open",qop);qr.setAttribute("aria-expanded",String(qop));qli.querySelector(".q8g-x").inert=!qop;return;}
     var t=e.target.closest("[data-goto],[data-gocert],[data-ptf]");if(!t||!body.contains(t)) return;
     if(t.dataset.ptf!=null){ptTarget(+t.dataset.ptf,t.dataset.ptj!=null?+t.dataset.ptj:-1);goPage("paths");return;}
-    if(t.dataset.goto){if(t.dataset.excert) exPreset(t.dataset.excert);if(t.dataset.fund){goFund(t.dataset.fund);return;}goPage(t.dataset.goto);}
+    if(t.dataset.goto){if(t.dataset.excert) exPreset(t.dataset.excert);if(t.dataset.fund){goFund(t.dataset.fund);return;}if(t.dataset.q8r) q8Target(t.dataset.q8r);if(t.dataset.q8c) q8TargetCert(t.dataset.q8c);goPage(t.dataset.goto);}
     else{var en=sByName(t.dataset.gocert);if(en) openCertFrom(en);}
   });
   gVersion(G,false);gPlan(G,false);gQuizStart(G,false);gPbq(G,0,false);gRoad(G);
@@ -10975,10 +11471,9 @@ function sesc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&a
 var SIDX=[];
 (function(){
   var WG=VENDORS.length-1;
-  function iatAlt(i){if(!i) return "";var n={"I":1,"II":2,"III":3}[i.split(" ")[1]];return i+" iat"+n+" iat "+n+" dod 8570 baseline";}
   function addCert(c,i,label){
-    var e={kind:"cert",key:"c:"+c[0],name:c[0],v:i,vendor:label,lvl:c[1],d:c[2],hrs:c[3],iat:c[4],d8:is8140(c[0]),tags:c[5].slice(),wgu:!!WGU_IN[c[0]],
-      fields:[[snorm(c[0]),100],[snorm(ALIAS[c[0]]||""),70],[snorm(label+" "+VENDORS[i].short+" "+VENDORS[i].name),40],[snorm(c[1]+" "+iatAlt(c[4])+(is8140(c[0])?" dod 8140 approved":"")+" "+c[5].join(" ")),30]]};
+    var e={kind:"cert",key:"c:"+c[0],name:c[0],v:i,vendor:label,lvl:c[1],d:c[2],hrs:c[3],d8:is8140(c[0]),l8:q8Top(c[0]),tags:c[5].slice(),wgu:!!WGU_IN[c[0]],
+      fields:[[snorm(c[0]),100],[snorm(ALIAS[c[0]]||""),70],[snorm(label+" "+VENDORS[i].short+" "+VENDORS[i].name),40],[snorm(c[1]+(is8140(c[0])?" dod 8140 approved "+q8Roles(c[0]).map(function(x){return x.r+" "+Q8_LVN[x.l];}).join(" "):"")+" "+c[5].join(" ")),30]]};
     if(WGU_IN[c[0]]) e.fields.push([snorm("wgu degree "+WGU_IN[c[0]].join(" ")),25]);
     SIDX.push(e);
   }
@@ -10991,6 +11486,11 @@ var SIDX=[];
   SIDX.push({kind:"page",key:"p:mine",page:"mine",name:"My path",sub:"Explore · 5 questions, your own cert roadmap",fields:[[snorm("my path"),95],[snorm("build my path quiz where do i start what cert first next which cert plan personal roadmap"),60]]});
   SIDX.push({kind:"page",key:"p:exam",page:"exam",name:"Exam countdown",sub:"Explore · test date, countdown, day-by-day plan",fields:[[snorm("exam countdown"),95],[snorm("exam date test date countdown study plan schedule calendar day by day days left when is my exam"),60]]});
   SIDX.push({kind:"page",key:"p:compare",page:"compare",name:"Compare certs",sub:"Explore · two certs side by side",fields:[[snorm("compare certs"),95],[snorm("compare versus vs side by side difference which is better which cert harder cheaper"),60]]});
+  SIDX.push({kind:"page",key:"p:dod",page:"dod",name:"DoD 8140 work roles",sub:"Explore · the cert for your billet's work role and level",fields:[[snorm("dod 8140"),95],[snorm("dod 8140 work role work roles dcwf billet coded proficiency level basic intermediate advanced foundational residential qualification matrix 8140.03 cyber workforce finder"),60]]});
+  SIDX.push({kind:"page",key:"p:iat",page:"dod",q8:"iat",name:"Where did IAT go?",sub:"DoD 8140 · the old IAT, IAM and IASAE levels, explained",fields:[[snorm("iat levels"),95],[snorm("iat iat1 iat2 iat3 iat i iat ii iat iii iat level iam iam1 iam2 iam3 iasae cssp 8570 8570.01 dod 8570 baseline information assurance technical management"),70]]});
+  Object.keys(Q8_ROLES).forEach(function(r){var R=Q8_ROLES[r], el=R.el==="it"?"IT (Cyberspace)":"Cybersecurity", n=0;Q8_LV.forEach(function(l){n+=(R[l]||[]).filter(q8Here).length;});
+    SIDX.push({kind:"page",key:"r:"+r,page:"dod",q8:r,name:r+" · "+R.n,sub:"DoD 8140 work role · "+el+" · "+n+" CertPath "+(n===1?"cert":"certs"),fields:[[snorm(r+" "+R.n),100],[snorm(R.n+" "+R.d),50],[snorm("work role dcwf 8140 "+el),20]]});});
+  Q8_EN.forEach(function(x){SIDX.push({kind:"page",key:"r:"+x[0],page:"dod",q8:"en",name:x[0]+" · "+x[1],sub:"DoD 8140 work role · Cyber Enablers · any cert on the matrix",fields:[[snorm(x[0]+" "+x[1]),100],[snorm(x[2]+" enabler work role dcwf 8140"),20]]});});
   SIDX.push({kind:"page",key:"p:paths",page:"paths",name:"Career paths",sub:"Explore · IT tree: 5 fields, the jobs and their pay",fields:[[snorm("career paths"),95],[snorm("roadmap road map path tree branch trunk soc analyst pen testing pentest security engineering grc governance risk compliance systems admin salary pay jobs job growth openings bls stay 20 twenty year career 20 year career cloud network cyber civilian contractor plan"),55]]});
   SIDX.push({kind:"page",key:"p:fund",page:"cool",fund:"ta",name:"Funding",sub:"Explore · Tuition Assistance for college, CG COOL for certs",fields:[[snorm("funding"),95],[snorm("tuition assistance ta college class classes degree school money pay paid mycg ed eso dodmou mou clep dsst dantes jst"),60]]});
   SIDX.push({kind:"page",key:"p:cool",page:"cool",fund:"cool",name:"CG COOL funding",sub:"Explore · get your certs paid for",fields:[[snorm("cg cool funding"),95],[snorm("cool credentialing assistance ca opportunities online reimbursement of 1164 pay paid money funding exam fee voucher"),58]]});
@@ -11085,7 +11585,7 @@ function sRow(e,i,raw){
   if(e.kind==="cert"){
     sub=e.vendor+" · "+e.lvl+(GUIDES[e.name]?" · Full guide":"")+(e.wgu?" · in a WGU degree":"");
     var bars="";for(var j=1;j<=5;j++) bars+='<i class="'+(j<=e.d?"on":"")+'"></i>';
-    meta='<span class="sr-meta"><span class="sr-bars" aria-hidden="true">'+bars+'</span><span class="sr-hrs">'+e.hrs+'</span><span class="sr-iat'+(e.d8?"":" none")+'" title="'+(e.d8?"On the DoD 8140 matrix":"Not on the DoD 8140 matrix")+'">'+(e.d8?"8140":"—")+'</span></span>';
+    meta='<span class="sr-meta"><span class="sr-bars" aria-hidden="true">'+bars+'</span><span class="sr-hrs">'+e.hrs+'</span><span class="sr-iat'+(e.d8?"":" none")+'" title="'+(e.d8?"DoD 8140: "+gEsc(q8Sum(e.name)):"Not on the DoD 8140 matrix")+'">'+(e.d8?"8140"+(e.l8?'<i class="sr-l8 l8-'+e.l8+'">'+e.l8+'</i>':''):"—")+'</span></span>';
   } else if(e.kind==="content"){
     sub=e.sub;meta='<span class="sr-meta"><span class="sr-tag">'+sesc(e.tag)+'</span></span>';
   } else if(e.kind==="vendor"){
@@ -11191,7 +11691,7 @@ async function srchPick(e){
   if(e.kind==="content"){await srchClose(true);cGo(e);return;}
   sRemember(e);
   await srchClose(true);
-  if(e.kind==="page"){if(e.col){openCertFrom({kind:"vendor",v:VENDORS.length-1});return;}if(e.pt) ptTarget(e.pt[0],e.pt[1]);if(e.fund){goFund(e.fund);return;}goPage(e.page);return;}
+  if(e.kind==="page"){if(e.col){openCertFrom({kind:"vendor",v:VENDORS.length-1});return;}if(e.q8) q8Target(e.q8);if(e.pt) ptTarget(e.pt[0],e.pt[1]);if(e.fund){goFund(e.fund);return;}goPage(e.page);return;}
   openCertFrom(e);
 }
 function setViewNow(name){
@@ -11203,6 +11703,7 @@ function setViewNow(name){
   if(name==="paths") ptRender(false);
   if(name==="exam") exEnter();
   if(name==="settings") setEnter();
+  if(name==="dod") q8Enter();
 }
 async function goExplore(){
   if(state!=="open"||switching||guideBusy) return;
@@ -11307,7 +11808,7 @@ function cIndex(){
     (G.pbqs||[]).forEach(function(p,pi){add({at:["p",pi],name:"PBQ "+pad2(pi+1)+" · "+p.title,sub:title+" · Performance-based practice",tag:"PBQ"},p.title+" "+p.short+" pbq",p.scenario||"",66);});
     (G.resources||[]).forEach(function(g,gi){g.items.forEach(function(r,ri){add({at:["r",gi,ri],name:r[0],sub:title+" · Where to study · "+r[1],tag:r[3]||"Resource"},r[0]+" "+r[1],r[4]+" "+g.group+" study resource",56);});});
     (G.tips||[]).forEach(function(t,ti){add({at:["t",ti],name:t[0],sub:title+" · Exam day tips",tag:"Tip"},t[0],t[1]+" exam day tip",50);});
-    (G.keep||[]).forEach(function(kc,ki){add({at:["k",ki],name:kc.lab+" · "+kc.big,sub:title+" · Keep it, use it",tag:"Renewal"},kc.lab+" "+kc.big,kc.text+" "+(kc.after||"")+" "+(kc.list||[]).join(" ")+" renew renewal keep",52);});
+    q8KeepCards(name,G.keep).forEach(function(kc,ki){add({at:["k",ki],name:kc.lab+" · "+kc.big,sub:title+" · Keep it, use it",tag:"Renewal"},kc.lab+" "+kc.big,kc.text+" "+(kc.after||"")+" "+(kc.list||[]).join(" ")+" renew renewal keep",52);});
   });
   return CIDX;
 }
@@ -11845,7 +12346,7 @@ function drawPoster(v,c,i,total){
   g.font="600 8.5px Geist, system-ui, sans-serif";g.fillStyle="rgba(255,255,255,.62)";
   var lbl=v.name.toUpperCase().split("").join(String.fromCharCode(8202));g.fillText(lbl,18,28);
   g.font="500 9.5px 'IBM Plex Mono', ui-monospace, monospace";g.textAlign="right";g.fillText(pad2(i+1)+" / "+pad2(total),282,28);
-  var pl=is8140(c[0])?"DOD 8140":"";if(pl){g.font="600 8.5px Geist, system-ui, sans-serif";var tw=g.measureText(pl).width+16;g.strokeStyle="rgba("+A+",.8)";g.lineWidth=1;
+  var q8t=q8Top(c[0]),pl=is8140(c[0])?"8140 \u00b7 "+(q8t?Q8_LVN[q8t]:"Enablers").toUpperCase():"";if(pl){g.font="600 8.5px Geist, system-ui, sans-serif";var tw=g.measureText(pl).width+16;g.strokeStyle=q8t==="A"?"#e4bb52":q8t==="I"?"#c3ccd7":q8t==="B"?"#c98a5c":"rgba("+A+",.8)";g.lineWidth=1;
     g.beginPath();if(g.roundRect) g.roundRect(282-tw+.5,40.5,tw,17,8.5); else g.rect(282-tw+.5,40.5,tw,17);g.stroke();g.fillStyle="#fff";g.textAlign="center";g.fillText(pl,282-tw/2,52);}
   g.textAlign="left";
   var name=c[0], fs=40;g.font="700 "+fs+"px 'Inter Tight', Geist, system-ui, sans-serif";
