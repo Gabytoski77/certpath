@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-tpizfy5hkWLTzvbYYMfskjqa2dl3bbeQiIZl3yGkra8=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-yYyLXcy/tIljTge5SECrCY0FskA0gQoP8QqAXJrQcjc=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1213,6 +1213,10 @@ button.ptt-c:active{opacity:.7;transition-duration:.1s}
   .st-head{gap:8px}
   .st-cool{justify-content:center;text-align:center}
   .st-links{justify-content:center;width:100%}
+  .st-links:has(> :nth-child(3)){display:grid;grid-template-columns:1fr auto 1fr;column-gap:8px}
+  .st-links button{white-space:nowrap}
+  .st-links:has(> :nth-child(3))>:first-child{justify-self:start}
+  .st-links:has(> :nth-child(3))>:last-child{justify-self:end}
   .st-main{padding:15px 26px 15px 28px}
   .st-card{max-width:340px}
   .st-disc{display:none}
@@ -2129,7 +2133,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.33</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.34</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -3439,15 +3443,15 @@ function resize(){
   W=Math.max(1,ar.width);H=Math.max(1,ar.height);
   gcx=sr.left-ar.left+sr.width/2;gcy=sr.top-ar.top+sr.height/2;
   appLeft=ar.left;appTop=ar.top;
-  (function(){var sh=isShort(),mb=W<720&&!sh,r=Math.max(70,mb?Math.min(W*.46,sr.height*.46):sh?Math.min(sr.width*.4,sr.height*.47):Math.min(W*.28,sr.height*.52));
+  (function(){var sh=isShort(),mb=W<720&&!sh,r=Math.max(70,mb?Math.min(W*.46,sr.height*.38):sh?Math.min(sr.width*.4,sr.height*.47):Math.min(W*.28,sr.height*.52));
     app.style.setProperty("--gx",gcx.toFixed(1)+"px");app.style.setProperty("--gy",gcy.toFixed(1)+"px");app.style.setProperty("--gr",r.toFixed(1)+"px");})();
   if(!LITE.on){fieldBack.resize(W,H);fieldFront.resize(W,H);}
   if(!has3D){
-    var sh0=isShort(), mb0=W<720&&!sh0, R0=Math.max(70,mb0?Math.min(W*.46,sr.height*.46):sh0?Math.min(sr.width*.4,sr.height*.47):Math.min(W*.28,sr.height*.52));
+    var sh0=isShort(), mb0=W<720&&!sh0, R0=Math.max(70,mb0?Math.min(W*.46,sr.height*.38):sh0?Math.min(sr.width*.4,sr.height*.47):Math.min(W*.28,sr.height*.52));
     if(still.on){
       still.R=R0;stillDraw();
       var sw0=R0*1.7, shh=R0*.3;gshadow.style.transform="translate("+(gcx-sw0/2).toFixed(1)+"px,"+(gcy+R0*1.06-shh/2).toFixed(1)+"px) scale("+(sw0/200).toFixed(4)+","+(shh/40).toFixed(4)+")";
-      if(tt) tt.resize(W,H,mb0?gcy-R0*.86:sh0?gcy+R0*.42:gcy-H*.04,sh0?{cx:gcx,w:sr.width}:null);
+      if(tt) tt.resize(W,H,mb0?gcy-R0*1.1:sh0?gcy+R0*.42:gcy-H*.04,sh0?{cx:gcx,w:sr.width}:null);
     } else if(tt) tt.resize(W,H,gcy,sh0?{cx:gcx,w:sr.width}:null);
     placeReadout();return;
   }
@@ -3455,12 +3459,12 @@ function resize(){
   camera.aspect=W/H;
   var short=isShort(), mobile=W<720&&!short;
   badgeBase=mobile?.36:short?.3:.25;
-  var Rpx=mobile?Math.min(W*.46,sr.height*.46):short?Math.min(sr.width*.4,sr.height*.47):Math.min(W*.28,sr.height*.52);
+  var Rpx=mobile?Math.min(W*.46,sr.height*.38):short?Math.min(sr.width*.4,sr.height*.47):Math.min(W*.28,sr.height*.52);
   Rpx=Math.max(70,Rpx);
   baseDist=H/(2*Rpx*Math.tan(camera.fov*Math.PI/360));
   camera.setViewOffset(W,H,W/2-gcx,H/2-gcy,W,H);
   camera.updateProjectionMatrix();
-  if(tt) tt.resize(W,H,mobile?gcy-Rpx*.86:short?gcy+Rpx*.42:gcy-H*.04,short?{cx:gcx,w:sr.width}:null);
+  if(tt) tt.resize(W,H,mobile?gcy-Rpx*1.1:short?gcy+Rpx*.42:gcy-H*.04,short?{cx:gcx,w:sr.width}:null);
   placeReadout();
 }
 /* keep the vendor text clear of the CertPath wordmark: if they overlap, lift the text above the word (crests + buttons stay below it) */
@@ -11376,13 +11380,13 @@ GUIDES["Linux+"]={
   hereNote:"The Linux admin cert on the DoD 8140 matrix",
   mapSub:"Linux+ backs the 20 year career and Cloud paths. Tap any cert to jump to it.",
   keep:[
-    {lab:"Renewal",big:"3 years",text:"Renew every 3 years with 50 continuing education units (CEUs) plus the CE fee ($150 for the 3 years), by passing the current Linux+ exam again, or by earning a qualifying higher-level CompTIA cert (CompTIA's CE chart lists Cloud+)."},
+    {lab:"Renewal",big:"3 years",text:"Renew every 3 years with 50 continuing education units (CEUs) plus the CE fee ($150 for the 3 years), or by passing the current Linux+ exam again."},
     {lab:"DoD 8140",big:"",text:""}],
   sources:[
     ["CompTIA Linux+ (V8): exam details (XK0-006, launched Jul 15, 2025, 90 questions, 90 minutes, 720)","https://www.comptia.org/en/certifications/linux/"],
     ["CompTIA: Linux+ XK0-006 exam objectives PDF (document version 5.0)","https://lecbyo.files.cmp.optimizely.com/download/90b9ac985c0e11f0b004a2a93c999a21"],
     ["CompTIA: CEUs required by cert (Linux+ 50)","https://www.comptia.org/continuing-education/learn/earn-continuing-education-units"],
-    ["CompTIA: Continuing education activities chart (CE fee $150, higher certs that renew Linux+)","https://lecbyo.files.cmp.optimizely.com/download/b6c8cb98e95511ef89da52ed0d48d8ee"],
+    ["CompTIA: Continuing education activities chart (CE fee $150)","https://lecbyo.files.cmp.optimizely.com/download/b6c8cb98e95511ef89da52ed0d48d8ee"],
     ["Training Camp: What is Linux+ (XK0-005 retired Jan 13, 2026; $399 voucher)","https://trainingcamp.com/what-is-linux-plus/"],
     ["Crucial Exams: 2026 CompTIA voucher prices (Linux+ $399)","https://crucialexams.com/posts/blog/comptia-voucher-price-increase-2026"]]
 };
@@ -12525,9 +12529,11 @@ function makeTechText(cv,cvF){
     var adv=widths.reduce(function(a,b){return a+b;},0)+S.ls*100*(chars.length-1)+extra.reduce(function(a,b){return a+b;},0);
     var m=ctx.measureText(S.text), asc=m.actualBoundingBoxAscent||72, desc=m.actualBoundingBoxDescent||0;
     var mobile=W<720;
-    var size=box?Math.min(box.w*.96/adv*100,H*.22/(asc+desc)*100,220):Math.min(W*(mobile?.9:.88)/adv*100,H*(mobile?.15:.3)/(asc+desc)*100,380), k=size/100;
+    var size=box?Math.min(box.w*.96/adv*100,H*.22/(asc+desc)*100,220):Math.min(W*(mobile?.68:.88)/adv*100,H*(mobile?.15:.3)/(asc+desc)*100,380), k=size/100;
     ctx.font=fontAt(size);
     var inkW=adv*k, x=box?Math.max(4,Math.min(W-inkW-4,box.cx-inkW/2)):(W-inkW)/2, baseline=cy+(asc-desc)*k/2;
+    /* phones: never let the word slide up under the header (small screens like the iPhone SE) */
+    if(mobile&&!box&&hdrB>0) baseline=Math.max(baseline,hdrB+8+asc*k);
     var xh=baseline-ctx.measureText("x").actualBoundingBoxAscent, cap=baseline-ctx.measureText("H").actualBoundingBoxAscent, dsc=baseline+ctx.measureText("p").actualBoundingBoxDescent;
     var top=baseline-asc*k, bottom=baseline+desc*k;
     word={size:size,baseline:baseline,left:x,right:x+inkW,top:top,bottom:bottom,
