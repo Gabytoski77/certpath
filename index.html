@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-b4uKPG3Qbltnla/BTS+41eGt7X+yD/3X3oXNF3e4UFw=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-tpizfy5hkWLTzvbYYMfskjqa2dl3bbeQiIZl3yGkra8=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -2129,7 +2129,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.32</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.33</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2568,7 +2568,7 @@ var VENDORS = [
   {id:"comptia", name:"CompTIA", short:"CompTIA", lat:36, lon:-92, beacon:"#ff3b30",
    pal:{fg:"#1b1514",muted:"#6e6260",line:"#e2d8d5",surface:"#ffffff",accent:"#d71920",on:"#ffffff"}, grad:["#ffffff","#f6f2f0","#ead8d3"],
    blurb:"Vendor-neutral foundations. Security+ counts for more DoD 8140 work roles than any other cert here, so most IT careers in the Guard start with CompTIA.",
-   certs:[["A+","Entry",2,"120–200 h","",["20 year career"]],["Network+","Entry",2,"80–120 h","",["20 year career","Network eng"]],["Security+","Core",3,"60–100 h","",["20 year career","Cyber eng"]],["Cloud+","Intermediate",3,"60–90 h","",["Cloud security"]],["CySA+","Intermediate",4,"80–120 h","",["Cyber eng","20 year career"]],["PenTest+","Intermediate",4,"80–120 h","",["Cyber eng"]],["Project+","Entry",2,"40–60 h","",["20 year career"]],["SecurityX","Advanced",5,"120–180 h","",["Cyber eng","20 year career"]]]},
+   certs:[["A+","Entry",2,"120–200 h","",["20 year career"]],["Network+","Entry",2,"80–120 h","",["20 year career","Network eng"]],["Security+","Core",3,"60–100 h","",["20 year career","Cyber eng"]],["Linux+","Intermediate",3,"80–120 h","",["20 year career","Cloud security"]],["Cloud+","Intermediate",3,"60–90 h","",["Cloud security"]],["CySA+","Intermediate",4,"80–120 h","",["Cyber eng","20 year career"]],["PenTest+","Intermediate",4,"80–120 h","",["Cyber eng"]],["Project+","Entry",2,"40–60 h","",["20 year career"]],["SecurityX","Advanced",5,"120–180 h","",["Cyber eng","20 year career"]]]},
   {id:"isc2", name:"ISC2", short:"ISC2", lat:-14, lon:-44, beacon:"#6f9dff",
    pal:{fg:"#eef4ff",muted:"#a7bad6",line:"#25457a",surface:"#10305e",accent:"#5fa8ff",on:"#06162e"}, grad:["#1b4d94","#0b2347","#040c1d"],
    blurb:"Senior security and management. CISSP is a DoD 8140 Advanced option for security managers and control assessors.",
@@ -2828,6 +2828,7 @@ var CERT_NOTE={
   "A+":"Where most IT careers start. Two exams cover hardware, operating systems, networking basics and troubleshooting: the help-desk skills every unit leans on.",
   "Network+":"The networking cert for every IT rating. Subnetting, routing, switching, wireless and troubleshooting, and the setup for Security+ and CCNA.",
   "Security+":"The cert most DoD and Coast Guard IT billets ask for first. Threats, controls, architecture, incident response and risk.",
+  "Linux+":"CompTIA's Linux admin cert: storage, networking, users, systemd, containers, hardening, scripting and troubleshooting. On the DoD 8140 matrix for System Administrators.",
   "Cloud+":"Vendor-neutral cloud. Design, deploy, secure and fix cloud infrastructure on any provider; the bridge to AWS, Azure and CCSP.",
   "CySA+":"The blue-team analyst cert. Spot malicious activity, manage vulnerabilities, respond to incidents and report what happened.",
   "PenTest+":"Hands-on offense. Plan an authorized pentest, exploit weaknesses across networks, web apps and cloud, then write the report.",
@@ -4335,7 +4336,7 @@ var FIELDS=[
    line:"Keep people, servers and accounts working. Where most IT careers start.",
    jobs:[
     {id:"hd",name:"Help desk",occ:"hd",exact:true,line:"First line of IT support: accounts, laptops, printers and phones, and knowing when to escalate. The usual first IT job.",steps:[],stepsNote:"A+ is usually all you need to get hired, and it's the first cert on the trunk."},
-    {id:"sad",name:"Systems admin",occ:"nsa",exact:true,line:"Keep servers, accounts and patches in order, on premises and in the cloud.",steps:[["Linux Essentials","Linux Essentials"],["LPIC-1","LPIC-1"],["Azure Administrator","Azure Administrator"]]},
+    {id:"sad",name:"Systems admin",occ:"nsa",exact:true,line:"Keep servers, accounts and patches in order, on premises and in the cloud.",steps:[["Linux Essentials","Linux Essentials"],["Linux+","Linux+"],["LPIC-1","LPIC-1"],["Azure Administrator","Azure Administrator"]]},
     {id:"itm",name:"IT manager",occ:"mgr",exact:true,line:"Run an IT shop: people, budgets, projects and priorities. Most of these jobs also ask for a bachelor's degree.",steps:[["Project+","Project+"],["CISSP","CISSP"]]}
    ]}
 ];
@@ -5166,7 +5167,7 @@ if(mpEl){
 /* ---------- Compare: two certs side by side, facts only ---------- */
 var CMP_KEY="cgcp.compare", cmpEl=$("#cmp");
 var CMP_ALL=(function(){var o=[];VENDORS.slice(0,-1).forEach(function(v,i){v.certs.forEach(function(c){o.push({name:c[0],short:c[0].split(" · ")[0],v:i,c:c});});});return o;})();
-var CMP_PAIRS=[["Security+","CC"],["Security+","CySA+"],["CySA+","SAL1 · Security Analyst L1"],["Network+","CCNA"],["CCSP","CISSP"]];
+var CMP_PAIRS=[["Security+","CC"],["Security+","CySA+"],["CySA+","SAL1 · Security Analyst L1"],["Network+","CCNA"],["Linux+","LPIC-1"],["CCSP","CISSP"]];
 var cmp={a:"Security+",b:"CySA+",open:null,q:"",loaded:false};
 function cmpHas(n){return typeof n==="string"&&CMP_ALL.some(function(x){return x.name===n;});}
 function cmpShort(n){return String(n).split(" · ")[0];}
@@ -9388,7 +9389,7 @@ GUIDES["Linux Essentials"]={
        {src:"dmesg",log:"usb 1-2: new high-speed USB device number 7 using xhci_hcd\nusb-storage 1-2:1.0: USB Mass Storage device detected",a:5,why:"The kernel detected a USB mass storage device. Many units restrict removable media, so this may need a report."}]}
   ],
   before:[],
-  next:[["LPIC-1","The full Linux admin cert, two exams"],["SAL1","Hands-on SOC work that uses these skills daily","SAL1 · Security Analyst L1"],["Security+","The core security cert on the DoD 8140 matrix"]],
+  next:[["Linux+","CompTIA's Linux admin cert, on the DoD 8140 matrix"],["LPIC-1","The full Linux admin cert, two exams"],["SAL1","Hands-on SOC work that uses these skills daily","SAL1 · Security Analyst L1"],["Security+","The core security cert on the DoD 8140 matrix"]],
   hereNote:"Linux basics for every path",
   mapSub:"Linux Essentials supports every path. Tap any cert to jump to it.",
   keep:[
@@ -11141,6 +11142,250 @@ GUIDES["Cloud and AI Security Engineer"]={
     ["DoD CIO: DoD 8140 qualification matrices","https://public.cyber.mil/wid/dod8140/qualifications-matrices"]]
 };
 
+GUIDES["Linux+"]={
+  id:"linuxplus",
+  lead:"CompTIA's Linux admin cert. It proves you can run Linux servers from the command line: storage, networking, users, systemd services, containers, hardening, scripting and troubleshooting. Most servers, cloud workloads and security tools run on Linux, and unlike the LPI certs, Linux+ is on the DoD 8140 matrix.",
+  checked:"Nov 13, 2026",
+  planHours:90,
+  laneOnly:["20 year career","Cloud"],
+  versions:{
+    v8:{code:"XK0-006",label:"V8",status:"Launched Jul 15, 2025 · passing 720",
+      note:"The only version you can take now: the old XK0-005 (V7) retired in English on Jan 13, 2026. CompTIA estimates V8 retires around 2028. It splits Services and User Management into its own domain and adds Python, Git, Ansible-style automation and responsible AI use. CompTIA recommends about 12 months of hands-on Linux server work, plus A+ and Network+ level knowledge.",
+      numbered:true,onote:"Official objective titles from CompTIA's XK0-006 objectives PDF (document version 5.0). The line under each is a plain-language summary of its bullet list, not the full list.",
+      domains:[
+        {n:"1.0",name:"System Management",w:23,obj:[
+          ["Explain basic Linux concepts","The boot process (bootloader, kernel, initrd), the Filesystem Hierarchy Standard, server architectures, distributions, graphical desktops (X and Wayland) and software licenses: open source, free, proprietary and copyleft."],
+          ["Summarize Linux device management concepts and tools","Kernel modules (lsmod, modinfo, insmod, modprobe, depmod), device management, initrd and custom hardware."],
+          ["Given a scenario, manage storage in a Linux system","Partitions, filesystems, LVM (physical volumes, volume groups, logical volumes), RAID, mounted and network storage (NFS, SMB) and inodes."],
+          ["Given a scenario, manage network services and configurations on a Linux server","/etc/hosts, /etc/resolv.conf and /etc/nsswitch.conf, NetworkManager (nmcli), Netplan and tools like ip, ss, dig, ping, traceroute and tcpdump."],
+          ["Given a scenario, manage a Linux system using common shell operations","Environment variables (PATH, HOME, PS1), shell config files, redirection and pipes, text tools (grep, sed, awk, cut, sort, tee, xargs) and the vi and nano editors."],
+          ["Given a scenario, perform backup and restore operations for a Linux server","Archives (tar, cpio), compression (gzip, bzip2, xz) and other copy and backup tools."],
+          ["Summarize virtualization on Linux systems","Hypervisors (KVM, QEMU), VM operations, bare metal vs VMs, virtual network types (NAT, bridged, routed, open) and tools like libvirt, virsh and virt-manager."]]},
+        {n:"2.0",name:"Services and User Management",w:20,obj:[
+          ["Given a scenario, manage files and directories on a Linux system","File utilities (cp, mv, find, ln, diff, file, locate and more), hard vs symbolic links, and the device types in /dev."],
+          ["Given a scenario, perform local account management in a Linux environment","Add, modify, lock, expire, list and delete accounts; /etc/skel templates; /etc/passwd, /etc/shadow and /etc/group; user vs system vs service accounts."],
+          ["Given a scenario, manage processes and jobs in a Linux environment","Process IDs and states, priority (nice, renice), limits (ulimit), job control (jobs, bg, fg, kill) and scheduling with cron, at and systemd timers."],
+          ["Given a scenario, configure and manage software in a Linux environment","Install, update and remove packages (apt, dnf, rpm, dpkg), repositories and exclusions, update-alternatives, sandboxed apps (snap, flatpak) and basic configs for common services."],
+          ["Given a scenario, manage Linux using systemd","Unit types (service, timer, socket, mount, target), systemctl, journalctl and other systemd tools, and unit states: start, stop, enable, disable, mask."],
+          ["Given a scenario, manage applications in a container on a Linux server","Runtimes (Docker, Podman), image and container operations, volumes, container networks, and privileged vs unprivileged containers."]]},
+        {n:"3.0",name:"Security",w:18,obj:[
+          ["Given a scenario, apply operating system (OS) hardening techniques on a Linux system","sudo and privilege escalation, file attributes, permissions and ACLs, SELinux and AppArmor, secure SSH, dropping unsecure services like Telnet and FTP, removing unneeded SUID bits, disabling unused filesystems and Secure Boot."],
+          ["Summarize authorization, authentication, and accounting methods","Polkit, PAM, SSSD and Winbind, LDAP, Kerberos, Samba, logging and system auditing."],
+          ["Given a scenario, configure and implement firewalls on a Linux system","firewalld, ufw, nftables, iptables, ipset and Netfilter, address translation, stateful vs stateless rules and IP forwarding."],
+          ["Explain account hardening techniques and best practices","Password rules, MFA, checking breach lists, restricted shells, locking accounts after failed logins and not running as root."],
+          ["Explain cryptographic concepts and technologies in a Linux environment","Protecting data at rest and in transit, hashing, removing weak algorithms, certificate management and why to avoid self-signed certificates."],
+          ["Explain the importance of compliance and audit procedures","Detection and response, vulnerability scanning, standards and audits, file integrity, secure data destruction, the software supply chain and login banners."]]},
+        {n:"4.0",name:"Automation, Orchestration, and Scripting",w:17,obj:[
+          ["Given a scenario, perform automated tasks using shell scripting","Expansion, functions, IFS/OFS, if and case, loops, the #! line, comparisons and test, regular expressions and variables."],
+          ["Summarize Python basics used for Linux system administration","Virtual environments, built-in modules, installing dependencies, Python fundamentals and PEP 8 style.",1],
+          ["Given a scenario, implement version control using Git","clone, add, commit, branch, checkout, merge, rebase, pull, push, fetch, stash, tag, reset, log, diff and .gitignore."],
+          ["Summarize best practices and responsible uses of artificial intelligence (AI)","Common use cases, best practices (check what AI writes before you run it) and prompt engineering.",1],
+          ["Summarize the use cases and techniques of automation and orchestration in a Linux environment","Infrastructure as code (tools like Ansible, Puppet and OpenTofu), unattended deployment, CI/CD and deployment orchestration."]]},
+        {n:"5.0",name:"Troubleshooting",w:22,obj:[
+          ["Given a scenario, analyze and troubleshoot hardware, storage, and Linux OS issues","Common issues like boot failures, full disks, running out of inodes, filesystem errors and missing devices."],
+          ["Given a scenario, analyze and troubleshoot networking issues on a Linux system","Common issues like a down interface, a wrong address or route, DNS failures and blocked ports."],
+          ["Given a scenario, analyze and troubleshoot security issues on a Linux system","Common issues like SELinux denials, wrong permissions or ownership, failed logins and certificate problems."],
+          ["Given a scenario, analyze and troubleshoot performance issues","Common symptoms like high CPU, memory or swap use, slow disks (I/O wait), high load and runaway processes."],
+          ["Summarize monitoring concepts and configurations in a Linux system","Service monitoring, how monitoring data is collected, and monitoring configurations."]]}
+      ]}
+  },
+  extras:[
+    {kind:"rows",title:"Where things live",sub:"1.1 · the Filesystem Hierarchy Standard",rows:[
+      ["/etc","Config files","System and service settings: sshd_config, fstab, passwd, hosts."],
+      ["/var/log","Logs","auth.log or secure, messages or syslog, audit/audit.log. Where SOC work starts."],
+      ["/home","User files","One folder per user. Root's is /root."],
+      ["/boot","Boot files","The kernel, initrd and bootloader config."],
+      ["/dev","Devices","Disks (sda, nvme0n1), terminals, /dev/null."],
+      ["/proc","Live kernel info","Not real files: process and system details like /proc/cpuinfo."],
+      ["/tmp","Scratch space","Anyone can write; the sticky bit stops users deleting each other's files."]]},
+    {kind:"rows",title:"Permissions at a glance",sub:"3.1 · read the number",rows:[
+      ["4 2 1","r w x","Add them per group: 7 = rwx, 6 = rw-, 5 = r-x, 4 = r--."],
+      ["755","rwxr-xr-x","Owner does anything; everyone else can read and run. Scripts, folders."],
+      ["640","rw-r-----","Owner edits, group reads, others get nothing. Config with secrets."],
+      ["600","rw-------","Owner only. SSH private keys."],
+      ["4755","SUID","Runs as the file's owner (often root). Audit every one: find / -perm -4000."],
+      ["1777","Sticky bit","Anyone writes, only the owner deletes. /tmp."]]},
+    {kind:"rows",wide:true,title:"systemd in one card",sub:"2.5 · the commands you'll use daily",rows:[
+      ["status","systemctl status sshd","Running or not, recent log lines, and the unit file path."],
+      ["now","systemctl start | stop | restart","Change it now. Gone after a reboot unless it's enabled."],
+      ["boot","systemctl enable --now","Start at every boot and start it right away."],
+      ["block","systemctl mask","Nobody can start it, not even by hand or as a dependency."],
+      ["edit","systemctl daemon-reload","Run after you change a unit file, so systemd rereads it."],
+      ["logs","journalctl -u sshd -b","This unit's logs since the last boot. Add -p err for errors only, -f to follow."]]},
+    {kind:"steps",title:"A service won't start",sub:"5.0 · a method that works on the exam and at work",rows:[
+      "systemctl status <name>: read the error and the last log lines.",
+      "journalctl -u <name> -b: read the full log since boot.",
+      "Test the config file (for example nginx -t or sshd -t).",
+      "ss -tlnp: is another program already on the port?",
+      "Check permissions and ownership on the files it needs.",
+      "On SELinux systems, check for denials (ausearch -m avc) and labels (ls -Z).",
+      "Fix one thing, restart, check status again, then enable it if it should survive a reboot."]}
+  ],
+  facts:[["Questions","90","max"],["Time","90","minutes"],["Passing","720","of 900"],["Format","MCQ","+ PBQs"],["Study","80–120","hours"],["Voucher","$399","US retail"],["Valid","3","years"],["DoD 8140","",""]],
+  method:[
+    ["Map","Use the five domains above as your checklist. System Management and Troubleshooting are almost half the exam."],
+    ["Build","Run Linux every day. WSL on your own laptop or a free VirtualBox VM is enough. Use one Debian-family and one RHEL-family distro, because the exam uses both."],
+    ["Break","Break your own lab on purpose: fill a disk, stop a service, block a port, mislabel a file under SELinux. Then fix it with the tools in 5.0."],
+    ["Recall","Flashcards for paths, permission numbers, systemctl and journalctl options, and which package tool goes with which distro."],
+    ["Test","Timed practice exams with PBQs. Review every miss. A common target is 85%+ twice in a row before you book."]],
+  tips:[
+    ["Flag the PBQs","They often come first and eat time. Flag them, finish the multiple choice, then come back."],
+    ["Know both families","apt and dpkg on Debian and Ubuntu; dnf and rpm on RHEL and Rocky. Many questions hinge on which one fits."],
+    ["Read the output","Many questions show command output. Find the one line that matters (100% in df -i, wa in top, denied in the audit log) before you look at the answers."],
+    ["Never leave a blank","There is no penalty for a wrong answer, so always pick something."]],
+  resources:[
+    {group:"Official",items:[
+      ["Linux+ (V8) exam page","CompTIA","https://www.comptia.org/en/certifications/linux/","Free","Exam details and the link to the XK0-006 objectives PDF."],
+      ["CompTIA CertMaster for Linux+","CompTIA","","Paid","CompTIA's own course, labs and practice. The difficulty reference for this site's questions."]]},
+    {group:"Free practice",items:[
+      ["Linux Journey","linuxjourney.com","https://linuxjourney.com/","Free","Short, free lessons from the command line up to processes, packages and networking."],
+      ["Bandit wargame","OverTheWire","https://overthewire.org/wargames/bandit/","Free","A legal wargame: SSH in and solve each level with Linux commands."],
+      ["Linux Fundamentals rooms","TryHackMe","https://tryhackme.com/room/linuxfundamentalspart1","Free","Guided browser labs for the basics. The same skills SOC work uses."]]},
+    {group:"Build a lab",items:[
+      ["Install WSL","Microsoft Learn","https://learn.microsoft.com/en-us/windows/wsl/install","Free","Run Ubuntu on your own Windows laptop with one command. Use a personal computer, not a government one."],
+      ["VirtualBox","Oracle","https://www.virtualbox.org/","Free","Free VMs for a full lab: a RHEL-family server, a Debian-family server, and snapshots before you break things."]]},
+    {group:"Automation",items:[
+      ["Pro Git book","git-scm.com","https://git-scm.com/book/en/v2","Free","The free official Git book. Chapters 1 to 3 cover what 4.3 asks."],
+      ["Python tutorial","Python.org","https://docs.python.org/3/tutorial/","Free","The official tutorial. Enough Python for 4.2."],
+      ["Getting started with Ansible","Ansible docs","https://docs.ansible.com/ansible/latest/getting_started/index.html","Free","Your first inventory and playbook, run against your own lab VMs."]]},
+    {group:"Books",items:[
+      ["CompTIA Linux+ Study Guide: Exam XK0-006","Sybex","","Paid","A full study guide with review questions and practice tests."]]}
+  ],
+  quiz:[
+    {d:"1.0",q:"The /data logical volume (ext4) is full. Its volume group has 20 GB free. Which command adds 10 GB AND grows the filesystem in one step, without unmounting?",
+     o:[["lvextend -r -L +10G /dev/vg0/data","Right. -L +10G grows the logical volume and -r resizes the filesystem on it right after. ext4 can grow while mounted."],
+        ["lvcreate -L 10G -n data vg0","lvcreate makes a new, separate logical volume. It doesn't grow the existing one."],
+        ["resize2fs /dev/vg0/data","resize2fs grows the filesystem, but the volume under it is still the same size, so there's no room to grow into yet."],
+        ["pvcreate /dev/sdc","pvcreate prepares a new disk for LVM. The volume group already has free space, so you don't need a new disk."]],a:0},
+    {d:"1.0",q:"An app on a server keeps connecting to a decommissioned database at 10.1.4.20. dig shows db.unit.example resolving to the new address, 10.1.4.55. What is the MOST likely cause?",
+     o:[["An old entry for db.unit.example in /etc/hosts","Right. dig asks DNS directly, but most apps resolve names through /etc/nsswitch.conf, where \"files\" (/etc/hosts) is usually checked before DNS."],
+        ["The DNS server is caching the old record","dig already returns the new address from DNS, so DNS isn't the problem."],
+        ["A wrong default gateway","A bad gateway causes timeouts, not a connection to a specific old IP address."],
+        ["NetworkManager needs a restart","Restarting the network doesn't change which IP a name resolves to. The hosts file wins either way."]],a:0},
+    {d:"1.0",q:"A nightly script must add BOTH its normal output and its errors to the same log file, keeping earlier nights' entries. Which line is correct?",
+     o:[["/opt/nightly.sh >> /var/log/nightly.log 2>&1","Right. >> appends, and 2>&1 then sends errors (stream 2) to wherever output (stream 1) already goes: the log."],
+        ["/opt/nightly.sh 2>&1 >> /var/log/nightly.log","Order matters. 2>&1 runs first, while stdout still points at the terminal, so errors go to the screen and only normal output reaches the log."],
+        ["/opt/nightly.sh > /var/log/nightly.log 2>&1","This catches both streams, but a single > overwrites the file every night."],
+        ["/opt/nightly.sh | tee -a /var/log/nightly.log","A pipe carries only stdout. Errors skip tee and never reach the log."]],a:0},
+    {d:"2.0",q:"A member transfers out tomorrow. Their files must stay for their replacement, but they must not be able to log in starting now. What is the BEST action?",
+     o:[["Lock and expire the account (usermod -L and chage -E 0)","Right. Locking blocks the password and expiring the account also blocks key-based logins, while the home folder and files stay put."],
+        ["userdel -r jdoe","-r deletes the home folder and mail spool, so the files the replacement needs are gone."],
+        ["passwd -d jdoe","That removes the password entirely. Depending on PAM settings, that can allow a login with no password at all."],
+        ["Remove jdoe from every group in /etc/group","They lose group access, but they can still log in with their own account."]],a:0},
+    {d:"2.0",q:"nginx starts fine with systemctl start, but it's down again every time the server reboots. Which command fixes this?",
+     o:[["systemctl enable --now nginx","Right. enable makes it start at every boot, and --now starts it right away too."],
+        ["systemctl restart nginx","Restart only affects the running service. It still won't start after the next reboot."],
+        ["systemctl mask nginx","mask does the opposite: it blocks the service from starting at all."],
+        ["systemctl daemon-reload","daemon-reload rereads unit files after you edit them. It doesn't make anything start at boot."]],a:0},
+    {d:"2.0",q:"A team runs a database in a container. Every time they pull a new image and recreate the container, all the data disappears. What should they do?",
+     o:[["Store the data in a named volume mounted into the container","Right. A volume lives outside the container's writable layer, so it survives when the container is deleted and recreated."],
+        ["Run the container with --privileged","Privileged mode gives the container broad access to the host. It does nothing to keep data, and it's a security risk."],
+        ["Publish the database port with -p","Publishing a port controls network access, not where data is stored."],
+        ["Commit the container to a new image after each change","Baking data into images is slow, fragile and mixes data with code. Volumes are the right tool."]],a:0},
+    {d:"3.0",q:"A hardening review finds this file. The tool doesn't need root rights to work. What does the s mean, and what is the right fix?",
+     code:"$ ls -l /usr/local/bin/backup-tool\n-rwsr-xr-x 1 root root 48216 Oct 2 09:11 backup-tool",
+     o:[["SUID: anyone who runs it runs it as root. Remove it with chmod u-s","Right. SUID programs owned by root are a favorite privilege escalation path. If it isn't needed, take it off."],
+        ["Sticky bit: only root can delete it. Leave it","The sticky bit shows as t in the others' execute spot and is for folders like /tmp. This s is in the owner's execute spot."],
+        ["SGID: it runs with the root group. Fix it with chmod g-s","SGID would show s in the group's execute spot. Here the group part is r-x."],
+        ["Swap-enabled: it can page to disk. Fix it with chattr -s","There is no swap permission. s in the owner's execute spot means SUID."]],a:0},
+    {d:"3.0",q:"On a RHEL-family server that uses firewalld, web users must reach HTTPS, and the rule must survive a reboot. What should you run?",
+     o:[["firewall-cmd --permanent --add-service=https, then firewall-cmd --reload","Right. --permanent writes the rule to the saved config, and --reload loads that config into the running firewall."],
+        ["firewall-cmd --add-service=https","This works right now, but it isn't saved. It's gone after a reload or reboot."],
+        ["iptables -A INPUT -p tcp --dport 443 -j ACCEPT","Writing raw rules behind firewalld's back isn't saved, and firewalld can wipe it on its next reload."],
+        ["ufw allow 443/tcp","ufw is a different firewall front end, usually on Ubuntu. It isn't what's managing this server."]],a:0},
+    {d:"3.0",q:"Which sshd_config settings BEST harden SSH on a server that every admin reaches with their own key?",
+     o:[["PermitRootLogin no and PasswordAuthentication no","Right. Admins log in as themselves and use sudo, which leaves a trail, and with passwords off, password guessing can't work."],
+        ["Port 2222 and PermitRootLogin yes","A new port cuts down noise in the logs but isn't real protection, and allowing root logins makes things worse."],
+        ["PasswordAuthentication yes and MaxAuthTries 10","This keeps passwords on and gives attackers more guesses per connection."],
+        ["Protocol 1 and X11Forwarding yes","SSH protocol 1 is broken and long gone, and X11 forwarding adds attack surface you don't need."]],a:0},
+    {d:"4.0",q:"Today's auth.log has 3 lines that contain \"Failed password\". What does this script print?",
+     code:"#!/bin/bash\ncount=$(grep -c \"Failed password\" /var/log/auth.log)\nif [ \"$count\" -gt 5 ]; then\n  echo \"ALERT: $count failed logins\"\nfi",
+     o:[["Nothing","Right. grep -c counts matching lines (3), and 3 isn't greater than 5, so the if block never runs."],
+        ["ALERT: 3 failed logins","That only prints when the count is greater than 5."],
+        ["ALERT: 5 failed logins","5 is the threshold in the test, not the count. The variable holds 3."],
+        ["An error, because -gt can't compare text","$count holds the number 3, and -gt compares integers, so the test runs fine."]],a:0},
+    {d:"4.0",q:"You're halfway through editing a script on a feature branch when you have to fix an urgent bug on main. You don't want to commit half-done work. What should you run FIRST?",
+     o:[["git stash","Right. stash shelves your uncommitted changes so you can switch branches. git stash pop brings them back later."],
+        ["git reset --hard","That throws your uncommitted changes away for good."],
+        ["git commit --amend","That rewrites your last commit with the half-done work, which is exactly what you wanted to avoid."],
+        ["git rebase main","Rebasing moves your branch's commits. It doesn't deal with uncommitted edits, and Git won't rebase with a dirty tree."]],a:0},
+    {d:"4.0",q:"You run the same Ansible playbook against a server twice. The first run makes 12 changes; the second run reports 0 changes. Which property does this show?",
+     o:[["Idempotency","Right. An idempotent task describes the end state, so running it again on a server that's already there changes nothing."],
+        ["Immutability","Immutable infrastructure means replacing servers instead of changing them. The playbook changed this server in place."],
+        ["A pull-based model","Ansible pushes from a control node. Pull vs push is about who starts the run, not repeat runs."],
+        ["Continuous deployment","CD is about automatically releasing changes through a pipeline, not about repeat runs of one playbook."]],a:0},
+    {d:"5.0",q:"A spool job fails with an error, but there seems to be plenty of space. What is the cause?",
+     code:"$ touch /var/spool/app/job.tmp\ntouch: cannot touch 'job.tmp': No space left on device\n$ df -h /var\nFilesystem  Size  Used Avail Use% Mounted on\n/dev/sdb1    50G   20G   30G  41% /var",
+     o:[["The filesystem has run out of inodes","Right. Every file needs an inode. Millions of tiny files can use them all while space is left. df -i would show 100%."],
+        ["The disk has bad sectors","Bad sectors show I/O errors in dmesg, not \"No space left on device\" next to 30 GB free."],
+        ["The user has no write permission","That would say \"Permission denied\", not \"No space left on device\"."],
+        ["/var is mounted read-only","A read-only mount says \"Read-only file system\"."]],a:0},
+    {d:"5.0",q:"A server can ping 10.0.0.1, its gateway, and 8.8.8.8, but apt update fails with \"Temporary failure in name resolution\". Where should you look FIRST?",
+     o:[["The DNS settings (/etc/resolv.conf or resolvectl status)","Right. Pinging IPs works, so the link and routing are fine. Only turning names into addresses is failing."],
+        ["The default route","Pinging 8.8.8.8 works, so traffic already leaves the local network."],
+        ["The firewall's HTTPS rules","A firewall block would cause a timeout or refusal, not a name resolution error."],
+        ["The network interface driver","The interface works: the server reaches its gateway and the internet by IP."]],a:0},
+    {d:"5.0",q:"Apache on a RHEL-family server returns 403 Forbidden for files moved from a home folder into /srv/www. The permissions are 644 and the folder is 755. What is the BEST next step?",
+     o:[["Check the SELinux labels (ls -Z, ausearch -m avc), then fix them with semanage fcontext and restorecon","Right. Moved files keep their old home-folder label, which httpd isn't allowed to read. Relabel them; don't turn SELinux off."],
+        ["chmod -R 777 /srv/www","The permissions already let Apache read. 777 adds risk and doesn't fix an SELinux denial."],
+        ["setenforce 0","That turns off SELinux protection for the whole server to hide one labeling mistake."],
+        ["Restart httpd","A restart doesn't change the files' labels, so the 403 comes right back."]],a:0},
+    {d:"5.0",q:"Users say a file server is crawling. top shows a load average of 14.2 on 4 CPUs, with 3% us, 1% sy and 91% wa. What is the bottleneck?",
+     o:[["Disk I/O","Right. wa is the time CPUs sit waiting on disk. Check which disk and process with iostat and iotop."],
+        ["CPU","The CPUs are only 4% busy doing real work (us + sy). They're mostly waiting."],
+        ["Not enough RAM","Memory pressure shows up as swap use and low available memory. Heavy swapping can raise wa, but the numbers given point straight at disk."],
+        ["The network link","Network trouble doesn't show up as I/O wait in top. Check that with ip -s link or ss."]],a:0}
+  ],
+  pbqs:[
+    {id:"tickets",kind:"match",short:"Server tickets",title:"Diagnose six server tickets",dom:"1.0 · 2.0 · 3.0 · 5.0",
+     scenario:"Six Linux tickets came in overnight. Read each output and pick the cause. Each answer is used once; two options are distractors.",
+     pick:"Cause",choices:["Firewall blocking port","Service not enabled","Out of inodes","Wrong SELinux label","DNS server unreachable","Disk I/O bottleneck","Kernel module missing","Password expired"],
+     items:[
+       {src:"Web server, from another host",log:"$ curl -m 5 https://10.0.2.15\ncurl: (28) Connection timed out\n# on the server:\n$ ss -tlnp | grep 443\nLISTEN 0 511 0.0.0.0:443 users:((\"nginx\"))\n$ firewall-cmd --list-services\nssh dhcpv6-client",a:0,why:"nginx is listening on 443, but firewalld only allows ssh. Add the https service with --permanent and reload."},
+       {src:"After a patch reboot",log:"$ systemctl status app\n○ app.service - Unit app\n     Loaded: loaded (/etc/systemd/system/app.service; disabled; preset: disabled)\n     Active: inactive (dead)",a:1,why:"The unit is fine but disabled, so it never starts at boot. systemctl enable --now app."},
+       {src:"Mail queue",log:"$ touch /var/spool/mq/test\ntouch: cannot touch '/var/spool/mq/test': No space left on device\n$ df -h /var | tail -1\n/dev/sdb1  50G  21G  29G  42% /var\n$ df -i /var | tail -1\n/dev/sdb1  3.2M  3.2M  0  100% /var",a:2,why:"Space is left but every inode is used. Find the folder with millions of small files and clean it up."},
+       {src:"Intranet page returns 403",log:"$ ausearch -m avc -ts recent\ntype=AVC msg=audit(...): avc: denied { read } for pid=2211\n comm=\"httpd\" name=\"index.html\"\n scontext=system_u:system_r:httpd_t:s0\n tcontext=unconfined_u:object_r:user_home_t:s0",a:3,why:"The file kept its home-folder label (user_home_t) when it was moved. Relabel with restorecon so httpd can read it."},
+       {src:"Patch job",log:"$ ping -c1 10.0.0.1\n1 packets transmitted, 1 received\n$ dnf check-update\nCurl error (6): Couldn't resolve host name\n$ cat /etc/resolv.conf\nnameserver 10.0.0.250\n$ ping -c1 10.0.0.250\n1 packets transmitted, 0 received",a:4,why:"The network works by IP, but the only DNS server listed doesn't answer, so no names resolve."},
+       {src:"File server, slow for everyone",log:"$ top\nload average: 14.20, 13.87, 12.95\n%Cpu(s):  3.1 us,  1.0 sy,  0.0 ni,  4.5 id, 91.4 wa\nMiB Mem :  15890 total,   6120 free",a:5,why:"91% wa: the CPUs are waiting on disk. Use iostat and iotop to find the busy disk and process."}]},
+    {id:"perms",kind:"table",short:"Hardening review",title:"Review these permissions",dom:"3.1",
+     scenario:"You're running a hardening review on a Linux server. For each file, pick the risk and the fix. Some files are fine as they are.",
+     cols:["Risk","Fix"],
+     opts:[["Runs as root for anyone","Anyone can edit it","Others can read secrets","Others can swap keys","None, it's normal"],["Leave it","chmod 700","chmod u-s","chmod o-r","chmod 644"]],
+     rows:[
+       {req:"-rwsr-xr-x root root /usr/local/bin/backup (doesn't need root)",a:[0,2],why:"SUID on a root-owned program lets any user run it as root. Remove the bit."},
+       {req:"-rw-rw-rw- root root /etc/cron.d/cleanup",a:[1,4],why:"Cron runs this file's jobs as root, and anyone can edit it. 644 lets only root write."},
+       {req:"drwxrwxrwt root root /tmp",a:[4,0],why:"The t is the sticky bit: anyone can write, but only the owner can delete. That's how /tmp should be."},
+       {req:"-rw-r--r-- root root /etc/shadow",a:[2,3],why:"Every user can read the password hashes and try to crack them offline. Take away others' read."},
+       {req:"drwxrwxrwx jdoe jdoe /home/jdoe/.ssh",a:[3,1],why:"Anyone could drop their own key into authorized_keys and log in as jdoe. sshd also refuses keys from a folder this open."},
+       {req:"-rw------- jdoe jdoe /home/jdoe/.ssh/id_ed25519",a:[4,0],why:"A private key readable only by its owner is exactly right."}]},
+    {id:"cmds",kind:"table",short:"Right command",title:"Run the right command",dom:"2.2 · 2.3 · 2.5 · 4.3",
+     scenario:"Pick the command that does each task. Some options aren't used.",
+     cols:["Command"],
+     opts:[["systemctl enable --now","systemctl restart","systemctl mask","systemctl daemon-reload","journalctl -u nginx -b","journalctl -f","usermod -L jdoe","userdel jdoe","0 2 * * * in crontab","2 0 * * * in crontab","git stash","git reset --hard"]],
+     rows:[
+       {req:"Start nginx now and at every boot",a:[0],why:"enable sets it to start at boot; --now also starts it right away."},
+       {req:"Make sure the old telnet service can never be started",a:[2],why:"mask links the unit to /dev/null, so nothing can start it, not even as a dependency."},
+       {req:"You just edited a unit file. Make systemd see the change",a:[3],why:"daemon-reload rereads unit files. Restart the service after it."},
+       {req:"Show nginx's log messages since the last boot",a:[4],why:"-u picks the unit and -b limits it to this boot. -f would only follow new lines."},
+       {req:"Block jdoe from logging in, but keep the account",a:[6],why:"usermod -L locks the password. userdel would remove the account."},
+       {req:"Run a backup script every day at 2:00 AM",a:[8],why:"Cron fields are minute, hour, day, month, weekday. 0 2 means minute 0 of hour 2. 2 0 would be 12:02 AM."},
+       {req:"Set aside uncommitted work before switching branches",a:[10],why:"git stash shelves the changes; reset --hard would delete them."}]}
+  ],
+  before:[["A+","CompTIA recommends A+ level knowledge first"],["Network+","Linux+ assumes you know IP, DNS, ports and routing"],["Linux Essentials","Optional. A gentler first step on the command line"]],
+  next:[["Cloud+","Cloud runs on Linux. The next CompTIA step on the Cloud path"],["LPIC-1","LPI's two-exam Linux admin cert, if you want more depth"],["SAL1","Hands-on SOC work that uses these skills daily","SAL1 · Security Analyst L1"]],
+  hereNote:"The Linux admin cert on the DoD 8140 matrix",
+  mapSub:"Linux+ backs the 20 year career and Cloud paths. Tap any cert to jump to it.",
+  keep:[
+    {lab:"Renewal",big:"3 years",text:"Renew every 3 years with 50 continuing education units (CEUs) plus the CE fee ($150 for the 3 years), by passing the current Linux+ exam again, or by earning a qualifying higher-level CompTIA cert (CompTIA's CE chart lists Cloud+)."},
+    {lab:"DoD 8140",big:"",text:""}],
+  sources:[
+    ["CompTIA Linux+ (V8): exam details (XK0-006, launched Jul 15, 2025, 90 questions, 90 minutes, 720)","https://www.comptia.org/en/certifications/linux/"],
+    ["CompTIA: Linux+ XK0-006 exam objectives PDF (document version 5.0)","https://lecbyo.files.cmp.optimizely.com/download/90b9ac985c0e11f0b004a2a93c999a21"],
+    ["CompTIA: CEUs required by cert (Linux+ 50)","https://www.comptia.org/continuing-education/learn/earn-continuing-education-units"],
+    ["CompTIA: Continuing education activities chart (CE fee $150, higher certs that renew Linux+)","https://lecbyo.files.cmp.optimizely.com/download/b6c8cb98e95511ef89da52ed0d48d8ee"],
+    ["Training Camp: What is Linux+ (XK0-005 retired Jan 13, 2026; $399 voucher)","https://trainingcamp.com/what-is-linux-plus/"],
+    ["Crucial Exams: 2026 CompTIA voucher prices (Linux+ $399)","https://crucialexams.com/posts/blog/comptia-voucher-price-increase-2026"]]
+};
 var G_SECS=[["obj","Objectives"],["plan","Study plan"],["res","Resources"],["quiz","Quiz"],["pbq","PBQs"],["map","Roadmap"],["keep","Keep it"]];
 var G_ICON_EXT='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
 
@@ -11631,7 +11876,7 @@ var ALIAS={"A+":"a plus core 1 core 2 220-1101 220-1102 220-1201 220-1202 v15 he
  "CCNP Security":"350-701 scor v2.0 cisco certified network professional security sncf sise ssca sdsi 300-710 300-715 300-740 300-745 ise firepower guide","SAL1 · Security Analyst L1":"sal1 sal 1 soc analyst level 1 blue team soc simulator tryhackme thm guide","PT1 · Junior Pentester":"pt1 pt 1 jr junior pentest penetration tester red team tryhackme thm guide",
  "Linux Essentials":"010-200 010-160 lpi le linux essentials 2.0 1.6 linux basics command line guide","LPIC-1":"lpic1 lpic 1 101-500 102-500 101 102 lpi linux administrator sysadmin guide","Cloud Practitioner":"clf-c02 clf c02 ccp aws amazon cloud practitioner foundational guide","Solutions Architect Associate":"saa saa-c03 c03 aws amazon solutions architect associate guide",
  "Security Specialty":"scs-c03 scs-c02 scs aws amazon security specialty cloud security guide","Azure Fundamentals":"az-900 az900 microsoft azure fundamentals foundational guide","Azure Administrator":"az-104 az104 microsoft azure administrator associate admin guide","Cloud and AI Security Engineer":"sc-500 sc500 az-500 az500 azure security engineer cloud and ai security engineer microsoft entra defender sentinel guide",
- "Project+":"project plus pk0-005 v5 project management pm agile scrum waterfall guide"};
+ "Linux+":"linux plus linuxplus xk0-006 xk0-005 v8 comptia linux sysadmin system administrator bash shell systemd guide","Project+":"project plus pk0-005 v5 project management pm agile scrum waterfall guide"};
 var POPULAR=["Security+","Network+","CCNA","CISSP","SAL1 · Security Analyst L1","Cloud Practitioner"];
 var FILTERS=[["all","All"],["20 year career","20 year career"],["Cyber eng","Cyber"],["Cloud security","Cloud"],["Network eng","Network"],["d8140","DoD 8140"]];
 function snorm(s){return String(s).toLowerCase().replace(/\+/g," plus ").replace(/[^a-z0-9]+/g," ").trim();}

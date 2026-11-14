@@ -1,7 +1,7 @@
 # CG Cert Path
 
 Certifications, career paths, funding (Tuition Assistance and CG COOL), colleges and SkillBridge for Coast Guard IT, with full study guides
-(objectives, study plan, resources, quiz, PBQs, roadmap) for CompTIA A+, Network+, Security+, Cloud+, CySA+, PenTest+, Project+ and SecurityX, ISC2 CC, SSCP, CCSP and CISSP, Cisco CCST Networking, CCST Cybersecurity, CCNA Cybersecurity, CCNA and CCNP Security, TryHackMe SAL1 and PT1, LPI Linux Essentials and LPIC-1, AWS Cloud Practitioner, Solutions Architect Associate and Security Specialty, and Microsoft Azure Fundamentals, Azure Administrator and Cloud and AI Security Engineer (SC-500).
+(objectives, study plan, resources, quiz, PBQs, roadmap) for CompTIA A+, Network+, Security+, Cloud+, Linux+, CySA+, PenTest+, Project+ and SecurityX, ISC2 CC, SSCP, CCSP and CISSP, Cisco CCST Networking, CCST Cybersecurity, CCNA Cybersecurity, CCNA and CCNP Security, TryHackMe SAL1 and PT1, LPI Linux Essentials and LPIC-1, AWS Cloud Practitioner, Solutions Architect Associate and Security Specialty, and Microsoft Azure Fundamentals, Azure Administrator and Cloud and AI Security Engineer (SC-500).
 
 **Not an official U.S. Coast Guard site.** Public information only. Vendor names are trademarks of their owners.
 Quiz and PBQ questions are original.
