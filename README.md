@@ -1,7 +1,7 @@
 # CG Cert Path
 
 Certifications, career paths, funding (Tuition Assistance and CG COOL), colleges and SkillBridge for Coast Guard IT, with full study guides
-(objectives, study plan, resources, quiz, PBQs, roadmap) for CompTIA A+, Network+, Security+, Server+, Cloud+, Linux+, CySA+, PenTest+, SecAI+, Project+ and SecurityX, ISC2 CC, SSCP, CGRC, CCSP and CISSP, Cisco CCST Networking, CCST Cybersecurity, CCNA Cybersecurity, CCNA and CCNP Security, TryHackMe SAL1 and PT1, LPI Linux Essentials and LPIC-1, AWS Cloud Practitioner, Solutions Architect Associate and Security Specialty, and Microsoft Azure Fundamentals, Azure Administrator and Cloud and AI Security Engineer (SC-500).
+(objectives, study plan, resources, quiz, PBQs, roadmap) for CompTIA A+, Network+, Security+, Server+, Cloud+, Linux+, CySA+, PenTest+, SecAI+, Project+ and SecurityX, ISC2 CC, SSCP, CGRC, CCSP and CISSP, Cisco CCST IT Support, CCST Networking, CCST Cybersecurity, CCNA Cybersecurity, CCNA, CCNP Enterprise, CCNP Security and CCNP Cybersecurity, TryHackMe SAL1 and PT1, LPI Linux Essentials and LPIC-1, AWS Cloud Practitioner, Solutions Architect Associate and Security Specialty, and Microsoft Azure Fundamentals, Azure Administrator and Cloud and AI Security Engineer (SC-500).
 
 **Not an official U.S. Coast Guard site.** Public information only. Vendor names are trademarks of their owners.
 Quiz and PBQ questions are original.
@@ -18,7 +18,7 @@ Quiz and PBQ questions are original.
 1. Replace `index.html` with the new version (Add file → Upload files).
 2. In `sw.js`, bump `VERSION` (for example `certpath-v1` → `certpath-v2`) so installed copies refresh.
 
-Everything the app needs is served from this repo: no outside servers. Libraries are in `vendor/` (three.js, Lenis, ECharts world map) and fonts in `fonts/` (Inter Tight, Geist, IBM Plex Mono), each with its license. The page locks itself down with a Content Security Policy.
+Everything the app needs to run is served from this repo. The only outside service is GoatCounter (gc.zgo.at and certpath.goatcounter.com), which counts visits; if a network blocks it, the app still works. Libraries are in `vendor/` (three.js, Lenis, ECharts world map) and fonts in `fonts/` (Inter Tight, Geist, IBM Plex Mono), each with its license. The page locks itself down with a Content Security Policy.
 
 ## Disclaimer
 
@@ -26,7 +26,7 @@ Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by
 
 ## Your data
 
-Your data stays on your device. CertPath has no accounts, cookies or analytics; your progress is saved in your browser and you can clear it anytime. The site is hosted on GitHub Pages, which keeps standard server logs.
+Your data stays on your device. CertPath has no accounts and sets no cookies; your progress is saved in your browser and you can clear it anytime. It counts visits with GoatCounter, which is cookie-free and doesn't track you across sites: it records page views and which tabs, vendors and guides are opened, not who you are. The site is hosted on GitHub Pages, which keeps standard server logs.
 
 ## License
 
