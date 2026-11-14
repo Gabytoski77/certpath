@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-yYyLXcy/tIljTge5SECrCY0FskA0gQoP8QqAXJrQcjc=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VKRrz2ndwUnJsg2a3fKKbvemxhCLsjq9X9raS4fyF14=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1919,15 +1919,21 @@ html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0
 .plist button:active,.c-row:active,.g-dh:active,a.g-r:active{background:rgba(255,255,255,.05)}
 .g-nav button:active,.seg button:active,.tabs button:active{opacity:.72}
 :is(.st-main,.st-card,.hdr-btn,.srch-btn,.p-srch,.ed-srch,.ed-close,.sr-x,.sr-chip,.copy,.flex-open,.g-node,.g-qo,.g-btn,.cta,.crest,.p-arr,.g-ck,.plist button,.c-row,.g-dh,a.g-r,.g-nav button,.seg button,.tabs button):active{transition-duration:.1s}
-/* ---------- DoD 8140 levels (v2.29): bronze Basic, silver Intermediate, gold Advanced ---------- */
-:root{--l8B:#c98a5c;--l8I:#c3ccd7;--l8A:#e4bb52;--l8ink:#16120c}
+/* ---------- DoD 8140 levels (v2.29; colors v2.35: steel Basic, powder Intermediate, ice-core Advanced) ---------- */
+:root{--l8B:#8ca5ba;--l8I:#c9dbea;--l8A:#8fd2ff;--l8ink:#0b1824}
 .l8{display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 9px 0 7px;border-radius:999px;background:var(--l8c,#888);color:var(--l8ink);
   font:700 9.5px/1 var(--f-ui);letter-spacing:.11em;text-transform:uppercase;white-space:nowrap;box-shadow:inset 0 0 0 1px rgba(0,0,0,.16),0 1px 0 rgba(255,255,255,.18) inset;vertical-align:middle;flex:none}
 .l8>b{font:inherit;font-weight:700;letter-spacing:inherit;color:var(--l8ink)!important}
 .l8.en>b{color:inherit!important}
-.l8-B{--l8c:linear-gradient(180deg,#dba27a,#b9774a)}
-.l8-I{--l8c:linear-gradient(180deg,#e3e8ee,#aeb8c4)}
-.l8-A{--l8c:linear-gradient(180deg,#f3d27a,#d4a536)}
+/* level colors from the CertPath palette (v2.35): steel Basic, powder Intermediate, ice-core Advanced. --l8f = flat fill for bars and lines */
+.l8-B{--l8c:linear-gradient(180deg,#8ca5ba,#5d7890);--l8f:linear-gradient(90deg,#5d7890,#8ca5ba);--l8ink:#f4f9fd}
+.l8-I{--l8c:linear-gradient(180deg,#e6f0f8,#adc6dc);--l8f:linear-gradient(90deg,#9db8cf,#e0ecf6);--l8ink:#0b1824}
+.l8-A{--l8c:linear-gradient(180deg,#1c3550,#0b1726);--l8f:linear-gradient(90deg,#5fb6ee,#bfe7ff);--l8ink:#e6f6ff}
+.l8.l8-A,.sr-l8.l8-A{box-shadow:inset 0 0 0 1px rgba(143,210,255,.85),inset 0 1px 0 rgba(255,255,255,.22),0 0 12px rgba(120,200,255,.36)}
+.l8-B .l8b i:not(.on){background:rgba(255,255,255,.3)}
+.l8-I .l8b i:not(.on){background:rgba(11,24,36,.22)}
+.l8-A .l8b i.on{background:#8fd2ff}
+.l8-A .l8b i:not(.on){background:rgba(230,246,255,.25)}
 .l8.s{width:20px;padding:0;justify-content:center;gap:0}
 .l8.s .l8b{display:none}
 .l8b{display:inline-flex;align-items:flex-end;gap:1.5px;height:9px}
@@ -1997,9 +2003,8 @@ button.r8:active{opacity:.7;transition-duration:.1s}
 .q8card-t{display:block;font:700 clamp(34px,4.2vw,46px)/.92 var(--f-disp);letter-spacing:-.055em;color:var(--ink)}
 .q8card-p{display:block;margin-top:10px;font:400 13.5px/1.5 var(--f-ui);color:var(--ink-2);max-width:40ch}
 .q8card-art{display:grid;align-content:center;gap:10px;padding:20px 22px;border-left:1px solid var(--hair)}
-.q8card-art>span{display:grid;grid-template-columns:118px minmax(0,1fr);align-items:center;gap:12px}
 .q8card-art>span>i{display:block;height:6px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden}
-.q8card-art>span>i::before{content:"";display:block;height:100%;width:var(--w);border-radius:3px;background:var(--l8c);transform-origin:0 50%;transition:transform .9s var(--ez)}
+.q8card-art>span>i::before{content:"";display:block;height:100%;width:var(--w);border-radius:3px;background:var(--l8f,var(--l8c));transform-origin:0 50%;transition:transform .9s var(--ez)}
 .q8card-art .l8{justify-self:start}
 @media (hover:hover) and (pointer:fine){.q8card:hover{border-color:var(--hair-2);transform:translateY(-3px)}.q8card:hover .q8card-art>span>i::before{transform:scaleX(1.06)}}
 .q8card:active{transform:scale(.992)}
@@ -2008,7 +2013,35 @@ button.r8:active{opacity:.7;transition-duration:.1s}
   .q8card-art{grid-column:2;border-left:0;border-top:1px solid var(--hair);padding:14px 16px}
   .q8card-m{padding:16px 16px 14px}
 }
+.lvart{display:grid;gap:14px;width:min(80%,320px)}
+.q8card-art>span,.lvart>span{display:grid;grid-template-columns:118px minmax(0,1fr);align-items:center;gap:12px}
+.lvart>span>i{display:block;height:6px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden}
+.lvart>span>i::before{content:"";display:block;height:100%;width:var(--w);border-radius:3px;background:var(--l8f,var(--l8c));transform-origin:0 50%;transform:scaleX(0);transition:transform 1.1s var(--ez)}
+#sheet.live .lvart>span>i::before{transform:scaleX(1)}
+.lvart>span:nth-child(2)>i::before{transition-delay:.12s}.lvart>span:nth-child(3)>i::before{transition-delay:.24s}
+.pcard.lit .lvart>span>i::before{transform:scaleX(1.06)}
+.lvart .l8{justify-self:start}
+.fcard-art{display:grid;place-items:center;padding:22px;border-left:1px solid var(--hair);min-height:200px;overflow:hidden}
+.fcard.lit .vstack i:nth-child(1){transform:rotate(-14deg) translate(-24px,10px)}
+.fcard.lit .vstack i:nth-child(2){transform:rotate(10deg) translate(22px,-2px)}
+.fcard.lit .vstack i:nth-child(3){transform:translateY(-4px)}
+.fcard.pulse .vstack i:nth-child(1){animation:fanA 1s var(--ez)}
+.fcard.pulse .vstack i:nth-child(2){animation:fanB 1s var(--ez)}
+.fcard.pulse .vstack i:nth-child(3){animation:fanC 1s var(--ez)}
+#sheet.live .fcard.pulse .g-arc{animation:arcPulse 1.3s var(--ez)}
+@media (max-width:720px){.fcard-art{grid-column:2;border-left:0;border-top:1px solid var(--hair);padding:18px 16px;min-height:0}.fcard .pc-foot .meta{display:inline}}
+@media (prefers-reduced-motion:reduce){.lvart>span>i::before{transition:none;transform:none}}
 /* Explore: DoD 8140 view */
+.q8-toc{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 8px}
+.q8-toc button{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 13px 0 10px;border:1px solid var(--hair);border-radius:999px;background:rgba(255,255,255,.025);font:500 12px/1 var(--f-ui);color:var(--ink-2);transition:border-color .2s var(--ez),color .2s var(--ez),background-color .2s var(--ez)}
+.q8-toc button i{font:500 10px/1 var(--f-mono);font-style:normal;letter-spacing:.06em;color:var(--powder)}
+@media (hover:hover) and (pointer:fine){.q8-toc button:hover{border-color:var(--hair-2);color:var(--ink);background:rgba(188,214,234,.06)}}
+.q8-toc button:active{opacity:.7;transition-duration:.1s}
+.q8-iat.q8-first{margin-top:26px}
+.q8-iat .q8-how,.q8-iat .q8-lv{margin-bottom:0}
+@media (max-width:720px){.pcard[data-go="dod"] .pc-foot .meta{display:none}}
+@media (max-width:720px){.q8-toc{flex-wrap:nowrap;overflow-x:auto;margin-right:-20px;padding-right:20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.q8-toc::-webkit-scrollbar{display:none}.q8-toc button{flex:none}}
+
 .q8-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 22px;max-width:520px}
 .q8-lv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 26px}
 .q8-lv>div{display:grid;gap:8px;align-content:start;padding:14px 16px;border:1px solid var(--hair);border-radius:12px;background:rgba(255,255,255,.02)}
@@ -2133,10 +2166,10 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.34</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.35</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
-    <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
+    <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
     </div>
   </header>
 
@@ -2172,9 +2205,9 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
 <div id="veil" aria-hidden="true"></div>
 <div id="sbar" aria-hidden="true"></div>
 <section id="sheet" aria-label="Explore">
-  <div class="sh-grab" id="sh-grab" role="button" tabindex="0" aria-expanded="false" aria-controls="sh-scroll" aria-label="Open paths, funding and compare">
+  <div class="sh-grab" id="sh-grab" role="button" tabindex="0" aria-expanded="false" aria-controls="sh-scroll" aria-label="Open paths, DoD 8140 and funding">
     <span class="sh-handle"></span>
-    <span class="sh-peek"><svg class="mk sh-mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg>Paths &middot; Funding &middot; Compare<span class="sh-up" aria-hidden="true">&uarr;</span></span>
+    <span class="sh-peek"><svg class="mk sh-mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg>Paths &middot; 8140 &middot; Funding<span class="sh-up" aria-hidden="true">&uarr;</span></span>
   </div>
   <div class="sh-scroll" id="sh-scroll">
     <div class="sh-in">
@@ -2186,11 +2219,11 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
       <nav class="tabs rv-s" aria-label="Explore sections">
         <button type="button" data-go="home" aria-selected="true">Overview</button>
         <button type="button" data-go="mine" aria-selected="false">My path</button>
-        <button type="button" data-go="exam" aria-selected="false">Countdown</button>
-        <button type="button" data-go="compare" aria-selected="false">Compare</button>
-        <button type="button" data-go="dod" aria-selected="false">DoD 8140</button>
         <button type="button" data-go="paths" aria-selected="false"><span class="tab-x">Career p</span><span class="tab-s">P</span>aths</button>
+        <button type="button" data-go="dod" aria-selected="false">DoD 8140</button>
         <button type="button" data-go="cool" aria-selected="false">Funding</button>
+        <button type="button" data-go="compare" aria-selected="false">Compare</button>
+        <button type="button" data-go="exam" aria-selected="false">Countdown</button>
         <button type="button" data-go="out" aria-selected="false">Getting out</button>
         <button type="button" data-go="settings" aria-selected="false">Settings</button>
         <span class="tab-ind" aria-hidden="true"></span>
@@ -2211,30 +2244,28 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
               <span class="pc-foot"><span class="go"><i>&rarr;</i>Explore the paths</span><span class="meta">IT &rarr; 5 fields</span></span>
             </span>
           </button>
-          <button type="button" class="pcard rv-s" data-go="cool">
+          <button type="button" class="pcard rv-s" data-go="dod">
             <span class="pc-rail" aria-hidden="true"><span class="pc-mark"></span><span class="pc-dots">&middot;&middot;&middot;</span><span class="pc-num">02</span></span>
             <span class="pc-main">
-              <span class="pc-top"><span class="lab">Categories / Funding</span><span class="meta">TA + COOL</span></span>
-              <span class="pc-title">Funding.</span>
-              <span class="pc-art" aria-hidden="true">
-                <span class="coolart">
-                  <span class="vstack"><i>COLLEGE<b>Tuition (TA)</b></i><i>CERTS<b>CG COOL (CA)</b></i><i>ETQC<b>Approved <span>&#10003;</span></b></i></span>
-                  <svg class="gauge" viewBox="0 0 150 150"><circle cx="75" cy="75" r="60" class="g-track"/><circle cx="75" cy="75" r="60" class="g-arc" transform="rotate(-90 75 75)"/>
-                    <text x="75" y="80" class="g-n">$4.5K</text><text x="75" y="99" class="g-l">EACH / FY</text></svg>
-                </span>
-              </span>
-              <span class="pc-foot"><span class="go"><i>&rarr;</i>Get it funded</span><span class="meta">College &middot; Certs</span></span>
+              <span class="pc-top"><span class="lab">Billets / Work roles</span><span class="meta">23 roles</span></span>
+              <span class="pc-title">DoD 8140.</span>
+              <span class="pc-art" aria-hidden="true"><span class="lvart"><span class="l8-B"><span class="l8 l8-B" title="DoD 8140 Basic"><span class="l8b" aria-hidden="true"><i class="on"></i><i></i><i></i></span><b>Basic</b></span><i style="--w:40%"></i></span><span class="l8-I"><span class="l8 l8-I" title="DoD 8140 Intermediate"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><b>Intermediate</b></span><i style="--w:68%"></i></span><span class="l8-A"><span class="l8 l8-A" title="DoD 8140 Advanced"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Advanced</b></span><i style="--w:94%"></i></span></span></span>
+              <span class="pc-foot"><span class="go"><i>&rarr;</i>Find my work role</span><span class="meta">Basic &middot; Int &middot; Adv</span></span>
             </span>
           </button>
         </div>
 
-        <button type="button" class="q8card rv-s" data-go="dod">
+        <button type="button" class="q8card fcard rv-s" data-go="cool">
           <span class="pc-rail" aria-hidden="true"><span class="pc-mark"></span><span class="pc-dots">&middot;&middot;&middot;</span><span class="pc-num">03</span></span>
           <span class="q8card-m">
-            <span><span class="lab">Billets / Work roles</span><span class="q8card-t">DoD 8140.</span><span class="q8card-p">Find the cert for your billet's work role and level: Basic, Intermediate or Advanced. Straight from the official DoD 8140 matrix.</span></span>
-            <span class="pc-foot" style="padding:0;border:0"><span class="go"><i>&rarr;</i>Find my work role</span><span class="meta">23 roles mapped</span></span>
+            <span><span class="lab">Categories / Funding</span><span class="q8card-t">Funding.</span><span class="q8card-p">College classes through Tuition Assistance, certs through CG COOL: up to $4,500 each, every fiscal year. Here's how to use both.</span></span>
+            <span class="pc-foot" style="padding:0;border:0"><span class="go"><i>&rarr;</i>Get it funded</span><span class="meta">College &middot; Certs</span></span>
           </span>
-          <span class="q8card-art" aria-hidden="true"><span class="l8-B"><span class="l8 l8-B" title="DoD 8140 Basic"><span class="l8b" aria-hidden="true"><i class="on"></i><i></i><i></i></span><b>Basic</b></span><i style="--w:40%"></i></span><span class="l8-I"><span class="l8 l8-I" title="DoD 8140 Intermediate"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><b>Intermediate</b></span><i style="--w:68%"></i></span><span class="l8-A"><span class="l8 l8-A" title="DoD 8140 Advanced"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Advanced</b></span><i style="--w:94%"></i></span></span>
+          <span class="fcard-art" aria-hidden="true"><span class="coolart">
+                  <span class="vstack"><i>COLLEGE<b>Tuition (TA)</b></i><i>CERTS<b>CG COOL (CA)</b></i><i>ETQC<b>Approved <span>&#10003;</span></b></i></span>
+                  <svg class="gauge" viewBox="0 0 150 150"><circle cx="75" cy="75" r="60" class="g-track"/><circle cx="75" cy="75" r="60" class="g-arc" transform="rotate(-90 75 75)"/>
+                    <text x="75" y="80" class="g-n">$4.5K</text><text x="75" y="99" class="g-l">EACH / FY</text></svg>
+                </span></span>
         </button>
 
         <p class="pull rv-s">Certs, clearances, funding <b>and a plan that outlasts the enlistment.</b></p>
@@ -2271,8 +2302,8 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
           <div class="n2">
             <div><b id="sb-count">0</b><span>certs mapped across <span id="sb-lines">7</span> vendor lines</span></div>
             <div><b>5</b><span>career fields off one IT root, with 14 civilian jobs and 5 Coast Guard ranks</span></div>
-            <div><b>2&times;$4.5K</b><span>a fiscal year: Tuition Assistance for college and CG COOL for certs</span></div>
             <div><b id="sb-8140">13</b><span>DoD 8140 work roles Security+ counts for, up to Intermediate</span></div>
+            <div><b>2&times;$4.5K</b><span>a fiscal year: Tuition Assistance for college and CG COOL for certs</span></div>
             <div><b>11</b><span>schools for IT and cyber degrees, with what you pay after TA</span></div>
           </div>
         </div>
@@ -2307,31 +2338,36 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
       </div>
 
       <div class="sv" id="sv-dod" hidden>
-        <p class="intro rv-s">Every cyber billet is coded with a DCWF work role and a proficiency level. Pick the role on your billet to see which certs meet it, or pick a cert to see every role it counts for. Straight from the official DoD 8140 matrix.</p>
-        <div class="q8-lv rv-s" aria-label="DoD 8140 proficiency levels">
-          <div><span class="l8 l8-B" title="DoD 8140 Basic"><span class="l8b" aria-hidden="true"><i class="on"></i><i></i><i></i></span><b>Basic</b></span><p>Knows the fundamentals and does routine work in the role with guidance.</p></div>
-          <div><span class="l8 l8-I" title="DoD 8140 Intermediate"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><b>Intermediate</b></span><p>Works on their own and handles the role's everyday work.</p></div>
-          <div><span class="l8 l8-A" title="DoD 8140 Advanced"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Advanced</b></span><p>Leads, designs and checks others' work in the role.</p></div>
-        </div>
-        <ol class="q8-how rv-s" aria-label="How you qualify under DoD 8140">
+        <p class="intro rv-s">Every cyber billet is coded with a DCWF <b>work role</b> (what the job is) and a <b>proficiency level</b> (how much the job expects). To hold the billet, you need a qualification listed for both. Start at 01 and work down.</p>
+        <nav class="q8-toc rv-s" aria-label="On this page"><button type="button" data-q8j="q8-s1"><i>01</i>Your deadlines</button><button type="button" data-q8j="q8-s2"><i>02</i>The levels</button><button type="button" data-q8j="q8-s3"><i>03</i>Find your cert</button><button type="button" data-q8j="q8-more"><i>04</i>Degrees count</button><button type="button" data-q8j="q8-ins"><i>05</i>Cyber insignia</button><button type="button" data-q8j="q8-v3"><i>06</i>Already qualified?</button><button type="button" data-q8j="q8-iat"><i>07</i>Where did IAT go?</button></nav>
+        <section class="q8-iat q8-first rv-s" id="q8-s1" aria-labelledby="q8-s1-h">
+          <p class="lab">01 &middot; What you need</p>
+          <h3 id="q8-s1-h">Three steps, on a clock.</h3>
+          <p class="o-p" style="margin:0 0 20px">The clock starts when you're assigned to a cyber-coded billet.</p>
+        <ol class="q8-how" aria-label="How you qualify under DoD 8140">
           <li><span>01 &middot; Within 9 months</span><b>Foundational</b><p>A cert, a degree or a training course listed for your work role and level.</p></li>
           <li><span>02 &middot; Within 12 months</span><b>Residential</b><p>Prove you can do the job at your unit: your command's on-the-job qualification.</p></li>
           <li><span>03 &middot; Every year</span><b>Keep it up</b><p>At least 20 hours of learning a year to stay qualified.</p></li>
         </ol>
-        <div class="rv-s" id="q8-app"></div>
-        <section class="q8-iat rv-s" id="q8-ins" aria-labelledby="q8-ins-h">
-          <p class="lab">Coast Guard</p>
-          <h3 id="q8-ins-h">Cyberspace Insignia checker.</h3>
-          <p class="o-p" style="margin:0 0 20px">The Cyberspace Qualification Insignia is open to E-4 and above, chief warrant officers, officers and civilians serving in designated cyber-coded billets. Pick who you are, your billet's work role and what you already hold.</p>
-          <div id="ins-app"></div>
         </section>
-        <section class="q8-iat rv-s" id="q8-v3" aria-labelledby="q8-v3-h">
-          <p class="lab">Matrix V3.0</p>
-          <h3 id="q8-v3-h">Already qualified? You stay qualified.</h3>
-          <p class="o-p" style="margin:0">DoD released Qualification Matrix V3.0 on Oct 7, 2026, and it changed which certs count for eight work roles. Under DoW CIO and Navy guidance, anyone already foundationally qualified under an earlier matrix stays qualified and doesn't have to requalify. Anyone coded to a work role and level on Oct 7 can finish the pathway they already started. Confirm your own status with your supervisor or cyber workforce manager.</p>
+        <section class="q8-iat rv-s" id="q8-s2" aria-labelledby="q8-s2-h">
+          <p class="lab">02 &middot; The levels</p>
+          <h3 id="q8-s2-h">Basic, Intermediate, Advanced.</h3>
+          <p class="o-p" style="margin:0 0 20px">Your billet lists one level. A qualification listed at a higher level also covers the lower levels, but only for that same work role.</p>
+        <div class="q8-lv" aria-label="DoD 8140 proficiency levels">
+          <div><span class="l8 l8-B" title="DoD 8140 Basic"><span class="l8b" aria-hidden="true"><i class="on"></i><i></i><i></i></span><b>Basic</b></span><p>Knows the fundamentals and does routine work in the role with guidance.</p></div>
+          <div><span class="l8 l8-I" title="DoD 8140 Intermediate"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><b>Intermediate</b></span><p>Works on their own and handles the role's everyday work.</p></div>
+          <div><span class="l8 l8-A" title="DoD 8140 Advanced"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Advanced</b></span><p>Leads, designs and checks others' work in the role.</p></div>
+        </div>
+        </section>
+        <section class="q8-iat rv-s" id="q8-s3" aria-labelledby="q8-s3-h">
+          <p class="lab">03 &middot; The finder</p>
+          <h3 id="q8-s3-h">Find the cert for your billet.</h3>
+          <p class="o-p" style="margin:0 0 20px">Know your billet's work role? Pick it to see every cert that meets it. Already holding a cert, or eyeing one? Pick the cert to see every role it counts for.</p>
+          <div id="q8-app"></div>
         </section>
         <section class="q8-iat rv-s" id="q8-more" aria-labelledby="q8-more-h">
-          <p class="lab">Not only certs</p>
+          <p class="lab">04 &middot; Not only certs</p>
           <h3 id="q8-more-h">A degree counts too.</h3>
           <p class="o-p" style="margin:0 0 20px">On matrix V3.0, a bachelor's in computer science, cybersecurity, data science, information systems, IT or software engineering meets <b>Intermediate</b> for every IT and Cybersecurity work role mapped here. A master's or doctorate in those fields meets <b>Advanced</b>, and so does NDU's M.S. in Strategic Information and Cyberspace Studies.</p>
           <div class="facts">
@@ -2340,8 +2376,19 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
             <div class="fact"><p class="lab">Hands-on range</p><span>Hack The Box's Defense Operations Analyst cyber range is listed as training: 511 Cyber Defense Analyst at Intermediate, 531 Incident Responder at Advanced. TryHackMe isn't on the matrix.</span></div>
           </div>
         </section>
+        <section class="q8-iat rv-s" id="q8-ins" aria-labelledby="q8-ins-h">
+          <p class="lab">05 &middot; Coast Guard</p>
+          <h3 id="q8-ins-h">Cyberspace Insignia checker.</h3>
+          <p class="o-p" style="margin:0 0 20px">The Cyberspace Qualification Insignia is open to E-4 and above, chief warrant officers, officers and civilians serving in designated cyber-coded billets. Pick who you are, your billet's work role and what you already hold.</p>
+          <div id="ins-app"></div>
+        </section>
+        <section class="q8-iat rv-s" id="q8-v3" aria-labelledby="q8-v3-h">
+          <p class="lab">06 &middot; Matrix V3.0</p>
+          <h3 id="q8-v3-h">Already qualified? You stay qualified.</h3>
+          <p class="o-p" style="margin:0">DoD released Qualification Matrix V3.0 on Oct 7, 2026, and it changed which certs count for eight work roles. Under DoW CIO and Navy guidance, anyone already foundationally qualified under an earlier matrix stays qualified and doesn't have to requalify. Anyone coded to a work role and level on Oct 7 can finish the pathway they already started. Confirm your own status with your supervisor or cyber workforce manager.</p>
+        </section>
         <section class="q8-iat rv-s" id="q8-iat" aria-labelledby="q8-iat-h">
-          <p class="lab">The old labels</p>
+          <p class="lab">07 &middot; The old labels</p>
           <h3 id="q8-iat-h">Where did IAT go?</h3>
           <p class="o-p" style="margin:0 0 20px">IAT, IAM, IASAE and CSSP levels came from DoD 8570.01-M. That manual was cancelled on February 15, 2023, when DoD Manual 8140.03 replaced it. Instead of one cert for a broad category and level, every cyber position is now coded to DCWF work roles, and each role has its own Basic, Intermediate and Advanced options.</p>
           <blockquote>&ldquo;There is no direct comparison, or mapping, between 8570 IA functional categories and the DCWF work roles.&rdquo;<small>DoD CIO &middot; 8570 to 8140 transition guide, Aug 2024</small></blockquote>
@@ -3769,7 +3816,7 @@ function openPanel(i,certName){
    '<div class="p-inner"><div class="p-frame">'+
     '<header class="p-top"><span class="p-mark" aria-hidden="true"></span><button type="button" class="p-back" id="p-back"><span class="ar">&larr;</span><span class="pb-l">Globe</span></button>'+
     
-    '<div class="p-arrows"><button type="button" class="p-arr p-srch p-exp" id="p-exp" aria-label="Go to paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg><span class="ps-l">Paths &middot; Funding &middot; Compare</span></button><button type="button" class="p-arr p-srch" id="p-srch" aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="ps-l">Search</span></button><button type="button" class="p-arr" id="p-prev" aria-label="Previous vendor">&larr;</button><button type="button" class="p-arr" id="p-next" aria-label="Next vendor">&rarr;</button></div></header>'+
+    '<div class="p-arrows"><button type="button" class="p-arr p-srch p-exp" id="p-exp" aria-label="Go to paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg><span class="ps-l">Paths &middot; 8140 &middot; Funding</span></button><button type="button" class="p-arr p-srch" id="p-srch" aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="ps-l">Search</span></button><button type="button" class="p-arr" id="p-prev" aria-label="Previous vendor">&larr;</button><button type="button" class="p-arr" id="p-next" aria-label="Next vendor">&rarr;</button></div></header>'+
     '<div class="p-body" id="p-body"></div></div>'+
     '<p class="p-foot">Not an official U.S. Coast Guard or DoD site &middot; Not affiliated with or endorsed by the Coast Guard, any cert vendor or any school &middot; Names are trademarks of their owners &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span></p>'+
    '</div>';
@@ -4072,7 +4119,7 @@ function restoreInert(){
   var pOpen=!panel.hidden, sOpen=sheet.classList.contains("is-open");
   app.inert=pOpen||sOpen;sheet.inert=pOpen;shScroll.inert=!sOpen;
 }
-var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",dod:"DoD 8140.",paths:"Paths.",cool:"Funding.",out:"Getting out.",exam:"Countdown.",settings:"Settings."}, ORDER=["home","mine","exam","compare","dod","paths","cool","out","settings"], fundPane="ta";
+var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",dod:"DoD 8140.",paths:"Paths.",cool:"Funding.",out:"Getting out.",exam:"Countdown.",settings:"Settings."}, ORDER=["home","mine","paths","dod","cool","compare","exam","out","settings"], fundPane="ta";
 var PATHS=[
   {name:"20 year career",tag:"IT rating career",line:"Make rate, stay qualified for any IT billet, and retire with a full résumé.",steps:[["A+","A+"],["Network+","Network+"],["Security+","Security+"],["CySA+","CySA+"],["CISSP","CISSP"]]},
   {name:"Cloud",tag:"Contractor track",line:"Build toward defense-contractor cloud security roles after your enlistment.",steps:[["Security+","Security+"],["Cloud+","Cloud+"],["AWS Solutions Architect","Solutions Architect Associate"],["Azure Cloud and AI Security","Cloud and AI Security Engineer"],["CCSP","CCSP"]]},
@@ -4666,7 +4713,7 @@ function shState(p){
     var lost=!open&&shScroll.contains(document.activeElement);
     if(!srchOpen) restoreInert();
     if(lost) try{grab.focus({preventScroll:true});}catch(e){}
-    grab.setAttribute("aria-label",open?"Close paths, funding and compare":"Open paths, funding and compare");
+    grab.setAttribute("aria-label",open?"Close paths, DoD 8140 and funding":"Open paths, DoD 8140 and funding");
     if(!open&&typeof stRender==="function") stRender();
   }
 }
@@ -4952,7 +4999,8 @@ function q8Enter(){
 (function(){
   var v=$("#sv-dod");if(!v) return;
   v.addEventListener("click",function(e){
-    var t=e.target.closest("[data-q8m],[data-q8el],[data-q8r],[data-q8c],[data-q8more],[data-gcert]");if(!t||!v.contains(t)) return;
+    var t=e.target.closest("[data-q8j],[data-q8m],[data-q8el],[data-q8r],[data-q8c],[data-q8more],[data-gcert]");if(!t||!v.contains(t)) return;
+    if(t.dataset.q8j){q8Scroll($("#"+t.dataset.q8j));return;}
     if(t.dataset.gcert){var en=sByName(t.dataset.gcert);if(en) openCertFrom(en);return;}
     if(t.dataset.q8m){if(Q8S.m===t.dataset.q8m) return;Q8S.m=t.dataset.q8m;q8Render();return;}
     if(t.dataset.q8el){if(Q8S.el===t.dataset.q8el) return;Q8S.el=t.dataset.q8el;q8Render();return;}
@@ -5318,7 +5366,7 @@ if(cmpEl){
 
 /* reactive card art in the Explore sheet */
 (function(){
-  var cards=sheet.querySelectorAll(".pcard,.mini");
+  var cards=sheet.querySelectorAll(".pcard,.mini,.fcard");
   function pulse(c){
     if(reduced) return;var now=performance.now();if(c._pt&&now-c._pt<700) return;c._pt=now;
     c.classList.remove("pulse");void c.offsetWidth;c.classList.add("pulse");
@@ -11901,8 +11949,7 @@ var SIDX=[];
   });
   SIDX.push({kind:"page",key:"p:home",page:"home",name:"Explore overview",sub:"Explore · cards for every section",fields:[[snorm("explore overview"),95],[snorm("explore home menu sections start overview"),55]]});
   SIDX.push({kind:"page",key:"p:mine",page:"mine",name:"My path",sub:"Explore · 5 questions, your own cert roadmap",fields:[[snorm("my path"),95],[snorm("build my path quiz where do i start what cert first next which cert plan personal roadmap"),60]]});
-  SIDX.push({kind:"page",key:"p:exam",page:"exam",name:"Exam countdown",sub:"Explore · test date, countdown, day-by-day plan",fields:[[snorm("exam countdown"),95],[snorm("exam date test date countdown study plan schedule calendar day by day days left when is my exam"),60]]});
-  SIDX.push({kind:"page",key:"p:compare",page:"compare",name:"Compare certs",sub:"Explore · two certs side by side",fields:[[snorm("compare certs"),95],[snorm("compare versus vs side by side difference which is better which cert harder cheaper"),60]]});
+  SIDX.push({kind:"page",key:"p:paths",page:"paths",name:"Career paths",sub:"Explore · IT tree: 5 fields, the jobs and their pay",fields:[[snorm("career paths"),95],[snorm("roadmap road map path tree branch trunk soc analyst pen testing pentest security engineering grc governance risk compliance systems admin salary pay jobs job growth openings bls stay 20 twenty year career 20 year career cloud network cyber civilian contractor plan"),55]]});
   SIDX.push({kind:"page",key:"p:dod",page:"dod",name:"DoD 8140 work roles",sub:"Explore · the cert for your billet's work role and level",fields:[[snorm("dod 8140"),95],[snorm("dod 8140 work role work roles dcwf billet coded proficiency level basic intermediate advanced foundational residential qualification matrix 8140.03 cyber workforce finder"),60]]});
   SIDX.push({kind:"page",key:"p:ins",page:"dod",q8:"ins",name:"Cyberspace Insignia checker",sub:"DoD 8140 · what gets you the Coast Guard cyber insignia",fields:[[snorm("insignia cyberspace insignia cyber insignia"),95],[snorm("cyberspace qualification insignia pin badge qualify eligible eligibility temporary permanent e-4 cwo cyb10 intermediate"),70]]});
   SIDX.push({kind:"page",key:"p:v3",page:"dod",q8:"v3",name:"Matrix V3.0: already qualified?",sub:"DoD 8140 · earlier qualifications still count",fields:[[snorm("matrix v3 matrix 3.0 v3.0"),90],[snorm("grandfather grandfathered already qualified requalify new matrix version october 2026"),70]]});
@@ -11910,9 +11957,10 @@ var SIDX=[];
   Object.keys(Q8_ROLES).forEach(function(r){var R=Q8_ROLES[r], el=R.el==="it"?"IT (Cyberspace)":"Cybersecurity", n=0;Q8_LV.forEach(function(l){n+=(R[l]||[]).filter(q8Here).length;});
     SIDX.push({kind:"page",key:"r:"+r,page:"dod",q8:r,name:r+" · "+R.n,sub:"DoD 8140 work role · "+el+" · "+n+" CertPath "+(n===1?"cert":"certs"),fields:[[snorm(r+" "+R.n),100],[snorm(R.n+" "+R.d),50],[snorm("work role dcwf 8140 "+el),20]]});});
   Q8_EN.forEach(function(x){SIDX.push({kind:"page",key:"r:"+x[0],page:"dod",q8:"en",name:x[0]+" · "+x[1],sub:"DoD 8140 work role · Cyber Enablers · any cert on the matrix",fields:[[snorm(x[0]+" "+x[1]),100],[snorm(x[2]+" enabler work role dcwf 8140"),20]]});});
-  SIDX.push({kind:"page",key:"p:paths",page:"paths",name:"Career paths",sub:"Explore · IT tree: 5 fields, the jobs and their pay",fields:[[snorm("career paths"),95],[snorm("roadmap road map path tree branch trunk soc analyst pen testing pentest security engineering grc governance risk compliance systems admin salary pay jobs job growth openings bls stay 20 twenty year career 20 year career cloud network cyber civilian contractor plan"),55]]});
   SIDX.push({kind:"page",key:"p:fund",page:"cool",fund:"ta",name:"Funding",sub:"Explore · Tuition Assistance for college, CG COOL for certs",fields:[[snorm("funding"),95],[snorm("tuition assistance ta college class classes degree school money pay paid mycg ed eso dodmou mou clep dsst dantes jst"),60]]});
   SIDX.push({kind:"page",key:"p:cool",page:"cool",fund:"cool",name:"CG COOL funding",sub:"Explore · get your certs paid for",fields:[[snorm("cg cool funding"),95],[snorm("cool credentialing assistance ca opportunities online reimbursement of 1164 pay paid money funding exam fee voucher"),58]]});
+  SIDX.push({kind:"page",key:"p:compare",page:"compare",name:"Compare certs",sub:"Explore · two certs side by side",fields:[[snorm("compare certs"),95],[snorm("compare versus vs side by side difference which is better which cert harder cheaper"),60]]});
+  SIDX.push({kind:"page",key:"p:exam",page:"exam",name:"Exam countdown",sub:"Explore · test date, countdown, day-by-day plan",fields:[[snorm("exam countdown"),95],[snorm("exam date test date countdown study plan schedule calendar day by day days left when is my exam"),60]]});
   SIDX.push({kind:"page",key:"p:out",page:"out",name:"Getting out",sub:"Explore · SkillBridge in your last 180 days",fields:[[snorm("getting out"),95],[snorm("skillbridge skill bridge separation separating transition tap leaving civilian job internship employer last 180 days ets eoe retire retirement"),60]]});
   SIDX.push({kind:"page",key:"p:settings",page:"settings",name:"Settings",sub:"Explore · Lite mode, back up and restore your progress",fields:[[snorm("settings"),95],[snorm("lite mode light mode slow lag laggy battery data saver 3d globe off backup back up restore export import transfer move progress new phone new device save my progress"),60]]});
   SIDX.push({kind:"page",key:"p:colleges",col:true,name:"Colleges",sub:"Degrees · "+COLLEGES.length+" schools, what you pay after TA",fields:[[snorm("colleges"),95],[snorm("college colleges university universities school schools degree degrees bachelor bachelors associate online tuition assistance ta wgu"),58]]});
@@ -12768,7 +12816,7 @@ function drawPoster(v,c,i,total){
   g.font="600 8.5px Geist, system-ui, sans-serif";g.fillStyle="rgba(255,255,255,.62)";
   var lbl=v.name.toUpperCase().split("").join(String.fromCharCode(8202));g.fillText(lbl,18,28);
   g.font="500 9.5px 'IBM Plex Mono', ui-monospace, monospace";g.textAlign="right";g.fillText(pad2(i+1)+" / "+pad2(total),282,28);
-  var q8t=q8Top(c[0]),pl=is8140(c[0])?"8140 \u00b7 "+(q8t?Q8_LVN[q8t]:"Enablers").toUpperCase():"";if(pl){g.font="600 8.5px Geist, system-ui, sans-serif";var tw=g.measureText(pl).width+16;g.strokeStyle=q8t==="A"?"#e4bb52":q8t==="I"?"#c3ccd7":q8t==="B"?"#c98a5c":"rgba("+A+",.8)";g.lineWidth=1;
+  var q8t=q8Top(c[0]),pl=is8140(c[0])?"8140 \u00b7 "+(q8t?Q8_LVN[q8t]:"Enablers").toUpperCase():"";if(pl){g.font="600 8.5px Geist, system-ui, sans-serif";var tw=g.measureText(pl).width+16;g.strokeStyle=q8t==="A"?"#8fd2ff":q8t==="I"?"#c9dbea":q8t==="B"?"#8ca5ba":"rgba("+A+",.8)";g.lineWidth=1;
     g.beginPath();if(g.roundRect) g.roundRect(282-tw+.5,40.5,tw,17,8.5); else g.rect(282-tw+.5,40.5,tw,17);g.stroke();g.fillStyle="#fff";g.textAlign="center";g.fillText(pl,282-tw/2,52);}
   g.textAlign="left";
   var name=c[0], fs=40;g.font="700 "+fs+"px 'Inter Tight', Geist, system-ui, sans-serif";
