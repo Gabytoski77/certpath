@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VKRrz2ndwUnJsg2a3fKKbvemxhCLsjq9X9raS4fyF14=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at 'sha256-P6H5+Wo3ect+sM3h620LnEsS3GSHkNEV59k0rAzhS60=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://certpath.goatcounter.com; font-src 'self'; connect-src 'self' https://certpath.goatcounter.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -2166,7 +2166,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.35</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.36</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -3811,7 +3811,7 @@ function splitTitle(name){
   return name.split(" ").map(function(w){return '<span class="w">'+Array.from(w).map(function(c){return '<span class="ch">'+c+'</span>';}).join("")+'</span>';}).join(" ");
 }
 function openPanel(i,certName){
-  current=i;
+  current=i;cpHit("vendor-"+(VENDORS[i]&&VENDORS[i].short||i));
   panel.innerHTML=
    '<div class="p-inner"><div class="p-frame">'+
     '<header class="p-top"><span class="p-mark" aria-hidden="true"></span><button type="button" class="p-back" id="p-back"><span class="ar">&larr;</span><span class="pb-l">Globe</span></button>'+
@@ -4010,7 +4010,7 @@ function revealBody(dir,base){
 }
 async function switchVendor(dir,to,g){
   if(state!=="open"||switching) return;
-  switching=true;
+  switching=true;cpHit("vendor-"+(VENDORS[to]&&VENDORS[to].short||to));
   var n=(to!=null)?to:(current+dir+VENDORS.length)%VENDORS.length, body=panel.querySelector("#p-body");
   current=n;
   morphPalette(n,1000);
@@ -4721,6 +4721,8 @@ function placeTab(){
   var t=sheet.querySelector('.tabs [aria-selected="true"]'), ind=sheet.querySelector(".tab-ind");
   if(!ind) return;ind.style.opacity=t?"":"0";if(!t) return;ind.style.transform="translateX("+t.offsetLeft+"px) scaleX("+(t.offsetWidth/100)+")";
 }
+/* anonymous usage counts (GoatCounter, live site only; does nothing in the preview) */
+function cpHit(p){try{var g=window.goatcounter;if(g&&g.count) g.count({path:p,title:p,event:true});}catch(e){}}
 function setTabs(name){var cur=null;sheet.querySelectorAll(".tabs [data-go]").forEach(function(b){var on=b.dataset.go===name;b.setAttribute("aria-selected",String(on));if(on) cur=b;});placeTab();
   var bar=sheet.querySelector(".tabs");if(cur&&bar&&bar.scrollWidth>bar.clientWidth+2){
     /* keep the picked tab and its neighbors in view, so the next tab (like CG COOL after Paths) shows without a swipe */
@@ -4793,7 +4795,7 @@ function resetSheet(){
 async function showView(name){
   if(name===shView) return;
   var cur=$("#sv-"+shView), nx=$("#sv-"+name), dir=ORDER.indexOf(name)>ORDER.indexOf(shView)?1:-1;
-  shView=name;setTabs(name);swapTitle(TITLES[name]);
+  shView=name;setTabs(name);swapTitle(TITLES[name]);cpHit("tab-"+name);
   await done(anim(cur,[{opacity:1,transform:"none"},{opacity:0,transform:"translateX("+(-dir*36)+"px)"}],{duration:260,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"}));
   cur.hidden=true;cur.classList.remove("drawn");if(cur.getAnimations) cur.getAnimations().forEach(function(a){a.cancel();});
   nx.hidden=false;
@@ -11442,6 +11444,7 @@ var G_SECS=[["obj","Objectives"],["plan","Study plan"],["res","Resources"],["qui
 var G_ICON_EXT='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
 
 function renderGuide(i,name){
+  cpHit("guide-"+name);
   var G=GUIDES[name], v=VENDORS[i], body=panel.querySelector("#p-body");
   guideName=name;panel.classList.add("in-guide");gSet("cgcp.last",{k:"g",g:name,t:Date.now()});
   if(flex){flex.destroy();flex=null;}
@@ -12165,7 +12168,7 @@ async function srchPick(e){
 function setViewNow(name){
   if(name===shView){if(name==="exam") exEnter();return;}
   var cur=$("#sv-"+shView);cur.hidden=true;cur.classList.remove("drawn");
-  $("#sv-"+name).hidden=false;shView=name;setTabs(name);$("#ed-title").textContent=TITLES[name];
+  $("#sv-"+name).hidden=false;shView=name;setTabs(name);$("#ed-title").textContent=TITLES[name];cpHit("tab-"+name);
   if(name==="mine") mpEnter();
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
   if(name==="paths") ptRender(false);
@@ -13495,6 +13498,7 @@ function runSplash(){
 </script>
 
 </body></html>
+<script data-goatcounter="https://certpath.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
 /* app updates: check for a new version every time the app opens, and reload once when it arrives */
 if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){
