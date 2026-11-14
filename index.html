@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-l9Oh+FcP90/I+ZX+lcG5QEYwIgufDJQ/d5khk6iqdBc=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-b4uKPG3Qbltnla/BTS+41eGt7X+yD/3X3oXNF3e4UFw=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -229,7 +229,8 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .crest[aria-current="true"] .h1{fill:color-mix(in srgb,var(--c) 16%,rgba(4,7,12,.9))}
 .crest:active{transform:scale(.97)}
 .crest:focus-visible{outline:none}
-.crest:focus-visible .h1{stroke-width:2.4}
+.crest:focus-visible .h1{stroke-width:2.6;stroke:#fff}
+.crest:focus-visible .cr-n{text-decoration:underline;text-underline-offset:4px}
 .cta{justify-self:start;display:inline-flex;align-items:center;gap:10px;padding:12px 28px;border-radius:999px;background:#f2f4f7;color:#141920;font:600 12.5px/1 var(--f-disp);letter-spacing:-.005em;
   box-shadow:0 12px 28px -12px rgba(0,0,0,.7);transition:transform .3s var(--ez),box-shadow .3s var(--ez),background .3s var(--ez)}
 @media (hover:hover) and (pointer:fine){.cta:hover{background:#fff;box-shadow:0 18px 36px -14px rgba(0,0,0,.75)}}
@@ -1186,6 +1187,15 @@ button.ptt-c:active{opacity:.7;transition-duration:.1s}
 .flex.focused .flex-open{opacity:1;transform:none;pointer-events:auto}
 .flex-fb{position:absolute;inset:0 0 70px;display:flex;gap:14px;align-items:center;overflow-x:auto;scroll-snap-type:x mandatory;padding-inline:28px;scrollbar-width:none}
 .flex-fb::-webkit-scrollbar{display:none}
+.flex-fb[data-dragging]{scroll-snap-type:none;cursor:grabbing}
+.flex-fb img{-webkit-user-drag:none;user-select:none}
+.flex-fb img.on{outline:2px solid var(--v-accent);outline-offset:3px}
+/* previous / next buttons: shown for mouse and keyboard users (fine pointer) */
+.flex-arr{display:none;position:absolute;top:calc(50% - 35px);z-index:2;width:44px;height:44px;margin-top:-22px;place-items:center;border-radius:50%;
+  border:1px solid var(--v-line);background:rgba(20,25,32,.72);color:var(--v-fg);font:500 18px/1 var(--f-ui);cursor:pointer;transition:border-color .3s var(--ez),background-color .3s var(--ez)}
+.flex-prev{left:14px}.flex-next{right:14px}
+@media (hover:hover) and (pointer:fine){.flex-arr{display:grid}.flex-arr:hover{border-color:var(--v-accent);background:rgba(20,25,32,.9)}}
+.flex-arr:focus-visible{display:grid;outline:2px solid var(--v-accent);outline-offset:2px}
 .flex-fb img{flex:none;height:78%;max-height:420px;width:auto;border-radius:16px;scroll-snap-align:center}
 @media (max-width:720px){
   .flex{margin:6px -16px 0;height:clamp(380px,62vh,520px)}
@@ -2049,6 +2059,19 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
 .q8-certs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
 .q8-certs button{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 13px 0 6px;border-radius:999px;border:1px solid var(--hair-2);font:600 12.5px/1 var(--f-ui);color:var(--ink-2);transition:background .25s var(--ez),border-color .25s var(--ez),color .25s var(--ez)}
 .q8-certs button[aria-pressed="true"]{border-color:var(--powder);background:rgba(188,214,234,.1);color:var(--ink)}
+.ins-step{margin:0 0 8px;font:500 10px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.ins-role{max-width:520px;margin:0 0 18px}
+.ins-role select{--v-line:var(--hair-2);font:500 14px/1.3 var(--f-ui);color:var(--ink);background:rgba(10,13,17,.55)}
+.ins-out{display:grid;gap:12px}
+.ins-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:start;padding:14px 16px;border-radius:12px;border:1px solid var(--hair);background:rgba(0,0,0,.18)}
+.ins-row i{font-style:normal;font:700 16px/1 var(--f-ui);width:22px;text-align:center;padding-top:2px}
+.ins-row.ok i{color:#7fd6a0}.ins-row.no i{color:var(--ink-3)}
+.ins-row b{font:600 14px/1.3 var(--f-disp);color:var(--ink)}
+.ins-row .ins-t{grid-column:2;min-width:0;font:400 13px/1.55 var(--f-ui);color:var(--ink-2)}
+.ins-row .q8-chips{margin-top:10px}
+.ins-now{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font:500 13.5px/1.4 var(--f-ui);color:var(--ink-2)}
+.ins-fine{margin:4px 0 0;font:400 12px/1.55 var(--f-ui);color:var(--ink-3);max-width:70ch}
+.ins-fine a{color:var(--ink-2)}
 .q8-certs .off{padding-left:13px;border-style:dashed;color:var(--ink-3)}
 .q8-rt{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--hair)}
 .q8-rt li{display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:12px;border-bottom:1px solid var(--hair)}
@@ -2106,7 +2129,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.31</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.32</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, funding and compare"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2292,6 +2315,17 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
           <li><span>03 &middot; Every year</span><b>Keep it up</b><p>At least 20 hours of learning a year to stay qualified.</p></li>
         </ol>
         <div class="rv-s" id="q8-app"></div>
+        <section class="q8-iat rv-s" id="q8-ins" aria-labelledby="q8-ins-h">
+          <p class="lab">Coast Guard</p>
+          <h3 id="q8-ins-h">Cyberspace Insignia checker.</h3>
+          <p class="o-p" style="margin:0 0 20px">The Cyberspace Qualification Insignia is open to E-4 and above, chief warrant officers, officers and civilians serving in designated cyber-coded billets. Pick who you are, your billet's work role and what you already hold.</p>
+          <div id="ins-app"></div>
+        </section>
+        <section class="q8-iat rv-s" id="q8-v3" aria-labelledby="q8-v3-h">
+          <p class="lab">Matrix V3.0</p>
+          <h3 id="q8-v3-h">Already qualified? You stay qualified.</h3>
+          <p class="o-p" style="margin:0">DoD released Qualification Matrix V3.0 on Oct 7, 2026, and it changed which certs count for eight work roles. Under DoW CIO and Navy guidance, anyone already foundationally qualified under an earlier matrix stays qualified and doesn't have to requalify. Anyone coded to a work role and level on Oct 7 can finish the pathway they already started. Confirm your own status with your supervisor or cyber workforce manager.</p>
+        </section>
         <section class="q8-iat rv-s" id="q8-more" aria-labelledby="q8-more-h">
           <p class="lab">Not only certs</p>
           <h3 id="q8-more-h">A degree counts too.</h3>
@@ -2690,7 +2724,7 @@ function vNum(v){return v.id==="colleges"?COLLEGES.length:v.certs.length;}
    B/I/A = Basic / Intermediate / Advanced. [] = none listed (431 has no cert option above Basic; 212, 421, 612 and 723 none at Basic). null would mean "not read yet".
    A cert listed at a higher level also covers the lower levels of the same work role, never other roles. */
 var Q8={ver:"V3.0",eff:"Oct 5, 2026",checked:"Nov 13, 2026",
-  url:"https://www.cyberworkforce.mil/DoD-8140/Supplemental-Guidance/",
+  url:"https://www.cyberworkforce.mil/DoD-8140/Document-Library/",
   manual:"https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodm/814003p.PDF",
   trans:"https://www.cyberworkforce.mil/Portals/157/8140/QM/documents/unclass-dod8570_ia_program_transition_dod8140_cwp.pdf",
   enMemo:"https://dl.dod.cyber.mil/wp-content/uploads/8140/pdf/2025-11-24_DCWFENQualMemoV2.0.pdf",
@@ -2864,6 +2898,14 @@ if(LITE.on){
 }
 var finePointer=!!(window.matchMedia&&matchMedia("(pointer: fine)").matches);
 var EZ="cubic-bezier(.16,1,.3,1)";
+/* mouse wheel over a sideways strip (guide "Jump to" bar, Explore tabs) moves the strip until its end, then the page scrolls as usual */
+document.addEventListener("wheel",function(e){
+  if(e.ctrlKey||!e.target.closest) return;var el=e.target.closest(".g-nav-in,.tabs");if(!el||el.scrollWidth<=el.clientWidth+2) return;
+  if(Math.abs(e.deltaX)>=Math.abs(e.deltaY)) return;
+  var d=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?el.clientWidth:1), max=el.scrollWidth-el.clientWidth;
+  if((d<0&&el.scrollLeft<=0)||(d>0&&el.scrollLeft>=max-1)) return;
+  e.preventDefault();e.stopPropagation();el.scrollLeft+=d;
+},{passive:false,capture:true});
 /* iOS Safari only shows :active press states once the page listens for touches */
 document.addEventListener("touchstart",function(){},{passive:true});
 function anim(el,frames,opts){
@@ -3673,6 +3715,8 @@ async function back(o){
   if(!o.swiped) await done(anim(inner,[{opacity:1,transform:"none",filter:"blur(0px)"},{opacity:0,transform:"translateY(12px)",filter:"blur(6px)"}],{duration:280,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"}));
   if(flex){flex.destroy();flex=null;}
   panel.hidden=true;panel.innerHTML="";guideName=null;switching=false;guideBusy=false;if(typeof syncSbar==="function") syncSbar();panel.classList.remove("in-guide");if(gIO){gIO.disconnect();gIO=null;}
+  restoreInert();
+  if(!o.quick){var crs=document.querySelectorAll(".crest"), cr=crs[current];if(cr) try{cr.focus({preventScroll:true});}catch(e){}}
   var ar=app.getBoundingClientRect();
   setFloodOrigin(ar.left+gcx,ar.top+gcy);
   if(has3D){var f=faceAngles(current);rotY=f.y;rotX=f.x;diveIdx=current;dim.v=1;camDist=reduced?baseDist*zoomT:1.16;}
@@ -3733,6 +3777,9 @@ function openPanel(i,certName){
   if(toGuide) renderGuide(i,certName);else renderBody(i);
   specScan(panel);
   panel.hidden=false;panel.scrollTop=0;
+  restoreInert();
+  /* keyboard users land inside the page they opened (programmatic focus shows no ring for mouse users) */
+  var pf=panel.querySelector("#p-back");if(pf) try{pf.focus({preventScroll:true});}catch(e){}
   panel.querySelectorAll(".p-top > *").forEach(function(el,n){
     anim(el,[{opacity:0,transform:"translateY(-8px)"},{opacity:1,transform:"none"}],{duration:800,delay:150+n*60,easing:EZ,fill:"backwards"});
   });
@@ -3757,7 +3804,9 @@ function renderBody(i){
         '<p class="pa-meta"><span>'+gEsc(c[3])+'</span>'+(is8140(c[0])?'<span>DoD 8140 &middot; '+(q8Top(c[0])?Q8_LVN[q8Top(c[0])]:'Enabler roles')+'</span>':'')+'<span class="'+(g?'g':'')+'">'+(g?(finePointer?'Guide ready &middot; click again to open':'Guide ready &middot; tap again to open'):'Guide coming soon')+'</span></p></div>';}).join("")+
     '</div></aside></div>'+
     '<div class="flex pr" id="flex" tabindex="0" role="region" aria-roledescription="carousel" aria-label="'+v.name+' certifications">'+
-      '<span class="flex-hint lab">'+(finePointer?'Drag to browse &nbsp;&middot;&nbsp; click to focus &nbsp;&middot;&nbsp; click again to open':'Drag &nbsp;&middot;&nbsp; tap to focus &nbsp;&middot;&nbsp; tap again to open')+'</span>'+
+      '<span class="flex-hint lab">'+(finePointer?'Scroll, drag or use &larr; &rarr; &nbsp;&middot;&nbsp; click to focus &nbsp;&middot;&nbsp; click again to open':'Drag &nbsp;&middot;&nbsp; tap to focus &nbsp;&middot;&nbsp; tap again to open')+'</span>'+
+      '<button type="button" class="flex-arr flex-prev" aria-label="Previous certification"><span aria-hidden="true">&larr;</span></button>'+
+      '<button type="button" class="flex-arr flex-next" aria-label="Next certification"><span aria-hidden="true">&rarr;</span></button>'+
       '<div class="flex-cap"><span class="flex-title" id="flex-title"></span>'+
       '<span class="flex-count"><span class="digits"><span class="digit"><span class="reel">'+'0123456789'.split("").map(function(n){return "<span>"+n+"</span>";}).join("")+'</span></span><span class="digit"><span class="reel">'+'0123456789'.split("").map(function(n){return "<span>"+n+"</span>";}).join("")+'</span></span></span><span>/</span><span class="flex-total"></span></span>'+
       '<button type="button" class="flex-open" id="flex-open"><span class="fo-l">View details &darr;</span></button></div>'+
@@ -3884,8 +3933,18 @@ function renderColleges(i){
   });
   specScan(panel);
 }
+/* Chromium can keep stale hit-testing after the blur/fade swap of #p-body (seen after opening one guide from another):
+   the page looks right but the mouse can't reach anything in it. Briefly isolating #p-body rebuilds it (no visual change, focus and scroll stay). */
+function hitFix(){var b=panel.querySelector("#p-body");if(!b||panel.hidden) return;b.style.isolation="isolate";void b.offsetHeight;requestAnimationFrame(function(){requestAnimationFrame(function(){b.style.isolation="";});});}
 function revealBody(dir,base){
   var body=panel.querySelector("#p-body");
+  setTimeout(hitFix,reduced?30:380);   /* early: right after the swap */
+  /* and again once the swap's animations have all finished (the stagger can run a few seconds in a long guide) */
+  setTimeout(function(){
+    var b2=panel.querySelector("#p-body");if(!b2) return;
+    var all=(b2.getAnimations?b2.getAnimations({subtree:true}):[]).filter(function(a){try{return isFinite(a.effect.getComputedTiming().endTime);}catch(e){return false;}});   /* skip the looping pulse dots */
+    Promise.all(all.map(function(a){return a.finished.catch(function(){});})).then(function(){if(panel.querySelector("#p-body")===b2) hitFix();});
+  },60);
   if(dir) anim(body,[{opacity:0,transform:"translateX("+(dir*36)+"px)",filter:"blur(6px)"},{opacity:1,transform:"none",filter:"blur(0px)"}],{duration:700,easing:EZ});
   body.querySelectorAll(".ch").forEach(function(c,n){
     anim(c,[{transform:"translateY(140%) rotate(4deg)"},{transform:"none"}],{duration:1000,delay:base+n*26,easing:EZ,fill:"backwards"});
@@ -4002,6 +4061,12 @@ function setSort(hard){
 
 /* ---------- explore sheet (pull up from the bottom) ---------- */
 var sheet=$("#sheet"), veil=$("#veil"), grab=$("#sh-grab"), shScroll=$("#sh-scroll");
+/* keyboard: while the sheet is closed its content is out of the Tab order; while it is open, the home behind it is */
+shScroll.inert=true;
+function restoreInert(){
+  var pOpen=!panel.hidden, sOpen=sheet.classList.contains("is-open");
+  app.inert=pOpen||sOpen;sheet.inert=pOpen;shScroll.inert=!sOpen;
+}
 var sheetP=0, sheetId=0, shView="home", TITLES={home:"Explore.",mine:"My path.",compare:"Compare.",dod:"DoD 8140.",paths:"Paths.",cool:"Funding.",out:"Getting out.",exam:"Countdown.",settings:"Settings."}, ORDER=["home","mine","exam","compare","dod","paths","cool","out","settings"], fundPane="ta";
 var PATHS=[
   {name:"20 year career",tag:"IT rating career",line:"Make rate, stay qualified for any IT billet, and retire with a full résumé.",steps:[["A+","A+"],["Network+","Network+"],["Security+","Security+"],["CySA+","CySA+"],["CISSP","CISSP"]]},
@@ -4593,6 +4658,9 @@ function shState(p){
   var open=sheetP>.5;
   if(open!==sheet.classList.contains("is-open")){
     sheet.classList.toggle("is-open",open);grab.setAttribute("aria-expanded",String(open));
+    var lost=!open&&shScroll.contains(document.activeElement);
+    if(!srchOpen) restoreInert();
+    if(lost) try{grab.focus({preventScroll:true});}catch(e){}
     grab.setAttribute("aria-label",open?"Close paths, funding and compare":"Open paths, funding and compare");
     if(!open&&typeof stRender==="function") stRender();
   }
@@ -4788,6 +4856,7 @@ function q8Render(){
     h+='<p class="o-h" style="margin:26px 0 12px">Not on the matrix</p><div class="q8-certs">'+q8Off().map(function(c){return '<button type="button" class="off" data-q8c="'+gEsc(c[0])+'" aria-pressed="'+(c[0]===Q8S.c)+'">'+gEsc(q8Short(c[0]))+'</button>';}).join("")+'</div>';
   }
   host.innerHTML=h;
+  insRender();
 }
 function q8Scroll(el){
   if(!el) return;
@@ -4797,16 +4866,83 @@ function q8Scroll(el){
 }
 /* open the view on a role, a cert, or the IAT explainer (from search, guides and vendor pages) */
 function q8Target(code){
-  if(code==="iat") Q8S.go="iat";
+  if(code==="iat"||code==="ins"||code==="v3") Q8S.go=code;
   else if(Q8_ROLES[code]){Q8S.m="role";Q8S.el=Q8_ROLES[code].el;Q8S.r=code;Q8S.go="rc";}
   else if(code==="en"){Q8S.m="role";Q8S.el="en";Q8S.go="rc";}
   if(shView==="dod") q8Enter();
 }
 function q8TargetCert(name){Q8S.m="cert";Q8S.c=name;Q8S.go="cc";if(shView==="dod") q8Enter();}
+/* ---------- Coast Guard Cyberspace Insignia checker (DoD 8140 tab) ----------
+   Rules from MyCG "New Coast Guard Cyberspace Qualification Insignia unveiled" (Aug 31, 2026) and ALCOAST 378/23:
+   enlisted E-4+: Intermediate in the assigned DCWF work role (temporary while in the billet; permanent after 5+ years in a DCWF/CYB10 role);
+   CWO: Intermediate (temporary), Advanced (permanent); officers: CYB10 subspecialty levels; civilians: permanent only, Advanced.
+   Degrees from Matrix V3.0: a bachelor's in the listed fields = Intermediate, a master's or doctorate = Advanced, for all 23 mapped roles. */
+var INS_SRC="https://www.mycg.uscg.mil/News/Article/4586438/new-coast-guard-cyberspace-qualification-insignia-unveiled/";
+var INS_WHO=[["enl","Enlisted","E-4 and up"],["cwo","Chief Warrant Officer",""],["off","Officer",""],["civ","Civilian",""]];
+var INS_DEG=[["deg:b","Bachelor's degree","I"],["deg:m","Master's or doctorate","A"]];
+var INS=(function(){var d={w:"enl",r:"511",h:{}};try{var j=JSON.parse(localStorage.getItem("cgcp.ins")||"null");if(j&&typeof j==="object"){if(j.w) d.w=j.w;if(j.r&&Q8_ROLES[j.r]) d.r=j.r;if(j.h&&typeof j.h==="object") d.h=j.h;}}catch(e){}return d;})();
+function insSave(){try{localStorage.setItem("cgcp.ins",JSON.stringify(INS));}catch(e){}}
+function insLevel(r){   /* highest DoD 8140 level the held certs and degrees give for role r: "", B, I or A */
+  var R=Q8_ROLES[r], best=-1;if(!R) return "";
+  Object.keys(INS.h).forEach(function(k){if(!INS.h[k]) return;
+    var dg=INS_DEG.filter(function(d){return d[0]===k;})[0];
+    if(dg){best=Math.max(best,Q8_LV.indexOf(dg[2]));return;}
+    Q8_LV.forEach(function(l,i){if((R[l]||[]).indexOf(k)>=0) best=Math.max(best,i);});
+  });
+  return best<0?"":Q8_LV[best];
+}
+function insMeets(have,need){return !!have&&Q8_LV.indexOf(have)>=Q8_LV.indexOf(need);}
+function insRow(ok,title,text){return '<div class="ins-row '+(ok?"ok":"no")+'"><i aria-hidden="true">'+(ok?"&#10003;":"&#9675;")+'</i><b>'+title+'</b><div class="ins-t">'+text+'</div></div>';}
+function insWays(r,need){   /* certs that reach the needed level in this role: CertPath guides first */
+  var R=Q8_ROLES[r], list=[];Q8_LV.slice(Q8_LV.indexOf(need)).forEach(function(l){(R[l]||[]).forEach(function(c){if(list.indexOf(c)<0) list.push(c);});});
+  var here=list.filter(q8Here), ext=list.filter(function(c){return !q8Here(c);});
+  return '<div class="q8-chips">'+here.map(function(c){return q8Chip(c);}).join("")+ext.slice(0,6).map(function(c){return q8Chip(c);}).join("")+(ext.length>6?'<span class="q8-cp ext">+'+(ext.length-6)+' more</span>':'')+'</div>';
+}
+function insRender(){
+  var host=$("#ins-app");if(!host) return;
+  var act=document.activeElement, keep=act&&host.contains(act)?(act.dataset.insw?'[data-insw="'+act.dataset.insw+'"]':act.dataset.insh?'[data-insh="'+act.dataset.insh+'"]':act.id==="ins-r"?"#ins-r":null):null;
+  var R=Q8_ROLES[INS.r], h='';
+  h+='<p class="ins-step">1 &middot; I am</p><div class="q8-els" role="group" aria-label="I am">'+INS_WHO.map(function(w){return '<button type="button" data-insw="'+w[0]+'" aria-pressed="'+(INS.w===w[0])+'">'+w[1]+(w[2]?'<small>'+w[2]+'</small>':'')+'</button>';}).join("")+'</div>';
+  var needDcwf=INS.w!=="off";
+  if(needDcwf){
+    h+='<p class="ins-step" style="margin-top:14px">2 &middot; My billet\'s work role</p><span class="g-sel ins-role"><select id="ins-r" aria-label="My billet\'s DCWF work role">';
+    [["cs","Cybersecurity"],["it","IT (Cyberspace)"]].forEach(function(g){
+      h+='<optgroup label="'+g[1]+'">'+Object.keys(Q8_ROLES).filter(function(r){return Q8_ROLES[r].el===g[0];}).map(function(r){return '<option value="'+r+'"'+(r===INS.r?' selected':'')+'>'+r+' &middot; '+gEsc(Q8_ROLES[r].n)+'</option>';}).join("")+'</optgroup>';
+    });
+    h+='</select></span>';
+    h+='<p class="ins-step">3 &middot; What I hold</p><div class="q8-certs" role="group" aria-label="Certs and degrees I hold">'+
+      q8Here8140().map(function(c){var k=c[0];return '<button type="button" data-insh="'+gEsc(k)+'" aria-pressed="'+!!INS.h[k]+'">'+q8Badge(q8Top(k),"s")+gEsc(q8Short(k))+'</button>';}).join("")+
+      INS_DEG.map(function(d){return '<button type="button" class="off" data-insh="'+d[0]+'" aria-pressed="'+!!INS.h[d[0]]+'">'+d[1]+'</button>';}).join("")+'</div>';
+  }
+  h+='<div class="ins-out" aria-live="polite">';
+  if(INS.w==="off"){
+    h+=insRow(false,"Officers qualify through CYB10, not DCWF levels","Temporary: meet the Level II requirements in at least one Cyberspace (CYB10) subspecialty. Permanent, after 5+ years in a DCWF or CYB10 role: meet the education requirements, earn at least one CYB10 subspecialty and reach the CYB10 Journeyman level.");
+  } else {
+    var have=insLevel(INS.r), tmpNeed=INS.w==="civ"?null:"I", perNeed=INS.w==="enl"?"I":"A";
+    h+='<p class="ins-now"><span>Your DoD 8140 level for <b style="color:var(--ink)">'+INS.r+' '+gEsc(R.n)+'</b>:</span>'+(have?q8Badge(have,"l"):'<span>none yet</span>')+'</p>';
+    if(tmpNeed) h+=insRow(insMeets(have,tmpNeed),"Temporary insignia: "+Q8_LVN[tmpNeed],insMeets(have,tmpNeed)?"Your certs or degree cover the foundational part of "+Q8_LVN[tmpNeed]+" for this role.":"You need "+Q8_LVN[tmpNeed]+" in your assigned work role. Any of these gets you there:"+insWays(INS.r,tmpNeed));
+    else h+=insRow(false,"Temporary insignia: not open to civilians","Civilians can earn the permanent insignia only.");
+    var pOk=insMeets(have,perNeed);
+    h+=insRow(pOk,"Permanent insignia: "+Q8_LVN[perNeed]+" + 5 years",(INS.w==="civ"?"Meet your position description, reach Advanced in your assigned work role (or the equivalent from prior active duty), and serve 5+ years in a DCWF role. ":"Reach "+Q8_LVN[perNeed]+" and serve 5+ years in a DCWF or CYB10 role. ")+(pOk?"Your level already meets it; the years are what's left.":(perNeed!==tmpNeed?"Options for "+Q8_LVN[perNeed]+":"+insWays(INS.r,perNeed):"")));
+    if(INS.w==="enl") h+='<p class="ins-fine">E-3 and below: not eligible yet. Certs you earn now still count once you make E-4, as long as you keep them current.</p>';
+  }
+  h+='</div><p class="ins-fine">This checks the foundational part (certs, degrees). A DoD 8140 proficiency level also needs your unit\'s residential (on-the-job) qualification, and you have to be serving in a designated cyber-coded billet. Rules: <a href="'+INS_SRC+'" target="_blank" rel="noopener noreferrer">MyCG, Aug 31, 2026 &nearr;</a> and ALCOAST 378/23. Not an official eligibility check: confirm with your command or cyber workforce manager.</p>';
+  host.innerHTML=h;
+  if(keep){var el=host.querySelector(keep);if(el) try{el.focus({preventScroll:true});}catch(e){}}
+}
+(function(){
+  var sec=$("#q8-ins");if(!sec) return;
+  sec.addEventListener("click",function(e){
+    var w=e.target.closest("[data-insw]"), hd=e.target.closest("[data-insh]");
+    if(w){INS.w=w.dataset.insw;insSave();insRender();return;}
+    if(hd){var k=hd.dataset.insh;INS.h[k]=!INS.h[k];if(!INS.h[k]) delete INS.h[k];insSave();insRender();}
+  });
+  sec.addEventListener("change",function(e){if(e.target.id==="ins-r"){INS.r=e.target.value;insSave();insRender();}});
+})();
 function q8Enter(){
   q8Render();
   var go=Q8S.go;Q8S.go=null;if(!go) return;
-  setTimeout(function(){q8Scroll(go==="iat"?$("#q8-iat"):go==="cc"?$("#q8-cc"):($("#q8-rc")||$("#q8-en")));},reduced?0:520);
+  setTimeout(function(){q8Scroll(go==="iat"?$("#q8-iat"):go==="ins"?$("#q8-ins"):go==="v3"?$("#q8-v3"):go==="cc"?$("#q8-cc"):($("#q8-rc")||$("#q8-en")));},reduced?0:520);
 }
 (function(){
   var v=$("#sv-dod");if(!v) return;
@@ -4839,7 +4975,7 @@ function q8KeepCards(name,keep){
     if(done) return;done=true;
     if(!is8140(name)){out.push(kc);return;}
     var rs=q8Roles(name), t=q8Top(name);
-    out.push(rs.length?{lab:"DoD 8140",big:"Up to "+Q8_LVN[t],text:"Counts for "+rs.length+(rs.length===1?" work role":" work roles")+" on the official DoD 8140 matrix ("+Q8.ver+"). Every role and level is listed below."}
+    out.push(rs.length?{lab:"DoD 8140",big:"Up to "+Q8_LVN[t],text:"Counts for "+rs.length+(rs.length===1?" IT or cybersecurity work role":" IT and cybersecurity work roles")+", plus all "+Q8_EN.length+" Cyber Enabler roles, on the official DoD 8140 matrix ("+Q8.ver+"). Every role and level is listed below."}
       :{lab:"DoD 8140",big:"Enabler roles",text:Q8_ENONLY[name]||""});
   });
   return out;
@@ -7508,7 +7644,8 @@ function q8Facts(name,facts){
     if(!/^DoD/.test(f[0])) return f;
     if(!is8140(name)) return ["DoD 8140","Not listed","on the matrix"];
     var t=q8Top(name),n=q8Roles(name).length;
-    return t?["DoD 8140",Q8_LVN[t],"highest · "+n+(n===1?" role":" roles")]:["DoD 8140","Enablers","work roles"];
+    /* every CertPath cert with IT/cyber roles is also listed for all Cyber Enabler roles (checked against Matrix V3.0) */
+    return t?["DoD 8140",Q8_LVN[t],n+" IT/cyber · +"+Q8_EN.length+" enabler roles"]:["DoD 8140","Enablers","work roles"];
   });
 }
 function q8Sources(name,src){
@@ -7729,7 +7866,7 @@ GUIDES["SAL1 · Security Analyst L1"]={
     ["TryHackMe Help: certification access and retakes","https://help.tryhackme.com/en/articles/10624994-certification-access"],
     ["TryHackMe Help: renewals","https://help.tryhackme.com/en/articles/10625059-renewals"],
     ["TryHackMe Help: exam preparation advice","https://help.tryhackme.com/en/articles/10625102-general-exam-preparation-advice"],
-    ["DoD 8140 qualification matrix V2.1 (DoD Cyber Exchange)","https://dl.dod.cyber.mil/wp-content/uploads/8140/pdf/(U)%202025-09-19_DoD8140MatrixV2.1_DoPSR.pdf"]]
+    ["DoD 8140 Qualification Matrix V3.0 (cyberworkforce.mil document library)","https://www.cyberworkforce.mil/DoD-8140/Document-Library/"]]
 };
 
 GUIDES["PT1 · Junior Pentester"]={
@@ -7950,7 +8087,7 @@ GUIDES["PT1 · Junior Pentester"]={
     ["TryHackMe Help: renewals","https://help.tryhackme.com/en/articles/10625059-renewals"],
     ["Credly: TryHackMe PT1 badge","https://www.credly.com/org/tryhackme/badge/jr-penetration-tester-pt1"],
     ["Candidate review with section points (third-party, verify)","https://moetezbenabdallah.github.io/posts/PT1-Review"],
-    ["DoD 8140 qualification matrix V2.1 (DoD Cyber Exchange)","https://dl.dod.cyber.mil/wp-content/uploads/8140/pdf/(U)%202025-09-19_DoD8140MatrixV2.1_DoPSR.pdf"]]
+    ["DoD 8140 Qualification Matrix V3.0 (cyberworkforce.mil document library)","https://www.cyberworkforce.mil/DoD-8140/Document-Library/"]]
 };
 
 GUIDES["CCST Networking"]={
@@ -11518,6 +11655,8 @@ var SIDX=[];
   SIDX.push({kind:"page",key:"p:exam",page:"exam",name:"Exam countdown",sub:"Explore · test date, countdown, day-by-day plan",fields:[[snorm("exam countdown"),95],[snorm("exam date test date countdown study plan schedule calendar day by day days left when is my exam"),60]]});
   SIDX.push({kind:"page",key:"p:compare",page:"compare",name:"Compare certs",sub:"Explore · two certs side by side",fields:[[snorm("compare certs"),95],[snorm("compare versus vs side by side difference which is better which cert harder cheaper"),60]]});
   SIDX.push({kind:"page",key:"p:dod",page:"dod",name:"DoD 8140 work roles",sub:"Explore · the cert for your billet's work role and level",fields:[[snorm("dod 8140"),95],[snorm("dod 8140 work role work roles dcwf billet coded proficiency level basic intermediate advanced foundational residential qualification matrix 8140.03 cyber workforce finder"),60]]});
+  SIDX.push({kind:"page",key:"p:ins",page:"dod",q8:"ins",name:"Cyberspace Insignia checker",sub:"DoD 8140 · what gets you the Coast Guard cyber insignia",fields:[[snorm("insignia cyberspace insignia cyber insignia"),95],[snorm("cyberspace qualification insignia pin badge qualify eligible eligibility temporary permanent e-4 cwo cyb10 intermediate"),70]]});
+  SIDX.push({kind:"page",key:"p:v3",page:"dod",q8:"v3",name:"Matrix V3.0: already qualified?",sub:"DoD 8140 · earlier qualifications still count",fields:[[snorm("matrix v3 matrix 3.0 v3.0"),90],[snorm("grandfather grandfathered already qualified requalify new matrix version october 2026"),70]]});
   SIDX.push({kind:"page",key:"p:iat",page:"dod",q8:"iat",name:"Where did IAT go?",sub:"DoD 8140 · the old IAT, IAM and IASAE levels, explained",fields:[[snorm("iat levels"),95],[snorm("iat iat1 iat2 iat3 iat i iat ii iat iii iat level iam iam1 iam2 iam3 iasae cssp 8570 8570.01 dod 8570 baseline information assurance technical management"),70]]});
   Object.keys(Q8_ROLES).forEach(function(r){var R=Q8_ROLES[r], el=R.el==="it"?"IT (Cyberspace)":"Cybersecurity", n=0;Q8_LV.forEach(function(l){n+=(R[l]||[]).filter(q8Here).length;});
     SIDX.push({kind:"page",key:"r:"+r,page:"dod",q8:r,name:r+" · "+R.n,sub:"DoD 8140 work role · "+el+" · "+n+" CertPath "+(n===1?"cert":"certs"),fields:[[snorm(r+" "+R.n),100],[snorm(R.n+" "+R.d),50],[snorm("work role dcwf 8140 "+el),20]]});});
@@ -11712,6 +11851,7 @@ function srchClose(picked,kbd){
   if(srchRaf){cancelAnimationFrame(srchRaf);srchRaf=0;}
   srch.classList.remove("on");srch.setAttribute("aria-hidden","true");
   [app,sheet,panel].forEach(function(el){el.inert=false;});
+  restoreInert();
   if(srchIn===document.activeElement) srchIn.blur();
   if(!picked&&srchOpener&&srchOpener.isConnected&&srchOpener.focus) srchOpener.focus({preventScroll:true});
   srchT=setTimeout(function(){if(!srchOpen){srch.inert=true;srchFit();}},500);
@@ -12409,20 +12549,67 @@ function makeFlex(host,v){
   }
   setActive(0);
   var posters=items.map(function(it,i){return drawPoster(v,it.c,i,n);});
+  /* mouse wheel up/down -> one card per notch. Small trackpad deltas add up first, and a short lock stops one flick from skipping several cards.
+     canGo(dir) says whether there is a card that way; if not, the page gets the wheel.
+     Returns +1/-1 to step, 0 to swallow (adding up, or locked), null to let the page scroll. */
+  var wAcc=0, wLock=0;
+  function wheelStep(e,dy,canGo){
+    var unit=e.deltaMode===1?16:e.deltaMode===2?400:1, d=dy*unit, now=performance.now(), dir=d>0?1:-1;
+    if(Math.abs(d)<1||!canGo(dir)){wAcc=0;return null;}
+    if(now<wLock) return 0;
+    if(wAcc&&(wAcc>0)!==(d>0)) wAcc=0;
+    wAcc+=d;if(Math.abs(wAcc)<40) return 0;
+    wAcc=0;wLock=now+260;return dir;
+  }
+  function arrows(go){
+    host.querySelector(".flex-prev").addEventListener("click",function(){go(-1);});
+    host.querySelector(".flex-next").addEventListener("click",function(){go(1);});
+  }
   function fallback(){
+    /* Lite mode and browsers without WebGL2: a plain row of cards. Mouse wheel, drag, the arrow buttons and the keyboard all move it. */
     var row=document.createElement("div");row.className="flex-fb";
-    posters.forEach(function(pc,i){var im=new Image();im.src=pc.toDataURL("image/png");im.alt=items[i].c[0];
-      im.addEventListener("click",function(){pick();setActive(i);syncAside();});
+    posters.forEach(function(pc,i){var im=new Image();im.src=pc.toDataURL("image/png");im.alt=items[i].c[0];im.draggable=false;
+      im.addEventListener("click",function(){if(dragMoved) return;go(i);});
       im.addEventListener("dblclick",function(){openItem(i);});
       im.addEventListener("mouseenter",function(){setHover(i);});im.addEventListener("mouseleave",function(){setHover(-1);});
       row.appendChild(im);});
-    row.addEventListener("scroll",function(){var mid=row.scrollLeft+row.clientWidth/2,best=0,bd=1e9;Array.prototype.forEach.call(row.children,function(el,i){var c=el.offsetLeft+el.offsetWidth/2,dd=Math.abs(c-mid);if(dd<bd){bd=dd;best=i;}});setActive(best);},{passive:true});
-    host.insertBefore(row,host.firstChild);host.style.cursor="default";
+    function mark(i){Array.prototype.forEach.call(row.children,function(el,k){el.classList.toggle("on",k===i);});}
+    function centerOf(i){var el=row.children[i];return el.offsetLeft-(row.clientWidth-el.offsetWidth)/2;}
+    var scrollT=0;
+    function go(i,instant){i=Math.max(0,Math.min(n-1,i));pick();setActive(i);mark(i);row.scrollTo({left:centerOf(i),behavior:(instant||reduced)?"auto":"smooth"});scrollT=performance.now();}
+    row.addEventListener("scroll",function(){if(performance.now()-scrollT<600) return;var mid=row.scrollLeft+row.clientWidth/2,best=0,bd=1e9;Array.prototype.forEach.call(row.children,function(el,i){var c=el.offsetLeft+el.offsetWidth/2,dd=Math.abs(c-mid);if(dd<bd){bd=dd;best=i;}});setActive(best);mark(best);},{passive:true});
+    host.insertBefore(row,host.firstChild);host.style.cursor="default";host.classList.add("focused");
+    var hint=host.querySelector(".flex-hint");if(hint&&finePointer) hint.innerHTML="Scroll, drag or use &larr; &rarr; &nbsp;&middot;&nbsp; double-click or Open to view";
+    /* mouse wheel: up/down moves one card per notch, sideways (trackpad, Shift+wheel) scrolls freely; past the ends the page scrolls */
+    row.addEventListener("wheel",function(e){
+      if(e.ctrlKey) return;var dx=e.deltaX,dy=e.deltaY;if(e.shiftKey&&Math.abs(dx)<Math.abs(dy)){dx=dy;dy=0;}
+      if(Math.abs(dx)>Math.abs(dy)){var max=row.scrollWidth-row.clientWidth;if((dx<0&&row.scrollLeft<=0)||(dx>0&&row.scrollLeft>=max-1)) return;e.preventDefault();row.scrollLeft+=dx;scrollT=0;return;}
+      var dir=wheelStep(e,dy,function(d){return d>0?activeIndex<n-1:activeIndex>0;});
+      if(dir===null) return;e.preventDefault();if(dir) go(activeIndex+dir);
+    },{passive:false});
+    /* drag with the mouse (touch already scrolls natively) */
+    var drag=null, dragMoved=false;
+    row.addEventListener("pointerdown",function(e){if(e.pointerType!=="mouse"||e.button>0) return;drag={x:e.clientX,left:row.scrollLeft,id:e.pointerId};dragMoved=false;});
+    row.addEventListener("pointermove",function(e){if(!drag||e.pointerId!==drag.id) return;var dx=e.clientX-drag.x;
+      if(!dragMoved&&Math.abs(dx)>5){dragMoved=true;row.setAttribute("data-dragging","");try{row.setPointerCapture(e.pointerId);}catch(err){}}
+      if(dragMoved){row.scrollLeft=drag.left-dx;scrollT=0;}});
+    function endDrag(){if(!drag) return;drag=null;if(dragMoved){row.removeAttribute("data-dragging");var mid=row.scrollLeft+row.clientWidth/2,best=0,bd=1e9;Array.prototype.forEach.call(row.children,function(el,i){var dd=Math.abs(el.offsetLeft+el.offsetWidth/2-mid);if(dd<bd){bd=dd;best=i;}});go(best);setTimeout(function(){dragMoved=false;},0);}}
+    row.addEventListener("pointerup",endDrag);row.addEventListener("pointercancel",endDrag);
     var fbTap=null;
     row.addEventListener("pointerup",function(e){if(e.pointerType==="mouse") return;var im=e.target.closest("img");if(!im) return;var i=Array.prototype.indexOf.call(row.children,im),now=performance.now();
       if(fbTap&&fbTap.i===i&&now-fbTap.t<400){fbTap=null;openItem(i);}else fbTap={i:i,t:now};});
+    /* keyboard on the carousel itself: arrows, Home/End, Enter or Space opens */
+    host.addEventListener("keydown",function(e){
+      if(e.target!==host) return;
+      if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();e.stopPropagation();go(activeIndex+(e.key==="ArrowRight"?1:-1));}
+      else if(e.key==="Home"||e.key==="End"){e.preventDefault();go(e.key==="Home"?0:n-1);}
+      else if(e.key==="Enter"||e.key===" "){e.preventDefault();openItem(activeIndex);}
+    });
+    openBtn.addEventListener("click",function(){openItem(activeIndex);});
+    arrows(function(d){go(activeIndex+d);});
+    mark(0);
     return {step:function(){},destroy:function(){},show:function(name){
-      for(var q=0;q<n;q++){if(items[q].c[0]===name){var el=row.children[q];row.scrollTo({left:el.offsetLeft-(row.clientWidth-el.offsetWidth)/2,behavior:reduced?"auto":"smooth"});return;}}
+      for(var q=0;q<n;q++){if(items[q].c[0]===name){go(q);return;}}
     }};
   }
   var cv=document.createElement("canvas");cv.className="flex-cv";cv.setAttribute("aria-hidden","true");host.insertBefore(cv,host.firstChild);
@@ -12629,7 +12816,7 @@ void main(){
   function hitAt(x,y){for(var i=instances.length-1;i>=0;i--){var s1=instances[i];if(x>=s1.x0&&x<=s1.x1&&y>=s1.y0&&y<=s1.y1) return s1;}return null;}
   var lastTap=null, mouseIn=false;
   function onDown(e){
-    if(e.button>0||(e.target.closest&&e.target.closest(".flex-open"))) return;
+    if(e.button>0||(e.target.closest&&e.target.closest(".flex-open,.flex-arr"))) return;
     intro.done=true;var q=lp(e);
     ptr.down=true;ptr.id=e.pointerId;ptr.touch=e.pointerType==="touch";ptr.startX=q[0];ptr.startY=q[1];ptr.x=q[0];ptr.y=q[1];ptr.startPos=pos;ptr.dragging=false;ptr.samples=[{x:q[0],t:performance.now()}];
     if(Math.abs(vel)>40){goal=pos;vel=0;}
@@ -12673,22 +12860,31 @@ void main(){
   function onWheel(e){
     if(e.ctrlKey) return;
     var dx=e.deltaX,dy=e.deltaY;if(e.shiftKey&&Math.abs(dx)<Math.abs(dy)){dx=dy;dy=0;}
-    if(Math.abs(dx)<=Math.abs(dy)) return;
+    if(Math.abs(dx)<=Math.abs(dy)){
+      /* a plain mouse wheel (up/down): one card per notch, then the page scrolls on past the first or last card */
+      var at=nearest(metrics(),goal), dir=wheelStep(e,dy,function(d){return d>0?at<n-1:at>0;});
+      if(dir===null) return;
+      e.preventDefault();e.stopPropagation();if(dir===0) return;
+      intro.done=true;pick();closeFocus();stepBy(metrics(),dir);return;
+    }
     e.preventDefault();e.stopPropagation();intro.done=true;pick();if(closeFocus()) return;
     var unit=e.deltaMode===1?16:e.deltaMode===2?height:1;
     goal+=Math.max(-120,Math.min(120,dx*unit))*1.25;mode="wheel";wheelAt=performance.now();
   }
   function onKey(e){
+    if(e.target!==host) return;
     var m=metrics();
+    if(e.key==="Home"||e.key==="End"){e.preventDefault();pick();closeFocus();var ti=e.key==="Home"?0:n-1;goal=pos+wrapv(m.centers[ti]-pos,m.loop);mode="spring";dirty=true;return;}
     if(e.key==="ArrowRight"||e.key==="ArrowLeft") pick();
     if(e.key==="ArrowRight"){e.preventDefault();e.stopPropagation();closeFocus();stepBy(m,1);}
     else if(e.key==="ArrowLeft"){e.preventDefault();e.stopPropagation();closeFocus();stepBy(m,-1);}
-    else if(e.key==="Enter"||e.key===" "){e.preventDefault();if(closeFocus()) return;openFocus(activeIndex);}
+    else if(e.key==="Enter"||e.key===" "){e.preventDefault();if(focus.target>0){openItem(focus.index>=0?focus.index:activeIndex);return;}openFocus(activeIndex);}
     else if(e.key==="Escape"&&focus.target>0){e.preventDefault();e.stopPropagation();closeFocus();}
   }
   host.addEventListener("pointerdown",onDown);host.addEventListener("pointermove",onMove);host.addEventListener("pointerup",onUp);
   host.addEventListener("pointercancel",onCancel);host.addEventListener("pointerleave",function(e){if(e.pointerType==="mouse"){mouseIn=false;setHover(-1);}});host.addEventListener("wheel",onWheel,{passive:false});host.addEventListener("keydown",onKey);
   openBtn.addEventListener("click",function(){openItem(focus.index>=0?focus.index:activeIndex);});
+  arrows(function(d){intro.done=true;pick();closeFocus();stepBy(metrics(),d);});
   return {
     step:step,
     show:function(name){
