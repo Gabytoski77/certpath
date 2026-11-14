@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at 'sha256-fwBeDpvTFTBOhPjqlP5dcH0vqFPHe9yoaf7ZYzvW6Mo=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://certpath.goatcounter.com; font-src 'self'; connect-src 'self' https://certpath.goatcounter.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at 'sha256-xhTu66uLDM6nkC/FORaABtucF7Ova68MT0LyFA+iNUY=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://certpath.goatcounter.com; font-src 'self'; connect-src 'self' https://certpath.goatcounter.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1188,15 +1188,15 @@ button.ptt-c:active{opacity:.7;transition-duration:.1s}
 .flex-fb{position:absolute;inset:0 0 70px;display:flex;gap:14px;align-items:center;overflow-x:auto;scroll-snap-type:x mandatory;padding-inline:28px;scrollbar-width:none}
 .flex-fb::-webkit-scrollbar{display:none}
 .flex-fb[data-dragging]{scroll-snap-type:none;cursor:grabbing}
-.flex-fb img{-webkit-user-drag:none;user-select:none}
-.flex-fb img.on{outline:2px solid var(--v-accent);outline-offset:3px}
+.flex-fb img,.flex-fb canvas{-webkit-user-drag:none;user-select:none}
+.flex-fb img.on,.flex-fb canvas.on{outline:2px solid var(--v-accent);outline-offset:3px}
 /* previous / next buttons: shown for mouse and keyboard users (fine pointer) */
 .flex-arr{display:none;position:absolute;top:calc(50% - 35px);z-index:2;width:44px;height:44px;margin-top:-22px;place-items:center;border-radius:50%;
   border:1px solid var(--v-line);background:rgba(20,25,32,.72);color:var(--v-fg);font:500 18px/1 var(--f-ui);cursor:pointer;transition:border-color .3s var(--ez),background-color .3s var(--ez)}
 .flex-prev{left:14px}.flex-next{right:14px}
 @media (hover:hover) and (pointer:fine){.flex-arr{display:grid}.flex-arr:hover{border-color:var(--v-accent);background:rgba(20,25,32,.9)}}
 .flex-arr:focus-visible{display:grid;outline:2px solid var(--v-accent);outline-offset:2px}
-.flex-fb img{flex:none;height:78%;max-height:420px;width:auto;border-radius:16px;scroll-snap-align:center}
+.flex-fb img,.flex-fb canvas{flex:none;height:78%;max-height:420px;width:auto;border-radius:16px;scroll-snap-align:center}
 @media (max-width:720px){
   .flex{margin:6px -16px 0;height:clamp(380px,62vh,520px)}
   .flex-hint{left:16px;right:16px}
@@ -1859,18 +1859,20 @@ html.kbd .touch-only{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   /* keep soft fades and color changes, drop anything that moves */
-  *,*::before,*::after{transition-property:opacity,color,background-color,border-color,visibility!important;transition-duration:.2s!important;transition-delay:0s!important;animation-duration:.01ms!important}
+  *,*::before,*::after{transition-property:opacity,color,background-color,border-color,visibility!important;transition-duration:.2s!important;transition-delay:0s!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
   #srch *{transition-property:opacity,color,background-color,border-color!important}
   .glass::after{display:none}
+  .pa-v{transition:none!important}
 }
 /* Lite mode (v2.26): the calm motion of reduced motion, plus no blur, no particles and no launch screen */
-html.lite *,html.lite *::before,html.lite *::after{transition-property:opacity,color,background-color,border-color,visibility!important;transition-duration:.2s!important;transition-delay:0s!important;animation-duration:.01ms!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.lite *,html.lite *::before,html.lite *::after{transition-property:opacity,color,background-color,border-color,visibility!important;transition-duration:.2s!important;transition-delay:0s!important;animation-duration:.01ms!important;animation-iteration-count:1!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 html.lite #srch *{transition-property:opacity,color,background-color,border-color!important}
 html.lite .glass::after{display:none}
 html.lite .ptn,html.lite .ptn-l,html.lite .ptn>i{transition:none}
 html.lite .pt-f{animation:none;opacity:0}
 html.lite .g-rv{opacity:1;transform:none}
 html.lite .g-reel{transition:none}
+html.lite .pa-v{transition:none!important}
 html.lite #splash,html.lite #pk-back,html.lite #pk-front{display:none}
 html.lite .sr-card{background:linear-gradient(180deg,#232a35 0%,#171c24 100%)}
 html.lite .sr-bg{background:rgba(6,8,12,.72)}
@@ -1909,6 +1911,17 @@ html.lite .gshadow{filter:none}
 @keyframes srHit{0%,45%{background:rgba(188,214,234,.16);box-shadow:0 0 0 1px rgba(188,214,234,.55)}100%{background:transparent;box-shadow:0 0 0 1px rgba(188,214,234,0)}}
 @media (prefers-reduced-motion:reduce){.sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0 0 1px rgba(188,214,234,.45)}}
 html.lite .sr-hit{animation:none;background:rgba(188,214,234,.12);box-shadow:0 0 0 1px rgba(188,214,234,.45)}
+/* Graphics quality for the full version (v2.40). Balanced: no looping decorations or glass sheen. Light: also no blur and no particles. */
+html.gfx-bal .sh-up,html.gfx-bal .pl-flow,html.gfx-bal .pn,html.gfx-bal .orbit .rg{animation:none!important}
+html.gfx-bal .pt-f{animation:none!important;opacity:0!important}
+html.gfx-bal .glass::after{display:none}
+html.gfx-light *,html.gfx-light *::before,html.gfx-light *::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.gfx-light #pk-back,html.gfx-light #pk-front{display:none}
+html.gfx-light .sr-card{background:linear-gradient(180deg,#232a35 0%,#171c24 100%)}
+html.gfx-light .sr-bg{background:rgba(6,8,12,.72)}
+html.gfx-light .gshadow{filter:none}
+/* a vendor page or guide covers the home scene: take its canvases out of the picture so the computer stops stacking them */
+#app.covered .layer,#app.covered .gshadow{visibility:hidden}
 @media (max-width:720px){.k-content .sr-name{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.2}}
 .k-content .sr-tag{font:500 9.5px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:4px 7px;border:1px solid var(--hair-2);border-radius:999px;white-space:nowrap}
 
@@ -2166,7 +2179,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.39</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.40</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2503,6 +2516,15 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
             <button type="button" role="radio" data-lite="auto" aria-checked="false">Auto</button><button type="button" role="radio" data-lite="on" aria-checked="false">On</button><button type="button" role="radio" data-lite="off" aria-checked="false">Off</button>
           </div>
           <p class="set-s" id="set-lite-s" aria-live="polite"></p>
+        </section>
+        <section class="set rv-s" aria-labelledby="set-gfx-h">
+          <p class="lab">Display</p>
+          <h3 class="set-h" id="set-gfx-h">Graphics</h3>
+          <p class="set-p">For the full version. Auto watches how smoothly this device draws the home screen and steps down on slow computers, like work laptops and remote desktops. Balanced keeps the 3D globe but runs it lighter, with regular scrolling and flat cert cards. Light uses the still globe and turns off blur and particles, but keeps the motion.</p>
+          <div class="set-seg" id="set-gfx" role="radiogroup" aria-labelledby="set-gfx-h">
+            <button type="button" role="radio" data-gfx="auto" aria-checked="false">Auto</button><button type="button" role="radio" data-gfx="high" aria-checked="false">High</button><button type="button" role="radio" data-gfx="bal" aria-checked="false">Balanced</button><button type="button" role="radio" data-gfx="light" aria-checked="false">Light</button>
+          </div>
+          <p class="set-s" id="set-gfx-s" aria-live="polite"></p>
         </section>
         <section class="set rv-s" aria-labelledby="set-bk-h">
           <p class="lab">Your progress</p>
@@ -2953,6 +2975,22 @@ var LITE=(function(){
   }
   return {pref:pref,why:why,on:pref==="on"||(pref==="auto"&&why!=="")};
 })();
+/* ---------- Graphics quality for the full version (v2.40) ----------
+   Saved as cgcp.gfx: "high", "bal", "light", or nothing for Auto. Auto measures how smoothly the home screen draws and
+   steps down on slow computers (work laptops, remote desktops), then remembers the result for this device (cgcp.gfxa).
+   Tier 1 Balanced: globe at 1x resolution and 30 frames a second, regular scrolling, flat cert cards, no looping decorations.
+   Tier 2 Light: the still globe, no particles, no blur; motion stays. Lite mode overrides all of this. */
+var GFX=(function(){
+  /* cgcp.gfxa is "tier|time": an Auto result older than a week is checked again from High */
+  var p=null,a="";try{p=localStorage.getItem("cgcp.gfx");a=localStorage.getItem("cgcp.gfxa")||"";}catch(e){}
+  if(p!=="high"&&p!=="bal"&&p!=="light") p="auto";
+  var parts=a.split("|"), at=+parts[0]||0, when=+parts[1]||0;
+  if(at&&Date.now()-when>7*864e5) at=0;
+  var t=p==="high"?0:p==="bal"?1:p==="light"?2:Math.max(0,Math.min(2,at));
+  return {pref:p,tier:LITE.on?0:t,auto:p==="auto"&&!LITE.on,had:!!a};
+})();
+if(GFX.tier>=1) document.documentElement.classList.add("gfx-bal");
+if(GFX.tier>=2) document.documentElement.classList.add("gfx-light");
 var still={cv:null,ctx:null,R:0,lon:-40,lat:22,rings:null,on:false};   /* the still globe (see stillDraw) */
 if(LITE.on){
   reduced=true;document.documentElement.classList.add("lite");
@@ -3219,9 +3257,9 @@ function makeGridTexture(){
 }
 function init3D(){
   if(!HAS_T) return false;
-  try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true,powerPreference:"high-performance"});}catch(e){return false;}
+  try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:GFX.tier<1,alpha:true,powerPreference:"high-performance"});}catch(e){return false;}
   if(!renderer||!renderer.getContext()) return false;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  renderer.setPixelRatio(GFX.tier>=1?1:Math.min(window.devicePixelRatio||1,2));
   renderer.setClearColor(0x000000,0);
   scene=new THREE.Scene();
   camera=new THREE.PerspectiveCamera(32,1,0.01,300);
@@ -3385,12 +3423,13 @@ function addWorld(geo){
 }
 /* The map is drawn while the launch screen is still blank (before the word rises), so it is there from the start
    and its heavy one-time paint never lands mid-animation. If it arrives late, it waits until the launch screen is gone. */
-var worldP=null, splashBusy=false, lateGeo=null;
+var worldP=null, splashBusy=false, lateGeo=null, worldGeo=null;
 function loadWorld(){
   if(worldP) return worldP;
   worldP=new Promise(function(res){
     window.echarts={registerMap:function(name,geo){
       if(String(name).toLowerCase()!=="world") return;
+      worldGeo=geo;
       if(!has3D){stillGeo(geo);res();return;}
       if(splashBusy) lateGeo=geo; else addWorld(geo);
       res();
@@ -3620,7 +3659,44 @@ function updateBeacons(dt){
 }
 
 var splashCover=!!document.getElementById("splash");
+/* Auto graphics: watch about 2.5 s of the home screen at rest. Under 42 frames a second steps down to Balanced,
+   under 24 at Balanced steps down to Light. It only runs while nothing is open, and starts after the launch. */
+var gfxProbe=null, gfxTold=false, covered=false;
+function gfxStart(delay){if(!GFX.auto||!has3D||GFX.tier>=2||!finePointer) return;   /* computers with a mouse only: a phone in low power mode runs at 30 fps on purpose */
+  setTimeout(function(){gfxProbe={n:0,t0:0};},delay);}
+function gfxSample(now){
+  var p=gfxProbe;
+  if(state!=="idle"||sheetP>0||srchOpen||dragging||document.hidden||document.getElementById("splash")){p.n=0;p.t0=0;return;}
+  if(!p.t0){p.t0=now;return;}
+  p.n++;if(now-p.t0<2500) return;
+  var fps=p.n*1000/(now-p.t0);gfxProbe=null;
+  var nt=GFX.tier===0&&fps<42?1:GFX.tier===1&&fps<24?2:GFX.tier;
+  if(nt!==GFX.tier){gfxSet(nt);if(nt<2) gfxStart(1500);}
+}
+function gfxSet(t){
+  GFX.tier=t;
+  try{localStorage.setItem("cgcp.gfxa",t+"|"+Date.now());}catch(e){}
+  var h=document.documentElement;h.classList.toggle("gfx-bal",t>=1);h.classList.toggle("gfx-light",t>=2);
+  if(t>=1&&has3D&&renderer){renderer.setPixelRatio(1);resize();}
+  if(t>=2) goStill();
+  if(!gfxTold&&!GFX.had){gfxTold=true;toast("Graphics adjusted for this computer. Change it in Settings.");}
+}
+/* swap the 3D globe for the still one without a reload */
+function goStill(){
+  if(!has3D) return;
+  has3D=false;
+  canvas.removeEventListener("pointerdown",onDown);canvas.removeEventListener("pointermove",onMove);
+  canvas.removeEventListener("pointerup",onUp);canvas.removeEventListener("pointercancel",onUp);
+  try{renderer.dispose();}catch(e){}
+  stillInit();if(worldGeo) stillGeo(worldGeo);
+  resize();if(frontIdx>=0) stillFace(frontIdx);
+  var lp=$("#lite-pill");
+  if(lp){lp.classList.add("on");lp.textContent="Light";lp.setAttribute("aria-label","Light graphics are on. Open settings");
+    if(!lp._go){lp._go=1;lp.addEventListener("click",function(){goPage("settings");});}}
+}
 function frame(now){
+  if(gfxProbe) gfxSample(now);
+  if((state==="open")!==covered){covered=state==="open";app.classList.toggle("covered",covered);}
   var dt=Math.min(.05,(now-(frame.last||now))/1000);frame.last=now;tClock+=dt;frame.n=(frame.n||0)+1;
   runTweens(now);
   var kL=damp(2.6,dt), lean=(state==="idle"&&!reduced);
@@ -3633,12 +3709,12 @@ function frame(now){
     zoom+=(target-zoom)*damp(5,dt);
     camDist=baseDist*zoom*introCam.v;
   }
-  if(state!=="open"&&sheetP<.999&&!srchFull&&!(splashCover&&frame.n>3)){
+  if(state!=="open"&&sheetP<(GFX.tier>=1?.02:.999)&&!srchFull&&!(splashCover&&frame.n>3)){
     if(has3D){
       camera.position.set(0,0,camDist);camera.lookAt(0,0,0);camera.updateMatrixWorld();
       stars.rotation.set(smooth.y*.05,rotY*.06+smooth.x*.08,0);
       updateBeacons(dt);
-      renderer.render(scene,camera);
+      if(GFX.tier<1||(frame.n&1)) renderer.render(scene,camera);
     }
     if(has3D){
       var Rs=sphereR(), sw=Rs*1.7, sh=Rs*.3;
@@ -3654,7 +3730,7 @@ function frame(now){
       tt.step(dt);
     }
     var R=W<720?110:170;
-    if(!LITE.on){
+    if(!LITE.on&&GFX.tier<2){
       fieldBack.step(dt,tClock,{x:-smooth.x*24,y:-smooth.y*24},R);
       fieldFront.step(dt,tClock,{x:smooth.x*60,y:smooth.y*60},R);
     }
@@ -3805,7 +3881,7 @@ document.addEventListener("keydown",function(e){
 var lenis=null;
 function makeLenis(){
   destroyLenis();
-  if(!window.Lenis||!finePointer||reduced) return;
+  if(!window.Lenis||!finePointer||reduced||GFX.tier>=1) return;
   try{lenis=new Lenis({wrapper:panel,content:panel.querySelector(".p-inner"),duration:1.15,smoothWheel:true});}catch(e){lenis=null;}
 }
 function destroyLenis(){if(lenis){try{lenis.destroy();}catch(e){}lenis=null;}}
@@ -4773,6 +4849,11 @@ function onSheetOpen(){
 function animSheet(to,dur){
   var id=++sheetId, from=sheetP;
   if(to===1&&!sheet.classList.contains("live")) onSheetOpen();
+  if(reduced&&sheet.animate&&Math.abs(to-from)>=.001){
+    setSheet(to);
+    if(to===0){resetSheet();return Promise.resolve();}
+    return done(shScroll.animate([{opacity:0},{opacity:1}],{duration:180,easing:"ease-out"}));
+  }
   if(reduced||!sheet.animate||Math.abs(to-from)<.001){
     return tween(dur,function(k){if(id===sheetId) setSheet(from+(to-from)*k);},E.outQuart).then(function(){if(id===sheetId&&to===0) resetSheet();});
   }
@@ -14594,8 +14675,20 @@ function setEnter(){
     LITE.pref==="off"?"Lite is <b>off</b> for this device."+(has3D?"":" The 3D globe still needs WebGL, so this browser shows the still globe."):
     LITE.on?"Auto picked <b>Lite</b> for this device: "+LITE_WHY[LITE.why]+".":"Auto picked the <b>full</b> version: this device runs the 3D globe.";
   $("#set-lite-s").innerHTML=st;
+  var gs=$("#set-gfx");
+  gs.querySelectorAll("[data-gfx]").forEach(function(b){var on=b.dataset.gfx===GFX.pref;b.setAttribute("aria-checked",String(on));b.tabIndex=on?0:-1;});
+  var GN=["High","Balanced","Light"];
+  $("#set-gfx-s").innerHTML=LITE.on?"Lite mode is on, so this applies once Lite is off.":
+    GFX.pref!=="auto"?"Graphics are set to <b>"+GN[GFX.tier]+"</b> on this device.":
+    GFX.tier>0?"Auto picked <b>"+GN[GFX.tier]+"</b> for this device: the home screen was drawing slowly.":"Auto is using <b>High</b>: this device draws the home screen smoothly.";
   $("#set-sum").innerHTML=bkSumHTML(bkSummary(bkLocal()));
   ["#bk-pbox","#bk-cbox","#bk-tbox"].forEach(function(s){$(s).hidden=true;});bkPending=null;
+}
+function setGfx(v){
+  if(v===GFX.pref) return;
+  try{if(v==="auto"){localStorage.removeItem("cgcp.gfx");localStorage.removeItem("cgcp.gfxa");}else localStorage.setItem("cgcp.gfx",v);}catch(e){toast("Couldn't save that setting in this browser.");return;}
+  $("#set-gfx").querySelectorAll("[data-gfx]").forEach(function(b){b.setAttribute("aria-checked",String(b.dataset.gfx===v));});
+  setReload("Graphics set to "+({auto:"Auto",high:"High",bal:"Balanced",light:"Light"})[v]);
 }
 function setLite(v){
   if(v===LITE.pref) return;
@@ -14606,6 +14699,13 @@ function setLite(v){
 (function(){
   var seg=$("#set-lite");
   seg.addEventListener("click",function(e){var b=e.target.closest("[data-lite]");if(b) setLite(b.dataset.lite);});
+  var gseg=$("#set-gfx");
+  gseg.addEventListener("click",function(e){var b=e.target.closest("[data-gfx]");if(b) setGfx(b.dataset.gfx);});
+  gseg.addEventListener("keydown",function(e){
+    if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"&&e.key!=="ArrowDown"&&e.key!=="ArrowUp") return;
+    e.preventDefault();var bs=[].slice.call(gseg.querySelectorAll("[data-gfx]")), i=bs.indexOf(document.activeElement);
+    bs[(i+(e.key==="ArrowRight"||e.key==="ArrowDown"?1:-1)+bs.length)%bs.length].focus();
+  });
   seg.addEventListener("keydown",function(e){
     if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"&&e.key!=="ArrowDown"&&e.key!=="ArrowUp") return;
     e.preventDefault();var bs=[].slice.call(seg.querySelectorAll("[data-lite]")), i=bs.indexOf(document.activeElement);
@@ -14975,13 +15075,21 @@ function drawPoster(v,c,i,total){
   g.font="500 10px 'IBM Plex Mono', ui-monospace, monospace";g.fillStyle="rgba(255,255,255,.75)";g.textAlign="right";g.fillText(c[3],282,374);
   return cv;
 }
+var posterCache={};
+function posterSet(v,items){
+  var key=v.id+":"+items.length;if(posterCache[key]) return posterCache[key];
+  var ps=items.map(function(it,i){return drawPoster(v,it.c,i,items.length);});
+  if(!document.fonts||document.fonts.status==="loaded") posterCache[key]=ps;
+  return ps;
+}
 function makeFlex(host,v){
   var items=v.certs.map(function(c,k){return {c:c,k:k};}).sort(function(a,b){return (a.c[2]-b.c[2])||(a.k-b.k);});
   var n=items.length, titleEl=host.querySelector("#flex-title"), reels=host.querySelectorAll(".reel"), live=host.querySelector("#flex-live"), openBtn=host.querySelector("#flex-open");
   host.querySelector(".flex-total").textContent=pad2(n);
   var activeIndex=-1, hoverIdx=-1, picked=false, asideRaf=0;
   /* the roadmap panel follows the card under the mouse, else the card the user picked */
-  function syncAside(){if(asideRaf) return;asideRaf=requestAnimationFrame(function(){asideRaf=0;var i=hoverIdx>=0?hoverIdx:(picked?activeIndex:-1);asideShow(i>=0&&items[i]?items[i].c[0]:"");});}
+  function asideName(){var i=hoverIdx>=0?hoverIdx:(picked?activeIndex:-1);return i>=0&&items[i]?items[i].c[0]:"";}
+  function syncAside(){clearTimeout(asideRaf);var nm=asideName();if(nm||!asideCur) asideShow(nm);else asideRaf=setTimeout(function(){asideShow(asideName());},160);}
   function pick(){if(!picked){picked=true;syncAside();}}
   function setHover(i){if(i===hoverIdx) return;hoverIdx=i;syncAside();}
   var openedAt=0;
@@ -14994,7 +15102,7 @@ function makeFlex(host,v){
     if(!first) anim(titleEl,[{opacity:0,transform:"translateY(10px)",filter:"blur(4px)"},{opacity:1,transform:"none",filter:"blur(0px)"}],{duration:650,easing:EZ});
   }
   setActive(0);
-  var posters=items.map(function(it,i){return drawPoster(v,it.c,i,n);});
+  var posters=posterSet(v,items);
   /* mouse wheel up/down -> one card per notch. Small trackpad deltas add up first, and a short lock stops one flick from skipping several cards.
      canGo(dir) says whether there is a card that way; if not, the page gets the wheel.
      Returns +1/-1 to step, 0 to swallow (adding up, or locked), null to let the page scroll. */
@@ -15014,7 +15122,7 @@ function makeFlex(host,v){
   function fallback(){
     /* Lite mode and browsers without WebGL2: a plain row of cards. Mouse wheel, drag, the arrow buttons and the keyboard all move it. */
     var row=document.createElement("div");row.className="flex-fb";
-    posters.forEach(function(pc,i){var im=new Image();im.src=pc.toDataURL("image/png");im.alt=items[i].c[0];im.draggable=false;
+    posters.forEach(function(pc,i){var im=pc;im.className="";im.setAttribute("role","img");im.setAttribute("aria-label",items[i].c[0]);
       im.addEventListener("click",function(){if(dragMoved) return;go(i);});
       im.addEventListener("dblclick",function(){openItem(i);});
       im.addEventListener("mouseenter",function(){setHover(i);});im.addEventListener("mouseleave",function(){setHover(-1);});
@@ -15042,7 +15150,7 @@ function makeFlex(host,v){
     function endDrag(){if(!drag) return;drag=null;if(dragMoved){row.removeAttribute("data-dragging");var mid=row.scrollLeft+row.clientWidth/2,best=0,bd=1e9;Array.prototype.forEach.call(row.children,function(el,i){var dd=Math.abs(el.offsetLeft+el.offsetWidth/2-mid);if(dd<bd){bd=dd;best=i;}});go(best);setTimeout(function(){dragMoved=false;},0);}}
     row.addEventListener("pointerup",endDrag);row.addEventListener("pointercancel",endDrag);
     var fbTap=null;
-    row.addEventListener("pointerup",function(e){if(e.pointerType==="mouse") return;var im=e.target.closest("img");if(!im) return;var i=Array.prototype.indexOf.call(row.children,im),now=performance.now();
+    row.addEventListener("pointerup",function(e){if(e.pointerType==="mouse") return;var im=e.target.closest("img,canvas");if(!im) return;var i=Array.prototype.indexOf.call(row.children,im),now=performance.now();
       if(fbTap&&fbTap.i===i&&now-fbTap.t<400){fbTap=null;openItem(i);}else fbTap={i:i,t:now};});
     /* keyboard on the carousel itself: arrows, Home/End, Enter or Space opens */
     host.addEventListener("keydown",function(e){
@@ -15059,7 +15167,7 @@ function makeFlex(host,v){
     }};
   }
   var cv=document.createElement("canvas");cv.className="flex-cv";cv.setAttribute("aria-hidden","true");host.insertBefore(cv,host.firstChild);
-  var gl=null;if(!LITE.on) try{gl=cv.getContext("webgl2",{alpha:true,premultipliedAlpha:true,antialias:false,depth:false,stencil:false});}catch(e){gl=null;}
+  var gl=null;if(!LITE.on&&GFX.tier<1) try{gl=cv.getContext("webgl2",{alpha:true,premultipliedAlpha:true,antialias:false,depth:false,stencil:false});}catch(e){gl=null;}
   if(!gl){cv.remove();return fallback();}
   var CARD_VS="#version 300 es\nin vec2 position;in vec2 uv;uniform vec4 uRect;uniform vec2 uResolution;out vec2 vUv;out vec2 vLocal;\nvoid main(){vUv=uv;vLocal=vec2(position.x,-position.y)*uRect.zw;vec2 px=uRect.xy+vLocal;gl_Position=vec4(px.x/uResolution.x*2.0-1.0,1.0-px.y/uResolution.y*2.0,0.0,1.0);}";
   var CARD_FS=`#version 300 es
@@ -15374,7 +15482,7 @@ var specUntil=0;
 function specWake(){specUntil=performance.now()+1400;}
 function specStep(dt){
   var now=performance.now();
-  if(now>specUntil||LITE.on) return;
+  if(now>specUntil||LITE.on||GFX.tier>=1) return;
   var known=mouse.px>-999, vh=window.innerHeight, live=[], i, sp;
   var sheetOn=sheetP>.02, homeOn=state!=="open"&&sheetP<.98, panelOn=state==="open";
   for(i=0;i<specs.length;i++){
@@ -15431,7 +15539,7 @@ specScan(document);
 
 /* ---------- boot ---------- */
 setPalette(0);
-has3D=LITE.on?false:init3D();
+has3D=(LITE.on||GFX.tier>=2)?false:init3D();
 if(has3D){
   canvas.addEventListener("pointerdown",onDown);
   canvas.addEventListener("pointermove",onMove);
@@ -15442,11 +15550,12 @@ if(has3D){
   /* no WebGL, or Lite mode: the still globe, and a small pill by the version that opens Settings */
   stillInit();
   var lp=$("#lite-pill");
-  if(lp){lp.classList.add("on");lp.textContent=LITE.on?"Lite":"3D off";
-    lp.setAttribute("aria-label",(LITE.on?"Lite mode is on":"The 3D globe is off in this browser")+". Open settings");
-    lp.addEventListener("click",function(){goPage("settings");});}
+  if(lp){lp.classList.add("on");lp.textContent=LITE.on?"Lite":GFX.tier>=2?"Light":"3D off";
+    lp.setAttribute("aria-label",(LITE.on?"Lite mode is on":GFX.tier>=2?"Light graphics are on":"The 3D globe is off in this browser")+". Open settings");
+    lp._go=1;lp.addEventListener("click",function(){goPage("settings");});}
 }
 resize();camDist=baseDist*introCam.v;
+gfxStart(6000);
 window.addEventListener("resize",resize);
 if(window.ResizeObserver) new ResizeObserver(resize).observe(stageEl);
 
