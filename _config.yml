@@ -1,0 +1,2 @@
+# GitHub Pages build settings: serve the security contact file (folders starting with "." are skipped by default)
+include: [".well-known"]

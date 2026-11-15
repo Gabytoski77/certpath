@@ -1,0 +1,10 @@
+# Security contact for MyNextCert (https://mynextcert.com)
+# Found a security problem? Please report it privately to the address below.
+Contact: mailto:security@mynextcert.com
+Expires: 2027-11-15T00:00:00Z
+Preferred-Languages: en, es
+Canonical: https://mynextcert.com/.well-known/security.txt
+Policy: https://mynextcert.com/.well-known/security.txt
+
+# Scope: this site is static files only (no accounts, no database, no server code).
+# Please don't run automated scanners against it. Thank you!
