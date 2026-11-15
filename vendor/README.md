@@ -8,4 +8,4 @@ Served from this site so the app works on networks that block outside servers, a
 | lenis.min.js | Lenis (github.com/darkroomengineering/lenis) | 1.1.13 | MIT, see LICENSE-lenis.txt |
 | world.js | Apache ECharts world map (github.com/apache/echarts) | 4.9.0 | Apache-2.0, see LICENSE-echarts.txt and NOTICE-echarts.txt |
 
-Fonts are in ../fonts (SIL Open Font License 1.1): Inter Tight, Geist (both trimmed to the characters used), IBM Plex Mono (unmodified).
+Fonts are in ../fonts (SIL Open Font License 1.1): Inter Tight and Geist (both trimmed to the characters used), and CP Mono, a trimmed copy of IBM Plex Mono renamed because its license reserves the name "Plex" for unmodified copies.

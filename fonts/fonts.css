@@ -1,6 +1,8 @@
-/* Fonts served with the app (no outside font servers). Inter Tight and Geist are trimmed to the characters
-   the app uses; IBM Plex Mono is the unmodified original (its license reserves the name "Plex"). SIL OFL 1.1, see OFL-*.txt. */
+/* Fonts served with the app (no outside font servers). SIL OFL 1.1, see OFL-*.txt.
+   Inter Tight and Geist are trimmed to the characters the app uses.
+   "CP Mono" is IBM Plex Mono by IBM Corp., trimmed the same way. Its license reserves the name "Plex" for unmodified copies,
+   so the trimmed copy has its own name. Any character it lacks falls back to the next font in the list. */
 @font-face{font-family:"Inter Tight";font-style:normal;font-weight:100 900;font-display:swap;src:url("inter-tight.woff") format("woff")}
 @font-face{font-family:"Geist";font-style:normal;font-weight:100 900;font-display:swap;src:url("geist.woff") format("woff")}
-@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url("IBMPlexMono-Regular.ttf") format("truetype")}
-@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url("IBMPlexMono-Medium.ttf") format("truetype")}
+@font-face{font-family:"CP Mono";font-style:normal;font-weight:400;font-display:swap;src:url("cp-mono-regular.woff") format("woff")}
+@font-face{font-family:"CP Mono";font-style:normal;font-weight:500;font-display:swap;src:url("cp-mono-medium.woff") format("woff")}

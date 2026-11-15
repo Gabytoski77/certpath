@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at 'sha256-xhTu66uLDM6nkC/FORaABtucF7Ova68MT0LyFA+iNUY=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://certpath.goatcounter.com; font-src 'self'; connect-src 'self' https://certpath.goatcounter.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-DlR6rIHGt/8RYXQrV4sMBkjEt6RVEPhxZsKi0L1Z3W0=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://certpath.goatcounter.com; font-src 'self'; connect-src 'self' https://certpath.goatcounter.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -60,7 +60,7 @@
   --gl-rim:rgba(255,255,255,.42);
   --f-ui:"Geist", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --f-serif:"Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --f-mono:"CP Mono","IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   color-scheme:dark;
 }
 html,body{height:100%;overscroll-behavior:none}
@@ -71,7 +71,7 @@ body{position:fixed;inset:0;width:100%}
   animation:spFail .5s ease 7s forwards;cursor:default}
 #splash.out{pointer-events:none}
 #sp-cv{position:absolute;inset:0;width:100%;height:100%;display:block}
-.sp-meta{position:absolute;left:0;top:0;width:0;height:0;opacity:0;pointer-events:none;font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+.sp-meta{position:absolute;left:0;top:0;width:0;height:0;opacity:0;pointer-events:none;font-family:"CP Mono","IBM Plex Mono",ui-monospace,Menlo,monospace}
 .sp-top{position:absolute;left:0;bottom:14px;margin:0;display:flex;justify-content:space-between;gap:20px;width:100%;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8d97a5;white-space:nowrap}
 .sp-top span:first-child{color:#c9d0d9}
 .sp-brand{display:inline-flex;align-items:center;gap:8px}
@@ -2179,7 +2179,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.40</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.41</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2616,8 +2616,30 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   </div>
 </div>
 
-<script src="vendor/three.min.js"></script>
-<script src="vendor/lenis.min.js"></script>
+<script>
+/* Libraries load only when they'll be used (v2.41). The 3D globe (three.js) is skipped in Lite mode and with Light graphics,
+   which draw the still globe; smooth scrolling (Lenis) only runs with a mouse on High graphics. These checks mirror the Lite and
+   Graphics settings further down, and the graphics probe result is handed on in window.__cpProbe so it only runs once. */
+(function(){
+  function ls(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+  var lite=ls("cgcp.lite"), gfx=ls("cgcp.gfx"), ga=(ls("cgcp.gfxa")||"").split("|"), on=lite==="on", tier=0;
+  if(!on&&lite!=="off"){
+    var p={ok:false,soft:false,r:""};
+    try{var c=document.createElement("canvas"), g=c.getContext("webgl")||c.getContext("experimental-webgl");
+      if(g){p.ok=true;
+        try{var x=g.getExtension("WEBGL_debug_renderer_info");p.r=String(g.getParameter(x?x.UNMASKED_RENDERER_WEBGL:g.RENDERER)||"");}catch(e){}
+        p.soft=/swiftshader|llvmpipe|softpipe|software|basic render|mesa offscreen/i.test(p.r);
+        try{var lc=g.getExtension("WEBGL_lose_context");if(lc) lc.loseContext();}catch(e){}}
+    }catch(e){}
+    window.__cpProbe=p;
+    on=!p.ok||p.soft||!!(navigator.connection&&navigator.connection.saveData);
+  }
+  if(!on){var at=+ga[0]||0;if(at&&Date.now()-(+ga[1]||0)>7*864e5) at=0;tier=gfx==="high"?0:gfx==="bal"?1:gfx==="light"?2:Math.max(0,Math.min(2,at));}
+  var mm=function(q){return !!(window.matchMedia&&matchMedia(q).matches);};
+  if(!on&&tier<2) document.write('<script src="vendor/three.min.js"><\/script>');
+  if(!on&&tier<1&&mm("(pointer: fine)")&&!mm("(prefers-reduced-motion: reduce)")) document.write('<script src="vendor/lenis.min.js"><\/script>');
+})();
+</script>
 <script>
 (function(){
 "use strict";
@@ -2956,6 +2978,7 @@ var reduced=!!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)")
    or when the browser asks to save data. Lite: no 3D globe (a still one instead), no particles, no launch animation,
    no blur, no smooth scrolling, calm motion everywhere. Everything else works the same. */
 function probeGL(){
+  if(window.__cpProbe) return window.__cpProbe;
   try{
     var c=document.createElement("canvas"), g=c.getContext("webgl")||c.getContext("experimental-webgl");
     if(!g) return {ok:false,soft:false,r:""};
@@ -3150,7 +3173,7 @@ function makeGlyphs(){
     var c=document.createElement("canvas");c.width=c.height=64;var x=c.getContext("2d");
     x.fillStyle="#e3e9f0";
     if(g==="sq"){x.fillRect(25,25,14,14);}
-    else{x.font="500 46px 'IBM Plex Mono', ui-monospace, monospace";x.textAlign="center";x.textBaseline="middle";x.fillText(g,32,35);}
+    else{x.font="500 46px 'CP Mono','IBM Plex Mono', ui-monospace, monospace";x.textAlign="center";x.textBaseline="middle";x.fillText(g,32,35);}
     out[g]=c;
   });
   return out;
@@ -3241,7 +3264,7 @@ function drawBadge(cv,v){
   g.textAlign="center";g.textBaseline="middle";
   g.fillStyle=tint(v.beacon,.72);g.shadowColor=v.beacon;g.shadowBlur=S*.05;
   g.fillText(v.short,c,c-S*.02);g.shadowBlur=0;
-  g.font="500 "+(S*.048)+"px 'IBM Plex Mono', ui-monospace, monospace";
+  g.font="500 "+(S*.048)+"px 'CP Mono','IBM Plex Mono', ui-monospace, monospace";
   g.fillStyle=v.beacon;g.fillText(pad2(vNum(v))+(v.id==="colleges"?" SCHOOLS":" CERTS"),c,c+S*.105);
 }
 
@@ -3319,7 +3342,7 @@ function init3D(){
   });
 
   if(document.fonts&&document.fonts.load){
-    Promise.race([Promise.all([document.fonts.load("700 40px Geist"),document.fonts.load("500 12px 'IBM Plex Mono'")]),wait(2500)]).then(function(){
+    Promise.race([Promise.all([document.fonts.load("700 40px Geist"),document.fonts.load("500 12px 'CP Mono','IBM Plex Mono'")]),wait(2500)]).then(function(){
       beacons.forEach(function(b,i){drawBadge(b.bc,VENDORS[i]);b.btex.needsUpdate=true;});
       GLYPH=makeGlyphs();
     });
@@ -14769,7 +14792,7 @@ function liteWatch(){
 function makeTechText(cv,cvF){
   var ctx=cv.getContext("2d"), ctxF=cvF?cvF.getContext("2d"):null, disc={x:0,y:0,r:0};
   var S={text:"CertPath",family:"'Inter Tight','Geist',system-ui,-apple-system,sans-serif",weight:700,ls:-.055,ink:"#f3f5f8",accent:"#ffffff",dash:4,gap:2,stroke:1.5,specks:14,bounce:.4,introDur:2.6};
-  var LABEL="10px 'IBM Plex Mono',ui-monospace,Menlo,monospace", SPRING=320, KICK_DECAY=.62;
+  var LABEL="10px 'CP Mono','IBM Plex Mono',ui-monospace,Menlo,monospace", SPRING=320, KICK_DECAY=.62;
   var W=1,H=1,dpr=1,cy=0,hdrB=0,box=null,word=null,glyphs=[],frame={x1:0,y1:0,x2:0,y2:0,alpha:0,index:-1},lens={x:0,y:0},ptr={x:0,y:0,inside:false};
   var sweepHold=0,drag=-1,grabP={x:0,y:0},kicks=[],clock=0,pulse=0,placed=false,introT=0,fontsOK=!document.fonts,dirty=true,press=null;
   function ap(c,t,dt,sec){return c+(t-c)*(1-Math.exp(-dt/sec));}
@@ -15062,7 +15085,7 @@ function drawPoster(v,c,i,total){
   g.textBaseline="alphabetic";
   g.font="600 8.5px Geist, system-ui, sans-serif";g.fillStyle="rgba(255,255,255,.62)";
   var lbl=v.name.toUpperCase().split("").join(String.fromCharCode(8202));g.fillText(lbl,18,28);
-  g.font="500 9.5px 'IBM Plex Mono', ui-monospace, monospace";g.textAlign="right";g.fillText(pad2(i+1)+" / "+pad2(total),282,28);
+  g.font="500 9.5px 'CP Mono','IBM Plex Mono', ui-monospace, monospace";g.textAlign="right";g.fillText(pad2(i+1)+" / "+pad2(total),282,28);
   var q8t=q8Top(c[0]),pl=is8140(c[0])?"8140 \u00b7 "+(q8t?Q8_LVN[q8t]:"Enablers").toUpperCase():"";if(pl){g.font="600 8.5px Geist, system-ui, sans-serif";var tw=g.measureText(pl).width+16;g.strokeStyle=q8t==="A"?"#8fd2ff":q8t==="I"?"#c9dbea":q8t==="B"?"#8ca5ba":"rgba("+A+",.8)";g.lineWidth=1;
     g.beginPath();if(g.roundRect) g.roundRect(282-tw+.5,40.5,tw,17,8.5); else g.rect(282-tw+.5,40.5,tw,17);g.stroke();g.fillStyle="#fff";g.textAlign="center";g.fillText(pl,282-tw/2,52);}
   g.textAlign="left";
@@ -15072,7 +15095,7 @@ function drawPoster(v,c,i,total){
   g.font="600 8.5px Geist, system-ui, sans-serif";g.fillStyle="rgba(255,255,255,.55)";g.fillText(c[1].toUpperCase(),18,338);
   g.fillStyle="rgba(255,255,255,.12)";g.fillRect(18,352,264,1);
   for(var k=0;k<5;k++){g.fillStyle=k<d?acc:"rgba(255,255,255,.14)";g.fillRect(18+k*19,370,15,3);}
-  g.font="500 10px 'IBM Plex Mono', ui-monospace, monospace";g.fillStyle="rgba(255,255,255,.75)";g.textAlign="right";g.fillText(c[3],282,374);
+  g.font="500 10px 'CP Mono','IBM Plex Mono', ui-monospace, monospace";g.fillStyle="rgba(255,255,255,.75)";g.textAlign="right";g.fillText(c[3],282,374);
   return cv;
 }
 var posterCache={};

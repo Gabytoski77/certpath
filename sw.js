@@ -1,12 +1,13 @@
 /* CG Cert Path service worker: makes the site installable and usable offline.
    Change VERSION whenever you upload a new index.html so phones pick it up quickly. */
-var VERSION = "certpath-v51";
-/* everything the app needs lives on this site (no outside servers), so it is all cached on install */
+var VERSION = "certpath-v52";
+/* everything the app needs lives on this site (no outside servers). The page, map and fonts are cached on install;
+   three.js and Lenis are saved the first time they're used (Lite mode never loads them). */
 var SHELL = [ "manifest.webmanifest", "icon-192.png", "icon-512.png",
              "icon-maskable-512.png", "apple-touch-icon.png", "favicon.png",
-             "vendor/three.min.js", "vendor/lenis.min.js", "vendor/world.js",
+             "vendor/world.js",
              "fonts/fonts.css", "fonts/inter-tight.woff", "fonts/geist.woff",
-             "fonts/IBMPlexMono-Regular.ttf", "fonts/IBMPlexMono-Medium.ttf"];
+             "fonts/cp-mono-regular.woff", "fonts/cp-mono-medium.woff"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) {
