@@ -18,7 +18,7 @@ Quiz and PBQ questions are original.
 1. Replace `index.html` with the new version (Add file → Upload files).
 2. In `sw.js`, bump `VERSION` (for example `certpath-v1` → `certpath-v2`) so installed copies refresh.
 
-Everything the app needs to run is served from this repo. The only outside service is GoatCounter (gc.zgo.at and certpath.goatcounter.com), which counts visits; if a network blocks it, the app still works. Libraries are in `vendor/` (three.js, Lenis, ECharts world map) and fonts in `fonts/` (Inter Tight, Geist, IBM Plex Mono), each with its license. The page locks itself down with a Content Security Policy.
+Everything the app needs to run is served from this repo; it loads nothing from outside servers. Libraries are in `vendor/` (three.js, Lenis, ECharts world map) and fonts in `fonts/` (Inter Tight, Geist, and CP Mono, a trimmed copy of IBM Plex Mono), each with its license. The page locks itself down with a Content Security Policy.
 
 ## Disclaimer
 
@@ -26,7 +26,7 @@ Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by
 
 ## Your data
 
-Your data stays on your device. CertPath has no accounts and sets no cookies; your progress is saved in your browser and you can clear it anytime. It counts visits with GoatCounter, which is cookie-free and doesn't track you across sites: it records page views and which tabs, vendors and guides are opened, not who you are. The site is hosted on GitHub Pages, which keeps standard server logs.
+Your data stays on your device. CertPath has no accounts, no analytics and no cookies; your progress is saved in your browser and you can clear it anytime. The site is hosted on GitHub Pages, which keeps standard server logs.
 
 ## License
 

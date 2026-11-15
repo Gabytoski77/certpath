@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-DlR6rIHGt/8RYXQrV4sMBkjEt6RVEPhxZsKi0L1Z3W0=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://certpath.goatcounter.com; font-src 'self'; connect-src 'self' https://certpath.goatcounter.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-6ise5Gb0z+PIToXDWKawmmTaTzdFoQLsIcB/nevP724=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>CG Cert Path</title>
 <meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1797,7 +1797,7 @@ html.kbd .touch-only{display:none}
   .g-ports{grid-template-columns:repeat(2,minmax(0,1fr))}
   .g-ex.wide .g-ports{grid-template-columns:minmax(0,1fr)}
   .g-ex.wide .g-ports li{grid-template-columns:86px minmax(0,1fr)}
-  .g-rows li{grid-template-columns:max(38px,var(--kw,0px)) minmax(0,1fr)}
+  .g-rows li{grid-template-columns:max(38px,min(var(--kw,0px),38%)) minmax(0,1fr)}
   .g-rows small{grid-column:2}
   .g-net svg{display:none}
   .g-net svg.g-net-v{display:block}
@@ -1920,9 +1920,15 @@ html.gfx-light #pk-back,html.gfx-light #pk-front{display:none}
 html.gfx-light .sr-card{background:linear-gradient(180deg,#232a35 0%,#171c24 100%)}
 html.gfx-light .sr-bg{background:rgba(6,8,12,.72)}
 html.gfx-light .gshadow{filter:none}
+/* Small phones (v2.42 stress test). Settings switches fit a 320 px screen; the Overview mini cards and Countdown's
+   date and time fit too; quick-reference keys may wrap; very long guide titles use a smaller size. */
+@media (max-width:420px){.set-seg{max-width:100%}.set-seg button{min-width:0;padding:10px 12px}}
+@media (max-width:360px){.mini-title{font-size:19px;padding:16px 12px 0}.mini .pc-top{padding:11px 12px;flex-wrap:wrap;row-gap:4px}.ex-row{grid-template-columns:minmax(0,1fr)}}
+.g-rows b{overflow-wrap:anywhere}
+.p-hero h2.long{font-size:clamp(34px,6vw,72px)}
 /* a vendor page or guide covers the home scene: take its canvases out of the picture so the computer stops stacking them */
 #app.covered .layer,#app.covered .gshadow{visibility:hidden}
-@media (max-width:720px){.k-content .sr-name{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.2}}
+@media (max-width:720px){.sr-name{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.2}}
 .k-content .sr-tag{font:500 9.5px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:4px 7px;border:1px solid var(--hair-2);border-radius:999px;white-space:nowrap}
 
 /* press feedback for touch: snaps in on press, eases back out on release */
@@ -2179,7 +2185,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.41</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.42</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -3920,7 +3926,7 @@ function splitTitle(name){
   return name.split(" ").map(function(w){return '<span class="w">'+Array.from(w).map(function(c){return '<span class="ch">'+c+'</span>';}).join("")+'</span>';}).join(" ");
 }
 function openPanel(i,certName){
-  current=i;cpHit("vendor-"+(VENDORS[i]&&VENDORS[i].short||i));
+  current=i;
   panel.innerHTML=
    '<div class="p-inner"><div class="p-frame">'+
     '<header class="p-top"><span class="p-mark" aria-hidden="true"></span><button type="button" class="p-back" id="p-back"><span class="ar">&larr;</span><span class="pb-l">Globe</span></button>'+
@@ -3965,7 +3971,7 @@ function renderBody(i){
         '<p class="pa-meta"><span>'+gEsc(c[3])+'</span>'+(is8140(c[0])?'<span>DoD 8140 &middot; '+(q8Top(c[0])?Q8_LVN[q8Top(c[0])]:'Enabler roles')+'</span>':'')+'<span class="'+(g?'g':'')+'">'+(g?(finePointer?'Guide ready &middot; click again to open':'Guide ready &middot; tap again to open'):'Guide coming soon')+'</span></p></div>';}).join("")+
     '</div></aside></div>'+
     '<div class="flex pr" id="flex" tabindex="0" role="region" aria-roledescription="carousel" aria-label="'+v.name+' certifications">'+
-      '<span class="flex-hint lab">'+(finePointer?'Scroll, drag or use &larr; &rarr; &nbsp;&middot;&nbsp; click to focus &nbsp;&middot;&nbsp; click again to open':'Drag &nbsp;&middot;&nbsp; tap to focus &nbsp;&middot;&nbsp; tap again to open')+'</span>'+
+      '<span class="flex-hint lab">'+(finePointer?'Scroll, drag or use &larr; &rarr; &nbsp;&middot;&nbsp; click to focus &nbsp;&middot;&nbsp; click again to open':'Swipe &nbsp;&middot;&nbsp; tap twice to open')+'</span>'+
       '<button type="button" class="flex-arr flex-prev" aria-label="Previous certification"><span aria-hidden="true">&larr;</span></button>'+
       '<button type="button" class="flex-arr flex-next" aria-label="Next certification"><span aria-hidden="true">&rarr;</span></button>'+
       '<div class="flex-cap"><span class="flex-title" id="flex-title"></span>'+
@@ -4119,7 +4125,7 @@ function revealBody(dir,base){
 }
 async function switchVendor(dir,to,g){
   if(state!=="open"||switching) return;
-  switching=true;cpHit("vendor-"+(VENDORS[to]&&VENDORS[to].short||to));
+  switching=true;
   var n=(to!=null)?to:(current+dir+VENDORS.length)%VENDORS.length, body=panel.querySelector("#p-body");
   current=n;
   morphPalette(n,1000);
@@ -4830,8 +4836,6 @@ function placeTab(){
   var t=sheet.querySelector('.tabs [aria-selected="true"]'), ind=sheet.querySelector(".tab-ind");
   if(!ind) return;ind.style.opacity=t?"":"0";if(!t) return;ind.style.transform="translateX("+t.offsetLeft+"px) scaleX("+(t.offsetWidth/100)+")";
 }
-/* anonymous usage counts (GoatCounter, live site only; does nothing in the preview) */
-function cpHit(p){try{var g=window.goatcounter;if(g&&g.count) g.count({path:p,title:p,event:true});}catch(e){}}
 function setTabs(name){var cur=null;sheet.querySelectorAll(".tabs [data-go]").forEach(function(b){var on=b.dataset.go===name;b.setAttribute("aria-selected",String(on));if(on) cur=b;});placeTab();
   var bar=sheet.querySelector(".tabs");if(cur&&bar&&bar.scrollWidth>bar.clientWidth+2){
     /* keep the picked tab and its neighbors in view, so the next tab (like CG COOL after Paths) shows without a swipe */
@@ -4839,10 +4843,16 @@ function setTabs(name){var cur=null;sheet.querySelectorAll(".tabs [data-go]").fo
     var l=(pv?pv.offsetLeft:cur.offsetLeft)-m, r=(nx?nx.offsetLeft+nx.offsetWidth:cur.offsetLeft+cur.offsetWidth)+m-bar.clientWidth;
     var t=bar.scrollLeft;if(t>l) t=l;if(t<r) t=Math.min(r,cur.offsetLeft-16);t=Math.max(0,Math.min(t,bar.scrollWidth-bar.clientWidth));
     if(Math.abs(t-bar.scrollLeft)>1) bar.scrollTo({left:t,behavior:reduced?"auto":"smooth"});}}
+function fitTitle(){
+  var h=$("#ed-title");if(!h) return;h.style.fontSize="";
+  var cw=h.clientWidth, sw=h.scrollWidth;
+  if(cw>0&&sw>cw+1){var fs=parseFloat(getComputedStyle(h).fontSize)||52;h.style.fontSize=Math.max(26,Math.floor(fs*cw/sw*.97))+"px";}
+}
+window.addEventListener("resize",function(){fitTitle();});
 function swapTitle(txt){
   var h=$("#ed-title");
   var a=anim(h,[{opacity:1,transform:"none"},{opacity:0,transform:"translateY(-12px)"}],{duration:220,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"});
-  done(a).then(function(){h.textContent=txt;if(a) a.cancel();anim(h,[{opacity:0,transform:"translateY(16px)"},{opacity:1,transform:"none"}],{duration:900,easing:EZ});});
+  done(a).then(function(){h.textContent=txt;fitTitle();if(a) a.cancel();anim(h,[{opacity:0,transform:"translateY(16px)"},{opacity:1,transform:"none"}],{duration:900,easing:EZ});});
 }
 function revealIn(el,base){
   el.querySelectorAll(".rv-s").forEach(function(x,n){
@@ -4903,13 +4913,13 @@ function openSheet(){if(state!=="idle") return Promise.resolve();return animShee
 function closeSheet(){return animSheet(0,580);}
 function resetSheet(){
   sheet.classList.remove("live");fundPane="ta";
-  if(shView!=="home"){$("#sv-"+shView).hidden=true;$("#sv-"+shView).classList.remove("drawn");$("#sv-home").hidden=false;shView="home";$("#ed-title").textContent=TITLES.home;setTabs("home");}
+  if(shView!=="home"){$("#sv-"+shView).hidden=true;$("#sv-"+shView).classList.remove("drawn");$("#sv-home").hidden=false;shView="home";$("#ed-title").textContent=TITLES.home;fitTitle();setTabs("home");}
   shScroll.scrollTop=0;
 }
 async function showView(name){
   if(name===shView) return;
   var cur=$("#sv-"+shView), nx=$("#sv-"+name), dir=ORDER.indexOf(name)>ORDER.indexOf(shView)?1:-1;
-  shView=name;setTabs(name);swapTitle(TITLES[name]);cpHit("tab-"+name);
+  shView=name;setTabs(name);swapTitle(TITLES[name]);
   await done(anim(cur,[{opacity:1,transform:"none"},{opacity:0,transform:"translateX("+(-dir*36)+"px)"}],{duration:260,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"}));
   cur.hidden=true;cur.classList.remove("drawn");if(cur.getAnimations) cur.getAnimations().forEach(function(a){a.cancel();});
   nx.hidden=false;
@@ -13690,7 +13700,6 @@ var G_SECS=[["obj","Objectives"],["plan","Study plan"],["res","Resources"],["qui
 var G_ICON_EXT='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
 
 function renderGuide(i,name){
-  cpHit("guide-"+name);
   var G=GUIDES[name], v=VENDORS[i], body=panel.querySelector("#p-body");
   guideName=name;panel.classList.add("in-guide");gSet("cgcp.last",{k:"g",g:name,t:Date.now()});
   if(flex){flex.destroy();flex=null;}
@@ -13704,7 +13713,7 @@ function renderGuide(i,name){
   var h='';
   h+='<nav class="g-nav pr" aria-label="Guide sections"><button type="button" class="g-nav-back" id="g-nav-back" aria-label="Back to '+gEsc(v.name)+'"><span class="ar" aria-hidden="true">&larr;</span><span class="gb-full">'+gEsc(v.name)+'</span><span class="gb-short" aria-hidden="true">'+gEsc(v.short)+'</span></button><span class="g-nav-lab" aria-hidden="true">Jump to</span><div class="g-nav-in" id="g-nav">'+G_SECS.map(function(s,k){return '<button type="button" data-sec="'+s[0]+'"'+(k?'':' aria-current="true"')+'><span>'+pad2(k+1)+'</span>'+s[1]+'</button>';}).join("")+'<span class="g-nav-ind" aria-hidden="true"></span></div></nav>';
   h+='<div class="p-hero g-hero"><div class="p-hero-main"><p class="p-eyebrow pr"><span>'+gEsc(v.name)+'</span> / '+gEsc(c[1])+' &nbsp;&middot;&nbsp; Cert guide</p>'+
-     '<h2 id="p-title" aria-label="'+gEsc(G.title||name)+'"><span aria-hidden="true">'+splitTitle((G.title||name)+".")+'</span></h2>'+
+     '<h2 id="p-title"'+((G.title||name).length>26?' class="long"':'')+' aria-label="'+gEsc(G.title||name)+'"><span aria-hidden="true">'+splitTitle((G.title||name)+".")+'</span></h2>'+
      '<p class="g-lead pr">'+gEsc(G.lead)+'</p></div>'+
      '<aside class="p-aside pr g-ver"><p class="lab">'+gEsc(G.verLabel||"Exam version")+'</p>'+
      (Object.keys(G.versions).length>1?'<div class="seg g-vseg" role="group" aria-label="'+gEsc(G.verLabel||"Exam version")+'">'+Object.keys(G.versions).map(function(k){var V=G.versions[k];return '<button type="button" data-ver="'+k+'" aria-pressed="'+(k===gVer)+'">'+V.label+' &middot; '+V.code+'</button>';}).join("")+'<span class="seg-ind" aria-hidden="true"></span></div>':'<p class="g-vone">'+gEsc(G.versions[gVer].label)+' &middot; '+gEsc(G.versions[gVer].code)+'</p>')+
@@ -14416,7 +14425,7 @@ async function srchPick(e){
 function setViewNow(name){
   if(name===shView){if(name==="exam") exEnter();return;}
   var cur=$("#sv-"+shView);cur.hidden=true;cur.classList.remove("drawn");
-  $("#sv-"+name).hidden=false;shView=name;setTabs(name);$("#ed-title").textContent=TITLES[name];cpHit("tab-"+name);
+  $("#sv-"+name).hidden=false;shView=name;setTabs(name);$("#ed-title").textContent=TITLES[name];fitTitle();
   if(name==="mine") mpEnter();
   if(name==="compare"){cmp.open=null;cmp.q="";cmpRender(false);}
   if(name==="paths") ptRender(false);
@@ -15774,7 +15783,6 @@ function runSplash(){
 </script>
 
 </body></html>
-<script data-goatcounter="https://certpath.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
 /* app updates: check for a new version every time the app opens, and reload once when it arrives */
 if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){
