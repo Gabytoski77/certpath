@@ -1,10 +1,10 @@
 /* MyNextCert service worker: makes the site installable and usable offline.
    Change VERSION whenever you upload a new index.html so phones pick it up quickly. */
-var VERSION = "certpath-v54";
+var VERSION = "certpath-v55";
 /* everything the app needs lives on this site (no outside servers). The page, map and fonts are cached on install;
    three.js and Lenis are saved the first time they're used (Lite mode never loads them). */
 var SHELL = [ "manifest.webmanifest", "icon-192.png", "icon-512.png",
-             "icon-maskable-512.png", "apple-touch-icon.png", "favicon.png",
+             "icon-maskable-512.png", "apple-touch-icon.png", "favicon.png", "favicon-96.png",
              "vendor/world.js",
              "fonts/fonts.css", "fonts/inter-tight.woff", "fonts/geist.woff",
              "fonts/cp-mono-regular.woff", "fonts/cp-mono-medium.woff"];
