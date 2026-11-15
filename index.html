@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-LDDb0HVZm1InkkhQQAojBAGSm4s6Rpo/o5C1cVUUtdM=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-LHKOx2i+YkSzA5MynRC5SGox0g7Z3cGRnXggcwvvz5E=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -18,17 +18,23 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="MyNextCert">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta property="og:title" content="MyNextCert">
-<meta property="og:description" content="Certifications, career paths and funding for Coast Guard IT.">
+<meta property="og:title" content="MyNextCert: IT cert paths for Coast Guard IT">
+<meta property="og:description" content="Free study guides, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Not an official U.S. Coast Guard site.">
+<meta property="og:locale" content="en_US">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MyNextCert">
 <meta property="og:url" content="https://mynextcert.com/">
 <meta property="og:image" content="https://mynextcert.com/og-image.jpg">
+<meta property="og:image:secure_url" content="https://mynextcert.com/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="MyNextCert: Plan the path. Earn the cert.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MyNextCert: IT cert paths for Coast Guard IT">
+<meta name="twitter:description" content="Free study guides, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT.">
 <meta name="twitter:image" content="https://mynextcert.com/og-image.jpg">
+<meta name="twitter:image:alt" content="MyNextCert: Plan the path. Earn the cert.">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="preload" href="fonts/inter-tight.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="fonts/geist.woff" as="font" type="font/woff" crossorigin>
@@ -2229,12 +2235,27 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
 .q8-none{margin:0;font:400 12px/1.5 var(--f-ui);color:var(--ink-3)}
 .q8-none a{color:var(--ink-2)}
 .q8-more{background:none;border:0;padding:4px 0;font:600 10px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);justify-self:start}
-.q8-ladder{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--hair);display:grid;gap:10px}
-.q8-ladder ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.q8-ladder li{display:inline-flex;align-items:center;gap:8px}
-.q8-ladder li+li::before{content:"\2192";color:var(--ink-3);font-size:13px}
-.q8-ladder .q8-cp{gap:7px;padding-left:5px}
-.q8-ladder .q8-cp.here::after{display:none}
+/* two routes up a role (v2.47) */
+.q8-routes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0 0;padding-top:16px;border-top:1px solid var(--hair)}
+.q8-route{display:grid;gap:10px;align-content:start;padding:14px;border-radius:12px;background:rgba(0,0,0,.18);border:1px solid var(--hair);min-width:0}
+.q8-route .lab{margin:0}
+.q8-route ol{list-style:none;margin:0;padding:0}
+.q8-fast{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:center;gap:4px 12px}
+.q8-fast li{display:contents}
+.q8-fl{display:inline-flex;align-items:center;gap:7px;font:600 11px/1 var(--f-ui);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.q8-fast small{margin-bottom:8px}
+.q8-fast li:last-child small{margin-bottom:0}
+.q8-fl b{font-weight:600}
+.q8-fast .q8-cp{justify-self:start}
+.q8-fast small{grid-column:2;font:500 11px/1.4 var(--f-mono);color:var(--ink-3);overflow-wrap:anywhere}
+.q8-found{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.q8-found li{display:inline-flex;align-items:center;gap:8px}
+.q8-found li+li::before{content:"\2192";color:var(--ink-3);font-size:13px}
+.q8-found .q8-cp{gap:7px;padding-left:5px}
+.q8-route .q8-cp.here::after{display:none}
+.q8-base{display:inline-flex;align-items:center;height:20px;padding:0 6px;border-radius:999px;border:1px dashed var(--hair-2);font:600 9px/1 var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.q8-rn{margin:0;font:400 12px/1.55 var(--f-ui);color:var(--ink-3)}
+@media (max-width:720px){.q8-routes{grid-template-columns:1fr}}
 .q8-note{margin:14px 0 0;font:400 12px/1.55 var(--f-ui);color:var(--ink-3)}
 .q8-certs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
 .q8-certs button{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 13px 0 6px;border-radius:999px;border:1px solid var(--hair-2);font:600 12.5px/1 var(--f-ui);color:var(--ink-2);transition:background .25s var(--ez),border-color .25s var(--ez),color .25s var(--ez)}
@@ -2309,7 +2330,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.46</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.47</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2982,7 +3003,7 @@ function vNum(v){return v.id==="colleges"?COLLEGES.length:v.certs.length;}
    V3.0 matches V2.1 for the 17 roles mapped before and adds cert options for 212, 421, 462, 611, 622 and 723.
    Only approved options; anything marked Pending (*) is left out. Lists use MyNextCert's own cert names where the
    cert has a guide here, else the matrix's short name (full names in Q8_FULL).
-   B/I/A = Basic / Intermediate / Advanced. [] = none listed (431 has no cert option above Basic; 212, 421, 612 and 723 none at Basic). null would mean "not read yet".
+   B/I/A = Basic / Intermediate / Advanced. [] = none listed (431 has no cert option above Basic; 212, 421, 611, 612 and 723 none at Basic). The build checks these lists against .github/data/dod8140-v3.0.json. null would mean "not read yet".
    A cert listed at a higher level also covers the lower levels of the same work role, never other roles. */
 var Q8={ver:"V3.0",eff:"Oct 5, 2026",checked:"Nov 13, 2026",
   url:"https://www.cyberworkforce.mil/DoD-8140/Document-Library/",
@@ -3035,7 +3056,7 @@ var Q8_ROLES={
   "462":{n:"Control Systems Security Specialist",el:"cs",d:"Secures industrial control systems: the OT that runs engineering plants, power and utilities.",
     B:["SecurityX"],I:["CISSP","GCIP","GICSP","GMON"],A:["GRID"]},
   "611":{n:"Authorizing Official / Designated Representative",el:"cs",d:"The senior official who accepts a system's risk and signs its authorization to operate (ATO).",
-    B:["GSLC"],I:["CCSP","CGRC","Cloud+","GSEC"],A:["CCISO","CISM","CISSP","CISSP-ISSEP","CISSP-ISSMP","FITSP-M","GCSA","GSLC"]},
+    B:[],I:["CCSP","CGRC","Cloud+","GSEC"],A:["CCISO","CISM","CISSP","CISSP-ISSEP","CISSP-ISSMP","FITSP-M","GCSA","GSLC"]},
   "622":{n:"Secure Software Assessor",el:"cs",d:"Reviews software and code for security flaws before it is approved for use.",
     B:["GCLD"],I:["CSC","CSSLP","GCSA","GSEC","Security+"],A:["CISSP-ISSEP"]},
   "723":{n:"COMSEC Manager",el:"cs",d:"Manages a command's communications security: crypto keys, COMSEC gear and accounts.",
@@ -5110,16 +5131,73 @@ function q8Here8140(){   /* MyNextCert certs on the matrix, strongest first, the
 }
 function q8Off(){var out=[];for(var i=0;i<VENDORS.length-1;i++) VENDORS[i].certs.forEach(function(c){if(!is8140(c[0])) out.push(c);});return out;}
 function q8Short(n){return String(n).split(" · ")[0];}
-/* the easiest MyNextCert cert listed at each level of a role */
-function q8Ladder(R){
+/* v2.47: two ways up a work role.
+   Fastest to qualify: for each level, the quickest MyNextCert cert that covers it (a cert at a higher level covers the lower ones).
+   Best foundation: the Coast Guard IT trunk (A+ -> Network+ -> Security+) as far as it counts for the role, then the cert that
+   counts for the most work roles at each level above it. Both only use certs with a guide here. */
+function q8Lv(R,c){for(var i=Q8_LV.length-1;i>=0;i--){if((R[Q8_LV[i]]||[]).indexOf(c)>=0) return Q8_LV[i];}return "";}
+function q8Exams(n){var G=GUIDES[n];if(!G||!G.planAll) return 1;return Object.keys(G.versions).filter(function(k){return !/^In development/i.test(G.versions[k].status||"");}).length||1;}
+function q8Fee(n){   /* total exam fee in US$ for the whole cert (A+ and LPIC need two exams); 0 = unknown */
+  var G=GUIDES[n], v=0;if(!G) return 0;
+  (G.facts||[]).forEach(function(x){if(x[0]==="Voucher"){var m=String(x[1]).replace(/,/g,"").match(/\$\s?(\d+)/);if(m) v=+m[1];}});
+  return v*q8Exams(n);
+}
+function q8Fast(R){
   var out=[];
-  Q8_LV.forEach(function(l){
-    /* easiest first; on a tie, the cert that counts for more work roles, then fewer study hours */
-    var best=null;(R[l]||[]).forEach(function(c){if(!q8Here(c)) return;var f=findCert(c);if(!f.c) return;var h=mpHours(c), n=q8Roles(c).length;
-      if(!best||f.c[2]<best.d||(f.c[2]===best.d&&(n>best.n2||(n===best.n2&&h<best.h)))) best={n:c,d:f.c[2],h:h,n2:n};});
-    if(best) out.push({l:l,n:best.n});
+  Q8_LV.forEach(function(l,i){
+    var best=null;
+    Q8_LV.slice(i).forEach(function(at){(R[at]||[]).forEach(function(c){
+      if(!q8Here(c)||!findCert(c).c) return;
+      var h=mpHours(c), fee=q8Fee(c)||1e6;
+      if(!best||h<best.h||(h===best.h&&(fee<best.fee||(fee===best.fee&&q8Roles(c).length>q8Roles(best.n).length)))) best={n:c,at:at,h:h,fee:fee};
+    });});
+    if(!best) return;
+    var last=out[out.length-1];
+    if(last&&last.n===best.n) last.ls.push(l); else out.push({n:best.n,at:best.at,ls:[l]});
   });
   return out;
+}
+function q8Found(R){
+  var steps=[], top=-1, lastT=-1;
+  TRUNK.forEach(function(t,i){if(q8Lv(R,t[0])) lastT=i;});
+  var upto=lastT<0?TRUNK.length-1:lastT;
+  for(var i=0;i<=upto;i++){var n=TRUNK[i][0], l=q8Lv(R,n);steps.push({n:n,l:l});if(l) top=Math.max(top,Q8_LV.indexOf(l));}
+  for(var j=top+1;j<Q8_LV.length;j++){
+    var lv=Q8_LV[j], best=null;
+    (R[lv]||[]).forEach(function(c){
+      if(!q8Here(c)||steps.some(function(s){return s.n===c;})) return;
+      var f=findCert(c);if(!f.c) return;
+      var n2=q8Roles(c).length, h=mpHours(c);
+      if(!best||n2>best.n2||(n2===best.n2&&(f.c[2]<best.d||(f.c[2]===best.d&&h<best.h)))) best={n:c,n2:n2,d:f.c[2],h:h};
+    });
+    if(best){steps.push({n:best.n,l:lv});top=j;}
+  }
+  return top<0?[]:steps;
+}
+function q8Money(v){return "$"+String(v).replace(/\B(?=(\d{3})+(?!\d))/g,",");}
+function q8Cost(n){   /* "20–40 h · $199" */
+  var f=findCert(n), fee=q8Fee(n), ex=q8Exams(n);
+  return [f.c?String(f.c[3]):"", fee?q8Money(fee)+(ex>1?" ("+ex+" exams)":""):""].filter(Boolean).join(" · ");
+}
+function q8RoutesHtml(R){
+  var fast=q8Fast(R), found=q8Found(R);
+  if(!fast.length) return "";
+  var h='<div class="q8-routes">';
+  h+='<section class="q8-route"><p class="lab">Fastest to qualify</p><ol class="q8-fast">'+fast.map(function(x){
+    var lv=x.ls.map(function(l){return Q8_LVN[l];}).join(" and "), cover=x.at!==x.ls[0];
+    return '<li><span class="q8-fl">'+q8Badge(x.ls[x.ls.length-1],"s")+'<b>'+gEsc(lv)+'</b></span>'+
+      '<button type="button" class="q8-cp here" data-gcert="'+gEsc(x.n)+'">'+gEsc(q8Short(x.n))+'</button>'+
+      '<small>'+gEsc(q8Cost(x.n))+(cover?' · listed at '+gEsc(Q8_LVN[x.at])+', which covers it':'')+'</small></li>';
+  }).join("")+'</ol><p class="q8-rn">The quickest cert here for each level. Meets the billet requirement soonest.</p></section>';
+  if(found.length){
+    var hrs=0, fee=0, ex=0, feeKnown=true;
+    found.forEach(function(s){hrs+=mpHours(s.n);var v=q8Fee(s.n);if(v) fee+=v;else feeKnown=false;ex+=q8Exams(s.n);});
+    h+='<section class="q8-route"><p class="lab">Best foundation</p><ol class="q8-found">'+found.map(function(s){
+      return '<li><button type="button" class="q8-cp here" data-gcert="'+gEsc(s.n)+'">'+(s.l?q8Badge(s.l,"s"):'<span class="q8-base" title="Builds the base. Not listed for this work role.">base</span>')+gEsc(q8Short(s.n))+'</button></li>';
+    }).join("")+'</ol><p class="q8-rn">The Coast Guard IT trunk first, then the cert that counts for the most work roles at each level above it. Slower, but it builds toward the higher levels. All of it: '+
+      ex+' exams, about '+hrs+' study hours'+(feeKnown&&fee?', '+q8Money(fee)+' in exam fees':'')+'.</p></section>';
+  }
+  return h+'</div>';
 }
 function q8Chip(c,extra){
   if(q8Here(c)) return '<button type="button" class="q8-cp here'+(extra?" "+extra:"")+'" data-gcert="'+gEsc(c)+'" aria-label="'+gEsc(c)+', open its guide">'+gEsc(q8Short(c))+'</button>';
@@ -5144,8 +5222,7 @@ function q8RoleCard(code){
     h+='</div>';
   });
   h+='</div>';
-  var lad=q8Ladder(R);
-  if(lad.length) h+='<div class="q8-ladder"><p class="lab">Easiest MyNextCert route up this role</p><ol>'+lad.map(function(x){return '<li><button type="button" class="q8-cp here" data-gcert="'+gEsc(x.n)+'">'+q8Badge(x.l,"s")+gEsc(q8Short(x.n))+'</button></li>';}).join("")+'</ol></div>';
+  h+=q8RoutesHtml(R);
   h+='<p class="q8-note">Highlighted certs have a full guide here; tap one to open it. A cert at a higher level also covers the lower levels of this role. A degree or a listed training course can also qualify you; see the official matrix.</p></article>';
   return h;
 }
@@ -5748,7 +5825,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
     var short=String(name).split(" \u00b7 ")[0], seen={}, parts=[];
     Object.keys(G.versions).forEach(function(k){
       var V=G.versions[k], st=vStatus(V.status||""), m, note="";
-      if(!V.code||seen[V.code]||/^In development/i.test(st)) return;seen[V.code]=1;
+      if(!V.code||seen[V.code]||/^(In development|Retired)/i.test(st)) return;seen[V.code]=1;
       if((m=/^(?:Launches|Starts) ([A-Z][a-z]{2} \d{1,2}, \d{4})/.exec(st))) note="from "+m[1];
       else if((m=/(?:until|retires|last day) ([A-Z][a-z]{2}(?: \d{1,2},)? \d{4})/i.exec(st))) note="until "+m[1];
       parts.push(E(V.code)+(note?'<small>'+E(note)+'</small>':''));
@@ -6659,7 +6736,7 @@ GUIDES["CySA+"]={
           ["Describe security operations, incident response reporting, and communication","Incident documentation, post-incident reviews, and metrics like detection time, response time and remediation effectiveness."]]}
       ]},
     v3:{code:"CS0-003",label:"V3",status:"Available until Dec 22, 2026 (English)",
-      note:"The outgoing version, with the most study material. Only pick it if you can test before it retires on December 22, 2026. Both versions earn the same CySA+.",
+      note:"The outgoing version. CompTIA stops selling its official English study material on November 22, 2026, and the English exam retires December 22, 2026 (Japanese, Portuguese and Spanish run until March 23, 2027). Only pick it if you can test before then. Both versions earn the same CySA+.",
       numbered:true,
       domains:[
         {n:"1.0",name:"Security Operations",w:33,obj:[
@@ -6814,7 +6891,8 @@ GUIDES["CySA+"]={
   sources:[
     ["CompTIA CySA+ (V4): exam details and objectives","https://www.comptia.org/en/certifications/cybersecurity-analyst/v4/"],
     ["CompTIA CySA+ CS0-003 (V3) exam objectives","https://www.comptia.jp/pdf/CompTIA%20CySA%2B%20CS0-003%20Exam%20Objectives.pdf"],
-    ["ExamCert: CS0-003 retirement date (Dec 22, 2026)","https://www.examcert.app/blog/cysa-cs0-003-to-cs0-004-what-changed/"],
+    ["CompTIA CySA+ (V3): retirement dates (English Dec 22, 2026; translations Mar 23, 2027)","https://www.comptia.org/en-us/certifications/cybersecurity-analyst/v3/"],
+    ["CompTIA CySA+: V3 English learning products retire Nov 22, 2026","https://www.comptia.org/en-us/certifications/cybersecurity-analyst/"],
     ["CompTIA: CySA+ renewal (60 CEUs)","https://www.comptia.org/en/resources/ce/renew-options/renewing-cysa-multiple/"],
     ["Crucial Exams: 2026 voucher prices","https://crucialexams.com/posts/blog/comptia-voucher-price-increase-2026"]]
 };
@@ -14186,6 +14264,8 @@ window.addEventListener("resize",function(){if(!guideName) return;panel.querySel
 /* v2.44: an exam date written as "Launches Nov 17, 2026" or "Starts Feb 3, 2027" reads as past tense once that day comes */
 function vStatus(st){
   st=String(st||"");
+  var r=/(?:^|· )(?:Available until|retires|last day) ([A-Z][a-z]{2} \d{1,2}, \d{4})/i.exec(st);
+  if(r){var e=new Date(r[1]);if(!isNaN(e)&&Date.now()>=e.getTime()+864e5) return "Retired "+r[1]+st.slice(r.index+r[0].length);}
   var m=/^(Launches|Starts) ([A-Z][a-z]{2} \d{1,2}, \d{4})/.exec(st);if(!m) return st;
   var d=new Date(m[2]);if(isNaN(d)||Date.now()<d.getTime()) return st;
   return (m[1]==="Launches"?"Launched ":"Since ")+m[2]+st.slice(m[0].length);

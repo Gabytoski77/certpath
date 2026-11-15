@@ -9,6 +9,7 @@ Uses only the Python standard library, so there is nothing to install.
 """
 import base64
 import hashlib
+import json
 import os
 import re
 import subprocess
@@ -159,6 +160,175 @@ def check_404():
         ok("404.html is present, links home, runs no scripts and has a strict CSP")
 
 
+# ---------- DoD 8140 data against the pinned matrix (v2.47) ----------
+PINNED_8140 = os.path.join(".github", "data", "dod8140-v3.0.json")
+
+
+def js_value(text, i=0):
+    """Read one JavaScript literal (object, array, string, number, true/false/null) starting at text[i].
+    Object keys may be bare names or quoted. Returns (value, index after it). Never runs any code."""
+    def skip(i):
+        while i < len(text):
+            if text[i] in " \t\r\n":
+                i += 1
+            elif text.startswith("/*", i):
+                i = text.index("*/", i) + 2
+            elif text.startswith("//", i):
+                i = text.index("\n", i) + 1
+            else:
+                break
+        return i
+
+    def string(i):
+        q, i, out = text[i], i + 1, []
+        while text[i] != q:
+            if text[i] == "\\":
+                out.append(text[i + 1])
+                i += 2
+            else:
+                out.append(text[i])
+                i += 1
+        return "".join(out), i + 1
+
+    i = skip(i)
+    c = text[i]
+    if c == "{":
+        obj, i = {}, skip(i + 1)
+        while text[i] != "}":
+            if text[i] in "\"'":
+                key, i = string(i)
+            else:
+                m = re.compile(r"[A-Za-z_$][\w$]*").match(text, i)
+                key, i = m.group(0), m.end()
+            i = skip(i)
+            assert text[i] == ":", "expected ':' at %d" % i
+            obj[key], i = js_value(text, i + 1)
+            i = skip(i)
+            if text[i] == ",":
+                i = skip(i + 1)
+        return obj, i + 1
+    if c == "[":
+        arr, i = [], skip(i + 1)
+        while text[i] != "]":
+            v, i = js_value(text, i)
+            arr.append(v)
+            i = skip(i)
+            if text[i] == ",":
+                i = skip(i + 1)
+        return arr, i + 1
+    if c in "\"'":
+        return string(i)
+    m = re.compile(r"-?\d+(\.\d+)?|true|false|null").match(text, i)
+    assert m, "unexpected %r at %d" % (text[i:i + 20], i)
+    t = m.group(0)
+    return {"true": True, "false": False, "null": None}.get(t, float(t) if "." in t else int(t) if t[0] in "-0123456789" else t), m.end()
+
+
+def js_var(html, name):
+    m = re.search(r"\bvar %s\s*=\s*" % re.escape(name), html)
+    if not m:
+        return None
+    return js_value(html, m.end())[0]
+
+
+def check_dod8140():
+    # 7. The DoD 8140 work-role data and version label match the pinned matrix (Ideas & Fixes #9)
+    if not os.path.isfile(PINNED_8140):
+        fail(f"{PINNED_8140} is missing, so the DoD 8140 data can't be checked")
+        return
+    with open(PINNED_8140, encoding="utf-8") as f:
+        pin = json.load(f)
+    with open("index.html", encoding="utf-8") as f:
+        html = f.read()
+    before = len(failures)
+    try:
+        q8, roles, todo, enonly = (js_var(html, n) for n in ("Q8", "Q8_ROLES", "Q8_TODO", "Q8_ENONLY"))
+    except Exception as e:  # a malformed literal
+        fail(f"DoD 8140 data in index.html could not be read: {e}")
+        return
+    if not q8 or not roles:
+        fail("index.html has no Q8 / Q8_ROLES data")
+        return
+    if q8.get("ver") != pin["version"]:
+        fail(f"DoD 8140 version label is {q8.get('ver')!r}, the pinned matrix is {pin['version']!r}")
+    for label in sorted(set(re.findall(r"Matrix V\d+(?:\.\d+)?", html))):
+        if label != "Matrix " + pin["version"]:
+            fail(f"index.html still mentions '{label}' (pinned matrix is {pin['version']})")
+    site, want = set(roles), set(pin["roles"])
+    for code in sorted(want - site):
+        fail(f"DoD 8140 role {code} is in the pinned matrix but not on the site")
+    for code in sorted(site - want):
+        fail(f"DoD 8140 role {code} is on the site but not in the pinned matrix")
+    for code in sorted(site & want):
+        R, P = roles[code], pin["roles"][code]
+        if R.get("el") != P["element"]:
+            fail(f"DoD 8140 role {code}: element {R.get('el')!r}, pinned {P['element']!r}")
+        for lv in ("B", "I", "A"):
+            got = R.get(lv)
+            if got is None:
+                fail(f"DoD 8140 role {code} {pin['levels'][lv]}: not filled in on the site")
+                continue
+            if len(got) != len(set(got)):
+                fail(f"DoD 8140 role {code} {pin['levels'][lv]}: a cert is listed twice")
+            extra, missing = sorted(set(got) - set(P[lv])), sorted(set(P[lv]) - set(got))
+            if extra:
+                fail(f"DoD 8140 role {code} {pin['levels'][lv]}: site lists {', '.join(extra)}, not in the pinned matrix")
+            if missing:
+                fail(f"DoD 8140 role {code} {pin['levels'][lv]}: pinned matrix lists {', '.join(missing)}, missing on the site")
+    todo_codes = {r[0] for el in (todo or {}).values() for r in el}
+    if todo_codes != set(pin["no_cert_option"]):
+        fail(f"roles shown as 'no cert option' {sorted(todo_codes)} differ from the pinned {sorted(pin['no_cert_option'])}")
+    if sorted((enonly or {}).keys()) != sorted(pin["enabler_only_certs"]):
+        fail("Q8_ENONLY (certs approved only in Enabler roles) differs from the pinned matrix")
+    if len(failures) == before:
+        n = sum(len(P[lv]) for P in pin["roles"].values() for lv in ("B", "I", "A"))
+        ok(f"DoD 8140 data matches the pinned matrix {pin['version']} ({len(want)} roles, {n} cert listings)")
+
+
+def jpeg_size(path):
+    """(width, height) of a baseline or progressive JPEG, read from its SOF marker."""
+    with open(path, "rb") as f:
+        data = f.read()
+    i = 2
+    while i < len(data) - 9:
+        if data[i] != 0xFF:
+            i += 1
+            continue
+        marker, length = data[i + 1], int.from_bytes(data[i + 2:i + 4], "big")
+        if marker in (0xC0, 0xC1, 0xC2):
+            return int.from_bytes(data[i + 7:i + 9], "big"), int.from_bytes(data[i + 5:i + 7], "big")
+        i += 2 + length
+    return None
+
+
+def check_share_preview():
+    # 8. Link previews in Teams, iMessage, email and social apps (Ideas & Fixes #13)
+    with open("index.html", encoding="utf-8") as f:
+        head = f.read().split("</head>")[0]
+    meta = dict(re.findall(r'<meta (?:property|name)="((?:og|twitter):[\w:]+)" content="([^"]*)"', head))
+    before = len(failures)
+    for key in ("og:title", "og:description", "og:type", "og:url", "og:image", "og:image:width", "og:image:height",
+                "og:image:alt", "twitter:card"):
+        if not meta.get(key):
+            fail(f"share preview: <meta {key}> is missing or empty")
+    for key in ("og:url", "og:image", "twitter:image"):
+        v = meta.get(key, "")
+        if v and not v.startswith("https://mynextcert.com/"):
+            fail(f"share preview: {key} should be an https://mynextcert.com/ address, not {v}")
+    img = meta.get("og:image", "").replace("https://mynextcert.com/", "")
+    if img:
+        if not os.path.isfile(img):
+            fail(f"share preview: {img} is missing")
+        else:
+            if os.path.getsize(img) > 300 * 1024:
+                fail(f"share preview: {img} is over 300 KB (some apps then skip the picture)")
+            size = jpeg_size(img) if img.lower().endswith((".jpg", ".jpeg")) else None
+            if size and (str(size[0]), str(size[1])) != (meta.get("og:image:width"), meta.get("og:image:height")):
+                fail(f"share preview: {img} is {size[0]}x{size[1]} but the tags say {meta.get('og:image:width')}x{meta.get('og:image:height')}")
+    if len(failures) == before:
+        ok("share preview tags are complete and point at mynextcert.com")
+
+
 def sw_version(text):
     m = re.search(r'var\s+VERSION\s*=\s*"(certpath-v\d+)"', text)
     return m.group(1) if m else None
@@ -216,6 +386,8 @@ def check_bump(version):
 def main():
     check_index()
     check_404()
+    check_dod8140()
+    check_share_preview()
     version = check_sw()
     check_bump(version)
     print()

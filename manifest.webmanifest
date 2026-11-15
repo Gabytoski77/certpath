@@ -1,7 +1,7 @@
 {
   "name": "MyNextCert",
   "short_name": "MyNextCert",
-  "description": "Certifications, career paths and funding for Coast Guard IT.",
+  "description": "Free study guides, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

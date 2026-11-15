@@ -1,0 +1,557 @@
+{
+ "_about": "Pinned copy of the DoD 8140 Foundational Qualification Matrix V3.0 certification options for the IT (Cyberspace) and Cybersecurity work roles MyNextCert maps. Approved options only (Pending entries left out). The site check (.github/scripts/check_site.py) fails the build if the site's version label or role lists drift from this file. When DoD publishes a new matrix, replace this file from the official XLSX first, then update the site.",
+ "matrix": "DoD 8140 Foundational Qualification Matrix",
+ "version": "V3.0",
+ "official_source": "https://www.cyberworkforce.mil/DoD-8140/Document-Library/ (Qualification Matrix V3.0, uploaded Oct 23, 2026)",
+ "checked": "2026-11-15",
+ "checked_against": "Published V3.0 tables and the 'DoD 8140 check' tab of the Ideas & Fixes sheet (Nov 13, 2026), which agree with each other on every list here. Not yet compared cell by cell with the official V3.0 XLSX (cyberworkforce.mil is not reachable from the build sandbox): do that whenever it can be opened.",
+ "levels": {
+  "B": "Basic",
+  "I": "Intermediate",
+  "A": "Advanced"
+ },
+ "roles": {
+  "212": {
+   "name": "Cyber Defense Forensics Analyst",
+   "element": "cs",
+   "B": [],
+   "I": [
+    "CHFI",
+    "RCCE L1"
+   ],
+   "A": [
+    "CFR",
+    "CySA+",
+    "GCFA",
+    "GCFE",
+    "GREM",
+    "PenTest+"
+   ]
+  },
+  "411": {
+   "name": "Technical Support Specialist",
+   "element": "it",
+   "B": [
+    "A+",
+    "CC",
+    "GFACT",
+    "Network+",
+    "Security+"
+   ],
+   "I": [
+    "CND",
+    "GSEC"
+   ],
+   "A": [
+    "CCNP Security",
+    "CISA",
+    "FITSP-O",
+    "GICSP",
+    "SSCP",
+    "SecurityX"
+   ]
+  },
+  "421": {
+   "name": "Database Administrator",
+   "element": "it",
+   "B": [],
+   "I": [
+    "Cloud+",
+    "GSEC",
+    "SSCP",
+    "Security+"
+   ],
+   "A": [
+    "CCNP Security",
+    "CISA",
+    "CISSP",
+    "CISSP-ISSAP",
+    "CISSP-ISSEP",
+    "SecurityX"
+   ]
+  },
+  "431": {
+   "name": "Knowledge Manager",
+   "element": "it",
+   "B": [
+    "CC",
+    "Security+"
+   ],
+   "I": [],
+   "A": []
+  },
+  "441": {
+   "name": "Network Operations Specialist",
+   "element": "it",
+   "B": [
+    "CC",
+    "CND",
+    "Cloud+",
+    "GFACT",
+    "GSEC",
+    "Network+",
+    "Security+"
+   ],
+   "I": [
+    "CCSP",
+    "CEH",
+    "GCIH",
+    "GICSP",
+    "GMON",
+    "SSCP"
+   ],
+   "A": [
+    "CCNA",
+    "CCNP Security",
+    "GCED",
+    "GCIA",
+    "GCLD",
+    "GDSA",
+    "SecurityX"
+   ]
+  },
+  "451": {
+   "name": "System Administrator",
+   "element": "it",
+   "B": [
+    "A+",
+    "CND",
+    "GFACT",
+    "GSEC",
+    "Linux+",
+    "Network+"
+   ],
+   "I": [
+    "CCSP",
+    "Cloud+",
+    "GICSP",
+    "SSCP",
+    "Security+"
+   ],
+   "A": [
+    "CCNP Security",
+    "CISSP-ISSAP",
+    "FITSP-O",
+    "SecurityX"
+   ]
+  },
+  "462": {
+   "name": "Control Systems Security Specialist",
+   "element": "cs",
+   "B": [
+    "SecurityX"
+   ],
+   "I": [
+    "CISSP",
+    "GCIP",
+    "GICSP",
+    "GMON"
+   ],
+   "A": [
+    "GRID"
+   ]
+  },
+  "511": {
+   "name": "Cyber Defense Analyst",
+   "element": "cs",
+   "B": [
+    "CC",
+    "CEH",
+    "GFACT",
+    "GISF"
+   ],
+   "I": [
+    "CEH(P)",
+    "Cloud+",
+    "FITSP-O",
+    "GCED",
+    "GDSA",
+    "GMON",
+    "GRID",
+    "GSEC",
+    "PenTest+",
+    "Security+"
+   ],
+   "A": [
+    "CCNA Cybersecurity",
+    "CFR",
+    "CySA+",
+    "GCFA",
+    "GCIA",
+    "GICSP"
+   ]
+  },
+  "521": {
+   "name": "Cyber Defense Infrastructure Support Specialist",
+   "element": "cs",
+   "B": [
+    "A+",
+    "CC",
+    "CND",
+    "GCLD",
+    "GDSA",
+    "GFACT",
+    "Network+"
+   ],
+   "I": [
+    "CEH",
+    "Cloud+",
+    "CySA+",
+    "GMON",
+    "GRID",
+    "GSEC",
+    "PenTest+",
+    "SSCP",
+    "Security+"
+   ],
+   "A": [
+    "CISSP-ISSAP",
+    "CISSP-ISSEP",
+    "GCIA",
+    "GICSP"
+   ]
+  },
+  "531": {
+   "name": "Cyber Defense Incident Responder",
+   "element": "cs",
+   "B": [
+    "CC",
+    "GDSA",
+    "GISF"
+   ],
+   "I": [
+    "CCNA Cybersecurity",
+    "CCSP",
+    "CEH",
+    "CEH(P)",
+    "Cloud+",
+    "ECIH",
+    "FITSP-O",
+    "GCED",
+    "GCIH",
+    "GRID",
+    "GSEC",
+    "PenTest+",
+    "RCCE L1",
+    "Security+"
+   ],
+   "A": [
+    "CFR",
+    "CySA+",
+    "GCFA",
+    "GCIA",
+    "GICSP"
+   ]
+  },
+  "541": {
+   "name": "Vulnerability Assessment Analyst",
+   "element": "cs",
+   "B": [
+    "CEH"
+   ],
+   "I": [
+    "CEH(P)",
+    "CPTE",
+    "Cloud+",
+    "FITSP-A",
+    "GCED",
+    "GCIH",
+    "GCSA",
+    "GICSP",
+    "GSEC",
+    "PenTest+",
+    "RCCE L1",
+    "Security+"
+   ],
+   "A": [
+    "CFR",
+    "CISA",
+    "CISM",
+    "CySA+",
+    "GPEN",
+    "GSNA"
+   ]
+  },
+  "611": {
+   "name": "Authorizing Official / Designated Representative",
+   "element": "cs",
+   "B": [],
+   "I": [
+    "CCSP",
+    "CGRC",
+    "Cloud+",
+    "GSEC"
+   ],
+   "A": [
+    "CCISO",
+    "CISM",
+    "CISSP",
+    "CISSP-ISSEP",
+    "CISSP-ISSMP",
+    "FITSP-M",
+    "GCSA",
+    "GSLC"
+   ]
+  },
+  "612": {
+   "name": "Security Control Assessor",
+   "element": "cs",
+   "B": [],
+   "I": [
+    "CGRC",
+    "CISSO",
+    "Cloud+",
+    "FITSP-A",
+    "GCSA",
+    "GSEC",
+    "PenTest+",
+    "Security+",
+    "SecurityX"
+   ],
+   "A": [
+    "CCISO",
+    "CISA",
+    "CISM",
+    "CISSP",
+    "CISSP-ISSEP",
+    "CySA+",
+    "GSLC",
+    "GSNA"
+   ]
+  },
+  "622": {
+   "name": "Secure Software Assessor",
+   "element": "cs",
+   "B": [
+    "GCLD"
+   ],
+   "I": [
+    "CSC",
+    "CSSLP",
+    "GCSA",
+    "GSEC",
+    "Security+"
+   ],
+   "A": [
+    "CISSP-ISSEP"
+   ]
+  },
+  "631": {
+   "name": "Information Systems Security Developer",
+   "element": "cs",
+   "B": [
+    "CC",
+    "CND",
+    "GISF",
+    "SSCP"
+   ],
+   "I": [
+    "CCSP",
+    "CSC",
+    "Cloud+",
+    "GCLD",
+    "GCSA",
+    "GSEC",
+    "SecurityX"
+   ],
+   "A": [
+    "CISSP-ISSEP",
+    "FITSP-D"
+   ]
+  },
+  "632": {
+   "name": "Systems Developer",
+   "element": "it",
+   "B": [
+    "CND",
+    "GISF",
+    "GSEC"
+   ],
+   "I": [
+    "CCSP",
+    "CSSLP",
+    "GCLD",
+    "GCSA"
+   ],
+   "A": [
+    "FITSP-D",
+    "SSCP"
+   ]
+  },
+  "641": {
+   "name": "Systems Requirements Planner",
+   "element": "it",
+   "B": [
+    "CC",
+    "CND",
+    "GSEC",
+    "Security+"
+   ],
+   "I": [
+    "CCSP",
+    "CFR",
+    "CSSLP",
+    "FITSP-M",
+    "SSCP"
+   ],
+   "A": [
+    "CISSP",
+    "CISSP-ISSAP",
+    "CISSP-ISSEP",
+    "GCSA",
+    "GSLC",
+    "SecurityX"
+   ]
+  },
+  "651": {
+   "name": "Enterprise Architect",
+   "element": "it",
+   "B": [
+    "CND"
+   ],
+   "I": [
+    "CCSP",
+    "CRISC",
+    "CSSLP",
+    "Cloud+",
+    "FITSP-D",
+    "GDSA",
+    "GSEC",
+    "SecurityX"
+   ],
+   "A": [
+    "CISSO",
+    "CISSP",
+    "CISSP-ISSAP",
+    "CISSP-ISSEP",
+    "GCIA",
+    "GCLD",
+    "GCSA",
+    "GICSP"
+   ]
+  },
+  "652": {
+   "name": "Security Architect",
+   "element": "cs",
+   "B": [
+    "GCLD",
+    "GISF"
+   ],
+   "I": [
+    "CCSP",
+    "CISSO",
+    "CSSLP",
+    "Cloud+",
+    "FITSP-D",
+    "GCSA",
+    "GMON",
+    "GSEC",
+    "SecurityX"
+   ],
+   "A": [
+    "CCNP Enterprise",
+    "CISM",
+    "CISSP-ISSAP",
+    "CISSP-ISSEP",
+    "GCIA",
+    "GDSA",
+    "GICSP"
+   ]
+  },
+  "661": {
+   "name": "Research and Development Specialist",
+   "element": "it",
+   "B": [
+    "CC",
+    "SSCP"
+   ],
+   "I": [
+    "CCSP",
+    "CEH",
+    "CEH(P)",
+    "Security+"
+   ],
+   "A": [
+    "CISSP-ISSEP",
+    "CSSLP",
+    "GCLD",
+    "RCCE L1",
+    "SecurityX"
+   ]
+  },
+  "671": {
+   "name": "System Testing and Evaluation Specialist",
+   "element": "it",
+   "B": [
+    "CND",
+    "Network+",
+    "Security+"
+   ],
+   "I": [
+    "CEH",
+    "CFR",
+    "CGRC",
+    "Cloud+",
+    "GSEC",
+    "PenTest+",
+    "SSCP"
+   ],
+   "A": [
+    "CCSP"
+   ]
+  },
+  "722": {
+   "name": "Information Systems Security Manager",
+   "element": "cs",
+   "B": [
+    "CC"
+   ],
+   "I": [
+    "CCISO",
+    "CCSP",
+    "CGRC",
+    "CISSO",
+    "Cloud+",
+    "GCSA",
+    "GMON",
+    "GSEC",
+    "SSCP",
+    "Security+",
+    "SecurityX"
+   ],
+   "A": [
+    "CISM",
+    "CISSP",
+    "CISSP-ISSMP",
+    "FITSP-M",
+    "GCIA",
+    "GCIH",
+    "GICSP",
+    "GSLC"
+   ]
+  },
+  "723": {
+   "name": "COMSEC Manager",
+   "element": "cs",
+   "B": [],
+   "I": [
+    "GSEC"
+   ],
+   "A": [
+    "CISM",
+    "CISSO",
+    "FITSP-M",
+    "GCIH",
+    "GCSA",
+    "GICSP",
+    "GSLC"
+   ]
+  }
+ },
+ "no_cert_option": {
+  "452": "Secure Configuration Specialist",
+  "633": "System Security Engineer",
+  "721": "Information Systems Security Officer"
+ },
+ "enabler_only_certs": []
+}
