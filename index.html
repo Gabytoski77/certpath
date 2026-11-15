@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-lWnyv9HFQMAaofsa2xKuqU9ZfrF9x6i+BucZWXdPxjw=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-B/LkFS6ffB6nnch05z7+HR+9GyWZU4QL8cfOBn6k9f8=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -1380,7 +1380,7 @@ html.kbd .touch-only{display:none}
   .p-srch{width:32px;padding:0;justify-content:center}
   .p-srch .ps-l{display:none}
   #srch{padding-top:calc(var(--sat) + 12px);padding-bottom:12px}
-  .sr-card{border-radius:16px}
+  .sr-card{border-radius:16px;transform:translateY(-8px)}   /* v2.45: slide only, no scale: scaling a blurred panel re-blurs it every frame on phones */
   .sr-head{padding:14px 14px 12px 16px;gap:10px}
   #srch-in{font-size:19px}
   .sr-chips{padding:10px 16px}
@@ -2205,7 +2205,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.44</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.45</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -5584,12 +5584,12 @@ $("#sv-cool").addEventListener("click",function(e){
 function tabsEdge(){var b=sheet.querySelector(".tabs");if(!b) return;var x=b.scrollLeft, m=b.scrollWidth-b.clientWidth;b.classList.toggle("more-l",x>2);b.classList.toggle("more-r",m>2&&x<m-2);}
 sheet.querySelector(".tabs").addEventListener("scroll",tabsEdge,{passive:true});
 window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeTab();tabsEdge();});
-/* v2.44: in-app browsers (Google app, Instagram, Teams) can change the safe-area insets or the visible area
-   without firing resize; re-place the sheet whenever either changes */
+/* v2.44: in-app browsers (Google app, Instagram, Teams) can change the safe-area insets without firing resize;
+   re-place the sheet when they change. v2.45: closed, that's one style write (no layout reads, no spectrum wake-up),
+   and the keyboard's visualViewport events no longer touch the sheet, so opening search stays smooth */
 (function(){
-  function again(){if(!shAnims) setSheet(sheetP);}
+  function again(){if(shAnims) return;if(sheetP<=0){if(sheet.style.transform) sheet.style.transform="";return;}setSheet(sheetP);}
   if(window.ResizeObserver) try{new ResizeObserver(again).observe(safeProbe,{box:"border-box"});}catch(e){}
-  if(window.visualViewport) visualViewport.addEventListener("resize",again);
   window.addEventListener("pageshow",again);
 })();
 /* privacy page (v2.44): a dialog, so it works offline and in the installed app; mynextcert.com/#privacy opens it */
@@ -14471,7 +14471,7 @@ function srchShow(from,kbd){
   srchIn.focus({preventScroll:true});
   srchFit();
   srchRender(true,true);
-  srchT=setTimeout(function(){if(srchOpen) srchFull=true;},520);
+  srchFull=true;   /* v2.45: stop drawing the globe right away; it sits frozen under the blurred panel, so the open animation and keyboard get the whole frame */
   /* build the in-guide index while the panel animates in, so the first letter typed doesn't wait for it */
   if(!CIDX){var bi=function(){if(srchOpen) cIndex();};if(window.requestIdleCallback) requestIdleCallback(bi,{timeout:700});else setTimeout(bi,350);}
 }
