@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-B/LkFS6ffB6nnch05z7+HR+9GyWZU4QL8cfOBn6k9f8=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-LDDb0HVZm1InkkhQQAojBAGSm4s6Rpo/o5C1cVUUtdM=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -713,6 +713,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
   .tab-x{display:none}
   .tab-s{display:inline}
 }
+.ps-cta{margin:26px 0 0}
 .fine{margin:22px 0 0;font:400 11.5px/1.65 var(--f-ui);color:#5c6169;max-width:80ch}
 /* privacy page (v2.44) */
 .pv-link{color:inherit;text-decoration:underline;text-underline-offset:2px;text-decoration-color:rgba(255,255,255,.3)}
@@ -731,6 +732,109 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .pv-x{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:var(--ink);font:400 22px/1 var(--f-ui);cursor:pointer}
 .pv-x:hover{background:rgba(255,255,255,.1)}
 @media (max-width:720px){.pv-in{padding:18px 18px 22px;font-size:13.5px}.pv h2{font-size:26px}}
+
+/* acronym lookup in search (v2.46) */
+.sr-def{margin:8px 4px 2px;padding:14px 16px 15px;border-radius:14px;border:1px solid rgba(255,255,255,.11);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03))}
+.sr-dm{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;gap:3px 12px;margin-top:9px}
+.sr-dm+.sr-dm{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)}
+.sr-dm b{font:700 19px/1.1 var(--f-disp);letter-spacing:-.01em;color:#fff}
+.sr-dm span{font:600 14.5px/1.3 var(--f-disp);letter-spacing:-.01em;color:#dfe3e9;overflow-wrap:anywhere}
+.sr-dm p{grid-column:1/-1;margin:3px 0 0;font:400 13px/1.55 var(--f-ui);color:var(--ink-2)}
+.sr-empty.sm{padding:16px 14px 10px}
+@media (max-width:720px){.sr-def{margin:6px 2px 2px;padding:12px 13px 13px}.sr-dm b{font-size:17px}.sr-dm span{font-size:13.5px}.sr-dm p{font-size:12.5px}}
+
+/* printable path sheet (v2.46) */
+.pv{top:var(--sat);bottom:var(--sab)}   /* dialogs center inside the safe area, clear of the notch and home bar */
+.ps{width:min(940px,calc(100% - 24px));overflow:auto}
+.ps-bar{position:sticky;top:0;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 14px;padding:18px 22px 14px;background:linear-gradient(180deg,#1c222c 0%,#181d26 100%);border-bottom:1px solid rgba(255,255,255,.08)}
+.ps-bar h2{margin:0;font:700 28px/1.1 var(--f-disp);letter-spacing:-.02em;color:var(--ink)}
+.ps-bar p{margin:4px 0 0;font:400 13px/1.5 var(--f-ui);color:var(--ink-2)}
+.ps-ctl{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.ps-chips{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 320px}
+.ps-print{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;background:#eef0f3;color:#12161d;font:600 12px/1 var(--f-ui);letter-spacing:.06em;cursor:pointer;border:0}
+.ps-print:hover{background:#fff}
+.ps-print svg{width:14px;height:14px}
+.ps-note{grid-column:1/-1;margin:0!important;font-size:12px!important;color:#c9b98f!important}
+.ps-paper{padding:18px}
+.ps-paper .psd{max-width:820px;margin:0 auto;padding:34px 38px 30px;border-radius:6px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+#ps-print{display:none}
+.psd{background:#fff;color:#16191e;font:400 12.5px/1.5 var(--f-ui);-webkit-font-smoothing:antialiased;color-scheme:light}
+.psd *{box-sizing:border-box}
+.ps-hd{padding-bottom:14px;border-bottom:2px solid #16191e}
+.ps-brand{display:flex;align-items:center;gap:7px;font:700 12px/1 var(--f-disp);letter-spacing:.04em;color:#16191e}
+.ps-brand svg{width:18px;height:18px}
+.psd h1{margin:12px 0 6px;font:800 30px/1.05 var(--f-disp);letter-spacing:-.025em;color:#0d0f12}
+.ps-lede{margin:0 0 8px;max-width:68ch;color:#33373e}
+.ps-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 8px;font-size:11px;color:#4a4f57}
+.ps-meta{margin:0;font:500 10.5px/1.4 var(--f-mono);color:#5d626a}
+.ps-sec{margin-top:22px}
+.psd h2{margin:0 0 4px;font:700 19px/1.2 var(--f-disp);letter-spacing:-.015em;color:#0d0f12;break-after:avoid;page-break-after:avoid}
+.psd h2 span,.psd h3 span{font:600 9.5px/1 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:#6a6f77;margin-left:6px;vertical-align:2px}
+.psd h3{margin:0 0 2px;font:700 14px/1.25 var(--f-disp);color:#16191e;break-after:avoid;page-break-after:avoid}
+.ps-p{margin:0 0 8px;color:#3a3e45;max-width:80ch}
+.ps-small{margin:6px 0 0;font-size:11px;color:#4f545c}
+.ps-field>h2{padding-top:12px;border-top:1px solid #c9ccd1}
+.ps-job{margin-top:14px;break-inside:avoid;page-break-inside:avoid}
+.ps-t{width:100%;border-collapse:collapse;font-size:11.5px;line-height:1.35}
+.ps-t th{text-align:left;font:600 9px/1.2 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:#5d626a;padding:5px 8px 5px 0;border-bottom:1px solid #16191e}
+.ps-t td{padding:6px 8px 6px 0;border-bottom:1px solid #dcdfe3;vertical-align:top}
+.ps-t tr{break-inside:avoid;page-break-inside:avoid}
+.ps-t small{display:block;font-size:10px;color:#6a6f77;margin-top:1px}
+.ps-n{width:26px;font:600 11px/1.35 var(--f-mono);color:#5d626a}
+.ps-c{min-width:120px}
+.ps-c b{font-weight:600;color:#0d0f12}
+.ps-code{font:500 11px/1.35 var(--f-mono);white-space:nowrap}
+.ps-code small{font-family:var(--f-ui)}
+.ps-j{display:block;font:italic 400 10px/1.3 var(--f-ui);color:#7a7f87;margin:1px 0}
+.ps-one{font-family:var(--f-ui);color:#4f545c}
+.ps-fee,.ps-hrs{white-space:nowrap}
+.ps-8{min-width:150px}
+.ps-l8{display:inline-block;margin:0 6px 2px 0;padding:2px 6px;border-radius:3px;font:700 9px/1.4 var(--f-ui);letter-spacing:.08em;text-transform:uppercase;border:1px solid #16191e;color:#16191e;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.ps-l8.l-A{background:#16191e;color:#fff}
+.ps-l8.l-I{background:#d9dce1}
+.ps-roles{font:500 10.5px/1.4 var(--f-mono);color:#33373e}
+.ps-roles b{font-family:var(--f-ui);font-weight:700}
+.ps-no{color:#7a7f87;font-size:11px}
+.ps-cols{display:grid;grid-template-columns:1fr 1fr;gap:6px 26px}
+.ps-fund h3{margin-top:8px}
+.ps-fund ul,.ps-fund ol{margin:4px 0 0;padding-left:18px;color:#2a2e34}
+.ps-fund li{margin:3px 0}
+.ps-fund,.ps-key{break-inside:avoid;page-break-inside:avoid}
+.ps-rt{max-width:560px}
+.ps-ft{margin-top:24px;padding-top:10px;border-top:1px solid #c9ccd1;font-size:10px;line-height:1.5;color:#5d626a}
+.ps-ft p{margin:0 0 5px}
+.ps-none{padding:18px 0;font-weight:600}
+@media (max-width:720px){
+  .ps-bar{padding:14px 14px 12px;position:relative}.ps-bar h2{font-size:24px}
+  .ps-print{margin-left:0}
+  .ps-paper{padding:10px 8px}
+  .ps-paper .psd{padding:20px 14px 18px}
+  .psd h1{font-size:24px}
+  .ps-cols{grid-template-columns:1fr}
+  .ps-paper .ps-t thead{display:none}
+  .ps-paper .ps-t tr{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:2px 8px;padding:8px 0;border-bottom:1px solid #dcdfe3}
+  .ps-paper .ps-t td{display:block;padding:0;border:0}
+  .ps-paper .ps-t td.ps-n{grid-row:1/span 3}
+  .ps-paper .ps-t td.ps-c{grid-column:2}
+  .ps-paper .ps-t td.ps-fee{grid-column:3;grid-row:1;text-align:right}
+  .ps-paper .ps-t td.ps-code{grid-column:2;white-space:normal}
+  .ps-paper .ps-t td.ps-hrs{grid-column:3;grid-row:2;text-align:right;font-size:10.5px;color:#4f545c}
+  .ps-paper .ps-t td.ps-8{grid-column:2/span 2;min-width:0}
+  .ps-paper .ps-t .ps-j{display:inline;margin:0 4px}
+  .ps-paper .ps-rt tr{grid-template-columns:34px minmax(0,1fr)}
+  .ps-paper .ps-rt td:last-child{grid-column:2;font-size:10.5px;color:#6a6f77}
+}
+@media (max-height:620px){.ps-bar{position:relative}}   /* short screens: the toolbar scrolls away instead of covering the sheet */
+@media print{
+  @page{size:letter;margin:13mm 12mm}
+  html.ps-on,html.ps-on body{height:auto!important;overflow:visible!important;background:#fff!important;position:static!important}
+  html.ps-on body{inset:auto!important}
+  html.ps-on{color-scheme:light!important}
+  html.ps-on,html.ps-on *{transition:none!important;animation:none!important}   /* Lite mode fades colors; a print must not catch the dark page mid-fade */
+  html.ps-on body>*:not(#ps-print){display:none!important}
+  html.ps-on #ps-print{display:block!important;padding:0;font-size:11.5px}
+  html.ps-on #ps-print .ps-t{font-size:10.5px}
+}
 
 /* monochrome art */
 .pmap{width:92%;max-width:440px;height:auto;overflow:visible}
@@ -2205,7 +2309,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.45</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.46</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2265,6 +2369,17 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
     <p class="pv-fine">Not an official U.S. Coast Guard or DoD site. Updated Nov 15, 2026. &copy; 2026 Gabriel Rodriguez</p>
   </div>
 </dialog>
+<dialog id="psheet" class="pv ps" aria-labelledby="ps-h">
+  <div class="ps-bar">
+    <div><h2 id="ps-h">Path sheet.</h2><p>Every career path's certs in order, with DoD 8140 levels and CG COOL funding notes. Made for instructors and leadership.</p></div>
+    <button type="button" class="pv-x" id="ps-x" aria-label="Close path sheet">&times;</button>
+    <div class="ps-ctl"><div class="ps-chips" id="ps-chips" role="group" aria-label="Paths on the sheet"></div>
+      <button type="button" class="ps-print" id="ps-go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M4 6V1.8h8V6M4 12H2.2V6h11.6v6H12"/><path d="M4 9.5h8v4.7H4z"/></svg>Print or save as PDF</button></div>
+    <p class="ps-note" id="ps-note" hidden>Printing may not work in the home-screen app on iPhone. If nothing happens, open mynextcert.com/#print in Safari and print from there.</p>
+  </div>
+  <div class="ps-paper"><div class="psd" id="ps-doc"></div></div>
+</dialog>
+<div id="ps-print" class="psd" aria-hidden="true"></div>
 <section id="sheet" aria-label="Explore">
   <div class="sh-grab" id="sh-grab" role="button" tabindex="0" aria-expanded="false" aria-controls="sh-scroll" aria-label="Open paths, DoD 8140 and funding">
     <span class="sh-handle"></span>
@@ -2371,6 +2486,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
         <p class="fine rv-s">Funding amounts come from the official CG COOL and FORCECOM pages; confirm the current rules with your ESO. All roadmap data is a draft and gets verified before launch.</p>
         <p class="fine rv-s">Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the U.S. Coast Guard, CompTIA, ISC2, Cisco, TryHackMe, LPI, AWS, Microsoft or any school listed. All names are trademarks of their owners. <span class="nw">&copy; 2026 Gabriel Rodriguez</span>. All rights reserved.</p>
         <p class="fine rv-s">Your data stays on your device. MyNextCert has no accounts, cookies or tracking scripts; your progress is saved in your browser and you can clear it anytime. <a class="pv-link" href="#privacy">Read the privacy page</a>.</p>
+        <p class="fine rv-s">Briefing instructors or leadership? <a class="pv-link" href="#print">Print the path sheet</a>: every path's certs in order, with DoD 8140 levels and CG COOL notes.</p>
       </div>
 
       <div class="sv" id="sv-mine" hidden>
@@ -2391,6 +2507,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
             <div class="pt-tracks" id="pt-tracks" role="group" aria-label="Career tree: IT, fields and jobs"></div></div>
           <div class="pt-trail" id="pt-trail" aria-live="polite"></div>
         </div>
+        <button type="button" class="mp-cta rv-s ps-cta" data-print><span>For instructors and leadership</span><b>Print the path sheet &rarr;</b></button>
       </div>
 
       <div class="sv" id="sv-exam" hidden>
@@ -2661,6 +2778,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
     <div class="sr-chips" id="srch-chips" role="group" aria-label="Filter by path"></div>
     <div class="sr-list" id="srch-list" role="listbox" aria-label="Results"></div>
     <div class="sr-foot"><span class="kbd-only"><kbd>&uarr;</kbd><kbd>&darr;</kbd> move</span><span class="kbd-only"><kbd>&crarr;</kbd> open</span><span class="kbd-only"><kbd>esc</kbd> close</span><span class="sr-n" id="srch-n" aria-live="polite"></span></div>
+    <span class="vh" id="srch-live" aria-live="polite"></span>
   </div>
 </div>
 
@@ -2697,7 +2815,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
    can't send the X-Frame-Options / frame-ancestors header, and a CSP meta tag can't set frame-ancestors).
    It tries to break out to the top window; if the frame blocks that, it shows a link instead of the app.
    Only on the real hosts, so the claude.ai preview (which is itself a frame) keeps working. */
-if(/(^|\.)gabytoski77\.github\.io$|^localhost$/.test(location.hostname)){
+if(/(^|\.)mynextcert\.com$|(^|\.)gabytoski77\.github\.io$|^localhost$/.test(location.hostname)){
   var framed=true;try{framed=window.top!==window.self;}catch(e){framed=true;}
   if(framed){
     try{window.top.location.replace(window.location.href);}catch(e){}
@@ -3941,8 +4059,9 @@ async function back(o){
   setFront(current);stRender();
   var fb=(W<720||isShort())?$("#start .st-main,#start .st-card"):cta;if(fb) fb.focus({preventScroll:true});
 }
+function dlgOpen(){return !!document.querySelector("dialog[open]");}
 document.addEventListener("keydown",function(e){
-  if(srchOpen||document.getElementById("splash")) return;
+  if(srchOpen||document.getElementById("splash")||dlgOpen()) return;
   if(e.key==="Escape"){if(e.defaultPrevented) return;if(state==="open"){if(guideName) closeGuide();else back();} else if(sheetP>0) closeSheet();}
   if(state==="idle"&&sheetP===0&&(e.key==="ArrowRight"||e.key==="ArrowLeft")) stepVendor(e.key==="ArrowRight"?1:-1);
   if(state==="open"&&!guideName&&(e.key==="ArrowRight"||e.key==="ArrowLeft")&&!(e.target&&e.target.closest&&e.target.closest(".seg,.flex,select,input"))) switchVendor(e.key==="ArrowRight"?1:-1);
@@ -5606,6 +5725,136 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
   d.addEventListener("click",function(e){if(e.target===d) closePv();});   /* tap outside the card */
   if(location.hash==="#privacy") setTimeout(openPv,400);
   window.addEventListener("hashchange",function(){if(location.hash==="#privacy") openPv();});
+})();
+/* printable path sheet (v2.46): for instructors and leadership. Certs in order for every career path, with DoD 8140 levels,
+   exam fees and CG COOL funding notes. Built from the same data as the rest of the site, so it never drifts from it.
+   Opens as a dialog (works offline and in the installed app); mynextcert.com/#print opens it. Printing copies the sheet
+   into #ps-print, a plain block at the top of the page, so long tables break across pages cleanly. */
+(function(){
+  var d=document.getElementById("psheet"), out=document.getElementById("ps-print");if(!d||!out) return;
+  var docEl=document.getElementById("ps-doc"), chipsEl=document.getElementById("ps-chips"), sel={};
+  FIELDS.forEach(function(f){sel[f.id]=true;});
+  function E(s){return gEsc(s==null?"":s);}
+  function cell(name){
+    var f=findCert(name), c=f.c, G=GUIDES[name]||null, fee="", per="", code="";
+    if(G){
+      (G.facts||[]).forEach(function(x){if(x[0]==="Voucher"){fee=x[1];per=x[2]||"";}});
+      code=exams(G,name);
+    }
+    return {name:name,vendor:c?VENDORS[f.v].name:"",lvl:c?c[1]:"",hrs:c?c[3]:"",fee:fee,per:per,code:code};
+  }
+  /* exam codes open now or soon, with the date a version opens or closes; A+ and LPIC-1/2 need both exams */
+  function exams(G,name){
+    var short=String(name).split(" \u00b7 ")[0], seen={}, parts=[];
+    Object.keys(G.versions).forEach(function(k){
+      var V=G.versions[k], st=vStatus(V.status||""), m, note="";
+      if(!V.code||seen[V.code]||/^In development/i.test(st)) return;seen[V.code]=1;
+      if((m=/^(?:Launches|Starts) ([A-Z][a-z]{2} \d{1,2}, \d{4})/.exec(st))) note="from "+m[1];
+      else if((m=/(?:until|retires|last day) ([A-Z][a-z]{2}(?: \d{1,2},)? \d{4})/i.exec(st))) note="until "+m[1];
+      parts.push(E(V.code)+(note?'<small>'+E(note)+'</small>':''));
+    });
+    if(parts.length===1&&Object.keys(seen)[0]===short) return '<span class="ps-one">One exam</span>';
+    return parts.join(G.planAll?'<i class="ps-j">+</i>':'<i class="ps-j">or</i>');
+  }
+  function l8(name){
+    var rs=q8Roles(name);if(!rs.length) return '<span class="ps-no">Not on the matrix</span>';
+    var t=q8Top(name), by={A:[],I:[],B:[]};rs.forEach(function(x){by[x.l].push(x.r);});
+    var parts=["A","I","B"].filter(function(l){return by[l].length;}).map(function(l){return '<b>'+l+'</b> '+by[l].sort(function(a,b){return a-b;}).join(" ");});
+    return '<span class="ps-l8 l-'+t+'">'+Q8_LVN[t]+'</span><span class="ps-roles">'+parts.join(" &middot; ")+'</span>';
+  }
+  function rows(steps,used){
+    return steps.map(function(s,i){
+      var x=cell(s[1]);q8Roles(s[1]).forEach(function(r){used[r.r]=1;});
+      return '<tr><td class="ps-n">'+(i+1)+'</td><td class="ps-c"><b>'+E(x.name)+'</b><small>'+E(x.vendor+(x.lvl?" · "+x.lvl:""))+'</small></td>'+
+        '<td class="ps-code">'+(x.code||"&mdash;")+'</td><td class="ps-fee">'+(x.fee?E(x.fee)+(x.per?'<small>'+E(x.per)+'</small>':''):'<small>See vendor</small>')+'</td>'+
+        '<td class="ps-hrs">'+E(x.hrs)+'</td><td class="ps-8">'+l8(s[1])+'</td></tr>';
+    }).join("");
+  }
+  function table(steps,used,cap){
+    return '<table class="ps-t"><caption class="vh">'+E(cap)+'</caption><thead><tr><th scope="col">#</th><th scope="col">Cert</th><th scope="col">Exam code</th><th scope="col">Exam fee</th><th scope="col">Study</th><th scope="col">DoD 8140</th></tr></thead><tbody>'+rows(steps,used)+'</tbody></table>';
+  }
+  function build(){
+    var used={}, today=new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+    var h='<header class="ps-hd"><div class="ps-brand"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg>MyNextCert</div>'+
+      '<h1>Coast Guard IT cert paths</h1><p class="ps-lede">The certs to take, in order, for each career path. Each one shows its exam, the fee, how long people usually study, and the highest DoD 8140 level it qualifies for. The last pages cover how CG COOL pays for them and what the DoD 8140 numbers mean.</p>'+
+      '<p class="ps-legend"><span class="ps-l8 l-A">Advanced</span><span class="ps-l8 l-I">Intermediate</span><span class="ps-l8 l-B">Basic</span> Highest DoD 8140 level the cert reaches. The numbers beside it are DCWF work roles, grouped by level (A, I, B).</p>'+
+      '<p class="ps-meta">Printed '+E(today)+' &middot; mynextcert.com &middot; DoD 8140 Qualification Matrix '+E(Q8.ver)+' ('+E(Q8.eff)+')</p></header>';
+    h+='<section class="ps-sec"><h2>Everyone starts here</h2><p class="ps-p">Every path grows from the same three certs. They cover most entry-level IT billets and are the base for everything after.</p>'+table(TRUNK,used,"Trunk certs")+'</section>';
+    var n=0;
+    FIELDS.forEach(function(F){
+      if(!sel[F.id]) return;n++;
+      h+='<section class="ps-sec ps-field"><h2>'+E(F.name)+' <span>'+E(F.tag)+'</span></h2><p class="ps-p">'+E(F.line)+(F.mil?'':' After the three trunk certs:')+'</p>';
+      F.jobs.forEach(function(J){
+        h+='<div class="ps-job"><h3>'+E(J.name)+(J.sub?' <span>'+E(J.sub)+'</span>':'')+'</h3><p class="ps-p">'+E(J.line)+'</p>'+table(J.steps,used,F.name+": "+J.name)+(J.stepsNote?'<p class="ps-small">'+E(J.stepsNote)+'</p>':'')+'</div>';
+      });
+      h+='</section>';
+    });
+    if(!n) h+='<p class="ps-p ps-none">Pick at least one path above to add it to the sheet.</p>';
+    /* how CG COOL pays for it, after the paths */
+    h+='<section class="ps-sec ps-fund"><h2>Paying for it: CG COOL</h2><div class="ps-cols">'+
+      '<div><h3>The money</h3><ul><li><b>$4,500 a fiscal year</b> in Credentialing Assistance (CA) for certs, separate from the $4,500 in Tuition Assistance (TA) for college. Members can use both in the same year.</li>'+
+      '<li>First come, first served: once the year’s money runs out, approvals stop until Oct 1.</li>'+
+      '<li>Covers exam fees, renewal and maintenance fees, study materials and training courses for credentials listed on CG COOL. Voluntary certs only, not ones a CG job requires.</li>'+
+      '<li>Not listed? Email CGCOOL@USCG.MIL with the cert name and the vendor’s site to ask for it to be added.</li></ul></div>'+
+      '<div><h3>The steps</h3><ol><li>Meet the ESO and find the credential on CG COOL.</li><li>Request approval in MyCG Ed at least 14 days before the exam or class. Each exam and course is its own request; the command approves, then ETQC authorizes it.</li>'+
+      '<li>Pay the fees, then within 30 days upload the receipt and a signed OF-1164 to MyCG Ed to be paid back.</li><li>Take the exam with the cert vendor.</li><li>Upload the result and certificate to MyCG Ed within 30 days.</li></ol>'+
+      '<p class="ps-small">Can’t pay up front? CG Mutual Assistance offers an interest-free CG COOL loan (mycgma.org). ETQC credentialing: ETQC-SMB-CGCOOL@USCG.MIL, 757-756-5300.</p></div></div></section>';
+    /* the work roles named in the tables, so a reader doesn't need the matrix open */
+    var codes=Object.keys(used).sort(function(a,b){return a-b;});
+    h+='<section class="ps-sec ps-key"><h2>Reading the DoD 8140 column</h2>'+
+      '<p class="ps-p">Every cyber-coded billet has a DCWF <b>work role</b> and a <b>proficiency level</b>. The badge is the highest level the cert reaches in any IT or Cybersecurity work role. The numbers after <b>A</b>, <b>I</b> and <b>B</b> are the work roles where it counts at the Advanced, Intermediate and Basic level. A cert at a higher level also covers the lower levels of the same work role, never other roles. A cert can be one way to qualify; the matrix also lists training, education and experience.</p>';
+    if(codes.length){
+      h+='<table class="ps-t ps-rt"><caption class="vh">DoD 8140 work roles on this sheet</caption><thead><tr><th scope="col">Role</th><th scope="col">Work role</th><th scope="col">Element</th></tr></thead><tbody>'+
+        codes.map(function(r){var R=Q8_ROLES[r];return '<tr><td class="ps-n">'+E(r)+'</td><td>'+E(R.n)+'</td><td>'+(R.el==="it"?"IT (Cyberspace)":"Cybersecurity")+'</td></tr>';}).join("")+'</tbody></table>';
+    }
+    h+='</section>';
+    h+='<footer class="ps-ft"><p><b>Sources.</b> DoD 8140 Qualification Matrix '+E(Q8.ver)+', dated '+E(Q8.eff)+', from the cyberworkforce.mil document library (read '+E(Q8.checked)+'; approved options only, pending ones left out). Funding from the CG COOL costs-and-funding and steps-to-apply pages (cool.osd.mil/uscg). '+
+      'Exam fees are U.S. list prices from each cert’s MyNextCert guide. A date under an exam code is when that version opens or closes, and \u201c+\u201d means both exams are needed. Study hours are typical ranges, not requirements. Prices and rules change, so confirm funding with your ESO and billet requirements with your command.</p>'+
+      '<p>Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the Coast Guard or any cert vendor. &copy; 2026 Gabriel Rodriguez &middot; mynextcert.com</p></footer>';
+    return h;
+  }
+  function chips(){
+    var all=FIELDS.every(function(f){return sel[f.id];});
+    chipsEl.innerHTML='<button type="button" class="sr-chip" data-ps="all" aria-pressed="'+all+'">All paths</button>'+
+      FIELDS.map(function(f){return '<button type="button" class="sr-chip" data-ps="'+E(f.id)+'" aria-pressed="'+!!sel[f.id]+'">'+E(f.short)+'</button>';}).join("");
+  }
+  function render(){chips();docEl.innerHTML=build();}
+  function openPs(){
+    if(!d.open){render();try{d.showModal();}catch(e){d.setAttribute("open","");}document.documentElement.classList.add("ps-on");}
+    d.scrollTop=0;
+  }
+  function closePs(){if(d.open) d.close();}
+  window.openPathSheet=openPs;
+  d.addEventListener("close",function(){
+    document.documentElement.classList.remove("ps-on");out.innerHTML="";
+    if(location.hash==="#print") try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}
+  });
+  chipsEl.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-ps]");if(!b) return;
+    var k=b.dataset.ps;
+    if(k==="all"){var all=FIELDS.every(function(f){return sel[f.id];});FIELDS.forEach(function(f){sel[f.id]=!all;});}
+    else if(Object.prototype.hasOwnProperty.call(sel,k)) sel[k]=!sel[k];
+    render();
+    var nb=chipsEl.querySelector('[data-ps="'+cssEsc(k)+'"]');if(nb) nb.focus({preventScroll:true});
+  });
+  /* fill the print copy right before any print of the open sheet, from the button or from Ctrl+P / the browser menu */
+  function fill(){if(d.open) out.innerHTML=build();}
+  window.addEventListener("beforeprint",fill);
+  window.addEventListener("afterprint",function(){if(!d.open) out.innerHTML="";});
+  document.getElementById("ps-go").addEventListener("click",function(){
+    fill();
+    try{window.print();}catch(e){}
+  });
+  document.getElementById("ps-x").addEventListener("click",closePs);
+  d.addEventListener("click",function(e){if(e.target===d) closePs();});
+  /* the home-screen app on iPhone may not offer printing: say where it works */
+  if(navigator.standalone===true) document.getElementById("ps-note").hidden=false;
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest('a[href="#print"],[data-print]');if(!a) return;
+    e.preventDefault();e.stopPropagation();openPs();
+  },true);
+  if(location.hash==="#print") setTimeout(openPs,400);
+  window.addEventListener("hashchange",function(){if(location.hash==="#print") openPs();});
 })();
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(tabsEdge);tabsEdge();
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(placeTab);
@@ -14249,7 +14498,7 @@ async function openCertFrom(e){
 }
 
 /* ---------- search: a command palette over everything ---------- */
-var srch=$("#srch"), srchIn=$("#srch-in"), srchList=$("#srch-list"), srchChipsEl=$("#srch-chips"), srchN=$("#srch-n");
+var srchLive=$("#srch-live"), srch=$("#srch"), srchIn=$("#srch-in"), srchList=$("#srch-list"), srchChipsEl=$("#srch-chips"), srchN=$("#srch-n");
 var srchOpen=false, srchFull=false, srchRes=[], srchAct=-1, srchFilter="all", srchOpener=null, srchT=0, srchHl=null, srchLastQ=null;
 var isMac=/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent||"");
 if(finePointer) document.documentElement.classList.add("kbd");
@@ -14263,6 +14512,300 @@ var ALIAS={"A+":"a plus core 1 core 2 220-1101 220-1102 220-1201 220-1202 v15 he
  "Linux Essentials":"010-200 010-160 lpi le linux essentials 2.0 1.6 linux basics command line guide","SEC1 · Cyber Security 101":"sec1 sec 1 cyber security 101 cybersecurity 101 cs101 tryhackme thm beginner practical hands on guide","SAL2 · Security Analyst L2":"sal2 sal 2 soc analyst level 2 tier 2 ncc group incident response threat hunting detection engineer tryhackme thm guide","Security Essentials":"020-100 lpi security essentials sec essentials security basics encryption privacy linux professional institute guide","LPIC-2":"lpic2 lpic 2 201-450 202-450 201 202 lpi linux engineer advanced sysadmin dns apache samba ldap guide","LPIC-1":"lpic1 lpic 1 101-500 102-500 101 102 lpi linux administrator sysadmin guide","Cloud Practitioner":"clf-c02 clf c02 ccp aws amazon cloud practitioner foundational guide","Solutions Architect Associate":"saa saa-c03 c03 aws amazon solutions architect associate guide",
  "Security Specialty":"scs-c03 scs-c02 scs aws amazon security specialty cloud security guide","Azure Fundamentals":"az-900 az900 microsoft azure fundamentals foundational guide","Azure Administrator":"az-104 az104 microsoft azure administrator associate admin guide","Cloud and AI Security Engineer":"sc-500 sc500 az-500 az500 azure security engineer cloud and ai security engineer microsoft entra defender sentinel guide",
  "Linux+":"linux plus linuxplus xk0-006 xk0-005 v8 comptia linux sysadmin system administrator bash shell systemd guide","Project+":"project plus pk0-005 v5 project management pm agile scrum waterfall guide","CCST IT Support":"100-140 ccst it support help desk helpdesk desktop support technician end user support cisco certified support technician guide","CCNP Enterprise":"350-401 encor v1.2 enarsi 300-410 ensdwi ensld enauto encc enna ccnp ent enterprise core cisco certified network professional routing switching guide","CCNP Cybersecurity":"350-201 cbrcor cbrfir cbrthd 300-215 300-220 cyberops professional cyber ops professional ccnp cyber soc incident response threat hunting forensics guide","Server+":"server plus serverplus sk0-005 sk0-006 v5 v6 comptia server admin raid backup data center datacenter guide","SecAI+":"secai plus sec ai ai security cy0-001 v1 comptia artificial intelligence llm prompt injection machine learning expansion guide","CGRC":"cgrc cap certified authorization professional governance risk compliance grc rmf ato isso issm nist 800-37 isc2 guide"};
+/* acronym lookup in search (v2.46): type IDS, SIEM or DHCP and the meaning shows above the results.
+   [acronym, full name, one-line meaning, other spellings]. A key that appears twice has two meanings (CA, IAM, MAC, CSP, SAN). */
+var GLOSS_RAW=[
+ /* networking */
+ ["DHCP","Dynamic Host Configuration Protocol","Hands out IP addresses, the gateway and DNS servers to devices automatically. UDP 67 and 68."],
+ ["DNS","Domain Name System","Turns names like mynextcert.com into IP addresses. Port 53."],
+ ["DNSSEC","DNS Security Extensions","Signs DNS answers so an attacker can't forge them."],
+ ["IP","Internet Protocol","The addressing system that gets packets from one network to another."],
+ ["IPv4","Internet Protocol version 4","32-bit addresses written like 192.168.1.10. Still most of the internet."],
+ ["IPv6","Internet Protocol version 6","128-bit addresses written in hex, like 2001:db8::1. The replacement for IPv4."],
+ ["TCP","Transmission Control Protocol","Reliable delivery: a three-way handshake, then every segment is acknowledged and resent if lost."],
+ ["UDP","User Datagram Protocol","Fast delivery with no handshake and no resends. DNS, DHCP, voice and video use it."],
+ ["ICMP","Internet Control Message Protocol","Error and status messages for IP. Ping and traceroute use it."],
+ ["ARP","Address Resolution Protocol","Finds the MAC address that goes with an IP address on the local network."],
+ ["NAT","Network Address Translation","Swaps private addresses for a public one at the edge, so many devices share one address."],
+ ["PAT","Port Address Translation","NAT that also changes port numbers, so a whole network can share one public IP."],
+ ["VLAN","Virtual Local Area Network","Splits one switch into separate networks so their traffic stays apart."],
+ ["LAN","Local Area Network","The network inside one building or site."],
+ ["WAN","Wide Area Network","Links sites over long distances, like a unit to its district."],
+ ["VPN","Virtual Private Network","An encrypted tunnel across a network you don't trust, like the internet."],
+ ["MAC","Media Access Control address","The hardware address of a network card: 48 bits, like 00:1A:2B:3C:4D:5E."],
+ ["MAC","Mandatory Access Control","Access set by labels and clearances that users can't change, as on classified systems."],
+ ["OSI","Open Systems Interconnection model","The 7-layer model, from physical up to application, used to describe and troubleshoot networks."],
+ ["BGP","Border Gateway Protocol","Connects the internet's big networks to each other and picks routes between them. TCP 179."],
+ ["OSPF","Open Shortest Path First","A link-state routing protocol that picks paths by cost. Common inside an organization."],
+ ["EIGRP","Enhanced Interior Gateway Routing Protocol","Cisco's advanced distance-vector routing protocol."],
+ ["STP","Spanning Tree Protocol","Blocks extra switch links so traffic can't loop forever."],
+ ["QoS","Quality of Service","Puts voice and video ahead of other traffic so calls don't break up."],
+ ["SNMP","Simple Network Management Protocol","Lets tools monitor network gear. Use v3, which adds login and encryption. UDP 161 and 162."],
+ ["SSH","Secure Shell","Encrypted remote command line. TCP 22."],
+ ["RDP","Remote Desktop Protocol","Microsoft's remote desktop. TCP 3389, and a favorite attack target."],
+ ["FTP","File Transfer Protocol","Old file transfer that sends everything, passwords too, in clear text. TCP 20 and 21."],
+ ["SFTP","SSH File Transfer Protocol","File transfer inside SSH, so it's encrypted. TCP 22."],
+ ["TFTP","Trivial File Transfer Protocol","Simple file transfer with no login, used for switch configs and boot images. UDP 69."],
+ ["HTTP","Hypertext Transfer Protocol","How web pages are asked for and sent. Port 80, no encryption."],
+ ["HTTPS","HTTP Secure","Web traffic encrypted with TLS: the lock in the address bar. Port 443."],
+ ["TLS","Transport Layer Security","Encrypts traffic between two systems. It replaced SSL."],
+ ["SSL","Secure Sockets Layer","The older protocol TLS replaced. Every SSL version is now considered broken."],
+ ["SMTP","Simple Mail Transfer Protocol","Sends email between mail servers. TCP 25, or 587 when you send."],
+ ["IMAP","Internet Message Access Protocol","Reads email while it stays on the server. TCP 143, or 993 encrypted."],
+ ["POP3","Post Office Protocol version 3","Downloads email to one device. TCP 110, or 995 encrypted.","pop"],
+ ["LDAP","Lightweight Directory Access Protocol","Looks up users and groups in a directory like Active Directory. TCP 389, LDAPS on 636."],
+ ["SMB","Server Message Block","Windows file and printer sharing. TCP 445."],
+ ["NTP","Network Time Protocol","Keeps clocks in sync, so logs from different systems line up. UDP 123."],
+ ["SIP","Session Initiation Protocol","Sets up and ends VoIP calls. Ports 5060 and 5061."],
+ ["VoIP","Voice over IP","Phone calls carried over the data network."],
+ ["PoE","Power over Ethernet","Power sent over the network cable to phones, cameras and access points."],
+ ["SSID","Service Set Identifier","A wireless network's name."],
+ ["WPA2","Wi-Fi Protected Access 2","Wi-Fi security using AES. Still common, but WPA3 is stronger."],
+ ["WPA3","Wi-Fi Protected Access 3","The current Wi-Fi security standard. Its SAE handshake resists password-guessing attacks."],
+ ["EAP","Extensible Authentication Protocol","The framework 802.1X uses to carry logins, like EAP-TLS with certificates."],
+ ["802.1X","IEEE 802.1X port-based access control","A device must log in, usually through RADIUS, before a switch port or Wi-Fi lets it on.","8021x|dot1x"],
+ ["SDN","Software-Defined Networking","Splits the control plane from the data plane so software configures the network from one place."],
+ ["SD-WAN","Software-Defined WAN","Manages WAN links from one place and sends traffic over the best one: broadband, LTE or MPLS.","sdwan"],
+ ["MPLS","Multiprotocol Label Switching","Carrier technology that forwards by labels instead of IP lookups. Common for private WANs."],
+ ["CIDR","Classless Inter-Domain Routing","Writing a network as address and prefix, like 10.0.0.0/24, instead of fixed classes."],
+ ["MTU","Maximum Transmission Unit","The biggest packet a link carries without splitting it: 1,500 bytes on Ethernet."],
+ ["ACL","Access Control List","Rules that allow or deny traffic or access, checked top to bottom."],
+ ["DMZ","Demilitarized zone (screened subnet)","A network segment between the internet and the inside network, for public-facing servers."],
+ ["NAC","Network Access Control","Checks a device's identity and health before it's allowed on the network."],
+ ["RADIUS","Remote Authentication Dial-In User Service","Central login for network access like VPN and Wi-Fi. UDP 1812 and 1813."],
+ ["TACACS+","Terminal Access Controller Access-Control System Plus","Cisco's AAA protocol for admin logins to network gear. Encrypts the whole packet. TCP 49.","tacacs"],
+ ["AAA","Authentication, Authorization and Accounting","Who you are, what you're allowed to do, and a record of what you did."],
+ ["IPsec","Internet Protocol Security","Encrypts and authenticates IP packets. The usual site-to-site VPN."],
+ ["GRE","Generic Routing Encapsulation","Wraps one protocol inside another to build a tunnel. No encryption on its own."],
+ ["NIC","Network Interface Card","The part that connects a computer to the network."],
+ ["WAP","Wireless Access Point","The device that connects Wi-Fi clients to the wired network."],
+ ["ISP","Internet Service Provider","The company that connects you to the internet."],
+ ["PCAP","Packet capture","A saved recording of network traffic, opened in tools like Wireshark."],
+ ["CDN","Content Delivery Network","Servers around the world that keep copies of a site close to users. Cloudflare is one."],
+ /* security operations */
+ ["SOC","Security Operations Center","The team that watches alerts around the clock and responds to attacks."],
+ ["SIEM","Security Information and Event Management","Collects logs from across the network, links related events and raises alerts. Splunk and Microsoft Sentinel are examples."],
+ ["SOAR","Security Orchestration, Automation and Response","Runs playbooks that automate response steps, like isolating a host when an alert fires."],
+ ["EDR","Endpoint Detection and Response","An agent on each computer that records activity, spots attacks and can cut the machine off the network."],
+ ["XDR","Extended Detection and Response","EDR-style detection across endpoints, network, email and cloud in one place."],
+ ["MDR","Managed Detection and Response","An outside company runs detection and response for you."],
+ ["IDS","Intrusion Detection System","Watches traffic or a host and alerts on suspicious activity. It alerts; it doesn't block."],
+ ["IPS","Intrusion Prevention System","Sits in the traffic path and blocks what matches an attack, instead of only alerting."],
+ ["HIDS","Host-based Intrusion Detection System","Runs on one computer and watches its files, logs and processes."],
+ ["NIDS","Network-based Intrusion Detection System","Watches the traffic on a network segment."],
+ ["IOC","Indicator of Compromise","Evidence an attack happened: a bad file hash, IP address, domain or file name."],
+ ["IOA","Indicator of Attack","Behavior that shows an attack in progress, like credential dumping, whatever tool is used."],
+ ["TTP","Tactics, Techniques and Procedures","How an attacker works. MITRE ATT&CK catalogs them.","ttps"],
+ ["APT","Advanced Persistent Threat","A skilled, well-funded attacker, often a nation-state, that stays hidden in a network for a long time."],
+ ["CTI","Cyber Threat Intelligence","Information about attackers and their methods, used to aim the defense."],
+ ["OSINT","Open-Source Intelligence","Intelligence gathered from public sources: websites, social media and public records."],
+ ["STIX","Structured Threat Information eXpression","A standard format for sharing threat intelligence."],
+ ["TAXII","Trusted Automated eXchange of Intelligence Information","The protocol that moves STIX threat intel between systems."],
+ ["ATT&CK","MITRE Adversarial Tactics, Techniques and Common Knowledge","MITRE's catalog of how real attackers operate, from initial access to impact.","attck|mitre attack"],
+ ["CVE","Common Vulnerabilities and Exposures","The public ID for a known vulnerability, like CVE-2021-44228 (Log4Shell)."],
+ ["CVSS","Common Vulnerability Scoring System","Scores a vulnerability's severity from 0.0 to 10.0."],
+ ["CWE","Common Weakness Enumeration","A list of the kinds of flaws in software, like SQL injection (CWE-89)."],
+ ["KEV","Known Exploited Vulnerabilities","CISA's catalog of flaws attackers are actually using. Federal agencies must patch them by set deadlines."],
+ ["NVD","National Vulnerability Database","NIST's database that adds scores and details to every CVE."],
+ ["SCAP","Security Content Automation Protocol","NIST standards that let tools check settings and patches automatically."],
+ ["STIG","Security Technical Implementation Guide","DISA's hardening rules for DoD systems, like Windows or Cisco settings."],
+ ["DISA","Defense Information Systems Agency","The DoD agency that runs DoD networks and publishes the STIGs."],
+ ["CISA","Cybersecurity and Infrastructure Security Agency","The U.S. agency that leads federal civilian cyber defense and publishes the KEV catalog. (ISACA's CISA cert is a different thing.)"],
+ ["MTTD","Mean Time to Detect","Average time from an attack starting to the SOC noticing it."],
+ ["MTTR","Mean Time to Respond (or Repair)","Average time to fix a problem once it's found. SOCs use it for response, ops teams for repair."],
+ ["MTBF","Mean Time Between Failures","How long a system runs, on average, before it fails."],
+ ["RTO","Recovery Time Objective","The longest a system can be down before the outage hurts the mission too much."],
+ ["RPO","Recovery Point Objective","The most data, counted in time, you can afford to lose. It sets how often you back up."],
+ ["BIA","Business Impact Analysis","Finds which systems matter most and what losing each one would cost."],
+ ["BCP","Business Continuity Plan","How the mission keeps going during a disruption."],
+ ["DRP","Disaster Recovery Plan","How IT systems get restored after a disaster."],
+ ["COOP","Continuity of Operations","The government term for keeping essential functions running during an emergency."],
+ ["IR","Incident Response","Handling an attack: prepare, detect and analyze, contain, eradicate, recover, then learn from it."],
+ ["CSIRT","Computer Security Incident Response Team","The team that handles security incidents."],
+ ["DFIR","Digital Forensics and Incident Response","Investigating what happened on systems and responding to it, as one discipline."],
+ ["CoC","Chain of custody","The record of who handled evidence and when, so it holds up later.","chain of custody"],
+ ["DLP","Data Loss Prevention","Spots and blocks sensitive data leaving by email, USB or the web."],
+ ["UEBA","User and Entity Behavior Analytics","Learns what's normal for each user and device, then flags what isn't."],
+ ["FIM","File Integrity Monitoring","Alerts when important files change, by comparing their hashes."],
+ ["NGFW","Next-Generation Firewall","A firewall that also knows applications and users and can inspect traffic like an IPS."],
+ ["WAF","Web Application Firewall","Filters traffic to a website and blocks attacks like SQL injection and XSS."],
+ ["UTM","Unified Threat Management","One box that does firewall, IPS, antivirus and web filtering."],
+ ["SWG","Secure Web Gateway","Filters users' web browsing and blocks malicious or banned sites."],
+ ["CASB","Cloud Access Security Broker","Sits between users and cloud apps to enforce policy and spot unapproved apps."],
+ ["SASE","Secure Access Service Edge","Networking and security (SD-WAN, web filtering, ZTNA) delivered as one cloud service."],
+ ["ZTNA","Zero Trust Network Access","Gives access to one app at a time after checking the user and device, instead of the whole network like a VPN."],
+ ["PAM","Privileged Access Management","Locks down and records admin accounts: vaulted passwords and access only when it's needed."],
+ ["C2","Command and Control","The channel attackers use to send orders to infected machines.","c&c|cnc"],
+ ["RAT","Remote Access Trojan","Malware that gives an attacker hidden remote control of a computer."],
+ ["BEC","Business Email Compromise","Scammers pose as a boss or vendor by email to get money or data sent to them."],
+ ["DoS","Denial of Service","Flooding or crashing a system so real users can't reach it."],
+ ["DDoS","Distributed Denial of Service","A denial of service from thousands of machines at once, often a botnet."],
+ ["XSS","Cross-Site Scripting","Getting a website to run an attacker's script in other users' browsers."],
+ ["CSRF","Cross-Site Request Forgery","Tricks a logged-in user's browser into sending a request they didn't mean to.","xsrf"],
+ ["SSRF","Server-Side Request Forgery","Tricks a server into making requests for the attacker, often to internal systems or cloud metadata."],
+ ["SQLi","SQL injection","Slipping database commands into an input box to read or change data."],
+ ["SQL","Structured Query Language","The language for asking and changing a relational database."],
+ ["RCE","Remote Code Execution","A flaw that lets an attacker run their own code on a system from afar."],
+ ["MITM","Man-in-the-middle (on-path attack)","An attacker secretly sits between two parties to read or change their traffic.","mitm attack|aitm"],
+ ["ROE","Rules of Engagement","The written limits of a pen test: what's in scope, when, and how far to go."],
+ ["SAST","Static Application Security Testing","Scans source code for flaws without running it."],
+ ["DAST","Dynamic Application Security Testing","Tests a running app from the outside, the way an attacker would."],
+ ["OWASP","Open Worldwide Application Security Project","The nonprofit behind the OWASP Top 10 list of web app risks."],
+ ["SBOM","Software Bill of Materials","The list of every component and library inside a piece of software."],
+ ["SDLC","Software Development Life Cycle","The stages of building software: plan, design, build, test, deploy and maintain."],
+ ["AV","Antivirus","Software that finds and removes known malware."],
+ ["LLM","Large Language Model","An AI model trained on huge amounts of text that answers in plain language. Prompt injection is its signature attack."],
+ /* identity and crypto */
+ ["MFA","Multifactor Authentication","A login that needs two or more kinds of proof: something you know, have or are."],
+ ["2FA","Two-Factor Authentication","MFA with exactly two factors, like a password plus a code."],
+ ["SSO","Single Sign-On","Log in once and get into many apps."],
+ ["SAML","Security Assertion Markup Language","An XML standard that lets an identity provider vouch for a user to a web app. Used for SSO."],
+ ["OAuth","Open Authorization","Lets one app use your data in another without your password. It handles authorization, not login."],
+ ["OIDC","OpenID Connect","A login layer on top of OAuth 2.0: it proves who the user is.","openid"],
+ ["IdP","Identity Provider","The system that logs users in and vouches for them to apps, like Entra ID or Okta."],
+ ["IAM","Identity and Access Management","Managing who users are and what they're allowed to reach."],
+ ["IAM","Information Assurance Management (DoD 8570)","The old 8570 manager levels (IAM I–III), replaced by DoD 8140 work roles."],
+ ["RBAC","Role-Based Access Control","Access given by job role, not person by person."],
+ ["ABAC","Attribute-Based Access Control","Access decided by attributes like department, location, device and time."],
+ ["DAC","Discretionary Access Control","The owner of a file decides who can use it."],
+ ["PKI","Public Key Infrastructure","The certificate authorities, certificates and rules that let people trust public keys."],
+ ["CA","Certificate Authority","Issues and signs the digital certificates that prove who owns a public key."],
+ ["CA","Credentialing Assistance","The Coast Guard money, through CG COOL, that pays for certs: up to $4,500 a fiscal year."],
+ ["CRL","Certificate Revocation List","A CA's list of certificates it cancelled before they expired."],
+ ["OCSP","Online Certificate Status Protocol","Checks one certificate's status live instead of downloading a whole CRL."],
+ ["CSR","Certificate Signing Request","What you send a CA to get a certificate: your public key and who you are."],
+ ["SAN","Subject Alternative Name","The certificate field that lists every name the certificate is good for."],
+ ["SAN","Storage Area Network","A dedicated high-speed network that gives servers block storage."],
+ ["CAC","Common Access Card","The DoD smart card ID. Its certificates log you in and sign your email."],
+ ["PIV","Personal Identity Verification","The federal smart card standard (FIPS 201) behind the CAC."],
+ ["AES","Advanced Encryption Standard","The standard symmetric cipher, with 128, 192 or 256-bit keys. Used almost everywhere."],
+ ["RSA","Rivest–Shamir–Adleman","An asymmetric algorithm for encryption and digital signatures, based on factoring huge numbers."],
+ ["ECC","Elliptic Curve Cryptography","Asymmetric crypto with the strength of RSA at much smaller key sizes."],
+ ["DES","Data Encryption Standard","An old 56-bit cipher that's long broken. 3DES ran it three times and is retired too.","3des"],
+ ["SHA","Secure Hash Algorithm","A family of hash functions. SHA-256 is the common one; SHA-1 is broken.","sha256|sha 256|sha1"],
+ ["MD5","Message Digest 5","An old 128-bit hash. Fine for a quick file check, broken for security."],
+ ["HMAC","Hash-based Message Authentication Code","A hash mixed with a secret key: proves a message wasn't changed and came from someone with the key."],
+ ["PFS","Perfect Forward Secrecy","New keys for every session, so a stolen long-term key can't unlock old traffic."],
+ ["HSM","Hardware Security Module","A tamper-resistant device that makes and guards encryption keys."],
+ ["TPM","Trusted Platform Module","A chip on the motherboard that stores keys and checks the boot. BitLocker uses it."],
+ ["FDE","Full Disk Encryption","Encrypts the whole drive, so a lost laptop doesn't leak its data."],
+ ["SPF","Sender Policy Framework","A DNS record that lists which servers may send email for a domain."],
+ ["DKIM","DomainKeys Identified Mail","Signs outgoing email so the receiver can tell it wasn't forged or changed."],
+ ["DMARC","Domain-based Message Authentication, Reporting and Conformance","Tells receivers what to do with mail that fails SPF and DKIM, and sends back reports."],
+ ["HSTS","HTTP Strict Transport Security","Tells browsers to only ever reach a site over HTTPS."],
+ /* data and rules */
+ ["CIA","Confidentiality, Integrity and Availability","The three goals of security: keep data secret, correct and reachable.","cia triad"],
+ ["PII","Personally Identifiable Information","Data that points to one person, like a name with an SSN, birth date or home address."],
+ ["PHI","Protected Health Information","Health data covered by HIPAA."],
+ ["CUI","Controlled Unclassified Information","Sensitive government info that isn't classified but still has handling rules."],
+ ["FOUO","For Official Use Only","The old DoD marking for sensitive unclassified info, replaced by CUI."],
+ ["SLA","Service Level Agreement","The promised level of service, like 99.9% uptime, and what happens if it's missed."],
+ ["MOU","Memorandum of Understanding","A written agreement between two parties. For TA, schools must have signed the DoD MOU."],
+ ["AUP","Acceptable Use Policy","The rules users agree to before using an organization's systems."],
+ ["SOP","Standard Operating Procedure","Step-by-step instructions for a routine task."],
+ ["NIST","National Institute of Standards and Technology","The U.S. agency behind standards like SP 800-53 and the Cybersecurity Framework."],
+ ["CSF","Cybersecurity Framework","NIST's framework: Govern, Identify, Protect, Detect, Respond and Recover."],
+ ["RMF","Risk Management Framework","NIST SP 800-37's seven steps to get a system authorized and keep it secure. DoD uses it for every system."],
+ ["ATO","Authority to Operate","The official decision that lets a system run on the network, accepting the risk that's left."],
+ ["POA&M","Plan of Action and Milestones","The list of a system's open security weaknesses and when each will be fixed.","poam"],
+ ["SSP","System Security Plan","Documents a system's boundary and how each security control is put in place."],
+ ["AO","Authorizing Official","The senior leader who accepts a system's risk and signs its ATO (DoD 8140 work role 611)."],
+ ["ISSM","Information Systems Security Manager","Runs a command's cybersecurity program (DoD 8140 work role 722)."],
+ ["ISSO","Information Systems Security Officer","Keeps one system secure day to day: its controls, paperwork and audits (DoD 8140 work role 721)."],
+ ["CISO","Chief Information Security Officer","The executive in charge of an organization's security."],
+ ["GRC","Governance, Risk and Compliance","Policies, risk decisions and audits: the side of security that keeps systems approved."],
+ ["FISMA","Federal Information Security Modernization Act","The law that makes federal agencies run information security programs."],
+ ["FedRAMP","Federal Risk and Authorization Management Program","The government's security approval for cloud services."],
+ ["CMMC","Cybersecurity Maturity Model Certification","DoD's security requirement for defense contractors that handle CUI."],
+ ["HIPAA","Health Insurance Portability and Accountability Act","The U.S. law that protects health information."],
+ ["GDPR","General Data Protection Regulation","The EU's privacy law for personal data."],
+ ["PCI DSS","Payment Card Industry Data Security Standard","Security rules for anyone who takes card payments.","pci|pcidss"],
+ ["SOX","Sarbanes-Oxley Act","The U.S. law that makes public companies control and audit their financial records and systems."],
+ /* cloud and systems */
+ ["IaaS","Infrastructure as a Service","Rent virtual machines, storage and networks. You manage the OS and everything above it."],
+ ["PaaS","Platform as a Service","The provider runs the OS and runtime. You bring the app and the data."],
+ ["SaaS","Software as a Service","A finished app in the browser, like Microsoft 365. You manage only your data and users."],
+ ["CSP","Cloud Service Provider","A company like AWS, Microsoft or Google that sells cloud services."],
+ ["CSP","Content Security Policy","Browser rules for which scripts and files a page may load. It blocks injected code (MyNextCert uses one)."],
+ ["CSPM","Cloud Security Posture Management","Scans cloud accounts for risky settings like open storage or missing MFA."],
+ ["CWPP","Cloud Workload Protection Platform","Protects the VMs, containers and serverless code that run in the cloud."],
+ ["VPC","Virtual Private Cloud","Your own private network inside AWS. Azure calls it a VNet."],
+ ["VNet","Azure Virtual Network","Azure's private network for your resources."],
+ ["NSG","Network Security Group","Azure's allow and deny rules for traffic to subnets and VMs."],
+ ["EC2","Amazon Elastic Compute Cloud","AWS's virtual servers."],
+ ["S3","Amazon Simple Storage Service","AWS's object storage. Buckets left public are a classic data leak."],
+ ["KMS","Key Management Service","A cloud service that creates, stores and controls your encryption keys."],
+ ["IaC","Infrastructure as Code","Building servers and networks from code files, like Terraform, so they're repeatable and reviewed."],
+ ["CI/CD","Continuous Integration and Continuous Delivery","Builds, tests and ships code automatically every time it changes.","cicd"],
+ ["API","Application Programming Interface","How programs talk to each other. A common attack surface."],
+ ["VM","Virtual Machine","A computer made of software, running on a hypervisor."],
+ ["VDI","Virtual Desktop Infrastructure","Desktops that run in the data center and stream to the user's screen."],
+ ["MSP","Managed Service Provider","An outside company that runs IT for others."],
+ ["MSSP","Managed Security Service Provider","An outside company that runs security monitoring for others."],
+ ["OS","Operating System","The software that runs a computer, like Windows or Linux."],
+ ["BIOS","Basic Input/Output System","The old firmware that starts a computer. UEFI replaced it."],
+ ["UEFI","Unified Extensible Firmware Interface","Modern firmware that starts the computer and supports Secure Boot."],
+ ["RAID","Redundant Array of Independent Disks","Combines drives for speed or to survive a dead drive: RAID 1 mirrors, RAID 5 uses parity."],
+ ["NAS","Network-Attached Storage","A box of drives that shares files over the network."],
+ ["AD","Active Directory","Microsoft's directory of users, computers and Group Policy in a Windows domain."],
+ ["GPO","Group Policy Object","A bundle of Windows settings pushed to users and computers through Active Directory."],
+ ["CLI","Command-Line Interface","Running a system by typing commands."],
+ ["GUI","Graphical User Interface","Running a system with windows, icons and a mouse."],
+ ["SELinux","Security-Enhanced Linux","Mandatory access control for Linux: labels decide what each process can touch."],
+ ["LVM","Logical Volume Manager","Lets Linux pool disks into volumes you can grow and resize."],
+ ["UID","User ID","The number Linux uses for each account. Root is 0."],
+ ["MDM","Mobile Device Management","Manages and secures phones and tablets: policies, apps and remote wipe."],
+ ["BYOD","Bring Your Own Device","Using personal phones or laptops for work."],
+ ["EOL","End of Life","When a vendor stops supporting a product. No more patches."],
+ ["IoT","Internet of Things","Everyday devices on the network, like cameras and sensors. Often weakly secured."],
+ ["OT","Operational Technology","Systems that run physical equipment: plants, power and engineering controls."],
+ ["ICS","Industrial Control System","Controls physical processes. SCADA and PLCs are examples."],
+ ["SCADA","Supervisory Control and Data Acquisition","Monitors and controls spread-out industrial systems like pipelines and power grids."],
+ ["PLC","Programmable Logic Controller","A rugged computer that runs machinery."],
+ /* DoD, Coast Guard and cert words */
+ ["DCWF","DoD Cyber Workforce Framework","The list of cyber work roles, like 511 Cyber Defense Analyst, that DoD 8140 qualifications are built on."],
+ ["IAT","Information Assurance Technical (DoD 8570)","The old 8570 levels (IAT I–III) for hands-on technical jobs, replaced by DoD 8140 work roles."],
+ ["IASAE","Information Assurance System Architect and Engineer (DoD 8570)","The old 8570 category for architects and engineers, replaced by DoD 8140 work roles."],
+ ["CSSP","Cybersecurity Service Provider","A team that provides defensive cyber services to DoD networks. DoD 8570 had cert categories for its roles."],
+ ["CWO","Chief Warrant Officer","The officer track for experienced enlisted members: the command's technical expert."],
+ ["ESO","Education Services Officer","Your unit's point of contact for TA, CG COOL and testing."],
+ ["ETQC","Education and Training Quota Management Command","The Coast Guard command that authorizes TA and CG COOL requests."],
+ ["TA","Tuition Assistance","Coast Guard money for college classes: up to $4,500 a fiscal year, separate from CG COOL."],
+ ["COOL","Credentialing Opportunities On-Line","The site (CG COOL for the Coast Guard) that lists credentials and how to get them paid for.","cg cool"],
+ ["JST","Joint Services Transcript","Your military training translated into recommended college credit."],
+ ["CLEP","College-Level Examination Program","Tests that earn college credit. DANTES pays for your first try."],
+ ["DSST","DSST credit-by-exam tests","Originally DANTES Subject Standardized Tests. Pass one and skip the class; DANTES pays for your first try."],
+ ["DANTES","Defense Activity for Non-Traditional Education Support","Pays for service members' CLEP and DSST tests."],
+ ["TAP","Transition Assistance Program","Required classes and counseling for members getting out of the military."],
+ ["BLS","Bureau of Labor Statistics","The U.S. agency whose pay and job-growth numbers the Career paths page uses."],
+ ["PBQ","Performance-Based Question","A hands-on exam question: configure a device, drag and drop, or work a simulated system.","pbqs"],
+ ["CEU","Continuing Education Unit","Credits you earn to renew a cert. CompTIA asks for a set number every three years.","ceus|ce"],
+ ["CPE","Continuing Professional Education","Credits ISC2 and others ask for each year to keep a cert active.","cpes"]
+];
+var GLOSS=(function(){
+  var m={};
+  function put(k,g){k=snorm(k);if(!k) return;var a=m[k]||(m[k]=[]);if(a.indexOf(g)<0) a.push(g);}
+  GLOSS_RAW.forEach(function(g){
+    put(g[0],g);put(g[1].replace(/\s*\([^)]*\)/g,""),g);
+    if(g[3]) g[3].split("|").forEach(function(a){put(a,g);});
+  });
+  return m;
+})();
+/* the meaning card: the whole query is an acronym (or its full name), or a short list of them ("ids vs ips") */
+function sDefs(raw){
+  var q=snorm(raw);if(!q) return [];
+  if(GLOSS[q]) return GLOSS[q].slice(0,3);
+  var parts=String(raw).split(/[\s,]+/).filter(function(p){return p&&!/^(vs\.?|versus|and|or|&)$/i.test(p);});
+  if(parts.length<2||parts.length>3) return [];
+  var out=[];
+  for(var i=0;i<parts.length;i++){var k=snorm(parts[i]), g=k&&GLOSS[k];if(!g) return [];g.forEach(function(x){if(out.indexOf(x)<0) out.push(x);});}
+  return out.slice(0,4);
+}
+function sDefHtml(defs){
+  if(!defs.length) return "";
+  return '<div class="sr-def" role="presentation"><p class="lab">'+(defs.length>1&&defs.every(function(g){return g[0]===defs[0][0];})?"Meanings":"Meaning")+'</p>'+
+    defs.map(function(g){return '<div class="sr-dm"><b>'+sesc(g[0])+'</b><span>'+sesc(g[1])+'</span><p>'+sesc(g[2])+'</p></div>';}).join("")+'</div>';
+}
 var POPULAR=["Security+","Network+","CCNA","CISSP","SAL1 · Security Analyst L1","Cloud Practitioner"];
 var FILTERS=[["all","All"],["20 year career","20 year career"],["Cyber eng","Cyber"],["Cloud security","Cloud"],["Network eng","Network"],["d8140","DoD 8140"]];
 function snorm(s){return String(s).toLowerCase().replace(/\+/g," plus ").replace(/[^a-z0-9]+/g," ").trim();}
@@ -14296,6 +14839,7 @@ var SIDX=[];
   SIDX.push({kind:"page",key:"p:compare",page:"compare",name:"Compare certs",sub:"Explore · two certs side by side",fields:[[snorm("compare certs"),95],[snorm("compare versus vs side by side difference which is better which cert harder cheaper"),60]]});
   SIDX.push({kind:"page",key:"p:exam",page:"exam",name:"Exam countdown",sub:"Explore · test date, countdown, day-by-day plan",fields:[[snorm("exam countdown"),95],[snorm("exam date test date countdown study plan schedule calendar day by day days left when is my exam"),60]]});
   SIDX.push({kind:"page",key:"p:out",page:"out",name:"Getting out",sub:"Explore · SkillBridge in your last 180 days",fields:[[snorm("getting out"),95],[snorm("skillbridge skill bridge separation separating transition tap leaving civilian job internship employer last 180 days ets eoe retire retirement"),60]]});
+  SIDX.push({kind:"page",key:"p:print",print:true,name:"Printable path sheet",sub:"For instructors and leadership · certs by path, DoD 8140, CG COOL",fields:[[snorm("printable path sheet"),95],[snorm("print printable printout pdf save as pdf handout hand out one pager brief briefing instructor instructors leadership command chief master chief counseling sheet paper"),60]]});
   SIDX.push({kind:"page",key:"p:settings",page:"settings",name:"Settings",sub:"Explore · Lite mode, back up and restore your progress",fields:[[snorm("settings"),95],[snorm("lite mode light mode slow lag laggy battery data saver 3d globe off backup back up restore export import transfer move progress new phone new device save my progress"),60]]});
   SIDX.push({kind:"page",key:"p:colleges",col:true,name:"Colleges",sub:"Degrees · "+COLLEGES.length+" schools, what you pay after TA",fields:[[snorm("colleges"),95],[snorm("college colleges university universities school schools degree degrees bachelor bachelors associate online tuition assistance ta wgu"),58]]});
   COLLEGES.forEach(function(c){
@@ -14401,22 +14945,26 @@ function srchRender(force,intro){
   if(srchRaf){cancelAnimationFrame(srchRaf);srchRaf=0;}
   var key=srchIn.value+"|"+srchFilter;
   if(!force&&key===srchLastQ) return;srchLastQ=key;
-  var r=sGroups(), html='<span class="sr-hl" aria-hidden="true"></span>', n=0;
+  var r=sGroups(), defs=sDefs(srchIn.value), html='<span class="sr-hl" aria-hidden="true"></span>'+sDefHtml(defs), n=0;
   srchRes=[];
   r.groups.forEach(function(g){
     if(!g.items.length) return;
     html+='<div class="sr-grp" role="presentation"><p class="lab">'+sesc(g.label)+'</p><em>'+pad2(g.items.length)+'</em></div>';
     g.items.forEach(function(e){html+=sRow(e,n,r.raw);srchRes.push(e);n++;});
   });
-  if(!n){
+  if(!n&&defs.length){
+    html+='<div class="sr-empty sm"><p>Nothing in the certs or guides matches it yet. Try a cert name or a topic.</p></div>';
+  } else if(!n){
     var q=sesc(srchIn.value.trim());
-    html+='<div class="sr-empty"><b>No match for “'+q+'”</b><p>Try a cert name, an exam code like <button type="button" data-try="SY0-701">SY0-701</button>, or a topic like <button type="button" data-try="port 3389">port 3389</button>.'+
+    html+='<div class="sr-empty"><b>No match for “'+q+'”</b><p>Try a cert name, an exam code like <button type="button" data-try="SY0-701">SY0-701</button>, an acronym like <button type="button" data-try="SIEM">SIEM</button>, or a topic like <button type="button" data-try="port 3389">port 3389</button>.'+
       (srchFilter!=="all"?' Or <button type="button" data-try-all>search all paths</button>.':'')+'</p></div>';
   }
   srchList.innerHTML=html;srchHl=srchList.querySelector(".sr-hl");
   srchList.scrollTop=0;
   var cert=srchRes.filter(function(e){return e.kind==="cert";}).length;
-  srchN.textContent=srchIn.value.trim()?(n?n+" result"+(n===1?"":"s"):"No results"):(srchFilter==="all"?SIDX.filter(function(e){return e.kind==="cert";}).length+" certs indexed":cert+" certs");
+  var live=defs.map(function(g){return g[0]+": "+g[1]+". "+g[2];}).join(" ");
+  if(srchLive.textContent!==live) srchLive.textContent=live;
+  srchN.textContent=srchIn.value.trim()?(n?n+" result"+(n===1?"":"s"):defs.length?"Meaning only":"No results"):(srchFilter==="all"?SIDX.filter(function(e){return e.kind==="cert";}).length+" certs indexed":cert+" certs");
   srchAct=-1;setAct(n?0:-1,false,true);
   /* rows rise in only when search opens or a filter changes; while typing they swap in place, so nothing flickers */
   if(intro&&!reduced){
@@ -14464,7 +15012,7 @@ function srchShow(from,kbd){
   srchOpen=true;srchOpener=from||document.activeElement;
   clearTimeout(srchT);
   srchIn.value="";srchFilter="all";setChips();
-  srchIn.placeholder=window.innerWidth<520?"Search certs, codes or topics":"Search certs, exam codes, ports, topics";
+  srchIn.placeholder=window.innerWidth<520?"Search certs, codes, acronyms":"Search certs, exam codes, acronyms, topics";
   srch.inert=false;srch.setAttribute("aria-hidden","false");
   [app,sheet,panel].forEach(function(el){el.inert=true;});
   srch.classList.add("on");
@@ -14493,7 +15041,7 @@ async function srchPick(e){
   if(e.kind==="content"){await srchClose(true);cGo(e);return;}
   sRemember(e);
   await srchClose(true);
-  if(e.kind==="page"){if(e.col){openCertFrom({kind:"vendor",v:VENDORS.length-1});return;}if(e.q8) q8Target(e.q8);if(e.pt) ptTarget(e.pt[0],e.pt[1]);if(e.fund){goFund(e.fund);return;}goPage(e.page);return;}
+  if(e.kind==="page"){if(e.print){if(window.openPathSheet) window.openPathSheet();return;}if(e.col){openCertFrom({kind:"vendor",v:VENDORS.length-1});return;}if(e.q8) q8Target(e.q8);if(e.pt) ptTarget(e.pt[0],e.pt[1]);if(e.fund){goFund(e.fund);return;}goPage(e.page);return;}
   openCertFrom(e);
 }
 function setViewNow(name){
@@ -14550,7 +15098,7 @@ function isTyping(t){return t&&(t.tagName==="INPUT"||t.tagName==="TEXTAREA"||t.i
 document.addEventListener("keydown",function(e){
   var k=e.key;
   if(!srchOpen){
-    if(document.getElementById("splash")) return;
+    if(document.getElementById("splash")||dlgOpen()) return;
     if(((e.metaKey||e.ctrlKey)&&!e.altKey&&(k==="k"||k==="K"))||(k==="/"&&!e.metaKey&&!e.ctrlKey&&!isTyping(e.target))){
       if(state==="idle"||state==="open"){e.preventDefault();srchShow(null,true);}
     }

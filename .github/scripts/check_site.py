@@ -126,6 +126,39 @@ def check_index():
         ok(f"all {len(page.inline_scripts)} inline scripts match a CSP hash")
 
 
+def check_404():
+    # 6. The "page not found" page: on-brand, links home, runs no scripts, loads nothing from outside (v2.46)
+    if not os.path.isfile("404.html"):
+        fail("404.html is missing, so wrong links show GitHub's plain error page")
+        return
+    with open("404.html", encoding="utf-8", newline="") as f:
+        html = f.read()
+    page = Page()
+    page.feed(html)
+    page.close()
+    if page.outside:
+        for tag, url in page.outside:
+            fail(f"404.html loads from an outside server: <{tag}> {url[:80]}")
+    if page.inline_scripts or re.search(r"<script\b", html, re.I):
+        fail("404.html should not contain any script")
+    if page.csp is None:
+        fail("404.html has no Content-Security-Policy meta tag")
+        return
+    if directive(page.csp, "script-src") != ["'none'"] or directive(page.csp, "default-src") != ["'none'"]:
+        fail("404.html CSP should have default-src 'none' and script-src 'none'")
+    style_src = directive(page.csp, "style-src") or []
+    if "'unsafe-inline'" not in style_src:
+        allowed = {x.strip("'") for x in style_src if x.startswith("'sha256-")}
+        for text in re.findall(r"<style>(.*?)</style>", html, re.S):
+            digest = base64.b64encode(hashlib.sha256(text.encode("utf-8")).digest()).decode()
+            if f"sha256-{digest}" not in allowed:
+                fail("404.html inline style is not in its CSP; rebuild it with make_404.py")
+    if 'href="/"' not in html:
+        fail("404.html has no link back to the home page")
+    if not failures or not any("404.html" in m for m in failures):
+        ok("404.html is present, links home, runs no scripts and has a strict CSP")
+
+
 def sw_version(text):
     m = re.search(r'var\s+VERSION\s*=\s*"(certpath-v\d+)"', text)
     return m.group(1) if m else None
@@ -182,6 +215,7 @@ def check_bump(version):
 
 def main():
     check_index()
+    check_404()
     version = check_sw()
     check_bump(version)
     print()
