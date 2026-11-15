@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-6ise5Gb0z+PIToXDWKawmmTaTzdFoQLsIcB/nevP724=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-p5u0evdnzWzpTnjZZOZrBol5f0oVYLkrNWct9XI0PWQ=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
-<title>CG Cert Path</title>
-<meta name="description" content="Certifications, career paths and funding for Coast Guard IT. Study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
+<title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
+<meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
+<link rel="canonical" href="https://mynextcert.com/">
 <meta name="theme-color" content="#12161d">
 <meta name="color-scheme" content="dark">
 <link rel="manifest" href="manifest.webmanifest">
@@ -13,19 +14,19 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="CertPath">
+<meta name="apple-mobile-web-app-title" content="MyNextCert">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta property="og:title" content="CG Cert Path">
+<meta property="og:title" content="MyNextCert">
 <meta property="og:description" content="Certifications, career paths and funding for Coast Guard IT.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="CG Cert Path">
-<meta property="og:url" content="https://gabytoski77.github.io/certpath/">
-<meta property="og:image" content="https://gabytoski77.github.io/certpath/og-image.jpg">
+<meta property="og:site_name" content="MyNextCert">
+<meta property="og:url" content="https://mynextcert.com/">
+<meta property="og:image" content="https://mynextcert.com/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="CG Cert Path: Plan the path. Earn the cert.">
+<meta property="og:image:alt" content="MyNextCert: Plan the path. Earn the cert.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gabytoski77.github.io/certpath/og-image.jpg">
+<meta name="twitter:image" content="https://mynextcert.com/og-image.jpg">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="preload" href="fonts/inter-tight.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="fonts/geist.woff" as="font" type="font/woff" crossorigin>
@@ -159,7 +160,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 /* start block (v2.16): what the site does, that the CG pays, one main action. Returning visitors get a Continue card instead. */
 .start{display:grid;gap:14px;justify-items:start;max-width:min(330px,100%);pointer-events:auto}
 .st-head{display:grid;gap:10px;justify-items:inherit;min-width:0}
-/* like the vendor readout: when the CertPath wordmark would cover the start block, the promise moves above the wordmark and the buttons stay below it (placeStart) */
+/* like the vendor readout: when the MyNextCert wordmark would cover the start block, the promise moves above the wordmark and the buttons stay below it (placeStart) */
 .start{position:relative}
 .start.split .st-head{position:absolute;left:0;right:0;bottom:var(--st-lift,100%)}
 /* no room to lift the text above the wordmark: give it a dark glass backing so it stays readable over the letters */
@@ -196,7 +197,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .ro-pick{display:none;margin:0;font:500 9.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#8d97a5;padding-left:.12em}
 .readout{grid-area:ro;align-self:end;justify-self:end;width:min(290px,100%);display:grid;gap:12px;padding-bottom:2.5vh;pointer-events:auto;position:relative;z-index:1}
 .ro-head{display:grid;gap:inherit;justify-items:inherit;min-width:0}
-/* when the big CertPath wordmark would cover the vendor text, the text moves above the wordmark and the crests + buttons stay below it (placeReadout) */
+/* when the big MyNextCert wordmark would cover the vendor text, the text moves above the wordmark and the crests + buttons stay below it (placeReadout) */
 .readout.split .ro-head{position:absolute;left:0;right:0;bottom:var(--ro-lift,100%)}
 .readout.tight .crest{width:54px;height:58px}
 .readout.tight .ro-dots{margin:2px 0 6px;gap:2px 6px}
@@ -1944,7 +1945,7 @@ html.gfx-light .gshadow{filter:none}
   font:700 9.5px/1 var(--f-ui);letter-spacing:.11em;text-transform:uppercase;white-space:nowrap;box-shadow:inset 0 0 0 1px rgba(0,0,0,.16),0 1px 0 rgba(255,255,255,.18) inset;vertical-align:middle;flex:none}
 .l8>b{font:inherit;font-weight:700;letter-spacing:inherit;color:var(--l8ink)!important}
 .l8.en>b{color:inherit!important}
-/* level colors from the CertPath palette (v2.35): steel Basic, powder Intermediate, ice-core Advanced. --l8f = flat fill for bars and lines */
+/* level colors from the MyNextCert palette (v2.35): steel Basic, powder Intermediate, ice-core Advanced. --l8f = flat fill for bars and lines */
 .l8-B{--l8c:linear-gradient(180deg,#8ca5ba,#5d7890);--l8f:linear-gradient(90deg,#5d7890,#8ca5ba);--l8ink:#f4f9fd}
 .l8-I{--l8c:linear-gradient(180deg,#e6f0f8,#adc6dc);--l8f:linear-gradient(90deg,#9db8cf,#e0ecf6);--l8ink:#0b1824}
 .l8-A{--l8c:linear-gradient(180deg,#1c3550,#0b1726);--l8f:linear-gradient(90deg,#5fb6ee,#bfe7ff);--l8ink:#e6f6ff}
@@ -2176,7 +2177,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
 <div id="app">
   <div class="bloom" aria-hidden="true"></div>
   <canvas id="pk-back" class="layer" aria-hidden="true"></canvas>
-  <canvas id="tt" class="layer" role="img" aria-label="CertPath"></canvas>
+  <canvas id="tt" class="layer" role="img" aria-label="MyNextCert"></canvas>
   <div class="gshadow" id="gshadow" aria-hidden="true"></div>
   <span class="frame" aria-hidden="true"></span>
   <canvas id="globe" class="layer" aria-label="Spinning globe with certification vendors. Use the vendor buttons below to choose one."></canvas>
@@ -2185,7 +2186,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">CG Cert Path</b><span>v.2.42</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.43</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2193,7 +2194,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   </header>
 
   <main class="mid ui">
-    <h1 class="vh">CG Cert Path: choose your certification path</h1>
+    <h1 class="vh">MyNextCert: choose your next certification</h1>
     <div class="hero" data-rv="2"><div class="start" id="start">
       <div class="st-head">
       <p class="st-lead">Which certs to take, in what order, and how the Coast Guard pays for them.</p>
@@ -2328,7 +2329,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
         </div>
         <p class="fine rv-s">Funding amounts come from the official CG COOL and FORCECOM pages; confirm the current rules with your ESO. All roadmap data is a draft and gets verified before launch.</p>
         <p class="fine rv-s">Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by the U.S. Coast Guard, CompTIA, ISC2, Cisco, TryHackMe, LPI, AWS, Microsoft or any school listed. All names are trademarks of their owners. <span class="nw">&copy; 2026 Gabriel Rodriguez</span>. All rights reserved.</p>
-        <p class="fine rv-s">Your data stays on your device. CertPath has no accounts, cookies or analytics; your progress is saved in your browser and you can clear it anytime. The site is hosted on GitHub Pages, which keeps standard server logs.</p>
+        <p class="fine rv-s">Your data stays on your device. MyNextCert has no accounts, cookies or analytics; your progress is saved in your browser and you can clear it anytime. The site is hosted on GitHub Pages, which keeps standard server logs.</p>
       </div>
 
       <div class="sv" id="sv-mine" hidden>
@@ -2352,7 +2353,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
       </div>
 
       <div class="sv" id="sv-exam" hidden>
-        <p class="intro rv-s">Pick the exam you're taking and your test date. CertPath counts down to it and lays out what to study each day, from the guide's domains. It all stays on this device.</p>
+        <p class="intro rv-s">Pick the exam you're taking and your test date. MyNextCert counts down to it and lays out what to study each day, from the guide's domains. It all stays on this device.</p>
         <div class="ex rv-s" id="ex" aria-live="polite"></div>
       </div>
 
@@ -2433,7 +2434,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
           <a href="https://www.mycg.uscg.mil/News/Article/4586438/new-coast-guard-cyberspace-qualification-insignia-unveiled/" target="_blank" rel="noopener noreferrer">CG Cyberspace Qualification Insignia &nearr;</a>
         </div>
         <div class="hatch rv-s" aria-hidden="true"></div>
-        <p class="fine rv-s">Read from the official DoD 8140 Qualification Matrix V3.0 (Oct 5, 2026) on Nov 13, 2026. Options marked Pending Validation there are left out. CertPath maps the 23 IT and Cybersecurity work roles that have cert options; for Cyber Effects, Intel, Data/AI and Software Engineering roles (still pending), and for the full list of degree and training options, use the official matrix. Your billet's work role and level, and your command, decide what you need.</p>
+        <p class="fine rv-s">Read from the official DoD 8140 Qualification Matrix V3.0 (Oct 5, 2026) on Nov 13, 2026. Options marked Pending Validation there are left out. MyNextCert maps the 23 IT and Cybersecurity work roles that have cert options; for Cyber Effects, Intel, Data/AI and Software Engineering roles (still pending), and for the full list of degree and training options, use the official matrix. Your billet's work role and level, and your command, decide what you need.</p>
       </div>
 
       <div class="sv" id="sv-cool" hidden>
@@ -2513,7 +2514,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
       </div>
 
       <div class="sv" id="sv-settings" hidden>
-        <p class="intro rv-s">How CertPath runs on this device, and a backup of everything you've saved here.</p>
+        <p class="intro rv-s">How MyNextCert runs on this device, and a backup of everything you've saved here.</p>
         <section class="set rv-s" aria-labelledby="set-lite-h">
           <p class="lab">Display</p>
           <h3 class="set-h" id="set-lite-h">Lite mode</h3>
@@ -2547,7 +2548,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
             <input type="file" id="bk-file" accept=".json,application/json,text/plain" hidden>
           </div>
           <div class="set-box" id="bk-pbox" hidden>
-            <p><label for="bk-ta">Paste the backup text you copied from CertPath.</label></p>
+            <p><label for="bk-ta">Paste the backup text you copied from MyNextCert.</label></p>
             <textarea id="bk-ta" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
             <div class="set-acts"><button type="button" class="mp-btn" id="bk-check">Check backup</button><button type="button" class="mp-btn ghost" id="bk-pcancel">Cancel</button></div>
           </div>
@@ -2560,7 +2561,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
             <textarea id="bk-out" readonly spellcheck="false"></textarea>
           </div>
         </section>
-        <p class="fine rv-s">A backup is a small text file with only your CertPath progress: ticked objectives, quiz bests, your path, exam date, compare picks and recent searches. Nothing is uploaded; the file stays wherever you save it. Lite mode is a setting for this device and isn't part of the backup.</p>
+        <p class="fine rv-s">A backup is a small text file with only your MyNextCert progress: ticked objectives, quiz bests, your path, exam date, compare picks and recent searches. Nothing is uploaded; the file stays wherever you save it. Lite mode is a setting for this device and isn't part of the backup.</p>
       </div>
 
       <div class="sv" id="sv-out" hidden>
@@ -2651,7 +2652,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
 "use strict";
 
 /* ---------- anti-framing (v2.27) ----------
-   On the live site, CertPath refuses to run inside another site's frame (clickjacking defense; GitHub Pages
+   On the live site, MyNextCert refuses to run inside another site's frame (clickjacking defense; GitHub Pages
    can't send the X-Frame-Options / frame-ancestors header, and a CSP meta tag can't set frame-ancestors).
    It tries to break out to the top window; if the frame blocks that, it shows a link instead of the app.
    Only on the real hosts, so the claude.ai preview (which is itself a frame) keeps working. */
@@ -2659,7 +2660,7 @@ if(/(^|\.)gabytoski77\.github\.io$|^localhost$/.test(location.hostname)){
   var framed=true;try{framed=window.top!==window.self;}catch(e){framed=true;}
   if(framed){
     try{window.top.location.replace(window.location.href);}catch(e){}
-    document.documentElement.innerHTML='<head><meta name="viewport" content="width=device-width,initial-scale=1"><title>CertPath</title></head><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#12161d;color:#e8f1f8;font:15px/1.5 system-ui,sans-serif;text-align:center;padding:24px;box-sizing:border-box"><p>CertPath can\u2019t be shown inside another site.<br><a href="'+location.href.replace(/[<>"']/g,"")+'" target="_top" rel="noopener" style="color:#bcd6ea">Open CertPath on its own page \u2192</a></p></body>';
+    document.documentElement.innerHTML='<head><meta name="viewport" content="width=device-width,initial-scale=1"><title>MyNextCert</title></head><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#12161d;color:#e8f1f8;font:15px/1.5 system-ui,sans-serif;text-align:center;padding:24px;box-sizing:border-box"><p>MyNextCert can\u2019t be shown inside another site.<br><a href="'+location.href.replace(/[<>"']/g,"")+'" target="_top" rel="noopener" style="color:#bcd6ea">Open MyNextCert on its own page \u2192</a></p></body>';
     return;
   }
 }
@@ -2799,7 +2800,7 @@ var COLLEGES=[
    links:[["Military TA at WGU","https://www.wgu.edu/financial-aid-tuition/military-va/tuition-assistance.html"],["IT bachelor's degrees and tuition","https://www.wgu.edu/online-it-degrees/bachelors-programs.html"],["Part time with TA","https://www.wgu.edu/student-experience/military/part-time-options.html"],["Certs in each degree","https://wgu.edu/online-it-degrees/it-certifications.html"]],
    alias:"wgu western governors bscsia bsit bscne competency"}
 ];
-/* WGU IT degrees and the certs built into them. Names match CertPath certs where the cert is on the site. */
+/* WGU IT degrees and the certs built into them. Names match MyNextCert certs where the cert is on the site. */
 var WGU_DEG=[
   {k:"BSCSIA",n:"BS Cybersecurity and Information Assurance",url:"https://www.wgu.edu/online-it-degrees/cybersecurity-information-assurance-bachelors-program.html",
    tracks:[["",["A+","Network+","Security+","CySA+","PenTest+","Project+","Linux Essentials","SSCP","CCSP"],["Data+","ITIL 4 Foundation","CompTIA stackable certs"]]],
@@ -2820,7 +2821,7 @@ function vNum(v){return v.id==="colleges"?COLLEGES.length:v.certs.length;}
    Source: the DoD CIO Workforce Innovation Directorate's interactive qualification matrix on cyberworkforce.mil
    (DoD 8140 Qualification Matrix V3.0, dated Oct 5, 2026, official Excel file), read Nov 13, 2026, Foundation = Certification.
    V3.0 matches V2.1 for the 17 roles mapped before and adds cert options for 212, 421, 462, 611, 622 and 723.
-   Only approved options; anything marked Pending (*) is left out. Lists use CertPath's own cert names where the
+   Only approved options; anything marked Pending (*) is left out. Lists use MyNextCert's own cert names where the
    cert has a guide here, else the matrix's short name (full names in Q8_FULL).
    B/I/A = Basic / Intermediate / Advanced. [] = none listed (431 has no cert option above Basic; 212, 421, 612 and 723 none at Basic). null would mean "not read yet".
    A cert listed at a higher level also covers the lower levels of the same work role, never other roles. */
@@ -2889,7 +2890,7 @@ var Q8_EN=[["211","Forensics Analyst","Legal"],["221","Cyber Crime Investigator"
   ["711","Cyber Instructional Curriculum Developer","Training"],["712","Cyber Instructor","Training"],
   ["732","Privacy Compliance Manager","Leadership"],["751","Cyber Workforce Developer and Manager","Leadership"],["752","Cyber Policy and Strategy Planner","Leadership"],["901","Executive Cyber Leader","Leadership"],
   ["801","Program Manager","Acquisition"],["802","IT Project Manager","Acquisition"],["803","Product Support Manager","Acquisition"],["804","IT Investment / Portfolio Manager","Acquisition"],["805","IT Program Auditor","Acquisition"]];
-/* certs approved only in Enabler roles (none on CertPath since the Nov 12, 2026 read: CCNA turned out to be 441 Advanced) */
+/* certs approved only in Enabler roles (none on MyNextCert since the Nov 12, 2026 read: CCNA turned out to be 441 Advanced) */
 var Q8_ENONLY={};
 var Q8_FULL={"GFACT":"GIAC Foundational Cybersecurity Technologies","GSEC":"GIAC Security Essentials","CND":"EC-Council Certified Network Defender","GISF":"GIAC Information Security Fundamentals",
   "CEH":"EC-Council Certified Ethical Hacker","CEH(P)":"EC-Council CEH Practical","FITSP-O":"Federal IT Security Professional, Operator","FITSP-A":"Federal IT Security Professional, Auditor",
@@ -2901,7 +2902,7 @@ var Q8_FULL={"GFACT":"GIAC Foundational Cybersecurity Technologies","GSEC":"GIAC
   "CGRC":"ISC2 Certified in Governance, Risk and Compliance (formerly CAP)","CISSO":"Certified Information Systems Security Officer","CCISO":"EC-Council Certified Chief Information Security Officer",
   "GSLC":"GIAC Security Leadership","CISSP-ISSAP":"CISSP concentration: Security Architecture","CISSP-ISSEP":"CISSP concentration: Security Engineering","CISSP-ISSMP":"CISSP concentration: Security Management",
   "CSSLP":"ISC2 Certified Secure Software Lifecycle Professional","CHFI":"EC-Council Computer Hacking Forensic Investigator","GCFE":"GIAC Certified Forensic Examiner","GREM":"GIAC Reverse Engineering Malware","GCIP":"GIAC Critical Infrastructure Protection","CSC":"CertNexus Cyber Secure Coder","Linux+":"CompTIA Linux+","CCNP Enterprise":"Cisco CCNP Enterprise"};
-/* which certs CertPath covers (names in VENDORS, minus the Colleges slot), filled once VENDORS exists */
+/* which certs MyNextCert covers (names in VENDORS, minus the Colleges slot), filled once VENDORS exists */
 function q8Here(n){for(var i=0;i<VENDORS.length-1;i++){for(var k=0;k<VENDORS[i].certs.length;k++) if(VENDORS[i].certs[k][0]===n) return true;}return false;}
 var Q8_BY=null;   /* cert name -> [{r:"511",l:"A"}], strongest first */
 function q8By(){
@@ -3592,7 +3593,7 @@ function resize(){
   if(tt) tt.resize(W,H,mobile?gcy-Rpx*1.1:short?gcy+Rpx*.42:gcy-H*.04,short?{cx:gcx,w:sr.width}:null);
   placeReadout();
 }
-/* keep the vendor text clear of the CertPath wordmark: if they overlap, lift the text above the word (crests + buttons stay below it) */
+/* keep the vendor text clear of the MyNextCert wordmark: if they overlap, lift the text above the word (crests + buttons stay below it) */
 var roHead=null, roRO=null, roBusy=false;
 function placeReadout(){
   if(roBusy||!readout) return;roBusy=true;
@@ -4006,7 +4007,7 @@ function colWgu(){
     return '<div class="cw-deg"><a class="cw-n" href="'+gEsc(d.url)+'" target="_blank" rel="noopener noreferrer">'+gEsc(d.n)+' <small>'+gEsc(d.k)+'</small>'+G_ICON_EXT+'</a>'+
       d.tracks.map(function(t){return '<div class="cw-tr">'+(t[0]?'<span class="cw-tl">'+gEsc(t[0])+' track</span>':'')+'<div class="tags">'+t[1].map(colChip).join("")+t[2].map(function(x){return '<span class="tag plan">'+gEsc(x)+'</span>';}).join("")+'</div></div>';}).join("")+
       (d.note?'<p class="cw-note">'+gEsc(d.note)+'</p>':'')+'</div>';}).join("")+
-    '<p class="cw-note">Solid chips open the cert on CertPath (a dot means its full guide is ready). Dashed ones aren\'t on the site yet. Lists come from WGU\'s program pages, which sometimes disagree with each other, so confirm with a WGU enrollment counselor.</p></div>';
+    '<p class="cw-note">Solid chips open the cert on MyNextCert (a dot means its full guide is ready). Dashed ones aren\'t on the site yet. Lists come from WGU\'s program pages, which sometimes disagree with each other, so confirm with a WGU enrollment counselor.</p></div>';
 }
 function colRow(c,k){
   var id="cd-col-"+c.id;
@@ -4080,7 +4081,7 @@ function renderColleges(i){
     '<div class="c-head col-head pr" aria-hidden="true"><span>#</span><span>School</span><span>Military rate</span><span>You pay</span><span>CG</span><span></span></div>'+
     '<ol class="certs" id="cols">'+COLLEGES.map(colRow).join("")+'</ol>'+
     '<p class="col-empty" id="col-empty" hidden>No school matches that filter.</p>'+
-    '<p class="p-note pr">There\'s no short "approved" list: TA works at any school that has signed the DoD MOU. "You pay" is tuition per credit after TA at the school\'s military rate. Fees, books and anything past $4,500 a year are extra. CG marks a Coast Guard program, partnership or page. CertPath isn\'t paid by or tied to any school, and the list isn\'t a ranking. Talk to your ESO before you enroll.</p>'+
+    '<p class="p-note pr">There\'s no short "approved" list: TA works at any school that has signed the DoD MOU. "You pay" is tuition per credit after TA at the school\'s military rate. Fees, books and anything past $4,500 a year are extra. CG marks a Coast Guard program, partnership or page. MyNextCert isn\'t paid by or tied to any school, and the list isn\'t a ranking. Talk to your ESO before you enroll.</p>'+
     '<div class="srcs col-srcs pr">'+
       '<a href="https://www.dodmou.com/" target="_blank" rel="noopener">DoD MOU school list &nearr;</a>'+
       '<a href="https://www.forcecom.uscg.mil/Our-Organization/FORCECOM-UNITS/ETQC/Voluntary-Education/Tuition-Assistance/" target="_blank" rel="noopener">Tuition Assistance (FORCECOM) &nearr;</a>'+
@@ -4940,14 +4941,14 @@ async function showView(name){
 
 /* ---------- DoD 8140 view: work role finder (v2.29) ---------- */
 var Q8S={m:"role",el:"cs",r:"511",c:"Security+",more:{},go:null};
-function q8Here8140(){   /* CertPath certs on the matrix, strongest first, then easiest */
+function q8Here8140(){   /* MyNextCert certs on the matrix, strongest first, then easiest */
   var out=[], rank={A:0,I:1,B:2,"":3};
   for(var i=0;i<VENDORS.length-1;i++) VENDORS[i].certs.forEach(function(c){if(is8140(c[0])) out.push(c);});
   return out.sort(function(a,b){return rank[q8Top(a[0])]-rank[q8Top(b[0])]||q8Roles(b[0]).length-q8Roles(a[0]).length||a[2]-b[2];});
 }
 function q8Off(){var out=[];for(var i=0;i<VENDORS.length-1;i++) VENDORS[i].certs.forEach(function(c){if(!is8140(c[0])) out.push(c);});return out;}
 function q8Short(n){return String(n).split(" · ")[0];}
-/* the easiest CertPath cert listed at each level of a role */
+/* the easiest MyNextCert cert listed at each level of a role */
 function q8Ladder(R){
   var out=[];
   Q8_LV.forEach(function(l){
@@ -4969,7 +4970,7 @@ function q8RoleCard(code){
   Q8_LV.forEach(function(l){
     var L=R[l];
     h+='<div class="q8-col"><div class="q8-col-h">'+q8Badge(l,"w")+(L&&L.length?'<small>'+L.length+(L.length===1?' option':' options')+'</small>':'')+'</div>';
-    if(L===null) h+='<p class="q8-none">Not read into CertPath yet. <a href="'+Q8.url+'" target="_blank" rel="noopener noreferrer">Check the official matrix &nearr;</a></p>';
+    if(L===null) h+='<p class="q8-none">Not read into MyNextCert yet. <a href="'+Q8.url+'" target="_blank" rel="noopener noreferrer">Check the official matrix &nearr;</a></p>';
     else if(!L.length) h+='<p class="q8-none">No cert option at this level.</p>';
     else{
       var here=L.filter(q8Here), rest=L.filter(function(c){return !q8Here(c);}), open=!!Q8S.more[code+l], cap=here.length>=6?0:Math.max(0,6-here.length);
@@ -4982,7 +4983,7 @@ function q8RoleCard(code){
   });
   h+='</div>';
   var lad=q8Ladder(R);
-  if(lad.length) h+='<div class="q8-ladder"><p class="lab">Easiest CertPath route up this role</p><ol>'+lad.map(function(x){return '<li><button type="button" class="q8-cp here" data-gcert="'+gEsc(x.n)+'">'+q8Badge(x.l,"s")+gEsc(q8Short(x.n))+'</button></li>';}).join("")+'</ol></div>';
+  if(lad.length) h+='<div class="q8-ladder"><p class="lab">Easiest MyNextCert route up this role</p><ol>'+lad.map(function(x){return '<li><button type="button" class="q8-cp here" data-gcert="'+gEsc(x.n)+'">'+q8Badge(x.l,"s")+gEsc(q8Short(x.n))+'</button></li>';}).join("")+'</ol></div>';
   h+='<p class="q8-note">Highlighted certs have a full guide here; tap one to open it. A cert at a higher level also covers the lower levels of this role. A degree or a listed training course can also qualify you; see the official matrix.</p></article>';
   return h;
 }
@@ -4994,7 +4995,7 @@ function q8CertCard(name){
   } else if(!rs.length){
     h+='<p class="q8-card-d">'+gEsc(Q8_ENONLY[name]||"")+'</p>';
   } else {
-    h+='<p class="q8-card-d">Counts for <b>'+rs.length+'</b> IT and cybersecurity work roles mapped in CertPath, up to <b>'+Q8_LVN[t]+'</b>. It also meets the interim rule for Cyber Enabler roles.</p>';
+    h+='<p class="q8-card-d">Counts for <b>'+rs.length+'</b> IT and cybersecurity work roles mapped in MyNextCert, up to <b>'+Q8_LVN[t]+'</b>. It also meets the interim rule for Cyber Enabler roles.</p>';
     ["cs","it"].forEach(function(el){
       var sub=rs.filter(function(x){return Q8_ROLES[x.r].el===el;});if(!sub.length) return;
       h+='<p class="o-h" style="margin:22px 0 0">'+gEsc(Q8_EL.filter(function(e){return e.id===el;})[0].name)+'</p><ul class="q8-rt">'+sub.map(function(x){
@@ -5008,9 +5009,9 @@ function q8EnCard(){
   var groups={};Q8_EN.forEach(function(x){(groups[x[2]]=groups[x[2]]||[]).push(x);});
   return '<article class="q8-card" id="q8-en"><div class="q8-card-h"><h3>One rule for every Enabler role.</h3>'+q8Badge("","w")+'</div>'+
     '<p class="q8-card-d">Cyber Enablers support the cyber force: legal, training, leadership and acquisition jobs. Under the DoD CIO\'s interim guidance (Nov 24, 2025), <b>any one</b> of these meets the foundational requirement for an Enabler role:</p>'+
-    '<ul class="q8-rt">'+[["Cert","A cyber certification listed on the DoD 8140 matrix, kept current. Every cert marked 8140 on CertPath is one."],["Cyber 101","CY101, a free 40-hour course from the DoD Cyber Crime Center."],["Training","A cyber training course listed in the DoD 8140 repository."],["Degree","A listed degree earned in the past 5 years, or older with steady cyber work since."]].map(function(x,i){return '<li><b>0'+(i+1)+'</b><span>'+gEsc(x[0])+'<small>'+gEsc(x[1])+'</small></span><span></span></li>';}).join("")+'</ul>'+
+    '<ul class="q8-rt">'+[["Cert","A cyber certification listed on the DoD 8140 matrix, kept current. Every cert marked 8140 on MyNextCert is one."],["Cyber 101","CY101, a free 40-hour course from the DoD Cyber Crime Center."],["Training","A cyber training course listed in the DoD 8140 repository."],["Degree","A listed degree earned in the past 5 years, or older with steady cyber work since."]].map(function(x,i){return '<li><b>0'+(i+1)+'</b><span>'+gEsc(x[0])+'<small>'+gEsc(x[1])+'</small></span><span></span></li>';}).join("")+'</ul>'+
     Object.keys(groups).map(function(g){return '<p class="o-h" style="margin:22px 0 0">'+gEsc(g)+'</p><ul class="q8-rt">'+groups[g].map(function(x){return '<li><b>'+x[0]+'</b><span>'+gEsc(x[1])+'</span><span></span></li>';}).join("")+'</ul>';}).join("")+
-    '<p class="q8-note">Proof on the matrix: 211 Forensics Analyst at Advanced lists 63 certs, including every 8140 cert on CertPath. Role 901 Executive Cyber Leader is Advanced only (O-6 / GS-15 and up). <a class="q8-a" href="'+Q8.enMemo+'" target="_blank" rel="noopener noreferrer">DoD CIO Enabler memo &nearr;</a></p></article>';
+    '<p class="q8-note">Proof on the matrix: 211 Forensics Analyst at Advanced lists 63 certs, including every 8140 cert on MyNextCert. Role 901 Executive Cyber Leader is Advanced only (O-6 / GS-15 and up). <a class="q8-a" href="'+Q8.enMemo+'" target="_blank" rel="noopener noreferrer">DoD CIO Enabler memo &nearr;</a></p></article>';
 }
 function q8Render(){
   var host=$("#q8-app");if(!host) return;
@@ -5023,7 +5024,7 @@ function q8Render(){
       var codes=Object.keys(Q8_ROLES).filter(function(r){return Q8_ROLES[r].el===Q8S.el;});
       if(codes.indexOf(Q8S.r)<0) Q8S.r=codes[0];
       h+='<div class="q8-grid" role="group" aria-label="Work roles">'+codes.map(function(r){var R=Q8_ROLES[r], n=0;Q8_LV.forEach(function(l){n+=(R[l]||[]).filter(q8Here).length;});
-        return '<button type="button" class="q8-rb" data-q8r="'+r+'" aria-pressed="'+(r===Q8S.r)+'"><b>'+r+'</b><span>'+gEsc(R.n)+'</span><small>'+n+' CertPath '+(n===1?'cert':'certs')+'</small></button>';}).join("")+'</div>';
+        return '<button type="button" class="q8-rb" data-q8r="'+r+'" aria-pressed="'+(r===Q8S.r)+'"><b>'+r+'</b><span>'+gEsc(R.n)+'</span><small>'+n+' MyNextCert '+(n===1?'cert':'certs')+'</small></button>';}).join("")+'</div>';
       h+=q8RoleCard(Q8S.r);
       var td=Q8_TODO[Q8S.el];
       if(td&&td.length) h+='<p class="q8-note">No cert options on the matrix yet: '+td.map(function(x){return x[0]+' '+gEsc(x[1]);}).join(" · ")+'. <a class="q8-a" href="'+Q8.url+'" target="_blank" rel="noopener noreferrer">Check the official matrix &nearr;</a></p>';
@@ -5071,7 +5072,7 @@ function insLevel(r){   /* highest DoD 8140 level the held certs and degrees giv
 }
 function insMeets(have,need){return !!have&&Q8_LV.indexOf(have)>=Q8_LV.indexOf(need);}
 function insRow(ok,title,text){return '<div class="ins-row '+(ok?"ok":"no")+'"><i aria-hidden="true">'+(ok?"&#10003;":"&#9675;")+'</i><b>'+title+'</b><div class="ins-t">'+text+'</div></div>';}
-function insWays(r,need){   /* certs that reach the needed level in this role: CertPath guides first */
+function insWays(r,need){   /* certs that reach the needed level in this role: MyNextCert guides first */
   var R=Q8_ROLES[r], list=[];Q8_LV.slice(Q8_LV.indexOf(need)).forEach(function(l){(R[l]||[]).forEach(function(c){if(list.indexOf(c)<0) list.push(c);});});
   var here=list.filter(q8Here), ext=list.filter(function(c){return !q8Here(c);});
   return '<div class="q8-chips">'+here.map(function(c){return q8Chip(c);}).join("")+ext.slice(0,6).map(function(c){return q8Chip(c);}).join("")+(ext.length>6?'<span class="q8-cp ext">+'+(ext.length-6)+' more</span>':'')+'</div>';
@@ -5174,7 +5175,7 @@ function q8GuideBlock(name){
       var id="q8x-"+x.r;
       return '<li class="q8g-li"><button type="button" class="q8g-r" aria-expanded="false" aria-controls="'+id+'"><span class="q8g-c">'+x.r+'</span><span class="q8g-n">'+gEsc(R.n)+'</span>'+q8Badge(x.l,"w").replace('class="l8','data-l="'+x.l+'" class="l8')+'<span class="q8g-chev" aria-hidden="true">+</span></button>'+
         '<div class="q8g-x" id="'+id+'" inert><div><div class="q8g-xi"><p>'+gEsc(R.d)+'</p>'+
-        (others.length?'<div class="q8g-also"><span class="lab">Other CertPath certs for this role</span>'+others.map(function(o){return '<button type="button" class="ptt-c" data-gocert="'+gEsc(o.c)+'">'+q8Badge(o.l,"s")+gEsc(q8Short(o.c))+'</button>';}).join("")+'</div>':'')+
+        (others.length?'<div class="q8g-also"><span class="lab">Other MyNextCert certs for this role</span>'+others.map(function(o){return '<button type="button" class="ptt-c" data-gocert="'+gEsc(o.c)+'">'+q8Badge(o.l,"s")+gEsc(q8Short(o.c))+'</button>';}).join("")+'</div>':'')+
         '<button type="button" class="g-link" data-goto="dod" data-q8r="'+x.r+'" style="justify-self:start">Every cert for '+x.r+' &rarr;</button></div></div></div></li>';}).join("")+'</ul></div>';
   });
   if(rs.length) h+='<p class="q8g-en"><b>Cyber Enabler roles too.</b> Legal, training, leadership and acquisition roles accept any cyber cert on the matrix under the DoD CIO\'s interim rule, so this one counts there as well.</p>';
@@ -5395,7 +5396,7 @@ function cmpRows(A,B){
   row("Study time",{v:A.c[3],s:"≈ "+Math.max(1,Math.ceil(A.hours/10))+" weeks at 10 h a week"},{v:B.c[3],s:"≈ "+Math.max(1,Math.ceil(B.hours/10))+" weeks at 10 h a week"},cmpBetter(A.hours,B.hours,"Less time"));
   row("DoD 8140",cmpD8(A),cmpD8(B));
   row("8140 work roles",cmpRolesOf(A),cmpRolesOf(B));
-  function pathsOf(I){return I.paths.length?{html:I.paths.map(function(p){return '<b class="cm-p">'+gEsc(p.name)+'<small>step '+p.i+' of '+p.n+'</small></b>';}).join("")}:{html:'<span class="cm-na">Not on a CertPath track</span>'};}
+  function pathsOf(I){return I.paths.length?{html:I.paths.map(function(p){return '<b class="cm-p">'+gEsc(p.name)+'<small>step '+p.i+' of '+p.n+'</small></b>';}).join("")}:{html:'<span class="cm-na">Not on a MyNextCert track</span>'};}
   row("Career paths",pathsOf(A),pathsOf(B));
   function wguOf(I){var d=WGU_IN[I.name];return d?{v:"Yes",s:d.join(" · ")}:{v:"No"};}
   row("In a WGU degree",wguOf(A),wguOf(B));
@@ -7823,7 +7824,7 @@ function q8Facts(name,facts){
     if(!/^DoD/.test(f[0])) return f;
     if(!is8140(name)) return ["DoD 8140","Not listed","on the matrix"];
     var t=q8Top(name),n=q8Roles(name).length;
-    /* every CertPath cert with IT/cyber roles is also listed for all Cyber Enabler roles (checked against Matrix V3.0) */
+    /* every MyNextCert cert with IT/cyber roles is also listed for all Cyber Enabler roles (checked against Matrix V3.0) */
     return t?["DoD 8140",Q8_LVN[t],n+" IT/cyber · +"+Q8_EN.length+" enabler roles"]:["DoD 8140","Enablers","work roles"];
   });
 }
@@ -14215,7 +14216,7 @@ var SIDX=[];
   SIDX.push({kind:"page",key:"p:v3",page:"dod",q8:"v3",name:"Matrix V3.0: already qualified?",sub:"DoD 8140 · earlier qualifications still count",fields:[[snorm("matrix v3 matrix 3.0 v3.0"),90],[snorm("grandfather grandfathered already qualified requalify new matrix version october 2026"),70]]});
   SIDX.push({kind:"page",key:"p:iat",page:"dod",q8:"iat",name:"Where did IAT go?",sub:"DoD 8140 · the old IAT, IAM and IASAE levels, explained",fields:[[snorm("iat levels"),95],[snorm("iat iat1 iat2 iat3 iat i iat ii iat iii iat level iam iam1 iam2 iam3 iasae cssp 8570 8570.01 dod 8570 baseline information assurance technical management"),70]]});
   Object.keys(Q8_ROLES).forEach(function(r){var R=Q8_ROLES[r], el=R.el==="it"?"IT (Cyberspace)":"Cybersecurity", n=0;Q8_LV.forEach(function(l){n+=(R[l]||[]).filter(q8Here).length;});
-    SIDX.push({kind:"page",key:"r:"+r,page:"dod",q8:r,name:r+" · "+R.n,sub:"DoD 8140 work role · "+el+" · "+n+" CertPath "+(n===1?"cert":"certs"),fields:[[snorm(r+" "+R.n),100],[snorm(R.n+" "+R.d),50],[snorm("work role dcwf 8140 "+el),20]]});});
+    SIDX.push({kind:"page",key:"r:"+r,page:"dod",q8:r,name:r+" · "+R.n,sub:"DoD 8140 work role · "+el+" · "+n+" MyNextCert "+(n===1?"cert":"certs"),fields:[[snorm(r+" "+R.n),100],[snorm(R.n+" "+R.d),50],[snorm("work role dcwf 8140 "+el),20]]});});
   Q8_EN.forEach(function(x){SIDX.push({kind:"page",key:"r:"+x[0],page:"dod",q8:"en",name:x[0]+" · "+x[1],sub:"DoD 8140 work role · Cyber Enablers · any cert on the matrix",fields:[[snorm(x[0]+" "+x[1]),100],[snorm(x[2]+" enabler work role dcwf 8140"),20]]});});
   SIDX.push({kind:"page",key:"p:fund",page:"cool",fund:"ta",name:"Funding",sub:"Explore · Tuition Assistance for college, CG COOL for certs",fields:[[snorm("funding"),95],[snorm("tuition assistance ta college class classes degree school money pay paid mycg ed eso dodmou mou clep dsst dantes jst"),60]]});
   SIDX.push({kind:"page",key:"p:cool",page:"cool",fund:"cool",name:"CG COOL funding",sub:"Explore · get your certs paid for",fields:[[snorm("cg cool funding"),95],[snorm("cool credentialing assistance ca opportunities online reimbursement of 1164 pay paid money funding exam fee voucher"),58]]});
@@ -14632,9 +14633,9 @@ function bkSumLine(S){
   return p.length?p.join(", "):"no guide progress yet";
 }
 function bkText(){
-  return JSON.stringify({app:"CertPath",kind:"backup",v:1,exported:new Date().toISOString(),from:(document.querySelector(".mark span")||{}).textContent||"",data:bkLocal()},null,1);
+  return JSON.stringify({app:"MyNextCert",kind:"backup",v:1,exported:new Date().toISOString(),from:(document.querySelector(".mark span")||{}).textContent||"",data:bkLocal()},null,1);
 }
-function bkName(){var d=new Date();return "certpath-backup-"+d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate())+".json";}
+function bkName(){var d=new Date();return "mynextcert-backup-"+d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate())+".json";}
 function bkDownload(txt,name){
   try{
     var u=URL.createObjectURL(new Blob([txt],{type:"application/json"})), a=document.createElement("a");
@@ -14650,7 +14651,7 @@ function bkSave(){
   /* phones: the share sheet (Save to Files on iPhone). Computers: a normal download. */
   if(file&&!finePointer&&navigator.canShare&&navigator.share){
     var ok=false;try{ok=navigator.canShare({files:[file]});}catch(e){ok=false;}
-    if(ok){navigator.share({files:[file],title:"CertPath backup"}).then(function(){toast("Backup saved");},function(err){if(err&&err.name==="AbortError") return;bkDownload(txt,name);});return;}
+    if(ok){navigator.share({files:[file],title:"MyNextCert backup"}).then(function(){toast("Backup saved");},function(err){if(err&&err.name==="AbortError") return;bkDownload(txt,name);});return;}
   }
   bkDownload(txt,name);
 }
@@ -14662,9 +14663,9 @@ function bkCopy(){
 var bkPending=null;
 function bkParse(txt){
   if(typeof txt!=="string"||!txt.trim()) return {err:"That's empty. Paste the whole backup text, starting with {"};
-  if(txt.length>1024*1024) return {err:"That's too big to be a CertPath backup."};
-  var o;try{o=JSON.parse(txt.trim());}catch(e){return {err:"That isn't a CertPath backup. Paste the whole text, from the first { to the last }."};}
-  if(!o||typeof o!=="object"||Array.isArray(o)||o.app!=="CertPath"||o.v!==1||!o.data||typeof o.data!=="object"||Array.isArray(o.data)) return {err:"That isn't a CertPath backup."};
+  if(txt.length>1024*1024) return {err:"That's too big to be a MyNextCert backup."};
+  var o;try{o=JSON.parse(txt.trim());}catch(e){return {err:"That isn't a MyNextCert backup. Paste the whole text, from the first { to the last }."};}
+  if(!o||typeof o!=="object"||Array.isArray(o)||(o.app!=="MyNextCert"&&o.app!=="CertPath")||o.v!==1||!o.data||typeof o.data!=="object"||Array.isArray(o.data)) return {err:"That isn't a MyNextCert backup."};
   var m={}, n=0;
   Object.keys(o.data).forEach(function(k){
     var v=o.data[k];if(n>=500||!BK_RE.test(k)||BK_SKIP.test(k)||typeof v!=="string"||v.length>200000) return;
@@ -14750,7 +14751,7 @@ function setLite(v){
   fi.addEventListener("change",function(){
     var f=fi.files&&fi.files[0];if(!f) return;
     $("#bk-pbox").hidden=true;
-    if(f.size>1024*1024){bkOffer({err:"That file is too big to be a CertPath backup."});return;}
+    if(f.size>1024*1024){bkOffer({err:"That file is too big to be a MyNextCert backup."});return;}
     var r=new FileReader();r.onload=function(){bkOffer(bkParse(String(r.result||"")));};r.onerror=function(){bkOffer({err:"Couldn't read that file."});};r.readAsText(f);
   });
   $("#bk-paste").addEventListener("click",function(){$("#bk-cbox").hidden=true;$("#bk-pbox").hidden=false;$("#bk-ta").value="";$("#bk-ta").focus({preventScroll:true});});
@@ -14800,7 +14801,7 @@ function liteWatch(){
 /* ---------- giant interactive wordmark (vanilla port of React Bits TechText) ---------- */
 function makeTechText(cv,cvF){
   var ctx=cv.getContext("2d"), ctxF=cvF?cvF.getContext("2d"):null, disc={x:0,y:0,r:0};
-  var S={text:"CertPath",family:"'Inter Tight','Geist',system-ui,-apple-system,sans-serif",weight:700,ls:-.055,ink:"#f3f5f8",accent:"#ffffff",dash:4,gap:2,stroke:1.5,specks:14,bounce:.4,introDur:2.6};
+  var S={text:"MyNextCert",family:"'Inter Tight','Geist',system-ui,-apple-system,sans-serif",weight:700,ls:-.055,ink:"#f3f5f8",accent:"#ffffff",dash:4,gap:2,stroke:1.5,specks:14,bounce:.4,introDur:2.6};
   var LABEL="10px 'CP Mono','IBM Plex Mono',ui-monospace,Menlo,monospace", SPRING=320, KICK_DECAY=.62;
   var W=1,H=1,dpr=1,cy=0,hdrB=0,box=null,word=null,glyphs=[],frame={x1:0,y1:0,x2:0,y2:0,alpha:0,index:-1},lens={x:0,y:0},ptr={x:0,y:0,inside:false};
   var sweepHold=0,drag=-1,grabP={x:0,y:0},kicks=[],clock=0,pulse=0,placed=false,introT=0,fontsOK=!document.fonts,dirty=true,press=null;
@@ -15060,7 +15061,7 @@ function makeTechText(cv,cvF){
 }
 var tt=makeTechText($("#tt"),$("#tt-front")), gshadow=$("#gshadow"), appLeft=0, appTop=0, ttDrag=false;
 if(document.fonts&&document.fonts.load){
-  Promise.race([document.fonts.load("700 100px 'Inter Tight'","CertPath"),wait(2500)]).then(function(){tt.fontReady();placeReadout();watchReadout();},function(){tt.fontReady();placeReadout();watchReadout();});
+  Promise.race([document.fonts.load("700 100px 'Inter Tight'","MyNextCert"),wait(2500)]).then(function(){tt.fontReady();placeReadout();watchReadout();},function(){tt.fontReady();placeReadout();watchReadout();});
 }else{tt.fontReady();placeReadout();watchReadout();}
 /* the readout slides in on load: measure again once that motion has settled */
 setTimeout(placeReadout,2600);setTimeout(placeReadout,4200);
@@ -15683,7 +15684,7 @@ if(has3D) loadWorld();
 else setTimeout(function(){var go=function(){loadWorld();};if(window.requestIdleCallback) requestIdleCallback(go,{timeout:1500});else go();},LITE.on?300:1200);
 runSplash();
 
-/* ---------- launch screen: CertPath rises in, then flies into its place behind the globe ---------- */
+/* ---------- launch screen: MyNextCert rises in, then flies into its place behind the globe ---------- */
 function runSplash(){
   var el=$("#splash"), cv=$("#sp-cv"), meta=$("#sp-meta"), fill=$("#sp-fill"), num=$("#sp-n");
   var ttEls=[$("#tt"),$("#tt-front")];
@@ -15768,7 +15769,7 @@ function runSplash(){
     anim(el,[{opacity:1},{opacity:0}],{duration:300,delay:250,fill:"forwards"});setTimeout(finish,600);return;
   }
   /* wait (briefly) for the display font so the word is drawn in Inter Tight, then go */
-  var fontP=document.fonts&&document.fonts.load?document.fonts.load("700 100px 'Inter Tight'","CertPath"):Promise.resolve();
+  var fontP=document.fonts&&document.fonts.load?document.fonts.load("700 100px 'Inter Tight'","MyNextCert"):Promise.resolve();
   /* and for the world map (capped), so the globe already has its outlines when the home screen appears */
   var fontW=Promise.race([fontP,wait(1200)]).then(function(){},function(){});
   var mapW=has3D?Promise.race([loadWorld(),wait(2000)]).then(function(){},function(){}):Promise.resolve();

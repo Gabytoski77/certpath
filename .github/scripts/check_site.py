@@ -49,6 +49,9 @@ class Page(HTMLParser):
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         attr = LOADERS.get(tag)
+        # rel="canonical" only names the page's own address for search engines; nothing is loaded
+        if tag == "link" and (a.get("rel") or "").lower() == "canonical":
+            attr = None
         if attr and a.get(attr) and OUTSIDE.match(a[attr]):
             self.outside.append((tag, a[attr]))
         if tag == "meta" and (a.get("http-equiv") or "").lower() == "content-security-policy":

@@ -1,4 +1,7 @@
-# CG Cert Path
+# MyNextCert
+
+**Live at [mynextcert.com](https://mynextcert.com/).**
+
 
 Certifications, career paths, funding (Tuition Assistance and CG COOL), colleges and SkillBridge for Coast Guard IT, with full study guides
 (objectives, study plan, resources, quiz, PBQs, roadmap) for CompTIA A+, Network+, Security+, Server+, Cloud+, Linux+, CySA+, PenTest+, SecAI+, Project+ and SecurityX, ISC2 CC, SSCP, CGRC, CCSP and CISSP, Cisco CCST IT Support, CCST Networking, CCST Cybersecurity, CCNA Cybersecurity, CCNA, CCNP Enterprise, CCNP Security and CCNP Cybersecurity, TryHackMe SEC1, SAL1, SAL2 and PT1, LPI Linux Essentials, Security Essentials, LPIC-1 and LPIC-2, AWS Cloud Practitioner, Solutions Architect Associate and Security Specialty, and Microsoft Azure Fundamentals, Azure Administrator and Cloud and AI Security Engineer (SC-500).
@@ -16,7 +19,7 @@ Quiz and PBQ questions are original.
 
 ## Updating
 1. Replace `index.html` with the new version (Add file → Upload files).
-2. In `sw.js`, bump `VERSION` (for example `certpath-v1` → `certpath-v2`) so installed copies refresh.
+2. In `sw.js`, bump `VERSION` (for example `certpath-v1` → `certpath-v2`; the name stays for the cache) so installed copies refresh.
 
 Everything the app needs to run is served from this repo; it loads nothing from outside servers. Libraries are in `vendor/` (three.js, Lenis, ECharts world map) and fonts in `fonts/` (Inter Tight, Geist, and CP Mono, a trimmed copy of IBM Plex Mono), each with its license. The page locks itself down with a Content Security Policy.
 
@@ -26,7 +29,7 @@ Not an official U.S. Coast Guard or DoD site. Not affiliated with or endorsed by
 
 ## Your data
 
-Your data stays on your device. CertPath has no accounts, no analytics and no cookies; your progress is saved in your browser and you can clear it anytime. The site is hosted on GitHub Pages, which keeps standard server logs.
+Your data stays on your device. MyNextCert has no accounts, no analytics and no cookies; your progress is saved in your browser and you can clear it anytime. The site is hosted on GitHub Pages, which keeps standard server logs.
 
 ## License
 

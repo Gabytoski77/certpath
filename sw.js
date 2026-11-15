@@ -1,6 +1,6 @@
-/* CG Cert Path service worker: makes the site installable and usable offline.
+/* MyNextCert service worker: makes the site installable and usable offline.
    Change VERSION whenever you upload a new index.html so phones pick it up quickly. */
-var VERSION = "certpath-v53";
+var VERSION = "certpath-v54";
 /* everything the app needs lives on this site (no outside servers). The page, map and fonts are cached on install;
    three.js and Lenis are saved the first time they're used (Lite mode never loads them). */
 var SHELL = [ "manifest.webmanifest", "icon-192.png", "icon-512.png",
@@ -29,7 +29,12 @@ self.addEventListener("fetch", function (e) {
   /* the page itself: network first so updates show right away, cache when offline */
   if (req.mode === "navigate") {
     /* "no-store" skips the browser's saved copy, so an update shows up the moment it's live */
-    e.respondWith(fetch(req.url, { cache: "no-store", credentials: "same-origin" }).then(function (res) {
+    /* redirect: "manual" hands a moved page (e.g. a new domain) straight back to the browser to follow,
+       instead of failing and leaving people stuck on an old saved copy (v2.43) */
+    e.respondWith(fetch(req.url, { cache: "no-store", credentials: "same-origin", redirect: "manual" }).then(function (res) {
+      if (res.type === "opaqueredirect") return res;
+      /* an error page (404, 5xx) never replaces the saved app */
+      if (!res.ok) return caches.match("index.html").then(function (m) { return m || res; });
       var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put("index.html", copy); });
       return res;
     }).catch(function () { return caches.match("index.html"); }));

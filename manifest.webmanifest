@@ -1,6 +1,6 @@
 {
-  "name": "CG Cert Path",
-  "short_name": "CertPath",
+  "name": "MyNextCert",
+  "short_name": "MyNextCert",
   "description": "Certifications, career paths and funding for Coast Guard IT.",
   "start_url": "./",
   "scope": "./",
