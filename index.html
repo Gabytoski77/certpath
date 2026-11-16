@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-s+EcdI9cF1DCsLrkqUI9T9gBQFf6O2m/TRpm3L0XLfI=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-PEw2cradfAjYptEkprH/Yi59QgW+bIbNGfVMzMDVWh0=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -740,26 +740,31 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 @media (max-width:720px){.pv-in{padding:18px 18px 22px;font-size:13.5px}.pv h2{font-size:26px}}
 
 /* practice exams (v2.48): the exam screen */
-.mx{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#0e1218;color:var(--v-fg,#ecebe8);
+.mx{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;color:var(--v-fg,#ecebe8);
+  background:var(--grain),radial-gradient(120% 55% at 50% -12%,color-mix(in srgb,var(--v-accent) 10%,transparent),transparent 62%),radial-gradient(90% 50% at 50% 115%,rgba(188,214,234,.05),transparent 60%),#12161d;
   --v-fg:#ecebe8;--v-line:rgba(255,255,255,.12);--v-accent:#bcd6ea;--v-muted:#a9adb4;--ok:#5fd394;--no:#ff8f80;overflow:hidden}
 .mx[open]{display:grid;grid-template-rows:auto 2px minmax(0,1fr) auto}
-.mx::backdrop{background:#0e1218}
-.mx-top{display:flex;align-items:center;gap:12px;padding:calc(var(--sat) + 12px) max(20px,env(safe-area-inset-right)) 12px max(20px,env(safe-area-inset-left));border-bottom:1px solid var(--v-line);background:rgba(255,255,255,.02)}
+.mx::backdrop{background:rgba(4,6,9,.72)}
+.mx-top{display:flex;align-items:center;gap:12px;padding:calc(var(--sat) + 12px) max(20px,env(safe-area-inset-right)) 12px max(20px,env(safe-area-inset-left));border-bottom:1px solid var(--v-line);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0))}
 .mx-title{min-width:0;flex:1 1 auto}
 .mx-title .lab{margin:0}
 .mx-title h2{margin:3px 0 0;font:700 17px/1.2 var(--f-disp);letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mx-count{font:500 12px var(--f-mono);color:var(--v-muted);white-space:nowrap}
 .mx-count b{color:var(--v-fg);font-weight:600}
 .mx-timer{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--v-line);font:600 14px var(--f-mono);color:var(--v-fg);font-variant-numeric:tabular-nums;background:rgba(255,255,255,.03)}
-.mx-timer.low{border-color:var(--no);color:var(--no)}
+.mx-timer.low{color:var(--no);background:color-mix(in srgb,var(--no) 10%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--no) 55%,transparent)}
 .mx-th{display:none;font:600 10px var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--v-muted)}
 .mx.thide #mx-time{display:none}.mx.thide .mx-th{display:inline}
 .mx-tool{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 13px;border-radius:999px;border:1px solid var(--v-line);font:600 10.5px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--v-muted);background:none}
-.mx-tool[aria-pressed="true"]{border-color:#e7c46c;color:#e7c46c;background:rgba(231,196,108,.1)}
+.mx-tool,.mx-timer{transition:color .25s var(--ez),background .25s var(--ez),box-shadow .25s var(--ez),transform .25s var(--ez)}
+.mx-tool.spec,.mx-timer.spec{border-color:transparent!important;--bw:1px}
+.mx-tool[aria-pressed="true"]{color:#e7c46c;background:rgba(231,196,108,.12);box-shadow:inset 0 0 0 1px rgba(231,196,108,.55)}
+.mx-tool:active,.mx-timer:active,.mx-cell:active{transform:scale(.96);transition-duration:.1s}
 .mx-tool svg{width:13px;height:13px}
 @media (hover:hover) and (pointer:fine){.mx-tool:hover,.mx-timer:hover{border-color:color-mix(in srgb,var(--v-fg) 40%,transparent)}}
 .mx.done .mx-tool,.mx.done .mx-timer{display:none}
-.mx-x{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--v-line);display:grid;place-items:center;font-size:20px;line-height:1;color:var(--v-fg);background:none}
+.mx-x{flex:none;color:var(--v-fg)}
+.mx-x svg{width:13px;height:13px}
 .mx-bar{background:var(--v-line);overflow:hidden}
 .mx-bar i{display:block;height:100%;background:var(--v-accent);transform-origin:0 0;transform:scaleX(0);transition:transform .4s var(--ez)}
 .mx-body{overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:28px max(20px,env(safe-area-inset-right)) 40px max(20px,env(safe-area-inset-left))}
@@ -771,7 +776,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .mx-scen{margin:-8px 0 18px;max-width:72ch;font:400 14px/1.6 var(--f-ui);color:var(--v-muted)}
 .mx-scen b{color:var(--v-fg)}
 .mx-pickn{margin:-8px 0 14px;font:600 10.5px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--v-accent)}
-.mx-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px max(20px,env(safe-area-inset-right)) calc(var(--sab) + 12px) max(20px,env(safe-area-inset-left));border-top:1px solid var(--v-line);background:rgba(255,255,255,.02)}
+.mx-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px max(20px,env(safe-area-inset-right)) calc(var(--sab) + 12px) max(20px,env(safe-area-inset-left));border-top:1px solid var(--v-line);background:linear-gradient(0deg,rgba(255,255,255,.035),rgba(255,255,255,0))}
 .mx-keys{font:400 11.5px var(--f-ui);color:var(--v-muted)}
 .mx-keys kbd{font:500 10.5px var(--f-mono);padding:1px 5px;border:1px solid var(--v-line);border-radius:4px;color:var(--v-fg)}
 .mx.done .mx-foot,.mx.rev .mx-foot{display:none}
@@ -782,12 +787,13 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .mx-key i.part{background:linear-gradient(135deg,color-mix(in srgb,var(--v-fg) 70%,transparent) 50%,transparent 50%);border-color:var(--v-fg)}
 .mx-key i.flag{border-color:#e7c46c;box-shadow:inset 0 0 0 2px #e7c46c}
 .mx-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:6px}
-.mx-cell{width:100%;height:44px;border-radius:8px;border:1px solid var(--v-line);font:500 12px var(--f-mono);color:var(--v-muted);background:rgba(255,255,255,.02)}
+.mx-cell{width:100%;height:44px;border-radius:10px;border:1px solid var(--v-line);font:500 12px var(--f-mono);color:var(--v-muted);background:rgba(255,255,255,.02);transition:border-color .25s var(--ez),background .25s var(--ez),transform .25s var(--ez)}
+@media (hover:hover) and (pointer:fine){.mx-cell:hover{border-color:color-mix(in srgb,var(--v-fg) 45%,transparent)}}
 .mx-cell.done{background:color-mix(in srgb,var(--v-fg) 16%,transparent);border-color:color-mix(in srgb,var(--v-fg) 55%,transparent);color:var(--v-fg)}
 .mx-cell.part{background:linear-gradient(135deg,color-mix(in srgb,var(--v-fg) 16%,transparent) 50%,transparent 50%);border-color:color-mix(in srgb,var(--v-fg) 35%,transparent);color:var(--v-fg)}
 .mx-cell.flag{box-shadow:inset 0 0 0 2px #e7c46c}
 .mx-cell.cur{outline:2px solid var(--v-fg);outline-offset:1px}
-.mx-sub{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:26px}
+.mx-sub{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:26px}
 .mx-sub1{margin:0 0 24px}
 .mx-ftab{margin-top:6px}
 .mx-res .g-qend{margin-bottom:6px}
@@ -815,38 +821,45 @@ details[open] .mx-sq{display:block}
 .mx-opts-r em.r{color:var(--ok)}.mx-opts-r em.y{color:var(--no)}.mx-opts-r li.r em.y{color:var(--ok)}.mx-pbr em{color:var(--no)}
 .mx-pbr pre{margin:4px 0;padding:8px 10px;border-radius:6px;background:rgba(0,0,0,.3);font:400 11.5px/1.5 var(--f-mono);color:#d6dbe2;white-space:pre-wrap;overflow-wrap:anywhere}
 .mx-blank{margin:8px 0 0;font:600 10px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--no)}
+@media (min-width:721px){
+  .mx-top,.mx-foot{padding-left:max(20px,env(safe-area-inset-left),calc((100% - 860px) / 2));padding-right:max(20px,env(safe-area-inset-right),calc((100% - 860px) / 2))}
+}
 @media (max-width:720px){
   .mx-top{flex-wrap:wrap;gap:8px 10px;padding-left:16px;padding-right:16px}
   .mx-title{flex-basis:calc(100% - 50px)}
   .mx-x{order:2}
   .mx-timer,.mx-tool,.mx-count{order:3}
   .mx-count{margin-left:auto}
-  .mx-tool span{display:none}
-  .mx-tool{padding:0 11px}
+  .mx-tool>span:not(.spec-g):not(.spec-h):not(.spec-l){display:none}
+  .mx-tool{width:36px;padding:0;justify-content:center}
   .mx-body{padding:20px 16px 32px}
   .mx-foot{padding-left:16px;padding-right:16px}
   .mx-keys{display:none}
-  .mx-foot .g-btn{padding:12px 18px}
   .mx-ex{padding:0 12px 12px 14px}
   .mx-list summary{grid-template-columns:24px 16px minmax(0,1fr);padding:11px 12px}
   .mx-res .g-qend{grid-template-columns:1fr;justify-items:start;gap:18px}
   .mx-res .g-qscore{width:120px;height:120px}
 }
-@media (prefers-reduced-motion:reduce){.mx-bar i{transition:none}}
+.mx-res .g-qdom i b{transform-origin:0 50%}
+.mx-list details[open] .mx-ex{animation:mxEx .38s var(--ez)}
+@keyframes mxEx{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.mx-list > li{transition:border-color .25s var(--ez),background .25s var(--ez)}
+@media (hover:hover) and (pointer:fine){.mx-list > li:hover{background:rgba(255,255,255,.03)}}
+@media (prefers-reduced-motion:reduce){.mx-bar i{transition:none}.mx-list details[open] .mx-ex{animation:none}}
 
 /* the Practice section in each guide */
 .mxp{display:grid;gap:18px;margin-bottom:28px}
 .mxp-resume{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;padding:16px 18px;border-radius:12px;border:1px solid rgba(231,196,108,.45);background:rgba(231,196,108,.07)}
 .mxp-resume .lab{margin:0 0 4px;color:#e7c46c}
 .mxp-resume p{margin:0;font:400 13.5px/1.5 var(--f-ui);color:var(--v-fg)}
-.mxp-ra{display:flex;align-items:center;gap:14px}
+.mxp-ra{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .mxp-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
 .mxp-card{display:grid;gap:8px;align-content:start;padding:18px;border-radius:14px;border:1px solid var(--v-line);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01))}
 .mxp-card .lab{margin:0}
 .mxp-card h4{margin:0;font:700 18px/1.2 var(--f-disp);letter-spacing:-.015em;color:var(--v-fg)}
 .mxp-card p{margin:0;font:400 13px/1.55 var(--f-ui);color:var(--v-muted)}
 .mxp-card.soon{border-style:dashed;background:none}
-.mxp-act{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:6px}
+.mxp-act{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:8px}
 .mxp-fine{grid-column:1/-1;margin:0;font:400 12px/1.55 var(--f-ui);color:var(--v-muted)}
 .ws{padding:18px;border-radius:14px;border:1px solid var(--v-line);background:rgba(0,0,0,.14)}
 .ws-h{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
@@ -2542,14 +2555,14 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
     <button type="button" class="mx-tool" id="mx-flag" aria-pressed="false"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M3 13V1.5M3 2h8l-2 3 2 3H3"/></svg><span>Flag</span></button>
     <button type="button" class="mx-tool" id="mx-revbtn"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1.5" y="1.5" width="4" height="4" rx="1"/><rect x="8.5" y="1.5" width="4" height="4" rx="1"/><rect x="1.5" y="8.5" width="4" height="4" rx="1"/><rect x="8.5" y="8.5" width="4" height="4" rx="1"/></svg><span>Review</span></button>
     <span class="mx-count" id="mx-count"></span>
-    <button type="button" class="mx-x" id="mx-x" aria-label="Save and close the exam">&times;</button>
+    <button type="button" class="mx-x ed-close" id="mx-x" aria-label="Save and close the exam"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8"/></svg></button>
   </div>
   <div class="mx-bar" aria-hidden="true"><i id="mx-prog"></i></div>
   <div class="mx-body" id="mx-body"></div>
   <div class="mx-foot">
     <button type="button" class="g-btn ghost" id="mx-prev"><span class="g-btn-l">&larr; Back</span></button>
     <span class="mx-keys" aria-hidden="true"><kbd>A</kbd>&ndash;<kbd>D</kbd> answer &middot; <kbd>N</kbd> next &middot; <kbd>P</kbd> back &middot; <kbd>F</kbd> flag &middot; <kbd>R</kbd> review</span>
-    <button type="button" class="g-btn" id="mx-next"><span class="g-btn-l">Next</span></button>
+    <button type="button" class="g-btn" id="mx-next"><span class="g-btn-l">Next &rarr;</span></button>
   </div>
   <span class="vh" id="mx-live" aria-live="polite"></span>
 </dialog>
@@ -14743,6 +14756,23 @@ function mxScore(q,it){
 
 /* ---- the exam dialog ---- */
 function mxEl(id){return document.getElementById(id);}
+/* motion: full slide + fade normally, a short fade only in Lite (which sets reduced), none when the device asks for reduced motion */
+var MX_EZ="cubic-bezier(.16,1,.3,1)";
+function mxStill(){return !!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches);}
+function mxMove(){return !reduced;}
+function mxIn(el,dx,dy,ms){
+  if(!el||mxStill()||!el.animate) return;
+  var mv=mxMove(), k=[{opacity:0,transform:mv?"translate3d("+(dx||0)+"px,"+(dy||0)+"px,0)":"none"},{opacity:1,transform:"none"}];
+  try{el.animate(k,{duration:ms||(mv?360:200),easing:MX_EZ});}catch(e){}
+}
+function mxSpec(root){try{specScan(root);}catch(e){}}
+function mxCountUp(el,to){   /* score number counts up with the ring */
+  if(!el) return;var t=el.firstChild;if(!t||t.nodeType!==3) return;
+  if(reduced){t.nodeValue=String(to);return;}
+  var t0=0, dur=1400;t.nodeValue="0";
+  function f(now){if(!t0) t0=now;var x=Math.min(1,(now-t0-200)/dur);if(x<0) x=0;t.nodeValue=String(Math.round(to*(1-Math.pow(2,-10*x))));if(x<1) requestAnimationFrame(f);else t.nodeValue=String(to);}
+  requestAnimationFrame(f);
+}
 function mxTheme(){
   var d=mxEl("mx"), cs=getComputedStyle(panel);
   ["--v-fg","--v-line","--v-accent","--v-muted","--v-bg"].forEach(function(p){var v=cs.getPropertyValue(p);if(v) d.style.setProperty(p,v.trim());});
@@ -14771,9 +14801,11 @@ function mxOpen(G){
   var d=mxEl("mx");mxTheme();
   mxEl("mx-kind").textContent=MX_KINDS[mxRun.kind];
   mxEl("mx-h").textContent=mxRun.cert+(mxRun.title?" · "+mxRun.title:"");
-  d.classList.remove("done");
-  if(!d.open){try{d.showModal();}catch(e){d.setAttribute("open","");}}
-  mxShowQ(true);mxClock();
+  d.classList.remove("done","rev");
+  var fresh=!d.open;
+  if(fresh){try{d.showModal();}catch(e){d.setAttribute("open","");}mxSpec(d);}
+  mxShowQ(true,fresh?0:1);mxClock();
+  if(fresh) mxIn(d,0,18,420);
   clearInterval(mxTick);mxTick=setInterval(mxStep,1000);
 }
 function mxStep(){
@@ -14792,7 +14824,7 @@ function mxClock(){
   b.setAttribute("aria-label","Time left: "+Math.ceil(left/60)+" minute"+(Math.ceil(left/60)===1?"":"s")+(b.getAttribute("aria-pressed")==="true"?". Timer hidden, press to show it":". Press to hide the timer"));
 }
 function mxG(){return mxGuideOf(mxRun.gid);}
-function mxShowQ(focus){
+function mxShowQ(focus,dir){
   var G=mxG(), it=mxRun.items[mxRun.i], q=mxQ(mxRun,G,it), n=mxRun.items.length, body=mxEl("mx-body");
   mxEl("mx-count").innerHTML='<b>'+(mxRun.i+1)+'</b> / '+n;
   mxEl("mx-prog").style.transform="scaleX("+(mxRun.items.filter(function(x){return mxAnswered(mxQ(mxRun,G,x),x)===2;}).length/n)+")";
@@ -14819,8 +14851,9 @@ function mxShowQ(focus){
   }
   body.innerHTML=h+'</div>';
   body.scrollTop=0;
+  if(dir!=null) mxIn(body.firstChild,dir*16,dir?0:8);
   mxEl("mx-prev").disabled=mxRun.i===0;
-  var last=mxRun.i===n-1;mxEl("mx-next").querySelector(".g-btn-l").textContent=last?"Review and submit":"Next";
+  var last=mxRun.i===n-1;mxEl("mx-next").querySelector(".g-btn-l").textContent=last?"Review and submit \u2192":"Next \u2192";
   if(focus){var qq=mxEl("mx-qq");if(qq) qq.focus({preventScroll:true});}
 }
 function mxPick(j){
@@ -14835,19 +14868,20 @@ function mxGo(k){
   if(!mxRun||mxRun.done) return;
   if(k>=mxRun.items.length) return mxReview();
   if(k<0) return;
-  mxRun.i=k;mxSave();mxEl("mx").classList.remove("rev");mxShowQ(true);
+  var from=mxEl("mx").classList.contains("rev")?null:mxRun.i;
+  mxRun.i=k;mxSave();mxEl("mx").classList.remove("rev");mxShowQ(true,from==null?0:k>from?1:-1);
 }
-function mxReview(){
+function mxReview(quiet){
   var G=mxG(), body=mxEl("mx-body"), un=0, part=0, fl=0;
   mxEl("mx").classList.add("rev");
   var cells=mxRun.items.map(function(it,k){var st=mxAnswered(mxQ(mxRun,G,it),it);if(st===0) un++;if(st===1) part++;if(it.f) fl++;
     return '<li><button type="button" class="mx-cell'+(st===2?' done':st===1?' part':'')+(it.f?' flag':'')+(k===mxRun.i?' cur':'')+'" data-go="'+k+'" aria-label="Question '+(k+1)+(st===2?', answered':st===1?', partly answered':', not answered')+(it.f?', flagged':'')+'">'+(k+1)+'</button></li>';}).join("");
   body.innerHTML='<div class="mx-rv"><h3 class="mx-qq" id="mx-qq" tabindex="-1">Review your answers</h3>'+
     '<p class="mx-scen">'+(un?'<b>'+un+'</b> not answered. ':'Every question has an answer. ')+(part?'<b>'+part+'</b> partly answered. ':'')+(fl?'<b>'+fl+'</b> flagged. ':'')+'Tap a number to go back to it. Unanswered questions count as wrong.</p>'+
-    '<div class="mx-sub mx-sub1"><button type="button" class="g-btn" id="mx-submit"><span class="g-btn-l">Submit exam</span></button><button type="button" class="g-link" data-go="'+mxRun.i+'">Back to question '+(mxRun.i+1)+'</button></div>'+
+    '<div class="mx-sub mx-sub1"><button type="button" class="g-btn" id="mx-submit"><span class="g-btn-l">Submit exam &rarr;</span></button><button type="button" class="g-btn ghost" data-go="'+mxRun.i+'"><span class="g-btn-l">&larr; Back to question '+(mxRun.i+1)+'</span></button></div>'+
     '<div class="mx-key" aria-hidden="true"><span><i class="done"></i>Answered</span><span><i class="part"></i>Partly</span><span><i></i>Not answered</span><span><i class="flag"></i>Flagged</span></div>'+
     '<ol class="mx-grid">'+cells+'</ol></div>';
-  body.scrollTop=0;mxEl("mx-qq").focus({preventScroll:true});
+  body.scrollTop=0;mxSpec(body);if(!quiet) mxIn(body.firstChild,0,10);mxEl("mx-qq").focus({preventScroll:true});
 }
 function mxSubmit(auto){
   if(!mxRun||mxRun.done) return;
@@ -14886,11 +14920,14 @@ function mxResults(){
     '<ul class="g-qdom">'+keys.map(function(k){var x=rec.by[k], a=x[0]/x[1], L=wsLabel(G,k,run.ver);return '<li class="'+(a>=.7?'ok':'no')+'"><span>'+gEsc(L.num+" "+L.name)+'</span><i><b style="width:'+(a*100)+'%"></b></i><em>'+Math.round(a*100)+'%</em></li>';}).join("")+'</ul>'+
     (run.kind==="full"||run.kind==="half"?'<p class="mx-note">CompTIA doesn\'t publish how raw scores turn into its 100&ndash;900 scale, so this shows a percent. Aim for 85% or better on two different runs.</p>':'')+
     '</div></div>'+
-    '<div class="mx-sub">'+(missed.length?'<button type="button" class="g-btn" data-mxa="missed"><span class="g-btn-l">Retry the '+missed.length+' I missed</span></button>':'')+
+    '<div class="mx-sub">'+(missed.length?'<button type="button" class="g-btn" data-mxa="missed"><span class="g-btn-l">Retry the '+missed.length+' I missed &rarr;</span></button>':'')+
     '<button type="button" class="g-btn ghost" data-mxa="close"><span class="g-btn-l">Done</span></button></div>'+
     '<div class="mx-revh"><p class="lab">Every question</p><div class="seg mx-filt" role="group" aria-label="Show"><button type="button" data-f="all" aria-pressed="true">All '+run.items.length+'</button><button type="button" data-f="miss" aria-pressed="false">Missed '+missed.length+'</button><button type="button" data-f="flag" aria-pressed="false">Flagged '+run.items.filter(function(x){return x.f;}).length+'</button></div></div>'+
     '<ol class="mx-list">'+run.items.map(function(it,k){var q=mxQ(run,G,it);if(!q) return "";var v=mxScore(q,it);return mxRevItem(G,run,q,it,k,v);}).join("")+'</ol></div>';
-  body.innerHTML=h;body.scrollTop=0;
+  body.innerHTML=h;body.scrollTop=0;mxSpec(body);
+  var top=body.querySelector(".g-qend");mxIn(top,0,12,460);
+  mxCountUp(body.querySelector(".g-qscore b"),Math.round(pct*100));
+  if(!reduced) body.querySelectorAll(".g-qdom i b").forEach(function(b,i){try{b.animate([{transform:"scaleX(0)"},{transform:"scaleX(1)"}],{duration:900,delay:260+i*70,easing:MX_EZ,fill:"backwards"});}catch(e){}});
   requestAnimationFrame(function(){var s=body.querySelector(".g-qscore");if(s) s.classList.add("go");});
   mxEl("mx-live").textContent="Exam submitted. Score "+Math.round(pct*100)+" percent.";
   var hq=body.querySelector(".g-qmsg");if(hq){hq.tabIndex=-1;hq.focus({preventScroll:true});}
@@ -14921,19 +14958,26 @@ async function mxRetryMissed(){
 function mxClose(){
   var d=mxEl("mx");
   clearInterval(mxTick);
-  if(d.open) d.close();
+  if(!d.open||d.dataset.closing) return;
+  if(mxStill()||!d.animate){d.close();return;}
+  d.dataset.closing="1";
+  var a;try{a=d.animate([{opacity:1,transform:"none"},{opacity:0,transform:mxMove()?"translate3d(0,14px,0)":"none"}],{duration:200,easing:"cubic-bezier(.4,0,1,1)",fill:"forwards"});}catch(e){a=null;}
+  function fin(){if(!d.dataset.closing) return;delete d.dataset.closing;if(d.open) d.close();if(a) a.cancel();}
+  if(a){a.onfinish=fin;a.oncancel=fin;}
+  setTimeout(fin,320);
 }
 (function(){
   var d=mxEl("mx");if(!d) return;
-  d.addEventListener("close",function(){clearInterval(mxTick);if(mxRun&&!mxRun.done){mxSave();toast("Exam saved. The clock is paused until you resume it.");}
+  d.addEventListener("close",function(){clearInterval(mxTick);if(mxRun&&!mxRun.done){mxSave();toast("Exam saved. The clock is paused.");}
     /* once closed, the saved copy is the only one: a later discard or a new run can't be overwritten by a stale copy */
     mxRun=null;mxRes=null;var G=guideName&&GUIDES[guideName];if(G&&panel.querySelector("#mxp")) mxGuide(G);});
   mxEl("mx-x").addEventListener("click",mxClose);
+  d.addEventListener("cancel",function(e){e.preventDefault();mxClose();});
   mxEl("mx-prev").addEventListener("click",function(){mxGo(mxRun.i-1);});
   mxEl("mx-next").addEventListener("click",function(){mxGo(mxRun.i+1);});
   mxEl("mx-revbtn").addEventListener("click",function(){if(mxRun&&!mxRun.done) mxReview();});
   mxEl("mx-flag").addEventListener("click",function(){if(!mxRun||mxRun.done) return;var it=mxRun.items[mxRun.i];it.f=!it.f;if(!it.f) delete it.f;mxSave();
-    if(d.classList.contains("rev")) mxReview();else mxShowQ(false);mxEl("mx-live").textContent=it.f?"Flagged.":"Flag removed.";});
+    if(d.classList.contains("rev")) mxReview(true);else mxShowQ(false);mxEl("mx-live").textContent=it.f?"Flagged.":"Flag removed.";});
   mxEl("mx-tbtn").addEventListener("click",function(){var b=this, hid=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(hid));d.classList.toggle("thide",hid);if(mxRun) mxClock();});
   var body=mxEl("mx-body");
   body.addEventListener("click",function(e){
@@ -14971,14 +15015,14 @@ function mxGuide(G){
   var banks=mxBankList(G), pace=mxPace(G), nq=G.quiz.length, saved=mxSaved(), h="";
   if(saved&&saved.gid===G.id){var left=saved.dur-saved.used;
     h+='<div class="mxp-resume"><div><p class="lab">Exam in progress</p><p><b>'+gEsc(MX_KINDS[saved.kind])+'</b>'+(saved.title?' &middot; '+gEsc(saved.title):'')+' &middot; '+mxFmt(left)+' left, question '+(saved.i+1)+' of '+saved.items.length+'</p></div>'+
-      '<div class="mxp-ra"><button type="button" class="g-btn" data-mx="resume"><span class="g-btn-l">Resume</span></button><button type="button" class="g-link" data-mx="discard">Discard</button></div></div>';}
+      '<div class="mxp-ra"><button type="button" class="g-btn" data-mx="resume"><span class="g-btn-l">Resume &rarr;</span></button><button type="button" class="g-btn ghost" data-mx="discard"><span class="g-btn-l">Discard</span></button></div></div>';}
   h+='<div class="mxp-cards">';
   banks.forEach(function(b){
     h+='<div class="mxp-card"><p class="lab">'+gEsc(b.label+" · "+b.code)+'</p><h4>Full practice exam</h4><p>Exam length and time limit, with PBQs first, flags and a review screen, the way the real one works.</p>'+
-      '<div class="mxp-act"><button type="button" class="g-btn" data-mx="full" data-ver="'+gEsc(b.ver)+'"><span class="g-btn-l">Start full exam</span></button><button type="button" class="g-link" data-mx="half" data-ver="'+gEsc(b.ver)+'">Half-length</button></div></div>';
+      '<div class="mxp-act"><button type="button" class="g-btn" data-mx="full" data-ver="'+gEsc(b.ver)+'"><span class="g-btn-l">Start full exam &rarr;</span></button><button type="button" class="g-btn ghost" data-mx="half" data-ver="'+gEsc(b.ver)+'"><span class="g-btn-l">Half-length</span></button></div></div>';
   });
   h+='<div class="mxp-card"><p class="lab">Every version</p><h4>Quick timed set</h4><p>'+nq+' questions in '+Math.max(1,Math.ceil(nq*pace))+' minutes, from this guide\'s question set, at exam pace.</p>'+
-    '<div class="mxp-act"><button type="button" class="g-btn'+(banks.length?' ghost':'')+'" data-mx="quick"><span class="g-btn-l">Start timed set</span></button></div></div>';
+    '<div class="mxp-act"><button type="button" class="g-btn" data-mx="quick"><span class="g-btn-l">Start timed set &rarr;</span></button></div></div>';
   if(!banks.length) h+='<div class="mxp-card soon"><p class="lab">Coming in a later update</p><h4>Full practice exam</h4><p>A full-length question bank for this exam is on the way. Until then, the timed set and the untimed check below count toward your weak spots.</p></div>';
   else{var miss=Object.keys(G.versions).filter(function(v){return !banks.some(function(b){return b.ver===v;});});
     if(miss.length) h+='<p class="mxp-fine">'+miss.map(function(v){return gEsc(G.versions[v].label+" ("+G.versions[v].code+")");}).join(", ")+': full practice exam coming in a later update. The '+gEsc(banks.map(function(b){return b.label;}).join(", "))+' exam covers most of the same ground.</p>';}
@@ -14992,14 +15036,14 @@ function mxGuide(G){
   else{
     h+='<ul class="ws-list">'+keys.map(function(k){var e=w.d[k], a=wsAcc(e), L=wsLabel(G,k), isW=weak.indexOf(k)>=0;
       return '<li class="'+(isW?'weak':a>=.85?'ok':'')+'"><span class="ws-d"><b>'+gEsc(L.num)+'</b> '+gEsc(L.name)+(isW?'<em>Weak</em>':'')+'</span><i><b style="width:'+Math.round(a*100)+'%"></b></i><span class="ws-n">'+Math.round(a*100)+'%<small>'+e.r.length+(e.t>e.r.length?' of '+e.t:'')+' answered</small></span></li>';}).join("")+'</ul>';
-    h+='<div class="ws-act">'+(weak.length?'<button type="button" class="g-btn ghost" data-mx="drill"><span class="g-btn-l">Drill my weakest domain'+(weak.length>1?'s':'')+'</span></button><span class="ws-s">Up to 20 questions, missed ones first.</span>':'<span class="ws-s">No weak domain right now: everything you\'ve answered recently is at 85% or better.</span>')+'</div>';
+    h+='<div class="ws-act">'+(weak.length?'<button type="button" class="g-btn" data-mx="drill"><span class="g-btn-l">Drill my weakest domain'+(weak.length>1?'s':'')+' &rarr;</span></button><span class="ws-s">Up to 20 questions, missed ones first.</span>':'<span class="ws-s">No weak domain right now: everything you\'ve answered recently is at 85% or better.</span>')+'</div>';
   }
   h+='</div>';
   /* history */
   var hist=mxHist(G);
   if(hist.length) h+='<div class="mxp-hist"><p class="lab">Recent runs</p><ol>'+hist.slice(0,5).map(function(r){var p=Math.round(r.s/r.n*100), dt=new Date(r.t);
     return '<li><span>'+gEsc(MX_KINDS[r.k]||"Run")+(r.x&&r.x!=="quiz"?' &middot; '+gEsc(r.x):'')+'</span><span class="mxp-hd">'+gEsc(isNaN(dt)?"":dt.toLocaleDateString(undefined,{month:"short",day:"numeric"}))+'</span><b class="'+(p>=85?'ok':p>=70?'':'no')+'">'+p+'%</b></li>';}).join("")+'</ol></div>';
-  box.innerHTML=h;
+  box.innerHTML=h;mxSpec(box);
 }
 async function mxDrill(G){
   var weak=wsWeak(G);if(!weak.length){toast("No weak domain to drill yet.");return;}
@@ -16821,7 +16865,7 @@ void main(){
 }
 
 /* ---------- specular rim light on buttons and cards ---------- */
-var SPEC_SEL=".cta,.hdr-btn,.ed-close,.copy,.pcard,.mini,.q8card,.p-back,.p-arr,.flex-open,.g-btn,.g-node", specs=[];
+var SPEC_SEL=".cta,.hdr-btn,.ed-close,.copy,.pcard,.mini,.q8card,.p-back,.p-arr,.flex-open,.g-btn,.g-node,.mx-tool,.mx-timer", specs=[];
 function wrap1(v){return v-Math.floor(v);}
 function loopPos(x,y,hx,hy,r){
   var ix=hx-r,iy=hy-r,arc=Math.PI/2*r,q4=ix+iy+arc,ax=Math.abs(x),ay=Math.abs(y),qx=ax-ix,qy=ay-iy,sv;
@@ -16841,7 +16885,7 @@ function specScan(root){
   (root||document).querySelectorAll(SPEC_SEL).forEach(function(el){
     if(el.dataset.spec) return;el.dataset.spec="1";el.classList.add("spec");
     el.insertAdjacentHTML("afterbegin",'<span class="spec-g" aria-hidden="true"></span><span class="spec-h" aria-hidden="true"></span><span class="spec-l" aria-hidden="true"></span>');
-    var scope=el.closest("#sheet")?"sheet":el.closest("#panel")?"panel":"home";
+    var scope=el.closest("#mx")?"mx":el.closest("#sheet")?"sheet":el.closest("#panel")?"panel":"home";
     specs.push({el:el,scope:scope,spot:-1,level:.35,press:0,r:null,last:""});
   });
   specWake();
@@ -16852,13 +16896,13 @@ function specStep(dt){
   var now=performance.now();
   if(now>specUntil||LITE.on||GFX.tier>=1) return;
   var known=mouse.px>-999, vh=window.innerHeight, live=[], i, sp;
-  var sheetOn=sheetP>.02, homeOn=state!=="open"&&sheetP<.98, panelOn=state==="open";
+  var sheetOn=sheetP>.02, homeOn=state!=="open"&&sheetP<.98, panelOn=state==="open", mxD=document.getElementById("mx"), mxOn=!!(mxD&&mxD.open);
   for(i=0;i<specs.length;i++){
     sp=specs[i];
     if(!sp.el.isConnected) continue;
     live.push(sp);
     sp.rc=null;
-    if(sp.scope==="sheet"?!sheetOn:sp.scope==="panel"?!panelOn:!homeOn) continue;
+    if(sp.scope==="mx"?!mxOn:mxOn||(sp.scope==="sheet"?!sheetOn:sp.scope==="panel"?!panelOn:!homeOn)) continue;
     sp.rc=sp.el.getBoundingClientRect();
   }
   if(live.length!==specs.length) specs=live;
