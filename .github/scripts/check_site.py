@@ -329,6 +329,138 @@ def check_share_preview():
         ok("share preview tags are complete and point at mynextcert.com")
 
 
+def alloc(n, domains):
+    """Split n questions across domains by weight, largest remainder (same as the page's mxAlloc)."""
+    tot = sum(d["w"] for d in domains)
+    out, parts, used = {}, [], 0
+    for d in domains:
+        x = n * d["w"] / tot
+        out[d["n"]] = int(x)
+        used += int(x)
+        parts.append((x - int(x), d["n"]))
+    parts.sort(key=lambda p: -p[0])
+    i = 0
+    while used < n:
+        out[parts[i % len(parts)][1]] += 1
+        used += 1
+        i += 1
+    return out
+
+
+def check_qbank(path, ver):
+    """One practice-exam bank: structure, explanations, coverage, pool sizes, duplicates, answer-length tells."""
+    tag = f"question bank {path}"
+    try:
+        with open(path, encoding="utf-8") as f:
+            b = json.load(f)
+    except Exception as e:
+        fail(f"{tag}: can't be read ({e})")
+        return
+    if os.path.getsize(path) > 600 * 1024:
+        fail(f"{tag}: over 600 KB")
+    if b.get("app") != "MyNextCert" or b.get("kind") != "qbank" or b.get("v") != 1 or b.get("ver") != ver:
+        fail(f"{tag}: header must be app MyNextCert, kind qbank, v 1, ver {ver!r}")
+        return
+    F, doms = b.get("format") or {}, b.get("domains") or []
+    if not (0 < F.get("n", 0) <= 200 and 0 < F.get("min", 0) <= 400 and 0 <= F.get("pbq", -1) <= 10):
+        fail(f"{tag}: format needs n, min and pbq in range")
+        return
+    if sum(d.get("w", 0) for d in doms) != 100:
+        fail(f"{tag}: domain weights add up to {sum(d.get('w', 0) for d in doms)}, not 100")
+    dset = {d["n"]: d for d in doms}
+    ids, texts, before = set(), set(), len(failures)
+    mc_long = mc_n = 0
+    per_dom, per_obj = {}, {}
+    for q in b.get("q", []):
+        qid = q.get("id", "?")
+        if not re.fullmatch(r"[a-z0-9-]{3,40}", str(qid)) or qid in ids:
+            fail(f"{tag}: bad or repeated id {qid!r}")
+        ids.add(qid)
+        if q.get("d") not in dset:
+            fail(f"{tag}: {qid} has unknown domain {q.get('d')!r}")
+            continue
+        obj = str(q.get("obj", ""))
+        m = re.fullmatch(r"(\d+)\.(\d+)", obj)
+        if not m or m.group(1) + ".0" != q["d"] or int(m.group(2)) > dset[q["d"]].get("obj", 99):
+            fail(f"{tag}: {qid} objective {obj!r} doesn't fit domain {q['d']}")
+        if q.get("t") == "pbq":
+            if q.get("kind") == "table":
+                good = q.get("cols") and len(q.get("opts", [])) == len(q["cols"]) and q.get("rows") and all(
+                    len(r.get("a", [])) == len(q["cols"]) and all(0 <= v < len(q["opts"][ci]) for ci, v in enumerate(r["a"])) and r.get("why") for r in q["rows"])
+            elif q.get("kind") == "match":
+                good = q.get("choices") and q.get("items") and all(0 <= it.get("a", -1) < len(q["choices"]) and it.get("why") and (it.get("log") or it.get("text")) for it in q["items"])
+            else:
+                good = False
+            if not good:
+                fail(f"{tag}: PBQ {qid} is malformed (every row/item needs a valid answer and a why)")
+            continue
+        o, a = q.get("o", []), q.get("a")
+        if not q.get("q") or not (4 <= len(o) <= 6) or not all(isinstance(x, list) and len(x) == 2 and x[0].strip() and x[1].strip() for x in o):
+            fail(f"{tag}: {qid} needs a question and 4-6 options, each with an explanation")
+            continue
+        if len({x[0].strip().lower() for x in o}) != len(o):
+            fail(f"{tag}: {qid} repeats an option")
+        right = a if q.get("t") == "ms" else [a]
+        if not all(isinstance(x, int) and 0 <= x < len(o) for x in right) or len(set(right)) != len(right):
+            fail(f"{tag}: {qid} answer index out of range")
+            continue
+        if q.get("t") == "ms" and (len(right) < 2 or len(o) < len(right) + 2):
+            fail(f"{tag}: {qid} multi-select needs 2+ answers and at least 2 wrong options")
+        marked = [i for i, x in enumerate(o) if x[1].startswith("Right.")]
+        if sorted(marked) != sorted(right):
+            fail(f"{tag}: {qid} explanations starting 'Right.' don't match the answer")
+        key = re.sub(r"\W+", " ", q["q"].lower()).strip()
+        if key in texts:
+            fail(f"{tag}: {qid} duplicates another question")
+        texts.add(key)
+        per_dom[q["d"]] = per_dom.get(q["d"], 0) + 1
+        per_obj[obj] = per_obj.get(obj, 0) + 1
+        if q.get("t") != "ms":
+            mc_n += 1
+            others = max(len(x[0]) for i, x in enumerate(o) if i != a)
+            if len(o[a][0]) > others:
+                mc_long += 1
+    for d in doms:
+        for k in range(1, d.get("obj", 0) + 1):
+            if per_obj.get(f"{d['n'][:-2]}.{k}", 0) < 2:
+                fail(f"{tag}: objective {d['n'][:-2]}.{k} has fewer than 2 questions")
+    need = alloc(F["n"] - F["pbq"], doms)
+    for dn, n in need.items():
+        if per_dom.get(dn, 0) < n:
+            fail(f"{tag}: domain {dn} has {per_dom.get(dn, 0)} questions but a full exam needs {n}")
+    pbqs = sum(1 for q in b.get("q", []) if q.get("t") == "pbq")
+    if pbqs < F["pbq"]:
+        fail(f"{tag}: {pbqs} PBQs but a full exam needs {F['pbq']}")
+    if mc_n and mc_long / mc_n > 0.4:
+        fail(f"{tag}: the right answer is the longest option in {mc_long}/{mc_n} questions (a giveaway); keep it under 40%")
+    if len(failures) == before:
+        ok(f"{tag}: {len(ids)} items, every objective covered, full exam fits, longest-answer tell {round(100 * mc_long / max(mc_n, 1))}%")
+
+
+def check_qbanks():
+    # 9. Practice-exam question banks referenced by the guides (v2.48)
+    with open("index.html", encoding="utf-8") as f:
+        html = f.read()
+    refs = {}
+    for block in re.findall(r"\bmock:\{([^}]*)\}", html):
+        for ver, path in re.findall(r'(\w+):"([^"]+)"', block):
+            if not re.fullmatch(r"qbank/[a-z0-9-]{3,40}\.json", path):
+                fail(f"question bank path {path!r} must be qbank/<name>.json")
+                continue
+            refs[path] = ver
+    for path, ver in sorted(refs.items()):
+        if not os.path.isfile(path):
+            fail(f"{path} is referenced by a guide but missing")
+        else:
+            check_qbank(path, ver)
+    if os.path.isdir("qbank"):
+        for f in sorted(os.listdir("qbank")):
+            if f.endswith(".json") and "qbank/" + f not in refs:
+                fail(f"qbank/{f} isn't used by any guide (remove it or add it to a guide's mock list)")
+    if not refs:
+        ok("no practice-exam banks yet")
+
+
 def sw_version(text):
     m = re.search(r'var\s+VERSION\s*=\s*"(certpath-v\d+)"', text)
     return m.group(1) if m else None
@@ -388,6 +520,7 @@ def main():
     check_404()
     check_dod8140()
     check_share_preview()
+    check_qbanks()
     version = check_sw()
     check_bump(version)
     print()

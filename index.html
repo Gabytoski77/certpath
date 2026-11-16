@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-LHKOx2i+YkSzA5MynRC5SGox0g7Z3cGRnXggcwvvz5E=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-s+EcdI9cF1DCsLrkqUI9T9gBQFf6O2m/TRpm3L0XLfI=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -738,6 +738,140 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .pv-x{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:var(--ink);font:400 22px/1 var(--f-ui);cursor:pointer}
 .pv-x:hover{background:rgba(255,255,255,.1)}
 @media (max-width:720px){.pv-in{padding:18px 18px 22px;font-size:13.5px}.pv h2{font-size:26px}}
+
+/* practice exams (v2.48): the exam screen */
+.mx{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#0e1218;color:var(--v-fg,#ecebe8);
+  --v-fg:#ecebe8;--v-line:rgba(255,255,255,.12);--v-accent:#bcd6ea;--v-muted:#a9adb4;--ok:#5fd394;--no:#ff8f80;overflow:hidden}
+.mx[open]{display:grid;grid-template-rows:auto 2px minmax(0,1fr) auto}
+.mx::backdrop{background:#0e1218}
+.mx-top{display:flex;align-items:center;gap:12px;padding:calc(var(--sat) + 12px) max(20px,env(safe-area-inset-right)) 12px max(20px,env(safe-area-inset-left));border-bottom:1px solid var(--v-line);background:rgba(255,255,255,.02)}
+.mx-title{min-width:0;flex:1 1 auto}
+.mx-title .lab{margin:0}
+.mx-title h2{margin:3px 0 0;font:700 17px/1.2 var(--f-disp);letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-count{font:500 12px var(--f-mono);color:var(--v-muted);white-space:nowrap}
+.mx-count b{color:var(--v-fg);font-weight:600}
+.mx-timer{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--v-line);font:600 14px var(--f-mono);color:var(--v-fg);font-variant-numeric:tabular-nums;background:rgba(255,255,255,.03)}
+.mx-timer.low{border-color:var(--no);color:var(--no)}
+.mx-th{display:none;font:600 10px var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--v-muted)}
+.mx.thide #mx-time{display:none}.mx.thide .mx-th{display:inline}
+.mx-tool{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 13px;border-radius:999px;border:1px solid var(--v-line);font:600 10.5px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--v-muted);background:none}
+.mx-tool[aria-pressed="true"]{border-color:#e7c46c;color:#e7c46c;background:rgba(231,196,108,.1)}
+.mx-tool svg{width:13px;height:13px}
+@media (hover:hover) and (pointer:fine){.mx-tool:hover,.mx-timer:hover{border-color:color-mix(in srgb,var(--v-fg) 40%,transparent)}}
+.mx.done .mx-tool,.mx.done .mx-timer{display:none}
+.mx-x{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--v-line);display:grid;place-items:center;font-size:20px;line-height:1;color:var(--v-fg);background:none}
+.mx-bar{background:var(--v-line);overflow:hidden}
+.mx-bar i{display:block;height:100%;background:var(--v-accent);transform-origin:0 0;transform:scaleX(0);transition:transform .4s var(--ez)}
+.mx-body{overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:28px max(20px,env(safe-area-inset-right)) 40px max(20px,env(safe-area-inset-left))}
+.mx-q,.mx-rv,.mx-res{max-width:860px;margin:0 auto}
+.mx-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 16px}
+.mx-fl{font:600 9.5px/1 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:#e7c46c;border:1px solid rgba(231,196,108,.5);border-radius:999px;padding:5px 8px}
+.mx-obj{font:500 10.5px var(--f-mono);color:var(--v-muted)}
+.mx-qq{margin:0 0 20px;font:500 clamp(17px,2.1vw,21px)/1.45 var(--f-ui);letter-spacing:-.01em;color:var(--v-fg);text-wrap:pretty;outline:none}
+.mx-scen{margin:-8px 0 18px;max-width:72ch;font:400 14px/1.6 var(--f-ui);color:var(--v-muted)}
+.mx-scen b{color:var(--v-fg)}
+.mx-pickn{margin:-8px 0 14px;font:600 10.5px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--v-accent)}
+.mx-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px max(20px,env(safe-area-inset-right)) calc(var(--sab) + 12px) max(20px,env(safe-area-inset-left));border-top:1px solid var(--v-line);background:rgba(255,255,255,.02)}
+.mx-keys{font:400 11.5px var(--f-ui);color:var(--v-muted)}
+.mx-keys kbd{font:500 10.5px var(--f-mono);padding:1px 5px;border:1px solid var(--v-line);border-radius:4px;color:var(--v-fg)}
+.mx.done .mx-foot,.mx.rev .mx-foot{display:none}
+.mx-key{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 14px;font:400 12px var(--f-ui);color:var(--v-muted)}
+.mx-key span{display:inline-flex;align-items:center;gap:6px}
+.mx-key i{width:12px;height:12px;border-radius:3px;border:1px solid var(--v-line)}
+.mx-key i.done{background:color-mix(in srgb,var(--v-fg) 70%,transparent);border-color:var(--v-fg)}
+.mx-key i.part{background:linear-gradient(135deg,color-mix(in srgb,var(--v-fg) 70%,transparent) 50%,transparent 50%);border-color:var(--v-fg)}
+.mx-key i.flag{border-color:#e7c46c;box-shadow:inset 0 0 0 2px #e7c46c}
+.mx-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:6px}
+.mx-cell{width:100%;height:44px;border-radius:8px;border:1px solid var(--v-line);font:500 12px var(--f-mono);color:var(--v-muted);background:rgba(255,255,255,.02)}
+.mx-cell.done{background:color-mix(in srgb,var(--v-fg) 16%,transparent);border-color:color-mix(in srgb,var(--v-fg) 55%,transparent);color:var(--v-fg)}
+.mx-cell.part{background:linear-gradient(135deg,color-mix(in srgb,var(--v-fg) 16%,transparent) 50%,transparent 50%);border-color:color-mix(in srgb,var(--v-fg) 35%,transparent);color:var(--v-fg)}
+.mx-cell.flag{box-shadow:inset 0 0 0 2px #e7c46c}
+.mx-cell.cur{outline:2px solid var(--v-fg);outline-offset:1px}
+.mx-sub{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:26px}
+.mx-sub1{margin:0 0 24px}
+.mx-ftab{margin-top:6px}
+.mx-res .g-qend{margin-bottom:6px}
+.mx-note{margin:14px 0 0;font:400 12px/1.55 var(--f-ui);color:var(--v-muted)}
+.mx-revh{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:36px 0 12px;padding-top:20px;border-top:1px solid var(--v-line)}
+.mx-revh .lab{margin:0}
+.mx-filt button{font-size:11px}
+.mx-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.mx-list > li{border:1px solid var(--v-line);border-radius:10px;background:rgba(255,255,255,.015)}
+.mx-list > li.no{border-left:3px solid var(--no)}.mx-list > li.part{border-left:3px solid #e7c46c}.mx-list > li.ok{border-left:3px solid var(--ok)}
+.mx-list summary{display:grid;grid-template-columns:30px 18px minmax(0,1fr);gap:10px;align-items:start;padding:12px 14px;cursor:pointer;list-style:none;font:400 13.5px/1.5 var(--f-ui);color:var(--v-fg)}
+.mx-list summary::-webkit-details-marker{display:none}
+.mx-n{font:500 11px/1.9 var(--f-mono);color:var(--v-muted)}
+.mx-st{font:600 13px/1.6 var(--f-mono)}
+li.ok .mx-st{color:var(--ok)}li.no .mx-st{color:var(--no)}li.part .mx-st{color:#e7c46c}
+.mx-sq{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+details[open] .mx-sq{display:block}
+.mx-ex{padding:0 14px 14px 72px}
+.mx-opts-r,.mx-pbr{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.mx-opts-r li,.mx-pbr li{display:grid;gap:3px;padding-left:12px;border-left:2px solid var(--v-line);font:400 12.5px/1.55 var(--f-ui);color:var(--v-muted)}
+.mx-opts-r li b,.mx-pbr li b{font-weight:500;color:var(--v-fg)}
+.mx-opts-r li.r,.mx-pbr li.ok{border-left-color:var(--ok)}
+.mx-opts-r li.y:not(.r),.mx-pbr li.no{border-left-color:var(--no)}
+.mx-opts-r em,.mx-pbr em{font:600 9px var(--f-ui);font-style:normal;letter-spacing:.14em;text-transform:uppercase}
+.mx-opts-r em.r{color:var(--ok)}.mx-opts-r em.y{color:var(--no)}.mx-opts-r li.r em.y{color:var(--ok)}.mx-pbr em{color:var(--no)}
+.mx-pbr pre{margin:4px 0;padding:8px 10px;border-radius:6px;background:rgba(0,0,0,.3);font:400 11.5px/1.5 var(--f-mono);color:#d6dbe2;white-space:pre-wrap;overflow-wrap:anywhere}
+.mx-blank{margin:8px 0 0;font:600 10px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--no)}
+@media (max-width:720px){
+  .mx-top{flex-wrap:wrap;gap:8px 10px;padding-left:16px;padding-right:16px}
+  .mx-title{flex-basis:calc(100% - 50px)}
+  .mx-x{order:2}
+  .mx-timer,.mx-tool,.mx-count{order:3}
+  .mx-count{margin-left:auto}
+  .mx-tool span{display:none}
+  .mx-tool{padding:0 11px}
+  .mx-body{padding:20px 16px 32px}
+  .mx-foot{padding-left:16px;padding-right:16px}
+  .mx-keys{display:none}
+  .mx-foot .g-btn{padding:12px 18px}
+  .mx-ex{padding:0 12px 12px 14px}
+  .mx-list summary{grid-template-columns:24px 16px minmax(0,1fr);padding:11px 12px}
+  .mx-res .g-qend{grid-template-columns:1fr;justify-items:start;gap:18px}
+  .mx-res .g-qscore{width:120px;height:120px}
+}
+@media (prefers-reduced-motion:reduce){.mx-bar i{transition:none}}
+
+/* the Practice section in each guide */
+.mxp{display:grid;gap:18px;margin-bottom:28px}
+.mxp-resume{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;padding:16px 18px;border-radius:12px;border:1px solid rgba(231,196,108,.45);background:rgba(231,196,108,.07)}
+.mxp-resume .lab{margin:0 0 4px;color:#e7c46c}
+.mxp-resume p{margin:0;font:400 13.5px/1.5 var(--f-ui);color:var(--v-fg)}
+.mxp-ra{display:flex;align-items:center;gap:14px}
+.mxp-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.mxp-card{display:grid;gap:8px;align-content:start;padding:18px;border-radius:14px;border:1px solid var(--v-line);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01))}
+.mxp-card .lab{margin:0}
+.mxp-card h4{margin:0;font:700 18px/1.2 var(--f-disp);letter-spacing:-.015em;color:var(--v-fg)}
+.mxp-card p{margin:0;font:400 13px/1.55 var(--f-ui);color:var(--v-muted)}
+.mxp-card.soon{border-style:dashed;background:none}
+.mxp-act{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:6px}
+.mxp-fine{grid-column:1/-1;margin:0;font:400 12px/1.55 var(--f-ui);color:var(--v-muted)}
+.ws{padding:18px;border-radius:14px;border:1px solid var(--v-line);background:rgba(0,0,0,.14)}
+.ws-h{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.ws-h .lab{margin:0}
+.ws-s{margin:4px 0 0;font:400 12px/1.5 var(--f-ui);color:var(--v-muted)}
+.ws-none{margin:0;font:400 13px/1.55 var(--f-ui);color:var(--v-muted)}
+.ws-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ws-list li{display:grid;grid-template-columns:minmax(0,1fr) 120px 92px;gap:12px;align-items:center;font:400 12.5px/1.4 var(--f-ui);color:var(--v-muted)}
+.ws-d b{font:500 11px var(--f-mono);color:var(--v-fg);margin-right:4px}
+.ws-d em{margin-left:8px;font:600 9px var(--f-ui);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--no);border:1px solid color-mix(in srgb,var(--no) 50%,transparent);border-radius:999px;padding:3px 6px;vertical-align:1px}
+.ws-list i{height:5px;border-radius:3px;background:var(--v-line);overflow:hidden}
+.ws-list i b{display:block;height:100%;background:var(--v-accent)}
+.ws-list li.weak i b{background:var(--no)}.ws-list li.ok i b{background:var(--ok)}
+.ws-n{font:600 12px var(--f-mono);color:var(--v-fg);text-align:right}
+.ws-n small{display:block;font:400 10px var(--f-ui);color:var(--v-muted)}
+.ws-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-top:16px}
+.ws-act .ws-s{margin:0}
+.mxp-hist .lab{margin:0 0 8px}
+.mxp-hist ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.mxp-hist li{display:grid;grid-template-columns:minmax(0,1fr) auto 52px;gap:12px;align-items:center;padding:9px 12px;border-radius:8px;background:rgba(255,255,255,.025);font:400 12.5px var(--f-ui);color:var(--v-fg)}
+.mxp-hd{font:400 11px var(--f-mono);color:var(--v-muted)}
+.mxp-hist b{font:600 13px var(--f-mono);text-align:right}
+.mxp-hist b.ok{color:var(--ok)}.mxp-hist b.no{color:var(--no)}
+.mxp-qlab{margin:8px 0 12px}
+@media (max-width:720px){.ws-list li{grid-template-columns:minmax(0,1fr) 72px;}.ws-list li i{grid-column:1/-1;grid-row:2}.ws-n{grid-row:1;grid-column:2}}
 
 /* acronym lookup in search (v2.46) */
 .sr-def{margin:8px 4px 2px;padding:14px 16px 15px;border-radius:14px;border:1px solid rgba(255,255,255,.11);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03))}
@@ -2330,7 +2464,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.47</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.48</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2401,6 +2535,24 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div class="ps-paper"><div class="psd" id="ps-doc"></div></div>
 </dialog>
 <div id="ps-print" class="psd" aria-hidden="true"></div>
+<dialog id="mx" class="mx" aria-labelledby="mx-h">
+  <div class="mx-top">
+    <div class="mx-title"><p class="lab" id="mx-kind">Practice exam</p><h2 id="mx-h">Practice exam</h2></div>
+    <button type="button" class="mx-timer" id="mx-tbtn" aria-pressed="false"><span id="mx-time">0:00</span><span class="mx-th">Show time</span></button>
+    <button type="button" class="mx-tool" id="mx-flag" aria-pressed="false"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M3 13V1.5M3 2h8l-2 3 2 3H3"/></svg><span>Flag</span></button>
+    <button type="button" class="mx-tool" id="mx-revbtn"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1.5" y="1.5" width="4" height="4" rx="1"/><rect x="8.5" y="1.5" width="4" height="4" rx="1"/><rect x="1.5" y="8.5" width="4" height="4" rx="1"/><rect x="8.5" y="8.5" width="4" height="4" rx="1"/></svg><span>Review</span></button>
+    <span class="mx-count" id="mx-count"></span>
+    <button type="button" class="mx-x" id="mx-x" aria-label="Save and close the exam">&times;</button>
+  </div>
+  <div class="mx-bar" aria-hidden="true"><i id="mx-prog"></i></div>
+  <div class="mx-body" id="mx-body"></div>
+  <div class="mx-foot">
+    <button type="button" class="g-btn ghost" id="mx-prev"><span class="g-btn-l">&larr; Back</span></button>
+    <span class="mx-keys" aria-hidden="true"><kbd>A</kbd>&ndash;<kbd>D</kbd> answer &middot; <kbd>N</kbd> next &middot; <kbd>P</kbd> back &middot; <kbd>F</kbd> flag &middot; <kbd>R</kbd> review</span>
+    <button type="button" class="g-btn" id="mx-next"><span class="g-btn-l">Next</span></button>
+  </div>
+  <span class="vh" id="mx-live" aria-live="polite"></span>
+</dialog>
 <section id="sheet" aria-label="Explore">
   <div class="sh-grab" id="sh-grab" role="button" tabindex="0" aria-expanded="false" aria-controls="sh-scroll" aria-label="Open paths, DoD 8140 and funding">
     <span class="sh-handle"></span>
@@ -5942,6 +6094,7 @@ setSheet(0);
 var GUIDES={
 "Security+":{
   id:"secplus",
+  mock:{v7:"qbank/sy0-701.json"},
   lead:"The cert most DoD and Coast Guard IT billets ask for first. It proves you know the core of security work: threats, controls, architecture, incident response and risk.",
   checked:"Nov 6, 2026",
   versions:{
@@ -14090,7 +14243,7 @@ GUIDES["LPIC-2"]={
     ["LPI wiki: LPIC-2 objectives version 5.0 (draft)","https://wiki.lpi.org/wiki/LPIC-2_Objectives_V5.0"],
     ["CBT Nuggets: LPIC-2 ($200 per exam, 60 questions, 90 minutes, 500 of 800)","https://www.cbtnuggets.com/certification-playlist/linux-professional-institute/lpic-2"]]
 };
-var G_SECS=[["obj","Objectives"],["plan","Study plan"],["res","Resources"],["quiz","Quiz"],["pbq","PBQs"],["map","Roadmap"],["keep","Keep it"]];
+var G_SECS=[["obj","Objectives"],["plan","Study plan"],["res","Resources"],["quiz","Practice"],["pbq","PBQs"],["map","Roadmap"],["keep","Keep it"]];
 var G_ICON_EXT='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
 
 function renderGuide(i,name){
@@ -14138,7 +14291,9 @@ function renderGuide(i,name){
        return '<li>'+(r[2]?'<a class="g-r" href="'+gEsc(r[2])+'" target="_blank" rel="noopener noreferrer">'+inner+'<span class="g-r-go">'+G_ICON_EXT+'</span></a>':'<div class="g-r">'+inner+'<span class="g-r-go"></span></div>')+'</li>';}).join("")+'</ul></div>';}).join("")+
      '<div class="g-fund g-rv"><div><p class="lab">Funding</p><p>CG COOL can pay you back for this exam, up to $4,500 a fiscal year. Get approval in MyCG Ed before you pay.</p></div><button type="button" class="g-btn ghost" data-goto="cool" data-fund="cool"><span class="g-btn-l">How CG COOL works &rarr;</span></button></div></section>';
   // 04 quiz
-  h+='<section class="g-sec" id="g-quiz" data-sec="quiz">'+head(4,"quiz",(function(){var n=G.quiz.length,w=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen"][n];return (w||n)+"-question check.";})(),"Original questions written at or above exam difficulty. Answer order shuffles every attempt, and every option has an explanation.")+
+  h+='<section class="g-sec" id="g-quiz" data-sec="quiz">'+head(4,"quiz","Practice like it&rsquo;s exam day.","Timed runs at exam pace, plus an untimed check with an explanation after every answer. Every answer feeds your weak spots, so drills go straight to what you miss. Original questions only, never real exam content.")+
+     '<div class="mxp g-rv" id="mxp"></div>'+
+     '<p class="lab mxp-qlab">Untimed check &middot; '+G.quiz.length+' questions</p>'+
      '<div class="g-quiz g-rv" id="g-qz" aria-live="polite"></div></section>';
   // 05 PBQs
   h+='<section class="g-sec" id="g-pbq" data-sec="pbq">'+head(5,"pbq","Performance-based practice.",gEsc(G.pbqSub||"Hands-on tasks like the ones at the start of the exam. Work them, then check your answers."))+
@@ -14180,7 +14335,7 @@ function renderGuide(i,name){
     if(t.dataset.goto){if(t.dataset.excert) exPreset(t.dataset.excert);if(t.dataset.fund){goFund(t.dataset.fund);return;}if(t.dataset.q8r) q8Target(t.dataset.q8r);if(t.dataset.q8c) q8TargetCert(t.dataset.q8c);goPage(t.dataset.goto);}
     else{var en=sByName(t.dataset.gocert);if(en) openCertFrom(en);}
   });
-  gVersion(G,false);gPlan(G,false);gQuizStart(G,false);gPbq(G,0,false);gRoad(G);
+  gVersion(G,false);gPlan(G,false);gQuizStart(G,false);gPbq(G,0,false);gRoad(G);mxGuideWire(G);
   requestAnimationFrame(function(){body.querySelectorAll(".seg").forEach(function(s){gPlaceSeg(s);});gNavSet("obj",true);gFx();});
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){if(guideName===name){body.querySelectorAll(".seg").forEach(gPlaceSeg);gNavSet(gNavCur,true);}});
   // reveal sections as they scroll in
@@ -14378,6 +14533,7 @@ function gQuizRender(anim1){
 function gQuizCheck(){
   var box=panel.querySelector("#g-qz"), q=gQ.G.quiz[gQ.order[gQ.i]], ok=gQ.sel===q.a;
   gQ.checked=true;gQ.picks[gQ.i]=gQ.sel;
+  wsRecord(gQ.G,[{k:wsKey(gQ.G,q.d,q.v),ok:ok?1:0,id:mxQid(q)}]);
   box.querySelectorAll(".g-qo").forEach(function(b){var j=+b.dataset.j;b.disabled=true;
     if(j===q.a) b.classList.add("right");else if(j===gQ.sel) b.classList.add("wrong");else b.classList.add("dim");
     b.querySelector(".g-qm").textContent=j===q.a?"✓":(j===gQ.sel?"✕":"");});
@@ -14394,15 +14550,483 @@ function gQuizEnd(){
   gQ.order.forEach(function(k,i){var q=G.quiz[k],key=(q.v||"")+"|"+q.d;by[key]=by[key]||{c:0,t:0,v:q.v,d:q.d};by[key].t++;if(gQ.picks[i]===q.a){score++;by[key].c++;}});
   var best=gBest(G);if(best==null||score>best) gSet("cgcp."+G.id+".quizbest",score);
   function dlabel(x){var V=G.versions[x.v||gVer], nm="";V.domains.forEach(function(d){if(d.n===x.d) nm=d.name;});return (x.v?V.label+" \u00b7 ":"")+x.d+" "+nm;}
-  var pct=score/n, msg=pct>=.9?"Exam-ready on this set. Move on to timed full-length practice.":pct>=.7?"Solid. Review the misses below, then retake for a new order.":"Good baseline. Study the domains in red, then try again.";
+  var pct=score/n, msg=pct>=.9?"Strong on this set. Try it timed, or a full practice exam if this cert has one.":pct>=.7?"Solid. Review the misses below, then retake for a new order.":"Good baseline. Study the domains in red, then try again.";
   box.innerHTML='<div class="g-qend"><div class="g-qscore" style="--p:'+pct+'"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle class="v" cx="60" cy="60" r="52"/></svg><b>'+score+'<small>/'+n+'</small></b></div>'+
     '<div class="g-qsum"><p class="lab">Your result</p><p class="g-qmsg">'+msg+'</p><ul class="g-qdom">'+Object.keys(by).sort().map(function(d){var x=by[d];return '<li class="'+(x.c===x.t?'ok':'no')+'"><span>'+gEsc(dlabel(x))+'</span><i><b style="width:'+(x.c/x.t*100)+'%"></b></i><em>'+x.c+'/'+x.t+'</em></li>';}).join("")+'</ul></div></div>'+
     '<details class="g-qrev"><summary>Review all answers</summary><ol>'+gQ.order.map(function(k,i){var q=G.quiz[k],ok=gQ.picks[i]===q.a;return '<li class="'+(ok?'ok':'no')+'"><p>'+gEsc(q.q)+'</p><span>'+(ok?'✓ ':'✕ You picked: '+gEsc(q.o[gQ.picks[i]][0])+' · ')+'Answer: <b>'+gEsc(q.o[q.a][0])+'</b></span></li>';}).join("")+'</ol></details>'+
     '<div class="g-qact"><span class="g-qhint">Retakes shuffle the questions and the answers.</span><button type="button" class="g-btn" id="g-qagain"><span class="g-btn-l">Retake quiz</span></button></div>';
   box.querySelector("#g-qagain").addEventListener("click",function(){gQuizStart(G,true);scrollPanelTo(panel.querySelector("#g-quiz"),-gNavH()-14);});
+  mxGuide(G);
   specScan(box);
   requestAnimationFrame(function(){var s=box.querySelector(".g-qscore");if(s) s.classList.add("go");});
   if(!reduced) anim(box.querySelector(".g-qend"),[{opacity:0,transform:"translateY(12px)"},{opacity:1,transform:"none"}],{duration:700,easing:EZ});
+}
+
+/* ---------- Practice exams + weak spots (v2.48) ----------
+   One engine for every exam. A cert with a question bank (GUIDES[name].mock = {ver: "qbank/<exam>.json"}) gets full and
+   half-length timed exams; every cert gets a quick timed set built from its guide quiz. Every answer, in the guide quiz or
+   in a practice run, feeds a per-domain weak-spot record (cgcp.ws.<id>), and drills pull from the weakest domains.
+   Banks load on demand, are validated before use, and the service worker keeps them for offline use. Nothing leaves the device. */
+var MX_BANKS={}, mxRun=null, mxTick=0, mxRes=null, MX_PATH=/^qbank\/[a-z0-9-]{3,40}\.json$/;
+function mxHash(s){var h=5381;s=String(s);for(var i=0;i<s.length;i++) h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36);}
+function mxQid(q){return "qz-"+mxHash(q.q);}
+function mxFirstVer(G){return Object.keys(G.versions)[0];}
+function mxBankList(G){   /* [{ver, path, code, label}] for banks this cert has */
+  var m=G.mock||{}, out=[];
+  Object.keys(m).forEach(function(v){if(G.versions[v]&&typeof m[v]==="string"&&MX_PATH.test(m[v])) out.push({ver:v,path:m[v],code:G.versions[v].code,label:G.versions[v].label});});
+  return out;
+}
+/* minutes per question, from the guide's exam facts (90 questions in 90 minutes = 1.0); 1.0 when they can't be read */
+function mxPace(G){
+  var F={};(G.facts||[]).forEach(function(f){F[f[0]]=f;});
+  function num(f){if(!f) return 0;var m=String(f[1]).replace(/,/g,"").match(/(\d+(?:\.\d+)?)(?:\s*[–-]\s*(\d+(?:\.\d+)?))?/);if(!m) return 0;return m[2]?(+m[1]+ +m[2])/2:+m[1];}
+  var q=num(F.Questions), t=num(F.Time);if(F.Time&&/hour/i.test(F.Time[2]||"")) t*=60;
+  var p=q&&t?t/q:0;return p>=.5&&p<=3?Math.round(p*100)/100:1;
+}
+function mxValidBank(b,want){
+  try{
+    if(!b||typeof b!=="object"||b.app!=="MyNextCert"||b.kind!=="qbank"||b.v!==1||b.ver!==want) return null;
+    var F=b.format;if(!F||!(F.n>0&&F.n<=200&&F.min>0&&F.min<=400&&F.pbq>=0&&F.pbq<=10)) return null;
+    if(!Array.isArray(b.domains)||!b.domains.length||!Array.isArray(b.q)||!b.q.length||b.q.length>2000) return null;
+    var ds={};b.domains.forEach(function(d){if(typeof d.n==="string"&&typeof d.name==="string"&&d.w>0) ds[d.n]=d;});
+    var ok=[], ids={};
+    b.q.forEach(function(q){
+      if(!q||typeof q.id!=="string"||!/^[a-z0-9-]{3,40}$/.test(q.id)||ids[q.id]||!ds[q.d]) return;
+      if(q.t==="pbq"){
+        if(typeof q.title!=="string"||typeof q.scenario!=="string") return;
+        if(q.kind==="table"){if(!Array.isArray(q.cols)||!Array.isArray(q.opts)||q.opts.length!==q.cols.length||!Array.isArray(q.rows)||!q.rows.length) return;
+          if(!q.rows.every(function(r){return typeof r.req==="string"&&Array.isArray(r.a)&&r.a.length===q.cols.length&&r.a.every(function(v,ci){return v>=0&&v<q.opts[ci].length;});})) return;}
+        else if(q.kind==="match"){if(!Array.isArray(q.choices)||!Array.isArray(q.items)||!q.items.length) return;
+          if(!q.items.every(function(it){return it.a>=0&&it.a<q.choices.length&&(typeof it.log==="string"||typeof it.text==="string");})) return;}
+        else return;
+      } else {
+        if(typeof q.q!=="string"||!Array.isArray(q.o)||q.o.length<2||q.o.length>6) return;
+        if(!q.o.every(function(o){return Array.isArray(o)&&typeof o[0]==="string"&&typeof o[1]==="string";})) return;
+        if(q.t==="ms"){if(!Array.isArray(q.a)||q.a.length<2||!q.a.every(function(x){return x>=0&&x<q.o.length;})) return;}
+        else if(!(q.a>=0&&q.a<q.o.length)) return;
+      }
+      ids[q.id]=1;ok.push(q);
+    });
+    if(ok.length<F.n*.5) return null;
+    b.q=ok;b.byId={};ok.forEach(function(q){b.byId[q.id]=q;});
+    return b;
+  }catch(e){return null;}
+}
+async function mxLoad(G,ver){
+  var bk=mxBankList(G).filter(function(x){return x.ver===ver;})[0];if(!bk) return null;
+  if(MX_BANKS[bk.path]) return MX_BANKS[bk.path];
+  var res=await fetch(bk.path,{credentials:"same-origin"});if(!res.ok) throw new Error("http "+res.status);
+  var b=mxValidBank(await res.json(),ver);if(!b) throw new Error("bad bank");
+  MX_BANKS[bk.path]=b;return b;
+}
+
+/* ---- weak spots ---- */
+function wsKey(G,d,ver){return (G.planAll&&ver?ver+"|":"")+d;}
+function wsGet(G){
+  var w=gGet("cgcp.ws."+G.id), out={v:1,d:{},m:{}};
+  if(!w||typeof w!=="object") return out;
+  if(w.d&&typeof w.d==="object") Object.keys(w.d).forEach(function(k){var x=w.d[k];if(k.length<24&&x&&typeof x.r==="string"&&/^[01]{0,20}$/.test(x.r)&&x.t>=0&&x.c>=0&&x.c<=x.t+.001) out.d[k]={c:+x.c,t:+x.t,r:x.r};});
+  if(w.m&&typeof w.m==="object") Object.keys(w.m).forEach(function(k){var n=w.m[k];if(k.length<48&&n>0&&n<1000) out.m[k]=Math.round(n);});
+  return out;
+}
+function wsRecord(G,list){   /* list: [{k: domain key, ok: 0..1, id}] */
+  if(!list.length) return;
+  var w=wsGet(G);
+  list.forEach(function(x){
+    var e=w.d[x.k]||(w.d[x.k]={c:0,t:0,r:""});
+    e.t++;e.c=Math.round((e.c+x.ok)*100)/100;e.r=(e.r+(x.ok>=.5?"1":"0")).slice(-20);
+    if(x.id){if(x.ok<.999) w.m[x.id]=(w.m[x.id]||0)+1;else if(w.m[x.id]){w.m[x.id]--;if(!w.m[x.id]) delete w.m[x.id];}}
+  });
+  var mk=Object.keys(w.m);if(mk.length>400) mk.sort(function(a,b){return w.m[a]-w.m[b];}).slice(0,mk.length-400).forEach(function(k){delete w.m[k];});
+  gSet("cgcp.ws."+G.id,w);
+}
+function wsAcc(e){if(!e||!e.r.length) return null;var n=0;for(var i=0;i<e.r.length;i++) if(e.r[i]==="1") n++;return n/e.r.length;}
+function wsLabel(G,k,pref){   /* pref: the version whose domain names to use (a bank exam's own version) */
+  var p=k.split("|"), d=p[p.length-1], ver=p.length>1?p[0]:null, name="";
+  var vs=ver&&G.versions[ver]?[ver]:[pref&&G.versions[pref]?pref:gVer&&G.versions[gVer]?gVer:mxFirstVer(G)].concat(Object.keys(G.versions));
+  for(var i=0;i<vs.length&&!name;i++) (G.versions[vs[i]].domains||[]).forEach(function(x){if(x.n===d&&!name) name=x.name;});
+  return {num:(ver&&G.planAll?G.versions[ver].label+" · ":"")+d,name:name||"Domain "+d};
+}
+function wsWeak(G){   /* weakest domains with at least 3 answers and under 85% recently */
+  var w=wsGet(G);
+  return Object.keys(w.d).filter(function(k){return w.d[k].r.length>=3&&wsAcc(w.d[k])<.85;}).sort(function(a,b){return wsAcc(w.d[a])-wsAcc(w.d[b])||w.d[b].t-w.d[a].t;}).slice(0,2);
+}
+
+/* ---- history ---- */
+function mxHist(G){var h=gGet("cgcp.mx."+G.id);return Array.isArray(h)?h.filter(function(r){return r&&typeof r==="object"&&r.n>0&&r.n<=200&&r.s>=0&&r.s<=r.n&&typeof r.k==="string";}).slice(0,12):[];}
+
+/* ---- building a run ---- */
+var MX_KINDS={full:"Full practice exam",half:"Half-length exam",quick:"Quick timed set",drill:"Weak-spot drill",missed:"Missed questions"};
+function mxAlloc(n,doms){   /* split n questions across domains by weight (largest remainder) */
+  var tot=doms.reduce(function(s,d){return s+d.w;},0), out={}, used=0;
+  var parts=doms.map(function(d){var x=n*d.w/tot;out[d.n]=Math.floor(x);used+=out[d.n];return {n:d.n,r:x-Math.floor(x)};});
+  parts.sort(function(a,b){return b.r-a.r;});for(var i=0;used<n;i++,used++) out[parts[i%parts.length].n]++;
+  return out;
+}
+function mxItem(q){   /* run item: question id + the order things are shown in */
+  var it={id:q.id};
+  if(q.t==="pbq"){if(q.kind==="table"){it.ro=gShuf(q.rows.length);it.co=q.opts.map(function(o){return gShuf(o.length);});it.pick=q.rows.map(function(){return q.cols.map(function(){return -1;});});}
+    else{it.ro=gShuf(q.items.length);it.co=[gShuf(q.choices.length)];it.pick=q.items.map(function(){return -1;});}}
+  else{it.ord=gShuf(q.o.length);it.pick=q.t==="ms"?[]:null;}
+  return it;
+}
+function mxNewRun(G,kind,opt){
+  opt=opt||{};
+  var pace=mxPace(G), items=[], title, ver="", src="bank", B=opt.bank||null, prevSeen={};
+  mxHist(G).slice(0,1).forEach(function(r){(r.ids||[]).forEach(function(id){prevSeen[id]=1;});});
+  function fresh(list){return gShuffle(list.slice()).sort(function(a,b){return (prevSeen[a.id]?1:0)-(prevSeen[b.id]?1:0);});}
+  if(kind==="full"||kind==="half"){
+    ver=B.ver;pace=B.format.min/B.format.n;
+    var n=kind==="full"?B.format.n:(B.format.half||Math.round(B.format.n/2)), np=Math.min(kind==="full"?B.format.pbq:Math.max(1,Math.round(B.format.pbq*n/B.format.n)),n);
+    var pb=fresh(B.q.filter(function(q){return q.t==="pbq";})), picked=[], seenDom={};
+    /* PBQs first, from different domains where possible */
+    pb.forEach(function(q){if(picked.length<np&&!seenDom[q.d]){picked.push(q);seenDom[q.d]=1;}});
+    pb.forEach(function(q){if(picked.length<np&&picked.indexOf(q)<0) picked.push(q);});
+    var need=mxAlloc(n-picked.length,B.domains), mcq=[];
+    B.domains.forEach(function(d){mcq=mcq.concat(fresh(B.q.filter(function(q){return q.t!=="pbq"&&q.d===d.n;})).slice(0,need[d.n]));});
+    items=picked.concat(gShuffle(mcq)).map(mxItem);
+    title=G.versions[ver].label+" · "+G.versions[ver].code;
+  } else if(kind==="quick"){
+    src="quiz";items=gShuffle(G.quiz.slice()).map(function(q){var it=mxItem({id:mxQid(q),o:q.o,t:"mc"});return it;});
+    title="Guide questions";
+  } else if(kind==="drill"||kind==="missed"){
+    src=B?"bank":"quiz";if(B) ver=B.ver;
+    var pool=opt.pool||[];
+    items=pool.slice(0,kind==="drill"?20:60).map(mxItem);
+    title=kind==="drill"?"Weakest domains":"Retry what you missed";
+    if(B) pace=B.format.min/B.format.n;
+  }
+  if(!items.length) return null;
+  var dur=Math.max(60,Math.ceil(items.length*pace)*60);
+  return {v:1,gid:G.id,cert:opt.cert,kind:kind,src:src,ver:ver,title:title,items:items,i:0,dur:dur,used:0,t:Date.now()};
+}
+/* resolve a run item to its question (bank or guide quiz) */
+function mxQ(run,G,it){
+  if(run.src==="bank"){var B=MX_BANKS[(mxBankList(G).filter(function(x){return x.ver===run.ver;})[0]||{}).path];return B&&B.byId[it.id]||null;}
+  var q=null;G.quiz.forEach(function(x){if(!q&&mxQid(x)===it.id) q=x;});
+  return q?{id:it.id,d:q.d,v:q.v,q:q.q,code:q.code,o:q.o,a:q.a}:null;
+}
+function mxItemOk(q,it){
+  if(!q) return false;
+  if(q.t==="pbq"){var n=q.kind==="table"?q.rows.length:q.items.length;return Array.isArray(it.ro)&&it.ro.length===n&&Array.isArray(it.co)&&Array.isArray(it.pick)&&it.pick.length===n&&
+    (q.kind!=="table"||it.pick.every(function(r){return Array.isArray(r)&&r.length===q.cols.length;}));}
+  if(!Array.isArray(it.ord)||it.ord.length!==q.o.length) return false;
+  return q.t==="ms"?Array.isArray(it.pick)&&it.pick.every(function(j){return j>=0&&j<q.o.length;}):(it.pick===null||(it.pick>=0&&it.pick<q.o.length));
+}
+function mxValidRun(r){
+  if(!r||typeof r!=="object"||r.v!==1||typeof r.gid!=="string"||!MX_KINDS[r.kind]||(r.src!=="bank"&&r.src!=="quiz")||!Array.isArray(r.items)||!r.items.length||r.items.length>200) return null;
+  if(!(r.dur>0&&r.dur<=6*3600&&r.used>=0&&r.used<=r.dur+5&&r.i>=0&&r.i<r.items.length)) return null;
+  if(!r.items.every(function(it){return it&&typeof it.id==="string"&&it.id.length<48;})) return null;
+  return r;
+}
+function mxSaved(){var r=mxValidRun(gGet("cgcp.mx.run"));return r;}
+function mxSave(){if(mxRun&&!mxRun.done) gSet("cgcp.mx.run",mxRun);}
+function mxGuideOf(gid){var g=null;Object.keys(GUIDES).forEach(function(n){if(GUIDES[n].id===gid) g=GUIDES[n];});return g;}
+function mxCertName(G){var n="";Object.keys(GUIDES).forEach(function(k){if(GUIDES[k]===G) n=k;});return n;}
+
+/* ---- scoring ---- */
+function mxAnswered(q,it){
+  if(!q) return 0;
+  if(q.t==="pbq"){var all=0,any=0,tot=0;it.pick.forEach(function(r){(Array.isArray(r)?r:[r]).forEach(function(v){tot++;if(v>=0){any++;}});});return any===0?0:any===tot?2:1;}
+  if(q.t==="ms") return it.pick.length===q.a.length?2:it.pick.length?1:0;
+  return it.pick!=null?2:0;
+}
+function mxScore(q,it){
+  if(!q) return 0;
+  if(q.t==="pbq"){var ok=0,tot=0;
+    if(q.kind==="table") q.rows.forEach(function(r,ri){r.a.forEach(function(v,ci){tot++;if(it.pick[ri]&&it.pick[ri][ci]===v) ok++;});});
+    else q.items.forEach(function(x,ii){tot++;if(it.pick[ii]===x.a) ok++;});
+    return tot?ok/tot:0;}
+  if(q.t==="ms"){var a=q.a.slice().sort().join(","), p=it.pick.slice().sort().join(",");return a===p?1:0;}
+  return it.pick===q.a?1:0;
+}
+
+/* ---- the exam dialog ---- */
+function mxEl(id){return document.getElementById(id);}
+function mxTheme(){
+  var d=mxEl("mx"), cs=getComputedStyle(panel);
+  ["--v-fg","--v-line","--v-accent","--v-muted","--v-bg"].forEach(function(p){var v=cs.getPropertyValue(p);if(v) d.style.setProperty(p,v.trim());});
+}
+async function mxStart(G,kind,opt){
+  opt=opt||{};
+  var B=null;
+  if(kind==="full"||kind==="half"||opt.ver){
+    try{B=await mxLoad(G,opt.ver);}catch(e){toast("Couldn't load the question bank. Check your connection and try again.");return;}
+    if(!B){toast("That practice exam isn't available yet.");return;}
+  }
+  opt.bank=B;opt.cert=mxCertName(G);
+  var run=mxNewRun(G,kind,opt);
+  if(!run){toast("Not enough questions for that yet.");return;}
+  mxRun=run;mxRes=null;mxSave();mxOpen(G);
+}
+async function mxResume(){
+  var r=mxSaved();if(!r) return;var G=mxGuideOf(r.gid);if(!G){gSet("cgcp.mx.run",null);return;}
+  if(r.src==="bank"){try{await mxLoad(G,r.ver);}catch(e){toast("Couldn't load the question bank. Check your connection and try again.");return;}}
+  /* drop items whose question no longer exists (a bank update) */
+  r.items=r.items.filter(function(it){return mxItemOk(mxQ(r,G,it),it);});if(!r.items.length){gSet("cgcp.mx.run",null);toast("That saved exam can't be resumed.");return;}
+  if(r.i>=r.items.length) r.i=r.items.length-1;
+  mxRun=r;mxRes=null;mxOpen(G);
+}
+function mxOpen(G){
+  var d=mxEl("mx");mxTheme();
+  mxEl("mx-kind").textContent=MX_KINDS[mxRun.kind];
+  mxEl("mx-h").textContent=mxRun.cert+(mxRun.title?" · "+mxRun.title:"");
+  d.classList.remove("done");
+  if(!d.open){try{d.showModal();}catch(e){d.setAttribute("open","");}}
+  mxShowQ(true);mxClock();
+  clearInterval(mxTick);mxTick=setInterval(mxStep,1000);
+}
+function mxStep(){
+  if(!mxRun||mxRun.done||!mxEl("mx").open||document.visibilityState!=="visible") return;
+  mxRun.used++;
+  var left=mxRun.dur-mxRun.used;
+  if(left===600||left===300||left===60) mxEl("mx-live").textContent=(left/60)+" minute"+(left===60?"":"s")+" left.";
+  if(mxRun.used%10===0) mxSave();
+  mxClock();
+  if(left<=0) mxSubmit(true);
+}
+function mxFmt(s){s=Math.max(0,Math.round(s));var h=Math.floor(s/3600), m=Math.floor(s%3600/60), x=s%60;return (h?h+":"+pad2(m):m)+":"+pad2(x);}
+function mxClock(){
+  var b=mxEl("mx-tbtn"), left=mxRun.dur-mxRun.used;
+  mxEl("mx-time").textContent=mxFmt(left);b.classList.toggle("low",left<=300);
+  b.setAttribute("aria-label","Time left: "+Math.ceil(left/60)+" minute"+(Math.ceil(left/60)===1?"":"s")+(b.getAttribute("aria-pressed")==="true"?". Timer hidden, press to show it":". Press to hide the timer"));
+}
+function mxG(){return mxGuideOf(mxRun.gid);}
+function mxShowQ(focus){
+  var G=mxG(), it=mxRun.items[mxRun.i], q=mxQ(mxRun,G,it), n=mxRun.items.length, body=mxEl("mx-body");
+  mxEl("mx-count").innerHTML='<b>'+(mxRun.i+1)+'</b> / '+n;
+  mxEl("mx-prog").style.transform="scaleX("+(mxRun.items.filter(function(x){return mxAnswered(mxQ(mxRun,G,x),x)===2;}).length/n)+")";
+  var fl=mxEl("mx-flag");fl.setAttribute("aria-pressed",String(!!it.f));
+  var dl=wsLabel(G,wsKey(G,q.d,q.v||mxRun.ver),mxRun.ver);
+  var h='<div class="mx-q"><p class="mx-meta"><span class="g-qd">'+gEsc(dl.num)+' '+gEsc(dl.name)+'</span>'+(it.f?'<span class="mx-fl">Flagged</span>':'')+'</p>';
+  if(q.t==="pbq"){
+    h+='<p class="lab">Performance-based &middot; '+gEsc(q.dom||q.d)+'</p><h3 class="mx-qq" id="mx-qq" tabindex="-1">'+gEsc(q.title)+'</h3><p class="mx-scen">'+gEsc(q.scenario)+'</p>';
+    if(q.kind==="table"){
+      h+='<div class="g-ftab mx-ftab" role="table" aria-label="'+gEsc(q.title)+'" style="--cols:'+q.cols.length+'"><div class="g-fr g-fh" role="row"><span role="columnheader">#</span><span role="columnheader">Requirement</span>'+q.cols.map(function(c){return '<span role="columnheader">'+gEsc(c)+'</span>';}).join("")+'</div>'+
+        it.ro.map(function(ri,pos){var r=q.rows[ri];return '<div class="g-fr" role="row" data-r="'+ri+'"><span class="g-fn" role="cell">'+pad2(pos+1)+'</span><span class="g-freq" role="cell">'+gEsc(r.req)+'</span>'+
+          q.cols.map(function(c,ci){return '<span class="g-fc" role="cell" data-c="'+ci+'"><em class="g-fcl">'+gEsc(c)+'</em>'+gSel(q.opts[ci],it.pick[ri][ci],"Row "+(pos+1)+" "+c,it.co[ci])+'</span>';}).join("")+'</div>';}).join("")+'</div>';
+    } else {
+      h+='<ol class="g-logs mx-logs">'+it.ro.map(function(ii,pos){var x=q.items[ii];return '<li data-r="'+ii+'"><div class="g-lhead"><span class="g-ln">'+pad2(pos+1)+'</span><span class="lab">'+gEsc(x.src||"")+'</span></div>'+(x.log?'<pre>'+gEsc(x.log)+'</pre>':'<p class="g-ltext">'+gEsc(x.text)+'</p>')+
+        '<div class="g-lpick"><span>'+gEsc(q.pick||"Answer")+'</span>'+gSel(q.choices,it.pick[ii],"Item "+(pos+1)+" "+(q.pick||"answer").toLowerCase(),it.co[0])+'</div></li>';}).join("")+'</ol>';
+    }
+  } else {
+    var ms=q.t==="ms";
+    h+='<h3 class="mx-qq" id="mx-qq" tabindex="-1">'+gEsc(q.q)+'</h3>'+(q.code?'<pre class="g-qcode">'+gEsc(q.code)+'</pre>':'')+
+      (ms?'<p class="mx-pickn">Choose '+(['','one','two','three','four'][q.a.length]||q.a.length)+'.</p>':'')+
+      '<div class="g-qopts mx-opts" role="'+(ms?'group':'radiogroup')+'" aria-labelledby="mx-qq">'+it.ord.map(function(j,m){
+        var on=ms?it.pick.indexOf(j)>=0:it.pick===j;
+        return '<button type="button" class="g-qo" role="'+(ms?'checkbox':'radio')+'" aria-checked="'+on+'" data-j="'+j+'"><span class="g-ql">'+"ABCDEF"[m]+'</span><span class="g-qt">'+gEsc(q.o[j][0])+'</span><span class="g-qm" aria-hidden="true"></span></button>';}).join("")+'</div>';
+  }
+  body.innerHTML=h+'</div>';
+  body.scrollTop=0;
+  mxEl("mx-prev").disabled=mxRun.i===0;
+  var last=mxRun.i===n-1;mxEl("mx-next").querySelector(".g-btn-l").textContent=last?"Review and submit":"Next";
+  if(focus){var qq=mxEl("mx-qq");if(qq) qq.focus({preventScroll:true});}
+}
+function mxPick(j){
+  var G=mxG(), it=mxRun.items[mxRun.i], q=mxQ(mxRun,G,it);if(!q||q.t==="pbq") return;
+  if(q.t==="ms"){var k=it.pick.indexOf(j);if(k>=0) it.pick.splice(k,1);else if(it.pick.length<q.a.length) it.pick.push(j);else{mxEl("mx-live").textContent="You've picked "+q.a.length+". Unselect one first.";return;}}
+  else it.pick=j;
+  mxEl("mx-body").querySelectorAll(".g-qo").forEach(function(b){var jj=+b.dataset.j;b.setAttribute("aria-checked",String(q.t==="ms"?it.pick.indexOf(jj)>=0:it.pick===jj));});
+  mxSave();
+  mxEl("mx-prog").style.transform="scaleX("+(mxRun.items.filter(function(x){return mxAnswered(mxQ(mxRun,G,x),x)===2;}).length/mxRun.items.length)+")";
+}
+function mxGo(k){
+  if(!mxRun||mxRun.done) return;
+  if(k>=mxRun.items.length) return mxReview();
+  if(k<0) return;
+  mxRun.i=k;mxSave();mxEl("mx").classList.remove("rev");mxShowQ(true);
+}
+function mxReview(){
+  var G=mxG(), body=mxEl("mx-body"), un=0, part=0, fl=0;
+  mxEl("mx").classList.add("rev");
+  var cells=mxRun.items.map(function(it,k){var st=mxAnswered(mxQ(mxRun,G,it),it);if(st===0) un++;if(st===1) part++;if(it.f) fl++;
+    return '<li><button type="button" class="mx-cell'+(st===2?' done':st===1?' part':'')+(it.f?' flag':'')+(k===mxRun.i?' cur':'')+'" data-go="'+k+'" aria-label="Question '+(k+1)+(st===2?', answered':st===1?', partly answered':', not answered')+(it.f?', flagged':'')+'">'+(k+1)+'</button></li>';}).join("");
+  body.innerHTML='<div class="mx-rv"><h3 class="mx-qq" id="mx-qq" tabindex="-1">Review your answers</h3>'+
+    '<p class="mx-scen">'+(un?'<b>'+un+'</b> not answered. ':'Every question has an answer. ')+(part?'<b>'+part+'</b> partly answered. ':'')+(fl?'<b>'+fl+'</b> flagged. ':'')+'Tap a number to go back to it. Unanswered questions count as wrong.</p>'+
+    '<div class="mx-sub mx-sub1"><button type="button" class="g-btn" id="mx-submit"><span class="g-btn-l">Submit exam</span></button><button type="button" class="g-link" data-go="'+mxRun.i+'">Back to question '+(mxRun.i+1)+'</button></div>'+
+    '<div class="mx-key" aria-hidden="true"><span><i class="done"></i>Answered</span><span><i class="part"></i>Partly</span><span><i></i>Not answered</span><span><i class="flag"></i>Flagged</span></div>'+
+    '<ol class="mx-grid">'+cells+'</ol></div>';
+  body.scrollTop=0;mxEl("mx-qq").focus({preventScroll:true});
+}
+function mxSubmit(auto){
+  if(!mxRun||mxRun.done) return;
+  var G=mxG(), run=mxRun, by={}, s=0, list=[], ids=[];
+  run.items.forEach(function(it){
+    var q=mxQ(run,G,it);if(!q) return;
+    var v=mxScore(q,it), k=wsKey(G,q.d,q.v||run.ver);
+    s+=v;by[k]=by[k]||[0,0];by[k][0]+=v;by[k][1]++;
+    list.push({k:k,ok:v,id:run.src==="bank"?run.ver+":"+q.id:q.id});ids.push(q.id);
+  });
+  run.done=true;clearInterval(mxTick);
+  wsRecord(G,list);
+  Object.keys(by).forEach(function(k){by[k][0]=Math.round(by[k][0]*100)/100;});
+  var rec={t:Date.now(),k:run.kind,x:run.src==="bank"?G.versions[run.ver].code:"quiz",n:run.items.length,s:Math.round(s*100)/100,by:by,u:run.used,d:run.dur,ids:ids.slice(0,200)};
+  var h=mxHist(G);h.unshift(rec);gSet("cgcp.mx."+G.id,h.slice(0,12));
+  gSet("cgcp.mx.run",null);
+  mxRes={run:run,rec:rec,auto:!!auto};
+  mxResults();
+  var sec=panel.querySelector("#mxp");if(sec&&guideName===run.cert) mxGuide(G);
+}
+function mxVerdict(rec,kind){
+  var p=rec.s/rec.n, lows=Object.keys(rec.by).filter(function(k){return rec.by[k][0]/rec.by[k][1]<.7;});
+  if(kind!=="full"&&kind!=="half") return p>=.85?"Strong run. Keep it up with a full-length exam.":p>=.7?"Good. Review the misses below and run it again.":"Study the domains in red, then try again.";
+  if(p>=.85&&!lows.length) return "In the ready range: 85% or better with no domain under 70%. Do it once more on a different day to be sure.";
+  if(p>=.75) return "Close. Get every domain above 70% and the total to 85% before you book.";
+  return "Keep going. Use the weak-spot drill on the domains in red, then take another full exam.";
+}
+function mxResults(){
+  var G=mxG(), R=mxRes, rec=R.rec, run=R.run, body=mxEl("mx-body"), pct=rec.s/rec.n, d=mxEl("mx");
+  d.classList.add("done");d.classList.remove("rev");
+  mxEl("mx-count").innerHTML='<b>'+Math.round(pct*100)+'%</b>';
+  var keys=Object.keys(rec.by).sort();
+  var missed=run.items.filter(function(it){var q=mxQ(run,G,it);return q&&mxScore(q,it)<.999;});
+  var h='<div class="mx-res"><div class="g-qend"><div class="g-qscore" style="--p:'+pct+'"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle class="v" cx="60" cy="60" r="52"/></svg><b>'+Math.round(pct*100)+'<small>%</small></b></div>'+
+    '<div class="g-qsum"><p class="lab">'+(R.auto?'Time\'s up &middot; ':'')+gEsc(MX_KINDS[run.kind])+' &middot; '+(Math.round(rec.s*10)/10)+' of '+rec.n+' &middot; '+mxFmt(rec.u)+' used</p><p class="g-qmsg">'+gEsc(mxVerdict(rec,run.kind))+'</p>'+
+    '<ul class="g-qdom">'+keys.map(function(k){var x=rec.by[k], a=x[0]/x[1], L=wsLabel(G,k,run.ver);return '<li class="'+(a>=.7?'ok':'no')+'"><span>'+gEsc(L.num+" "+L.name)+'</span><i><b style="width:'+(a*100)+'%"></b></i><em>'+Math.round(a*100)+'%</em></li>';}).join("")+'</ul>'+
+    (run.kind==="full"||run.kind==="half"?'<p class="mx-note">CompTIA doesn\'t publish how raw scores turn into its 100&ndash;900 scale, so this shows a percent. Aim for 85% or better on two different runs.</p>':'')+
+    '</div></div>'+
+    '<div class="mx-sub">'+(missed.length?'<button type="button" class="g-btn" data-mxa="missed"><span class="g-btn-l">Retry the '+missed.length+' I missed</span></button>':'')+
+    '<button type="button" class="g-btn ghost" data-mxa="close"><span class="g-btn-l">Done</span></button></div>'+
+    '<div class="mx-revh"><p class="lab">Every question</p><div class="seg mx-filt" role="group" aria-label="Show"><button type="button" data-f="all" aria-pressed="true">All '+run.items.length+'</button><button type="button" data-f="miss" aria-pressed="false">Missed '+missed.length+'</button><button type="button" data-f="flag" aria-pressed="false">Flagged '+run.items.filter(function(x){return x.f;}).length+'</button></div></div>'+
+    '<ol class="mx-list">'+run.items.map(function(it,k){var q=mxQ(run,G,it);if(!q) return "";var v=mxScore(q,it);return mxRevItem(G,run,q,it,k,v);}).join("")+'</ol></div>';
+  body.innerHTML=h;body.scrollTop=0;
+  requestAnimationFrame(function(){var s=body.querySelector(".g-qscore");if(s) s.classList.add("go");});
+  mxEl("mx-live").textContent="Exam submitted. Score "+Math.round(pct*100)+" percent.";
+  var hq=body.querySelector(".g-qmsg");if(hq){hq.tabIndex=-1;hq.focus({preventScroll:true});}
+}
+function mxRevItem(G,run,q,it,k,v){
+  var cls=v>=.999?'ok':v>0?'part':'no', L=wsLabel(G,wsKey(G,q.d,q.v||run.ver),run.ver);
+  var h='<li class="'+cls+(it.f?' flag':'')+'" data-miss="'+(v<.999?1:0)+'" data-flag="'+(it.f?1:0)+'"><details><summary><span class="mx-n">'+(k+1)+'</span><span class="mx-st" aria-hidden="true">'+(v>=.999?'✓':v>0?'½':'✕')+'</span><span class="mx-sq">'+gEsc(q.t==="pbq"?q.title:q.q)+'</span><span class="vh">'+(v>=.999?'Correct':v>0?'Partly correct':'Wrong')+'</span></summary><div class="mx-ex"><p class="mx-meta"><span class="g-qd">'+gEsc(L.num+" "+L.name)+'</span>'+(q.obj?'<span class="mx-obj">Objective '+gEsc(q.obj)+'</span>':'')+'</p>';
+  if(q.t==="pbq"){
+    if(q.kind==="table") h+='<ul class="mx-pbr">'+q.rows.map(function(r,ri){var mine=it.pick[ri]||[], ok=r.a.every(function(x,ci){return mine[ci]===x;});
+      return '<li class="'+(ok?'ok':'no')+'"><b>'+gEsc(r.req)+'</b><span>Answer: '+r.a.map(function(x,ci){return gEsc(q.opts[ci][x]);}).join(" · ")+(ok?'':' &middot; <em>You: '+mine.map(function(x,ci){return x>=0?gEsc(q.opts[ci][x]):"blank";}).join(" · ")+'</em>')+'</span><span>'+gEsc(r.why||"")+'</span></li>';}).join("")+'</ul>';
+    else h+='<ul class="mx-pbr">'+q.items.map(function(x,ii){var mine=it.pick[ii], ok=mine===x.a;
+      return '<li class="'+(ok?'ok':'no')+'"><b>'+gEsc(x.src||"")+'</b>'+(x.log?'<pre>'+gEsc(x.log)+'</pre>':'<span>'+gEsc(x.text)+'</span>')+'<span>Answer: '+gEsc(q.choices[x.a])+(ok?'':' &middot; <em>You: '+(mine>=0?gEsc(q.choices[mine]):"blank")+'</em>')+'</span><span>'+gEsc(x.why||"")+'</span></li>';}).join("")+'</ul>';
+  } else {
+    var right=q.t==="ms"?q.a:[q.a], mine=q.t==="ms"?it.pick:(it.pick==null?[]:[it.pick]);
+    h+=(q.code?'<pre class="g-qcode">'+gEsc(q.code)+'</pre>':'')+'<ul class="mx-opts-r">'+it.ord.map(function(j){var r=right.indexOf(j)>=0, y=mine.indexOf(j)>=0;
+      return '<li class="'+(r?'r':'')+(y?' y':'')+'"><b>'+gEsc(q.o[j][0])+'</b>'+(r?'<em class="r">Answer</em>':'')+(y&&!r?'<em class="y">Your pick</em>':'')+(y&&r?'<em class="y">Your pick</em>':'')+'<span>'+gEsc(q.o[j][1].replace(/^Right\.\s*/,""))+'</span></li>';}).join("")+'</ul>'+(mine.length?'':'<p class="mx-blank">Not answered.</p>');
+  }
+  return h+'</div></details></li>';
+}
+async function mxRetryMissed(){
+  var R=mxRes;if(!R) return;var G=mxG(), run=R.run;
+  var pool=run.items.filter(function(it){var q=mxQ(run,G,it);return q&&mxScore(q,it)<.999;}).map(function(it){return mxQ(run,G,it);});
+  var r=mxNewRun(G,"missed",{pool:gShuffle(pool),bank:run.src==="bank"?MX_BANKS[(mxBankList(G).filter(function(x){return x.ver===run.ver;})[0]||{}).path]:null,cert:run.cert});
+  if(!r) return;
+  if(run.src==="quiz"){r.src="quiz";r.ver="";}
+  mxRun=r;mxRes=null;mxSave();mxOpen(G);
+}
+function mxClose(){
+  var d=mxEl("mx");
+  clearInterval(mxTick);
+  if(d.open) d.close();
+}
+(function(){
+  var d=mxEl("mx");if(!d) return;
+  d.addEventListener("close",function(){clearInterval(mxTick);if(mxRun&&!mxRun.done){mxSave();toast("Exam saved. The clock is paused until you resume it.");}
+    /* once closed, the saved copy is the only one: a later discard or a new run can't be overwritten by a stale copy */
+    mxRun=null;mxRes=null;var G=guideName&&GUIDES[guideName];if(G&&panel.querySelector("#mxp")) mxGuide(G);});
+  mxEl("mx-x").addEventListener("click",mxClose);
+  mxEl("mx-prev").addEventListener("click",function(){mxGo(mxRun.i-1);});
+  mxEl("mx-next").addEventListener("click",function(){mxGo(mxRun.i+1);});
+  mxEl("mx-revbtn").addEventListener("click",function(){if(mxRun&&!mxRun.done) mxReview();});
+  mxEl("mx-flag").addEventListener("click",function(){if(!mxRun||mxRun.done) return;var it=mxRun.items[mxRun.i];it.f=!it.f;if(!it.f) delete it.f;mxSave();
+    if(d.classList.contains("rev")) mxReview();else mxShowQ(false);mxEl("mx-live").textContent=it.f?"Flagged.":"Flag removed.";});
+  mxEl("mx-tbtn").addEventListener("click",function(){var b=this, hid=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(hid));d.classList.toggle("thide",hid);if(mxRun) mxClock();});
+  var body=mxEl("mx-body");
+  body.addEventListener("click",function(e){
+    var b=e.target.closest(".g-qo");if(b&&mxRun&&!mxRun.done){mxPick(+b.dataset.j);return;}
+    var g=e.target.closest("[data-go]");if(g&&mxRun&&!mxRun.done){mxGo(+g.dataset.go);return;}
+    if(e.target.closest("#mx-submit")){mxSubmit(false);return;}
+    var a=e.target.closest("[data-mxa]");if(a){if(a.dataset.mxa==="missed") mxRetryMissed();else mxClose();return;}
+    var f=e.target.closest("[data-f]");if(f){var v=f.dataset.f;f.parentNode.querySelectorAll("[data-f]").forEach(function(x){x.setAttribute("aria-pressed",String(x===f));});
+      body.querySelectorAll(".mx-list > li").forEach(function(li){li.hidden=v==="miss"?li.dataset.miss!=="1":v==="flag"?li.dataset.flag!=="1":false;});}
+  });
+  body.addEventListener("change",function(e){
+    var s=e.target;if(s.tagName!=="SELECT"||!mxRun||mxRun.done) return;
+    var it=mxRun.items[mxRun.i], row=s.closest("[data-r]");if(!row) return;var ri=+row.dataset.r, v=+s.value;
+    var cell=s.closest("[data-c]");if(cell) it.pick[ri][+cell.dataset.c]=v;else it.pick[ri]=v;
+    var w=s.closest(".g-sel");if(w) w.classList.toggle("set",v>=0);
+    mxSave();
+  });
+  d.addEventListener("keydown",function(e){
+    if(!mxRun||mxRun.done||e.ctrlKey||e.metaKey||e.altKey) return;
+    var t=e.target;if(t&&(t.tagName==="SELECT"||t.tagName==="INPUT"||t.tagName==="TEXTAREA")) return;
+    var k=e.key.toLowerCase(), n="abcdef".indexOf(k);if(n<0&&/^[1-6]$/.test(k)) n=+k-1;
+    if(!d.classList.contains("rev")&&n>=0){var bs=mxEl("mx-body").querySelectorAll(".g-qo");if(bs[n]){e.preventDefault();mxPick(+bs[n].dataset.j);}return;}
+    if(k==="n"){e.preventDefault();mxGo(mxRun.i+1);}
+    else if(k==="p"){e.preventDefault();mxGo(mxRun.i-1);}
+    else if(k==="f"){e.preventDefault();mxEl("mx-flag").click();}
+    else if(k==="r"){e.preventDefault();mxReview();}
+  });
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState!=="visible"&&d.open) mxSave();});
+  window.addEventListener("pagehide",function(){if(d.open) mxSave();});
+})();
+
+/* ---- the Practice section in each guide ---- */
+function mxGuide(G){
+  var box=panel.querySelector("#mxp");if(!box) return;
+  var banks=mxBankList(G), pace=mxPace(G), nq=G.quiz.length, saved=mxSaved(), h="";
+  if(saved&&saved.gid===G.id){var left=saved.dur-saved.used;
+    h+='<div class="mxp-resume"><div><p class="lab">Exam in progress</p><p><b>'+gEsc(MX_KINDS[saved.kind])+'</b>'+(saved.title?' &middot; '+gEsc(saved.title):'')+' &middot; '+mxFmt(left)+' left, question '+(saved.i+1)+' of '+saved.items.length+'</p></div>'+
+      '<div class="mxp-ra"><button type="button" class="g-btn" data-mx="resume"><span class="g-btn-l">Resume</span></button><button type="button" class="g-link" data-mx="discard">Discard</button></div></div>';}
+  h+='<div class="mxp-cards">';
+  banks.forEach(function(b){
+    h+='<div class="mxp-card"><p class="lab">'+gEsc(b.label+" · "+b.code)+'</p><h4>Full practice exam</h4><p>Exam length and time limit, with PBQs first, flags and a review screen, the way the real one works.</p>'+
+      '<div class="mxp-act"><button type="button" class="g-btn" data-mx="full" data-ver="'+gEsc(b.ver)+'"><span class="g-btn-l">Start full exam</span></button><button type="button" class="g-link" data-mx="half" data-ver="'+gEsc(b.ver)+'">Half-length</button></div></div>';
+  });
+  h+='<div class="mxp-card"><p class="lab">Every version</p><h4>Quick timed set</h4><p>'+nq+' questions in '+Math.max(1,Math.ceil(nq*pace))+' minutes, from this guide\'s question set, at exam pace.</p>'+
+    '<div class="mxp-act"><button type="button" class="g-btn'+(banks.length?' ghost':'')+'" data-mx="quick"><span class="g-btn-l">Start timed set</span></button></div></div>';
+  if(!banks.length) h+='<div class="mxp-card soon"><p class="lab">Coming in a later update</p><h4>Full practice exam</h4><p>A full-length question bank for this exam is on the way. Until then, the timed set and the untimed check below count toward your weak spots.</p></div>';
+  else{var miss=Object.keys(G.versions).filter(function(v){return !banks.some(function(b){return b.ver===v;});});
+    if(miss.length) h+='<p class="mxp-fine">'+miss.map(function(v){return gEsc(G.versions[v].label+" ("+G.versions[v].code+")");}).join(", ")+': full practice exam coming in a later update. The '+gEsc(banks.map(function(b){return b.label;}).join(", "))+' exam covers most of the same ground.</p>';}
+  h+='</div>';
+  /* weak spots */
+  var w=wsGet(G), keys=Object.keys(w.d), weak=wsWeak(G);
+  var order={};Object.keys(G.versions).forEach(function(v,vi){(G.versions[v].domains||[]).forEach(function(d,di){var k=wsKey(G,d.n,v);if(order[k]==null) order[k]=vi*20+di;});});
+  keys.sort(function(a,b){return (order[a]==null?99:order[a])-(order[b]==null?99:order[b])||(a<b?-1:1);});
+  h+='<div class="ws"><div class="ws-h"><div><p class="lab">Your weak spots</p><p class="ws-s">Last 20 answers in each domain, from the quiz and every practice run.</p></div>'+(keys.length?'<button type="button" class="g-link" data-mx="wsclear">Clear</button>':'')+'</div>';
+  if(!keys.length) h+='<p class="ws-none">Answer a few questions and your weakest domains show up here.</p>';
+  else{
+    h+='<ul class="ws-list">'+keys.map(function(k){var e=w.d[k], a=wsAcc(e), L=wsLabel(G,k), isW=weak.indexOf(k)>=0;
+      return '<li class="'+(isW?'weak':a>=.85?'ok':'')+'"><span class="ws-d"><b>'+gEsc(L.num)+'</b> '+gEsc(L.name)+(isW?'<em>Weak</em>':'')+'</span><i><b style="width:'+Math.round(a*100)+'%"></b></i><span class="ws-n">'+Math.round(a*100)+'%<small>'+e.r.length+(e.t>e.r.length?' of '+e.t:'')+' answered</small></span></li>';}).join("")+'</ul>';
+    h+='<div class="ws-act">'+(weak.length?'<button type="button" class="g-btn ghost" data-mx="drill"><span class="g-btn-l">Drill my weakest domain'+(weak.length>1?'s':'')+'</span></button><span class="ws-s">Up to 20 questions, missed ones first.</span>':'<span class="ws-s">No weak domain right now: everything you\'ve answered recently is at 85% or better.</span>')+'</div>';
+  }
+  h+='</div>';
+  /* history */
+  var hist=mxHist(G);
+  if(hist.length) h+='<div class="mxp-hist"><p class="lab">Recent runs</p><ol>'+hist.slice(0,5).map(function(r){var p=Math.round(r.s/r.n*100), dt=new Date(r.t);
+    return '<li><span>'+gEsc(MX_KINDS[r.k]||"Run")+(r.x&&r.x!=="quiz"?' &middot; '+gEsc(r.x):'')+'</span><span class="mxp-hd">'+gEsc(isNaN(dt)?"":dt.toLocaleDateString(undefined,{month:"short",day:"numeric"}))+'</span><b class="'+(p>=85?'ok':p>=70?'':'no')+'">'+p+'%</b></li>';}).join("")+'</ol></div>';
+  box.innerHTML=h;
+}
+async function mxDrill(G){
+  var weak=wsWeak(G);if(!weak.length){toast("No weak domain to drill yet.");return;}
+  var w=wsGet(G), B=null, banks=mxBankList(G), pool=[];
+  var pref=banks.filter(function(b){return b.ver===gVer;})[0]||banks[0];
+  if(pref){try{B=await mxLoad(G,pref.ver);}catch(e){B=null;}}
+  function dk(q){return wsKey(G,q.d,q.v||(B?B.ver:""));}
+  if(B) pool=B.q.filter(function(q){return q.t!=="pbq"&&weak.indexOf(dk(q))>=0;}).map(function(q){return {q:q,m:w.m[B.ver+":"+q.id]||0};});
+  else pool=G.quiz.filter(function(q){return weak.indexOf(wsKey(G,q.d,q.v))>=0;}).map(function(q){var id=mxQid(q);return {q:{id:id,d:q.d,v:q.v,q:q.q,o:q.o,a:q.a,code:q.code},m:w.m[id]||0};});
+  if(!pool.length){toast("No questions for those domains yet.");return;}
+  pool=gShuffle(pool).sort(function(a,b){return b.m-a.m;}).map(function(x){return x.q;});
+  var r=mxNewRun(G,"drill",{pool:pool,bank:B,cert:mxCertName(G)});if(!r) return;
+  if(!B){r.src="quiz";r.ver="";}
+  mxRun=r;mxRes=null;mxSave();mxOpen(G);
+}
+function mxGuideWire(G){
+  var box=panel.querySelector("#mxp");if(!box) return;
+  box.addEventListener("click",function(e){
+    var b=e.target.closest("[data-mx]");if(!b) return;var a=b.dataset.mx;
+    if(a==="full"||a==="half") mxStart(G,a,{ver:b.dataset.ver});
+    else if(a==="quick") mxStart(G,"quick");
+    else if(a==="drill") mxDrill(G);
+    else if(a==="resume") mxResume();
+    else if(a==="discard"){gSet("cgcp.mx.run",null);mxGuide(G);toast("Saved exam discarded");}
+    else if(a==="wsclear"){gSet("cgcp.ws."+G.id,null);mxGuide(G);toast("Weak-spot data cleared");}
+  });
+  mxGuide(G);
 }
 
 /* PBQs */
@@ -14919,6 +15543,8 @@ var SIDX=[];
   SIDX.push({kind:"page",key:"p:compare",page:"compare",name:"Compare certs",sub:"Explore · two certs side by side",fields:[[snorm("compare certs"),95],[snorm("compare versus vs side by side difference which is better which cert harder cheaper"),60]]});
   SIDX.push({kind:"page",key:"p:exam",page:"exam",name:"Exam countdown",sub:"Explore · test date, countdown, day-by-day plan",fields:[[snorm("exam countdown"),95],[snorm("exam date test date countdown study plan schedule calendar day by day days left when is my exam"),60]]});
   SIDX.push({kind:"page",key:"p:out",page:"out",name:"Getting out",sub:"Explore · SkillBridge in your last 180 days",fields:[[snorm("getting out"),95],[snorm("skillbridge skill bridge separation separating transition tap leaving civilian job internship employer last 180 days ets eoe retire retirement"),60]]});
+  Object.keys(GUIDES).forEach(function(n){var G=GUIDES[n];mxBankList(G).forEach(function(b){
+    SIDX.push({kind:"page",key:"p:mx:"+G.id+":"+b.ver,mxg:n,name:q8Short(n)+" practice exam",sub:"Full timed exam · "+b.code+" · weak-spot drills",fields:[[snorm(q8Short(n)+" practice exam"),95],[snorm(q8Short(n)+" "+b.code+" mock exam timed test practice test full exam weak spots drill"),70]]});});});
   SIDX.push({kind:"page",key:"p:print",print:true,name:"Printable path sheet",sub:"For instructors and leadership · certs by path, DoD 8140, CG COOL",fields:[[snorm("printable path sheet"),95],[snorm("print printable printout pdf save as pdf handout hand out one pager brief briefing instructor instructors leadership command chief master chief counseling sheet paper"),60]]});
   SIDX.push({kind:"page",key:"p:settings",page:"settings",name:"Settings",sub:"Explore · Lite mode, back up and restore your progress",fields:[[snorm("settings"),95],[snorm("lite mode light mode slow lag laggy battery data saver 3d globe off backup back up restore export import transfer move progress new phone new device save my progress"),60]]});
   SIDX.push({kind:"page",key:"p:colleges",col:true,name:"Colleges",sub:"Degrees · "+COLLEGES.length+" schools, what you pay after TA",fields:[[snorm("colleges"),95],[snorm("college colleges university universities school schools degree degrees bachelor bachelors associate online tuition assistance ta wgu"),58]]});
@@ -15121,7 +15747,7 @@ async function srchPick(e){
   if(e.kind==="content"){await srchClose(true);cGo(e);return;}
   sRemember(e);
   await srchClose(true);
-  if(e.kind==="page"){if(e.print){if(window.openPathSheet) window.openPathSheet();return;}if(e.col){openCertFrom({kind:"vendor",v:VENDORS.length-1});return;}if(e.q8) q8Target(e.q8);if(e.pt) ptTarget(e.pt[0],e.pt[1]);if(e.fund){goFund(e.fund);return;}goPage(e.page);return;}
+  if(e.kind==="page"){if(e.print){if(window.openPathSheet) window.openPathSheet();return;}if(e.mxg){mxGoGuide(e.mxg);return;}if(e.col){openCertFrom({kind:"vendor",v:VENDORS.length-1});return;}if(e.q8) q8Target(e.q8);if(e.pt) ptTarget(e.pt[0],e.pt[1]);if(e.fund){goFund(e.fund);return;}goPage(e.page);return;}
   openCertFrom(e);
 }
 function setViewNow(name){
@@ -15255,6 +15881,12 @@ function cHits(toks,qc){
 function waitFor(test,ms){
   return new Promise(function(res){var t0=performance.now();(function poll(){if(test()) return res(true);if(performance.now()-t0>ms) return res(false);setTimeout(poll,60);})();});
 }
+async function mxGoGuide(name){   /* open a guide at its Practice section */
+  if(!(state==="open"&&guideName===name)){var ce=sByName(name);if(!ce) return;openCertFrom(ce);}
+  var ok=await waitFor(function(){return state==="open"&&guideName===name&&!guideBusy&&!switching&&panel.querySelector("#mxp .mxp-card");},6000);
+  if(!ok) return;
+  var s=panel.querySelector("#g-quiz");gNavSet("quiz");scrollPanelTo(s,-gNavH()-14);
+}
 async function cGo(e){
   var name=e.cert;
   if(!(state==="open"&&guideName===name)){
@@ -15318,16 +15950,18 @@ function bkSummary(m){
   var path=bkJ(m,"cgcp.mypath"), ex=bkJ(m,"cgcp.exam"), cmp=bkJ(m,"cgcp.compare");
   var exTxt=null, dd=ex&&typeof ex==="object"&&typeof ex.c==="string"&&typeof ex.d==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(ex.d)?new Date(ex.d+"T12:00:00"):null;
   if(dd&&!isNaN(dd)) exTxt=ex.c.slice(0,60)+" on "+dd.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
-  return {ticks:ticks,guides:guides,bests:bests,path:!!(path&&typeof path==="object"),exam:exTxt,cmp:!!(cmp&&typeof cmp==="object"&&(cmp.a||cmp.b)),keys:Object.keys(m).length};
+  var runs=0, wsc=0;Object.keys(GUIDES).forEach(function(n){var h=bkJ(m,"cgcp.mx."+GUIDES[n].id);if(Array.isArray(h)) runs+=h.length;var w=bkJ(m,"cgcp.ws."+GUIDES[n].id);if(w&&typeof w==="object"&&w.d&&Object.keys(w.d).length) wsc++;});
+  return {ticks:ticks,guides:guides,bests:bests,path:!!(path&&typeof path==="object"),exam:exTxt,cmp:!!(cmp&&typeof cmp==="object"&&(cmp.a||cmp.b)),runs:runs,ws:wsc,keys:Object.keys(m).length};
 }
 function bkSumHTML(S){
-  var it=[[S.ticks,"objectives ticked"+(S.guides?" in "+S.guides+" guide"+(S.guides===1?"":"s"):"")],[S.bests,"quiz best score"+(S.bests===1?"":"s")],[S.path?"Saved":"None","My path"],[S.exam?"Set":"None",S.exam?"Exam countdown: "+S.exam:"Exam countdown"],[S.cmp?"Saved":"None","Compare picks"]];
+  var it=[[S.ticks,"objectives ticked"+(S.guides?" in "+S.guides+" guide"+(S.guides===1?"":"s"):"")],[S.bests,"quiz best score"+(S.bests===1?"":"s")],[S.runs,"practice run"+(S.runs===1?"":"s")+(S.ws?" · weak spots for "+S.ws+" cert"+(S.ws===1?"":"s"):"")],[S.path?"Saved":"None","My path"],[S.exam?"Set":"None",S.exam?"Exam countdown: "+S.exam:"Exam countdown"],[S.cmp?"Saved":"None","Compare picks"]];
   return it.map(function(x){return '<li><b>'+gEsc(String(x[0]))+'</b><span>'+gEsc(x[1])+'</span></li>';}).join("");
 }
 function bkSumLine(S){
   var p=[];
   if(S.ticks) p.push(S.ticks+" objective"+(S.ticks===1?"":"s")+" ticked in "+S.guides+" guide"+(S.guides===1?"":"s"));
   if(S.bests) p.push(S.bests+" quiz best"+(S.bests===1?"":"s"));
+  if(S.runs) p.push(S.runs+" practice run"+(S.runs===1?"":"s"));
   if(S.path) p.push("your path");
   if(S.exam) p.push("an exam countdown ("+S.exam+")");
   if(S.cmp) p.push("compare picks");
