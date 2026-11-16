@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-PEw2cradfAjYptEkprH/Yi59QgW+bIbNGfVMzMDVWh0=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-xqlTNJPtcK5PKfaWEc6s9Hu0Z+3uFQyN0wEZftMsw0k=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -318,10 +318,10 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .pa-meta .g{color:var(--v-fg)}
 .p-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:24px 0 14px}
 .seg{position:relative;display:inline-flex;gap:22px}
-.seg button{font:500 12.5px var(--f-ui);color:var(--v-muted);padding:6px 0 9px;transition:color .4s var(--ez)}
+.seg button{font:500 12.5px var(--f-ui);color:var(--v-muted);padding:6px 0 9px;transition:color .18s var(--ez)}
 .seg button[aria-pressed="true"]{color:var(--v-fg)}
 @media (hover:hover) and (pointer:fine){.seg button:hover{color:var(--v-fg)}}
-.seg-ind{position:absolute;left:0;bottom:0;height:1px;width:100px;background:var(--v-accent);pointer-events:none;transform:scaleX(0);transform-origin:0 0;transition:transform .45s var(--ez)}
+.seg-ind{position:absolute;left:0;bottom:0;height:1px;width:100px;background:var(--v-accent);pointer-events:none;transform:scaleX(0);transform-origin:0 0;transition:transform .3s var(--ez)}
 .c-head,.c-row{display:grid;grid-template-columns:4ch minmax(0,1fr) 92px 96px 64px 18px;gap:16px;align-items:center}
 .c-head{padding:11px 4px;font:600 9.5px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--v-muted);border-top:1px solid var(--v-line);border-bottom:1px solid var(--v-line)}
 .certs{list-style:none;margin:0;padding:0}
@@ -472,10 +472,10 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .tabs.more-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent)}
 .tabs.more-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 44px);mask-image:linear-gradient(90deg,transparent,#000 44px)}
 .tabs.more-l.more-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 44px,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,transparent,#000 44px,#000 calc(100% - 44px),transparent)}
-.tabs button{flex:none;padding:0 0 14px;font:500 13px var(--f-ui);color:var(--ink-3);white-space:nowrap;transition:color .45s var(--ez)}
+.tabs button{flex:none;padding:0 0 14px;font:500 13px var(--f-ui);color:var(--ink-3);white-space:nowrap;transition:color .18s var(--ez)}
 .tabs button[aria-selected="true"]{color:var(--ink)}
 @media (hover:hover) and (pointer:fine){.tabs button:hover{color:var(--ink)}}
-.tab-ind{position:absolute;left:0;bottom:0;height:1px;width:100px;background:var(--ink);pointer-events:none;transform:scaleX(0);transform-origin:0 0;transition:transform .45s var(--ez)}
+.tab-ind{position:absolute;left:0;bottom:0;height:1px;width:100px;background:var(--ink);pointer-events:none;transform:scaleX(0);transform-origin:0 0;transition:transform .3s var(--ez)}
 
 .sv{display:grid;padding-top:30px}
 .sv[hidden]{display:none}
@@ -1688,14 +1688,14 @@ html.kbd .touch-only{display:none}
 .g-nav .g-nav-back:active{opacity:1;transform:scale(.97);transition-duration:.1s}
 .g-nav-in{position:relative;flex:1;min-width:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:2px}
 .g-nav-in::-webkit-scrollbar{display:none}
-.g-nav button{position:relative;z-index:1;flex:none;display:inline-flex;align-items:baseline;gap:8px;padding:10px 16px;border-radius:999px;font:500 14px/1 var(--f-ui);letter-spacing:-.005em;color:#c9cfd7;white-space:nowrap;transition:color .4s var(--ez),background .4s var(--ez)}
-.g-nav button span{font:500 10.5px var(--f-mono);color:var(--v-muted);transition:color .4s var(--ez)}
+.g-nav button{position:relative;z-index:1;flex:none;display:inline-flex;align-items:baseline;gap:8px;padding:10px 16px;border-radius:999px;font:500 14px/1 var(--f-ui);letter-spacing:-.005em;color:#c9cfd7;white-space:nowrap;transition:color .18s var(--ez),background .18s var(--ez)}
+.g-nav button span{font:500 10.5px var(--f-mono);color:var(--v-muted);transition:color .18s var(--ez)}
 @media (hover:hover) and (pointer:fine){.g-nav button:hover{color:#fff;background:rgba(255,255,255,.05)}}
 .g-nav button[aria-current="true"]{color:#fff;background:transparent}
 .g-nav button[aria-current="true"] span{color:var(--v-accent)}
 .g-nav-ind{position:absolute;left:0;top:2px;bottom:2px;width:0;border-radius:999px;pointer-events:none;
   background:color-mix(in srgb,var(--v-accent) 20%,rgba(255,255,255,.04));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--v-accent) 55%,transparent),0 0 18px -6px color-mix(in srgb,var(--v-accent) 60%,transparent);
-  transition:transform .4s var(--ez),width .4s var(--ez)}
+  transition:transform .3s var(--ez),width .3s var(--ez)}
 
 .g-sec{padding:88px 0 8px;scroll-margin-top:70px}
 .g-sec+.g-sec{border-top:1px solid var(--v-line);margin-top:88px}
@@ -2477,7 +2477,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.48</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.49</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -14328,7 +14328,7 @@ function renderGuide(i,name){
   var vseg=body.querySelector(".g-vseg");if(vseg) vseg.addEventListener("click",function(e){var b=e.target.closest("[data-ver]");if(!b||b.dataset.ver===gVer) return;gVer=b.dataset.ver;gSet("cgcp."+G.id+".ver",gVer);gSyncSeg(this,"ver",gVer);gVersion(G,true);});
   body.querySelector("#g-hseg").addEventListener("click",function(e){var b=e.target.closest("[data-h]");if(!b) return;gHpw=+b.dataset.h;gSet("cgcp."+G.id+".hpw",gHpw);gSyncSeg(this,"h",String(gHpw));gPlan(G,true);});
   body.querySelector("#g-nav-back").addEventListener("click",function(){closeGuide();});
-  body.querySelector("#g-nav").addEventListener("click",function(e){var b=e.target.closest("[data-sec]");if(!b) return;var s=body.querySelector("#g-"+b.dataset.sec);gNavSet(b.dataset.sec);scrollPanelTo(s,-gNavH()-14);});
+  body.querySelector("#g-nav").addEventListener("click",function(e){var b=e.target.closest("[data-sec]");if(!b) return;var s=body.querySelector("#g-"+b.dataset.sec);gNavSet(b.dataset.sec);gNavLock={id:b.dataset.sec,until:performance.now()+1800};scrollPanelTo(s,-gNavH()-14);});
   body.querySelector("#g-reset").addEventListener("click",function(){gSet(gDoneKey(G),[]);gObjectives(G,false);toast("Progress cleared");});
   body.querySelector("#g-doms").addEventListener("click",function(e){
     var cb=e.target.closest(".g-ck");
@@ -14376,6 +14376,7 @@ function gPlaceSeg(seg){
 function gSyncSeg(seg,attr,val){seg.querySelectorAll("[data-"+attr+"]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset[attr]===val));});gPlaceSeg(seg);}
 function gNavH(){var n=panel.querySelector(".g-nav");return (n?n.offsetHeight:0)+safeTop();}
 var gNavCur="obj";
+var gNavLock=null;   /* {id, until}: a tapped section stays lit while the page glides to it (v2.49) */
 function gNavSet(id,force){
   if(id===gNavCur&&!force) return;gNavCur=id;
   var nav=panel.querySelector("#g-nav");if(!nav) return;
@@ -14420,12 +14421,15 @@ function gSpy(){
   var secs=panel.querySelectorAll(".g-sec"), top=panel.getBoundingClientRect().top+gNavH()+80, id="obj";
   for(var k=0;k<secs.length;k++){if(secs[k].getBoundingClientRect().top<=top) id=secs[k].dataset.sec;}
   if(panel.scrollTop+panel.clientHeight>=panel.scrollHeight-4) id=secs[secs.length-1].dataset.sec;
+  if(gNavLock){if(id===gNavLock.id||performance.now()>gNavLock.until) gNavLock=null;else id=gNavLock.id;}
   gNavSet(id);
   var nav=panel.querySelector(".g-nav");if(nav) nav.classList.toggle("stuck",nav.getBoundingClientRect().top<=panel.getBoundingClientRect().top+safeTop()+1);
 }
 var sbarEl=$("#sbar");
 function syncSbar(){sbarEl.classList.toggle("on",state==="open"&&!panel.hidden&&panel.scrollTop>4);}
 panel.addEventListener("scroll",function(){syncSbar();if(guideName&&!gSpyRaf) gSpyRaf=requestAnimationFrame(gSpy);},{passive:true});
+/* the user's own scroll hands the highlight back to the scroll spy */
+["wheel","touchstart","keydown"].forEach(function(t){panel.addEventListener(t,function(e){if(gNavLock&&!(e.target.closest&&e.target.closest(".g-nav"))) gNavLock=null;},{passive:true});});
 window.addEventListener("resize",function(){if(!guideName) return;panel.querySelectorAll(".g .seg").forEach(gPlaceSeg);gNavSet(gNavCur,true);gFx();});
 
 /* version switch: hero notes + objectives + plan */
