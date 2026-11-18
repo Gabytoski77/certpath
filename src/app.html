@@ -2444,7 +2444,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.54</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.55</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -6076,43 +6076,44 @@ var GUIDES={
   id:"secplus",
   mock:{v7:"qbank/sy0-701.json"},
   lead:"The cert most DoD and Coast Guard IT billets ask for first. It proves you know the core of security work: threats, controls, architecture, incident response and risk.",
-  checked:"Nov 6, 2026",
+  checked:"Nov 18, 2026",
   versions:{
-    v8:{code:"SY0-801",label:"V8",status:"Launches Nov 17, 2026",onote:"Listed in the order of CompTIA's V8 objectives summary. Official numbering is in the V8 objectives PDF.",
+    v8:{code:"SY0-801",label:"V8",status:"Launched Nov 17, 2026 · passing 750",
       note:"The new version. Adds AI security risks and AI-assisted operations. A good pick if you're just starting or will test after spring 2027; study material will keep catching up for a few months after launch.",
-      numbered:false,
+      numbered:true,
       domains:[
         {n:"1.0",name:"General Security Concepts",w:16,obj:[
-          ["Compare and contrast various types of security controls","How layered security controls work together to protect systems and data."],
-          ["Demonstrate the impact of change management processes on security","How planning, testing, approvals and documentation keep environments secure."],
-          ["Explain the importance of using appropriate cryptographic solutions","Encryption, certificates, hashing, digital signatures and key management."]]},
+          ["Explain security concepts and controls","Defense in depth, CIA, AAA, non-repudiation, Zero Trust, least privilege, control categories and types."],
+          ["Given a scenario, demonstrate the impact of change management processes on security","Change advisory board, impact analysis, testing, backout plans, maintenance windows, dependencies, version control."],
+          ["Explain the importance of using appropriate cryptographic solutions","PKI, certificates, CRL and OCSP, encryption levels, key exchange, digital signatures, salting, hashing."]]},
         {n:"2.0",name:"Threats, Vulnerabilities, and Attacks",w:24,obj:[
-          ["Compare and contrast common threat actors and motivations","Who conducts attacks and why organizations are targeted."],
-          ["Explain common threat vectors and attack surfaces","How attacks reach users, systems, applications, networks, cloud resources and supply chains."],
-          ["Analyze indicators of malicious activity","Signs of malware, social engineering, credential attacks and other threats."],
-          ["Examine common vulnerabilities and associated risks","Evaluating vulnerabilities and deciding which to mitigate first."],
-          ["Explain the security risks associated with artificial intelligence (AI)","Risks involving AI systems, models, prompts, privacy and data exposure.",1]]},
+          ["Explain characteristics of threats and vulnerabilities","Threat feeds and intel sources, likelihood and impact, vulnerability life cycle, CVE, CVSS, prioritization."],
+          ["Describe common threat actors and motivations","Crime syndicates, hacktivists, insiders, competitors, state-sponsored; money, espionage, ideology; sophistication."],
+          ["Describe threat vectors and sources","APTs; message, image, attachment, browser, network, remote access, endpoint, supply chain and human-based vectors."],
+          ["Explain types of vulnerabilities and attack surfaces","Unsupported, unpatched, obsolete and unmanaged systems, race conditions, zero-days, misconfiguration, shadow IT, rogue devices."],
+          ["Given a scenario, analyze indicators of malicious activity","Malware, physical, network, social engineering, application and credential attacks; IoCs; impossible travel."],
+          ["Summarize threats and vulnerabilities associated with artificial intelligence (AI) usage","Model manipulation, poisoning, prompt injection, data loss, bias, hallucinations, jailbreaking, evasion, privacy.",1]]},
         {n:"3.0",name:"Security Architecture",w:19,obj:[
-          ["Compare and contrast security implications of different architecture models","Cloud, hybrid, on-premises and operational technology environments."],
-          ["Apply security principles to secure enterprise infrastructure","Secure system design, access controls, segmentation and connectivity."],
-          ["Understand concepts related to data protection","Protecting sensitive information throughout its lifecycle."],
-          ["Explain the importance of resilience and recovery in security architectures","Backups, redundancy, recovery planning and testing."]]},
+          ["Compare and contrast security implications of different architecture models","Cloud, hybrid, infrastructure as code, OT, air-gapped networks, microservices, segmentation, data sovereignty."],
+          ["Given a scenario, manage the security architecture to best protect the infrastructure","Device placement, security zones, attack surface, Zero Trust architecture, out-of-band management, SSE, gMSAs, privilege creep."],
+          ["Summarize concepts and strategies used to protect data","Data types, states and classifications, masking, tokenization, data roles, labeling, geofencing, data life cycle."],
+          ["Explain the importance of resilience and recovery in security architecture","Site considerations, platform diversity, redundancy, backups, testing, DR, business continuity, RTO/RPO, MTTR/MTBF."]]},
         {n:"4.0",name:"Security Operations",w:27,obj:[
-          ["Apply common security techniques to computing resources","Securing endpoints, networks, applications and data."],
-          ["Explain asset management concepts and practices","Managing hardware, software and data assets throughout their lifecycle."],
-          ["Analyze indicators of vulnerabilities and implement appropriate mitigation strategies","Identify, prioritize, remediate and validate vulnerabilities."],
-          ["Describe security monitoring and alerting concepts","Logs, alerts, dashboards and security tools that surface threats."],
-          ["Manage identity and access controls","Authentication, authorization, federation and privileged access management."],
-          ["Explain the importance of automation and orchestration in security operations","Automation, integrations and AI-assisted workflows.",1],
-          ["Implement incident response activities","Preparation, detection, containment, recovery and lessons learned."],
-          ["Use data sources to support investigations","Analyzing evidence and security data during an investigation."]]},
+          ["Given a scenario, apply mitigating controls, techniques, and solutions to secure the environment","Segmentation, hardening, sandboxing, honeypots and honeytokens, application control, IDS/IPS, firewalls, DLP, EDR, NAC."],
+          ["Explain the security implications of proper hardware, software, and data asset management","Asset life cycle: planning, procurement, assignment, tracking, disposal and decommissioning."],
+          ["Given a scenario, perform tasks associated with vulnerability management","Identification, scanning, IPAM, CSPM, code review, severity, pen test reports, remediation, verification, reporting."],
+          ["Explain security alerting and monitoring concepts and tools","Log aggregation, alerting and tuning, SIEM, DLP, packet analyzers, NetFlow, SNMP, syslog, port mirroring."],
+          ["Given a scenario, apply concepts related to identity and access management","Provisioning, identity proofing, federation, SSO (SAML, LDAP, OAuth), MFA, access models, just-in-time, access reviews, passkeys."],
+          ["Given a scenario, apply automation and orchestration solutions to secure operations","User provisioning, desired state, anomaly detection, ticketing, guardrails, agentic AI, CI/CD, workflows, process risks.",1],
+          ["Summarize concepts associated with incident response activities","Preparation, identification, investigation, containment, negotiation, eradication and recovery, notification, tabletops, chain of custody."],
+          ["Given a scenario, use data, artifacts and sources to support a security investigation","Log and trace data, metadata, file and log integrity, system images, memory dumps, packet captures, log parsing, video."]]},
         {n:"5.0",name:"Security Program Management and Oversight",w:14,obj:[
-          ["Define elements of an effective security governance program","Policies, standards, procedures and security guidance."],
-          ["Manage security risk management processes and concepts","Assess, communicate and manage organizational risk."],
-          ["Explain third-party risk management concepts","Evaluate and monitor vendor and partner risk."],
-          ["Support security compliance and privacy considerations","Regulatory, legal, compliance and privacy requirements."],
-          ["Compare and contrast audits and assessments","Audits, reviews, testing and assessments."],
-          ["Promote security awareness practices","Education and awareness programs."]]}
+          ["Explain the importance of governance, risk, and compliance artifacts","Guidelines, standards, procedures, plans, policies, benchmarks, runbooks, reference architecture, AUP, data disposal."],
+          ["Explain the impact of risk management processes on the security of the organization","Risk identification, assessment, analysis, register, treatment, appetite, residual risk, SLE, ALE, ARO."],
+          ["Explain the assessment and management processes associated with third-party risk","Vendor selection, agreement types, monitoring, right to audit, due diligence, vendor lock-in, rules of engagement, SLAs."],
+          ["Summarize elements of effective security compliance","Compliance training and monitoring, consequences, privacy, right to be forgotten, controller vs. processor, legal hold, retention."],
+          ["Explain concepts associated with audit and assessment activities","Data gathering, sampling, scoping, engagement types, gap analysis, penetration testing, frameworks, functional and behavioral testing."],
+          ["Given a scenario, apply security awareness concepts to improve organizational security","Training types and delivery, reporting, social engineering, credentials, remote work, BEC, removable media, OPSEC."]]}
       ]},
     v7:{code:"SY0-701",label:"V7",status:"Available now · retires Jun 11, 2027",
       note:"The current version, with the most study material out there. A good pick if you can test before it retires. Both versions earn the same Security+ certification.",
