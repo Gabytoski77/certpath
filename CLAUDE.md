@@ -60,7 +60,7 @@ Guides are `GUIDES["Name"]={...}` objects just before the `G_SECS=` line; copy t
 
 ## Tests
 
-- `pip install -r tests/requirements.txt && python3 -m playwright install --with-deps chromium && (cd tests && npm ci)` once.
+- `pip install -r tests/requirements.txt semgrep==1.186.0 && python3 -m playwright install --with-deps chromium && (cd tests && npm ci)` once. `build/check_all.sh` fails if Semgrep is missing (CI runs it on every PR) and downloads CI's pinned Semgrep rules itself on the first run.
 - `python3 -m pytest tests -q` (about 2 minutes). Add a test for every bug fixed and every new feature.
 - Known accessibility issues are listed in `tests/a11y-known.json`; when you fix one, delete its line.
 - The site's code is inside an IIFE: tests drive the DOM (search open = `#srch.on`, sheet open = `#sh-grab[aria-expanded=true]`).
