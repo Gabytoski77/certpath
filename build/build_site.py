@@ -29,9 +29,12 @@ def build():
     pre = (SRC / "site-head.html").read_text(encoding="utf8")
     reg = (SRC / "site-tail.html").read_text(encoding="utf8")
     body = art[art.index('<meta name="referrer"'):]
-    # NOTE: the app's own "</body></html>" is kept, so the update script in site-tail.html lands after it.
-    # Browsers handle that fine and this keeps index.html byte-identical to v2.49. Queued fix for the next release:
-    # cut the body at "</body>" here (that changes index.html, so it needs a version bump).
+    # The app's own "</body></html>" is cut off, so site-tail.html (update script + "</body></html>") closes the page.
+    end = body.rindex("</body>")
+    assert body[end:].split() == ["</body></html>"], "src/app.html should end with </body></html>"
+    body = body[:end]
+    # The app's styles and scripts belong to <head>; the page itself starts at the splash screen.
+    body = swap(body, '\n<div id="splash"', '\n</head>\n<body>\n<div id="splash"')
 
     # fonts: our own files instead of Google Fonts
     body = swap(body, '<link rel="preconnect" href="https://fonts.googleapis.com">\n', '')
