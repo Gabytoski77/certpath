@@ -145,3 +145,37 @@ def test_aplus_core2_full_exam(site):
         assert dom in body, f"{dom} missing from the results"
     assert "Virtualization and Cloud Computing" not in body   # Core 1 domain names must not leak into Core 2 results
     assert any(k.startswith("cgcp.mx.") and "aplus" in k for k in p.evaluate("Object.keys(localStorage)"))
+
+
+def test_cysa_v4_full_exam(site):
+    """v2.54: CySA+ V4 gets an 85-question, 165-minute bank. V3 is retiring, so its note says it won't get one."""
+    w = site()
+    p = w.page
+    open_guide(p, "cysa+")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v4"]').count() == 1, mxp[:500]
+    assert p.locator('#mxp [data-mx="full"][data-ver="v3"]').count() == 0
+    assert "CS0-003" in mxp and "being retired" in mxp and "later update" not in mxp, mxp[:800]
+    p.locator('#mxp [data-mx="full"][data-ver="v4"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 85")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("2:44:", "2:45:")), t
+    assert "CS0-004" in p.inner_text("#mx")
+    _answer_all(p)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Security Operations", "Vulnerability Management", "Incident Response and Management",
+                "Reporting and Communication"):
+        assert dom in body, f"{dom} missing from the results"
+
+
+def test_upcoming_version_still_says_later_update(site):
+    """v2.54: only retiring versions lose the "coming in a later update" note; Security+ V8 keeps it."""
+    w = site()
+    p = w.page
+    open_guide(p, "security+")
+    mxp = p.inner_text("#mxp")
+    assert "SY0-801" in mxp and "later update" in mxp and "being retired" not in mxp, mxp[:800]
