@@ -100,14 +100,13 @@ def test_network_plus_v9_full_exam(site):
 
 
 def test_aplus_core1_full_exam(site):
-    """v2.52: A+ has two exams in one guide. Core 1 gets a full exam from its bank; Core 2 has no bank yet."""
+    """v2.52: A+ has two exams in one guide. Core 1 gets a full exam from its own bank."""
     w = site()
     p = w.page
     open_guide(p, "a+")
     mxp = p.inner_text("#mxp")
     full = p.locator('#mxp [data-mx="full"][data-ver="core1"]')
     assert full.count() == 1, mxp[:500]
-    assert p.locator('#mxp [data-mx="full"][data-ver="core2"]').count() == 0
     full.click()
     p.wait_for_selector("#mx[open]")
     p.wait_for_timeout(600)
@@ -121,8 +120,28 @@ def test_aplus_core1_full_exam(site):
                 "Hardware and Network Troubleshooting"):
         assert dom in body, f"{dom} missing from the results"
     assert "Operating Systems" not in body      # Core 2 domain names must not leak into Core 1 results
-    # Core 2 is a different exam, so the "coming later" note must not say Core 1 covers it
-    p.keyboard.press("Escape")
-    p.wait_for_timeout(700)
-    note = p.inner_text("#mxp")
-    assert "220-1202" in note and "same ground" not in note, note[:600]
+
+
+def test_aplus_core2_full_exam(site):
+    """v2.53: Core 2 gets its own bank, so both A+ exams have full and half exams and no "coming later" note."""
+    w = site()
+    p = w.page
+    open_guide(p, "a+")
+    mxp = p.inner_text("#mxp")
+    for ver in ("core1", "core2"):
+        assert p.locator(f'#mxp [data-mx="full"][data-ver="{ver}"]').count() == 1, mxp[:500]
+        assert p.locator(f'#mxp [data-mx="half"][data-ver="{ver}"]').count() == 1, mxp[:500]
+    assert "later update" not in mxp, mxp[:600]
+    p.locator('#mxp [data-mx="full"][data-ver="core2"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 90")
+    assert "220-1202" in p.inner_text("#mx")
+    _answer_all(p)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Operating Systems", "Security", "Software Troubleshooting", "Operational Procedures"):
+        assert dom in body, f"{dom} missing from the results"
+    assert "Virtualization and Cloud Computing" not in body   # Core 1 domain names must not leak into Core 2 results
+    assert any(k.startswith("cgcp.mx.") and "aplus" in k for k in p.evaluate("Object.keys(localStorage)"))
