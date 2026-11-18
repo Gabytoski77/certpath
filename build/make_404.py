@@ -1,0 +1,87 @@
+"""Writes the MyNextCert 404 page (GitHub Pages shows /404.html for any missing address).
+No scripts at all; the one inline style block is allowed by its sha256 in the page's own CSP.
+Every path starts with "/" because the page is served at whatever wrong address was asked for (e.g. /a/b/c).
+
+Usage:
+  python3 build/make_404.py            # writes 404.html
+  python3 build/make_404.py --check    # fails if the committed 404.html is different (used by CI)
+"""
+import base64, hashlib, pathlib, sys
+
+OUT = pathlib.Path(__file__).resolve().parent.parent / "404.html"
+
+CSS = """
+:root{color-scheme:dark;--ink:#ecebe8;--ink-2:#a9adb4;--ink-3:#6f747c;--hair-2:rgba(255,255,255,.16);--ez:cubic-bezier(.16,1,.3,1);
+  --f-disp:"Inter Tight","Geist",system-ui,-apple-system,"Segoe UI",sans-serif;--f-ui:"Geist",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"CP Mono","IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;min-height:100%;display:grid;grid-template-rows:1fr auto;background:radial-gradient(60% 58% at 50% 42%,#3a4c5d 0%,#273441 38%,#19212a 72%,#12161d 100%);background-color:#12161d;
+  color:var(--ink);font:400 15px/1.6 var(--f-ui);-webkit-font-smoothing:antialiased;
+  padding:max(20px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}
+main{align-self:center;justify-self:center;width:min(520px,100%);text-align:center;padding:28px 0}
+.mk{width:44px;height:44px;color:var(--ink)}
+.brand{display:inline-flex;align-items:center;gap:10px;font:700 15px/1 var(--f-disp);letter-spacing:.02em;color:var(--ink);text-decoration:none}
+.brand .mk{width:26px;height:26px}
+.code{margin:34px 0 0;font:500 12px/1 var(--f-mono);letter-spacing:.32em;color:var(--ink-3)}
+h1{margin:14px 0 12px;font:800 clamp(34px,8vw,52px)/1.02 var(--f-disp);letter-spacing:-.03em}
+p.lead{margin:0 auto 30px;max-width:40ch;color:var(--ink-2)}
+.go{display:inline-flex;align-items:center;gap:12px;padding:15px 22px;border-radius:999px;background:#eef0f3;color:#12161d;font:600 14px/1 var(--f-ui);letter-spacing:.02em;text-decoration:none;
+  box-shadow:0 14px 40px rgba(0,0,0,.35);transition:transform .35s var(--ez),background .25s var(--ez)}
+.go:hover{background:#fff;transform:translateY(-1px)}
+.go:focus-visible,.alt a:focus-visible,.brand:focus-visible{outline:2px solid #bcd6ea;outline-offset:4px}
+.go span{transition:transform .35s var(--ez)}
+.go:hover span{transform:translateX(3px)}
+.alt{margin:22px 0 0;font-size:13px;color:var(--ink-3)}
+.alt a{color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.3)}
+.alt a:hover{color:var(--ink)}
+footer{text-align:center;font:400 11.5px/1.6 var(--f-ui);color:#7f8996}
+footer a{color:inherit}
+@media (prefers-reduced-motion:reduce){.go,.go span{transition:none}}
+"""
+
+MARK = ('<svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" '
+        'stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg>')
+
+h = "'sha256-%s'" % base64.b64encode(hashlib.sha256(CSS.encode("utf8")).digest()).decode()
+csp = ("default-src 'none'; style-src 'self' %s; font-src 'self'; img-src 'self'; manifest-src 'none'; "
+       "base-uri 'none'; form-action 'none'; frame-src 'none'; object-src 'none'; script-src 'none'") % h
+
+page = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="{csp}">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#12161d">
+<meta name="color-scheme" content="dark">
+<title>Page not found · MyNextCert</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>{CSS}</style>
+</head>
+<body>
+<main>
+  <a class="brand" href="/">{MARK}MyNextCert</a>
+  <p class="code">ERROR 404</p>
+  <h1>This page isn&rsquo;t here.</h1>
+  <p class="lead">The link may be mistyped or out of date. Every cert, guide and path lives on the home page.</p>
+  <a class="go" href="/">Back to MyNextCert <span aria-hidden="true">&rarr;</span></a>
+  <p class="alt">Looking for a printout? <a href="/#print">Open the path sheet</a></p>
+</main>
+<footer>Not an official U.S. Coast Guard site &middot; &copy; 2026 Gabriel Rodriguez &middot; <a href="/#privacy">Privacy</a></footer>
+</body>
+</html>
+"""
+
+if "--check" in sys.argv:
+    if OUT.read_text(encoding="utf8") != page:
+        sys.exit("FAIL: 404.html does not match build/make_404.py. Run: python3 build/make_404.py")
+    print("ok: 404.html matches build/make_404.py")
+else:
+    OUT.write_text(page, encoding="utf8")
+    print("wrote", OUT.name, len(page), "bytes")

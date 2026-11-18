@@ -1,0 +1,17 @@
+<script>
+/* app updates: check for a new version every time the app opens, and reload once when it arrives */
+if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){
+  var hadController=!!navigator.serviceWorker.controller, reloaded=false;
+  navigator.serviceWorker.addEventListener("controllerchange",function(){
+    if(!hadController||reloaded) return;reloaded=true;location.reload();
+  });
+  window.addEventListener("load",function(){
+    navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){r.update();}).catch(function(){});
+  });
+  document.addEventListener("visibilitychange",function(){
+    if(document.visibilityState==="visible") navigator.serviceWorker.getRegistration().then(function(r){if(r) r.update();});
+  });
+}
+</script>
+</body>
+</html>

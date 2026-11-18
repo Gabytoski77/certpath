@@ -1,0 +1,3 @@
+# Browser tests (pinned so CI is repeatable; bump on purpose)
+playwright==1.63.0
+pytest==9.1.1

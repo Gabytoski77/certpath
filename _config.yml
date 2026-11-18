@@ -1,2 +1,4 @@
-# GitHub Pages build settings: serve the security contact file (folders starting with "." are skipped by default)
+# Only used if Pages is ever switched back to "Deploy from a branch". With Source = GitHub Actions
+# (the normal setup since Nov 2026), deploy.yml publishes exactly the files listed in build/stage_site.py.
 include: [".well-known"]
+exclude: [src, build, tests, CLAUDE.md, .claude, README.md]

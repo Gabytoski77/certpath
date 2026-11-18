@@ -1,0 +1,6 @@
+tests/node_modules/
+__pycache__/
+.pytest_cache/
+.lighthouseci/
+build/out/
+tests/js-scan/
