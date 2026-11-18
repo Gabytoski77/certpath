@@ -17,7 +17,6 @@
  "insecure-document-method 3762098fef420a0b": 1,
  "insecure-document-method 3e1b1bbc645f004d": 2,
  "insecure-document-method 41cdc50337cbf03f": 1,
- "insecure-document-method 46c6261a0de6923b": 1,
  "insecure-document-method 4a93b24dadb5ad8a": 1,
  "insecure-document-method 531d3058292cce90": 1,
  "insecure-document-method 59a5e4084712e7f4": 1,
@@ -43,6 +42,7 @@
  "insecure-document-method cc9adc55a3a3ae7b": 1,
  "insecure-document-method cd94aca8f417ae62": 2,
  "insecure-document-method eb6df7e108427980": 1,
+ "insecure-document-method f8dbc19ffe42b209": 1,
  "insecure-innerhtml 00fab93dcebbbfe3": 1,
  "insecure-innerhtml 1018e8c4e176c083": 1,
  "insecure-innerhtml 102acb831ebdc577": 2,
@@ -61,7 +61,6 @@
  "insecure-innerhtml 3762098fef420a0b": 1,
  "insecure-innerhtml 3e1b1bbc645f004d": 2,
  "insecure-innerhtml 41cdc50337cbf03f": 1,
- "insecure-innerhtml 46c6261a0de6923b": 1,
  "insecure-innerhtml 4a93b24dadb5ad8a": 1,
  "insecure-innerhtml 531d3058292cce90": 1,
  "insecure-innerhtml 59a5e4084712e7f4": 1,
@@ -87,5 +86,6 @@
  "insecure-innerhtml cc9adc55a3a3ae7b": 1,
  "insecure-innerhtml cd94aca8f417ae62": 2,
  "insecure-innerhtml eb6df7e108427980": 1,
+ "insecure-innerhtml f8dbc19ffe42b209": 1,
  "raw-html-concat c40cf1591bbf67cb": 1
 }

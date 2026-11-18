@@ -3430,7 +3430,7 @@ var crestHoverT=0;
 VENDORS.forEach(function(v,i){
   var b=document.createElement("button");b.type="button";b.className="crest";b.style.setProperty("--c",v.beacon);
   b.setAttribute("aria-label",v.short+" "+pad2(vNum(v))+(v.id==="colleges"?" schools":" certs")+": open "+v.name);   /* starts with the visible text (v2.51, axe label-content-name-mismatch) */
-  b.innerHTML=CREST_HEX+'<span class="cr-n'+(v.short.length>7?' long':'')+'">'+v.short.toUpperCase()+'</span> <span class="cr-c">'+pad2(vNum(v))+'</span>';
+  b.innerHTML=CREST_HEX+'<span class="cr-n'+(v.short.length>7?' long':'')+'">'+gEsc(v.short.toUpperCase())+'</span> <span class="cr-c">'+pad2(vNum(v))+'</span>';
   b.addEventListener("pointerenter",function(e){
     if(e.pointerType!=="mouse"||state!=="idle") return;
     clearTimeout(crestHoverT);crestHoverT=setTimeout(function(){if(frontIdx!==i) focusVendor(i);},70);
