@@ -1,0 +1,16 @@
+# Opens a PR when a pinned GitHub Action, test tool or Python package has an update.
+# Each PR runs the full CI, so an update that breaks something can't be merged by accident.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: {interval: monthly}
+    groups: {actions: {patterns: ["*"]}}
+  - package-ecosystem: npm
+    directory: /tests
+    schedule: {interval: monthly}
+    groups: {test-tools: {patterns: ["*"]}}
+  - package-ecosystem: pip
+    directory: /tests
+    schedule: {interval: monthly}
+    groups: {test-python: {patterns: ["*"]}}

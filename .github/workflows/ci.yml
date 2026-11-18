@@ -1,0 +1,172 @@
+# MyNextCert checks. Runs on every pull request, and again (through deploy.yml) before anything goes live.
+# Every job must pass. Nothing here can change the repo or the site: the token is read-only.
+name: CI
+
+on:
+  pull_request:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.12"
+  NODE_VERSION: "22"
+
+jobs:
+  build:
+    name: Build matches source
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # every action is pinned to an exact commit so a moved tag can't swap in different code
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: index.html is exactly what src/ builds
+        run: python3 build/build_site.py --check
+      - name: 404.html is exactly what make_404.py builds
+        run: python3 build/make_404.py --check
+      - name: Only public files would be deployed
+        run: python3 build/stage_site.py "$RUNNER_TEMP/_site"
+
+  site-checks:
+    name: Site checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0             # full history, to compare with the previous version
+          persist-credentials: false
+      - name: check_site.py (CSP, outside loads, 8140 data, share tags, question banks, sw.js, version bump)
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: python3 .github/scripts/check_site.py
+
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0             # scan every commit, not just the newest
+          persist-credentials: false
+      - name: Install gitleaks 8.30.1 (checksum verified)
+        run: |
+          V=8.30.1
+          cd "$RUNNER_TEMP"
+          curl -sSfL -o gl.tgz "https://github.com/gitleaks/gitleaks/releases/download/v$V/gitleaks_${V}_linux_x64.tar.gz"
+          echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  gl.tgz" | sha256sum -c -
+          tar xzf gl.tgz gitleaks
+      - name: Scan the whole history for passwords, keys and tokens
+        run: |
+          "$RUNNER_TEMP/gitleaks" git --redact --no-banner --exit-code 1 .
+          "$RUNNER_TEMP/gitleaks" dir --redact --no-banner --exit-code 1 .
+
+  semgrep:
+    name: Code scan (Semgrep)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install Semgrep and its rules (pinned)
+        run: |
+          python3 -m pip install --quiet semgrep==1.186.0
+          git clone --quiet --filter=blob:none https://github.com/semgrep/semgrep-rules "$RUNNER_TEMP/rules"
+          git -C "$RUNNER_TEMP/rules" checkout --quiet a5ad1714f00c9f7fde980cab0ea1d6dc6d414fd2
+      - name: Scan the app's JavaScript and the 404 page
+        run: |
+          python3 build/extract_scripts.py "$RUNNER_TEMP/js"
+          R="$RUNNER_TEMP/rules"
+          semgrep scan --metrics=off --disable-version-check --max-target-bytes 5000000 --timeout 300 \
+            --config "$R/javascript/browser" --config "$R/javascript/lang/security" \
+            --config "$R/javascript/lang/correctness" --config "$R/html/security" \
+            --json -q -o "$RUNNER_TEMP/semgrep.json" "$RUNNER_TEMP/js" 404.html sw.js
+      - name: Fail on findings that are not in the reviewed baseline
+        run: python3 build/semgrep_gate.py "$RUNNER_TEMP/semgrep.json"
+
+  lint:
+    name: HTML + JS lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install the dev tools (exact versions from package-lock.json)
+        working-directory: tests
+        run: npm ci --no-audit --no-fund
+      - name: html-validate
+        working-directory: tests
+        run: npx html-validate -c .htmlvalidate.json ../index.html ../404.html
+      - name: ESLint (inline scripts + sw.js)
+        run: |
+          python3 build/extract_scripts.py tests/js-scan
+          cp sw.js tests/js-scan/
+          cd tests && npx eslint --no-config-lookup -c eslint.config.mjs js-scan
+      - name: actionlint (the workflow files themselves; checksum verified)
+        run: |
+          cd "$RUNNER_TEMP"
+          curl -sSfL -o al.tgz https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz
+          echo "8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8  al.tgz" | sha256sum -c -
+          tar xzf al.tgz actionlint
+          cd "$GITHUB_WORKSPACE" && "$RUNNER_TEMP/actionlint"
+
+  browser-tests:
+    name: Browser tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install Playwright + Chromium, and axe-core
+        run: |
+          python3 -m pip install --quiet -r tests/requirements.txt
+          python3 -m playwright install --with-deps chromium
+          cd tests && npm ci --no-audit --no-fund
+      - name: Run the suite (desktop, iPhone, 320 px, 200% zoom, reduced motion, offline, CSP, practice exams, axe)
+        run: python3 -m pytest tests -q -p no:cacheprovider
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install the dev tools
+        working-directory: tests
+        run: npm ci --no-audit --no-fund
+      - name: Accessibility, best practices and SEO must stay at 90+
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: tests/node_modules/.bin/lhci autorun --config=tests/lighthouserc.json

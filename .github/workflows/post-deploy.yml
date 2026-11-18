@@ -1,0 +1,66 @@
+# After every deploy: check the LIVE site, then run an OWASP ZAP baseline scan (passive, safe for production).
+# If the live check fails, an issue is opened so it can't be missed. Rollback = revert the commit on main.
+name: Post-deploy
+
+on:
+  workflow_run:
+    workflows: [Deploy]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: Live site check
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}   # compare with what was deployed
+          persist-credentials: false
+      - name: mynextcert.com shows the new version, headers, CSP, sw.js, 404, security.txt; private files stay private
+        run: python3 tests/smoke_live.py https://mynextcert.com/
+
+  zap:
+    name: OWASP ZAP baseline
+    needs: smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      issues: write            # ZAP keeps one issue up to date with what it found
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: zaproxy/action-baseline@6c5a007541891231cd9e0ddec25d4f25c59c9874 # v0.15.0
+        with:
+          target: https://mynextcert.com/
+          rules_file_name: .github/zap-rules.tsv
+          cmd_options: -a -j -m 3
+          issue_title: "ZAP baseline scan of mynextcert.com"
+          allow_issue_writing: true
+          fail_action: false   # findings go to the issue for review; they don't mark the deploy as failed
+
+  alert:
+    name: Open an issue if the live check failed
+    needs: smoke
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@d746ffe35508b1917358783b479e04febd2b8f71 # v9.0.0
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title: "Live site check failed after deploy",
+              body: "The post-deploy check of https://mynextcert.com failed. Open the run for details: " +
+                    `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}` +
+                    "\n\nTo roll back: revert the last commit on main (GitHub: the PR → Revert), merge the revert PR, and Deploy runs again."
+            });

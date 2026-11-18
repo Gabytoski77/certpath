@@ -1,0 +1,47 @@
+# Publishes mynextcert.com, but only after every CI check passes on the exact commit being shipped.
+# Needs: Settings -> Pages -> Build and deployment -> Source = "GitHub Actions".
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:     # "Run workflow" button: re-deploy main by hand (e.g. after a rollback)
+
+permissions:
+  contents: read
+
+# one deploy at a time; a newer push waits instead of cancelling a deploy halfway through
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    name: All checks
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    name: Publish to GitHub Pages
+    needs: checks              # if any check fails, this job never runs and the live site stays as it was
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write             # publish to Pages
+      id-token: write          # prove to Pages that this run is from this repo
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - name: Copy only the public site files
+        run: python3 build/stage_site.py _site
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site
+          include-hidden-files: true   # keep /.well-known/security.txt
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

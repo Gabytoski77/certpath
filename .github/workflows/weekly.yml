@@ -1,0 +1,68 @@
+# Every Monday: broken links, certificate expiry (Cloudflare + GitHub origin), library versions.
+# Any failure opens (or updates) one issue so it shows up in your GitHub notifications.
+name: Weekly
+
+on:
+  schedule:
+    - cron: "17 16 * * 1"   # Mondays 16:17 UTC = 8:17 AM Pacific (winter)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    name: Broken links
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Copy the guides' links out of the app's JavaScript (most links live there)
+        run: python3 build/extract_scripts.py "$RUNNER_TEMP/js"
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          # 403/429: many vendor sites block robots but work in a browser, so those count as OK
+          args: >-
+            --no-progress --max-concurrency 8 --max-retries 3 --timeout 30
+            --accept 200..=299,403,429
+            --exclude-all-private
+            --exclude "^https?://(www\.)?example\.(com|org|net)"
+            --root-dir ${{ github.workspace }}
+            index.html 404.html ${{ runner.temp }}/js/inline-2.js
+          fail: true
+          jobSummary: true
+
+  health:
+    name: Certificates and libraries
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 build/weekly_report.py
+
+  alert:
+    name: Open an issue if anything failed
+    needs: [links, health]
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@d746ffe35508b1917358783b479e04febd2b8f71 # v9.0.0
+        with:
+          script: |
+            const title = "Weekly MyNextCert check failed";
+            const run = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const open = await github.rest.issues.listForRepo({owner: context.repo.owner, repo: context.repo.repo, state: "open"});
+            const same = open.data.find(i => i.title === title);
+            if (same) {
+              await github.rest.issues.createComment({owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: same.number, body: "Failed again: " + run});
+            } else {
+              await github.rest.issues.create({owner: context.repo.owner, repo: context.repo.repo, title,
+                body: "Broken links or a certificate close to expiry. Details (see the job summary): " + run});
+            }

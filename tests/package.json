@@ -1,0 +1,12 @@
+{
+  "name": "mynextcert-tests",
+  "private": true,
+  "description": "Dev tools for the MyNextCert checks (not shipped with the site)",
+  "devDependencies": {
+    "axe-core": "4.14.1",
+    "html-validate": "11.21.1",
+    "eslint": "10.15.0",
+    "globals": "17.14.0",
+    "@lhci/cli": "0.16.1"
+  }
+}

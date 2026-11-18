@@ -16,10 +16,25 @@ Quiz and PBQ questions are original.
 | `manifest.webmanifest` | Lets phones install it as an app |
 | `sw.js` | Offline support and fast loading |
 | `icon-*.png`, `apple-touch-icon.png`, `favicon.png` | App and browser icons |
+| `src/` | The app source (`index.html` is built from it) |
+| `build/` | Build, 404 and deploy scripts |
+| `tests/` | Browser tests and check configs |
 
 ## Updating
-1. Replace `index.html` with the new version (Add file → Upload files).
-2. In `sw.js`, bump `VERSION` (for example `certpath-v1` → `certpath-v2`; the name stays for the cache) so installed copies refresh.
+
+Nothing goes live unless every check passes.
+
+1. Make a branch, edit `src/app.html` (never `index.html`; it is generated), then `python3 build/build_site.py`.
+2. If the page changed, bump the label in `src/app.html` and `VERSION` in `sw.js`, and rebuild.
+3. `bash build/check_all.sh` runs every check locally. Push the branch and open a pull request.
+4. CI (`.github/workflows/ci.yml`) runs: build-matches-source, site checks, secret scan (gitleaks), code scan (Semgrep),
+   HTML/JS lint, actionlint, Playwright browser tests (desktop, iPhone, 320 px, 200% zoom, reduced motion, offline,
+   CSP, practice exams), axe accessibility and Lighthouse.
+5. Merge when green. `deploy.yml` runs every check again and then publishes only the public files
+   (`build/stage_site.py`). `post-deploy.yml` checks the live site and runs an OWASP ZAP baseline scan.
+   `weekly.yml` checks links, HTTPS certificates and library versions every Monday.
+
+See `CLAUDE.md` for the full rules.
 
 Everything the app needs to run is served from this repo; it loads nothing from outside servers. Libraries are in `vendor/` (three.js, Lenis, ECharts world map) and fonts in `fonts/` (Inter Tight, Geist, and CP Mono, a trimmed copy of IBM Plex Mono), each with its license. The page locks itself down with a Content Security Policy.
 
