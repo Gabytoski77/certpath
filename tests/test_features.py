@@ -91,3 +91,26 @@ def test_notch_safe_areas(site, device):
     h = p.evaluate("innerHeight")
     assert top >= 59, "header is under the notch (top %s px)" % top
     assert grab <= h - 34 + 1, "pull tab is under the home bar (bottom %s of %s px)" % (grab, h)
+
+
+def test_security_plus_v8_official_objectives(site):
+    """v2.55: Security+ V8 launched Nov 17, 2026; its guide shows CompTIA's 27 numbered SY0-801 objectives."""
+    from conftest import open_guide
+    w = site()
+    p = w.page
+    open_guide(p, "security+")
+    seg = p.locator('#guide .g-vseg [data-ver="v8"]')
+    if seg.count():
+        seg.first.click()
+        p.wait_for_timeout(500)
+    text = p.inner_text("#guide")
+    stat = p.eval_on_selector("#g-vstat", "e => e.textContent")
+    assert "SY0-801" in stat and "Launched Nov 17, 2026" in stat, stat
+    obj = p.inner_text("#g-obj")
+    for num, words in (("1.1", "Explain security concepts and controls"),
+                       ("2.1", "characteristics of threats and vulnerabilities"),
+                       ("2.6", "artificial intelligence (AI) usage"),
+                       ("4.8", "support a security investigation"),
+                       ("5.6", "security awareness concepts")):
+        assert num in obj and words in obj, f"{num} {words!r} missing"
+    assert "Official numbering is in the V8 objectives PDF" not in text
