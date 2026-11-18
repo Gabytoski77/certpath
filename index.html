@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-A19HIgKw80EnwlfC+WZjbEma/D8g2DqZ5WbtMn7hmdI=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-KfVUI5BhkmlX2mtaLAVYVxgE694NfL1fw+zSHG/50sM=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -2480,7 +2480,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.51</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.52</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -6309,6 +6309,7 @@ var GUIDES={
 
 GUIDES["A+"]={
   id:"aplus",
+  mock:{core1:"qbank/220-1201.json"},
   lead:"Where most IT careers start, and the first cert on the 20 year career path. Two exams prove you can build, fix and support the hardware, networks and operating systems every unit runs on.",
   checked:"Nov 6, 2026",
   verLabel:"Exam (take both)",
@@ -15033,7 +15034,7 @@ function mxGuide(G){
     '<div class="mxp-act"><button type="button" class="g-btn" data-mx="quick"><span class="g-btn-l">Start timed set &rarr;</span></button></div></div>';
   if(!banks.length) h+='<div class="mxp-card soon"><p class="lab">Coming in a later update</p><h4>Full practice exam</h4><p>A full-length question bank for this exam is on the way. Until then, the timed set and the untimed check below count toward your weak spots.</p></div>';
   else{var miss=Object.keys(G.versions).filter(function(v){return !banks.some(function(b){return b.ver===v;});});
-    if(miss.length) h+='<p class="mxp-fine">'+miss.map(function(v){return gEsc(G.versions[v].label+" ("+G.versions[v].code+")");}).join(", ")+': full practice exam coming in a later update. The '+gEsc(banks.map(function(b){return b.label;}).join(", "))+' exam covers most of the same ground.</p>';}
+    if(miss.length) h+='<p class="mxp-fine">'+miss.map(function(v){return gEsc(G.versions[v].label+" ("+G.versions[v].code+")");}).join(", ")+': full practice exam coming in a later update.'+(G.planAll?' It\u2019s a separate exam with its own topics.':' The '+gEsc(banks.map(function(b){return b.label;}).join(", "))+' exam covers most of the same ground.')+'</p>';}   /* planAll guides (A+, LPIC) are separate exams, not versions (v2.52) */
   h+='</div>';
   /* weak spots */
   var w=wsGet(G), keys=Object.keys(w.d), weak=wsWeak(G);
