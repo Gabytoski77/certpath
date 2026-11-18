@@ -1513,6 +1513,7 @@ button.ptt-c:active{opacity:.7;transition-duration:.1s}
 .srch-btn .sb-l{flex:1;text-align:left;color:#aab3bf;transition:color .4s var(--ez)}
 @media (hover:hover) and (pointer:fine){.srch-btn:hover{transform:translateY(-1px)}}
 @media (hover:hover) and (pointer:fine){.srch-btn:hover .sb-l{color:#eef0f3}}
+.kbd-k::after{content:attr(data-k)}
 .sb-k,.sr-foot kbd{font:500 9.5px/1 var(--f-mono);color:#8d97a5;border:1px solid rgba(255,255,255,.13);border-radius:5px;padding:4px 5px;letter-spacing:.02em;background:rgba(255,255,255,.03)}
 .p-srch{width:auto;padding:0 15px 0 13px;gap:8px;display:inline-flex;align-items:center;border-radius:999px;font:600 9.5px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase}
 .p-srch svg,.ed-srch svg{width:13px;height:13px}
@@ -2437,15 +2438,15 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <canvas id="tt" class="layer" role="img" aria-label="MyNextCert"></canvas>
   <div class="gshadow" id="gshadow" aria-hidden="true"></div>
   <span class="frame" aria-hidden="true"></span>
-  <canvas id="globe" class="layer" aria-label="Spinning globe with certification vendors. Use the vendor buttons below to choose one."></canvas>
+  <canvas id="globe" class="layer" role="img" aria-label="Spinning globe with certification vendors. Use the vendor buttons below to choose one."></canvas>
   <canvas id="tt-front" class="layer" aria-hidden="true"></canvas>
   <canvas id="pk-front" class="layer" aria-hidden="true"></canvas>
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.50</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.51</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
-    <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certifications" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k">Ctrl K</kbd></button>
+    <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
     </div>
   </header>
@@ -2533,7 +2534,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <span class="vh" id="mx-live" aria-live="polite"></span>
 </dialog>
 <section id="sheet" aria-label="Explore">
-  <div class="sh-grab" id="sh-grab" role="button" tabindex="0" aria-expanded="false" aria-controls="sh-scroll" aria-label="Open paths, DoD 8140 and funding">
+  <div class="sh-grab" id="sh-grab" role="button" tabindex="0" aria-expanded="false" aria-controls="sh-scroll" aria-label="Paths, 8140, Funding: open the sheet">
     <span class="sh-handle"></span>
     <span class="sh-peek"><svg class="mk sh-mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg>Paths &middot; 8140 &middot; Funding<span class="sh-up" aria-hidden="true">&uarr;</span></span>
   </div>
@@ -2684,7 +2685,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
           <p class="lab">02 &middot; The levels</p>
           <h3 id="q8-s2-h">Basic, Intermediate, Advanced.</h3>
           <p class="o-p" style="margin:0 0 20px">Your billet lists one level. A qualification listed at a higher level also covers the lower levels, but only for that same work role.</p>
-        <div class="q8-lv" aria-label="DoD 8140 proficiency levels">
+        <div class="q8-lv">
           <div><span class="l8 l8-B" title="DoD 8140 Basic"><span class="l8b" aria-hidden="true"><i class="on"></i><i></i><i></i></span><b>Basic</b></span><p>Knows the fundamentals and does routine work in the role with guidance.</p></div>
           <div><span class="l8 l8-I" title="DoD 8140 Intermediate"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><b>Intermediate</b></span><p>Works on their own and handles the role's everyday work.</p></div>
           <div><span class="l8 l8-A" title="DoD 8140 Advanced"><span class="l8b" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Advanced</b></span><p>Leads, designs and checks others' work in the role.</p></div>
@@ -3428,8 +3429,8 @@ var CREST_HEX='<svg viewBox="0 0 60 64" aria-hidden="true"><polygon class="h1" p
 var crestHoverT=0;
 VENDORS.forEach(function(v,i){
   var b=document.createElement("button");b.type="button";b.className="crest";b.style.setProperty("--c",v.beacon);
-  b.setAttribute("aria-label","Open "+v.name+", "+vCount(v));
-  b.innerHTML=CREST_HEX+'<span class="cr-n'+(v.short.length>7?' long':'')+'">'+v.short.toUpperCase()+'</span><span class="cr-c">'+pad2(vNum(v))+'</span>';
+  b.setAttribute("aria-label",v.short+" "+pad2(vNum(v))+(v.id==="colleges"?" schools":" certs")+": open "+v.name);   /* starts with the visible text (v2.51, axe label-content-name-mismatch) */
+  b.innerHTML=CREST_HEX+'<span class="cr-n'+(v.short.length>7?' long':'')+'">'+gEsc(v.short.toUpperCase())+'</span> <span class="cr-c">'+pad2(vNum(v))+'</span>';
   b.addEventListener("pointerenter",function(e){
     if(e.pointerType!=="mouse"||state!=="idle") return;
     clearTimeout(crestHoverT);crestHoverT=setTimeout(function(){if(frontIdx!==i) focusVendor(i);},70);
@@ -4244,7 +4245,7 @@ function openPanel(i,certName){
    '<div class="p-inner"><div class="p-frame">'+
     '<header class="p-top"><span class="p-mark" aria-hidden="true"></span><button type="button" class="p-back" id="p-back"><span class="ar">&larr;</span><span class="pb-l">Globe</span></button>'+
     
-    '<div class="p-arrows"><button type="button" class="p-arr p-srch p-exp" id="p-exp" aria-label="Go to paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg><span class="ps-l">Paths &middot; 8140 &middot; Funding</span></button><button type="button" class="p-arr p-srch" id="p-srch" aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="ps-l">Search</span></button><button type="button" class="p-arr" id="p-prev" aria-label="Previous vendor">&larr;</button><button type="button" class="p-arr" id="p-next" aria-label="Next vendor">&rarr;</button></div></header>'+
+    '<div class="p-arrows"><button type="button" class="p-arr p-srch p-exp" id="p-exp" aria-label="Paths, 8140, Funding: go to the Explore sheet"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg><span class="ps-l">Paths &middot; 8140 &middot; Funding</span></button><button type="button" class="p-arr p-srch" id="p-srch" aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="ps-l">Search</span></button><button type="button" class="p-arr" id="p-prev" aria-label="Previous vendor">&larr;</button><button type="button" class="p-arr" id="p-next" aria-label="Next vendor">&rarr;</button></div></header>'+
     '<div class="p-body" id="p-body"></div></div>'+
     '<p class="p-foot">Not an official U.S. Coast Guard or DoD site &middot; Not affiliated with or endorsed by the Coast Guard, any cert vendor or any school &middot; Names are trademarks of their owners &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span></p>'+
    '</div>';
@@ -5143,7 +5144,7 @@ function shState(p){
     var lost=!open&&shScroll.contains(document.activeElement);
     if(!srchOpen) restoreInert();
     if(lost) try{grab.focus({preventScroll:true});}catch(e){}
-    grab.setAttribute("aria-label",open?"Close paths, DoD 8140 and funding":"Open paths, DoD 8140 and funding");
+    grab.setAttribute("aria-label",open?"Paths, 8140, Funding: close the sheet":"Paths, 8140, Funding: open the sheet");
     if(!open&&typeof stRender==="function") stRender();
   }
 }
@@ -14251,7 +14252,7 @@ function renderGuide(i,name){
     return '<header class="g-sh" data-k="'+k+'"><p class="lab"><span class="g-num"><span aria-hidden="true">(0'+reel+')</span><span class="vh">('+pad2(k)+')</span></span> '+gEsc(G_SECS[k-1][1])+'</p><h3>'+title+'</h3>'+(sub?'<p class="g-sub">'+sub+'</p>':'')+'</header>';}
   // 01 objectives
   h+='<section class="g-sec" id="g-obj" data-sec="obj" aria-labelledby="g-obj-h">'+head(1,"obj",'<span id="g-obj-h">What\'s on the exam.</span>',gEsc(G.objSub||(function(){var n=G.versions[Object.keys(G.versions)[0]].domains.length;return (['','One','Two','Three','Four','Five','Six','Seven','Eight'][n]||n)+(n===1?' domain':' domains');})()+', weighted by how much of the exam they cover. Tick objectives off as you study; your progress stays on this device.'))+
-     '<div class="g-wrap g-rv"><div class="g-wbar" id="g-wbar" role="img"></div><div class="g-wleg" id="g-wleg"></div></div>'+
+     '<div class="g-wrap g-rv"><div class="g-wbar" id="g-wbar" role="group"></div><div class="g-wleg" id="g-wleg"></div></div>'+
      '<div class="g-prog g-rv"><div class="g-ring" id="g-ring"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="19"/><circle class="g-ring-v" cx="22" cy="22" r="19"/></svg><b id="g-ring-n">0%</b></div>'+
        '<div><p class="g-prog-t"><b id="g-done">0</b> of <span id="g-total">0</span> objectives studied</p><p class="g-prog-s" id="g-prog-s"></p></div>'+
        '<button type="button" class="g-link" id="g-reset">Reset</button></div>'+
@@ -15221,7 +15222,7 @@ var srchLive=$("#srch-live"), srch=$("#srch"), srchIn=$("#srch-in"), srchList=$(
 var srchOpen=false, srchFull=false, srchRes=[], srchAct=-1, srchFilter="all", srchOpener=null, srchT=0, srchHl=null, srchLastQ=null;
 var isMac=/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent||"");
 if(finePointer) document.documentElement.classList.add("kbd");
-document.querySelectorAll(".kbd-k").forEach(function(k){k.textContent=isMac?"⌘K":"Ctrl K";});
+document.querySelectorAll(".kbd-k").forEach(function(k){k.dataset.k=isMac?"⌘K":"Ctrl K";});   /* drawn by CSS ::after so it isn't part of the button's text (v2.51) */
 var ALIAS={"A+":"a plus core 1 core 2 220-1101 220-1102 220-1201 220-1202 v15 help desk guide","Network+":"net plus n10-009 v9 networking guide","Security+":"sec plus secplus security plus sy0-701 sy0-801 v7 v8 guide",
  "Cloud+":"cloud plus cv0-004 v4 guide","CySA+":"cysa cs0-003 cs0-004 v3 v4 cybersecurity analyst blue team soc guide","PenTest+":"pentest plus pen test penetration testing pt0-003 v3 ethical hacking red team offensive guide",
  "SecurityX":"securityx security x casp casp plus cas-005 v5 advanced security practitioner architect engineer guide","CC":"certified in cybersecurity isc2 cc entry level cyber beginner no experience 2026 outline guide","SSCP":"systems security certified practitioner sscp isc2 practitioner 2025 outline cat adaptive security administration operations associate of isc2 guide",

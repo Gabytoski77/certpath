@@ -1,10 +1,5 @@
 {
-  "home": {
-    "label-content-name-mismatch": "Vendor buttons: aria-label 'Open CompTIA, 11 certs' doesn't contain the visible text exactly (found Nov 17, 2026; queued fix)"
-  },
-  "guide": {
-    "label-content-name-mismatch": "#p-exp Explore button: visible text not part of its aria-label (found Nov 17, 2026; queued fix)",
-    "nested-interactive": "#g-wbar exam-weight bar has focusable parts inside a focusable element (found Nov 17, 2026; queued fix)"
-  },
+  "home": {},
+  "guide": {},
   "404": {}
 }

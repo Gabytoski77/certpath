@@ -32,3 +32,14 @@ def test_lite_mode_skips_3d(site):
     w = site(device="desktop", lite=True)
     loaded = w.page.evaluate("[...document.scripts].map(s => s.src).filter(Boolean)")
     assert not any("three.min.js" in s for s in loaded), loaded
+
+
+def test_page_structure_is_closed_properly():
+    """v2.51: the built page has one explicit </head><body>, and closes with a single </body></html> at the very end
+    (the update script used to land after the app's own </body></html>)."""
+    import pathlib
+    html = (pathlib.Path(__file__).resolve().parent.parent / "index.html").read_text(encoding="utf8")
+    assert html.count("\n</head>\n<body>\n") == 1
+    assert html.count("</body>") - html.count("</body>';") == 1, "stray </body> outside the anti-framing string"
+    assert html.rstrip().endswith("</body>\n</html>")
+    assert html.rindex("serviceWorker") < html.rindex("</body>")
