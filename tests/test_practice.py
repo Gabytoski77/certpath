@@ -76,3 +76,24 @@ def test_question_bank_rejects_bad_path(site, base_url):
     w = site()
     r = w.page.request.get(base_url + "qbank/sy0-701.json")
     assert r.status == 200 and r.json().get("format")
+
+
+def test_network_plus_v9_full_exam(site):
+    """v2.50: the Network+ V9 bank loads, builds a full 90-item exam with PBQs, and scores every domain."""
+    w = site()
+    p = w.page
+    open_guide(p, "network+")
+    full = p.locator('#mxp [data-mx="full"][data-ver="v9"]')
+    assert full.count() == 1, p.inner_text("#mxp")[:400]
+    full.click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 90")
+    _answer_all(p)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, "no score shown after submitting:\n" + body[:500]
+    for dom in ("Networking Concepts", "Network Implementation", "Network Operations",
+                "Network Security", "Network Troubleshooting"):
+        assert dom in body, f"{dom} missing from the results"
+    assert any(k.startswith("cgcp.mx.") and "net" in k for k in p.evaluate("Object.keys(localStorage)"))
