@@ -172,10 +172,25 @@ def test_cysa_v4_full_exam(site):
         assert dom in body, f"{dom} missing from the results"
 
 
-def test_upcoming_version_still_says_later_update(site):
-    """v2.54: only retiring versions lose the "coming in a later update" note; Security+ V8 keeps it."""
+def test_security_plus_v8_full_exam(site):
+    """v2.56: Security+ V8 (SY0-801) gets its own bank, so both versions have full exams and no "later update" note."""
     w = site()
     p = w.page
     open_guide(p, "security+")
     mxp = p.inner_text("#mxp")
-    assert "SY0-801" in mxp and "later update" in mxp and "being retired" not in mxp, mxp[:800]
+    for ver in ("v7", "v8"):
+        assert p.locator(f'#mxp [data-mx="full"][data-ver="{ver}"]').count() == 1, mxp[:500]
+    assert "later update" not in mxp and "being retired" not in mxp, mxp[:800]
+    p.locator('#mxp [data-mx="full"][data-ver="v8"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 90")
+    assert "SY0-801" in p.inner_text("#mx")
+    _answer_all(p)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("General Security Concepts", "Threats, Vulnerabilities, and Attacks", "Security Architecture",
+                "Security Operations", "Security Program Management and Oversight"):
+        assert dom in body, f"{dom} missing from the results"
+    assert "Threats, Vulnerabilities, and Mitigations" not in body   # the V7 domain name must not leak into V8 results
