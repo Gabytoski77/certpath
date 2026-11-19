@@ -194,3 +194,27 @@ def test_security_plus_v8_full_exam(site):
                 "Security Operations", "Security Program Management and Oversight"):
         assert dom in body, f"{dom} missing from the results"
     assert "Threats, Vulnerabilities, and Mitigations" not in body   # the V7 domain name must not leak into V8 results
+
+
+def test_pentest_plus_v3_full_exam(site):
+    """v2.57: PenTest+ PT0-003 gets a 90-question, 165-minute bank with PBQs and all five domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "pentest+")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v3"]').count() == 1, mxp[:500]
+    assert "later update" not in mxp, mxp[:600]
+    p.locator('#mxp [data-mx="full"][data-ver="v3"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 90")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("2:44:", "2:45:")), t
+    assert "PT0-003" in p.inner_text("#mx")
+    _answer_all(p)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Engagement Management", "Reconnaissance and Enumeration", "Vulnerability Discovery and Analysis",
+                "Attacks and Exploits", "Post-exploitation and Lateral Movement"):
+        assert dom in body, f"{dom} missing from the results"
