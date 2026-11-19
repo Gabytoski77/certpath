@@ -1,4 +1,4 @@
-"""v2.64: in-page dropdowns.
+"""v2.64–v2.65: in-page dropdowns.
 
 On some locked-down work PCs the browser never shows its own pop-up lists (<select> menus, date and
 time pickers). On mouse/trackpad devices the site now draws its own list inside the page (#pk), and
@@ -31,6 +31,11 @@ def test_guide_pbq_dropdown_opens_in_page(site, lite):
     open_guide(p, "security+")
     assert p.evaluate("document.documentElement.classList.contains('pk')")
     s = p.locator("#g-pbq select").first
+    s.scroll_into_view_if_needed()
+    p.wait_for_timeout(700)
+    # v2.65: the real <select> never receives the mouse (Edge on locked-down PCs started its own broken list)
+    hit = p.evaluate("(() => { const s = document.querySelector('#g-pbq select'), b = s.getBoundingClientRect(); const t = document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2); return [t === s, !!t.closest('.g-sel')]; })()")
+    assert hit == [False, True], hit
     _click(p, s)
     assert _pk_open(p), "the in-page list should open on click"
     assert not _native_open(p, "#g-pbq select"), "the browser's own pop-up should not open"
@@ -178,4 +183,18 @@ def test_phones_keep_native_pickers(site):
     assert not p.locator('[data-pk="ex-d"]').is_visible()
     p.locator("#ex-c").tap()
     p.wait_for_timeout(200)
+    assert not _pk_open(p)
+
+
+def test_countdown_exam_click_hits_wrapper_not_select(site):
+    w = site()
+    p = w.page
+    _open_countdown(p)
+    hit = p.evaluate("(() => { const s = document.getElementById('ex-c'), b = s.getBoundingClientRect(); return document.elementFromPoint(b.left + 20, b.top + b.height / 2) === s; })()")
+    assert hit is False
+    _click(p, p.locator("#ex-c"))
+    assert _pk_open(p)
+    p.locator("#pk [role=option]", has_text="CySA+").first.click()
+    p.wait_for_timeout(200)
+    assert p.evaluate("document.getElementById('ex-c').value") == "CySA+"
     assert not _pk_open(p)
