@@ -410,3 +410,28 @@ def test_untimed_check_retake_stays_on_the_quiz(site):
     p.wait_for_timeout(1600)
     top, vh = _qz_top(p), p.evaluate("() => innerHeight")
     assert 0 <= top < vh * .4, f"the check's top is at {top:.0f}px of a {vh}px screen"
+
+
+def test_server_plus_v5_full_exam(site):
+    """v2.68: Server+ SK0-005 gets a 90-question, 90-minute bank with PBQs and all four domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "server+")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v5"]').count() == 1, mxp[:500]
+    # V6 is still in beta, so only its small "coming later" line may show, never the empty-bank card.
+    assert p.locator("#mxp .mxp-card.soon").count() == 0, mxp[:600]
+    p.locator('#mxp [data-mx="full"][data-ver="v5"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 90")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("1:29:", "1:30:")), t
+    assert "SK0-005" in p.inner_text("#mx")
+    _answer_all(p)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Server Hardware Installation and Management", "Server Administration",
+                "Security and Disaster Recovery", "Troubleshooting"):
+        assert dom in body, f"{dom} missing from the results"
