@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-Zqj7GdXBsVO0cG5Y3I9LfuluNAYdp4ErThs/I1RYhYw=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-O0h0Aa0z6ON+KBWBVMNu3l74j70bko2szegX0N005o4=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -797,6 +797,36 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .mx-sub1{margin:0 0 24px}
 .mx-ftab{margin-top:6px}
 .mx-res .g-qend{margin-bottom:6px}
+/* in-page dropdowns (v2.64): mouse/trackpad devices get these instead of the browser's own pop-up lists */
+.pk-in{position:relative;display:block}
+.pk-btn{display:none}
+html.pk .pk-in input{padding-right:42px}
+html.pk .pk-in input::-webkit-calendar-picker-indicator{display:none}
+html.pk .pk-btn{display:grid;place-items:center;position:absolute;right:4px;top:50%;width:36px;height:36px;margin-top:-18px;border:0;border-radius:8px;background:transparent;color:var(--ink-2,#aab3bf);cursor:pointer}
+.pk-btn:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.pk-box{position:fixed;inset:auto;margin:0;padding:4px;border:1px solid rgba(255,255,255,.14);border-radius:10px;background:#161b22;color:#eef0f3;box-shadow:0 14px 40px rgba(0,0,0,.5);font:500 14px/1.3 var(--f-ui);overflow:hidden;max-width:min(420px,calc(100vw - 16px));z-index:2147483000}
+.pk-box:popover-open{display:flex;flex-direction:column}
+.pk-list{overflow-y:auto;overscroll-behavior:contain;max-height:min(340px,60vh);outline:none;flex:1 1 auto;min-height:0}
+.pk-o{padding:8px 12px;border-radius:6px;cursor:pointer;white-space:normal}
+.pk-o.pk-ind{padding-left:22px}
+.pk-o.on{background:rgba(255,255,255,.09)}
+.pk-o[aria-selected="true"]{color:var(--accent);font-weight:600}
+.pk-o[aria-disabled="true"]{opacity:.45;cursor:default}
+.pk-g{padding:9px 12px 4px;font:600 10.5px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#8a94a2}
+.pk-list:focus-visible .pk-o.on{outline:1px solid var(--accent);outline-offset:-1px}
+.pk-cal{padding:10px}
+.pk-ch{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.pk-ct{flex:1;text-align:center;font-weight:600}
+.pk-nav{width:32px;height:32px;border:0;border-radius:8px;background:transparent;color:inherit;font:500 20px/1 var(--f-ui);cursor:pointer}
+.pk-row{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.pk-dow{padding:4px 0;text-align:center;font:600 10.5px/1.2 var(--f-mono);color:#8a94a2}
+.pk-d{width:100%;height:34px;border:0;border-radius:8px;background:transparent;color:inherit;font:500 13px/1 var(--f-ui);cursor:pointer}
+.pk-d.out{color:#8a94a2}
+.pk-d.now{box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.pk-d[aria-pressed="true"]{background:var(--accent);color:#05070a;font-weight:700}
+.pk-d:disabled{opacity:.3;cursor:default}
+.pk-d:focus-visible,.pk-nav:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+@media (hover:hover) and (pointer:fine){html.pk .pk-btn:hover{background:rgba(255,255,255,.07);color:var(--ink)}.pk-nav:hover{background:rgba(255,255,255,.08)}.pk-d:hover:not(:disabled){background:rgba(255,255,255,.09)}}
 .mx-note{margin:14px 0 0;font:400 12px/1.55 var(--f-ui);color:var(--v-muted)}
 .mx-revh{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:36px 0 12px;padding-top:20px;border-top:1px solid var(--v-line)}
 .mx-revh .lab{margin:0}
@@ -2483,7 +2513,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.63</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.64</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -4815,14 +4845,18 @@ function exTick(){
     var E=exLoad();if(!E){clearInterval(ex.timer);return;}cd.innerHTML=exCdHTML(exTarget(E),new Date());
   },1000);
 }
+var PK_ICON={   /* icons for the in-page date/time buttons (static markup, no data) */
+  cal:'<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4.5" width="14" height="12.5" rx="2"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></svg>',
+  time:'<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="7.2"/><path d="M10 6v4.2l2.8 1.8"/></svg>'
+};
 function exFormHTML(E){
   var now=new Date(), def=new Date(now);def.setDate(def.getDate()+42);
   var F=ex.form||{c:ex.pre||(E&&E.c)||"Security+",d:(E&&E.d)||exISO(def),t:(E&&E.t)||"08:00",w:(E&&E.w)||[1,2,3,4,5],h:(E&&E.h)||1.5};
   ex.form=F;
   var opts=exCertList().map(function(g){return '<optgroup label="'+gEsc(g.v)+'">'+g.c.map(function(c){return '<option value="'+gEsc(c)+'"'+(c===F.c?' selected':'')+'>'+gEsc(c)+(GUIDES[c]?' (guide)':'')+'</option>';}).join("")+'</optgroup>';}).join("");
   return '<div class="ex-form"><label class="ex-f"><span class="lab">Exam</span><span class="g-sel"><select id="ex-c">'+opts+'</select></span></label>'+
-    '<div class="ex-row"><label class="ex-f"><span class="lab">Test date</span><input type="date" id="ex-d" value="'+gEsc(F.d)+'" min="'+exISO(now)+'"></label>'+
-    '<label class="ex-f"><span class="lab">Start time</span><input type="time" id="ex-t" value="'+gEsc(F.t)+'"></label></div>'+
+    '<div class="ex-row"><label class="ex-f"><span class="lab">Test date</span><span class="pk-in"><input type="date" id="ex-d" value="'+gEsc(F.d)+'" min="'+exISO(now)+'"><button type="button" class="pk-btn" data-pk="ex-d" aria-label="Pick a test date">'+PK_ICON.cal+'</button></span></label>'+
+    '<label class="ex-f"><span class="lab">Start time</span><span class="pk-in"><input type="time" id="ex-t" value="'+gEsc(F.t)+'"><button type="button" class="pk-btn" data-pk="ex-t" aria-label="Pick a start time">'+PK_ICON.time+'</button></span></label></div>'+
     '<div class="ex-f"><span class="lab">Study days</span><div class="ex-wd" role="group" aria-label="Study days">'+EX_WD1.map(function(l,i){return '<button type="button" data-wd="'+i+'" aria-pressed="'+(F.w.indexOf(i)>=0)+'" aria-label="'+EX_WD[i]+'">'+l+'</button>';}).join("")+'</div></div>'+
     '<div class="ex-f"><span class="lab">Hours per study day</span><div class="seg ex-hseg" role="group" aria-label="Hours per study day">'+EX_HPD.map(function(n){return '<button type="button" data-hd="'+n+'" aria-pressed="'+(n===F.h)+'">'+n+' h</button>';}).join("")+'<span class="seg-ind" aria-hidden="true"></span></div></div>'+
     '<p class="ex-prev" id="ex-prev"></p>'+
@@ -15004,6 +15038,9 @@ function mxVerdict(rec,kind){
   if(p>=.75) return "Close. Get every domain above 70% and the total to 85% before you book.";
   return "Keep going. Use the weak-spot drill on the domains in red, then take another full exam.";
 }
+function mxPassFail(G){   /* true when the guide's "Passing" fact says the exam is pass/fail (SecurityX) */
+  return (G.facts||[]).some(function(f){return f[0]==="Passing"&&/pass\/fail/i.test(String(f[1]));});
+}
 function mxResults(){
   var G=mxG(), R=mxRes, rec=R.rec, run=R.run, body=mxEl("mx-body"), pct=rec.s/rec.n, d=mxEl("mx");
   d.classList.add("done");d.classList.remove("rev");
@@ -15013,7 +15050,7 @@ function mxResults(){
   var h='<div class="mx-res"><div class="g-qend"><div class="g-qscore" style="--p:'+pct+'"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle class="v" cx="60" cy="60" r="52"/></svg><b>'+Math.round(pct*100)+'<small>%</small></b></div>'+
     '<div class="g-qsum"><p class="lab">'+(R.auto?'Time\'s up &middot; ':'')+gEsc(MX_KINDS[run.kind])+' &middot; '+(Math.round(rec.s*10)/10)+' of '+rec.n+' &middot; '+mxFmt(rec.u)+' used</p><p class="g-qmsg">'+gEsc(mxVerdict(rec,run.kind))+'</p>'+
     '<ul class="g-qdom">'+keys.map(function(k){var x=rec.by[k], a=x[0]/x[1], L=wsLabel(G,k,run.ver);return '<li class="'+(a>=.7?'ok':'no')+'"><span>'+gEsc(L.num+" "+L.name)+'</span><i><b style="width:'+(a*100)+'%"></b></i><em>'+Math.round(a*100)+'%</em></li>';}).join("")+'</ul>'+
-    (run.kind==="full"||run.kind==="half"?'<p class="mx-note">CompTIA doesn\'t publish how raw scores turn into its 100&ndash;900 scale, so this shows a percent. Aim for 85% or better on two different runs.</p>':'')+
+    (run.kind==="full"||run.kind==="half"?'<p class="mx-note">'+(mxPassFail(G)?'The real exam is pass/fail with no score, and CompTIA doesn\'t publish the cut line':'CompTIA doesn\'t publish how raw scores turn into its 100&ndash;900 scale')+', so this shows a percent. Aim for 85% or better on two different runs.</p>':'')+
     '</div></div>'+
     '<div class="mx-sub">'+(missed.length?'<button type="button" class="g-btn" data-mxa="missed"><span class="g-btn-l">Retry the '+missed.length+' I missed &rarr;</span></button>':'')+
     '<button type="button" class="g-btn ghost" data-mxa="close"><span class="g-btn-l">Done</span></button></div>'+
@@ -17048,6 +17085,205 @@ window.addEventListener("pointerdown",function(e){
 },{passive:true});
 window.addEventListener("resize",function(){specs.forEach(function(q){q.r=null;});specWake();});
 specScan(document);
+
+/* ---------- in-page dropdowns (v2.64). On some locked-down work PCs the browser never shows its own
+   pop-up lists (<select>, date and time pickers), so on mouse/trackpad devices we draw our own inside the
+   page instead. The real <select>/<input> stays in place and keeps the value; phones keep their native pickers. ---------- */
+var PK=(function(){
+  var fine=window.matchMedia?matchMedia("(hover:hover) and (pointer:fine)"):null;
+  var canPop=typeof HTMLElement!=="undefined"&&Object.prototype.hasOwnProperty.call(HTMLElement.prototype,"popover");
+  var root=document.documentElement, box=null, cur=null, uid=0;
+  function on(){return !!(canPop&&fine&&fine.matches);}
+  function sync(){root.classList.toggle("pk",on());}
+  sync();if(fine&&fine.addEventListener) fine.addEventListener("change",function(){close(false);sync();});
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls) e.className=cls;if(txt!=null) e.textContent=txt;return e;}
+  function make(){
+    box=el("div","pk-box");box.id="pk";box.setAttribute("popover","manual");
+    box.addEventListener("mousedown",function(e){if(!e.target.closest("button")) e.preventDefault();});
+    box.addEventListener("keydown",onKey);
+  }
+  function place(){
+    if(!cur) return;
+    var r=cur.src.getBoundingClientRect(), vw=window.innerWidth, vh=window.innerHeight;
+    if(r.bottom<0||r.top>vh){close(false);return;}
+    box.style.minWidth=Math.round(Math.max(r.width,cur.kind==="cal"?272:0))+"px";
+    box.style.maxHeight="";
+    var bw=box.offsetWidth, bh=box.offsetHeight, below=vh-r.bottom-8, above=r.top-8;
+    var up=bh>below&&above>below, room=Math.max(120,(up?above:below)-6);
+    if(bh>room){box.style.maxHeight=Math.round(room)+"px";bh=room;}
+    box.style.left=Math.round(Math.max(8,Math.min(r.left,vw-bw-8)))+"px";
+    box.style.top=Math.round(up?r.top-bh-4:r.bottom+4)+"px";
+  }
+  function open(src,kind){
+    if(!on()) return false;
+    if(cur&&cur.src===src){close(true);return true;}
+    close(false);
+    if(!box) make();
+    var host=src.closest("dialog[open]")||document.body;
+    if(box.parentNode!==host) host.appendChild(box);
+    box.textContent="";box.className="pk-box pk-"+kind;
+    cur={src:src,kind:kind,act:-1,opts:[],typed:"",tt:0};
+    if(kind==="cal") buildCal(); else buildList();
+    try{box.showPopover();}catch(e){cur=null;return false;}
+    place();
+    if(kind==="cal") focusDay(); else {setAct(cur.act<0?0:cur.act,true);cur.list.focus({preventScroll:true});}
+    return true;
+  }
+  function close(refocus){
+    if(!cur) return;
+    var src=cur.src;cur=null;
+    try{box.hidePopover();}catch(e){}
+    box.textContent="";
+    if(refocus&&src.isConnected) src.focus({preventScroll:true});
+  }
+  /* ----- list: a <select>, or the time field (15-minute steps) ----- */
+  function lab(src){var l=src.getAttribute("aria-label");if(l) return l;var w=src.closest("label");var s=w&&w.querySelector(".lab");return s?s.textContent:"Choose";}
+  function buildList(){
+    var src=cur.src, list=el("div","pk-list");list.id="pk-l"+(++uid);list.setAttribute("role","listbox");list.tabIndex=-1;list.setAttribute("aria-label",lab(src));
+    function add(text,val,dis,selected,grp){
+      var o=el("div","pk-o"+(grp?" pk-ind":""),text);o.id=list.id+"-"+cur.opts.length;o.setAttribute("role","option");
+      o.setAttribute("aria-selected",String(!!selected));if(dis) o.setAttribute("aria-disabled","true");
+      o.dataset.i=cur.opts.length;if(selected) cur.act=cur.opts.length;
+      cur.opts.push({el:o,v:val,dis:!!dis,t:text.toLowerCase()});list.appendChild(o);
+    }
+    if(src.tagName==="SELECT"){
+      [].forEach.call(src.children,function(c){
+        if(c.tagName==="OPTGROUP"){var g=el("div","pk-g",c.label);g.setAttribute("role","presentation");list.appendChild(g);
+          [].forEach.call(c.children,function(o){add(o.textContent,o.value,o.disabled||c.disabled,o.selected,true);});}
+        else if(c.tagName==="OPTION") add(c.textContent,c.value,c.disabled,c.selected,false);
+      });
+    }else{
+      var v=src.value||"", best=-1, bd=1e9, tv=v?(+v.slice(0,2))*60+(+v.slice(3,5)):480;
+      for(var m=0;m<1440;m+=15){
+        var hh=Math.floor(m/60), mm=m%60, val=(hh<10?"0":"")+hh+":"+(mm<10?"0":"")+mm;
+        var t=((hh+11)%12+1)+":"+(mm<10?"0":"")+mm+(hh<12?" AM":" PM");
+        if(Math.abs(m-tv)<bd){bd=Math.abs(m-tv);best=cur.opts.length;}
+        add(t,val,false,val===v,false);
+      }
+      if(cur.act<0) cur.act=best;
+    }
+    list.addEventListener("click",function(e){var o=e.target.closest(".pk-o");if(o&&!cur.opts[+o.dataset.i].dis) pick(+o.dataset.i);});
+    list.addEventListener("mousemove",function(e){var o=e.target.closest(".pk-o");if(o&&+o.dataset.i!==cur.act&&!cur.opts[+o.dataset.i].dis) setAct(+o.dataset.i,false);});
+    cur.list=list;box.appendChild(list);
+  }
+  function setAct(i,scroll){
+    if(!cur||!cur.opts.length) return;
+    i=Math.max(0,Math.min(cur.opts.length-1,i));
+    if(cur.opts[cur.act]) cur.opts[cur.act].el.classList.remove("on");
+    cur.act=i;var o=cur.opts[i].el;o.classList.add("on");cur.list.setAttribute("aria-activedescendant",o.id);
+    if(scroll){var L=cur.list, top=o.offsetTop, bot=top+o.offsetHeight;
+      if(scroll===true) L.scrollTop=top-(L.clientHeight-o.offsetHeight)/2;
+      else if(top<L.scrollTop) L.scrollTop=top;else if(bot>L.scrollTop+L.clientHeight) L.scrollTop=bot-L.clientHeight;}
+  }
+  function step(d){var i=cur.act, n=cur.opts.length;do{i+=d;}while(i>=0&&i<n&&cur.opts[i].dis);if(i>=0&&i<n) setAct(i,"near");}
+  function setVal(src,v){
+    if(src.value===v) return;
+    src.value=v;
+    src.dispatchEvent(new Event("input",{bubbles:true}));src.dispatchEvent(new Event("change",{bubbles:true}));
+  }
+  function pick(i){var c=cur, o=c.opts[i];close(true);if(o&&!o.dis) setVal(c.src,o.v);}
+  /* ----- calendar for date fields ----- */
+  var MON=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var DOW=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  function iso(d){var m=d.getMonth()+1, x=d.getDate();return d.getFullYear()+"-"+(m<10?"0":"")+m+"-"+(x<10?"0":"")+x;}
+  function parse(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");return m?new Date(+m[1],+m[2]-1,+m[3]):null;}
+  function buildCal(){
+    var src=cur.src, sel=parse(src.value), min=parse(src.min), max=parse(src.max), today=new Date();today.setHours(0,0,0,0);
+    cur.min=min;cur.max=max;cur.sel=sel;cur.focus=sel||(min&&min>today?min:today);
+    box.setAttribute("role","dialog");box.setAttribute("aria-label","Choose a date");
+    var head=el("div","pk-ch"), prev=el("button","pk-nav"), next=el("button","pk-nav"), title=el("div","pk-ct");
+    prev.type=next.type="button";prev.setAttribute("aria-label","Previous month");next.setAttribute("aria-label","Next month");
+    prev.textContent="‹";next.textContent="›";title.setAttribute("aria-live","polite");
+    prev.addEventListener("click",function(){moveMonth(-1);});next.addEventListener("click",function(){moveMonth(1);});
+    head.appendChild(prev);head.appendChild(title);head.appendChild(next);
+    var grid=el("div","pk-grid");grid.setAttribute("role","grid");
+    grid.addEventListener("click",function(e){var b=e.target.closest("[data-d]");if(b&&!b.disabled){var c=cur;close(true);setVal(c.src,b.dataset.d);}});
+    cur.title=title;cur.grid=grid;box.appendChild(head);box.appendChild(grid);
+    drawCal();
+  }
+  function okDay(d){return !(cur.min&&d<cur.min)&&!(cur.max&&d>cur.max);}
+  function drawCal(){
+    var f=cur.focus, y=f.getFullYear(), m=f.getMonth(), first=new Date(y,m,1), start=new Date(y,m,1-first.getDay());
+    cur.title.textContent=MON[m]+" "+y;cur.grid.textContent="";
+    var hr=el("div","pk-row");hr.setAttribute("role","row");
+    DOW.forEach(function(n){var c=el("div","pk-dow",n.slice(0,2));c.setAttribute("role","columnheader");c.setAttribute("aria-label",n);hr.appendChild(c);});
+    cur.grid.appendChild(hr);
+    var today=iso(new Date()), selS=cur.sel?iso(cur.sel):"", focS=iso(f);
+    for(var w=0;w<6;w++){
+      var row=el("div","pk-row");row.setAttribute("role","row");
+      for(var k=0;k<7;k++){
+        var d=new Date(start.getFullYear(),start.getMonth(),start.getDate()+w*7+k), s=iso(d), cell=el("div");cell.setAttribute("role","gridcell");
+        var b=el("button","pk-d"+(d.getMonth()!==m?" out":"")+(s===today?" now":""),String(d.getDate()));
+        b.type="button";b.dataset.d=s;b.tabIndex=s===focS?0:-1;b.disabled=!okDay(d);
+        b.setAttribute("aria-label",DOW[d.getDay()]+", "+MON[d.getMonth()]+" "+d.getDate()+", "+d.getFullYear());
+        if(s===selS) b.setAttribute("aria-pressed","true");
+        cell.appendChild(b);row.appendChild(cell);
+      }
+      cur.grid.appendChild(row);
+    }
+  }
+  function focusDay(){var b=cur&&cur.grid.querySelector('[data-d="'+iso(cur.focus)+'"]');if(b) b.focus({preventScroll:true});}
+  function moveDays(n){var f=cur.focus, d=new Date(f.getFullYear(),f.getMonth(),f.getDate()+n);if(!okDay(d)) return;var redraw=d.getMonth()!==f.getMonth();cur.focus=d;if(redraw) drawCal();else cur.grid.querySelectorAll(".pk-d").forEach(function(b){b.tabIndex=b.dataset.d===iso(d)?0:-1;});focusDay();}
+  function moveMonth(n){
+    var f=cur.focus, d=new Date(f.getFullYear(),f.getMonth()+n,1), last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
+    d.setDate(Math.min(f.getDate(),last));
+    if(cur.min&&d<cur.min) d=new Date(cur.min);if(cur.max&&d>cur.max) d=new Date(cur.max);
+    cur.focus=d;drawCal();place();focusDay();
+  }
+  /* ----- keys inside the pop-up ----- */
+  function onKey(e){
+    if(!cur) return;
+    var k=e.key;
+    if(k==="Escape"){e.preventDefault();e.stopPropagation();close(true);return;}
+    if(k==="Tab"){close(true);return;}
+    e.stopPropagation();
+    if(cur.kind==="cal"){
+      if(e.target.closest(".pk-nav")&&(k==="Enter"||k===" ")) return;
+      var mv={ArrowLeft:-1,ArrowRight:1,ArrowUp:-7,ArrowDown:7}[k];
+      if(mv){e.preventDefault();moveDays(mv);}
+      else if(k==="PageUp"||k==="PageDown"){e.preventDefault();moveMonth(k==="PageUp"?-1:1);}
+      else if(k==="Home"||k==="End"){e.preventDefault();moveDays(k==="Home"?-cur.focus.getDay():6-cur.focus.getDay());}
+      else if(k==="Enter"||k===" "){var b=e.target.closest("[data-d]");if(b&&!b.disabled){e.preventDefault();var c=cur;close(true);setVal(c.src,b.dataset.d);}}
+      return;
+    }
+    if(k==="ArrowDown"){e.preventDefault();if(e.altKey){pick(cur.act);return;}step(1);}
+    else if(k==="ArrowUp"){e.preventDefault();if(e.altKey){pick(cur.act);return;}step(-1);}
+    else if(k==="Home"){e.preventDefault();cur.act=-1;step(1);}
+    else if(k==="End"){e.preventDefault();cur.act=cur.opts.length;step(-1);}
+    else if(k==="PageDown"||k==="PageUp"){e.preventDefault();var n=Math.max(1,Math.floor(cur.list.clientHeight/34));setAct(cur.act+(k==="PageDown"?n:-n),"near");}
+    else if(k==="Enter"||k===" "&&!cur.typed){e.preventDefault();pick(cur.act);}
+    else if(k.length===1&&!e.ctrlKey&&!e.metaKey){
+      e.preventDefault();clearTimeout(cur.tt);cur.typed+=k.toLowerCase();var c=cur;cur.tt=setTimeout(function(){c.typed="";},700);
+      var n2=cur.opts.length, s0=cur.typed.length===1?cur.act+1:cur.act;
+      for(var j=0;j<n2;j++){var o=cur.opts[(s0+j)%n2];if(!o.dis&&o.t.indexOf(cur.typed)===0){setAct((s0+j)%n2,"near");break;}}
+    }
+  }
+  /* ----- open from the page ----- */
+  function isList(t){return t&&t.tagName==="SELECT"&&!t.multiple&&!(t.size>1)&&!t.disabled;}
+  document.addEventListener("mousedown",function(e){
+    if(!on()||e.button!==0) return;
+    var t=e.target;
+    if(isList(t)){e.preventDefault();if(!(cur&&cur.src===t)) t.focus({preventScroll:true});open(t,"list");return;}
+    var pb=t.closest&&t.closest("[data-pk]");
+    if(pb){e.preventDefault();var inp=document.getElementById(pb.dataset.pk);if(inp) open(inp,inp.type==="date"?"cal":"list");}
+  },true);
+  document.addEventListener("pointerdown",function(e){
+    if(!cur) return;var t=e.target;
+    if(box.contains(t)||t===cur.src||(t.closest&&t.closest('[data-pk="'+cur.src.id+'"]'))) return;
+    close(false);
+  },true);
+  document.addEventListener("keydown",function(e){
+    if(!on()) return;
+    var t=e.target, k=e.key;
+    if(cur&&k==="Escape"&&!box.contains(t)){e.preventDefault();e.stopPropagation();close(true);return;}
+    var drop=k==="F4"||(e.altKey&&(k==="ArrowDown"||k==="ArrowUp"));
+    if(isList(t)&&(drop||((k==="Enter"||k===" ")&&!e.altKey&&!e.ctrlKey&&!e.metaKey))){e.preventDefault();e.stopPropagation();open(t,"list");return;}
+    if(t&&t.tagName==="INPUT"&&(t.type==="date"||t.type==="time")&&drop){e.preventDefault();e.stopPropagation();open(t,t.type==="date"?"cal":"list");}
+  },true);
+  window.addEventListener("resize",function(){close(false);});
+  document.addEventListener("scroll",function(e){if(cur&&!(e.target.nodeType===1&&box.contains(e.target))) place();},{passive:true,capture:true});
+  return {open:open,close:close,on:on};
+})();
 
 /* ---------- boot ---------- */
 setPalette(0);
