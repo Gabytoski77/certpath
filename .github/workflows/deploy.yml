@@ -31,7 +31,7 @@ jobs:
       id-token: write          # prove to Pages that this run is from this repo
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment-retry.outputs.page_url }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -43,5 +43,14 @@ jobs:
         with:
           path: _site
           include-hidden-files: true   # keep /.well-known/security.txt
+      # Nov 19, 2026: deploy-pages once looked for the artifact 0.4 s after upload, found 0 and failed
+      # ("Fetching artifact metadata failed"), so v2.66 didn't publish. If that happens, wait and try once more.
       - id: deployment
+        continue-on-error: true
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+      - name: Wait before retrying the publish
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+      - id: deployment-retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
