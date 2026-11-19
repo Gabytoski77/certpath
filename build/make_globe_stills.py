@@ -4,7 +4,7 @@ Light mode shows a picture of the real 3D globe instead of drawing one. This scr
 the full 3D version, turns the globe to face each vendor (arrow keys, so the mouse never tilts it), hides
 everything but the globe canvas and saves:
 
-  img/globe/<vendor-id>-1000.webp, -1600.webp   one picture per vendor in two sizes, globe centred, see-through
+  img/globe/<vendor-id>-1000.webp, -1300.webp, -1600.webp   one picture per vendor in three sizes, globe centred, see-through
                                                 around it (the page shows the smaller one unless the screen needs more)
   img/globe/views.json   for each picture: where the globe sits and how big it is compared with the home screen's
                          layout globe (c), and where each badge tap target is, in globe radii (labels)
@@ -29,7 +29,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "img", "globe")
 PORT = 8791
 SIZE = 1800          # master size in pixels (square); the saved pictures are scaled down from it
-SIZES = (1000, 1600) # saved picture sizes
+SIZES = (1000, 1300, 1600) # saved picture sizes (1300 since v2.66: work laptops at 125–150% scaling need ~1100–1300 px)
 SPAN = 1.5           # the picture covers 1.5 globe radii each side of the centre
 FADE = (1.30, 1.48)  # stars and glow fade out between these radii, so the square edge never shows
 QUALITY = 70         # WebP quality: about 75 KB per 1000 px picture

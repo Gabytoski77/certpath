@@ -2156,12 +2156,15 @@ html.lite .pt-f{animation:none;opacity:0}
 html.lite .g-rv{opacity:1;transform:none}
 html.lite .g-reel{transition:none}
 html.lite .pa-v{transition:none!important}
+/* v2.66: in Light the Explore sheet changes in one step. The .2s fades that Light keeps elsewhere made a tab switch
+   light up two tabs at once and the panel open empty, then fill in (the "glitch" seen on work PCs) */
+html.lite #sheet,html.lite #sheet *,html.lite #sheet *::before,html.lite #sheet *::after,html.lite #veil{transition:none!important}
 html.lite #splash,html.lite #pk-back,html.lite #pk-front{display:none}
 html.lite .sr-card{background:linear-gradient(180deg,#232a35 0%,#171c24 100%)}
 html.lite .sr-bg{background:rgba(6,8,12,.72)}
 html.lite .gshadow{filter:none}
 #gpic{pointer-events:none;z-index:0;right:auto;bottom:auto}
-#gpic img{display:block;width:100%;height:100%;user-select:none;-webkit-user-drag:none}
+#gpic img{position:absolute;left:0;top:0;display:block;width:100%;height:100%;user-select:none;-webkit-user-drag:none}
 html.lite #app *,html.lite #app *::before,html.lite #app *::after{transition:none!important;animation:none!important}
 
 /* ---------- Settings view (v2.26) ---------- */
@@ -2486,7 +2489,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.65</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.66</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -3875,9 +3878,11 @@ function stillPic(i){
   var ready=pre.decode?pre.decode():new Promise(function(res,rej){pre.onload=res;pre.onerror=rej;});
   /* v2.65: put the already-decoded picture on screen instead of re-pointing the old <img> (which made slow PCs
      decode it a second time and flash a half-drawn globe) */
-  ready.then(function(){if(tok!==still.tok||still.mode!=="pic") return;pre.alt="";pre.draggable=false;
-    if(still.img&&still.img.parentNode===still.pic) still.pic.replaceChild(pre,still.img);else still.pic.appendChild(pre);
-    still.img=pre;still.shown=i;stillPlace();},
+  /* v2.66: the new picture goes on top and the old one stays under it until the new one has been painted, so the
+     globe never blinks out on slow work PCs (decoding="sync" makes the browser paint it only once it's decoded) */
+  ready.then(function(){if(tok!==still.tok||still.mode!=="pic") return;pre.alt="";pre.draggable=false;pre.decoding="sync";
+    var old=still.img;still.pic.appendChild(pre);still.img=pre;still.shown=i;stillPlace();
+    if(old&&old!==pre) requestAnimationFrame(function(){requestAnimationFrame(function(){if(old.parentNode) old.parentNode.removeChild(old);});});},
     function(){if(tok===still.tok) stillDrawn();});
 }
 /* put the picture and the badge tap targets where the layout's globe is */
@@ -4208,8 +4213,17 @@ function frame(now){
   if(flex&&(state==="open"||state==="diving")) flex.step(dt);
   if(lenis) lenis.raf(now);
   specStep(dt);
+  /* v2.66: with the still globe (Light/Lite) the home screen has nothing to animate once the word is calm, so the
+     loop goes to sleep instead of waking 60 times a second; any input, resize or tab switch wakes it (frameWake) */
+  if(!has3D&&reduced&&state==="idle"&&!tweens.length&&!dragging&&!ttDrag&&!(tt&&tt.busy&&tt.busy())){
+    if(++frameCalm>45){frameAsleep=true;return;}
+  }else frameCalm=0;
   requestAnimationFrame(frame);
 }
+var frameCalm=0, frameAsleep=false;
+function frameWake(){frameCalm=0;if(frameAsleep){frameAsleep=false;frame.last=performance.now();requestAnimationFrame(frame);}}
+["pointermove","pointerdown","wheel","keydown","touchstart","focusin"].forEach(function(t){window.addEventListener(t,frameWake,{passive:true,capture:true});});
+window.addEventListener("resize",frameWake);document.addEventListener("visibilitychange",frameWake);
 
 /* ---------- input ---------- */
 function onDown(e){
@@ -5333,6 +5347,7 @@ function animSheet(to,dur){
   if(reduced&&sheet.animate&&Math.abs(to-from)>=.001){
     setSheet(to);
     if(to===0){resetSheet();return Promise.resolve();}
+    if(document.documentElement.classList.contains("lite")) return Promise.resolve();   /* Light: open in one step; the fade over the whole panel stuttered on work PCs (v2.66) */
     return done(shScroll.animate([{opacity:0},{opacity:1}],{duration:180,easing:"ease-out"}));
   }
   if(reduced||!sheet.animate||Math.abs(to-from)<.001){
@@ -16550,6 +16565,7 @@ function makeTechText(cv,cvF){
     step:step,
     resize:function(w,h,center,area){W=w;H=h;cy=center;box=area||null;try{var hb=document.querySelector("header.top");hdrB=hb?hb.getBoundingClientRect().bottom-cv.getBoundingClientRect().top:0;}catch(e){hdrB=0;}dpr=Math.min(window.devicePixelRatio||1,2);cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);if(cvF){cvF.width=cv.width;cvF.height=cv.height;}dirty=true;},
     fontReady:function(){fontsOK=true;dirty=true;},
+    busy:function(){return !!word&&(dirty||calmAt===null);},   /* false once the word is drawn and nothing on it moves (v2.66) */
     snap:function(){if(dirty) layout();return word?{word:word,glyphs:glyphs.map(function(g){return g.fill;}),dpr:dpr,rect:cv.getBoundingClientRect()}:null;},
     skipIntro:function(){introT=S.introDur+1;sweepHold=1e9;},
     holdSweep:function(sec){sweepHold=sec;},
