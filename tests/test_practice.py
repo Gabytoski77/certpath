@@ -317,6 +317,29 @@ def test_project_plus_v5_full_exam(site):
         assert dom in body, f"{dom} missing from the results"
 
 
+def test_secai_plus_v1_full_exam(site):
+    """v2.67: SecAI+ CY0-001 gets a 60-question, 60-minute bank with PBQs and all four domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "secai+")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v1"]').count() == 1, mxp[:500]
+    assert "later update" not in mxp, mxp[:600]
+    p.locator('#mxp [data-mx="full"][data-ver="v1"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 60")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("59:", "1:00:", "60:")), t
+    assert "CY0-001" in p.inner_text("#mx")
+    _answer_all(p)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Basic AI Concepts", "Securing AI Systems", "AI-assisted Security", "AI Governance, Risk, and Compliance"):
+        assert dom in body, f"{dom} missing from the results"
+
+
 def _scroll_into_view(p, sel):
     p.evaluate("(s) => document.querySelector(s).scrollIntoView({block: 'center'})", sel)
     p.wait_for_timeout(400)
