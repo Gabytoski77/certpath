@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-YYLcOBCt16SmzJuHmVToWFWiyeGSlorSn5MCSy3XV0c=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-MxYYM0OuJZE8FVNV1eHNhvyLPon+SWEEL0oGLel/MLg=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -2525,7 +2525,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.67</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.68</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -12286,12 +12286,13 @@ GUIDES["Linux+"]={
 GUIDES["Server+"]={
   id:"serverplus",
   lead:"CompTIA's server admin cert. It proves you can rack, set up, secure, back up and fix servers on Windows, Linux and virtual hosts, on premises or in a hybrid cloud. It's the natural step after A+ for anyone who runs a server room, a data closet or a cutter's servers.",
-  checked:"Nov 14, 2026",
+  checked:"Nov 19, 2026",
   planHours:75,
   laneOnly:["20 year career"],
+  mock:{v5:"qbank/sk0-005.json"},
   versions:{
     v5:{code:"SK0-005",label:"V5",status:"Launched May 18, 2021 · passing 750",
-      note:"The only version you can take now. CompTIA hasn't announced a retirement date. A V6 (SK0-006) is in development with draft objectives, but there's no launch date yet, so study V5 unless CompTIA announces V6 before your test date. CompTIA recommends A+ level knowledge and about two years of hands-on server work.",
+      note:"The only version you can take now. CompTIA hasn't announced a retirement date. A V6 (SK0-006) is in beta from Nov 12, 2026 to Feb 4, 2027, and CompTIA says the new exam launches in Summer 2027. Study V5 for any test date before then. CompTIA recommends A+ level knowledge and about two years of hands-on server work.",
       numbered:true,onote:"Official objective titles from CompTIA's SK0-005 objectives PDF. The line under each is a plain-language summary of its bullet list, not the full list.",
       domains:[
         {n:"1.0",name:"Server Hardware Installation and Management",w:18,obj:[
@@ -12324,7 +12325,7 @@ GUIDES["Server+"]={
           ["Given a scenario, troubleshoot network connectivity issues","No IP, APIPA addresses, wrong gateway or mask, DNS failures, VLAN mistakes, bad cables and IP conflicts."],
           ["Given a scenario, troubleshoot security problems","Permission and access issues, failed logins, open ports, malware, rogue processes and services, and certificate problems."]]}
       ]},
-    v6:{code:"SK0-006",label:"V6 (draft)",status:"In development · launch date not announced",
+    v6:{code:"SK0-006",label:"V6 (draft)",status:"Beta Nov 12, 2026 – Feb 4, 2027 · launch Summer 2027",
       note:"CompTIA has published draft objectives (version 1.1) for the next Server+. Question count, time and weights are still TBD, and the draft can change before launch. It adds edge and hyperconverged infrastructure, infrastructure as code, containers, AI in server management, zero trust and SBOMs. Use this tab to see what's coming; study V5 to test now.",
       numbered:true,onote:"Follows CompTIA's SK0-006 draft objectives (document version 1.1); some titles are shortened. CompTIA hasn't published V6 domain weights, so the bars show an even split.",
       domains:[
@@ -12540,6 +12541,7 @@ GUIDES["Server+"]={
   sources:[
     ["CompTIA Server+ (V5): exam details (SK0-005, launched May 18, 2021, 90 questions, 90 minutes, 750, domain weights)","https://www.comptia.org/en/certifications/server/"],
     ["CompTIA: Server+ SK0-005 exam objectives PDF","https://lecbyo.files.cmp.optimizely.com/download/1eba6d54bef111ef9480da43816a42bf"],
+    ["CompTIA: Help shape the next Server+ (beta dates and Summer 2027 launch)","https://www.comptia.org/en/blog/help-shape-the-next-comptia-server-certification/"],
     ["CompTIA: Server+ SK0-006 V6 draft objectives (document version 1.1)","https://lecbyo.files.cmp.optimizely.com/download/2e207850427211f1abc19eb7e6cccd2a"],
     ["CompTIA: Continuing education overview (Server+ ce, 3 years)","https://www.comptia.org/en-us/resources/ce/learn/overview/"],
     ["Training Camp: What is Server+ (30 CEUs, $150 CE fee, existing holders' Oct 1, 2027 deadline)","https://trainingcamp.com/what-is-server-plus/"],
