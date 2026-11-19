@@ -1,3 +1,4 @@
+import pytest
 """Practice exams: quick timed set start to finish, the full V7 exam setup, and saved results."""
 from conftest import open_guide
 
@@ -218,3 +219,75 @@ def test_pentest_plus_v3_full_exam(site):
     for dom in ("Engagement Management", "Reconnaissance and Enumeration", "Vulnerability Discovery and Analysis",
                 "Attacks and Exploits", "Post-exploitation and Lateral Movement"):
         assert dom in body, f"{dom} missing from the results"
+
+
+def _scroll_into_view(p, sel):
+    p.evaluate("(s) => document.querySelector(s).scrollIntoView({block: 'center'})", sel)
+    p.wait_for_timeout(400)
+
+
+def _qz_top(p):
+    return p.evaluate("() => document.getElementById('g-qz').getBoundingClientRect().top")
+
+
+@pytest.mark.parametrize("device,lite", [("desktop", False), ("iphone13", False), ("small320", False),
+                                         ("reduced", False), ("desktop", True), ("iphone13", True)])
+def test_untimed_check_next_question_stays_on_the_quiz(site, device, lite):
+    """v2.59: "Next question" in the untimed check used to jump to the top of the Practice section (the practice exam
+    cards, weak spots and recent runs sit above the check since v2.48), so you had to scroll back down. It must keep
+    the check in view: the new question starts just under the section bar."""
+    w = site(device=device, lite=lite)
+    p = w.page
+    open_guide(p, "security+")
+    _scroll_into_view(p, "#g-qz")
+    p.locator("#g-qz .g-qo").first.click()
+    p.click("#g-qgo")                      # Check answer
+    p.wait_for_selector("#g-qx.open")
+    _scroll_into_view(p, "#g-qgo")         # read the explanation, then reach for Next
+    p.click("#g-qgo")                      # Next question
+    p.wait_for_timeout(1600)               # smooth scroll settles
+    assert "02" in p.inner_text("#g-qz .g-qtop"), p.inner_text("#g-qz .g-qtop")
+    top, vh = _qz_top(p), p.evaluate("() => innerHeight")
+    assert 0 <= top < vh * .4, f"the check's top is at {top:.0f}px of a {vh}px screen"
+    cards = p.evaluate("() => document.getElementById('mxp').getBoundingClientRect().bottom")
+    assert cards <= top + 1, "scrolled back up to the practice exam cards"
+
+
+def test_untimed_check_next_question_doesnt_scroll_when_already_in_view(site):
+    """If the check is already near the top of the screen, Next question leaves the page where it is."""
+    w = site()
+    p = w.page
+    open_guide(p, "security+")
+    p.evaluate("""() => { const b = document.getElementById('g-qz'), pn = b.closest('.panel,#panel') || document.scrollingElement;
+        pn.scrollTop += b.getBoundingClientRect().top - 140; }""")
+    p.wait_for_timeout(400)
+    p.locator("#g-qz .g-qo").first.click()
+    p.click("#g-qgo")
+    p.wait_for_selector("#g-qx.open")
+    p.wait_for_timeout(700)
+    before = _qz_top(p)
+    p.evaluate("() => document.getElementById('g-qgo').click()")   # a real tap on a visible button: no test auto-scroll
+    p.wait_for_timeout(1600)
+    assert abs(_qz_top(p) - before) < 4, (before, _qz_top(p))
+
+
+def test_untimed_check_retake_stays_on_the_quiz(site):
+    """Retake quiz on the results screen also keeps the check in view, not the top of Practice."""
+    w = site(device="iphone13")
+    p = w.page
+    open_guide(p, "security+")
+    for _ in range(40):
+        if p.locator("#g-qagain").count():
+            break
+        _scroll_into_view(p, "#g-qz .g-qo")
+        p.locator("#g-qz .g-qo").first.click()
+        p.click("#g-qgo")
+        p.wait_for_selector("#g-qx.open")
+        p.click("#g-qgo")
+        p.wait_for_timeout(250)
+    assert p.locator("#g-qagain").count() == 1
+    _scroll_into_view(p, "#g-qagain")
+    p.click("#g-qagain")
+    p.wait_for_timeout(1600)
+    top, vh = _qz_top(p), p.evaluate("() => innerHeight")
+    assert 0 <= top < vh * .4, f"the check's top is at {top:.0f}px of a {vh}px screen"
