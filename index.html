@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-kp0uJ5e57NvU4Zr5SRzrpjbJc/zkLN+4k2G5M3Dka0Q=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-vALe4DSGaT4ykV3pmYKCC78nQXojlL2XDdzflD9xANw=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -2483,7 +2483,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.58</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.59</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -14595,6 +14595,14 @@ function gPlan(G,anim1){
 }
 
 /* quiz */
+/* keep the untimed check in view after Next question or Retake: if its top has scrolled above the section bar, bring it
+   back just under the bar; if it's already on screen, leave the page where it is. (v2.59: it used to scroll to the top
+   of the whole Practice section, which has the practice exam cards above the check since v2.48.) */
+function gQuizKeep(){
+  var box=panel.querySelector("#g-qz");if(!box) return;
+  var top=gNavH()+14;   /* same screen-top measure scrollPanelTo uses */
+  if(box.getBoundingClientRect().top<top-1) scrollPanelTo(box,-top);
+}
 function gQuizStart(G,anim1){
   gQ={G:G,order:gShuffle(G.quiz.map(function(q,k){return k;})),i:0,picks:[],sel:-1,checked:false};
   gQ.opts=gQ.order.map(function(k){return gShuffle(G.quiz[k].o.map(function(o,j){return j;}));});
@@ -14619,7 +14627,7 @@ function gQuizRender(anim1){
     if(e.key==="ArrowDown"||e.key==="ArrowRight"){e.preventDefault();bs[(at+1)%bs.length].focus();bs[(at+1)%bs.length].click();}
     if(e.key==="ArrowUp"||e.key==="ArrowLeft"){e.preventDefault();var p=(at-1+bs.length)%bs.length;bs[p].focus();bs[p].click();}
   });
-  box.querySelector("#g-qgo").addEventListener("click",function(){if(!gQ.checked) gQuizCheck();else{gQ.i++;gQ.sel=-1;gQ.checked=false;gQuizRender(true);scrollPanelTo(panel.querySelector("#g-quiz"),-gNavH()-14);}});
+  box.querySelector("#g-qgo").addEventListener("click",function(){if(!gQ.checked) gQuizCheck();else{gQ.i++;gQ.sel=-1;gQ.checked=false;gQuizRender(true);gQuizKeep();}});
   specScan(box);
   if(anim1&&!reduced){
     anim(box.querySelector(".g-qq"),[{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:600,easing:EZ});
@@ -14651,7 +14659,7 @@ function gQuizEnd(){
     '<div class="g-qsum"><p class="lab">Your result</p><p class="g-qmsg">'+msg+'</p><ul class="g-qdom">'+Object.keys(by).sort().map(function(d){var x=by[d];return '<li class="'+(x.c===x.t?'ok':'no')+'"><span>'+gEsc(dlabel(x))+'</span><i><b style="width:'+(x.c/x.t*100)+'%"></b></i><em>'+x.c+'/'+x.t+'</em></li>';}).join("")+'</ul></div></div>'+
     '<details class="g-qrev"><summary>Review all answers</summary><ol>'+gQ.order.map(function(k,i){var q=G.quiz[k],ok=gQ.picks[i]===q.a;return '<li class="'+(ok?'ok':'no')+'"><p>'+gEsc(q.q)+'</p><span>'+(ok?'✓ ':'✕ You picked: '+gEsc(q.o[gQ.picks[i]][0])+' · ')+'Answer: <b>'+gEsc(q.o[q.a][0])+'</b></span></li>';}).join("")+'</ol></details>'+
     '<div class="g-qact"><span class="g-qhint">Retakes shuffle the questions and the answers.</span><button type="button" class="g-btn" id="g-qagain"><span class="g-btn-l">Retake quiz</span></button></div>';
-  box.querySelector("#g-qagain").addEventListener("click",function(){gQuizStart(G,true);scrollPanelTo(panel.querySelector("#g-quiz"),-gNavH()-14);});
+  box.querySelector("#g-qagain").addEventListener("click",function(){gQuizStart(G,true);gQuizKeep();});
   mxGuide(G);
   specScan(box);
   requestAnimationFrame(function(){var s=box.querySelector(".g-qscore");if(s) s.classList.add("go");});
