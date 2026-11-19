@@ -19,6 +19,7 @@ different, **this file wins**.
 | `index.html`, `404.html` | **Generated. Never edit by hand** (the CSP hashes break and CI fails). |
 | `sw.js` | Service worker. `VERSION = "certpath-vN"`. |
 | `qbank/*.json` | Practice exam question banks. |
+| `img/globe/` | Light mode's still globe: one picture per vendor (1000 and 1600 px) + `views.json` (badge tap targets). Made by `build/make_globe_stills.py`; rerun it (about 3 min) after changing how the globe or the vendors look, and commit the results. |
 | `.github/scripts/check_site.py` | Site checks (CSP, no outside loads, 8140 data, share tags, banks, version bump). |
 | `tests/` | Playwright browser tests, axe, Lighthouse, lint configs, Semgrep baseline. |
 | `build/stage_site.py` | Lists which files are public. Only those are deployed. |
