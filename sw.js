@@ -1,6 +1,6 @@
 /* MyNextCert service worker: makes the site installable and usable offline.
    Change VERSION whenever you upload a new index.html so phones pick it up quickly. */
-var VERSION = "certpath-v68";
+var VERSION = "certpath-v69";
 /* everything the app needs lives on this site (no outside servers). The page, map and fonts are cached on install;
    three.js and Lenis are saved the first time they're used (Lite mode never loads them). */
 var SHELL = [ "manifest.webmanifest", "icon-192.png", "icon-512.png",
@@ -18,13 +18,14 @@ self.addEventListener("install", function (e) {
 self.addEventListener("activate", function (e) {
   e.waitUntil(caches.keys().then(function (keys) {
     var old = keys.filter(function (k) { return k !== VERSION; });
-    /* practice exam question banks (qbank/) are saved the first time they're used; carry them into the new cache
-       so an exam still works offline right after an update (v2.48). They refresh in the background when online. */
+    /* practice exam question banks (qbank/) and the still globe pictures (img/globe/) are saved the first time
+       they're used; carry them into the new cache so they still work offline right after an update (v2.48, v2.58).
+       They refresh in the background when online. */
     return caches.open(VERSION).then(function (cur) {
       return Promise.all(old.map(function (k) {
         return caches.open(k).then(function (c) {
           return c.keys().then(function (reqs) {
-            return Promise.all(reqs.filter(function (r) { return /\/qbank\/[a-z0-9-]+\.json$/.test(new URL(r.url).pathname); }).map(function (r) {
+            return Promise.all(reqs.filter(function (r) { return /\/(qbank\/[a-z0-9-]+\.json|img\/globe\/[a-z0-9-]+\.(webp|json))$/.test(new URL(r.url).pathname); }).map(function (r) {
               return cur.match(r).then(function (have) { return have ? null : c.match(r).then(function (res) { return res ? cur.put(r, res) : null; }); });
             }));
           });

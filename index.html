@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-Egh9Q2YXIcyE22gTbGmfwRVECH/yqbvsqo8lLwcGZNc=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-kp0uJ5e57NvU4Zr5SRzrpjbJc/zkLN+4k2G5M3Dka0Q=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -2155,6 +2155,9 @@ html.lite #splash,html.lite #pk-back,html.lite #pk-front{display:none}
 html.lite .sr-card{background:linear-gradient(180deg,#232a35 0%,#171c24 100%)}
 html.lite .sr-bg{background:rgba(6,8,12,.72)}
 html.lite .gshadow{filter:none}
+#gpic{pointer-events:none;z-index:0;right:auto;bottom:auto}
+#gpic img{display:block;width:100%;height:100%;user-select:none;-webkit-user-drag:none}
+html.lite #app *,html.lite #app *::before,html.lite #app *::after{transition:none!important;animation:none!important}
 
 /* ---------- Settings view (v2.26) ---------- */
 .set{padding:24px 0 26px;border-top:1px solid var(--hair)}
@@ -2480,7 +2483,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.57</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.58</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2865,7 +2868,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
         <section class="set rv-s" aria-labelledby="set-lite-h">
           <p class="lab">Display</p>
           <h3 class="set-h" id="set-lite-h">Lite mode</h3>
-          <p class="set-p">Swaps the 3D globe for a still one and turns off particles, blur, smooth scrolling and the launch animation. Good for older phones, work computers, remote desktops and slow connections. Guides, search and your progress work the same.</p>
+          <p class="set-p">Shows a still picture of the globe instead of the 3D one, with no animations, particles, blur or smooth scrolling, so the home screen stays smooth. Made for work computers, older phones, remote desktops and slow connections. Guides, search and your progress work the same.</p>
           <div class="set-seg" id="set-lite" role="radiogroup" aria-labelledby="set-lite-h">
             <button type="button" role="radio" data-lite="auto" aria-checked="false">Auto</button><button type="button" role="radio" data-lite="on" aria-checked="false">On</button><button type="button" role="radio" data-lite="off" aria-checked="false">Off</button>
           </div>
@@ -2874,7 +2877,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
         <section class="set rv-s" aria-labelledby="set-gfx-h">
           <p class="lab">Display</p>
           <h3 class="set-h" id="set-gfx-h">Graphics</h3>
-          <p class="set-p">For the full version. Auto watches how smoothly this device draws the home screen and steps down on slow computers, like work laptops and remote desktops. Balanced keeps the 3D globe but runs it lighter, with regular scrolling and flat cert cards. Light uses the still globe and turns off blur and particles, but keeps the motion.</p>
+          <p class="set-p">For the full version. Auto watches how smoothly this device draws the home screen and steps down on slow computers, like work laptops and remote desktops. Balanced keeps the 3D globe but runs it lighter, with regular scrolling and flat cert cards. Light switches to the same still version as Lite: a picture of the globe and no animations.</p>
           <div class="set-seg" id="set-gfx" role="radiogroup" aria-labelledby="set-gfx-h">
             <button type="button" role="radio" data-gfx="auto" aria-checked="false">Auto</button><button type="button" role="radio" data-gfx="high" aria-checked="false">High</button><button type="button" role="radio" data-gfx="bal" aria-checked="false">Balanced</button><button type="button" role="radio" data-gfx="light" aria-checked="false">Light</button>
           </div>
@@ -3369,8 +3372,9 @@ var GFX=(function(){
 })();
 if(GFX.tier>=1) document.documentElement.classList.add("gfx-bal");
 if(GFX.tier>=2) document.documentElement.classList.add("gfx-light");
-var still={cv:null,ctx:null,R:0,lon:-40,lat:22,rings:null,on:false};   /* the still globe (see stillDraw) */
-if(LITE.on){
+var still={cv:null,ctx:null,R:0,R0:0,lon:-40,lat:22,rings:null,on:false,mode:"",pic:null,img:null,views:null,shown:-1,tok:0};   /* the still globe (see stillInit) */
+/* Lite, and Graphics set to Light, are the same still version (v2.58): a picture of the globe, no animations */
+if(LITE.on||GFX.tier>=2){
   reduced=true;document.documentElement.classList.add("lite");
   (function(){var sp=document.getElementById("splash");if(sp&&sp.parentNode) sp.parentNode.removeChild(sp);})();
 }
@@ -3827,11 +3831,75 @@ function lateWorld(){
 /* ---------- still globe (v2.26): Lite mode and browsers without WebGL ----------
    An orthographic 2D drawing of the same planet: grid, country outlines, vendor dots and a rim light.
    Drawn once, then again only on resize, when the outlines arrive, or when the picked vendor changes (it turns to face you). */
+/* The still globe (v2.58): a picture of the real 3D globe, one per vendor, made by build/make_globe_stills.py.
+   Changing vendor swaps the picture; nothing is drawn or animated, so slow work computers stay smooth.
+   img/globe/views.json says where the globe sits on each picture and where each badge's tap target goes.
+   If the pictures can't load (offline before they were ever saved), the globe is drawn instead (stillDrawn). */
 function stillInit(){
-  if(still.cv) return;
+  if(still.on) return;
+  still.on=true;canvas.style.display="none";
+  var d=document.createElement("div");d.id="gpic";d.className="layer";d.setAttribute("aria-hidden","true");
+  var im=document.createElement("img");im.alt="";im.decoding="async";im.draggable=false;d.appendChild(im);
+  canvas.parentNode.insertBefore(d,canvas.nextSibling);still.pic=d;still.img=im;still.mode="pic";
+  fetch("img/globe/views.json").then(function(r){if(!r.ok) throw new Error("views");return r.json();}).then(function(j){
+    if(!j||!j.views||!j.span||still.mode!=="pic") throw new Error("views");
+    still.views=j;resize();if(frontIdx>=0) stillPic(frontIdx);stillPreload();
+  }).catch(stillDrawn);
+}
+function stillDrawn(){
+  if(still.mode==="draw") return;
+  still.mode="draw";
+  if(still.pic){still.pic.parentNode.removeChild(still.pic);still.pic=null;still.img=null;}
+  labelEls.forEach(function(el){el.classList.add("off");el.classList.remove("front");});
   var c=document.createElement("canvas");c.id="gstill";c.className="layer";c.setAttribute("aria-hidden","true");
-  canvas.parentNode.insertBefore(c,canvas.nextSibling);canvas.style.display="none";
-  still.cv=c;still.ctx=c.getContext("2d");still.on=!!still.ctx;
+  canvas.parentNode.insertBefore(c,canvas.nextSibling);
+  still.cv=c;still.ctx=c.getContext("2d");
+  if(!still.ctx){still.on=false;return;}
+  if(worldGeo) stillGeo(worldGeo);else loadWorld();
+  resize();if(frontIdx>=0) stillFace(frontIdx);
+}
+/* the smallest saved size that covers the globe at this screen's pixel density */
+function stillSrc(i){
+  var j=still.views, s=j.sizes||[1000], need=2*j.span*Math.max(still.R,still.R0)*Math.min(window.devicePixelRatio||1,2), pick=s[s.length-1];
+  for(var k=0;k<s.length;k++) if(s[k]>=need*.9){pick=s[k];break;}
+  return "img/globe/"+VENDORS[i].id+"-"+pick+".webp";
+}
+function stillPic(i){
+  var j=still.views;if(!j||!j.views[VENDORS[i].id]) return;   /* no picture for this vendor: keep the last one */
+  var src=stillSrc(i), tok=++still.tok;
+  if(still.shown===i&&still.img.getAttribute("src")===src){stillPlace();return;}
+  var pre=new Image();pre.decoding="async";pre.src=src;
+  var ready=pre.decode?pre.decode():new Promise(function(res,rej){pre.onload=res;pre.onerror=rej;});
+  ready.then(function(){if(tok!==still.tok||still.mode!=="pic") return;still.img.src=src;still.shown=i;stillPlace();},
+    function(){if(tok===still.tok) stillDrawn();});
+}
+/* put the picture and the badge tap targets where the layout's globe is */
+function stillPlace(){
+  if(still.mode!=="pic"||!still.views||still.shown<0) return;
+  var vw=still.views.views[VENDORS[still.shown].id], c=vw.c||[0,0,1], R0=still.R0, Rr=R0*c[2], cx=gcx+c[0]*R0, cy=gcy+c[1]*R0, half=Rr*still.views.span;
+  still.R=Rr;
+  var st=still.pic.style;st.left=(cx-half).toFixed(1)+"px";st.top=(cy-half).toFixed(1)+"px";st.width=st.height=(2*half).toFixed(1)+"px";
+  var on={};(vw.labels||[]).forEach(function(L){on[L.i]=L;});
+  labelEls.forEach(function(el,j){
+    var L=on[j];
+    if(!L){el.classList.add("off");el.classList.remove("front");el.style.opacity="0";return;}
+    el.style.transform="translate("+(cx+L.x*Rr).toFixed(1)+"px,"+(cy+L.y*Rr).toFixed(1)+"px)";
+    el.style.setProperty("--mt",(L.mt*Rr).toFixed(0)+"px");el.style.opacity="1";
+    el.classList.remove("off");el.classList.toggle("front",!!L.front);
+  });
+  if(still.img.getAttribute("src")!==stillSrc(still.shown)) stillPic(still.shown);   /* the window grew: swap in the bigger picture */
+}
+/* fetch the other vendors' pictures once someone starts browsing vendors (hovering or focusing the vendor badges,
+   or the arrow keys), or after 12 s, so switching is instant without making the first visit heavier. Skipped with Data Saver. */
+function stillPreload(){
+  var cn=navigator.connection;if(cn&&cn.saveData) return;
+  var done=false, t=0, go=function(){
+    if(done||!still.views) return;done=true;clearTimeout(t);
+    VENDORS.forEach(function(v,i){if(i===frontIdx||!still.views.views[v.id]) return;var im=new Image();im.decoding="async";try{im.fetchPriority="low";}catch(e){}im.src=stillSrc(i);});
+  };
+  roDots.addEventListener("pointerenter",go,{once:true});roDots.addEventListener("focusin",go,{once:true});
+  document.addEventListener("keydown",function k(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){document.removeEventListener("keydown",k);go();}});
+  t=setTimeout(function(){if(window.requestIdleCallback) requestIdleCallback(go,{timeout:4000});else go();},12000);
 }
 function stillGeo(geo){
   /* decode the ECharts outlines once into flat lon/lat arrays (every 2nd point is plenty at this size) */
@@ -3854,12 +3922,13 @@ function stillGeo(geo){
   }catch(e){}
 }
 function stillFace(i){
+  if(still.mode==="pic"){stillPic(i);return;}
   var v=VENDORS[i];
   if(v&&v.lat!=null&&v.id!=="colleges"){still.lon=v.lon;still.lat=Math.max(-25,Math.min(35,v.lat*.7));}
   stillDraw();
 }
 function stillDraw(){
-  if(!still.on) return;
+  if(!still.on||still.mode!=="draw"||!still.ctx) return;
   var c=still.cv, x=still.ctx, dpr=Math.min(window.devicePixelRatio||1,2), R=still.R;
   c.width=Math.round(W*dpr);c.height=Math.round(H*dpr);
   x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,H);
@@ -3923,7 +3992,8 @@ function resize(){
   if(!has3D){
     var sh0=isShort(), mb0=W<720&&!sh0, R0=Math.max(70,mb0?Math.min(W*.46,sr.height*.38):sh0?Math.min(sr.width*.4,sr.height*.47):Math.min(W*.28,sr.height*.52));
     if(still.on){
-      still.R=R0;stillDraw();
+      still.R0=R0;
+      if(still.mode==="draw"){still.R=R0;stillDraw();}else{if(still.shown<0) still.R=R0;stillPlace();}
       var sw0=R0*1.7, shh=R0*.3;gshadow.style.transform="translate("+(gcx-sw0/2).toFixed(1)+"px,"+(gcy+R0*1.06-shh/2).toFixed(1)+"px) scale("+(sw0/200).toFixed(4)+","+(shh/40).toFixed(4)+")";
       if(tt) tt.resize(W,H,mb0?gcy-R0*1.1:sh0?gcy+R0*.42:gcy-H*.04,sh0?{cx:gcx,w:sr.width}:null);
     } else if(tt) tt.resize(W,H,gcy,sh0?{cx:gcx,w:sr.width}:null);
@@ -4066,7 +4136,8 @@ function goStill(){
   canvas.removeEventListener("pointerdown",onDown);canvas.removeEventListener("pointermove",onMove);
   canvas.removeEventListener("pointerup",onUp);canvas.removeEventListener("pointercancel",onUp);
   try{renderer.dispose();}catch(e){}
-  stillInit();if(worldGeo) stillGeo(worldGeo);
+  reduced=true;document.documentElement.classList.add("lite");
+  stillInit();
   resize();if(frontIdx>=0) stillFace(frontIdx);
   var lp=$("#lite-pill");
   if(lp){lp.classList.add("on");lp.textContent="Light";lp.setAttribute("aria-label","Light graphics are on. Open settings");
@@ -17076,8 +17147,7 @@ function startHome(lead){
 }
 requestAnimationFrame(frame);
 setReopenGo();liteWatch();
-if(has3D) loadWorld();
-else setTimeout(function(){var go=function(){loadWorld();};if(window.requestIdleCallback) requestIdleCallback(go,{timeout:1500});else go();},LITE.on?300:1200);
+if(has3D) loadWorld();   /* the still globe is a picture; stillDrawn loads the map only if the pictures can't load */
 runSplash();
 
 /* ---------- launch screen: MyNextCert rises in, then flies into its place behind the globe ---------- */
