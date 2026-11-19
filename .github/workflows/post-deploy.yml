@@ -33,6 +33,7 @@ jobs:
     permissions:
       contents: read
       issues: write            # ZAP keeps one issue up to date with what it found
+      actions: read            # ZAP reads the last run's report to compare; without it, it opens a new issue every deploy
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
