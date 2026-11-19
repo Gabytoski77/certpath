@@ -133,7 +133,9 @@ jobs:
   browser-tests:
     name: Browser tests
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # 87 tests take ~10 min locally and about twice that on a CI runner (11 full practice exams alone are ~4 min
+    # locally); 20 min cut v2.66 off at 83% (Nov 19, 2026), so leave room for the next banks
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
