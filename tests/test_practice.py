@@ -293,6 +293,30 @@ def test_cloud_plus_v4_full_exam(site):
         assert dom in body, f"{dom} missing from the results"
 
 
+def test_project_plus_v5_full_exam(site):
+    """v2.63: Project+ PK0-005 gets a 90-question, 90-minute bank with PBQs and all four domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "project+")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v5"]').count() == 1, mxp[:500]
+    assert "later update" not in mxp, mxp[:600]
+    p.locator('#mxp [data-mx="full"][data-ver="v5"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 90")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("1:29:", "1:30:")), t
+    assert "PK0-005" in p.inner_text("#mx")
+    _answer_all(p)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Project Management Concepts", "Project Life Cycle Phases", "Tools and Documentation",
+                "Basics of IT and Governance"):
+        assert dom in body, f"{dom} missing from the results"
+
+
 def _scroll_into_view(p, sel):
     p.evaluate("(s) => document.querySelector(s).scrollIntoView({block: 'center'})", sel)
     p.wait_for_timeout(400)
