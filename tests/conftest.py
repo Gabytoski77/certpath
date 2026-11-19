@@ -108,7 +108,15 @@ def site(browser, base_url):
 
 
 def open_search(page, text):
-    page.keyboard.press("Control+k")
+    # Ctrl+K is ignored until the launch screen and intro are done; on a slow CI runner that can take a
+    # while, so press it again instead of failing on the first try.
+    for _ in range(6):
+        page.keyboard.press("Control+k")
+        try:
+            page.wait_for_selector("#srch.on", timeout=5000)
+            break
+        except Exception:
+            continue
     page.wait_for_selector("#srch.on")
     page.fill("#srch-in", text)
     page.wait_for_timeout(350)
