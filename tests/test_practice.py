@@ -230,8 +230,8 @@ def _qz_top(p):
     return p.evaluate("() => document.getElementById('g-qz').getBoundingClientRect().top")
 
 
-@pytest.mark.parametrize("device,lite", [("desktop", False), ("iphone13", False), ("small320", False),
-                                         ("reduced", False), ("desktop", True), ("iphone13", True)])
+@pytest.mark.parametrize("device,lite", [("desktop", None), ("iphone13", None), ("small320", None),
+                                         ("reduced", None), ("desktop", True), ("iphone13", True)])
 def test_untimed_check_next_question_stays_on_the_quiz(site, device, lite):
     """v2.59: "Next question" in the untimed check used to jump to the top of the Practice section (the practice exam
     cards, weak spots and recent runs sit above the check since v2.48), so you had to scroll back down. It must keep
