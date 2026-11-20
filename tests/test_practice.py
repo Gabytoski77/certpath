@@ -435,3 +435,39 @@ def test_server_plus_v5_full_exam(site):
     for dom in ("Server Hardware Installation and Management", "Server Administration",
                 "Security and Disaster Recovery", "Troubleshooting"):
         assert dom in body, f"{dom} missing from the results"
+
+
+def test_cc_2026_full_exam(site):
+    """v2.71: ISC2 CC (2026 outline) gets a 100-question, 2-hour bank with no PBQs and all five domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "cc")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v26"]').count() == 1, mxp[:500]
+    assert p.locator("#mxp .mxp-card.soon").count() == 0, mxp[:600]
+    assert "PBQs first" not in mxp and "adaptive" in mxp    # CC has no PBQs; the card says so plainly
+    p.locator('#mxp [data-mx="full"][data-ver="v26"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 100")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("1:59:", "2:00:")), t
+    assert p.locator("#mx .mx-pbq, #mx [data-kind='pbq']").count() == 0
+    _answer_all(p)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Security Principles", "Security Governance", "Identity and Access Management (IAM) Concepts",
+                "Networking and Cloud Security Concepts", "Security Operations and Incident Response"):
+        assert dom in body, f"{dom} missing from the results"
+
+
+def test_cc_half_exam_has_no_pbq(site):
+    """A bank with format.pbq 0 still builds a half-length exam (50 questions, all multiple choice)."""
+    w = site("iphone13")
+    p = w.page
+    open_guide(p, "cc")
+    p.locator('#mxp [data-mx="half"][data-ver="v26"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 50")
