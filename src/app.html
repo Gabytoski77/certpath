@@ -2522,7 +2522,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.70</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.71</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -7662,6 +7662,8 @@ GUIDES["SecurityX"]={
 
 GUIDES["CC"]={
   id:"cc",
+  mock:{v26:"qbank/isc2-cc.json"},
+  mockText:"100 questions in 2 hours, with flags and a review screen. The real CC is adaptive: 100 to 125 questions, one at a time, and you can't go back. Practice the same way: answer each one and keep moving.",
   lead:"ISC2's entry-level cert, Certified in Cybersecurity. It proves you know the core ideas of security: risk, access control, networks, cloud and incident response. No experience is required, which makes it a strong first cert for anyone new to cyber.",
   checked:"Nov 7, 2026",
   planHours:30,
@@ -15284,7 +15286,7 @@ function mxGuide(G){
   h+=rdHTML(G);
   h+='<div class="mxp-cards">';
   banks.forEach(function(b){
-    h+='<div class="mxp-card"><p class="lab">'+gEsc(b.label+" · "+b.code)+'</p><h4>Full practice exam</h4><p>Exam length and time limit, with PBQs first, flags and a review screen, the way the real one works.</p>'+
+    h+='<div class="mxp-card"><p class="lab">'+gEsc(b.label+" · "+b.code)+'</p><h4>Full practice exam</h4><p>'+gEsc(G.mockText||"Exam length and time limit, with PBQs first, flags and a review screen, the way the real one works.")+'</p>'+
       '<div class="mxp-act"><button type="button" class="g-btn" data-mx="full" data-ver="'+gEsc(b.ver)+'"><span class="g-btn-l">Start full exam &rarr;</span></button><button type="button" class="g-btn ghost" data-mx="half" data-ver="'+gEsc(b.ver)+'"><span class="g-btn-l">Half-length</span></button></div></div>';
   });
   h+='<div class="mxp-card"><p class="lab">Every version</p><h4>Quick timed set</h4><p>'+nq+' questions in '+Math.max(1,Math.ceil(nq*pace))+' minutes, from this guide\'s question set, at exam pace.</p>'+
