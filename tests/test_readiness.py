@@ -151,3 +151,15 @@ def test_countdown_readiness_and_calendar_file(site, device, tmp_path):
     w.page.click("#ex .ex-rd [data-fund='cool']")
     w.page.wait_for_timeout(1200)
     assert w.page.evaluate("!document.getElementById('fp-cool').hidden")
+
+
+def test_recent_runs_show_all_12_kept(site):
+    """v2.70: the list shows every run the site keeps (12), not just the latest 5."""
+    w = site("desktop")
+    w.page.evaluate("""()=>{var n=Date.now(), h=[];
+      for(var i=0;i<14;i++) h.push({t:n-i*3600000,k:'quick',x:'quiz',n:10,s:7,by:{},u:300,d:600,ids:[]});
+      localStorage.setItem('cgcp.mx.secplus',JSON.stringify(h));}""")
+    w.page.reload()
+    w.page.wait_for_timeout(2500)
+    open_guide(w.page)
+    assert w.page.locator(".mxp-hist li").count() == 12
