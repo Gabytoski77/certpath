@@ -1,0 +1,3510 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "SSCP",
+ "ver": "v25",
+ "exam": "SSCP",
+ "title": "SSCP (2025 outline) practice exam",
+ "rev": "2026-11-20",
+ "format": {
+  "n": 100,
+  "min": 120,
+  "pbq": 3,
+  "half": 50
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Security Concepts and Practices",
+   "w": 16,
+   "obj": 8
+  },
+  {
+   "n": "2.0",
+   "name": "Access Controls",
+   "w": 15,
+   "obj": 4
+  },
+  {
+   "n": "3.0",
+   "name": "Risk Identification, Monitoring and Analysis",
+   "w": 15,
+   "obj": 5
+  },
+  {
+   "n": "4.0",
+   "name": "Incident Response and Recovery",
+   "w": 14,
+   "obj": 3
+  },
+  {
+   "n": "5.0",
+   "name": "Cryptography",
+   "w": 9,
+   "obj": 4
+  },
+  {
+   "n": "6.0",
+   "name": "Network and Communications Security",
+   "w": 16,
+   "obj": 7
+  },
+  {
+   "n": "7.0",
+   "name": "Systems and Application Security",
+   "w": 15,
+   "obj": 5
+  }
+ ],
+ "note": "Original questions written for MyNextCert from ISC2's public SSCP exam outline (effective Oct 1, 2025). Not real exam questions. The real SSCP is adaptive (100-125 items, multiple choice and advanced item types); this is a fixed 100-item stand-in with 3 advanced items.",
+ "q": [
+  {
+   "id": "ss-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Your manager tells you to skip the vulnerability scan on a customer-facing server so a release can ship on time, and to mark the scan as done. Under the ISC2 Code of Ethics, what should you do?",
+   "o": [
+    [
+     "Refuse to fake the record and raise the risk properly",
+     "Right. Acting honorably and honestly comes before serving your principal, and falsifying a record breaks both."
+    ],
+    [
+     "Mark it done, because your duty to your employer comes first",
+     "Duty to principals is the third canon. Honesty and protecting the public come before it."
+    ],
+    [
+     "Run the scan secretly overnight without telling anyone, then mark it done",
+     "Hiding work from your manager isn't honest either. Raise it openly."
+    ],
+    [
+     "Report the manager to the police",
+     "Skipping a scan isn't a crime. Use internal channels first."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Your company's code of conduct lets employees accept small gifts from vendors, but you're evaluating that vendor's bid right now. What is the BEST action?",
+   "o": [
+    [
+     "Decline the gift while the evaluation is open",
+     "Right. Even an allowed gift creates a conflict of interest during a decision you influence."
+    ],
+    [
+     "Accept it, because the code allows small gifts",
+     "Allowed in general doesn't mean appropriate while you're judging the vendor."
+    ],
+    [
+     "Accept it and give the vendor a slightly better score to be fair",
+     "That's exactly the bias a conflict of interest creates."
+    ],
+    [
+     "Accept it and tell the other bidders about it",
+     "Telling competitors doesn't remove the conflict."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-03",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A peer on another team asks you to share a client's penetration test report so he can \"learn the format.\" The report has the client's open vulnerabilities. What should you do?",
+   "o": [
+    [
+     "Offer a blank template instead",
+     "Right. You help a colleague (advancing the profession) without exposing a client's confidential findings."
+    ],
+    [
+     "Send it, since he works for the same company",
+     "Being a coworker doesn't give him a need to know this client's weaknesses."
+    ],
+    [
+     "Send it after deleting the client's name and logo",
+     "The vulnerabilities and network details can still identify the client and help an attacker."
+    ],
+    [
+     "Ignore his request completely",
+     "You can still help him without sharing confidential data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-04",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "An admin uses a shared \"admin\" account to change firewall rules, and a bad change takes down the VPN. Which principle does the shared account MOST directly break?",
+   "o": [
+    [
+     "Accountability",
+     "Right. With a shared login, the logs can't show which person made the change."
+    ],
+    [
+     "Availability",
+     "The outage hurt availability, but the shared account breaks accountability."
+    ],
+    [
+     "Confidentiality",
+     "No data was exposed."
+    ],
+    [
+     "Defense in depth",
+     "Defense in depth is about layering controls, not tying actions to people."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-05",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A database stores a hash of each record, and a nightly job recalculates the hashes and alerts on any mismatch. Which security goal does this support?",
+   "o": [
+    [
+     "Integrity",
+     "Right. A changed hash shows the record was altered."
+    ],
+    [
+     "Confidentiality",
+     "Hashes don't hide the record from anyone who can read the database."
+    ],
+    [
+     "Availability",
+     "Checking hashes doesn't keep the database up."
+    ],
+    [
+     "Non-repudiation",
+     "A plain hash doesn't prove who made a change. That needs a signature tied to a person."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-06",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A hospital lets nurses see only the records of patients on their own ward, even though the system holds every patient's file. Which concept is this?",
+   "o": [
+    [
+     "Need to know",
+     "Right. Access is limited to the information each person's duties require."
+    ],
+    [
+     "Separation of duties",
+     "SoD splits steps of a process between people."
+    ],
+    [
+     "Non-repudiation",
+     "Non-repudiation proves who performed an action."
+    ],
+    [
+     "Mandatory vacation",
+     "Mandatory vacation helps uncover fraud by rotating people out."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-07",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "An auditor asks how the company knows its rule that admin accounts must use MFA is actually followed. Which evidence is BEST?",
+   "o": [
+    [
+     "An identity system report of each admin's MFA status",
+     "Right. System-generated evidence shows the control is in place for every account."
+    ],
+    [
+     "The written MFA policy signed by the CISO",
+     "A policy shows intent, not that it's being followed."
+    ],
+    [
+     "An email from the lead admin confirming that every admin uses MFA",
+     "A statement from one person isn't evidence."
+    ],
+    [
+     "The MFA vendor's marketing brochure",
+     "A brochure says what the product can do, not how it's configured."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-08",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A company must meet a regulation that requires encrypting cardholder data. It enables database encryption and runs a quarterly check that confirms it's on. What is the quarterly check?",
+   "o": [
+    [
+     "A compliance verification of the control",
+     "Right. It confirms the control is still working and meets the requirement."
+    ],
+    [
+     "A compensating control",
+     "A compensating control replaces one that can't be used."
+    ],
+    [
+     "A deterrent control",
+     "A check doesn't discourage attackers."
+    ],
+    [
+     "A risk acceptance",
+     "Nothing here accepts risk. The control is in place and verified."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-09",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A small office can't afford a separate security team. Which control gives the MOST risk reduction for the cost against ransomware?",
+   "o": [
+    [
+     "Offline, tested backups",
+     "Right. With good backups, ransomware can't hold the data hostage, so the business can recover."
+    ],
+    [
+     "A larger internet connection",
+     "Bandwidth doesn't protect against ransomware."
+    ],
+    [
+     "A second monitor for every employee",
+     "Monitors don't affect ransomware risk."
+    ],
+    [
+     "A warning banner on the login screen",
+     "A banner is a weak deterrent and doesn't help recovery."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-10",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "An IDS raises an alert and an analyst restores a defaced web page from backup. Which control types were used, in order?",
+   "o": [
+    [
+     "Detective, then corrective",
+     "Right. The IDS found the problem, and the restore fixed it."
+    ],
+    [
+     "Preventive, then detective",
+     "Nothing here prevented the defacement."
+    ],
+    [
+     "Deterrent, then compensating",
+     "The IDS didn't discourage the attack, and restoring isn't a substitute control."
+    ],
+    [
+     "Corrective, then preventive",
+     "The order is wrong, and a restore is corrective, not preventive."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-11",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "Why should every security control have a documented owner?",
+   "o": [
+    [
+     "So someone keeps it working and reviews it",
+     "Right. Unowned controls drift out of date and nobody notices when they fail."
+    ],
+    [
+     "So auditors know whom to blame",
+     "Ownership is about keeping the control working, not blame."
+    ],
+    [
+     "So the control can skip change management reviews",
+     "Owned controls still go through change management."
+    ],
+    [
+     "So the control never needs testing",
+     "Owners make sure controls are tested."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-12",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "A firewall rule was added years ago for a project that ended. No one knows if it's still needed. What is the BEST practice?",
+   "o": [
+    [
+     "Review rules with their purpose and owner; remove unneeded ones",
+     "Right. Rule reviews with documented purposes stop old openings from piling up."
+    ],
+    [
+     "Leave it in place, because removing any rule can break production traffic",
+     "Unneeded rules are open doors. Remove them through change management."
+    ],
+    [
+     "Delete every rule older than one year",
+     "Some old rules are still needed. Review them, don't delete them blindly."
+    ],
+    [
+     "Copy the rule to a second firewall as a backup",
+     "Copying it spreads the risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-13",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "During a network scan, the team finds 14 devices that aren't in the asset inventory. What should happen FIRST?",
+   "o": [
+    [
+     "Identify each device and its owner",
+     "Right. Unknown devices can't be patched or monitored, so they must be identified and handled."
+    ],
+    [
+     "Ignore them, because the scanner might be reporting wrong results",
+     "Unknown devices are a common way in for attackers."
+    ],
+    [
+     "Unplug every device on the network",
+     "That stops the business. Investigate the unknown ones first."
+    ],
+    [
+     "Buy a new firewall",
+     "A firewall doesn't tell you what the devices are."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-14",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "Which item belongs in a software asset inventory, not just a hardware one?",
+   "o": [
+    [
+     "Each app's version and license",
+     "Right. Versions show what needs patching, and licenses show what's allowed."
+    ],
+    [
+     "The serial number and purchase date of each laptop",
+     "That's hardware inventory."
+    ],
+    [
+     "The room each server sits in",
+     "That's hardware location."
+    ],
+    [
+     "The weight of each switch",
+     "Weight isn't a security attribute."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-15",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "A team wants to retire a database server. Which step protects the data at END OF LIFE?",
+   "o": [
+    [
+     "Sanitize or destroy the drives and record the certificate of destruction",
+     "Right. Data must be made unrecoverable, with proof, before hardware leaves."
+    ],
+    [
+     "Delete the database and reuse the drives in a public kiosk",
+     "Deleted data can often be recovered."
+    ],
+    [
+     "Unplug the server and leave it in storage",
+     "Stored drives still hold the data."
+    ],
+    [
+     "Rename the server so no one recognizes it",
+     "Renaming doesn't protect the data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-16",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "Before approving a change that opens a new port on the firewall, what should the change advisory board review FIRST?",
+   "o": [
+    [
+     "A security impact analysis of the change",
+     "Right. The board needs to know what risk the change adds before it approves it."
+    ],
+    [
+     "The admin's years of experience",
+     "Experience doesn't replace analyzing the change."
+    ],
+    [
+     "Whether the change can be done during lunch",
+     "Timing matters, but risk comes first."
+    ],
+    [
+     "The color coding on the network diagram",
+     "Diagram style isn't part of approval."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-17",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "A server's settings no longer match its approved baseline, but no change ticket explains why. What is this called?",
+   "o": [
+    [
+     "Configuration drift",
+     "Right. Unrecorded changes have moved the system away from its baseline."
+    ],
+    [
+     "A rollback",
+     "A rollback restores the previous state on purpose."
+    ],
+    [
+     "Patch management",
+     "Patching is a planned change. This is unplanned."
+    ],
+    [
+     "Separation of duties",
+     "SoD splits tasks between people."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-18",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "An emergency patch must go in tonight to stop an active exploit. What should the change process do?",
+   "o": [
+    [
+     "Make an emergency change, then document and review it",
+     "Right. Emergency procedures let urgent fixes happen while keeping a record and a later review."
+    ],
+    [
+     "Wait for next week's change board meeting to approve it properly",
+     "Waiting leaves the system open to an active attack."
+    ],
+    [
+     "Install it with no record at all",
+     "Every change should be recorded, even emergencies."
+    ],
+    [
+     "Turn off change management permanently",
+     "One emergency doesn't justify losing control of changes."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-19",
+   "d": "1.0",
+   "obj": "1.7",
+   "q": "Which training plan is MOST effective for developers?",
+   "o": [
+    [
+     "Hands-on secure coding training for their own stack",
+     "Right. Training that matches the job and tools changes how people actually work."
+    ],
+    [
+     "The same 10-minute video everyone in the company watches",
+     "General awareness doesn't teach secure coding."
+    ],
+    [
+     "A poster in the break room about strong passwords",
+     "A poster doesn't cover developer risks."
+    ],
+    [
+     "A yearly quiz with no follow-up",
+     "One quiz without feedback changes little."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-20",
+   "d": "1.0",
+   "obj": "1.7",
+   "q": "The security team runs a tabletop exercise for executives on a ransomware attack. Which goal fits this exercise BEST?",
+   "o": [
+    [
+     "Let leaders rehearse decisions, like whether to pay",
+     "Right. Tabletops rehearse roles and decisions without touching systems."
+    ],
+    [
+     "Test whether last month's backup tapes can actually be read and restored",
+     "That needs a hands-on restore test."
+    ],
+    [
+     "Find unpatched servers",
+     "That's a vulnerability scan."
+    ],
+    [
+     "Measure network speed",
+     "Exercises don't measure bandwidth."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-21",
+   "d": "1.0",
+   "obj": "1.8",
+   "q": "A data center visitor log shows several people entered on one badge swipe. Which physical control would BEST stop this?",
+   "o": [
+    [
+     "An access control vestibule (mantrap)",
+     "Right. A vestibule stops tailgating and piggybacking."
+    ],
+    [
+     "A brighter light over the door",
+     "Lighting helps cameras but doesn't stop someone following through."
+    ],
+    [
+     "A sign at the door asking everyone not to let others follow them in",
+     "A sign is a weak deterrent."
+    ],
+    [
+     "A longer badge PIN",
+     "The problem is extra people walking in, not the badge PIN."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-22",
+   "d": "1.0",
+   "obj": "1.8",
+   "q": "Why should a security practitioner review badge reader logs alongside VPN and login logs?",
+   "o": [
+    [
+     "To spot conflicts, like a badge-in during a foreign login",
+     "Right. Physical and logical logs together reveal stolen credentials or shared badges."
+    ],
+    [
+     "Because badge logs replace login logs, so the SIEM can drop the login data",
+     "They show different things, so you need both."
+    ],
+    [
+     "To find out who parks closest to the door",
+     "Parking isn't a security signal here."
+    ],
+    [
+     "Because badge systems can't be hacked",
+     "Badge systems can be attacked too."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which pair is TRUE multifactor authentication?",
+   "o": [
+    [
+     "A smart card and its PIN",
+     "Right. Something you have plus something you know are two different factors."
+    ],
+    [
+     "A password and a security question",
+     "Both are something you know, so it's still one factor."
+    ],
+    [
+     "A fingerprint and a face scan",
+     "Both are something you are."
+    ],
+    [
+     "Two different passwords",
+     "Two of the same factor type isn't MFA."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A company's users approve push notifications for MFA, and attackers are now flooding users with prompts until someone taps Approve. Which change BEST stops this?",
+   "o": [
+    [
+     "Number matching on each push prompt",
+     "Right. The user can only approve a login they're actually looking at, which defeats MFA fatigue."
+    ],
+    [
+     "Sending more push prompts so users get used to them",
+     "That makes the fatigue attack easier."
+    ],
+    [
+     "Switching everyone to SMS codes, which can't be flooded the same way",
+     "SMS is weaker and open to SIM swapping."
+    ],
+    [
+     "Removing MFA for users who complain",
+     "That removes the protection completely."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A user logs in once to the company portal and can then open the HR app, email and the wiki without logging in again. What makes this possible?",
+   "o": [
+    [
+     "Single sign-on (SSO)",
+     "Right. One authentication event gives access to many trusted apps."
+    ],
+    [
+     "Multifactor authentication",
+     "MFA is about how many factors, not how many apps."
+    ],
+    [
+     "Mandatory access control",
+     "MAC is an authorization model, not a login method."
+    ],
+    [
+     "Port security",
+     "Port security limits devices on a switch port."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-04",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A partner company's employees need to log in to your supplier portal using their own company accounts. What lets your portal trust their logins?",
+   "o": [
+    [
+     "Federation using a standard like SAML or OpenID Connect",
+     "Right. Federation lets one organization accept another's authentication."
+    ],
+    [
+     "Creating local portal accounts with shared passwords",
+     "Shared passwords break accountability and are hard to remove."
+    ],
+    [
+     "Giving the partner your domain admin password",
+     "That hands over full control of your domain."
+    ],
+    [
+     "Turning off authentication for partners",
+     "That lets anyone in."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-05",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which authentication method resists phishing BEST?",
+   "o": [
+    [
+     "A FIDO2 security key or passkey",
+     "Right. The key checks the site's real address, so it won't sign in to a fake site."
+    ],
+    [
+     "A one-time code sent by SMS",
+     "Users can be tricked into typing the code into a fake site."
+    ],
+    [
+     "A 6-digit code from an authenticator app",
+     "Those codes can also be phished and replayed quickly."
+    ],
+    [
+     "A long password changed every 30 days",
+     "Any password can be typed into a fake site."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-06",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Domain A trusts Domain B, and Domain B trusts Domain C. Under a TRANSITIVE trust, what follows?",
+   "o": [
+    [
+     "Domain A also trusts Domain C",
+     "Right. Transitive trust passes along the chain."
+    ],
+    [
+     "Domain C trusts Domain A",
+     "Trust direction isn't reversed by transitivity."
+    ],
+    [
+     "No domain trusts any other",
+     "The stated trusts still exist."
+    ],
+    [
+     "Domain B stops trusting Domain C",
+     "Transitivity doesn't remove trusts."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-07",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A company gives a supplier limited access to an order system through a separate network zone. What is this zone called?",
+   "o": [
+    [
+     "An extranet",
+     "Right. An extranet extends limited, controlled access to outside partners."
+    ],
+    [
+     "An intranet",
+     "An intranet is only for internal users."
+    ],
+    [
+     "A honeynet",
+     "A honeynet is a decoy network for attackers."
+    ],
+    [
+     "A flat network",
+     "A flat network has no separation at all."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-08",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Why is a one-way trust safer than a two-way trust between your network and a vendor's?",
+   "o": [
+    [
+     "Only the side that needs access is trusted",
+     "Right. Limiting trust direction limits what a compromise on one side can reach."
+    ],
+    [
+     "One-way trusts don't need any authentication from the vendor's users",
+     "Users still authenticate. Trust just decides whose logins are accepted."
+    ],
+    [
+     "One-way trusts are faster",
+     "Speed isn't the security benefit."
+    ],
+    [
+     "One-way trusts encrypt all traffic",
+     "Trust direction has nothing to do with encryption."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-09",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A third-party managed service provider (MSP) needs remote admin access to your servers. Which control matters MOST?",
+   "o": [
+    [
+     "Named MSP accounts with MFA, least privilege and logging",
+     "Right. Third-party access must be accountable, limited and monitored, since MSPs are a common attack path."
+    ],
+    [
+     "One shared admin account for the whole MSP team, with a strong password",
+     "Shared accounts break accountability."
+    ],
+    [
+     "A trust that never expires so the MSP isn't locked out",
+     "Access should be reviewed and ended when the contract ends."
+    ],
+    [
+     "Letting the MSP install any tool it likes",
+     "Unreviewed tools can bring malware or backdoors."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-10",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Before creating an account for a new remote hire, HR confirms her government ID and employment paperwork. Which step is this?",
+   "o": [
+    [
+     "Identity proofing",
+     "Right. Proofing confirms the person is who they claim to be before an identity is created."
+    ],
+    [
+     "Deprovisioning",
+     "Deprovisioning removes access."
+    ],
+    [
+     "Authorization",
+     "Authorization decides what she can do after she logs in."
+    ],
+    [
+     "Accounting",
+     "Accounting logs what she does."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-11",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A quarterly access review finds that a manager approved access he didn't understand for 40 people. How can the review be made MORE effective?",
+   "o": [
+    [
+     "Explain each permission and flag unusual access",
+     "Right. Reviewers can only catch excess access if they understand what they're approving."
+    ],
+    [
+     "Have reviewers approve everything at once to save time during busy quarters",
+     "Rubber-stamp reviews catch nothing."
+    ],
+    [
+     "Do reviews every five years",
+     "Less often means more privilege creep."
+    ],
+    [
+     "Let each user review their own access",
+     "Self-review has an obvious conflict of interest."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-12",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "An employee's account shows access to six systems her role never needed, picked up through several job changes. What is this called?",
+   "o": [
+    [
+     "Privilege creep",
+     "Right. Access piles up when old rights aren't removed during role changes."
+    ],
+    [
+     "Least privilege",
+     "Least privilege is the goal she's drifted away from."
+    ],
+    [
+     "Federation",
+     "Federation is trust between organizations."
+    ],
+    [
+     "Password spraying",
+     "Password spraying is an attack technique."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-13",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Which system automates provisioning, deprovisioning and access reviews from HR events?",
+   "o": [
+    [
+     "An IGA system",
+     "Right. IGA connects HR events to account changes and runs reviews."
+    ],
+    [
+     "A SIEM",
+     "A SIEM collects and correlates logs."
+    ],
+    [
+     "A web application firewall in front of the HR portal",
+     "A WAF filters web traffic."
+    ],
+    [
+     "A DLP system",
+     "DLP watches for sensitive data leaving."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-14",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A cloud app allows access only if the user is in Finance, using a company-managed device, from the U.S., during business hours. Which model is this?",
+   "o": [
+    [
+     "Attribute-based access control (ABAC)",
+     "Right. The decision uses attributes of the user, device, location and time."
+    ],
+    [
+     "Discretionary access control (DAC)",
+     "The file owner isn't deciding here."
+    ],
+    [
+     "Role-based access control (RBAC)",
+     "RBAC uses the role alone, not device, place or time."
+    ],
+    [
+     "Mandatory access control (MAC)",
+     "MAC uses classification labels and clearances."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-15",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "Which model is the BEST fit for a large company where people change jobs often and access should follow the job?",
+   "o": [
+    [
+     "Role-based access control (RBAC)",
+     "Right. Moving a person to a new role swaps their access in one step."
+    ],
+    [
+     "Discretionary access control (DAC)",
+     "With DAC, each owner grants access by hand, which doesn't scale."
+    ],
+    [
+     "Mandatory access control (MAC)",
+     "MAC suits classified environments, not frequent job changes."
+    ],
+    [
+     "No access control model",
+     "Every organization needs one."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-16",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "In a MAC system, a user cleared for Secret tries to save a document to a folder labeled Unclassified, and the system blocks it. Why?",
+   "o": [
+    [
+     "Writing down could leak Secret data to a lower label",
+     "Right. MAC confidentiality models stop data from flowing to lower labels."
+    ],
+    [
+     "Users cleared for Secret aren't allowed to write any files at all",
+     "They can write at their own level or higher, not lower."
+    ],
+    [
+     "The folder is full",
+     "Storage space isn't the reason in a MAC scenario."
+    ],
+    [
+     "The user forgot to use MFA",
+     "Authentication isn't the issue here. The label is."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-17",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A switch's ACL lets only the management VLAN reach the switch's SSH port. Which access control approach is this?",
+   "o": [
+    [
+     "Rule-based access control",
+     "Right. A fixed rule applies to all traffic, no matter who the user is."
+    ],
+    [
+     "Discretionary access control",
+     "No owner is granting access."
+    ],
+    [
+     "Attribute-based access control",
+     "There's only one simple network rule, not policy over many attributes."
+    ],
+    [
+     "Mandatory access control",
+     "No classification labels are involved."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-18",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "An admin creates a temporary admin role that expires after 2 hours and needs a manager's approval each time. What is this approach called?",
+   "o": [
+    [
+     "Just-in-time (JIT) privileged access",
+     "Right. Privileges exist only when needed and for a short time."
+    ],
+    [
+     "Standing privilege",
+     "Standing privilege is permanent access, which is the opposite."
+    ],
+    [
+     "Single sign-on",
+     "SSO is about logging in once."
+    ],
+    [
+     "Role explosion",
+     "Role explosion is having too many roles to manage."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A server is worth $40,000. A flood would destroy 25% of its value, and floods are expected once every 10 years. What is the annualized loss expectancy (ALE)?",
+   "o": [
+    [
+     "$1,000",
+     "Right. SLE = $40,000 x 0.25 = $10,000. ALE = SLE x ARO = $10,000 x 0.1 = $1,000."
+    ],
+    [
+     "$10,000",
+     "That's the single loss expectancy, before multiplying by how often it happens."
+    ],
+    [
+     "$4,000",
+     "That uses the wrong numbers. Multiply value by exposure factor, then by the yearly rate."
+    ],
+    [
+     "$100,000",
+     "That multiplies by 10 instead of 0.1. The flood happens once in 10 years."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Using the ALE from a risk analysis, when is a control worth buying?",
+   "o": [
+    [
+     "When it costs less per year than the loss it prevents",
+     "Right. A control should cost less than the risk it removes."
+    ],
+    [
+     "Whenever a vendor recommends it",
+     "Vendor advice isn't a cost-benefit analysis."
+    ],
+    [
+     "Only when it costs more than the asset, to show the risk is taken seriously",
+     "Spending more than the asset's worth makes no sense."
+    ],
+    [
+     "Never, because ALE is only a guess",
+     "ALE is an estimate, but it still guides spending decisions."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which NIST framework walks an organization through categorizing a system, selecting controls, implementing, assessing, authorizing and monitoring them?",
+   "o": [
+    [
+     "The NIST Risk Management Framework (RMF)",
+     "Right. Those are the RMF's steps for managing system risk."
+    ],
+    [
+     "The NIST Privacy Framework",
+     "That framework focuses on privacy risk."
+    ],
+    [
+     "The OSI model",
+     "OSI describes network layers."
+    ],
+    [
+     "The Cyber Kill Chain",
+     "The Kill Chain describes attacker stages."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-04",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A company decides it won't launch a new mobile payment feature because the fraud risk is too high. Which risk treatment is this?",
+   "o": [
+    [
+     "Avoidance",
+     "Right. Not doing the risky activity removes the risk."
+    ],
+    [
+     "Mitigation",
+     "Mitigation would add controls and still launch."
+    ],
+    [
+     "Transference",
+     "Nothing was shifted to another party."
+    ],
+    [
+     "Acceptance",
+     "Accepting would mean launching and living with the risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-05",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A U.S. company stores data about customers in France. Which law MOST likely applies to that personal data even though the company is in the U.S.?",
+   "o": [
+    [
+     "The EU's GDPR",
+     "Right. GDPR covers personal data of people in the EU, wherever the company is."
+    ],
+    [
+     "HIPAA",
+     "HIPAA covers U.S. health information."
+    ],
+    [
+     "SOX",
+     "SOX covers financial reporting by public companies."
+    ],
+    [
+     "FERPA",
+     "FERPA covers U.S. student education records."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-06",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A security analyst wants to read a coworker's personal email account to investigate a possible leak. What should she do FIRST?",
+   "o": [
+    [
+     "Check with legal and HR first",
+     "Right. Monitoring must follow law and policy, and personal accounts are usually off-limits."
+    ],
+    [
+     "Guess the coworker's password and log in quietly to check",
+     "That's unauthorized access and likely illegal."
+    ],
+    [
+     "Ask the coworker's friends for the password",
+     "That's still unauthorized access."
+    ],
+    [
+     "Post her suspicion in the team chat",
+     "That's unfair to the coworker and could damage the investigation."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-07",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A cloud provider stores a company's backups in another country, where local law could let authorities demand the data. Which concern is this?",
+   "o": [
+    [
+     "Jurisdiction and data sovereignty",
+     "Right. The laws of the country where data sits can apply to it."
+    ],
+    [
+     "Availability of the backup network",
+     "Network speed doesn't decide which laws apply."
+    ],
+    [
+     "Key length of the encryption",
+     "Encryption strength is a separate issue."
+    ],
+    [
+     "Separation of duties",
+     "SoD is about splitting tasks."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-08",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A vulnerability scan reports 300 findings. Which approach ranks them BEST for fixing?",
+   "o": [
+    [
+     "Severity, exploitability, exposure and asset value together",
+     "Right. Real risk combines severity, exploitability, exposure and asset value."
+    ],
+    [
+     "Fix them alphabetically by CVE number",
+     "CVE order has nothing to do with risk."
+    ],
+    [
+     "Fix the easiest ones first, whatever their risk, to cut the count quickly",
+     "Quick wins help, but high-risk exposed issues come first."
+    ],
+    [
+     "Fix only the ones with the longest descriptions",
+     "Description length isn't a risk measure."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-09",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A scan finds a missing patch, the patch is installed, and then the system is scanned again. Why rescan?",
+   "o": [
+    [
+     "To verify the fix worked and close the finding",
+     "Right. Verification is the last step of the vulnerability lifecycle."
+    ],
+    [
+     "Because scanners need to warm up",
+     "Scanners don't need a warm-up."
+    ],
+    [
+     "To find out who installed the patch",
+     "Change records show that, not scans."
+    ],
+    [
+     "To lower the system's CVSS score permanently",
+     "CVSS scores describe vulnerabilities, not systems."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-10",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Why do credentialed (authenticated) vulnerability scans usually find MORE than uncredentialed scans?",
+   "o": [
+    [
+     "They log in and check from the inside",
+     "Right. Logging in lets the scanner see patch levels and configs it can't see from the network."
+    ],
+    [
+     "They're allowed to exploit every vulnerability they find to confirm it",
+     "Scans identify issues. They don't exploit them."
+    ],
+    [
+     "They scan more IP addresses",
+     "Scope is set separately from credentials."
+    ],
+    [
+     "They turn off the target's firewall",
+     "Scanners shouldn't change the target's settings."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-11",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A scan flags a vulnerability on a server, but the vulnerable service turns out to be disabled. What is this?",
+   "o": [
+    [
+     "A false positive",
+     "Right. The scanner reported a problem that isn't actually exploitable."
+    ],
+    [
+     "A false negative",
+     "A false negative is a real problem the scanner missed."
+    ],
+    [
+     "A zero-day",
+     "A zero-day has no patch yet. This one isn't even active."
+    ],
+    [
+     "A true positive",
+     "It would be a true positive only if the service were really vulnerable."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-12",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "A SIEM is missing logs from the domain controllers. Why is this a serious gap?",
+   "o": [
+    [
+     "They record logins and account changes",
+     "Right. Authentication logs are among the most valuable sources for detection."
+    ],
+    [
+     "Domain controllers only log printer jobs and DHCP leases",
+     "They log authentication and directory changes."
+    ],
+    [
+     "SIEMs can't read Windows logs",
+     "SIEMs commonly ingest Windows event logs."
+    ],
+    [
+     "It isn't a gap, because firewalls log everything",
+     "Firewalls don't see who logged in or what changed in the directory."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-13",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "Two servers' log times are 7 minutes apart, which makes correlating an attack confusing. What fixes this?",
+   "o": [
+    [
+     "Sync every device to a trusted NTP time source",
+     "Right. Consistent timestamps let events from different systems line up."
+    ],
+    [
+     "Turn off timestamps",
+     "Without timestamps you can't build a timeline at all."
+    ],
+    [
+     "Store logs on the same server they come from",
+     "Storage location doesn't fix clock drift."
+    ],
+    [
+     "Rotate logs more often",
+     "Rotation doesn't fix wrong times."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-14",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "Why should logs be sent to a central server that attackers on a host can't easily change?",
+   "o": [
+    [
+     "Attackers often wipe a host's local logs",
+     "Right. Central, protected logs survive even if the host is compromised."
+    ],
+    [
+     "Central servers make logs smaller",
+     "Size isn't the main reason."
+    ],
+    [
+     "Local logs are always encrypted",
+     "Local logs can be read and changed by an admin-level attacker."
+    ],
+    [
+     "Central logging removes the need for any log retention rules",
+     "You still need retention rules."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-15",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "A team adds an AI-based anomaly detector to its monitoring platform. What should it do BEFORE trusting the detector's alerts?",
+   "o": [
+    [
+     "Baseline normal behavior and tune it",
+     "Right. Anomaly detection only works once it knows what normal looks like."
+    ],
+    [
+     "Turn off all signature-based detection",
+     "Signatures still catch known threats."
+    ],
+    [
+     "Send every alert straight to leadership so nothing gets missed",
+     "Untuned alerts will be noisy."
+    ],
+    [
+     "Give the detector admin rights on every server",
+     "Monitoring tools need read access to data, not admin rights everywhere."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-16",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "A file server usually sends about 2 GB a day to the internet. Last night it sent 60 GB to an unknown host. What should the analyst do FIRST?",
+   "o": [
+    [
+     "Investigate it as possible exfiltration",
+     "Right. A big jump from the baseline to an unknown host is a classic exfiltration sign."
+    ],
+    [
+     "Ignore it, since file servers send data out to backup services all the time",
+     "The amount and destination are far outside normal."
+    ],
+    [
+     "Delete the file server's logs to save space",
+     "That destroys evidence."
+    ],
+    [
+     "Order a faster internet connection",
+     "Bandwidth isn't the issue."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-17",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "Failed logins for one account went from 3 a day to 3,000 in an hour, from many IP addresses. What does this pattern suggest?",
+   "o": [
+    [
+     "A brute-force or password-spraying attack",
+     "Right. A sudden flood of failures from many sources points to automated guessing."
+    ],
+    [
+     "The user forgot their password",
+     "One person forgetting wouldn't cause thousands of failures from many IPs."
+    ],
+    [
+     "A normal patch cycle",
+     "Patching doesn't cause failed logins."
+    ],
+    [
+     "A DNS outage",
+     "DNS problems don't create login failures."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-18",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "After analyzing an alert, the analyst finds it was a real attack that was blocked. What should she do with the finding?",
+   "o": [
+    [
+     "Document the evidence and outcome, and report it",
+     "Right. Documenting and reporting turns monitoring into lessons and metrics."
+    ],
+    [
+     "Close it with no notes, since the attack was blocked and nothing was lost",
+     "Blocked attacks still show who's targeting you and how."
+    ],
+    [
+     "Delete the alert so the dashboard looks clean",
+     "That hides useful information."
+    ],
+    [
+     "Email the attacker to warn them",
+     "Never contact attackers."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "In NIST's incident response life cycle, which phase includes writing playbooks, setting up contact lists and training the team?",
+   "o": [
+    [
+     "Preparation",
+     "Right. Preparation gets people, tools and plans ready before an incident."
+    ],
+    [
+     "Containment, eradication and recovery",
+     "That phase handles an incident already happening."
+    ],
+    [
+     "Detection and analysis",
+     "That phase finds and confirms incidents."
+    ],
+    [
+     "Post-incident activity",
+     "That phase reviews an incident after it's over."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "An analyst sees ransomware encrypting files on a file server. Which action comes FIRST?",
+   "o": [
+    [
+     "Isolate the server from the network",
+     "Right. Containment limits damage before eradication and recovery."
+    ],
+    [
+     "Pay the ransom right away",
+     "Paying is a leadership decision and doesn't stop the spread."
+    ],
+    [
+     "Restore the server from last night's backup immediately",
+     "Restoring before containment can reinfect the system."
+    ],
+    [
+     "Write the lessons-learned report",
+     "That comes at the end."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-03",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A level-1 analyst confirms that an alert involves a domain admin account. The playbook says privileged account incidents go to the incident manager. What is this step?",
+   "o": [
+    [
+     "Escalation",
+     "Right. Serious incidents are passed to higher authority as the playbook defines."
+    ],
+    [
+     "Eradication",
+     "Eradication removes the threat."
+    ],
+    [
+     "Recovery",
+     "Recovery restores normal operations."
+    ],
+    [
+     "Accounting",
+     "Accounting is logging what users do."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-04",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "After removing malware, the team rebuilds the server from a clean image and watches it closely for a week. Which phase is this?",
+   "o": [
+    [
+     "Recovery",
+     "Right. Recovery returns systems to service and confirms they're clean."
+    ],
+    [
+     "Preparation",
+     "Preparation happens before incidents."
+    ],
+    [
+     "Detection",
+     "Detection was earlier."
+    ],
+    [
+     "Containment",
+     "Containment came before the rebuild."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-05",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Why should incident playbooks be written for common scenarios like phishing and ransomware?",
+   "o": [
+    [
+     "They give tested steps for fast, consistent action",
+     "Right. Playbooks cut decision time and mistakes during an incident."
+    ],
+    [
+     "They replace the need for trained staff during an incident",
+     "Playbooks guide people. They don't replace them."
+    ],
+    [
+     "They're only needed for audits",
+     "Their main value is during real incidents."
+    ],
+    [
+     "They make incidents less likely to happen",
+     "Playbooks improve response, not likelihood."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-06",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Which evidence should a responder collect FIRST from a running, compromised server?",
+   "o": [
+    [
+     "Memory (RAM)",
+     "Right. Collect the most volatile evidence first."
+    ],
+    [
+     "The hard drive image",
+     "The disk keeps its data after power-off, so it can wait."
+    ],
+    [
+     "Printed copies of the server manual",
+     "Manuals aren't evidence."
+    ],
+    [
+     "Backup tapes from last year, kept in the offsite vault",
+     "Old backups don't change. Volatile data does."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-07",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A responder hashes a disk image right after making it, then hashes it again before analysis. Why?",
+   "o": [
+    [
+     "To prove the image hasn't changed",
+     "Right. Matching hashes show integrity, which matters in court."
+    ],
+    [
+     "To encrypt the image",
+     "Hashing doesn't encrypt."
+    ],
+    [
+     "To make the image smaller",
+     "Hashing doesn't compress the data."
+    ],
+    [
+     "To speed up the analysis tools when they index the image",
+     "Hashes are for integrity, not speed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-08",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A detective asks to borrow a hard drive from an investigation for a day. What must happen?",
+   "o": [
+    [
+     "Record the handoff on the custody form",
+     "Right. Every transfer of evidence must be recorded."
+    ],
+    [
+     "Hand it over without paperwork, since he's police",
+     "Even police transfers must be recorded."
+    ],
+    [
+     "Make a copy and give him the original without noting it",
+     "Any handling of the original must be documented."
+    ],
+    [
+     "Refuse, because evidence can never leave the room",
+     "It can be transferred if custody is recorded."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-09",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Why should analysts examine a forensic COPY of a drive instead of the original?",
+   "o": [
+    [
+     "Analysis could alter the original evidence",
+     "Right. Working on a verified copy protects the original's integrity."
+    ],
+    [
+     "Copies are faster to read",
+     "Speed isn't the main reason."
+    ],
+    [
+     "Originals can't be read by forensic tools without special licenses",
+     "Tools can read them, but you shouldn't risk changing them."
+    ],
+    [
+     "Copies don't need a chain of custody",
+     "Copies are documented too."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-10",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "An investigation might end up in court. What should the final forensic report include?",
+   "o": [
+    [
+     "The facts, plus the method and tools used",
+     "Right. A repeatable, factual method makes findings trustworthy."
+    ],
+    [
+     "The analyst's guesses about who is to blame, to help the lawyers",
+     "Reports stick to evidence, not speculation."
+    ],
+    [
+     "Only the conclusion, with no method",
+     "Without the method, others can't check the work."
+    ],
+    [
+     "Personal opinions about the suspect's character",
+     "That isn't evidence."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-11",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A company needs its critical systems running within minutes of a disaster and is willing to pay a lot for it. Which alternate site fits?",
+   "o": [
+    [
+     "A hot site",
+     "Right. A hot site is fully equipped with current data and can take over almost at once."
+    ],
+    [
+     "A cold site",
+     "A cold site has space and power but no equipment ready. Recovery takes weeks."
+    ],
+    [
+     "A warm site",
+     "A warm site has some equipment but needs hours or days to be ready."
+    ],
+    [
+     "A reciprocal agreement with a competitor",
+     "These are hard to rely on and rarely ready in minutes."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-12",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "After a disaster, which systems should be restored FIRST?",
+   "o": [
+    [
+     "The most critical ones, as ranked in the BIA",
+     "Right. The business impact analysis decides restoration order."
+    ],
+    [
+     "The systems that are easiest and quickest to restore from backup",
+     "Easy isn't the same as important."
+    ],
+    [
+     "The CEO's personal laptop",
+     "Executive devices aren't automatically the most critical."
+    ],
+    [
+     "Whatever the vendor suggests",
+     "The organization's BIA decides priorities."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-13",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A company copies its data to a second data center as each change happens. Which goal does this mainly support?",
+   "o": [
+    [
+     "A very low recovery point objective (RPO)",
+     "Right. Real-time replication means almost no data is lost."
+    ],
+    [
+     "A lower electricity bill",
+     "Replication uses more resources, not less."
+    ],
+    [
+     "Stronger passwords",
+     "Replication doesn't affect passwords."
+    ],
+    [
+     "Separation of duties",
+     "SoD isn't related to data copies."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-14",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Ransomware also encrypted the company's online backups. Which backup practice would have prevented this?",
+   "o": [
+    [
+     "An offline or immutable backup copy",
+     "Right. Backups the attacker can't reach or modify survive ransomware."
+    ],
+    [
+     "Backing up more often to the same online share",
+     "More copies in the same reachable place get encrypted too."
+    ],
+    [
+     "Using bigger backup drives",
+     "Size doesn't stop encryption."
+    ],
+    [
+     "Renaming the backup folder",
+     "Ransomware doesn't care about folder names."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-15",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "The DR team fails over to the backup data center for a real weekend test, then fails back. Which test is this?",
+   "o": [
+    [
+     "A full-interruption test",
+     "Right. Production actually moves to the recovery site."
+    ],
+    [
+     "A tabletop exercise",
+     "Tabletops are discussions only."
+    ],
+    [
+     "A checklist review",
+     "That's reading the plan, not running it."
+    ],
+    [
+     "A walk-through",
+     "A walk-through steps through the plan without failing over."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-16",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "What is the role of an emergency response plan during a fire at the data center?",
+   "o": [
+    [
+     "Protect people first: evacuate and account for staff",
+     "Right. Life safety always comes before systems."
+    ],
+    [
+     "Save the servers before anyone leaves",
+     "People come before equipment."
+    ],
+    [
+     "Restart the servers at the backup site before evacuating anyone from the building",
+     "Evacuate first. Recovery comes later."
+    ],
+    [
+     "Send a press release",
+     "Communication comes after people are safe."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-17",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A company runs two web servers behind a load balancer so one can fail without an outage. What is this?",
+   "o": [
+    [
+     "Redundancy (high availability)",
+     "Right. Extra capacity keeps the service up when one part fails."
+    ],
+    [
+     "A cold site",
+     "A cold site is a separate recovery location."
+    ],
+    [
+     "Data masking",
+     "Masking hides data."
+    ],
+    [
+     "Mandatory access control",
+     "MAC is an access model."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-01",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A regulation says stored customer data must be unreadable if a laptop is stolen. Which requirement drives the encryption choice?",
+   "o": [
+    [
+     "Confidentiality of data at rest",
+     "Right. Full-disk encryption keeps stored data unreadable without the key."
+    ],
+    [
+     "Integrity of data in transit",
+     "The laptop's stored data is the concern, not network traffic."
+    ],
+    [
+     "Availability of the laptop",
+     "Encryption doesn't keep the laptop running."
+    ],
+    [
+     "Non-repudiation of emails",
+     "Emails and signatures aren't the issue here."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-02",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Why do cryptographic keys need a good source of randomness (entropy)?",
+   "o": [
+    [
+     "Predictable keys can be guessed",
+     "Right. A weak random source makes keys easy to recreate."
+    ],
+    [
+     "Random keys make encryption faster",
+     "Randomness affects security, not speed."
+    ],
+    [
+     "Entropy makes keys shorter",
+     "Key length is chosen separately."
+    ],
+    [
+     "Random keys never need to be rotated or replaced later",
+     "Keys still need rotation."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-03",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A message must be proven to come from the sender AND to be unchanged. Which crypto service does this?",
+   "o": [
+    [
+     "A digital signature",
+     "Right. Signatures give authenticity, integrity and non-repudiation."
+    ],
+    [
+     "Symmetric encryption alone",
+     "A shared key can't prove which of the two parties sent it."
+    ],
+    [
+     "Base64 encoding",
+     "Encoding isn't encryption or proof of anything."
+    ],
+    [
+     "Compression",
+     "Compression doesn't prove origin."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-04",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Two users pick the same password, but their stored hashes are different. What explains this?",
+   "o": [
+    [
+     "Each password got its own random salt",
+     "Right. Salts make identical passwords hash differently and defeat rainbow tables."
+    ],
+    [
+     "The system encrypts passwords with each user's public key",
+     "Passwords should be hashed, not encrypted."
+    ],
+    [
+     "The hash algorithm is random",
+     "Hash functions always give the same output for the same input."
+    ],
+    [
+     "One user's password is stored in plain text",
+     "Plain text would be a serious flaw, not an explanation."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-05",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Which algorithm is asymmetric?",
+   "o": [
+    [
+     "Elliptic curve cryptography (ECC)",
+     "Right. ECC uses a public and private key pair."
+    ],
+    [
+     "AES",
+     "AES is symmetric."
+    ],
+    [
+     "3DES",
+     "3DES is symmetric."
+    ],
+    [
+     "SHA-256",
+     "SHA-256 is a hash, not encryption."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-06",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "An attacker tries every possible key until one decrypts the message. Which attack is this?",
+   "o": [
+    [
+     "A brute-force attack",
+     "Right. Brute force tries every possibility, so longer keys defeat it."
+    ],
+    [
+     "A birthday attack",
+     "A birthday attack looks for two inputs with the same hash."
+    ],
+    [
+     "A replay attack",
+     "A replay resends captured traffic."
+    ],
+    [
+     "A side-channel attack",
+     "Side-channel attacks use clues like timing or power use."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-07",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Alice sends Bob a file encrypted with Bob's public key. Who can decrypt it?",
+   "o": [
+    [
+     "Only Bob, with his private key",
+     "Right. Data encrypted with a public key opens only with the matching private key."
+    ],
+    [
+     "Anyone with Bob's public key",
+     "The public key encrypts. It can't decrypt."
+    ],
+    [
+     "Only Alice, with her private key",
+     "Alice's key wasn't used."
+    ],
+    [
+     "Anyone who knows the file name",
+     "The file name doesn't unlock anything."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-08",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A team still moves files with FTP. Which protocol should replace it?",
+   "o": [
+    [
+     "SFTP",
+     "Right. SFTP runs over SSH and encrypts logins and data."
+    ],
+    [
+     "TFTP",
+     "TFTP has no authentication or encryption."
+    ],
+    [
+     "Telnet",
+     "Telnet is a clear-text remote shell."
+    ],
+    [
+     "HTTP",
+     "HTTP isn't encrypted."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-09",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Two branch offices need an always-on encrypted link over the internet between their routers. Which protocol fits BEST?",
+   "o": [
+    [
+     "IPsec in tunnel mode",
+     "Right. IPsec tunnels encrypt everything between the two sites."
+    ],
+    [
+     "SNMPv1",
+     "SNMPv1 is for monitoring and isn't encrypted."
+    ],
+    [
+     "SMTP",
+     "SMTP moves email."
+    ],
+    [
+     "Plain HTTP",
+     "HTTP isn't encrypted."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-10",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A web server still allows TLS 1.0 and old ciphers. What is the BEST fix?",
+   "o": [
+    [
+     "Allow only TLS 1.2 and 1.3",
+     "Right. Retiring old versions removes known weaknesses."
+    ],
+    [
+     "Switch the site to plain HTTP",
+     "That removes encryption completely."
+    ],
+    [
+     "Turn off the certificate",
+     "The site needs its certificate for HTTPS."
+    ],
+    [
+     "Allow every TLS version so older clients stay compatible",
+     "Old versions keep the site exposed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-11",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "An employee's laptop, which held her signing certificate's private key, is stolen. What should happen to the certificate?",
+   "o": [
+    [
+     "Revoke it through the CA",
+     "Right. Revocation tells everyone to stop trusting the stolen key."
+    ],
+    [
+     "Let it expire on its own",
+     "It could be misused until it expires."
+    ],
+    [
+     "Email everyone a copy of the private key",
+     "That spreads the compromised key."
+    ],
+    [
+     "Renew it with the same key pair so nothing breaks",
+     "The key pair is compromised and must be replaced."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-12",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "A browser trusts a website's certificate. What does that trust come from?",
+   "o": [
+    [
+     "It chains to a root CA the browser trusts",
+     "Right. PKI trust flows from trusted root CAs through intermediates."
+    ],
+    [
+     "The website's logo",
+     "Logos are easy to copy."
+    ],
+    [
+     "The website's fast loading",
+     "Speed isn't trust."
+    ],
+    [
+     "The certificate being self-signed by the site's own server",
+     "Browsers don't trust self-signed certificates by default."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-13",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Where should a certificate authority keep its root private key?",
+   "o": [
+    [
+     "Offline, in a hardware security module",
+     "Right. If the root key is stolen, every certificate under it becomes untrusted."
+    ],
+    [
+     "On a public web server so anyone can verify it",
+     "The public certificate is shared. The private key never is."
+    ],
+    [
+     "In an email folder for easy recovery",
+     "Email is far too exposed for a root key."
+    ],
+    [
+     "On every employee's laptop",
+     "Spreading the key makes theft likely."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-01",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Which TCP/IP model layer lines up with OSI layers 5, 6 and 7?",
+   "o": [
+    [
+     "The Application layer",
+     "Right. TCP/IP's Application layer covers OSI's Session, Presentation and Application layers."
+    ],
+    [
+     "The Transport layer",
+     "Transport matches OSI layer 4."
+    ],
+    [
+     "The Internet layer",
+     "Internet matches OSI layer 3."
+    ],
+    [
+     "The Network Access layer",
+     "Network Access matches OSI layers 1 and 2."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-02",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "In a software-defined network (SDN), what does the controller do?",
+   "o": [
+    [
+     "It centrally decides how traffic flows",
+     "Right. SDN separates the control plane (decisions) from the data plane (forwarding)."
+    ],
+    [
+     "It replaces every cable in the network",
+     "SDN still uses physical links."
+    ],
+    [
+     "It encrypts all traffic automatically",
+     "SDN is about control, not built-in encryption."
+    ],
+    [
+     "It only stores nightly backups of every switch config",
+     "That's configuration backup, not SDN control."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-03",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "An analyst sees outbound traffic to TCP 3389 from a workstation to an internet host. Which service is this?",
+   "o": [
+    [
+     "Remote Desktop Protocol (RDP)",
+     "Right. TCP 3389 is RDP, which shouldn't usually go out to the internet."
+    ],
+    [
+     "DNS",
+     "DNS uses port 53."
+    ],
+    [
+     "LDAPS",
+     "LDAPS uses port 636."
+    ],
+    [
+     "Syslog",
+     "Syslog uses port 514."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-04",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A web shop is overwhelmed by traffic from thousands of hacked home devices. Which countermeasure helps MOST?",
+   "o": [
+    [
+     "A DDoS protection service or CDN",
+     "Right. Large distributed attacks need capacity and filtering upstream of your site."
+    ],
+    [
+     "A stronger admin password",
+     "Passwords don't stop traffic floods."
+    ],
+    [
+     "Full-disk encryption on the web server and database",
+     "Encryption doesn't absorb traffic."
+    ],
+    [
+     "Blocking one IP address",
+     "The attack comes from thousands of addresses."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-05",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Users on the guest Wi-Fi are sent to a fake bank site when they type the real bank's address. The DNS server has been fed false records. What is this attack?",
+   "o": [
+    [
+     "DNS cache poisoning",
+     "Right. False records in the resolver's cache send users to the attacker."
+    ],
+    [
+     "SQL injection",
+     "SQL injection targets databases through input fields."
+    ],
+    [
+     "ARP flooding",
+     "That overloads a switch's MAC table."
+    ],
+    [
+     "Bluejacking",
+     "Bluejacking sends unwanted Bluetooth messages."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-06",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "An attacker on the same coffee-shop Wi-Fi intercepts and changes traffic between a user and a site. What is this?",
+   "o": [
+    [
+     "An on-path (man-in-the-middle) attack",
+     "Right. The attacker sits between the two sides and can read or change traffic."
+    ],
+    [
+     "A denial-of-service attack",
+     "DoS stops the service. This attack reads and changes traffic."
+    ],
+    [
+     "Privilege escalation",
+     "Escalation means gaining higher rights on a system."
+    ],
+    [
+     "A logic bomb",
+     "A logic bomb is code that triggers later."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-07",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "A company wants every device to authenticate before a switch port lets it onto the network. Which standard does this?",
+   "o": [
+    [
+     "IEEE 802.1X",
+     "Right. 802.1X blocks the port until the device or user authenticates, usually through RADIUS."
+    ],
+    [
+     "802.11ac",
+     "That's a Wi-Fi speed standard."
+    ],
+    [
+     "Spanning Tree Protocol",
+     "STP prevents switching loops."
+    ],
+    [
+     "DHCP",
+     "DHCP hands out IP addresses. It doesn't authenticate."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-08",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "Network admins want every command they run on routers to be authorized and logged separately. Which AAA protocol fits BEST?",
+   "o": [
+    [
+     "TACACS+",
+     "Right. TACACS+ separates authentication, authorization and accounting, so each command can be checked and logged."
+    ],
+    [
+     "RADIUS",
+     "RADIUS combines authentication and authorization and is mainly for network access."
+    ],
+    [
+     "SNMPv1",
+     "SNMP is for monitoring, not admin logins."
+    ],
+    [
+     "Telnet",
+     "Telnet is an insecure remote shell, not an AAA protocol."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-09",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "Contractors need access to one internal app, but the company doesn't want their laptops on the network. Which remote access option fits BEST?",
+   "o": [
+    [
+     "A virtual desktop (VDI) where only the screen reaches the contractor",
+     "Right. The app and data stay in the data center."
+    ],
+    [
+     "A full-tunnel VPN that puts their laptops on the internal network",
+     "That brings unmanaged laptops onto the network."
+    ],
+    [
+     "Opening the app directly to the internet with no login",
+     "That exposes the app to everyone."
+    ],
+    [
+     "Emailing them copies of the database",
+     "That sends the data out of the company."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-10",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "Where should a company place a web server that customers reach from the internet?",
+   "o": [
+    [
+     "In a screened subnet (DMZ)",
+     "Right. Public services are kept apart from the internal network."
+    ],
+    [
+     "On the same VLAN as the HR database, behind the firewall",
+     "A hacked web server would then reach HR data directly."
+    ],
+    [
+     "On the CEO's desktop",
+     "Desktops aren't servers and hold sensitive data."
+    ],
+    [
+     "Outside every firewall with no protection",
+     "That leaves it fully exposed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-11",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "Network devices are managed over the same network that users browse the web on. What is the BEST improvement?",
+   "o": [
+    [
+     "Use a separate management network",
+     "Right. Isolating management traffic keeps admin interfaces away from users and attackers."
+    ],
+    [
+     "Turn off logging on the switches",
+     "Logging helps security. Keep it on."
+    ],
+    [
+     "Use Telnet so management is faster",
+     "Telnet is clear text and unsafe."
+    ],
+    [
+     "Give every user the switch passwords so they can report problems",
+     "That makes the problem worse."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-12",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "Why change the default SNMP community strings and move to SNMPv3?",
+   "o": [
+    [
+     "Default strings are guessable; v3 adds auth and encryption",
+     "Right. SNMPv3 fixes the weak security of older versions."
+    ],
+    [
+     "SNMPv3 makes the switches run faster and use less memory",
+     "The change is for security, not speed."
+    ],
+    [
+     "Default strings are required by law",
+     "No law requires default strings."
+    ],
+    [
+     "SNMP is used only for printing",
+     "SNMP monitors all kinds of devices."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-13",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "A company wants to stop employees from emailing spreadsheets that contain Social Security numbers to outside addresses. Which tool fits BEST?",
+   "o": [
+    [
+     "Data loss prevention (DLP)",
+     "Right. DLP inspects outgoing content for sensitive data patterns and blocks it."
+    ],
+    [
+     "A load balancer",
+     "A load balancer spreads traffic across servers."
+    ],
+    [
+     "A NAT router",
+     "NAT rewrites addresses. It doesn't inspect content."
+    ],
+    [
+     "A KVM switch",
+     "A KVM switch shares a keyboard and monitor between computers."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-14",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "What is the main difference between an IDS and an IPS?",
+   "o": [
+    [
+     "An IPS can block; an IDS only alerts",
+     "Right. Inline placement lets an IPS stop what it detects."
+    ],
+    [
+     "An IDS encrypts the traffic it watches, and an IPS doesn't",
+     "Neither one is for encryption."
+    ],
+    [
+     "An IPS only works on wireless networks",
+     "IPS works on any network."
+    ],
+    [
+     "They're the same device with different names",
+     "They differ in placement and action."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-15",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "A forward proxy sits between users and the internet. Which security benefit does it provide?",
+   "o": [
+    [
+     "It filters and logs web requests",
+     "Right. Proxies enforce browsing rules and give visibility."
+    ],
+    [
+     "It replaces endpoint antivirus",
+     "Endpoint protection is still needed."
+    ],
+    [
+     "It stops all phishing emails",
+     "A web proxy doesn't handle email."
+    ],
+    [
+     "It makes users anonymous to the security team",
+     "It gives the security team more visibility, not less."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-16",
+   "d": "6.0",
+   "obj": "6.6",
+   "q": "A company wants each employee to log in to Wi-Fi with their own account rather than a shared password. Which setup fits?",
+   "o": [
+    [
+     "WPA3-Enterprise using 802.1X with EAP",
+     "Right. Enterprise mode authenticates each user, often against the directory through RADIUS."
+    ],
+    [
+     "WPA3-Personal with one shared passphrase",
+     "Personal mode uses a shared key."
+    ],
+    [
+     "WEP with a long key",
+     "WEP is broken."
+    ],
+    [
+     "An open network with a captive portal only",
+     "An open network doesn't encrypt traffic."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-17",
+   "d": "6.0",
+   "obj": "6.6",
+   "q": "An attacker sets up an access point with the same name as the company's Wi-Fi to trick users into connecting. What is this?",
+   "o": [
+    [
+     "An evil twin",
+     "Right. A fake access point copies a real SSID to capture users and traffic."
+    ],
+    [
+     "Bluesnarfing",
+     "Bluesnarfing steals data over Bluetooth."
+    ],
+    [
+     "War driving",
+     "War driving is searching for Wi-Fi networks."
+    ],
+    [
+     "A jamming attack",
+     "Jamming blocks the signal instead of copying it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-18",
+   "d": "6.0",
+   "obj": "6.6",
+   "q": "Why should employees turn off Bluetooth and NFC on phones when they aren't using them?",
+   "o": [
+    [
+     "It shrinks the attack surface",
+     "Right. Turning off radios you don't need removes ways in."
+    ],
+    [
+     "It makes Wi-Fi faster",
+     "Bluetooth doesn't slow Wi-Fi in a meaningful way."
+    ],
+    [
+     "It's needed to keep the phone's warranty valid",
+     "Warranties don't depend on this."
+    ],
+    [
+     "It stops all phishing emails",
+     "Radios have nothing to do with email phishing."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-19",
+   "d": "6.0",
+   "obj": "6.7",
+   "q": "A building has 300 smart sensors whose vendor no longer releases firmware updates. What is the BEST approach?",
+   "o": [
+    [
+     "Isolate, monitor and plan to replace them",
+     "Right. End-of-life IoT can't be patched, so contain the risk and retire it."
+    ],
+    [
+     "Connect them to the main office network so they're easier to manage",
+     "That gives a hacked sensor a path to everything."
+    ],
+    [
+     "Ignore them, since sensors don't hold data",
+     "Hacked IoT devices are used to attack other systems."
+    ],
+    [
+     "Give them public IP addresses",
+     "That exposes them directly to the internet."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-20",
+   "d": "6.0",
+   "obj": "6.7",
+   "q": "Which step should come FIRST when installing new IoT cameras?",
+   "o": [
+    [
+     "Change defaults and update firmware",
+     "Right. Default passwords and old firmware are the most common IoT weaknesses."
+    ],
+    [
+     "Open the cameras to the internet for remote viewing",
+     "Exposing them before hardening invites attack."
+    ],
+    [
+     "Disable all logging on the cameras",
+     "Logging helps you spot misuse."
+    ],
+    [
+     "Share the admin password with every employee",
+     "That removes access control."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-01",
+   "d": "7.0",
+   "obj": "7.1",
+   "q": "Malware spreads from computer to computer across the network on its own, with no user clicking anything. What type is it?",
+   "o": [
+    [
+     "A worm",
+     "Right. Worms self-replicate across networks without user action."
+    ],
+    [
+     "A virus",
+     "A virus needs a host file and usually a user action to spread."
+    ],
+    [
+     "A Trojan",
+     "A Trojan pretends to be useful software and doesn't spread by itself."
+    ],
+    [
+     "Adware",
+     "Adware shows unwanted ads."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-02",
+   "d": "7.0",
+   "obj": "7.1",
+   "q": "A user's files suddenly can't be opened and a note demands payment in cryptocurrency. What should the user do FIRST?",
+   "o": [
+    [
+     "Disconnect and report it",
+     "Right. Quick isolation and reporting limit the spread."
+    ],
+    [
+     "Pay the ransom from their own account",
+     "Paying is an organizational decision and doesn't guarantee recovery."
+    ],
+    [
+     "Restart the computer repeatedly until the files come back",
+     "Restarting doesn't decrypt files and can destroy evidence."
+    ],
+    [
+     "Email the note to all coworkers as a warning",
+     "The security team should handle communications."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-03",
+   "d": "7.0",
+   "obj": "7.1",
+   "q": "A database admin starts downloading large amounts of customer data at 2 a.m., which he has never done before. What kind of tool would flag this?",
+   "o": [
+    [
+     "User and entity behavior analytics (UEBA)",
+     "Right. UEBA learns normal behavior and flags unusual activity, including insiders."
+    ],
+    [
+     "A port scanner",
+     "Port scanners find open ports, not unusual user behavior."
+    ],
+    [
+     "A spam filter",
+     "Spam filters handle email."
+    ],
+    [
+     "A load balancer",
+     "Load balancers spread traffic."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-04",
+   "d": "7.0",
+   "obj": "7.1",
+   "q": "Malware hides deep in the operating system and lies to antivirus tools about what's running. What type is it?",
+   "o": [
+    [
+     "A rootkit",
+     "Right. Rootkits hide themselves and other malware by changing how the OS reports activity."
+    ],
+    [
+     "Spyware",
+     "Spyware collects information, but hiding at OS level is the rootkit's job."
+    ],
+    [
+     "A logic bomb",
+     "A logic bomb triggers on a condition."
+    ],
+    [
+     "Ransomware",
+     "Ransomware encrypts files for payment."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-05",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "Only approved programs should run on kiosk PCs. Which control enforces this?",
+   "o": [
+    [
+     "Application allow listing",
+     "Right. Anything not on the approved list is blocked from running."
+    ],
+    [
+     "A host-based firewall",
+     "A firewall controls network traffic, not which programs run."
+    ],
+    [
+     "Full-disk encryption",
+     "Encryption protects data if the disk is stolen."
+    ],
+    [
+     "A screen saver password",
+     "That locks the screen but doesn't control programs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-06",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "What does a Trusted Platform Module (TPM) provide on a laptop?",
+   "o": [
+    [
+     "Secure key storage and trusted boot",
+     "Right. The TPM protects keys, such as disk encryption keys, and checks boot integrity."
+    ],
+    [
+     "Faster Wi-Fi",
+     "The TPM has nothing to do with networking speed."
+    ],
+    [
+     "A backup power supply",
+     "That's a battery or UPS."
+    ],
+    [
+     "Built-in antivirus scanning of every file at boot",
+     "The TPM doesn't scan for malware."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-07",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "EDR flags a laptop running a script that is encrypting files. What EDR feature helps MOST right away?",
+   "o": [
+    [
+     "Network isolation of the host",
+     "Right. Network isolation stops the spread but keeps the device available for investigation."
+    ],
+    [
+     "Deleting the EDR agent",
+     "That removes visibility."
+    ],
+    [
+     "Turning off the laptop's screen",
+     "That doesn't stop the script."
+    ],
+    [
+     "Sending the user an automatic reminder about strong passwords",
+     "This isn't a password problem."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-08",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "Why add a host-based firewall when there's already a network firewall?",
+   "o": [
+    [
+     "It protects the device wherever it is",
+     "Right. Host firewalls add defense in depth wherever the device goes."
+    ],
+    [
+     "It replaces the network firewall for that device's traffic",
+     "Both layers are useful."
+    ],
+    [
+     "It speeds up the internet connection",
+     "Firewalls don't add speed."
+    ],
+    [
+     "It encrypts the hard drive",
+     "That's disk encryption."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-09",
+   "d": "7.0",
+   "obj": "7.3",
+   "q": "A company lets staff use personal phones for work email but needs to wipe only company data if a phone is lost. Which feature makes this possible?",
+   "o": [
+    [
+     "Containerization of work apps and data",
+     "Right. The company can wipe the work container without touching personal photos."
+    ],
+    [
+     "A full factory reset",
+     "That erases the employee's personal data too."
+    ],
+    [
+     "A stronger Wi-Fi password at the office and on the guest network",
+     "Wi-Fi doesn't separate data on the phone."
+    ],
+    [
+     "Turning off the phone's camera",
+     "That doesn't separate or protect data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-10",
+   "d": "7.0",
+   "obj": "7.3",
+   "q": "The company buys phones and owns them, but lets employees use them for personal things too. Which provisioning model is this?",
+   "o": [
+    [
+     "Corporate-owned, personally enabled (COPE)",
+     "Right. The company owns and manages the device and allows personal use."
+    ],
+    [
+     "Bring your own device (BYOD)",
+     "In BYOD the employee owns the phone."
+    ],
+    [
+     "Choose your own device (CYOD)",
+     "CYOD lets employees pick from a list. Ownership and personal use are separate questions."
+    ],
+    [
+     "Virtual desktop infrastructure (VDI)",
+     "VDI is about remote desktops, not phone ownership."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-11",
+   "d": "7.0",
+   "obj": "7.3",
+   "q": "Which mobile device management (MDM) setting BEST protects company data if a phone is stolen?",
+   "o": [
+    [
+     "Required encryption and remote wipe",
+     "Right. Encryption protects the data, and remote wipe removes it."
+    ],
+    [
+     "A custom wallpaper with the company logo",
+     "Wallpaper doesn't protect anything."
+    ],
+    [
+     "Turning off automatic updates so settings don't change",
+     "Updates fix vulnerabilities, so keep them on."
+    ],
+    [
+     "Allowing apps from any source",
+     "Unknown app sources increase risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-12",
+   "d": "7.0",
+   "obj": "7.3",
+   "q": "A company wants to control only its own apps on employees' personal phones, without managing the whole device. Which approach fits?",
+   "o": [
+    [
+     "Mobile application management (MAM)",
+     "Right. MAM manages and protects specific apps and their data."
+    ],
+    [
+     "Full mobile device management of every personal setting",
+     "Employees often refuse full control of personal phones."
+    ],
+    [
+     "Disabling the phones' cellular radios",
+     "That breaks the phones."
+    ],
+    [
+     "Port security on the office switch",
+     "Switch settings don't manage phone apps."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-13",
+   "d": "7.0",
+   "obj": "7.4",
+   "q": "A company uses PaaS to host an app. Under shared responsibility, who patches the operating system under the app?",
+   "o": [
+    [
+     "The cloud provider",
+     "Right. In PaaS the provider manages the OS and runtime. The customer manages the app and its data."
+    ],
+    [
+     "The customer",
+     "In IaaS the customer would. In PaaS the provider does."
+    ],
+    [
+     "The customer's internet provider",
+     "The ISP has no role in the cloud platform."
+    ],
+    [
+     "Nobody, because PaaS has no operating system",
+     "There is an OS. The provider manages it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-14",
+   "d": "7.0",
+   "obj": "7.4",
+   "q": "Before moving regulated data to a cloud provider, what should the company check about the provider?",
+   "o": [
+    [
+     "Its audit reports, like SOC 2, and the contract terms",
+     "Right. Third-party assurance and contract terms show whether the provider can meet the company's duties."
+    ],
+    [
+     "Only the price per gigabyte and the length of the free trial",
+     "Price alone ignores security and legal duties."
+    ],
+    [
+     "The color of its logo",
+     "Branding isn't assurance."
+    ],
+    [
+     "Whether the CEO likes the sales rep",
+     "Personal impressions aren't due diligence."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-15",
+   "d": "7.0",
+   "obj": "7.4",
+   "q": "A company keeps sensitive workloads in its own data center and bursts extra demand to a public cloud. Which deployment model is this?",
+   "o": [
+    [
+     "Hybrid cloud",
+     "Right. Hybrid combines private and public resources."
+    ],
+    [
+     "Community cloud",
+     "Community clouds are shared by organizations with common needs."
+    ],
+    [
+     "Public cloud only",
+     "Part of the workload stays private."
+    ],
+    [
+     "Private cloud only",
+     "Part of the workload goes to public cloud."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-16",
+   "d": "7.0",
+   "obj": "7.5",
+   "q": "An attacker breaks out of a virtual machine and gains access to the hypervisor. What is this called?",
+   "o": [
+    [
+     "VM escape",
+     "Right. Escaping the guest reaches the host and potentially every other VM."
+    ],
+    [
+     "VM sprawl",
+     "Sprawl is having too many unmanaged VMs."
+    ],
+    [
+     "Live migration",
+     "Live migration moves a running VM between hosts on purpose."
+    ],
+    [
+     "Snapshotting",
+     "A snapshot saves a VM's state."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-17",
+   "d": "7.0",
+   "obj": "7.5",
+   "q": "Which hypervisor runs directly on the server hardware with no host operating system underneath?",
+   "o": [
+    [
+     "Type 1 (bare metal)",
+     "Right. Type 1 has a smaller attack surface because there's no general-purpose host OS."
+    ],
+    [
+     "Type 2 (hosted)",
+     "Type 2 runs as an app on a regular operating system."
+    ],
+    [
+     "A container runtime",
+     "Containers share the host OS kernel. They aren't hypervisors."
+    ],
+    [
+     "A web browser",
+     "Browsers aren't hypervisors."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-18",
+   "d": "7.0",
+   "obj": "7.5",
+   "q": "How do containers differ from virtual machines in a way that affects security?",
+   "o": [
+    [
+     "Containers share the host's kernel",
+     "Right. Lighter isolation means the shared kernel must be kept patched and hardened."
+    ],
+    [
+     "Containers each have their own full operating system",
+     "That describes VMs."
+    ],
+    [
+     "Containers can't be scanned for vulnerabilities like VMs can",
+     "Container images can and should be scanned."
+    ],
+    [
+     "Containers never need patching",
+     "Images and hosts need regular patching."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-7-19",
+   "d": "7.0",
+   "obj": "7.5",
+   "q": "Dozens of old, unpatched VMs that nobody owns are still running in a cluster. Which problem is this, and what fixes it?",
+   "o": [
+    [
+     "VM sprawl; give VMs owners or retire them",
+     "Right. Untracked VMs aren't patched or monitored, so they need owners or removal."
+    ],
+    [
+     "VM escape; turn off the hypervisor until every VM is patched",
+     "This isn't an escape, and turning off the hypervisor stops everything."
+    ],
+    [
+     "Data masking; mask the VM names",
+     "Renaming hides nothing from attackers."
+    ],
+    [
+     "Federation; trust another company's VMs",
+     "Federation is about identity trust."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "kind": "table",
+   "d": "2.0",
+   "obj": "2.4",
+   "title": "Pick the access control model",
+   "short": "Access models",
+   "scenario": "Five access rules from different systems. Pick the model each one uses.",
+   "cols": [
+    "Model"
+   ],
+   "opts": [
+    [
+     "MAC",
+     "DAC",
+     "RBAC",
+     "Rule-based",
+     "ABAC"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "A file's owner shares her folder with two teammates.",
+     "a": [
+      1
+     ],
+     "why": "The owner decides who gets in: discretionary."
+    },
+    {
+     "req": "Users cleared for Secret can read Secret files, and labels can't be changed by users.",
+     "a": [
+      0
+     ],
+     "why": "System-enforced labels and clearances: mandatory."
+    },
+    {
+     "req": "Everyone added to the Helpdesk group can reset passwords.",
+     "a": [
+      2
+     ],
+     "why": "Access comes from the job role."
+    },
+    {
+     "req": "No one can log in to the HR app between 10 p.m. and 5 a.m.",
+     "a": [
+      3
+     ],
+     "why": "One system-wide rule for everyone."
+    },
+    {
+     "req": "Access is allowed only for Finance staff on managed laptops in the U.S.",
+     "a": [
+      4
+     ],
+     "why": "Several attributes of user, device and location together."
+    }
+   ],
+   "t": "pbq",
+   "id": "ss-p-01",
+   "dom": "2.0"
+  },
+  {
+   "kind": "table",
+   "d": "4.0",
+   "obj": "4.3",
+   "title": "Choose the recovery setup",
+   "short": "Recovery sites",
+   "scenario": "Five systems need a recovery plan. Pick the alternate site type that best fits each one's recovery time and budget.",
+   "cols": [
+    "Site type"
+   ],
+   "opts": [
+    [
+     "Hot site",
+     "Warm site",
+     "Cold site"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "Online payments. Must be back within 15 minutes; money is no issue.",
+     "a": [
+      0
+     ],
+     "why": "Only a hot site, already running with current data, can take over in minutes."
+    },
+    {
+     "req": "Archive of old project files. A few weeks without it is fine.",
+     "a": [
+      2
+     ],
+     "why": "A cold site is cheapest and fine when recovery can take weeks."
+    },
+    {
+     "req": "Internal ticketing. Should return within a day or two at moderate cost.",
+     "a": [
+      1
+     ],
+     "why": "A warm site has some equipment ready, so recovery takes hours to days."
+    },
+    {
+     "req": "Call center phone system. Must be back within the hour.",
+     "a": [
+      0
+     ],
+     "why": "An hour is too short for a warm site to be built out."
+    },
+    {
+     "req": "Training lab used twice a year. Cost matters most.",
+     "a": [
+      2
+     ],
+     "why": "Low priority and low budget fit a cold site."
+    }
+   ],
+   "t": "pbq",
+   "id": "ss-p-02",
+   "dom": "4.0"
+  },
+  {
+   "kind": "match",
+   "d": "4.0",
+   "obj": "4.1",
+   "title": "Put each action in its incident response phase",
+   "short": "IR phases",
+   "scenario": "Actions from a recent incident. Pick the NIST incident response phase each one belongs to. Each phase can be used more than once, and one option is a distractor.",
+   "choices": [
+    "Preparation",
+    "Detection & analysis",
+    "Contain & recover",
+    "Post-incident",
+    "Procurement"
+   ],
+   "pick": "Phase",
+   "items": [
+    {
+     "text": "Writing the phishing playbook and testing the call tree.",
+     "a": 0,
+     "why": "Getting ready before an incident is preparation."
+    },
+    {
+     "text": "Confirming that an EDR alert is a real compromise and judging its scope.",
+     "a": 1,
+     "why": "Confirming and sizing an incident is detection and analysis."
+    },
+    {
+     "text": "Isolating the infected laptop and blocking the attacker's IP.",
+     "a": 2,
+     "why": "Stopping the spread is containment."
+    },
+    {
+     "text": "Rebuilding the server from a clean image and restoring data.",
+     "a": 2,
+     "why": "Rebuilding and restoring is eradication and recovery."
+    },
+    {
+     "text": "Holding a blameless review and updating the playbook.",
+     "a": 3,
+     "why": "Reviewing and improving afterward is post-incident activity."
+    }
+   ],
+   "t": "pbq",
+   "id": "ss-p-03",
+   "dom": "4.0"
+  },
+  {
+   "kind": "match",
+   "d": "6.0",
+   "obj": "6.5",
+   "title": "Match the tool to the job",
+   "short": "Security appliances",
+   "scenario": "Five network problems. Pick the appliance or service that best solves each one. Two options are distractors.",
+   "choices": [
+    "DLP",
+    "IPS",
+    "Web proxy",
+    "NAC",
+    "Load balancer",
+    "KVM switch",
+    "Network tap"
+   ],
+   "pick": "Tool",
+   "items": [
+    {
+     "text": "Stop spreadsheets with customer SSNs from being emailed outside the company.",
+     "a": 0,
+     "why": "DLP inspects outgoing content for sensitive data."
+    },
+    {
+     "text": "Block exploit traffic aimed at a web server, inline, as it arrives.",
+     "a": 1,
+     "why": "An IPS sits inline and blocks malicious traffic."
+    },
+    {
+     "text": "Filter which websites users can visit and log their browsing.",
+     "a": 2,
+     "why": "A forward proxy filters and logs web requests."
+    },
+    {
+     "text": "Keep unpatched laptops off the network until they're compliant.",
+     "a": 3,
+     "why": "NAC checks device health before allowing access."
+    },
+    {
+     "text": "Spread customer traffic across three web servers.",
+     "a": 4,
+     "why": "A load balancer distributes traffic for availability."
+    }
+   ],
+   "t": "pbq",
+   "id": "ss-p-04",
+   "dom": "6.0"
+  },
+  {
+   "kind": "table",
+   "d": "5.0",
+   "obj": "5.2",
+   "title": "Choose the crypto for each need",
+   "short": "Crypto choices",
+   "scenario": "Five security needs. Pick the cryptographic tool that fits each one best.",
+   "cols": [
+    "Tool"
+   ],
+   "opts": [
+    [
+     "Symmetric encryption",
+     "Asymmetric encryption",
+     "Hashing",
+     "Salted hashing",
+     "Digital signature"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "Encrypt a 200 GB backup quickly with a key both sites already share.",
+     "a": [
+      0
+     ],
+     "why": "Symmetric encryption like AES is fast for large data."
+    },
+    {
+     "req": "Safely exchange a session key with a server you've never talked to.",
+     "a": [
+      1
+     ],
+     "why": "Public key cryptography solves key exchange."
+    },
+    {
+     "req": "Check that a downloaded ISO matches the vendor's published fingerprint.",
+     "a": [
+      2
+     ],
+     "why": "Compare hashes to verify integrity."
+    },
+    {
+     "req": "Store user passwords so identical passwords don't look the same.",
+     "a": [
+      3
+     ],
+     "why": "A unique salt per password defeats rainbow tables."
+    },
+    {
+     "req": "Prove a contract came from the CFO and wasn't changed.",
+     "a": [
+      4
+     ],
+     "why": "A signature gives authenticity, integrity and non-repudiation."
+    }
+   ],
+   "t": "pbq",
+   "id": "ss-p-05",
+   "dom": "5.0"
+  }
+ ]
+}

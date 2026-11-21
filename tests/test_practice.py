@@ -471,3 +471,39 @@ def test_cc_half_exam_has_no_pbq(site):
     p.wait_for_selector("#mx[open]")
     p.wait_for_timeout(600)
     assert p.inner_text("#mx-count").strip().endswith("/ 50")
+
+
+def test_sscp_2025_full_exam(site):
+    """v2.72: ISC2 SSCP (Oct 2025 outline) gets a 100-item, 2-hour bank with 3 advanced items and all seven domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "sscp")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v25"]').count() == 1, mxp[:500]
+    assert p.locator("#mxp .mxp-card.soon").count() == 0, mxp[:600]
+    assert "PBQs first" not in mxp and "adaptive" in mxp
+    p.locator('#mxp [data-mx="full"][data-ver="v25"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 100")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("1:59:", "2:00:")), t
+    assert p.inner_text("#mx-h").strip() == "SSCP · 2025 outline"   # the code isn't repeated when it equals the cert name
+    _answer_all(p)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Security Concepts and Practices", "Access Controls", "Risk Identification, Monitoring and Analysis",
+                "Incident Response and Recovery", "Cryptography", "Network and Communications Security",
+                "Systems and Application Security"):
+        assert dom in body, f"{dom} missing from the results"
+
+
+def test_sscp_guide_objective_7_3_is_mobile_devices(site):
+    """ISC2's 2025 outline: 7.3 is mobile device management and EDR sits under 7.2 (the guide had them mixed up)."""
+    w = site()
+    p = w.page
+    open_guide(p, "sscp")
+    text = p.inner_text("#g-obj")
+    assert "Administer and manage mobile devices" in text
+    assert "Endpoint detection and response (EDR)\n" not in text
