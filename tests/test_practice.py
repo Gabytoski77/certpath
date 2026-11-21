@@ -560,3 +560,29 @@ def test_ccsp_2026_full_exam(site):
                 "Cloud Platform and Infrastructure Security", "Cloud Application Security",
                 "Cloud Security Operations", "Legal, Risk and Compliance"):
         assert dom in body, f"{dom} missing from the results"
+
+
+def test_cissp_2024_full_exam(site):
+    """v2.75: ISC2 CISSP (Apr 2024 outline) gets a 125-item, 3-hour bank with 4 advanced items and all eight domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "cissp")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v24"]').count() == 1, mxp[:500]
+    assert p.locator("#mxp .mxp-card.soon").count() == 0, mxp[:600]
+    assert "PBQs first" not in mxp and "100 to 150" in mxp
+    p.locator('#mxp [data-mx="full"][data-ver="v24"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 125")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("2:59:", "3:00:")), t
+    assert p.inner_text("#mx-h").strip() == "CISSP · 2024 outline"
+    _answer_all(p, limit=140)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Security and Risk Management", "Asset Security", "Security Architecture and Engineering",
+                "Communication and Network Security", "Identity and Access Management (IAM)",
+                "Security Assessment and Testing", "Security Operations", "Software Development Security"):
+        assert dom in body, f"{dom} missing from the results"
