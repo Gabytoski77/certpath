@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-M25rLF7KShWbdQvrqM23Q/3oixXFWVpeHJtwW/mvpfA=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-DWw5qNY9AWb1jsG6OhbgHN1idQpXnGzQe6Za1kd5jew=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -2558,7 +2558,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.71</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.72</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -7891,6 +7891,8 @@ GUIDES["CC"]={
 
 GUIDES["SSCP"]={
   id:"sscp",
+  mock:{v25:"qbank/isc2-sscp.json"},
+  mockText:"100 items in 2 hours, with 3 advanced items, flags and a review screen. The real SSCP is adaptive: 100 to 125 items, one at a time, and you can't go back. Practice the same way: answer each one and keep moving.",
   lead:"ISC2's hands-on security practitioner cert, Systems Security Certified Practitioner. It proves you can run security day to day: access control, monitoring, incident response, crypto and network defense. Built for people already doing security work, and it counts toward the WGU cyber degree.",
   checked:"Nov 7, 2026",
   planHours:75,
@@ -7940,10 +7942,10 @@ GUIDES["SSCP"]={
           ["Secure and monitor IoT devices","Harden their settings, isolate them on their own network, keep firmware updated and plan for end-of-life devices."]]},
         {n:"7.0",name:"Systems and Application Security",w:15,obj:[
           ["Identify and analyze malicious code and activity","Malware types and countermeasures, social engineering, insider activity, and behavior analytics that flag the unusual."],
-          ["Implement and operate endpoint security","Host IDS/IPS, host firewalls, application allow lists, full-disk encryption, the TPM chip and secure browsing."],
-          ["Endpoint detection and response (EDR)","Always-on monitoring of endpoints that can alert, help you investigate and isolate a host from the network."],
+          ["Implement and operate endpoint security","Host IDS/IPS, host firewalls, application allow lists, full-disk encryption, the TPM chip, secure browsing, and endpoint detection and response (EDR) that can alert, investigate and isolate a host."],
+          ["Administer and manage mobile devices","Provisioning models like BYOD and COPE, mobile device management (MDM), containerization that keeps work data apart, encryption, and mobile application management."],
           ["Understand and configure cloud security","Public, private, hybrid and community clouds; IaaS, PaaS and SaaS; the shared responsibility model; third-party and legal requirements."],
-          ["Operate and maintain secure virtual environments","Hypervisors, containers, virtual appliances, mobile app management, encryption, storage and keeping virtual systems resilient."]]}
+          ["Operate and maintain secure virtual environments","Type 1 and Type 2 hypervisors, virtual appliances, containers, continuity and resilience, storage, and attacks like VM escape."]]}
       ]}
   },
   extras:[
@@ -14998,7 +15000,7 @@ function mxNewRun(G,kind,opt){
     var need=mxAlloc(n-picked.length,B.domains), mcq=[];
     B.domains.forEach(function(d){mcq=mcq.concat(fresh(B.q.filter(function(q){return q.t!=="pbq"&&q.d===d.n;})).slice(0,need[d.n]));});
     items=picked.concat(gShuffle(mcq)).map(mxItem);
-    title=G.versions[ver].label+" · "+G.versions[ver].code;
+    var Vc=G.versions[ver]; title=Vc.label+(Vc.code&&Vc.code!==opt.cert?" · "+Vc.code:"");   /* SSCP, CC: the code is the cert name, don't repeat it */
   } else if(kind==="quick"){
     src="quiz";items=gShuffle(G.quiz.slice()).map(function(q){var it=mxItem({id:mxQid(q),o:q.o,t:"mc"});return it;});
     title="Guide questions";
