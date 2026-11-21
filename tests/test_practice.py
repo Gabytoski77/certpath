@@ -507,3 +507,30 @@ def test_sscp_guide_objective_7_3_is_mobile_devices(site):
     text = p.inner_text("#g-obj")
     assert "Administer and manage mobile devices" in text
     assert "Endpoint detection and response (EDR)\n" not in text
+
+
+def test_cgrc_2024_full_exam(site):
+    """v2.73: ISC2 CGRC (Jun 2024 outline) gets a 125-item, 3-hour bank with 4 advanced items and all seven domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "cgrc")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="cur"]').count() == 1, mxp[:500]
+    assert p.locator("#mxp .mxp-card.soon").count() == 0, mxp[:600]
+    assert "PBQs first" not in mxp and "fixed 125-item" in mxp
+    p.locator('#mxp [data-mx="full"][data-ver="cur"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 125")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("2:59:", "3:00:")), t
+    assert p.inner_text("#mx-h").strip() == "CGRC · 2024 outline"
+    _answer_all(p, limit=140)   # 125 items, more than the default limit
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Security and Privacy Governance, Risk Management, and Compliance Program", "Scope of the System",
+                "Selection and Approval of Framework, Security, and Privacy Controls",
+                "Implementation of Security and Privacy Controls", "Assessment/Audit of Security and Privacy Controls",
+                "System Compliance", "Compliance Maintenance"):
+        assert dom in body, f"{dom} missing from the results"
