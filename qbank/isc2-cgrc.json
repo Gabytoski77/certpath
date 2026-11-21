@@ -1,0 +1,3828 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "CGRC",
+ "ver": "cur",
+ "exam": "CGRC",
+ "title": "CGRC (2024 outline) practice exam",
+ "rev": "2026-11-20",
+ "format": {
+  "n": 125,
+  "min": 180,
+  "pbq": 4,
+  "half": 62
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Security and Privacy Governance, Risk Management, and Compliance Program",
+   "w": 16,
+   "obj": 3
+  },
+  {
+   "n": "2.0",
+   "name": "Scope of the System",
+   "w": 10,
+   "obj": 2
+  },
+  {
+   "n": "3.0",
+   "name": "Selection and Approval of Framework, Security, and Privacy Controls",
+   "w": 14,
+   "obj": 2
+  },
+  {
+   "n": "4.0",
+   "name": "Implementation of Security and Privacy Controls",
+   "w": 17,
+   "obj": 3
+  },
+  {
+   "n": "5.0",
+   "name": "Assessment/Audit of Security and Privacy Controls",
+   "w": 16,
+   "obj": 6
+  },
+  {
+   "n": "6.0",
+   "name": "System Compliance",
+   "w": 14,
+   "obj": 3
+  },
+  {
+   "n": "7.0",
+   "name": "Compliance Maintenance",
+   "w": 13,
+   "obj": 4
+  }
+ ],
+ "note": "Original questions written for MyNextCert from ISC2's public CGRC exam outline (effective Jun 15, 2024). Not real exam questions. The real CGRC is 125 items in 3 hours, multiple choice and advanced item types.",
+ "q": [
+  {
+   "id": "gr-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "In the NIST Risk Management Framework (RMF), which step comes right BEFORE Select?",
+   "o": [
+    [
+     "Categorize",
+     "Right. You categorize the system's impact level first, then select the baseline controls for that level."
+    ],
+    [
+     "Authorize",
+     "Authorize comes after Implement and Assess."
+    ],
+    [
+     "Monitor",
+     "Monitor is the last step, after authorization."
+    ],
+    [
+     "Assess",
+     "Assess checks controls that have already been selected and implemented."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Which RMF step was added in SP 800-37 Revision 2 to set up organization-wide roles, risk strategy and common controls before any one system is worked?",
+   "o": [
+    [
+     "Prepare",
+     "Right. Prepare sets the context, roles and strategy at the organization and system levels."
+    ],
+    [
+     "Categorize",
+     "Categorize was already in Revision 1."
+    ],
+    [
+     "Decommission",
+     "Decommissioning isn't an RMF step."
+    ],
+    [
+     "Tailor",
+     "Tailoring is part of Select, not its own step."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-03",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "What defines a system's authorization boundary?",
+   "o": [
+    [
+     "What the AO accepts risk for",
+     "Right. Everything inside the boundary is covered by one authorization decision."
+    ],
+    [
+     "The building and floor where the servers are installed",
+     "A boundary is about components and management, not just a building."
+    ],
+    [
+     "Every system the company owns",
+     "That would be far too broad to assess and authorize as one."
+    ],
+    [
+     "The list of users who log in",
+     "Users matter, but the boundary is defined by components."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-04",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A control is partly provided by the cloud provider and partly configured by the agency's system team. What type of control is it?",
+   "o": [
+    [
+     "A hybrid control",
+     "Right. Hybrid controls are part common (inherited) and part system-specific."
+    ],
+    [
+     "A common control",
+     "Common controls are fully provided by another source."
+    ],
+    [
+     "A compensating control",
+     "Compensating controls replace a control that can't be used."
+    ],
+    [
+     "A deterrent control",
+     "Deterrence is a control function, not where it comes from."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-05",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Which framework is mainly used to govern and manage enterprise IT, rather than to list security controls?",
+   "o": [
+    [
+     "COBIT",
+     "Right. COBIT is an IT governance and management framework."
+    ],
+    [
+     "NIST SP 800-53",
+     "SP 800-53 is a catalog of security and privacy controls."
+    ],
+    [
+     "PCI DSS",
+     "PCI DSS sets security requirements for payment card data."
+    ],
+    [
+     "CIS Controls",
+     "The CIS Controls are a prioritized list of security safeguards."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-06",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "During which phase of the system development life cycle should security and privacy requirements FIRST be defined?",
+   "o": [
+    [
+     "Initiation",
+     "Right. Defining requirements early is far cheaper than adding them after the system is built."
+    ],
+    [
+     "Disposal",
+     "Disposal is the end of the life cycle."
+    ],
+    [
+     "Operations and maintenance",
+     "By then the design is set and changes cost more."
+    ],
+    [
+     "Implementation",
+     "Implementation builds what was already designed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-07",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "An organization's leadership says it will accept no more than a moderate risk to mission-critical systems. What has it defined?",
+   "o": [
+    [
+     "Its risk tolerance",
+     "Right. Risk tolerance is the level of risk the organization is willing to accept."
+    ],
+    [
+     "Its risk register",
+     "The register lists specific risks."
+    ],
+    [
+     "Its control baseline",
+     "A baseline is a starting set of controls."
+    ],
+    [
+     "Its system boundary",
+     "A boundary defines a system's components."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-08",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Who formally accepts the risk of operating a federal information system?",
+   "o": [
+    [
+     "The authorizing official (AO)",
+     "Right. The AO is a senior official who signs off on the risk to the organization."
+    ],
+    [
+     "The information system security officer (ISSO)",
+     "The ISSO handles day-to-day security for the system."
+    ],
+    [
+     "The control assessor",
+     "The assessor evaluates controls and reports findings."
+    ],
+    [
+     "The system administrator",
+     "Admins run the system but can't accept organizational risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-09",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Who is responsible for the system's day-to-day security operations, like keeping the SSP current and watching for changes?",
+   "o": [
+    [
+     "The information system security officer (ISSO)",
+     "Right. The ISSO supports the system owner with daily security work."
+    ],
+    [
+     "The authorizing official",
+     "The AO makes the authorization decision, not daily operations."
+    ],
+    [
+     "The senior agency official for privacy",
+     "The SAOP oversees privacy across the organization."
+    ],
+    [
+     "An independent assessor",
+     "Assessors must stay separate from daily operations to stay independent."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-10",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Why should the control assessor be independent of the system team?",
+   "o": [
+    [
+     "So the AO can trust the findings",
+     "Right. Independence keeps the assessment free from pressure or bias."
+    ],
+    [
+     "So the assessment takes less time",
+     "Independence isn't about speed."
+    ],
+    [
+     "So the assessor can change the controls",
+     "Assessors evaluate controls. They don't change them."
+    ],
+    [
+     "So the system team never sees the findings until after the ATO",
+     "The system team must see findings to fix them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-11",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A data center team provides physical security controls that many systems inherit. What is this team called in the RMF?",
+   "o": [
+    [
+     "A common control provider",
+     "Right. It's responsible for controls that many systems inherit."
+    ],
+    [
+     "An authorizing official",
+     "AOs accept risk. They don't provide the controls."
+    ],
+    [
+     "A system owner",
+     "Each system has its own owner. This team serves many systems."
+    ],
+    [
+     "A third-party assessor",
+     "Assessors evaluate controls. They don't provide them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-12",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Which role is responsible for privacy risk across the whole organization, including approving privacy plans?",
+   "o": [
+    [
+     "The senior agency official for privacy (SAOP)",
+     "Right. The SAOP oversees privacy policy and privacy risk."
+    ],
+    [
+     "The ISSO",
+     "The ISSO focuses on one system's security."
+    ],
+    [
+     "The help desk manager",
+     "The help desk doesn't own privacy risk."
+    ],
+    [
+     "The network engineer",
+     "Network engineers handle network configuration."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-13",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "What is the MAIN purpose of a risk executive (function) in an organization?",
+   "o": [
+    [
+     "To keep risk decisions consistent",
+     "Right. It gives an organization-wide view so each AO isn't deciding in isolation."
+    ],
+    [
+     "To run vulnerability scans on every system in the organization",
+     "Scanning is an operational task."
+    ],
+    [
+     "To replace the authorizing officials",
+     "AOs still make authorization decisions."
+    ],
+    [
+     "To write each system's security plan",
+     "System teams write their own plans."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-14",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A federal agency's information systems must follow which U.S. law that requires an agency-wide security program?",
+   "o": [
+    [
+     "FISMA",
+     "Right. FISMA requires federal agencies to run security programs and authorize their systems."
+    ],
+    [
+     "HIPAA",
+     "HIPAA covers health information."
+    ],
+    [
+     "SOX",
+     "SOX covers public companies' financial reporting."
+    ],
+    [
+     "GLBA",
+     "GLBA covers financial institutions' customer data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-15",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A cloud company wants to sell its SaaS product to U.S. federal agencies. Which program will it need to go through?",
+   "o": [
+    [
+     "FedRAMP",
+     "Right. FedRAMP standardizes security authorization for cloud services used by federal agencies."
+    ],
+    [
+     "PCI DSS",
+     "PCI DSS covers payment cards."
+    ],
+    [
+     "ISO/IEC 27701",
+     "27701 is a privacy extension to ISO 27001, not federal authorization."
+    ],
+    [
+     "SOC 2 alone",
+     "A SOC 2 report helps, but it doesn't replace federal authorization."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-16",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A defense contractor handles Controlled Unclassified Information (CUI). Which program checks that it protects that data?",
+   "o": [
+    [
+     "CMMC",
+     "Right. CMMC assesses defense contractors' protection of federal contract information and CUI."
+    ],
+    [
+     "FedRAMP",
+     "FedRAMP covers cloud services for agencies."
+    ],
+    [
+     "HIPAA",
+     "HIPAA covers health data."
+    ],
+    [
+     "COPPA",
+     "COPPA covers children's data online."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-17",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A company processes personal data of EU residents. Which requirement means it may need to report a qualifying breach to regulators within 72 hours?",
+   "o": [
+    [
+     "GDPR",
+     "Right. GDPR sets a 72-hour deadline to notify authorities of qualifying personal data breaches."
+    ],
+    [
+     "ISO/IEC 27001",
+     "ISO 27001 is a voluntary standard, not a law with deadlines."
+    ],
+    [
+     "NIST CSF",
+     "The CSF is voluntary guidance."
+    ],
+    [
+     "FISMA",
+     "FISMA applies to U.S. federal agencies."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-18",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "An organization wants an internationally recognized certification of its information security management system. Which standard fits?",
+   "o": [
+    [
+     "ISO/IEC 27001",
+     "Right. Organizations can be certified against ISO 27001's ISMS requirements."
+    ],
+    [
+     "NIST SP 800-53",
+     "SP 800-53 is a control catalog, not a certification."
+    ],
+    [
+     "FIPS 199",
+     "FIPS 199 is a categorization standard."
+    ],
+    [
+     "OWASP ASVS",
+     "ASVS is for application security verification."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-19",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Which document helps an organization decide whether a system's handling of personal data creates privacy risk that needs mitigation?",
+   "o": [
+    [
+     "A privacy impact assessment (PIA)",
+     "Right. A PIA analyzes how personal data is collected, used and protected."
+    ],
+    [
+     "A penetration test report",
+     "A pentest finds technical weaknesses, not privacy impacts."
+    ],
+    [
+     "A load test plan",
+     "Load tests measure performance."
+    ],
+    [
+     "A business continuity plan",
+     "BCP keeps operations running."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-20",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A U.S. hospital adds a new patient portal. Which law's Security Rule sets safeguards for the electronic health information in it?",
+   "o": [
+    [
+     "HIPAA",
+     "Right. HIPAA's Security Rule covers electronic protected health information."
+    ],
+    [
+     "FERPA",
+     "FERPA covers student records."
+    ],
+    [
+     "GDPR",
+     "GDPR is EU law and not the main U.S. health requirement."
+    ],
+    [
+     "CMMC",
+     "CMMC covers defense contractors."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-21",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Several frameworks require similar controls. Why do GRC teams build a control crosswalk?",
+   "o": [
+    [
+     "To meet many requirements with one effort",
+     "Right. Mapping requirements together avoids doing the same work twice."
+    ],
+    [
+     "To remove the need for audits",
+     "Audits still happen. A crosswalk makes them easier."
+    ],
+    [
+     "To pick which law to ignore",
+     "All applicable laws must be met."
+    ],
+    [
+     "To rename controls so they match the newest framework's marketing",
+     "Crosswalks are about mapping, not branding."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-1-22",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Under the EU AI Act, which kind of AI system must meet requirements like risk management, documentation and human oversight before it can be used?",
+   "o": [
+    [
+     "High-risk AI, like hiring tools",
+     "Right. High-risk systems carry duties like risk management, documentation and human oversight."
+    ],
+    [
+     "Every spam filter",
+     "Minimal-risk tools like spam filters face few or no new duties."
+    ],
+    [
+     "Only video games",
+     "Games are generally minimal risk."
+    ],
+    [
+     "Only AI systems that were built by companies outside the EU",
+     "It applies to AI placed on the EU market, wherever it was built."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which document holds the system's name, purpose, boundary, environment and how each control is met?",
+   "o": [
+    [
+     "The system security plan (SSP)",
+     "Right. The SSP describes the system and its controls in one place."
+    ],
+    [
+     "The plan of action and milestones (POA&M)",
+     "The POA&M tracks weaknesses and fixes."
+    ],
+    [
+     "The security assessment report (SAR)",
+     "The SAR records what the assessor found."
+    ],
+    [
+     "The incident response plan",
+     "The IR plan covers handling incidents."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Why must the system description list interconnections with other systems?",
+   "o": [
+    [
+     "Data and risk can flow across those links",
+     "Right. Each connection can bring in risk and may need an agreement like an ISA."
+    ],
+    [
+     "So users know which printers to use",
+     "Printer choice isn't a reason to document interconnections."
+    ],
+    [
+     "Because interconnections are always outside the boundary and don't matter",
+     "They often sit at the boundary and matter a lot."
+    ],
+    [
+     "To increase the number of controls for the audit",
+     "The goal is to understand risk, not to pad the control count."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Two agencies connect their systems to share case data. Which document records the technical and security details of that link?",
+   "o": [
+    [
+     "An interconnection security agreement (ISA)",
+     "Right. An ISA documents the connection's security requirements, often alongside an MOU."
+    ],
+    [
+     "A privacy notice",
+     "A privacy notice tells individuals how their data is used."
+    ],
+    [
+     "An acceptable use policy",
+     "An AUP covers how users may use systems."
+    ],
+    [
+     "A press release",
+     "A press release isn't a security document."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-04",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which item is MOST important to include when describing the system's environment?",
+   "o": [
+    [
+     "Where it runs and who manages each part",
+     "Right. The environment shows who is responsible for which controls."
+    ],
+    [
+     "The color of the server racks",
+     "Rack color has no security meaning."
+    ],
+    [
+     "The favorite tools and editors of the developers who built it",
+     "Tool preferences don't define the environment."
+    ],
+    [
+     "The size of the office break room",
+     "That isn't part of the system."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-05",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A system owner wants to include a vendor's SaaS app inside her system's authorization boundary. What should she check FIRST?",
+   "o": [
+    [
+     "Whether her agency can oversee that service",
+     "Right. A boundary should include what the AO can actually hold accountable, often through the vendor's own authorization."
+    ],
+    [
+     "Whether the app has a modern interface that users will like",
+     "Branding doesn't affect the boundary."
+    ],
+    [
+     "Whether her team likes the app",
+     "Preference doesn't decide the boundary."
+    ],
+    [
+     "Whether the app is free",
+     "Price doesn't decide what's inside the boundary."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-06",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "An inventory shows 40 servers, but the system description lists 32. What is the risk?",
+   "o": [
+    [
+     "Eight servers may go unassessed",
+     "Right. Components missing from the description fall outside assessment and monitoring."
+    ],
+    [
+     "The description is too long",
+     "Length isn't the problem. Missing components are."
+    ],
+    [
+     "The servers will run faster",
+     "Documentation doesn't affect speed."
+    ],
+    [
+     "There is no risk, since servers are hardware and not software",
+     "Unknown hardware is a classic gap."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-07",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which person is accountable for the system's overall development, operation and documentation, including the SSP?",
+   "o": [
+    [
+     "The system owner",
+     "Right. The system owner is accountable for the system and its security documentation."
+    ],
+    [
+     "The authorizing official",
+     "The AO accepts risk but doesn't own the system."
+    ],
+    [
+     "The external auditor",
+     "Auditors evaluate. They don't own the system."
+    ],
+    [
+     "An end user",
+     "Users use the system. They don't own it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-08",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A system stores two information types: public announcements (Low, Low, Low) and payroll data (Moderate, Moderate, Low). Under FIPS 199 and FIPS 200, what is the system's overall impact level?",
+   "o": [
+    [
+     "Moderate",
+     "Right. The high-water mark takes the highest value across all information types."
+    ],
+    [
+     "Low",
+     "Payroll data pushes confidentiality and integrity to Moderate."
+    ],
+    [
+     "High",
+     "No information type reaches High."
+    ],
+    [
+     "It's averaged to Low-Moderate",
+     "FIPS 199 doesn't average. It uses the highest value."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-09",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A data loss would cause \"severe or catastrophic\" harm to the mission, assets or people. Which FIPS 199 impact level is this?",
+   "o": [
+    [
+     "High",
+     "Right. High means severe or catastrophic adverse effects."
+    ],
+    [
+     "Moderate",
+     "Moderate means serious adverse effects."
+    ],
+    [
+     "Low",
+     "Low means limited adverse effects."
+    ],
+    [
+     "Not applicable",
+     "Every information type gets a rating."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-10",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Which NIST publication helps map information types to their recommended impact levels?",
+   "o": [
+    [
+     "NIST SP 800-60",
+     "Right. SP 800-60 guides mapping information types to security categories."
+    ],
+    [
+     "NIST SP 800-88",
+     "SP 800-88 covers media sanitization."
+    ],
+    [
+     "NIST SP 800-61",
+     "SP 800-61 covers incident handling."
+    ],
+    [
+     "NIST SP 800-63",
+     "SP 800-63 covers digital identity."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-11",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Why does the categorization decision matter so much later in the RMF?",
+   "o": [
+    [
+     "It sets the starting control baseline",
+     "Right. Low, moderate and high systems get different baselines."
+    ],
+    [
+     "It decides the system's color on the network map and dashboards",
+     "Map colors aren't driven by categorization."
+    ],
+    [
+     "It sets the system's budget automatically",
+     "Budget is a separate decision."
+    ],
+    [
+     "It removes the need for an assessment",
+     "Every system still needs assessment."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-12",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A system will store data about EU customers and also process card payments. What should the team do while determining required compliance?",
+   "o": [
+    [
+     "List every requirement that applies",
+     "Right. All requirements that apply must be identified before controls are chosen."
+    ],
+    [
+     "Pick the one framework it likes best",
+     "Every requirement that applies still has to be met."
+    ],
+    [
+     "Ignore GDPR because the company is based in the U.S.",
+     "GDPR can apply to non-EU companies handling EU residents' data."
+    ],
+    [
+     "Wait until the audit to find out",
+     "Finding out at audit time is too late and costly."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-13",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Who should review and approve the system's security categorization?",
+   "o": [
+    [
+     "The AO or a designated representative",
+     "Right. Categorization drives everything after it, so senior approval matters."
+    ],
+    [
+     "Any developer on the team",
+     "Developers give input but don't approve."
+    ],
+    [
+     "The vendor that sold the software and supports it",
+     "The organization owns the decision."
+    ],
+    [
+     "The first user to log in",
+     "Users have no role in approval."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-14",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A system's information types are rated Moderate for confidentiality, High for integrity and Low for availability. What is its security category under FIPS 199?",
+   "o": [
+    [
+     "{(confidentiality, MODERATE), (integrity, HIGH), (availability, LOW)}",
+     "Right. The security category lists each objective's value. The overall impact level for baselines would be High."
+    ],
+    [
+     "{(confidentiality, LOW), (integrity, LOW), (availability, LOW)}",
+     "That ignores the higher ratings."
+    ],
+    [
+     "Moderate, because that's the average",
+     "FIPS 199 doesn't average the values."
+    ],
+    [
+     "Not categorized, because the ratings differ",
+     "Different ratings are normal. Each objective is rated."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-2-15",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which information about users belongs in the system description?",
+   "o": [
+    [
+     "User types, roles and access paths",
+     "Right. User types and access paths shape access controls and risk."
+    ],
+    [
+     "Each user's home address and phone number for emergencies",
+     "Personal details aren't needed and create privacy risk."
+    ],
+    [
+     "Every user's password",
+     "Passwords must never be documented."
+    ],
+    [
+     "Users' favorite browsers",
+     "Browser preference isn't a security description."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A moderate-impact federal system is starting control selection. Where does the team begin?",
+   "o": [
+    [
+     "The SP 800-53B moderate baseline",
+     "Right. Baselines give a starting set of controls for each impact level."
+    ],
+    [
+     "An empty list, adding controls as ideas come up",
+     "Starting from scratch risks missing required controls."
+    ],
+    [
+     "The high baseline, to be safe",
+     "Using the high baseline wastes effort and money on a moderate system."
+    ],
+    [
+     "Whatever controls the last project used",
+     "Another project's needs may be very different."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A system runs on a FedRAMP-authorized IaaS platform. How should the SSP treat the platform's physical and environmental controls?",
+   "o": [
+    [
+     "Mark them as inherited from the provider",
+     "Right. Inherited controls are documented and relied on, not re-implemented."
+    ],
+    [
+     "Leave them out of the SSP completely",
+     "Inherited controls must still be documented."
+    ],
+    [
+     "Mark them as not applicable",
+     "They apply. They're just provided by someone else."
+    ],
+    [
+     "Re-test the provider's data center locks yourself",
+     "You rely on the provider's assessment rather than repeating it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Why is it important to know which controls are inherited BEFORE implementation starts?",
+   "o": [
+    [
+     "It avoids gaps and duplicate work",
+     "Right. Clear inheritance avoids gaps and duplicate work."
+    ],
+    [
+     "Inherited controls never fail",
+     "Common controls can fail too, which affects every system relying on them."
+    ],
+    [
+     "So the team can skip the SSP",
+     "The SSP is still required."
+    ],
+    [
+     "Inherited controls don't need any monitoring by anyone",
+     "They're monitored by the provider, and the system tracks their status."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-04",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A common control provider's assessment finds a weakness in a shared control. Who is affected?",
+   "o": [
+    [
+     "Every system that inherits that control",
+     "Right. A weakness in a common control is a weakness for everyone relying on it."
+    ],
+    [
+     "Only the provider's own system",
+     "Inheriting systems share the weakness."
+    ],
+    [
+     "Nobody, because inherited controls are outside the boundary",
+     "Inherited controls protect systems inside their boundaries."
+    ],
+    [
+     "Only systems rated High",
+     "Any system inheriting the control is affected."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-05",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which NIST publication lists the security and privacy controls that baselines are built from?",
+   "o": [
+    [
+     "SP 800-53",
+     "Right. SP 800-53 is the control catalog. SP 800-53B holds the baselines."
+    ],
+    [
+     "SP 800-30",
+     "SP 800-30 is about conducting risk assessments."
+    ],
+    [
+     "SP 800-115",
+     "SP 800-115 covers technical testing."
+    ],
+    [
+     "FIPS 140-3",
+     "FIPS 140-3 covers cryptographic modules."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-06",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "What is the purpose of a privacy control baseline in SP 800-53B?",
+   "o": [
+    [
+     "To start privacy control selection",
+     "Right. Privacy controls are selected based on privacy risk, separate from the security impact level."
+    ],
+    [
+     "To replace every security control",
+     "Privacy and security controls work together."
+    ],
+    [
+     "To decide which users get admin rights",
+     "That's access control, not the privacy baseline."
+    ],
+    [
+     "To categorize the system as low, moderate or high impact",
+     "Categorization is FIPS 199's job."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-07",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "What is a security control overlay?",
+   "o": [
+    [
+     "A tailored control set applied on a baseline",
+     "Right. Overlays adjust baselines for things like classified systems or industrial control systems."
+    ],
+    [
+     "A transparent sticker on a server",
+     "That's not a control concept."
+    ],
+    [
+     "A firewall rule that overrides every other rule in the policy",
+     "Overlays work at the control-selection level, not firewall rules."
+    ],
+    [
+     "A second copy of the SSP",
+     "Overlays modify control selection. They aren't copies of documents."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-08",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "An agency uses an organization-wide awareness training program for all systems. How should each system's SSP list the awareness training control?",
+   "o": [
+    [
+     "As a common control from the agency",
+     "Right. Organization-wide programs are common controls that systems inherit."
+    ],
+    [
+     "As system-specific, and each system builds its own training",
+     "That would be duplicated effort."
+    ],
+    [
+     "As not applicable",
+     "Training applies to every system's users."
+    ],
+    [
+     "As a compensating control",
+     "It isn't replacing anything."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-09",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "When should the team document a control as \"not applicable\"?",
+   "o": [
+    [
+     "When it truly doesn't fit, with a reason",
+     "Right. N/A needs a reason, such as no wireless means wireless controls don't apply."
+    ],
+    [
+     "When the control is hard or expensive to implement",
+     "Hard isn't the same as not applicable. Consider a compensating control."
+    ],
+    [
+     "When the team runs out of time",
+     "Deadlines don't change which controls apply."
+    ],
+    [
+     "Whenever a vendor says so",
+     "The organization decides and documents its own reasons."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-10",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which document shows, for each control, whether it is system-specific, hybrid or inherited?",
+   "o": [
+    [
+     "The system security plan",
+     "Right. The SSP records each control's implementation and source."
+    ],
+    [
+     "The incident report",
+     "Incident reports describe events."
+    ],
+    [
+     "The disaster recovery plan",
+     "The DR plan covers recovery."
+    ],
+    [
+     "The user manual",
+     "User manuals explain how to use the system."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-11",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A system has no wireless capability at all. During tailoring, what should happen to wireless controls?",
+   "o": [
+    [
+     "Scope them out with a documented reason",
+     "Right. Scoping removes controls that can't apply, with the reasoning recorded."
+    ],
+    [
+     "Implement them anyway to pass the audit",
+     "Implementing controls for a feature that doesn't exist wastes effort."
+    ],
+    [
+     "Delete them without any note",
+     "Every tailoring decision needs to be documented."
+    ],
+    [
+     "Mark them as inherited",
+     "Nothing is providing them. They simply don't apply."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-12",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A baseline control requires account lockout after failed logins, but a 911 dispatch system can't lock out operators during an emergency. What is the BEST tailoring approach?",
+   "o": [
+    [
+     "Use a compensating control, like alerts on repeated failures with a fast review, and document it",
+     "Right. Compensating controls reduce the risk when the baseline control would hurt the mission."
+    ],
+    [
+     "Drop the control and add nothing",
+     "Removing it without a substitute leaves the risk untreated."
+    ],
+    [
+     "Keep lockout, since the baseline requires it for every account",
+     "Locking out dispatchers in an emergency could cost lives."
+    ],
+    [
+     "Mark the control as inherited",
+     "Nothing is providing it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-13",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Many SP 800-53 controls contain blanks like \"[organization-defined frequency].\" What should the team do with them?",
+   "o": [
+    [
+     "Set values that fit the system's risk",
+     "Right. Organization-defined parameters let the control fit the environment."
+    ],
+    [
+     "Leave them blank so auditors choose",
+     "Auditors check against the values you set."
+    ],
+    [
+     "Always use the shortest possible value to be safe",
+     "The right value depends on risk, not on being shortest."
+    ],
+    [
+     "Copy values from a random website",
+     "Values should come from the organization's own analysis."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-14",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A threat assessment shows a moderate system faces advanced attackers. What should the team consider during selection?",
+   "o": [
+    [
+     "Supplementing the baseline",
+     "Right. Baselines are a starting point. Higher threat can call for more."
+    ],
+    [
+     "Removing controls to keep the system simple",
+     "That raises risk when the threat is higher."
+    ],
+    [
+     "Changing the system to Low",
+     "Threat doesn't lower impact."
+    ],
+    [
+     "Waiting for an incident before adding any more controls",
+     "Waiting means taking avoidable risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-15",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Why should stakeholders agree to the selected controls before implementation?",
+   "o": [
+    [
+     "To agree before money is spent",
+     "Right. Early agreement avoids rework and surprises at authorization."
+    ],
+    [
+     "Because stakeholders write the code",
+     "Stakeholders review. They don't usually build."
+    ],
+    [
+     "So the assessment can be skipped",
+     "Assessment is still needed."
+    ],
+    [
+     "Because the controls can't change later, even through change control",
+     "Controls can be adjusted later through change management."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-16",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "During selection, the team also writes a plan for how controls will be checked over time. Which plan is this?",
+   "o": [
+    [
+     "The continuous monitoring strategy",
+     "Right. Monitoring is planned during selection so it's built in from the start."
+    ],
+    [
+     "The marketing plan",
+     "Marketing isn't part of the RMF."
+    ],
+    [
+     "The hiring plan",
+     "Hiring isn't control monitoring."
+    ],
+    [
+     "The decommissioning plan",
+     "Decommissioning happens at end of life."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-17",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A system handles CUI, and the data must be marked and handled under specific rules. Where in selection are these rules addressed?",
+   "o": [
+    [
+     "In tailoring, as handling rules",
+     "Right. Handling rules for sensitive data are part of tailoring the controls."
+    ],
+    [
+     "Only at decommissioning",
+     "Marking matters for the whole life of the data."
+    ],
+    [
+     "Never, since marking is optional for unclassified data",
+     "CUI marking rules are required."
+    ],
+    [
+     "Only after a breach",
+     "That's too late."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-18",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which statement about tailoring is TRUE?",
+   "o": [
+    [
+     "Tailoring decisions are recorded in the SSP",
+     "Right. Documented tailoring lets the AO and assessors see why the control set looks the way it does."
+    ],
+    [
+     "Tailoring only ever removes controls",
+     "Tailoring can also add or adjust controls."
+    ],
+    [
+     "Only auditors are allowed to tailor",
+     "The system team tailors, and the AO approves."
+    ],
+    [
+     "Tailored controls never need assessment by the independent assessor",
+     "Tailored controls are assessed like any other."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-19",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A hospital system needs extra controls for medical devices beyond the moderate baseline. A published, reusable set exists for this. What is that set called?",
+   "o": [
+    [
+     "An overlay",
+     "Right. Overlays package extra or adjusted controls for a specific use case."
+    ],
+    [
+     "A POA&M",
+     "A POA&M tracks weaknesses."
+    ],
+    [
+     "A risk register",
+     "A register lists risks, not control sets."
+    ],
+    [
+     "An ATO",
+     "An ATO is an authorization decision."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-3-20",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A control enhancement in SP 800-53 is best described as what?",
+   "o": [
+    [
+     "Added strength for a base control",
+     "Right. Enhancements build on a base control, like adding MFA requirements to identification and authentication."
+    ],
+    [
+     "A replacement for the base control in high systems",
+     "Enhancements add to the base control. They don't replace it."
+    ],
+    [
+     "An optional comment field",
+     "Enhancements are real control requirements when selected."
+    ],
+    [
+     "A vendor product feature",
+     "Enhancements are control requirements, not products."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Before implementing 200 controls, the team ranks them by risk, cost and dependencies and sets a timeline. What is it building?",
+   "o": [
+    [
+     "An implementation strategy",
+     "Right. The strategy plans resources, funding, order and how effectiveness will be measured."
+    ],
+    [
+     "An incident response plan",
+     "IR plans cover handling incidents."
+    ],
+    [
+     "A decommissioning plan",
+     "That's for end of life."
+    ],
+    [
+     "A business impact analysis",
+     "A BIA ranks business processes for continuity."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "How should the team decide which controls to implement FIRST?",
+   "o": [
+    [
+     "The highest-risk ones and key dependencies",
+     "Right. Risk reduction and dependencies drive the order."
+    ],
+    [
+     "Alphabetically by control ID",
+     "IDs have nothing to do with risk."
+    ],
+    [
+     "Whatever is cheapest, regardless of risk, to show quick progress",
+     "Cheap but low-value controls can leave big risks open."
+    ],
+    [
+     "Whatever the newest team member prefers",
+     "Preference isn't a basis for priority."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-03",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "How can the team show that a control is EFFECTIVE, not just installed?",
+   "o": [
+    [
+     "Define effectiveness measures up front",
+     "Right. Measures show whether the control does its job."
+    ],
+    [
+     "Take a photo of the server",
+     "A photo doesn't show the control works."
+    ],
+    [
+     "Ask the vendor for a brochure",
+     "Brochures describe products, not your implementation."
+    ],
+    [
+     "Count how many pages the SSP has after implementation",
+     "Page count says nothing about effectiveness."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-04",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Implementing encryption on all databases needs new licenses and two months of work. Which part of the implementation strategy covers this?",
+   "o": [
+    [
+     "Resourcing and funding",
+     "Right. The strategy must line up people, money and time for each control."
+    ],
+    [
+     "Categorization",
+     "Categorization happened earlier."
+    ],
+    [
+     "Decommissioning",
+     "That's at end of life."
+    ],
+    [
+     "Continuous monitoring",
+     "Monitoring comes after implementation."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-05",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Which item belongs in the implementation strategy for training-related controls?",
+   "o": [
+    [
+     "Training frequency and tracking",
+     "Right. Training frequency and tracking are part of planning the control."
+    ],
+    [
+     "The trainer's favorite color",
+     "That isn't relevant."
+    ],
+    [
+     "A list of users' passwords",
+     "Never document passwords."
+    ],
+    [
+     "The date the system will be retired and replaced",
+     "Retirement isn't part of training planning."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-06",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Why classify each control as technical, administrative or physical during planning?",
+   "o": [
+    [
+     "Each type needs different owners and evidence",
+     "Right. Knowing the type helps assign work and plan how to prove it."
+    ],
+    [
+     "Only technical controls are ever assessed, so the rest can be skipped",
+     "All control types are assessed."
+    ],
+    [
+     "Physical controls don't need owners",
+     "Every control needs an owner."
+    ],
+    [
+     "Administrative controls can't fail",
+     "Policies and procedures can fail too."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-07",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A key control depends on a new identity system that won't be ready for six months. What should the implementation strategy show?",
+   "o": [
+    [
+     "The dependency and an interim measure",
+     "Right. Dependencies and interim steps keep the risk visible and managed."
+    ],
+    [
+     "Nothing, since it's out of the team's hands until the identity system ships",
+     "Hiding the gap leaves the AO uninformed."
+    ],
+    [
+     "That the control is fully in place already",
+     "That would be false documentation."
+    ],
+    [
+     "That the control is not applicable",
+     "It applies. It's just delayed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-08",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Which stakeholder must usually agree when control implementation will cost more than budgeted?",
+   "o": [
+    [
+     "The system owner",
+     "Right. The owner balances cost, schedule and risk for the system."
+    ],
+    [
+     "The external auditor who reviews the system each year",
+     "Auditors don't approve budgets."
+    ],
+    [
+     "Each end user",
+     "Users don't approve budgets."
+    ],
+    [
+     "The software vendor",
+     "The vendor doesn't control your budget."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-09",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "The baseline requires multifactor authentication, but a legacy app can't support it. What should the team do?",
+   "o": [
+    [
+     "Put a compensating control in place, like an MFA-protected gateway in front of the app, and document it",
+     "Right. Compensating controls reduce the risk when the standard control can't work."
+    ],
+    [
+     "Skip MFA and say nothing",
+     "That leaves the risk hidden and untreated."
+    ],
+    [
+     "Mark the control as implemented anyway, since MFA exists elsewhere",
+     "That's false documentation."
+    ],
+    [
+     "Turn off logins to the app",
+     "That stops the business."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-10",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Who should implement technical controls, like configuring audit logging on servers?",
+   "o": [
+    [
+     "The assigned admins and engineers",
+     "Right. Implementation is done by the people who run the system, with clear assignments."
+    ],
+    [
+     "The independent assessor, since she knows the controls best",
+     "Assessors must stay independent of implementation."
+    ],
+    [
+     "The authorizing official",
+     "AOs make risk decisions. They don't configure servers."
+    ],
+    [
+     "The privacy officer",
+     "Privacy officers oversee privacy. They don't configure logging."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-11",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A team uses a hardened configuration standard like a DISA STIG or a CIS Benchmark when building servers. Which control area does this support?",
+   "o": [
+    [
+     "Configuration management, through secure baseline settings",
+     "Right. Hardened baselines are how many configuration controls are met."
+    ],
+    [
+     "Physical security",
+     "Configuration standards are technical."
+    ],
+    [
+     "Privacy notices",
+     "These aren't privacy notices."
+    ],
+    [
+     "Contingency planning",
+     "Hardening isn't about recovery."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-12",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A privacy control says personal data must be collected only for stated purposes. How might the team implement it?",
+   "o": [
+    [
+     "Collect only what the purpose needs",
+     "Right. Data minimization puts the purpose limit into practice."
+    ],
+    [
+     "Collect everything in case it's useful later",
+     "That's the opposite of purpose limitation."
+    ],
+    [
+     "Encrypt the data and collect as much as possible for future use",
+     "Encryption doesn't fix over-collection."
+    ],
+    [
+     "Ask users to promise they're adults",
+     "That's unrelated to purpose limitation."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-13",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "While implementing a control, the team finds it can only partly meet the requirement this quarter. What should happen?",
+   "o": [
+    [
+     "Document what's in place, record the gap in the POA&M with a date, and tell the system owner",
+     "Right. Partial implementation is visible and tracked, not hidden."
+    ],
+    [
+     "Report it as fully implemented",
+     "That misleads the AO."
+    ],
+    [
+     "Remove the control from the SSP",
+     "Removing it hides the requirement."
+    ],
+    [
+     "Wait until the audit and hope the assessor doesn't notice the gap",
+     "Hiding gaps destroys trust."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-14",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Why should controls be tested in a development or staging environment before going into production?",
+   "o": [
+    [
+     "To catch problems before users see them",
+     "Right. Testing first reduces the chance a control causes an outage."
+    ],
+    [
+     "Because production controls never need testing once they're configured",
+     "Production controls are still assessed."
+    ],
+    [
+     "So the assessor can skip the assessment",
+     "Assessment still happens."
+    ],
+    [
+     "Because staging systems are more important",
+     "Production matters most. Staging protects it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-15",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A cloud workload inherits encryption at rest from the provider. What should the system team still implement?",
+   "o": [
+    [
+     "Its own part, like key access rules",
+     "Right. Inheritance covers the provider's part. Customer-configured parts remain the team's job."
+    ],
+    [
+     "Nothing, since inherited means the provider fully handles it",
+     "Many cloud controls are hybrid."
+    ],
+    [
+     "Its own data center locks",
+     "The provider handles physical security."
+    ],
+    [
+     "A new encryption algorithm",
+     "Creating your own crypto is a bad idea."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-16",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "The system uses an AI model to rank benefit claims. Which control should the team implement to address AI risk in this setting?",
+   "o": [
+    [
+     "Human review of high-impact decisions, plus monitoring of the model's results for bias and drift",
+     "Right. Oversight and monitoring catch harmful or drifting AI decisions."
+    ],
+    [
+     "Letting the model make every final decision with no review",
+     "High-impact decisions need human oversight."
+    ],
+    [
+     "Hiding the model's use from claimants",
+     "Transparency is part of responsible AI use."
+    ],
+    [
+     "Turning off all logging of model decisions",
+     "Logs are needed to review decisions."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-17",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "For each control in the SSP, what should the implementation statement explain?",
+   "o": [
+    [
+     "How it's met, by whom, with what evidence",
+     "Right. Clear statements let assessors verify the control quickly."
+    ],
+    [
+     "Only \"Implemented\"",
+     "A single word gives assessors nothing to check."
+    ],
+    [
+     "The vendor's marketing claims about the product's features",
+     "The SSP describes your implementation."
+    ],
+    [
+     "Why the control is annoying",
+     "Opinions don't belong in the SSP."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-18",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Which document tracks known weaknesses, the planned fixes, the resources needed and the due dates?",
+   "o": [
+    [
+     "The plan of action and milestones (POA&M)",
+     "Right. The POA&M is how open weaknesses are tracked to closure."
+    ],
+    [
+     "The system security plan",
+     "The SSP describes controls, not the fix schedule."
+    ],
+    [
+     "The authorization decision letter",
+     "That records the AO's decision."
+    ],
+    [
+     "The rules of behavior",
+     "Rules of behavior tell users how to act."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-19",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A control is in place but leaves some residual risk the team can't remove yet. Where should that residual risk be recorded?",
+   "o": [
+    [
+     "In the risk register or POA&M",
+     "Right. Leftover risk must be visible to decision makers."
+    ],
+    [
+     "Nowhere, since the control is already in place and working",
+     "Residual risk still needs tracking."
+    ],
+    [
+     "Only in an email to a coworker",
+     "Emails get lost and aren't part of the record."
+    ],
+    [
+     "In the user manual",
+     "User manuals aren't risk records."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-20",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Why should implementation documentation be kept current as the system changes?",
+   "o": [
+    [
+     "Old documents mislead decision makers",
+     "Right. Decisions are only as good as the documents they're based on."
+    ],
+    [
+     "Documents are only read once, at the start of the project",
+     "They're used throughout the system's life."
+    ],
+    [
+     "Changes never affect controls",
+     "Changes often affect controls."
+    ],
+    [
+     "Auditors prefer old documents",
+     "Auditors expect documents to match reality."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-21",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "An assessor asks for evidence that log reviews happen weekly. Which artifact is the BEST evidence?",
+   "o": [
+    [
+     "Recent dated review records",
+     "Right. Records over time prove the activity really happens."
+    ],
+    [
+     "A sentence in the SSP that says reviews are done every week",
+     "That shows intent, not practice."
+    ],
+    [
+     "A screenshot of the log tool's login page",
+     "That proves nothing about reviews."
+    ],
+    [
+     "A promise from the ISSO",
+     "A promise isn't evidence."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-4-22",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "What is the danger of copying another system's SSP text word for word?",
+   "o": [
+    [
+     "It may not match this system",
+     "Right. Each SSP must describe its own system's implementation."
+    ],
+    [
+     "It makes the SSP too short",
+     "Length isn't the issue."
+    ],
+    [
+     "It's illegal to reuse any text",
+     "Reusing templates is fine. False details aren't."
+    ],
+    [
+     "Assessors can't accept any text that was copied from a template",
+     "They can read it. It just may be wrong."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-01",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Before an assessment starts, which document lays out its scope, methods, schedule, roles and deliverables?",
+   "o": [
+    [
+     "The security assessment plan (SAP)",
+     "Right. The SAP is agreed before testing so everyone knows what will happen."
+    ],
+    [
+     "The security assessment report (SAR)",
+     "The SAR comes after testing."
+    ],
+    [
+     "The POA&M",
+     "The POA&M tracks fixes."
+    ],
+    [
+     "The incident report",
+     "Incident reports cover events."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-02",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Who should approve the assessment plan before testing begins?",
+   "o": [
+    [
+     "The AO side, with the system owner",
+     "Right. Approval makes sure the assessment gives the AO what's needed for the decision."
+    ],
+    [
+     "The assessor alone",
+     "The assessor drafts it, but the AO side must agree."
+    ],
+    [
+     "Every end user",
+     "Users aren't approvers."
+    ],
+    [
+     "The hardware vendor whose servers will be tested",
+     "Vendors don't approve your assessment."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-03",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "While preparing, the assessor finds a recent, valid assessment of the inherited common controls. What should she do?",
+   "o": [
+    [
+     "Reuse the still-valid results",
+     "Right. Reusing valid results saves time without losing assurance."
+    ],
+    [
+     "Retest every inherited control from scratch to be completely sure",
+     "That duplicates work already done and accepted."
+    ],
+    [
+     "Ignore inherited controls completely",
+     "They still need to be accounted for."
+    ],
+    [
+     "Mark all inherited controls as failed",
+     "There's no basis for that."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-04",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Which preparation step helps avoid surprises during on-site testing?",
+   "o": [
+    [
+     "Agreeing on rules of engagement",
+     "Right. Clear rules prevent outages and confusion during testing."
+    ],
+    [
+     "Starting scans without telling anyone",
+     "Surprise scans can cause outages and alarms."
+    ],
+    [
+     "Skipping the kickoff meeting to save time for testing",
+     "Kickoffs set expectations."
+    ],
+    [
+     "Only testing on weekends with no plan",
+     "Timing still needs a plan."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-05",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Which three assessment methods does NIST SP 800-53A describe?",
+   "o": [
+    [
+     "Examine, interview and test",
+     "Right. Assessors review documents and settings, talk to people, and exercise controls."
+    ],
+    [
+     "Scan, patch and reboot",
+     "Those are operations tasks."
+    ],
+    [
+     "Plan, do and check",
+     "That's part of a general improvement cycle."
+    ],
+    [
+     "Detect, deter and delay",
+     "Those are physical security functions."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-06",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "An assessor reads the access control policy and reviews firewall rule sets. Which method is she using?",
+   "o": [
+    [
+     "Examine",
+     "Right. Examine means reviewing documents, records and configurations."
+    ],
+    [
+     "Interview",
+     "Interviewing means talking with people."
+    ],
+    [
+     "Test",
+     "Testing means exercising the control to see how it behaves."
+    ],
+    [
+     "Accept",
+     "Accepting is a risk response, not an assessment method."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-07",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "An assessor tries to log in with a disabled account to confirm it really can't get in. Which method is this?",
+   "o": [
+    [
+     "Test",
+     "Right. She is exercising the control under specific conditions."
+    ],
+    [
+     "Examine",
+     "She isn't reading documents. She's trying it."
+    ],
+    [
+     "Interview",
+     "She isn't asking anyone questions."
+    ],
+    [
+     "Tailor",
+     "Tailoring is part of control selection."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-08",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "The admin says backups are tested monthly, but there's no record of any test. How should the assessor treat this?",
+   "o": [
+    [
+     "Note that the claim isn't supported by evidence, so the control isn't shown to be in place",
+     "Right. Interviews must be backed by evidence."
+    ],
+    [
+     "Accept it, since the admin seems honest and experienced",
+     "Assessments rely on evidence, not trust."
+    ],
+    [
+     "Mark the control as not applicable",
+     "Backups clearly apply."
+    ],
+    [
+     "Fix the backups herself",
+     "Assessors report. They don't fix."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-09",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Why might an assessment include a penetration test in addition to reviewing settings?",
+   "o": [
+    [
+     "To see if controls stop real attacks",
+     "Right. Pentests test how controls hold up against realistic attacks."
+    ],
+    [
+     "Because reviews of settings are never useful on their own",
+     "Reviews are useful. Pentests add depth."
+    ],
+    [
+     "To replace the SSP",
+     "A pentest doesn't document the system."
+    ],
+    [
+     "To fix vulnerabilities automatically",
+     "Pentests find and prove issues. They don't fix them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-10",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Evidence for a control was collected 18 months ago. What should the assessor do?",
+   "o": [
+    [
+     "Collect current evidence",
+     "Right. Evidence must be recent enough to reflect how the control works now."
+    ],
+    [
+     "Accept it, since evidence never expires",
+     "Systems change, so evidence ages."
+    ],
+    [
+     "Delete it from the file",
+     "Keep it for history, but get current evidence."
+    ],
+    [
+     "Mark the control as compliant without checking, since it passed before",
+     "That skips the assessment."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-11",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "What should the initial assessment report include for each control that isn't fully met?",
+   "o": [
+    [
+     "The finding, evidence and risk",
+     "Right. Findings must be traceable to evidence and explain the risk."
+    ],
+    [
+     "The name of the person to blame for each gap",
+     "Reports focus on controls and risk, not blame."
+    ],
+    [
+     "Only a pass or fail mark",
+     "A bare mark doesn't explain the risk."
+    ],
+    [
+     "A sales pitch for a fix",
+     "Assessors stay independent of products."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-12",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Why is the first version of the assessment report shared with the system owner before it's final?",
+   "o": [
+    [
+     "To fix factual errors and start planning",
+     "Right. A draft review catches mistakes and starts remediation."
+    ],
+    [
+     "So the owner can delete any findings they disagree with",
+     "Owners can respond, but they can't remove valid findings."
+    ],
+    [
+     "So the report can be published online",
+     "Assessment reports are sensitive."
+    ],
+    [
+     "Because the AO never reads it",
+     "The AO relies on the final report."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-13",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "An assessor finds a high-risk weakness that could be exploited now. What should she do before the report is final?",
+   "o": [
+    [
+     "Alert the system owner right away",
+     "Right. Urgent risks shouldn't wait for paperwork."
+    ],
+    [
+     "Hide it until the final report",
+     "Waiting could let an attacker exploit it."
+    ],
+    [
+     "Exploit it to see how far she can get into the network",
+     "That goes beyond the agreed rules of engagement."
+    ],
+    [
+     "Tell other companies about it",
+     "Findings are confidential."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-14",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "A finding has low risk, and fixing it would cost far more than the possible loss. Which risk response fits BEST?",
+   "o": [
+    [
+     "Accept it, with AO sign-off",
+     "Right. Accepting is reasonable when the fix costs more than the risk."
+    ],
+    [
+     "Avoid it by shutting the whole system down",
+     "That's far too drastic for a low risk."
+    ],
+    [
+     "Ignore it and don't record anything",
+     "Accepted risk must still be documented."
+    ],
+    [
+     "Transfer it to the users",
+     "Users can't take on organizational risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-15",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "After the system team fixes several findings, what should the assessor do?",
+   "o": [
+    [
+     "Reassess those controls",
+     "Right. Fixes must be verified before findings are closed."
+    ],
+    [
+     "Close them based on the team's word",
+     "Closure needs verification."
+    ],
+    [
+     "Start a brand-new assessment of everything in the system",
+     "Only the fixed items need reassessment."
+    ],
+    [
+     "Leave them open forever",
+     "Verified fixes should be closed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-16",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "A company buys cyber insurance for a finding it can't fully fix this year. Which risk response is this?",
+   "o": [
+    [
+     "Transfer (share) the risk",
+     "Right. Insurance shifts part of the financial impact to another party."
+    ],
+    [
+     "Avoid the risk",
+     "The activity continues, so the risk isn't avoided."
+    ],
+    [
+     "Accept the risk",
+     "Buying insurance is an action, not acceptance."
+    ],
+    [
+     "Mitigate the risk",
+     "Insurance doesn't reduce the chance of the event."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-17",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Who should take part in deciding how to respond to each finding?",
+   "o": [
+    [
+     "The owner, ISSO and AO side",
+     "Right. Responses balance mission, cost and risk, so key stakeholders must agree."
+    ],
+    [
+     "Only the assessor",
+     "Assessors advise. They don't own the response."
+    ],
+    [
+     "Only the newest team member, as a learning exercise",
+     "Decisions need the people accountable for the system."
+    ],
+    [
+     "The vendor's sales team",
+     "Vendors don't decide your risk responses."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-18",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "In the final assessment report, what status can each control have?",
+   "o": [
+    [
+     "Satisfied, other than satisfied, or N/A",
+     "Right. Each control gets a clear final status."
+    ],
+    [
+     "Pretty good, okay, needs work or bad",
+     "Reports use defined statuses, not opinions."
+    ],
+    [
+     "Green, yellow or purple",
+     "Colors aren't the defined statuses."
+    ],
+    [
+     "Draft, final or archived",
+     "Those describe documents, not controls."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-19",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "Besides control status, what should the final report give the AO?",
+   "o": [
+    [
+     "Recommendations and the remaining risk",
+     "Right. The AO needs a clear picture to make the authorization decision."
+    ],
+    [
+     "The assessor's opinion of each employee she interviewed",
+     "Personal opinions don't belong in the report."
+    ],
+    [
+     "A copy of every raw log file",
+     "Raw logs belong in the evidence, not the report body."
+    ],
+    [
+     "The authorization decision itself",
+     "The AO makes the decision, not the assessor."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-20",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "Why should the final report be clear about which findings were fixed during the assessment?",
+   "o": [
+    [
+     "So the AO sees the current risk",
+     "Right. The report should show the real state at the end."
+    ],
+    [
+     "So the system team gets a bonus",
+     "Bonuses aren't the reason."
+    ],
+    [
+     "Because fixed findings are always hidden from the final report",
+     "They're shown as resolved, not hidden."
+    ],
+    [
+     "So the assessment can be shorter",
+     "Clarity matters more than length."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-21",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "After the final report, the team ranks remaining risks and estimates what each fix will take. What is it creating?",
+   "o": [
+    [
+     "The risk response plan, which feeds the POA&M",
+     "Right. The plan ranks risks and estimates the resources needed to address them."
+    ],
+    [
+     "The incident response plan",
+     "IR plans handle incidents."
+    ],
+    [
+     "The system description",
+     "That was done in Scope."
+    ],
+    [
+     "The privacy notice",
+     "Privacy notices inform individuals."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-5-22",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "Two open findings remain: one high risk and cheap to fix, one low risk and expensive. Which should the plan rank first?",
+   "o": [
+    [
+     "The high-risk, cheap fix",
+     "Right. It removes the most risk for the least cost."
+    ],
+    [
+     "The low-risk, expensive fix",
+     "That spends more to remove less risk."
+    ],
+    [
+     "Whichever was found first",
+     "Discovery order doesn't decide priority."
+    ],
+    [
+     "Neither, until the next audit",
+     "Waiting leaves the high risk open."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-01",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Which set of documents usually makes up the authorization package for the AO?",
+   "o": [
+    [
+     "The SSP, SAR and POA&M",
+     "Right. Together they show the system, what was found and how gaps will be fixed."
+    ],
+    [
+     "The user manual and the help desk FAQ",
+     "Those don't support a risk decision."
+    ],
+    [
+     "Only the vulnerability scan output",
+     "Scans are evidence, not the whole package."
+    ],
+    [
+     "The vendor contract and invoice",
+     "Contracts don't describe control status."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-02",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Before the package goes to the AO, the ISSO notices the SSP still lists a server that was retired. What should happen?",
+   "o": [
+    [
+     "Correct the SSP first",
+     "Right. The AO must decide based on accurate documents."
+    ],
+    [
+     "Send it anyway, since one retired server doesn't matter",
+     "Inaccuracies undermine the whole decision."
+    ],
+    [
+     "Delete the SSP and send the rest",
+     "The SSP is required."
+    ],
+    [
+     "Add a note telling the AO to ignore errors",
+     "Fix the errors instead."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-03",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Why should the package include an executive summary?",
+   "o": [
+    [
+     "The AO needs the key risks quickly",
+     "Right. Senior officials need the essentials up front."
+    ],
+    [
+     "To replace the detailed documents",
+     "The details still need to be there."
+    ],
+    [
+     "To list every log entry",
+     "That's raw evidence, not a summary."
+    ],
+    [
+     "To advertise the system to customers and partners",
+     "The package isn't marketing."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-04",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "A privacy-relevant system's package is missing its privacy plan. What is the risk?",
+   "o": [
+    [
+     "The AO and privacy official can't judge privacy risk, so the decision may be incomplete",
+     "Right. Privacy risk is part of the authorization decision."
+    ],
+    [
+     "No risk, since privacy plans are optional for most systems",
+     "Privacy requirements apply to systems that handle personal data."
+    ],
+    [
+     "The system will run slower",
+     "Documents don't affect speed."
+    ],
+    [
+     "Only the help desk is affected",
+     "The authorization decision is affected."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-05",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Why is it important to protect the authorization package itself?",
+   "o": [
+    [
+     "It maps the system's weaknesses",
+     "Right. Packages are sensitive and should be shared only with those who need them."
+    ],
+    [
+     "It's too large to email",
+     "Size isn't the security reason."
+    ],
+    [
+     "It contains everyone's passwords",
+     "Passwords should never be in the package."
+    ],
+    [
+     "It must be printed and posted publicly for transparency",
+     "Packages aren't public."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-06",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Which document lets an AO decide quickly whether every finding has an owner and a due date?",
+   "o": [
+    [
+     "The POA&M",
+     "Right. Each POA&M entry has an owner, milestones and dates."
+    ],
+    [
+     "The network diagram",
+     "Diagrams show architecture, not remediation."
+    ],
+    [
+     "The rules of behavior",
+     "Those are for users."
+    ],
+    [
+     "The hardware inventory",
+     "Inventories list assets."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-07",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "The AO reviews the package and the residual risk. What is the residual risk compared against?",
+   "o": [
+    [
+     "The organization's risk tolerance",
+     "Right. If residual risk is within tolerance, the AO can accept it."
+    ],
+    [
+     "The number of servers in the system",
+     "Size isn't the yardstick."
+    ],
+    [
+     "The vendor's market share",
+     "Market share doesn't measure your risk."
+    ],
+    [
+     "Last year's budget",
+     "Budget isn't the risk standard."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-08",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Which statement BEST describes residual risk at authorization?",
+   "o": [
+    [
+     "The risk left after controls",
+     "Right. It's the risk the AO is being asked to accept."
+    ],
+    [
+     "The risk before any controls exist on the system",
+     "That's inherent risk."
+    ],
+    [
+     "Risk transferred to an insurer",
+     "Transferred risk is a treatment choice."
+    ],
+    [
+     "Risk that no longer matters",
+     "Residual risk still matters. It's just within tolerance."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-09",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "An AO is unsure whether the residual risk is acceptable. Which action fits BEST?",
+   "o": [
+    [
+     "Ask for more analysis or set conditions",
+     "Right. The AO can set conditions or ask for more information before deciding."
+    ],
+    [
+     "Approve it to avoid delays",
+     "Approving without confidence isn't responsible."
+    ],
+    [
+     "Let the system owner decide instead, since they know the system",
+     "The AO's responsibility can't be handed to the system owner."
+    ],
+    [
+     "Flip a coin",
+     "Decisions must be reasoned and documented."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-10",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Why should the accepted risks be written down clearly at authorization?",
+   "o": [
+    [
+     "For accountability and later review",
+     "Right. Documented acceptance creates accountability and a basis for review."
+    ],
+    [
+     "So the assessor can be blamed later",
+     "Documentation is for accountability, not blame."
+    ],
+    [
+     "Because accepted risks disappear once they're written down",
+     "Writing them down doesn't remove the risk."
+    ],
+    [
+     "To make the package longer",
+     "Length isn't the goal."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-11",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A system depends on common controls whose provider has open high findings. How should this affect the system's risk posture?",
+   "o": [
+    [
+     "The inherited weaknesses add to the system's residual risk",
+     "Right. The system shares the risk of the controls it inherits."
+    ],
+    [
+     "It has no effect, since the controls belong to someone else",
+     "Inheritance means shared risk."
+    ],
+    [
+     "It lowers the system's risk",
+     "Open findings raise risk."
+    ],
+    [
+     "It makes the system exempt from authorization",
+     "Nothing exempts the system."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-12",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Which factor should the AO weigh against the residual risk?",
+   "o": [
+    [
+     "The system's mission importance",
+     "Right. Mission need is weighed against the risk of operating."
+    ],
+    [
+     "The SSP's font size",
+     "Formatting isn't a risk factor."
+    ],
+    [
+     "Which team has the newest laptops and monitors",
+     "That's irrelevant."
+    ],
+    [
+     "How many emails the ISSO sent",
+     "That doesn't measure risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-13",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "The AO lets a system run for 12 months but requires two high findings to be fixed within 90 days. What decision is this?",
+   "o": [
+    [
+     "An authorization to operate with conditions",
+     "Right. The system may run, with required actions and dates."
+    ],
+    [
+     "A denial of authorization",
+     "The system is allowed to run, so it isn't denied."
+    ],
+    [
+     "A common control authorization",
+     "That's for common control providers."
+    ],
+    [
+     "An interim test plan",
+     "This is an authorization decision, not a test plan."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-14",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "An AO decides the residual risk is unacceptable and the system must not operate. What should happen next?",
+   "o": [
+    [
+     "Document the denial, and the system doesn't run (or is stopped) until risks are reduced",
+     "Right. A denial means the system can't operate as is."
+    ],
+    [
+     "Run it anyway while appealing",
+     "A denial must be respected."
+    ],
+    [
+     "Rename the system and resubmit the same package next week",
+     "Renaming doesn't change the risk."
+    ],
+    [
+     "Ask users to vote on it",
+     "Authorization isn't a vote."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-15",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "An agency wants to use another agency's authorized cloud service and accept its existing authorization evidence. What decision fits?",
+   "o": [
+    [
+     "An authorization to use (ATU)",
+     "Right. An ATU lets an organization rely on another's authorization of a shared system or service."
+    ],
+    [
+     "A denial of authorization",
+     "Nothing is being denied."
+    ],
+    [
+     "A decommissioning order",
+     "The service is being adopted, not retired."
+    ],
+    [
+     "A security categorization",
+     "Categorization happens earlier."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-16",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "Who must be told about the authorization decision?",
+   "o": [
+    [
+     "The owner, ISSO and key stakeholders",
+     "Right. The decision and any conditions must reach those who act on them."
+    ],
+    [
+     "Only the AO's assistant",
+     "The people running the system need to know."
+    ],
+    [
+     "The general public",
+     "Decisions and packages are internal."
+    ],
+    [
+     "No one, since it's filed with the AO's records",
+     "Undisclosed decisions can't be followed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-17",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "What does the authorization decision document usually include besides approve or deny?",
+   "o": [
+    [
+     "Conditions, terms and accepted risks",
+     "Right. Terms and conditions make the decision actionable."
+    ],
+    [
+     "The AO's vacation schedule",
+     "That's not part of the decision."
+    ],
+    [
+     "The full source code of the system for review",
+     "Code isn't part of the decision letter."
+    ],
+    [
+     "A list of user passwords",
+     "Passwords never belong in documents."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-6-18",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "An agency uses ongoing authorization instead of a fixed three-year cycle. What makes this possible?",
+   "o": [
+    [
+     "Mature continuous monitoring",
+     "Right. Ongoing authorization relies on timely monitoring data."
+    ],
+    [
+     "Skipping assessments altogether once the first ATO is signed",
+     "Controls are still assessed, often continuously."
+    ],
+    [
+     "Getting a new AO every month",
+     "The AO doesn't need to change."
+    ],
+    [
+     "Using only inherited controls",
+     "Inheritance alone doesn't enable it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-01",
+   "d": "7.0",
+   "obj": "7.1",
+   "q": "A team wants to add a new public API to an authorized system. What should happen BEFORE it goes live?",
+   "o": [
+    [
+     "A security impact analysis, approval through change control, and updates to the SSP",
+     "Right. Changes are analyzed and approved, and documents are kept current."
+    ],
+    [
+     "Nothing, since the system is already authorized",
+     "Authorization covers the system as assessed, not unreviewed changes."
+    ],
+    [
+     "A brand-new full RMF cycle for every small change",
+     "Small changes go through change control, not a full restart."
+    ],
+    [
+     "Only a press release",
+     "Communication doesn't replace analysis."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-02",
+   "d": "7.0",
+   "obj": "7.1",
+   "q": "A change significantly increases the system's risk, for example by moving it to a new cloud provider. What may this trigger?",
+   "o": [
+    [
+     "Reassessment and possibly reauthorization",
+     "Right. Major changes can invalidate the basis of the original decision."
+    ],
+    [
+     "Nothing, if the old ATO hasn't expired",
+     "Significant changes need review regardless of the date."
+    ],
+    [
+     "Automatic decommissioning",
+     "The system can continue after review."
+    ],
+    [
+     "A new FIPS 199 for every user",
+     "Categorization is per system, not per user."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-03",
+   "d": "7.0",
+   "obj": "7.1",
+   "q": "Why should every approved change have a rollback plan?",
+   "o": [
+    [
+     "So a bad change can be undone",
+     "Right. Rollback limits damage from a bad change."
+    ],
+    [
+     "So changes never need testing",
+     "Testing is still needed."
+    ],
+    [
+     "To make the change ticket longer",
+     "Length isn't the purpose."
+    ],
+    [
+     "Because auditors like to see the word rollback in every ticket",
+     "It's about safety, not wording."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-04",
+   "d": "7.0",
+   "obj": "7.1",
+   "q": "An admin made a firewall change with no ticket, and nothing broke. How should the ISSO treat it?",
+   "o": [
+    [
+     "As an unauthorized change to investigate",
+     "Right. Untracked changes break the link between documents and reality."
+    ],
+    [
+     "As fine, since nothing broke",
+     "Unreviewed changes can create hidden risk."
+    ],
+    [
+     "As a reason to remove change control",
+     "One bypass shows why change control matters."
+    ],
+    [
+     "As a reason to delete the firewall logs so the record is clean",
+     "Logs are evidence. Keep them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-05",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "Which NIST publication guides building an information security continuous monitoring (ISCM) program?",
+   "o": [
+    [
+     "SP 800-137",
+     "Right. SP 800-137 covers ISCM strategy and programs."
+    ],
+    [
+     "SP 800-88",
+     "SP 800-88 covers media sanitization."
+    ],
+    [
+     "SP 800-60",
+     "SP 800-60 covers mapping information types."
+    ],
+    [
+     "FIPS 197",
+     "FIPS 197 defines AES."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-06",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "How often should each control be monitored under a continuous monitoring strategy?",
+   "o": [
+    [
+     "Based on risk and how fast it changes",
+     "Right. Fast-changing or high-risk controls are checked more often."
+    ],
+    [
+     "Exactly once every three years for all controls",
+     "That's too slow for many controls."
+    ],
+    [
+     "Every control every minute",
+     "That's rarely practical or needed."
+    ],
+    [
+     "Only when an auditor asks",
+     "Monitoring should be ongoing, not on demand."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-07",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "After a security incident, what should happen to the system's compliance documents?",
+   "o": [
+    [
+     "Update them with what was learned",
+     "Right. Incidents often reveal control gaps that must be tracked."
+    ],
+    [
+     "Nothing, since incidents are separate from compliance work",
+     "Incidents directly affect risk and control status."
+    ],
+    [
+     "Delete the POA&M and start over",
+     "Existing tracking should be updated, not deleted."
+    ],
+    [
+     "Hide the incident from the AO",
+     "The AO needs to know about changes in risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-08",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "Why should the contingency plan be tested and updated during operations?",
+   "o": [
+    [
+     "An untested plan may fail when needed",
+     "Right. Regular tests keep recovery capability real."
+    ],
+    [
+     "Because contingency plans expire legally every month",
+     "There's no monthly legal expiry."
+    ],
+    [
+     "To give the help desk extra work",
+     "That isn't the reason."
+    ],
+    [
+     "Contingency plans never need changes",
+     "They need updates as the system changes."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-09",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "A POA&M item is six months past its due date with no progress. What should the ISSO do?",
+   "o": [
+    [
+     "Escalate it with a new plan",
+     "Right. Overdue risks need visibility and a decision."
+    ],
+    [
+     "Quietly change the due date so it no longer looks overdue",
+     "Hiding slippage misleads leadership."
+    ],
+    [
+     "Mark it as closed",
+     "It isn't fixed."
+    ],
+    [
+     "Delete it",
+     "Deleting removes the record of an open risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-10",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "Which ongoing activity keeps users aware of their security duties after deployment?",
+   "o": [
+    [
+     "Recurring training and rules of behavior",
+     "Right. Training and rules of behavior must continue during operations."
+    ],
+    [
+     "A one-time briefing at go-live only, with no follow-up",
+     "Awareness fades without repetition."
+    ],
+    [
+     "Sending the SSP to every user",
+     "Users need training, not the SSP."
+    ],
+    [
+     "Disabling user accounts every week",
+     "That disrupts work and doesn't build awareness."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-11",
+   "d": "7.0",
+   "obj": "7.3",
+   "q": "An external auditor arrives for an annual review. What is the system team's main role?",
+   "o": [
+    [
+     "Provide evidence and support the testing",
+     "Right. Supporting the audit openly gives an accurate result."
+    ],
+    [
+     "Limit the auditor to the parts of the system that look good",
+     "Steering the audit hides real risk."
+    ],
+    [
+     "Change settings during the audit to pass",
+     "Changes during an audit must go through change control and be disclosed."
+    ],
+    [
+     "Write the audit report for the auditor",
+     "The auditor writes the report."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-12",
+   "d": "7.0",
+   "obj": "7.3",
+   "q": "Why keep evidence organized and mapped to each requirement throughout the year?",
+   "o": [
+    [
+     "Faster audits and earlier gap spotting",
+     "Right. Continuous evidence collection reduces audit stress and surprises."
+    ],
+    [
+     "So auditors can skip testing",
+     "Auditors still test."
+    ],
+    [
+     "Evidence is only needed on the day the auditor arrives",
+     "Collecting it on the day is how gaps get missed."
+    ],
+    [
+     "It replaces the need for controls",
+     "Evidence shows controls work. It doesn't replace them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-13",
+   "d": "7.0",
+   "obj": "7.3",
+   "q": "An audit finds a control that was marked compliant last year now fails. What does this MOST likely show?",
+   "o": [
+    [
+     "The control drifted since last year",
+     "Right. Controls can degrade, so monitoring must catch it between audits."
+    ],
+    [
+     "Last year's audit was illegal and must be thrown out",
+     "It may have been right at the time."
+    ],
+    [
+     "The control was never needed",
+     "A failing control still matters."
+    ],
+    [
+     "Audits should stop",
+     "Audits are exactly what found the problem."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-14",
+   "d": "7.0",
+   "obj": "7.3",
+   "q": "A regulator requires an annual penetration test of the system. How should the team handle it?",
+   "o": [
+    [
+     "Support it and track findings",
+     "Right. Required tests feed the same remediation process."
+    ],
+    [
+     "Skip it if last year's test came back clean",
+     "A required annual test must still happen."
+    ],
+    [
+     "Run it only on the test environment",
+     "The requirement usually covers production with safe rules."
+    ],
+    [
+     "Keep the findings secret from the AO",
+     "The AO needs to see the results."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-15",
+   "d": "7.0",
+   "obj": "7.4",
+   "q": "A system is being retired. Which step protects the data on its storage?",
+   "o": [
+    [
+     "Sanitize or destroy it per SP 800-88",
+     "Right. Media sanitization makes data unrecoverable, with proof."
+    ],
+    [
+     "Unplug the servers and leave them in storage",
+     "Stored drives still hold data."
+    ],
+    [
+     "Delete the files and reuse the drives elsewhere",
+     "Deleted files can often be recovered."
+    ],
+    [
+     "Give the drives to employees as gifts",
+     "That could expose sensitive data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-16",
+   "d": "7.0",
+   "obj": "7.4",
+   "q": "What should happen to the system's records, like the SSP and audit logs, when it's decommissioned?",
+   "o": [
+    [
+     "Keep them for the retention period",
+     "Right. Records may be needed for audits, legal holds or investigations."
+    ],
+    [
+     "Delete them right away",
+     "They may need to be kept by law or policy."
+    ],
+    [
+     "Publish them online",
+     "They hold sensitive information."
+    ],
+    [
+     "Give them to the vendor that built the system",
+     "The organization keeps its own records."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-17",
+   "d": "7.0",
+   "obj": "7.4",
+   "q": "Why should the AO and stakeholders agree to the decommissioning plan?",
+   "o": [
+    [
+     "Others may depend on it or its data",
+     "Right. Agreement avoids breaking dependencies or losing data."
+    ],
+    [
+     "So the AO can delay the shutdown for as long as needed",
+     "Agreement is about doing it safely, not delaying it."
+    ],
+    [
+     "Because decommissioning needs a new ATO",
+     "Retiring doesn't need an ATO."
+    ],
+    [
+     "To decide who gets the old monitors",
+     "Furniture isn't the concern."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "gr-7-18",
+   "d": "7.0",
+   "obj": "7.4",
+   "q": "After decommissioning, which update keeps the organization's inventory and authorization records accurate?",
+   "o": [
+    [
+     "Remove it from the inventory",
+     "Right. Accurate inventories stop old systems from looking active."
+    ],
+    [
+     "Leave it listed as active",
+     "That gives a false picture of risk."
+    ],
+    [
+     "Rename it to a test system and keep it listed",
+     "It's gone, not a test system."
+    ],
+    [
+     "Copy it to a new system ID",
+     "That creates a false record."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "kind": "table",
+   "d": "1.0",
+   "obj": "1.1",
+   "title": "Match each task to its RMF step",
+   "short": "RMF steps",
+   "scenario": "Seven tasks from a new system's authorization. Pick the NIST RMF step each one belongs to.",
+   "cols": [
+    "RMF step"
+   ],
+   "opts": [
+    [
+     "Prepare",
+     "Categorize",
+     "Select",
+     "Implement",
+     "Assess",
+     "Authorize",
+     "Monitor"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "Set the organization's risk tolerance and name the common control providers.",
+     "a": [
+      0
+     ],
+     "why": "Organization-level setup happens in Prepare."
+    },
+    {
+     "req": "Rate each information type's confidentiality, integrity and availability impact.",
+     "a": [
+      1
+     ],
+     "why": "FIPS 199 ratings are Categorize."
+    },
+    {
+     "req": "Choose the moderate baseline and tailor it for the system.",
+     "a": [
+      2
+     ],
+     "why": "Picking and tailoring controls is Select."
+    },
+    {
+     "req": "Configure audit logging and document how each control is met in the SSP.",
+     "a": [
+      3
+     ],
+     "why": "Putting controls in place is Implement."
+    },
+    {
+     "req": "Examine, interview and test controls, then write the SAR.",
+     "a": [
+      4
+     ],
+     "why": "Evaluating controls is Assess."
+    },
+    {
+     "req": "The AO reviews the package and signs an ATO with conditions.",
+     "a": [
+      5
+     ],
+     "why": "The risk decision is Authorize."
+    },
+    {
+     "req": "Track changes, reassess key controls and report status every quarter.",
+     "a": [
+      6
+     ],
+     "why": "Ongoing checks are Monitor."
+    }
+   ],
+   "t": "pbq",
+   "id": "gr-p-01",
+   "dom": "1.0"
+  },
+  {
+   "kind": "table",
+   "d": "2.0",
+   "obj": "2.2",
+   "title": "Set each system's impact level",
+   "short": "FIPS 199 levels",
+   "scenario": "Four systems and the highest ratings across their information types. Use the high-water mark to pick each system's overall impact level.",
+   "cols": [
+    "Impact level"
+   ],
+   "opts": [
+    [
+     "Low",
+     "Moderate",
+     "High"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "Public website: C Low, I Moderate, A Low.",
+     "a": [
+      1
+     ],
+     "why": "The highest rating, integrity, is Moderate."
+    },
+    {
+     "req": "Cafeteria menu app: C Low, I Low, A Low.",
+     "a": [
+      0
+     ],
+     "why": "Every objective is Low."
+    },
+    {
+     "req": "Law enforcement case system: C High, I Moderate, A Moderate.",
+     "a": [
+      2
+     ],
+     "why": "Confidentiality is High, so the system is High."
+    },
+    {
+     "req": "Payroll system: C Moderate, I Moderate, A Low.",
+     "a": [
+      1
+     ],
+     "why": "The highest rating is Moderate."
+    }
+   ],
+   "t": "pbq",
+   "id": "gr-p-02",
+   "dom": "2.0"
+  },
+  {
+   "kind": "match",
+   "d": "6.0",
+   "obj": "6.1",
+   "title": "Match each document to its purpose",
+   "short": "Authorization documents",
+   "scenario": "Five documents an AO might see. Pick what each one is for. Two options are distractors.",
+   "choices": [
+    "SSP",
+    "SAR",
+    "POA&M",
+    "ISA",
+    "PIA",
+    "SLA",
+    "EULA"
+   ],
+   "pick": "Document",
+   "items": [
+    {
+     "text": "Describes the system, its boundary and how each control is implemented.",
+     "a": 0,
+     "why": "The system security plan describes the system and its controls."
+    },
+    {
+     "text": "Records the assessor's findings and each control's status.",
+     "a": 1,
+     "why": "The security assessment report holds the assessment results."
+    },
+    {
+     "text": "Lists open weaknesses with owners, milestones and due dates.",
+     "a": 2,
+     "why": "The plan of action and milestones tracks remediation."
+    },
+    {
+     "text": "Documents the security terms of a connection between two systems.",
+     "a": 3,
+     "why": "An interconnection security agreement covers system-to-system links."
+    },
+    {
+     "text": "Analyzes how the system collects, uses and protects personal data.",
+     "a": 4,
+     "why": "A privacy impact assessment covers privacy risk."
+    }
+   ],
+   "t": "pbq",
+   "id": "gr-p-03",
+   "dom": "6.0"
+  },
+  {
+   "kind": "table",
+   "d": "5.0",
+   "obj": "5.4",
+   "title": "Choose a response for each finding",
+   "short": "Risk responses",
+   "scenario": "Five findings after an assessment. Pick the risk response that fits each situation best.",
+   "cols": [
+    "Response"
+   ],
+   "opts": [
+    [
+     "Accept",
+     "Avoid",
+     "Mitigate",
+     "Transfer"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "A low-risk banner wording issue that would cost more to fix than any likely harm. The AO signs off.",
+     "a": [
+      0
+     ],
+     "why": "Low risk and high cost to fix fits documented acceptance."
+    },
+    {
+     "req": "An unneeded public file-sharing feature creates high risk. The team removes the feature.",
+     "a": [
+      1
+     ],
+     "why": "Removing the risky activity avoids the risk."
+    },
+    {
+     "req": "Missing MFA on admin accounts. The team turns on MFA within 30 days.",
+     "a": [
+      2
+     ],
+     "why": "Adding a control reduces the risk."
+    },
+    {
+     "req": "Breach costs could be large. The organization buys cyber insurance.",
+     "a": [
+      3
+     ],
+     "why": "Insurance shares the financial impact with another party."
+    },
+    {
+     "req": "Unpatched web server. The team patches it and verifies the fix.",
+     "a": [
+      2
+     ],
+     "why": "Patching is a control that reduces the risk."
+    }
+   ],
+   "t": "pbq",
+   "id": "gr-p-04",
+   "dom": "5.0"
+  },
+  {
+   "kind": "match",
+   "d": "1.0",
+   "obj": "1.2",
+   "title": "Who does what in authorization",
+   "short": "RMF roles",
+   "scenario": "Five responsibilities. Pick the role that owns each one. Two options are distractors.",
+   "choices": [
+    "Authorizing official",
+    "System owner",
+    "ISSO",
+    "Control assessor",
+    "SAOP",
+    "Help desk",
+    "Vendor sales rep"
+   ],
+   "pick": "Role",
+   "items": [
+    {
+     "text": "Formally accepts the risk of operating the system.",
+     "a": 0,
+     "why": "The AO makes the authorization decision."
+    },
+    {
+     "text": "Accountable for the system's development, operation and SSP.",
+     "a": 1,
+     "why": "The system owner is accountable for the system."
+    },
+    {
+     "text": "Handles day-to-day security and keeps the SSP and POA&M current.",
+     "a": 2,
+     "why": "The ISSO runs daily security work."
+    },
+    {
+     "text": "Independently examines, interviews and tests the controls.",
+     "a": 3,
+     "why": "The assessor evaluates controls objectively."
+    },
+    {
+     "text": "Oversees privacy risk across the organization.",
+     "a": 4,
+     "why": "The senior agency official for privacy owns privacy risk."
+    }
+   ],
+   "t": "pbq",
+   "id": "gr-p-05",
+   "dom": "1.0"
+  },
+  {
+   "kind": "table",
+   "d": "5.0",
+   "obj": "5.2",
+   "title": "Pick the assessment method",
+   "short": "Assessment methods",
+   "scenario": "Five assessor activities. Pick the SP 800-53A method each one uses.",
+   "cols": [
+    "Method"
+   ],
+   "opts": [
+    [
+     "Examine",
+     "Interview",
+     "Test"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "Read the incident response plan and last quarter's incident tickets.",
+     "a": [
+      0
+     ],
+     "why": "Reviewing documents and records is examine."
+    },
+    {
+     "req": "Ask the backup admin to walk through how restores are approved.",
+     "a": [
+      1
+     ],
+     "why": "Talking with people is interview."
+    },
+    {
+     "req": "Restore a test file from last night's backup to prove it works.",
+     "a": [
+      2
+     ],
+     "why": "Exercising the control is test."
+    },
+    {
+     "req": "Review the firewall rule set export.",
+     "a": [
+      0
+     ],
+     "why": "Reviewing a configuration is examine."
+    },
+    {
+     "req": "Try to log in with a disabled account to confirm it's blocked.",
+     "a": [
+      2
+     ],
+     "why": "Trying the control under set conditions is test."
+    }
+   ],
+   "t": "pbq",
+   "id": "gr-p-06",
+   "dom": "5.0"
+  }
+ ]
+}
