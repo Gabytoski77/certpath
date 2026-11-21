@@ -714,7 +714,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .mx{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;color:var(--v-fg,#ecebe8);
   background:var(--grain),radial-gradient(120% 55% at 50% -12%,color-mix(in srgb,var(--v-accent) 10%,transparent),transparent 62%),radial-gradient(90% 50% at 50% 115%,rgba(188,214,234,.05),transparent 60%),#12161d;
   --v-fg:#ecebe8;--v-line:rgba(255,255,255,.12);--v-accent:#bcd6ea;--v-muted:#a9adb4;--ok:#5fd394;--no:#ff8f80;overflow:hidden}
-.mx[open]{display:grid;grid-template-rows:auto 2px minmax(0,1fr) auto}
+.mx[open]{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 2px minmax(0,1fr) auto}
 .mx::backdrop{background:rgba(4,6,9,.72)}
 .mx-top{display:flex;align-items:center;gap:12px;padding:calc(var(--sat) + 12px) max(20px,env(safe-area-inset-right)) 12px max(20px,env(safe-area-inset-left));border-bottom:1px solid var(--v-line);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0))}
 .mx-title{min-width:0;flex:1 1 auto}
@@ -2522,7 +2522,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.75</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.76</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -9409,6 +9409,8 @@ GUIDES["CCST Cybersecurity"]={
 
 GUIDES["CCNA Cybersecurity"]={
   id:"ccnacbr",
+  mock:{v12:"qbank/200-201.json"},
+  mockText:"100 items in 2 hours, with 4 drag-and-drop style items, flags and a review screen. Cisco doesn't publish the real item count, and on the real exam you can't go back to a question once you answer it. Practice the same way: answer each one and keep moving.",
   lead:"Cisco's associate SOC analyst cert, called CyberOps Associate until February 2026. It proves you can monitor a network, read host and network evidence, and work an incident by the book. Same 200-201 exam, now version 1.2 with AI topics.",
   checked:"Nov 10, 2026",
   planHours:100,
