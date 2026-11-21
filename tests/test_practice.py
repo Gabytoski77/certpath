@@ -586,3 +586,43 @@ def test_cissp_2024_full_exam(site):
                 "Communication and Network Security", "Identity and Access Management (IAM)",
                 "Security Assessment and Testing", "Security Operations", "Software Development Security"):
         assert dom in body, f"{dom} missing from the results"
+
+
+def test_ccna_cybersecurity_200_201_full_exam(site):
+    """v2.76: CCNA Cybersecurity (200-201 v1.2) gets a 100-item, 2-hour bank with 4 drag-and-drop items and all five domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "ccnacbr")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v12"]').count() == 1, mxp[:500]
+    assert p.locator("#mxp .mxp-card.soon").count() == 0, mxp[:600]
+    assert "PBQs first" not in mxp and "can't go back" in mxp
+    p.locator('#mxp [data-mx="full"][data-ver="v12"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 100")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("1:59:", "2:00:")), t
+    assert "200-201" in p.inner_text("#mx-h"), p.inner_text("#mx-h")
+    _answer_all(p, limit=120)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Security Concepts", "Security Monitoring", "Host-Based Analysis",
+                "Network Intrusion Analysis", "Security Policies and Procedures"):
+        assert dom in body, f"{dom} missing from the results"
+
+
+def test_exam_long_title_fits_320(site):
+    """v2.76 fix: a long exam title (CCNA Cybersecurity · v1.2 · 200-201 CCNACBR) made the exam dialog wider than a 320 px phone."""
+    w = site(device="small320")
+    p = w.page
+    open_guide(p, "ccnacbr")
+    p.locator('#mxp [data-mx="full"][data-ver="v12"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    for _ in range(5):  # the first items are the drag-and-drop style ones
+        widths = p.evaluate("() => [document.querySelector('#mx-body').scrollWidth, document.querySelector('.mx-top').getBoundingClientRect().width, innerWidth]")
+        assert widths[0] <= widths[2] and widths[1] <= widths[2], widths
+        p.click("#mx-next")
+        p.wait_for_timeout(60)
