@@ -534,3 +534,29 @@ def test_cgrc_2024_full_exam(site):
                 "Implementation of Security and Privacy Controls", "Assessment/Audit of Security and Privacy Controls",
                 "System Compliance", "Compliance Maintenance"):
         assert dom in body, f"{dom} missing from the results"
+
+
+def test_ccsp_2026_full_exam(site):
+    """v2.74: ISC2 CCSP (Aug 2026 outline) gets a 125-item, 3-hour bank with 4 advanced items and all six domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "ccsp")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v26"]').count() == 1, mxp[:500]
+    assert p.locator("#mxp .mxp-card.soon").count() == 0, mxp[:600]
+    assert "PBQs first" not in mxp and "100 to 150" in mxp
+    p.locator('#mxp [data-mx="full"][data-ver="v26"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 125")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("2:59:", "3:00:")), t
+    assert p.inner_text("#mx-h").strip() == "CCSP · 2026 outline"
+    _answer_all(p, limit=140)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Cloud Concepts, Architecture and Design", "Cloud Data Security",
+                "Cloud Platform and Infrastructure Security", "Cloud Application Security",
+                "Cloud Security Operations", "Legal, Risk and Compliance"):
+        assert dom in body, f"{dom} missing from the results"

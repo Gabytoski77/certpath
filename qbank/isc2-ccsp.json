@@ -1,0 +1,3734 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "CCSP",
+ "ver": "v26",
+ "exam": "CCSP",
+ "title": "CCSP (2026 outline) practice exam",
+ "rev": "2026-11-20",
+ "format": {
+  "n": 125,
+  "min": 180,
+  "pbq": 4,
+  "half": 62
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Cloud Concepts, Architecture and Design",
+   "w": 17,
+   "obj": 6
+  },
+  {
+   "n": "2.0",
+   "name": "Cloud Data Security",
+   "w": 20,
+   "obj": 9
+  },
+  {
+   "n": "3.0",
+   "name": "Cloud Platform and Infrastructure Security",
+   "w": 17,
+   "obj": 5
+  },
+  {
+   "n": "4.0",
+   "name": "Cloud Application Security",
+   "w": 16,
+   "obj": 7
+  },
+  {
+   "n": "5.0",
+   "name": "Cloud Security Operations",
+   "w": 17,
+   "obj": 6
+  },
+  {
+   "n": "6.0",
+   "name": "Legal, Risk and Compliance",
+   "w": 13,
+   "obj": 5
+  }
+ ],
+ "note": "Original questions written for MyNextCert from ISC2's public CCSP exam outline (effective Aug 1, 2026). Not real exam questions. The real CCSP is adaptive (100-150 items in 3 hours, multiple choice and advanced item types); this is a fixed 125-item stand-in with 4 advanced items.",
+ "q": [
+  {
+   "id": "cs-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A company buys cloud services through a firm that picks providers, negotiates contracts and combines several services for it. What role does that firm play?",
+   "o": [
+    [
+     "Cloud service broker",
+     "Right. A broker sits between customers and providers and manages or combines services."
+    ],
+    [
+     "Cloud service provider",
+     "The firm isn't running the infrastructure itself."
+    ],
+    [
+     "Cloud auditor",
+     "Auditors assess. They don't buy or combine services."
+    ],
+    [
+     "Cloud carrier",
+     "A carrier provides connectivity, not service brokering."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Which cloud characteristic means the customer pays only for what it actually uses, tracked by the provider?",
+   "o": [
+    [
+     "Measured service",
+     "Right. Usage is metered and billed."
+    ],
+    [
+     "Broad network access",
+     "That's about access, not billing."
+    ],
+    [
+     "Resource pooling",
+     "Pooling is about shared resources."
+    ],
+    [
+     "On-demand self-service",
+     "That's about provisioning without help."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-03",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Why is multitenancy a security concern in public cloud?",
+   "o": [
+    [
+     "Tenants share hardware, so isolation between them must hold",
+     "Right. A flaw in isolation could let one tenant reach another's data."
+    ],
+    [
+     "Each tenant gets its own physical data center building",
+     "That isn't how public cloud works."
+    ],
+    [
+     "Tenants are never allowed to use encryption on shared hardware",
+     "Tenants can and should encrypt."
+    ],
+    [
+     "Multitenancy only applies to private clouds run in-house",
+     "It's a defining trait of public cloud."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-04",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A startup can launch servers in minutes during a demo and remove them an hour later. Which two characteristics make this possible?",
+   "o": [
+    [
+     "On-demand self-service and rapid elasticity",
+     "Right. Users provision themselves, and capacity scales up and down quickly."
+    ],
+    [
+     "Measured service and data sovereignty",
+     "Billing and law don't make launching fast."
+    ],
+    [
+     "Resource pooling and long-term reserved contracts",
+     "Long contracts are the opposite of quick scaling."
+    ],
+    [
+     "Broad network access and physical tenant isolation",
+     "Neither explains the quick scale up and down."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-05",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A customer uploads code, and the provider runs it only when an event fires, managing all servers. Which model is this?",
+   "o": [
+    [
+     "Function as a Service (serverless)",
+     "Right. The provider runs the code on demand and handles everything under it."
+    ],
+    [
+     "Infrastructure as a Service with customer-managed VMs",
+     "With IaaS the customer manages the OS."
+    ],
+    [
+     "Software as a Service with a finished application",
+     "SaaS is a finished app, not customer code."
+    ],
+    [
+     "A private cloud the customer runs on its own hardware",
+     "That isn't a provider-managed service."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-06",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A company wants to be able to move its workloads to a different cloud provider later without rewriting them. Which property matters MOST?",
+   "o": [
+    [
+     "Portability",
+     "Right. Portability is the ability to move applications and data between providers."
+    ],
+    [
+     "Interoperability",
+     "Interoperability is about systems working together, not moving."
+    ],
+    [
+     "Elasticity",
+     "Elasticity is about scaling."
+    ],
+    [
+     "Resiliency",
+     "Resiliency is about surviving failures."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-07",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A hospital runs patient records in a private cloud and bursts its public website to a public cloud during busy periods. Which deployment model is this?",
+   "o": [
+    [
+     "Hybrid cloud",
+     "Right. Hybrid combines two or more deployment models."
+    ],
+    [
+     "Community cloud",
+     "Nothing here is shared with other organizations."
+    ],
+    [
+     "Public cloud",
+     "The patient records stay private."
+    ],
+    [
+     "Multi-cloud",
+     "One part is private, so it's hybrid."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-08",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Using two public cloud providers for the same workload mainly helps avoid what?",
+   "o": [
+    [
+     "Vendor lock-in and single-provider outages",
+     "Right. Multi-cloud spreads dependence across providers."
+    ],
+    [
+     "All data residency laws in every country",
+     "Laws still apply wherever the data is."
+    ],
+    [
+     "The need for identity and access management",
+     "IAM is still needed in each cloud."
+    ],
+    [
+     "The shared responsibility model entirely",
+     "Each provider still shares responsibility."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-09",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A company wants to keep full control of the keys used to encrypt its cloud data, even from the provider's staff. Which approach fits BEST?",
+   "o": [
+    [
+     "Customer-managed keys in its own HSM (hold your own key)",
+     "Right. Keeping keys outside the provider's control limits what the provider can decrypt."
+    ],
+    [
+     "Provider-managed default encryption with keys the provider holds",
+     "The provider could still access those keys."
+    ],
+    [
+     "Storing the keys in the same bucket as the encrypted data",
+     "Keys next to the data defeat the encryption."
+    ],
+    [
+     "Turning off encryption so the keys don't need managing",
+     "That removes protection completely."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-10",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A customer deletes a cloud volume but can't physically wipe the provider's shared disks. What BEST makes the data unrecoverable?",
+   "o": [
+    [
+     "Crypto-shredding: destroy the keys that encrypted it",
+     "Right. Without the keys, the encrypted data is useless."
+    ],
+    [
+     "Asking the provider to ship the physical disks to the customer",
+     "Providers won't hand over shared disks."
+    ],
+    [
+     "Overwriting the volume name with random characters",
+     "Renaming doesn't remove data."
+    ],
+    [
+     "Waiting for the provider to reuse the storage eventually",
+     "Data could remain readable until it's overwritten."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-11",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Which component is the MOST critical to protect in an IaaS environment because it can create, change and delete every resource?",
+   "o": [
+    [
+     "The management plane (console and APIs)",
+     "Right. Whoever controls the management plane controls the whole environment."
+    ],
+    [
+     "A single developer's test virtual machine",
+     "One VM can't control everything."
+    ],
+    [
+     "The public website's static image files",
+     "Static files have limited impact."
+    ],
+    [
+     "The provider's marketing pages about the service",
+     "Those aren't part of your environment."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-12",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Why do security teams treat the hypervisor as a high-value target in the cloud?",
+   "o": [
+    [
+     "A flaw could expose every VM on the host",
+     "Right. The hypervisor isolates tenants, so a flaw there has wide impact."
+    ],
+    [
+     "It stores every customer's billing data and invoices",
+     "Billing data isn't held in the hypervisor."
+    ],
+    [
+     "It's the only place where encryption can be turned on",
+     "Encryption can be applied at many layers."
+    ],
+    [
+     "It runs inside each customer's guest operating system",
+     "It runs beneath the guests."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-13",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "In the cloud secure data lifecycle, which phase comes right after Create?",
+   "o": [
+    [
+     "Store",
+     "Right. Create, Store, Use, Share, Archive, Destroy."
+    ],
+    [
+     "Share",
+     "Share comes after Use."
+    ],
+    [
+     "Destroy",
+     "Destroy is the last phase."
+    ],
+    [
+     "Archive",
+     "Archive comes near the end."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-14",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "A team adds security checks like dependency scanning and infrastructure-as-code linting to its deployment pipeline. What approach is this?",
+   "o": [
+    [
+     "DevSecOps",
+     "Right. Security is built into the DevOps pipeline instead of added at the end."
+    ],
+    [
+     "Waterfall",
+     "Waterfall puts testing late."
+    ],
+    [
+     "Shadow IT",
+     "Shadow IT is unapproved technology."
+    ],
+    [
+     "A change freeze",
+     "A freeze stops changes. It doesn't build security in."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-15",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "When designing BC/DR for a cloud app, which analysis tells the team which functions must come back first?",
+   "o": [
+    [
+     "Business impact analysis (BIA)",
+     "Right. The BIA ranks functions by the harm an outage causes."
+    ],
+    [
+     "A penetration test of the public web front end",
+     "Pentests find vulnerabilities."
+    ],
+    [
+     "A code review of the newest feature branch",
+     "Code reviews check code quality and flaws."
+    ],
+    [
+     "A capacity forecast for next year's user growth",
+     "Capacity planning isn't about recovery order."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-16",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "A design adds a second availability zone, encryption, logging and MFA, and estimates their yearly cost against the losses they prevent. What is the team doing?",
+   "o": [
+    [
+     "A cost-benefit analysis",
+     "Right. Controls should cost less than the risk they reduce."
+    ],
+    [
+     "A data classification exercise for every file",
+     "Classification labels data."
+    ],
+    [
+     "A forensic investigation of a past incident",
+     "Forensics looks backward at incidents."
+    ],
+    [
+     "A legal hold on all project documents",
+     "Legal holds preserve evidence."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-17",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "Which ISO/IEC standard gives guidance on information security controls specifically for cloud services?",
+   "o": [
+    [
+     "ISO/IEC 27017",
+     "Right. 27017 adds cloud-specific guidance to ISO 27002 controls."
+    ],
+    [
+     "ISO/IEC 27701",
+     "27701 covers privacy management."
+    ],
+    [
+     "ISO 9001",
+     "9001 is about quality, not cloud security."
+    ],
+    [
+     "ISO 22301",
+     "22301 covers business continuity."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-18",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "A customer needs assurance that a provider's crypto module meets U.S. federal requirements. Which validation should it look for?",
+   "o": [
+    [
+     "FIPS 140-3",
+     "Right. FIPS 140-3 validates cryptographic modules."
+    ],
+    [
+     "SOC 3",
+     "A SOC 3 doesn't validate crypto modules."
+    ],
+    [
+     "Common Criteria",
+     "Common Criteria evaluates products against protection profiles, not FIPS crypto validation."
+    ],
+    [
+     "PCI DSS",
+     "PCI DSS is about cardholder data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-19",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "When comparing providers, why ask for their SOC 2 Type II report instead of Type I?",
+   "o": [
+    [
+     "Type II tests controls over a period of time",
+     "Right. Type I is a point in time. Type II shows controls kept working."
+    ],
+    [
+     "Type II is shorter and easier for executives to read",
+     "Length isn't the difference."
+    ],
+    [
+     "Type I reports are illegal to share with customers",
+     "They can be shared under NDA."
+    ],
+    [
+     "Type II covers only financial reporting controls",
+     "SOC 1 covers financial reporting."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-20",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "A government customer wants a product independently evaluated against a security target and protection profile. Which program fits?",
+   "o": [
+    [
+     "Common Criteria (ISO/IEC 15408)",
+     "Right. Common Criteria evaluates IT products against protection profiles."
+    ],
+    [
+     "CSA STAR self-assessment",
+     "STAR self-assessment isn't an independent product evaluation."
+    ],
+    [
+     "GDPR certification",
+     "That's privacy, not product evaluation."
+    ],
+    [
+     "ITIL certification",
+     "ITIL is about IT service processes."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-21",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "A SOC uses an AI model to group thousands of alerts and suggest which to investigate first. What is the BIGGEST risk to manage?",
+   "o": [
+    [
+     "Its output can be wrong and needs review",
+     "Right. AI helps triage, but errors and drift mean humans stay in the loop."
+    ],
+    [
+     "The model will remove the need for any log collection",
+     "AI still needs data."
+    ],
+    [
+     "The model makes the SIEM unable to store events",
+     "Grouping alerts doesn't stop storage."
+    ],
+    [
+     "The model guarantees zero false negatives from now on",
+     "No model guarantees that."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-22",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "Which term describes a model's accuracy getting worse over time because real-world data has changed?",
+   "o": [
+    [
+     "Model drift",
+     "Right. Drift means the model no longer matches the data it sees."
+    ],
+    [
+     "Data sovereignty",
+     "Sovereignty is about legal jurisdiction."
+    ],
+    [
+     "Vendor lock-in",
+     "Lock-in is a dependency issue."
+    ],
+    [
+     "Crypto-shredding",
+     "That's a deletion technique."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-23",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "A company deploys an AI chatbot that can call internal APIs. Which threat should the design specifically defend against?",
+   "o": [
+    [
+     "Prompt injection that tricks it into misusing those APIs",
+     "Right. Crafted input can make the model take unintended actions."
+    ],
+    [
+     "Physical theft of the provider's data center generators",
+     "That isn't specific to an AI chatbot."
+    ],
+    [
+     "DNS caching on users' home routers",
+     "Unrelated to the chatbot's design."
+    ],
+    [
+     "Expired fonts on the chatbot's web page",
+     "Fonts aren't a security threat."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-1-24",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "Which ethics concern applies when an AI model screens job applicants in the cloud?",
+   "o": [
+    [
+     "Unfair bias against groups of applicants",
+     "Right. Biased training data can lead to discriminatory decisions."
+    ],
+    [
+     "The model using too little storage in the data center",
+     "Storage use isn't an ethics issue."
+    ],
+    [
+     "The model's API using HTTPS instead of HTTP",
+     "HTTPS is good practice."
+    ],
+    [
+     "Applicants using different web browsers to apply",
+     "Browser choice isn't an ethics concern."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A cloud provider automatically spreads pieces of a customer's stored object across several locations. What is this called?",
+   "o": [
+    [
+     "Data dispersion",
+     "Right. Dispersion splits and spreads data for resilience."
+    ],
+    [
+     "Data masking",
+     "Masking hides values from viewers."
+    ],
+    [
+     "Data classification",
+     "Classification labels data."
+    ],
+    [
+     "Data retention",
+     "Retention is about how long to keep data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Why should a security team map data flows for a cloud app?",
+   "o": [
+    [
+     "To see where data travels and where controls are needed",
+     "Right. You can't protect data paths you haven't mapped."
+    ],
+    [
+     "To decide what color each server should be on a diagram",
+     "Diagram colors aren't the goal."
+    ],
+    [
+     "To replace the need for encryption in transit everywhere",
+     "Mapping doesn't replace encryption."
+    ],
+    [
+     "To make the application run faster for remote users",
+     "Mapping is about protection, not speed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "In which lifecycle phase is data MOST exposed to the people and apps processing it?",
+   "o": [
+    [
+     "Use",
+     "Right. Data is typically decrypted while it's being used."
+    ],
+    [
+     "Archive",
+     "Archived data is usually encrypted and idle."
+    ],
+    [
+     "Destroy",
+     "Destroyed data is gone."
+    ],
+    [
+     "Store",
+     "At rest, it can be encrypted."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-04",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A data breach happened because a storage bucket allowed anonymous public reads. Which control BEST prevents this across the account?",
+   "o": [
+    [
+     "An account-wide block on public bucket access",
+     "Right. A guardrail at the account level stops any bucket from being made public by mistake."
+    ],
+    [
+     "A strong password on the root account only",
+     "Root passwords don't control bucket policies."
+    ],
+    [
+     "Turning on versioning for every bucket in the account",
+     "Versioning keeps old copies. It doesn't stop public reads."
+    ],
+    [
+     "Moving the bucket to a region closer to users",
+     "Region doesn't affect public access."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-05",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Which storage type is lost when a virtual machine instance is stopped or terminated?",
+   "o": [
+    [
+     "Ephemeral storage",
+     "Right. Ephemeral (instance) storage lives only as long as the instance."
+    ],
+    [
+     "Object storage",
+     "Object storage persists independently."
+    ],
+    [
+     "Persistent block volumes",
+     "Persistent block volumes survive stops."
+    ],
+    [
+     "Archive storage",
+     "Archive tiers are built to last."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-06",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A database stores records in a managed cloud service. Which threat is MOST specific to its storage layer?",
+   "o": [
+    [
+     "Misconfigured access permissions",
+     "Right. Misconfigured access is the most common cause of cloud data exposure."
+    ],
+    [
+     "Paper documents left on the office printer overnight",
+     "That isn't the cloud storage layer."
+    ],
+    [
+     "A user forgetting their laptop charger at home",
+     "Unrelated to storage security."
+    ],
+    [
+     "The office Wi-Fi password being too short for policy",
+     "That's a local network issue."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-07",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Which feature helps recover from ransomware that deletes or encrypts objects in cloud storage?",
+   "o": [
+    [
+     "Object versioning with immutable (WORM) retention",
+     "Right. Locked previous versions can't be deleted or changed by the attacker."
+    ],
+    [
+     "Increasing the bucket's storage size limit",
+     "More space doesn't protect existing objects."
+    ],
+    [
+     "Renaming the bucket every week to confuse attackers",
+     "Renaming isn't protection."
+    ],
+    [
+     "Turning off access logging to reduce costs",
+     "Logging helps investigations."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-08",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A payment app replaces card numbers with random values and keeps the real numbers in a separate secure vault. What is this?",
+   "o": [
+    [
+     "Tokenization",
+     "Right. Tokens stand in for the data, and only the vault can map them back."
+    ],
+    [
+     "Hashing",
+     "Hashes can't be mapped back to the original."
+    ],
+    [
+     "Masking",
+     "Masking hides display. It doesn't swap values in storage."
+    ],
+    [
+     "Compression",
+     "Compression isn't protection."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-09",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Where should an application's database passwords and API keys be kept in the cloud?",
+   "o": [
+    [
+     "In a managed secrets vault, with tight, logged access",
+     "Right. Vaults store, rotate and log access to secrets."
+    ],
+    [
+     "Hard-coded in the source code repository for convenience",
+     "Secrets in code leak easily."
+    ],
+    [
+     "In a plain-text file on the web server's public folder",
+     "Anyone could download it."
+    ],
+    [
+     "In the comments of the deployment pipeline file",
+     "Pipeline files are widely readable."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-10",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Which technology watches for sensitive data being uploaded to unapproved cloud apps and blocks it?",
+   "o": [
+    [
+     "Data loss prevention (DLP)",
+     "Right. DLP inspects content and enforces rules on where it can go."
+    ],
+    [
+     "A load balancer",
+     "Load balancers spread traffic."
+    ],
+    [
+     "A content delivery network",
+     "CDNs speed delivery."
+    ],
+    [
+     "A hypervisor",
+     "Hypervisors isolate VMs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-11",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A team needs to share realistic customer data with developers without exposing real values. Which technique fits BEST?",
+   "o": [
+    [
+     "Data masking or de-identification",
+     "Right. Masking keeps the format while hiding the real values."
+    ],
+    [
+     "Giving developers read access to production with a warning",
+     "That exposes the real data."
+    ],
+    [
+     "Encrypting the data and also giving developers the key",
+     "Then they can read the real data."
+    ],
+    [
+     "Copying production as-is to a test account in another region",
+     "The copy still contains real data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-12",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "Which type of data is HARDEST for discovery tools to classify automatically?",
+   "o": [
+    [
+     "Unstructured data, like documents and images",
+     "Right. Without a fixed schema, tools must analyze content."
+    ],
+    [
+     "Structured data in database tables with named columns",
+     "Column names make it easier."
+    ],
+    [
+     "Data in a spreadsheet with a header row for each field",
+     "Headers help tools understand it."
+    ],
+    [
+     "Data in a CSV file that follows a published format",
+     "A defined format helps discovery."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-13",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "JSON and XML files are examples of which kind of data?",
+   "o": [
+    [
+     "Semi-structured",
+     "Right. They have tags or keys, but no fixed table schema."
+    ],
+    [
+     "Structured",
+     "Relational tables are structured."
+    ],
+    [
+     "Unstructured",
+     "Tags and keys give them some structure."
+    ],
+    [
+     "Encrypted",
+     "Being JSON doesn't mean encrypted."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-14",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "Before moving data to the cloud, a team scans file shares to find where personal data lives. Why do this first?",
+   "o": [
+    [
+     "You can't protect data you haven't found",
+     "Right. Discovery feeds classification and protection."
+    ],
+    [
+     "Cloud providers refuse to store undiscovered data",
+     "Providers don't check that."
+    ],
+    [
+     "Discovery makes the migration finish faster",
+     "It may add time, but it reduces risk."
+    ],
+    [
+     "Discovery removes the need for encryption later",
+     "Data still needs protection."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-15",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "A company tags each cloud object with its classification, and access policies read those tags. What does this enable?",
+   "o": [
+    [
+     "Controls that follow the data automatically",
+     "Right. Tag-based policies apply the right protection wherever the data goes."
+    ],
+    [
+     "Storing every object for free with no billing",
+     "Tags don't change cost."
+    ],
+    [
+     "Skipping encryption on any object that has a tag",
+     "Tags don't replace encryption."
+    ],
+    [
+     "Letting anyone read objects that are tagged Public or Secret",
+     "Policies use tags to restrict, not open."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-16",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "Who should decide the classification of a data set?",
+   "o": [
+    [
+     "The data owner",
+     "Right. Owners understand the data's value and decide its classification."
+    ],
+    [
+     "The cloud provider's support engineer",
+     "The provider doesn't own your data."
+    ],
+    [
+     "The developer who built the table",
+     "Developers handle data but don't usually own it."
+    ],
+    [
+     "The newest team member",
+     "Classification needs authority and context."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-17",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "Which document lists what each data type is, where it lives and how it maps to classification levels?",
+   "o": [
+    [
+     "A data map or inventory",
+     "Right. Data mapping ties data types and locations to their classification."
+    ],
+    [
+     "The firewall rule export from last month",
+     "Firewall rules don't describe data."
+    ],
+    [
+     "The incident response contact list",
+     "Contacts aren't a data map."
+    ],
+    [
+     "The provider's marketing brochure on storage",
+     "Brochures don't describe your data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-18",
+   "d": "2.0",
+   "obj": "2.6",
+   "q": "A company wants a confidential report to stay protected even after it's emailed outside, so recipients can view but not print or forward it. Which technology fits?",
+   "o": [
+    [
+     "Information rights management (IRM)",
+     "Right. IRM controls travel with the file."
+    ],
+    [
+     "A web application firewall",
+     "A WAF protects web apps, not files."
+    ],
+    [
+     "Full-disk encryption",
+     "Disk encryption doesn't protect the file once sent."
+    ],
+    [
+     "Network access control",
+     "Unrelated to file use after sending."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-19",
+   "d": "2.0",
+   "obj": "2.6",
+   "q": "An employee leaves the company. How can IRM help protect documents she already downloaded?",
+   "o": [
+    [
+     "Revoke her rights so the files can't be opened",
+     "Right. IRM can revoke access to protected files after the fact."
+    ],
+    [
+     "It can't, because downloaded files are always free to use",
+     "IRM is designed for exactly this."
+    ],
+    [
+     "Delete her email account and hope the files are gone",
+     "Local copies remain."
+    ],
+    [
+     "Ask her to promise she deleted them",
+     "A promise isn't a control."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-20",
+   "d": "2.0",
+   "obj": "2.6",
+   "q": "What does IRM usually depend on to check who may open a protected file?",
+   "o": [
+    [
+     "User identity and issued licenses",
+     "Right. IRM verifies the user and their rights before opening the file."
+    ],
+    [
+     "The file's name and size on disk",
+     "Names and sizes don't prove identity."
+    ],
+    [
+     "The user's screen resolution and monitor brand",
+     "Unrelated to rights."
+    ],
+    [
+     "The time zone set on the computer's clock",
+     "Time zone isn't an identity check."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-21",
+   "d": "2.0",
+   "obj": "2.7",
+   "q": "A lawsuit is expected. What must happen to relevant cloud data, even if its retention period ends?",
+   "o": [
+    [
+     "Place it under a legal hold so it isn't deleted",
+     "Right. Legal holds override normal deletion schedules."
+    ],
+    [
+     "Delete it on schedule, since policy comes first",
+     "Deleting held data can be illegal."
+    ],
+    [
+     "Move it to a personal account for safekeeping",
+     "That breaks custody and policy."
+    ],
+    [
+     "Compress it and email it to the lawyers",
+     "Copies by email aren't a legal hold."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-22",
+   "d": "2.0",
+   "obj": "2.7",
+   "q": "Why should a retention policy set BOTH a minimum and a maximum time for data?",
+   "o": [
+    [
+     "To meet laws and not keep data too long",
+     "Right. Keep data as long as required, then delete it."
+    ],
+    [
+     "So storage bills always stay exactly the same",
+     "Cost isn't the main reason."
+    ],
+    [
+     "Because cloud providers require two dates on every file",
+     "Providers don't require this."
+    ],
+    [
+     "So data can never be deleted by anyone",
+     "The maximum exists to make deletion happen."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-23",
+   "d": "2.0",
+   "obj": "2.7",
+   "q": "Which storage tier fits records that must be kept for 7 years and are almost never read?",
+   "o": [
+    [
+     "An archive tier with retention locks",
+     "Right. Archive tiers are cheap for rarely read data, and locks prevent early deletion."
+    ],
+    [
+     "High-performance SSD volumes attached to a VM",
+     "That's expensive for idle data."
+    ],
+    [
+     "Ephemeral instance storage on a short-lived VM",
+     "That data disappears."
+    ],
+    [
+     "The application's in-memory cache",
+     "Caches don't keep data for years."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-24",
+   "d": "2.0",
+   "obj": "2.8",
+   "q": "Which cloud log is MOST important for tracing who changed a storage bucket's permissions?",
+   "o": [
+    [
+     "The control plane audit log (API activity)",
+     "Right. API audit logs record who made management changes and when."
+    ],
+    [
+     "The web server's access log for page views",
+     "Page views don't show permission changes."
+    ],
+    [
+     "The VM's CPU usage graph",
+     "Performance metrics don't show who acted."
+    ],
+    [
+     "The billing invoice for the month",
+     "Invoices don't show changes."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-25",
+   "d": "2.0",
+   "obj": "2.8",
+   "q": "Why send cloud audit logs to a separate account that admins of the main account can't change?",
+   "o": [
+    [
+     "An attacker with admin rights could otherwise erase them",
+     "Right. Separated, write-protected logs keep the evidence intact."
+    ],
+    [
+     "It makes the logs load faster in the console",
+     "Speed isn't the reason."
+    ],
+    [
+     "Providers charge less for logs stored separately",
+     "Cost isn't the security reason."
+    ],
+    [
+     "Logs in the main account can't be searched",
+     "They can be searched. They just aren't safe there."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-26",
+   "d": "2.0",
+   "obj": "2.8",
+   "q": "Which property lets an organization prove a specific user downloaded a file and can't credibly deny it?",
+   "o": [
+    [
+     "Non-repudiation",
+     "Right. Strong identity plus protected logs tie the action to the user."
+    ],
+    [
+     "Elasticity",
+     "Elasticity is about scaling."
+    ],
+    [
+     "Data dispersion",
+     "Dispersion is about resilience."
+    ],
+    [
+     "Portability",
+     "Portability is about moving workloads."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-27",
+   "d": "2.0",
+   "obj": "2.9",
+   "q": "Attackers slip mislabeled records into a model's training data. Which control helps MOST?",
+   "o": [
+    [
+     "Validating and tracking the source of training data",
+     "Right. Data validation and provenance help catch poisoning."
+    ],
+    [
+     "Running the model on more powerful GPUs",
+     "Hardware doesn't detect bad data."
+    ],
+    [
+     "Making the training data publicly writable for transparency",
+     "That invites more poisoning."
+    ],
+    [
+     "Retraining every hour on whatever data arrives",
+     "Unchecked retraining spreads poisoned data faster."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-28",
+   "d": "2.0",
+   "obj": "2.9",
+   "q": "A model was trained on customer records. Why must the model itself be protected like sensitive data?",
+   "o": [
+    [
+     "Attacks can sometimes pull training data back out of a model",
+     "Right. Model inversion and membership inference can leak training data."
+    ],
+    [
+     "Models are always stored as plain-text customer lists",
+     "Models aren't stored that way, but they can still leak."
+    ],
+    [
+     "Cloud providers ban models that used customer data",
+     "There's no such general ban."
+    ],
+    [
+     "Protecting the model makes training faster",
+     "Protection is about confidentiality."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-2-29",
+   "d": "2.0",
+   "obj": "2.9",
+   "q": "Which practice reduces the privacy risk of training an AI model on personal data?",
+   "o": [
+    [
+     "Minimizing and de-identifying the data first",
+     "Right. Using less personal data, and removing identifiers, lowers the risk."
+    ],
+    [
+     "Collecting every field available in case it helps accuracy",
+     "Over-collection increases risk."
+    ],
+    [
+     "Sharing the raw data set with every team that asks",
+     "Wider sharing increases exposure."
+    ],
+    [
+     "Keeping the training data forever after the model ships",
+     "Indefinite retention adds risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which component lets one physical server run many isolated virtual machines?",
+   "o": [
+    [
+     "The hypervisor",
+     "Right. The hypervisor shares hardware among isolated guests."
+    ],
+    [
+     "The content delivery network",
+     "CDNs cache content near users."
+    ],
+    [
+     "The identity provider",
+     "IdPs handle authentication."
+    ],
+    [
+     "The object storage service",
+     "Storage doesn't run VMs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "In software-defined networking, why must the SDN controller be heavily protected?",
+   "o": [
+    [
+     "It programs how traffic flows across the whole network",
+     "Right. Control of the controller means control of the network."
+    ],
+    [
+     "It stores every customer's encryption keys in plain text",
+     "That isn't the controller's job."
+    ],
+    [
+     "It's the only device that keeps the data center cool",
+     "Cooling is physical infrastructure."
+    ],
+    [
+     "It runs the customer's web application code",
+     "Apps run on compute, not the controller."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A customer's IaaS virtual machines can only reach storage through the provider's internal network. Which layer provides this separation for each tenant?",
+   "o": [
+    [
+     "Per-tenant virtual networks (VPCs)",
+     "Right. Each tenant's virtual network separates its traffic."
+    ],
+    [
+     "The customer's office Wi-Fi password",
+     "Office Wi-Fi isn't part of the provider's network."
+    ],
+    [
+     "The web browser used by the admins",
+     "Browsers don't separate tenants."
+    ],
+    [
+     "The DNS name of the public website",
+     "DNS names don't isolate networks."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-04",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which compute option shares the host OS kernel between workloads, making kernel patching especially important?",
+   "o": [
+    [
+     "Containers",
+     "Right. Containers share the host kernel, so a kernel flaw affects them all."
+    ],
+    [
+     "Bare-metal servers",
+     "Bare metal doesn't share a kernel with other workloads."
+    ],
+    [
+     "Virtual machines",
+     "VMs each run their own kernel."
+    ],
+    [
+     "Developer laptops",
+     "Laptops aren't a cloud compute option."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-05",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which Uptime Institute data center tier is fault tolerant, so it keeps running through any single unplanned equipment failure on independent, fully redundant paths?",
+   "o": [
+    [
+     "Tier IV (fault tolerant)",
+     "Right. Tier IV survives a single unplanned failure. Tier III only allows planned maintenance without downtime."
+    ],
+    [
+     "Tier I (basic)",
+     "Tier I has no redundancy."
+    ],
+    [
+     "Tier II (redundant parts)",
+     "Tier II adds parts but still has one path."
+    ],
+    [
+     "Tier III (concurrently maintainable)",
+     "Tier III allows planned maintenance without downtime, but it isn't fully fault tolerant."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-06",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Why do data center designs keep hot and cold aisles separate?",
+   "o": [
+    [
+     "To cool equipment efficiently and keep it reliable",
+     "Right. Separating air flows supports availability by preventing overheating."
+    ],
+    [
+     "To stop people from seeing the server lights",
+     "Visibility isn't the purpose."
+    ],
+    [
+     "To keep tenants' data logically separated",
+     "Logical separation is done in software."
+    ],
+    [
+     "To meet the encryption requirements of PCI DSS",
+     "Airflow has nothing to do with encryption."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-07",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A provider designs its data center so that one tenant's workloads can never reach another's. Which part of design is this?",
+   "o": [
+    [
+     "Logical design: tenant separation and access controls",
+     "Right. Logical design isolates tenants in software and configuration."
+    ],
+    [
+     "Physical design: fences, guards and mantraps around the site",
+     "Physical controls protect the building, not tenant isolation."
+    ],
+    [
+     "Environmental design: power, cooling and fire suppression",
+     "That's about keeping equipment running."
+    ],
+    [
+     "Marketing design: choosing the data center's brand colors",
+     "Not a security design area."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-08",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which physical control BEST stops someone from following an authorized person into the server room?",
+   "o": [
+    [
+     "A mantrap (access control vestibule)",
+     "Right. It lets only one authorized person through at a time."
+    ],
+    [
+     "A sign reminding staff to close the door behind them",
+     "A sign is a weak deterrent."
+    ],
+    [
+     "Brighter lights in the parking lot outside",
+     "Lighting helps outside, not at the door."
+    ],
+    [
+     "A faster internet connection to the building",
+     "Bandwidth doesn't affect physical entry."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-09",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "An attacker breaks out of a guest VM and runs code on the host. Which attack is this?",
+   "o": [
+    [
+     "VM escape",
+     "Right. Escaping the guest can expose every other VM on the host."
+    ],
+    [
+     "VM sprawl",
+     "Sprawl is a management problem, not an attack."
+    ],
+    [
+     "Live migration",
+     "Migration is a normal operation."
+    ],
+    [
+     "Snapshot restore",
+     "Restoring a snapshot is recovery."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-10",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Why can relying on a single cloud provider's region be a risk?",
+   "o": [
+    [
+     "A regional outage could take down everything",
+     "Right. A single region is a single point of failure."
+    ],
+    [
+     "Regions don't allow encryption of stored data",
+     "Every major region supports encryption."
+    ],
+    [
+     "Providers charge double for a single region",
+     "Pricing isn't the risk."
+    ],
+    [
+     "Single regions can't run virtual machines",
+     "They can."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-11",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Which threat is more likely in a public cloud than on-premises because of shared infrastructure?",
+   "o": [
+    [
+     "Side-channel attacks from another tenant on the same hardware",
+     "Right. Co-located tenants can sometimes infer data through shared hardware."
+    ],
+    [
+     "Someone stealing a laptop from an employee's car",
+     "That happens anywhere."
+    ],
+    [
+     "A power cut at the company's own office",
+     "That affects on-premises more."
+    ],
+    [
+     "A user writing their password on a sticky note",
+     "That's a user habit, not a cloud risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-12",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "After assessing cloud infrastructure risks, a team decides to add a second region. Which risk treatment is this?",
+   "o": [
+    [
+     "Mitigation",
+     "Right. Adding a region reduces the impact of an outage."
+    ],
+    [
+     "Avoidance",
+     "They're staying in the cloud."
+    ],
+    [
+     "Transference",
+     "Insurance would transfer cost."
+    ],
+    [
+     "Acceptance",
+     "They took action."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-13",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "Which control BEST protects cloud console access for administrators?",
+   "o": [
+    [
+     "Phishing-resistant MFA for every admin account",
+     "Right. Admin accounts control everything, so strong MFA is essential."
+    ],
+    [
+     "A shared admin password kept in a team spreadsheet",
+     "Shared passwords remove accountability."
+    ],
+    [
+     "Letting admins log in only from personal email accounts",
+     "Personal accounts aren't controlled by the company."
+    ],
+    [
+     "Disabling logging so admins aren't slowed down",
+     "Logging is needed to track admin actions."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-14",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "Which control watches traffic between workloads inside the same virtual network?",
+   "o": [
+    [
+     "Security groups or microsegmentation rules",
+     "Right. They control east-west traffic between workloads."
+    ],
+    [
+     "The edge firewall at the internet connection only",
+     "Edge firewalls see north-south traffic."
+    ],
+    [
+     "The DNS registrar's account lock feature",
+     "Registrar locks protect domains."
+    ],
+    [
+     "The provider's physical badge readers",
+     "Badges control building entry."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-15",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "Why should cloud audit logs be turned on in EVERY region, even unused ones?",
+   "o": [
+    [
+     "Attackers may create resources where no one is looking",
+     "Right. Unused regions are a favorite place to hide."
+    ],
+    [
+     "Providers require logs in every region by law",
+     "There's no such general law."
+    ],
+    [
+     "Logs in unused regions make the console faster",
+     "Logging doesn't affect speed."
+    ],
+    [
+     "Unused regions can't be logged anyway",
+     "They can, and should be."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-16",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "A cloud app must lose no more than 5 minutes of data and be back within 1 hour. Which values are these?",
+   "o": [
+    [
+     "RPO 5 minutes, RTO 1 hour",
+     "Right. RPO is data loss in time. RTO is time to recover."
+    ],
+    [
+     "RTO 5 minutes, RPO 1 hour",
+     "The labels are reversed."
+    ],
+    [
+     "MTBF 5 minutes, MTTR 1 hour",
+     "Those measure failure rate and repair time."
+    ],
+    [
+     "SLA 5 minutes, MSA 1 hour",
+     "Those are contract documents."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-17",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "Which DR approach keeps only the core pieces, like a replicated database, running in another region and starts the app servers when disaster strikes?",
+   "o": [
+    [
+     "Pilot light",
+     "Right. Only the core runs. A warm standby would keep a smaller full copy running."
+    ],
+    [
+     "Backup and restore",
+     "That's slower and has nothing running."
+    ],
+    [
+     "Active-active",
+     "That's full capacity in both places."
+    ],
+    [
+     "Warm standby (a smaller full copy)",
+     "Warm standby keeps a scaled-down but complete copy running, not just the core."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-18",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "Why should DR plans for cloud apps be tested regularly?",
+   "o": [
+    [
+     "Constant change can break an untested plan",
+     "Right. Frequent change means frequent testing."
+    ],
+    [
+     "Providers delete DR plans that aren't tested",
+     "Providers don't manage your plans."
+    ],
+    [
+     "Testing replaces the need for backups",
+     "Backups are still needed."
+    ],
+    [
+     "Testing is only needed for on-premises systems",
+     "Cloud systems need testing too."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-19",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "A company stores its cloud backups in the same account as production. What risk does this create?",
+   "o": [
+    [
+     "An attacker who takes the account can destroy both",
+     "Right. Backups should be isolated, such as in a separate account with locks."
+    ],
+    [
+     "The backups will restore too quickly",
+     "Speed isn't the risk."
+    ],
+    [
+     "The backups can't be encrypted in the same account",
+     "They can be encrypted."
+    ],
+    [
+     "Providers won't bill for backups in the same account",
+     "Billing isn't the risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-20",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "During a regional outage, who decides to declare a disaster and start failover?",
+   "o": [
+    [
+     "The people named in the BC/DR plan",
+     "Right. The plan names who can declare a disaster, so no time is lost."
+    ],
+    [
+     "Any user who notices the site is slow",
+     "Users don't trigger DR."
+    ],
+    [
+     "The cloud provider's sales representative",
+     "The provider doesn't run your DR decisions."
+    ],
+    [
+     "Whoever is first to post about it online",
+     "DR decisions follow the plan."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-21",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "Which test fails a cloud workload over to the DR region for real, then back?",
+   "o": [
+    [
+     "A full failover test",
+     "Right. It proves the DR setup actually works."
+    ],
+    [
+     "A tabletop exercise",
+     "Tabletops are discussions only."
+    ],
+    [
+     "A checklist review",
+     "That checks the document, not the systems."
+    ],
+    [
+     "A walk-through",
+     "A walk-through steps through the plan without failing over."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-22",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "Which control helps detect a cloud account being used to mine cryptocurrency?",
+   "o": [
+    [
+     "Alerts on unusual spending and compute usage",
+     "Right. Sudden cost or usage spikes are a common sign of cryptojacking."
+    ],
+    [
+     "A stronger password on the office printer",
+     "Unrelated to cloud abuse."
+    ],
+    [
+     "Turning off all billing notifications",
+     "That hides the warning signs."
+    ],
+    [
+     "Moving all workloads to one availability zone",
+     "That doesn't detect abuse."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-3-23",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which part of the cloud lets admins create, change and delete resources through a web console, CLI and APIs?",
+   "o": [
+    [
+     "The management plane",
+     "Right. It's the most powerful part of the environment and needs the strongest protection."
+    ],
+    [
+     "The data plane",
+     "The data plane moves workload traffic."
+    ],
+    [
+     "The guest OS",
+     "Guests run workloads, not the cloud."
+    ],
+    [
+     "The facility cooling system",
+     "Cooling is environmental infrastructure."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Which resource lists the most critical web application security risks and is widely used in developer training?",
+   "o": [
+    [
+     "The OWASP Top 10",
+     "Right. It's a common starting point for app security awareness."
+    ],
+    [
+     "The ITIL service catalog",
+     "ITIL is about IT service management."
+    ],
+    [
+     "ISO 9001",
+     "That's about quality management."
+    ],
+    [
+     "FIPS 199",
+     "FIPS 199 rates impact levels."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Developers keep exposing cloud storage keys in public code repositories. What training change helps MOST?",
+   "o": [
+    [
+     "Teach secrets handling, plus pre-commit secret scanning",
+     "Right. Training plus tooling stops secrets before they're pushed."
+    ],
+    [
+     "Tell them to make repositories private and hope for the best",
+     "Private repos still leak keys to many people."
+    ],
+    [
+     "Ban developers from using the cloud entirely",
+     "That stops the business."
+    ],
+    [
+     "Ask them to use shorter keys that are easier to hide",
+     "Shorter keys are weaker and still exposed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-03",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Which is a common cloud development pitfall that training should cover?",
+   "o": [
+    [
+     "Assuming the provider secures everything, including app settings",
+     "Right. Customers still own app security under shared responsibility."
+    ],
+    [
+     "Using HTTPS for every API endpoint",
+     "That's good practice."
+    ],
+    [
+     "Encrypting sensitive data at rest",
+     "That's good practice."
+    ],
+    [
+     "Writing unit tests for new features",
+     "That's good practice."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-04",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "In which SDLC phase should security requirements be defined?",
+   "o": [
+    [
+     "Requirements, at the start",
+     "Right. Early requirements are cheaper than late fixes."
+    ],
+    [
+     "Only after the app is in production",
+     "Fixes after release cost much more."
+    ],
+    [
+     "During decommissioning of the old system",
+     "That's the end of the life cycle."
+    ],
+    [
+     "Only during the final penetration test",
+     "Testing checks requirements, it doesn't set them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-05",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "How does security fit into an Agile process with two-week sprints?",
+   "o": [
+    [
+     "Build security tasks and checks into every sprint",
+     "Right. Security is part of each iteration, not a final gate."
+    ],
+    [
+     "Save all security work for one sprint at the end of the year",
+     "Problems pile up."
+    ],
+    [
+     "Skip security because Agile moves too fast",
+     "Speed doesn't remove the need."
+    ],
+    [
+     "Let only the security team write user stories",
+     "Security works with the whole team."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-06",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Which business requirement should drive security decisions for a cloud app?",
+   "o": [
+    [
+     "Data sensitivity and the app's mission role",
+     "Right. What the app does and handles shapes its security needs."
+    ],
+    [
+     "Which programming language the newest developer prefers",
+     "Preferences don't drive security."
+    ],
+    [
+     "The color scheme chosen by the design team",
+     "Visual design isn't a security driver."
+    ],
+    [
+     "How many lines of code the app has",
+     "Size alone doesn't set requirements."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-07",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Before coding a new API, a team lists who might attack it and how, using STRIDE. What is this?",
+   "o": [
+    [
+     "Threat modeling",
+     "Right. STRIDE helps find spoofing, tampering and other threats early."
+    ],
+    [
+     "Penetration testing",
+     "Pentesting comes after the API exists."
+    ],
+    [
+     "Load testing",
+     "Load tests measure performance."
+    ],
+    [
+     "Change management",
+     "That controls changes to running systems."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-08",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Which secure coding practice BEST prevents SQL injection?",
+   "o": [
+    [
+     "Parameterized queries",
+     "Right. Parameters keep user input from being run as SQL."
+    ],
+    [
+     "Hiding error messages",
+     "Hidden errors don't stop injection."
+    ],
+    [
+     "A longer database password",
+     "Password length doesn't stop injection."
+    ],
+    [
+     "A faster database server",
+     "Speed doesn't stop injection."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-09",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Why should infrastructure-as-code templates go through the same review as application code?",
+   "o": [
+    [
+     "A bad template can misconfigure many resources at once",
+     "Right. IaC mistakes spread quickly, so they need review and scanning."
+    ],
+    [
+     "Templates are never deployed to production",
+     "They're often how production is built."
+    ],
+    [
+     "Reviewing templates makes the cloud cheaper",
+     "Cost isn't the main reason."
+    ],
+    [
+     "Templates can't contain security settings",
+     "They're full of security settings."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-10",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "Which test analyzes source code for flaws without running it?",
+   "o": [
+    [
+     "Static application security testing (SAST)",
+     "Right. SAST reviews code before it runs."
+    ],
+    [
+     "Dynamic application security testing against a live app",
+     "DAST tests the running app."
+    ],
+    [
+     "A disaster recovery failover test",
+     "That tests recovery."
+    ],
+    [
+     "A user acceptance test of the new screens",
+     "UAT checks that features meet needs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-11",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "Testers write cases for how an attacker might misuse a feature, like changing an order's price. What are these?",
+   "o": [
+    [
+     "Abuse (misuse) cases",
+     "Right. Abuse cases test how a feature could be misused."
+    ],
+    [
+     "Use cases",
+     "Use cases cover normal use."
+    ],
+    [
+     "Load test cases",
+     "Those are performance tests."
+    ],
+    [
+     "Accessibility cases",
+     "Those check accessibility."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-12",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "Where should automated security tests run so problems are caught before release?",
+   "o": [
+    [
+     "In the CI/CD pipeline, with failing builds blocked",
+     "Right. Pipeline gates stop vulnerable code from shipping."
+    ],
+    [
+     "Only on production after users complain",
+     "That's far too late."
+    ],
+    [
+     "On a developer's laptop once a year",
+     "Too rare and inconsistent."
+    ],
+    [
+     "Nowhere, since QA testers check everything manually",
+     "Manual QA alone misses a lot."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-13",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "A team wants to know every open-source library inside its container images. Which artifact helps MOST?",
+   "o": [
+    [
+     "A software bill of materials (SBOM)",
+     "Right. An SBOM lists components so vulnerable ones can be found."
+    ],
+    [
+     "A list of the team members' email addresses",
+     "That doesn't describe the software."
+    ],
+    [
+     "The container's CPU and memory settings",
+     "Resources don't list libraries."
+    ],
+    [
+     "The cloud invoice for the container service",
+     "Invoices don't list components."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-14",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "Which practice reduces the risk of a tampered third-party package reaching production?",
+   "o": [
+    [
+     "Pin versions and verify signatures or checksums",
+     "Right. Verification confirms the package is the one the publisher released."
+    ],
+    [
+     "Always pull the newest version automatically with no checks",
+     "Unchecked updates can bring in tampered code."
+    ],
+    [
+     "Copy packages from random mirrors to save time",
+     "Untrusted mirrors raise the risk."
+    ],
+    [
+     "Disable dependency scanning to speed up builds",
+     "Scanning catches known bad packages."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-15",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "A partner API returns data to your cloud app. How should your app treat that data?",
+   "o": [
+    [
+     "Validate it like any untrusted input",
+     "Right. Data from third-party APIs can be malicious or malformed."
+    ],
+    [
+     "Trust it fully, because it comes from a partner",
+     "Partners can be compromised too."
+    ],
+    [
+     "Store it without checks, since APIs can't send bad data",
+     "APIs can send bad data."
+    ],
+    [
+     "Display it directly in HTML without encoding",
+     "That invites cross-site scripting."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-16",
+   "d": "4.0",
+   "obj": "4.6",
+   "q": "Which component inspects HTTP requests to a cloud web app and blocks attacks like SQL injection and XSS?",
+   "o": [
+    [
+     "A web application firewall (WAF)",
+     "Right. A WAF filters application-layer attacks."
+    ],
+    [
+     "A network load balancer working at layer 4",
+     "Layer 4 balancers don't inspect HTTP content."
+    ],
+    [
+     "A VPN concentrator for remote staff",
+     "VPNs encrypt remote access."
+    ],
+    [
+     "An object storage lifecycle rule",
+     "Lifecycle rules move or delete objects."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-17",
+   "d": "4.0",
+   "obj": "4.6",
+   "q": "A company exposes many microservices to partners. Which component gives one place to enforce authentication, rate limits and logging for them?",
+   "o": [
+    [
+     "An API gateway",
+     "Right. Gateways centralize API security controls."
+    ],
+    [
+     "A DNS server",
+     "DNS doesn't enforce API policy."
+    ],
+    [
+     "A shared key spreadsheet",
+     "That's not an enforcement point, and it's insecure."
+    ],
+    [
+     "A bigger database",
+     "Database size doesn't secure APIs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-18",
+   "d": "4.0",
+   "obj": "4.6",
+   "q": "Untrusted user-uploaded files are opened in an isolated environment that can't reach anything else. What is this?",
+   "o": [
+    [
+     "Sandboxing",
+     "Right. A sandbox limits what untrusted code or content can affect."
+    ],
+    [
+     "Tokenization",
+     "Tokenization replaces sensitive data values."
+    ],
+    [
+     "Federation",
+     "Federation is about identity trust."
+    ],
+    [
+     "Data dispersion",
+     "Dispersion spreads data for resilience."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-19",
+   "d": "4.0",
+   "obj": "4.7",
+   "q": "Employees log in to many SaaS apps using their company identity provider. Which technology lets the apps trust those logins?",
+   "o": [
+    [
+     "Federation using SAML or OpenID Connect",
+     "Right. Federation lets apps accept the IdP's authentication."
+    ],
+    [
+     "A separate password for each app stored in a notebook",
+     "That's the problem federation solves."
+    ],
+    [
+     "A shared generic account for each department",
+     "Shared accounts break accountability."
+    ],
+    [
+     "Port forwarding on the office router",
+     "That's a network setting."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-20",
+   "d": "4.0",
+   "obj": "4.7",
+   "q": "A company wants visibility and control over which cloud apps employees use, including unapproved ones. Which tool fits?",
+   "o": [
+    [
+     "A cloud access security broker (CASB)",
+     "Right. A CASB finds shadow IT and enforces cloud usage policies."
+    ],
+    [
+     "A hardware security module for key storage",
+     "HSMs protect keys."
+    ],
+    [
+     "A load balancer in front of the intranet",
+     "Load balancers spread traffic."
+    ],
+    [
+     "A tape library for long-term backups",
+     "Tapes store backups."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-4-21",
+   "d": "4.0",
+   "obj": "4.7",
+   "q": "A cloud workload needs to read one storage bucket. What is the BEST way to give it access?",
+   "o": [
+    [
+     "A role with read access to that bucket only",
+     "Right. Workload identities with least privilege avoid long-lived keys."
+    ],
+    [
+     "An admin user's access keys pasted into the app's config",
+     "Long-lived admin keys are dangerous if leaked."
+    ],
+    [
+     "Making the bucket public so the workload can read it",
+     "That exposes the data to everyone."
+    ],
+    [
+     "The root account's credentials for simplicity",
+     "Root should never be used for apps."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-01",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Which approach makes new cloud servers secure by default every time they're built?",
+   "o": [
+    [
+     "Hardened golden images built from a secure baseline",
+     "Right. Every server starts from the same hardened, tested image."
+    ],
+    [
+     "Letting each admin configure servers however they like",
+     "That leads to inconsistent, weak setups."
+    ],
+    [
+     "Using the vendor's default image without changes",
+     "Defaults are often not hardened."
+    ],
+    [
+     "Building servers by hand from a printed checklist",
+     "Manual builds drift and are error-prone."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-02",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "What should be removed from a VM image before it's used in production?",
+   "o": [
+    [
+     "Unneeded services, default accounts and test tools",
+     "Right. Removing extras shrinks the attack surface."
+    ],
+    [
+     "The security agent and logging configuration",
+     "Those should stay."
+    ],
+    [
+     "The OS patches applied during the build",
+     "Patches should stay."
+    ],
+    [
+     "The host-based firewall rules",
+     "The firewall should stay."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-03",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Which hardware feature helps verify that a cloud server booted with trusted, unmodified firmware and OS?",
+   "o": [
+    [
+     "Secure boot with a TPM (measured boot)",
+     "Right. It checks each boot stage against trusted values."
+    ],
+    [
+     "A larger hard drive for the system volume",
+     "Disk size doesn't verify boot integrity."
+    ],
+    [
+     "A faster network card in the server",
+     "Network speed isn't boot integrity."
+    ],
+    [
+     "A second monitor attached to the host",
+     "Monitors don't verify anything."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-04",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "How should patches be applied to a fleet of cloud servers built from images?",
+   "o": [
+    [
+     "Rebuild from a patched, tested image",
+     "Right. Immutable infrastructure replaces servers instead of patching them in place."
+    ],
+    [
+     "Log in to each server by hand and patch it live",
+     "That's slow and causes drift."
+    ],
+    [
+     "Never patch, since cloud providers patch guest OSs",
+     "In IaaS, the customer patches the guest OS."
+    ],
+    [
+     "Patch only the servers that users complain about",
+     "Unpatched servers stay exposed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-05",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Two web servers sit behind a load balancer across two availability zones. Which goal does this mainly support?",
+   "o": [
+    [
+     "High availability",
+     "Right. If one zone or server fails, the other keeps serving."
+    ],
+    [
+     "Data classification",
+     "Classification labels data."
+    ],
+    [
+     "Non-repudiation",
+     "That's about proving who did something."
+    ],
+    [
+     "Data sovereignty",
+     "That's about where data is legally held."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-06",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Why should backups in the cloud be restore-tested regularly?",
+   "o": [
+    [
+     "A backup that can't be restored is worthless",
+     "Right. Testing proves recovery works."
+    ],
+    [
+     "Restore tests make backups smaller",
+     "Testing doesn't change size."
+    ],
+    [
+     "Providers delete untested backups automatically",
+     "They don't."
+    ],
+    [
+     "Testing replaces the need for encryption of backups",
+     "Backups still need encryption."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-07",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Which monitoring signal MOST likely shows a guest OS needs attention?",
+   "o": [
+    [
+     "Failed logins and surprise admin accounts",
+     "Right. Those point to possible compromise."
+    ],
+    [
+     "The server's hostname being long",
+     "Name length isn't a signal."
+    ],
+    [
+     "Normal CPU use during business hours",
+     "That's expected."
+    ],
+    [
+     "A scheduled backup finishing on time",
+     "That's healthy."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-08",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Which framework focuses on IT service management processes like incident, problem and change management?",
+   "o": [
+    [
+     "ITIL",
+     "Right. ITIL describes best practices for running IT services."
+    ],
+    [
+     "FIPS 140-3",
+     "That validates crypto modules."
+    ],
+    [
+     "OWASP ASVS",
+     "ASVS verifies app security."
+    ],
+    [
+     "GDPR",
+     "GDPR is a privacy law."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-09",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Which ISO/IEC standard specifies requirements for a service management system?",
+   "o": [
+    [
+     "ISO/IEC 20000-1",
+     "Right. 20000-1 covers IT service management systems."
+    ],
+    [
+     "ISO/IEC 27018",
+     "27018 covers protecting PII in public cloud."
+    ],
+    [
+     "ISO/IEC 15408",
+     "15408 is for product evaluation."
+    ],
+    [
+     "ISO 14001",
+     "14001 is environmental."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-10",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A cloud team wants prioritized, practical safeguards it can apply right away. Which set fits BEST?",
+   "o": [
+    [
+     "The CIS Critical Security Controls",
+     "Right. The CIS Controls are a prioritized list of safeguards."
+    ],
+    [
+     "The COBIT governance framework for boards",
+     "COBIT is about IT governance."
+    ],
+    [
+     "The FedRAMP authorization process for agencies",
+     "That's an authorization program."
+    ],
+    [
+     "SOC 1 reports on financial controls",
+     "SOC 1 is about financial reporting."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-11",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Why is forensic collection harder in a public cloud than on-premises?",
+   "o": [
+    [
+     "The customer doesn't control the physical hardware",
+     "Right. You often rely on snapshots, logs and the provider's cooperation."
+    ],
+    [
+     "Cloud data can't ever be copied for evidence",
+     "Snapshots and exports are possible."
+    ],
+    [
+     "Forensics is illegal in public clouds",
+     "It isn't illegal."
+    ],
+    [
+     "Cloud servers don't keep any logs at all",
+     "Cloud services produce many logs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-12",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "A compromised cloud VM must be investigated. What should the responder capture FIRST?",
+   "o": [
+    [
+     "Memory and a disk snapshot, before shutting it down",
+     "Right. Volatile memory is lost at shutdown, so capture it first."
+    ],
+    [
+     "Nothing, just terminate the VM right away",
+     "Terminating destroys evidence."
+    ],
+    [
+     "Only a screenshot of the console login page",
+     "That captures almost nothing useful."
+    ],
+    [
+     "The VM's monthly bill",
+     "Billing data isn't the key evidence."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-13",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "How should a contract help with cloud forensics BEFORE an incident happens?",
+   "o": [
+    [
+     "Agree on evidence and log access up front",
+     "Right. Agreeing in advance avoids delays during an investigation."
+    ],
+    [
+     "Ban all forensic activity in the provider's data center",
+     "That would block investigations."
+    ],
+    [
+     "Require the provider to delete logs every day",
+     "That destroys evidence."
+    ],
+    [
+     "Leave forensics out, since it's rarely needed",
+     "When it's needed, it's needed fast."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-14",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "During a cloud data breach, who should the communication plan say speaks to regulators?",
+   "o": [
+    [
+     "The designated legal or compliance contact",
+     "Right. Regulator communication must be accurate and follow legal rules."
+    ],
+    [
+     "Any engineer who has details of the incident",
+     "Unplanned statements can cause legal problems."
+    ],
+    [
+     "The provider's sales team on the customer's behalf",
+     "The customer owns its regulatory duties."
+    ],
+    [
+     "Whoever posts first on social media",
+     "That's not a plan."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-15",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "Why should a cloud customer know how its provider will notify it of security incidents?",
+   "o": [
+    [
+     "The customer may have its own deadlines to notify others",
+     "Right. Laws like GDPR set deadlines the customer must meet."
+    ],
+    [
+     "Providers never have incidents",
+     "They do."
+    ],
+    [
+     "Notifications replace the customer's own monitoring",
+     "Customers still need their own monitoring."
+    ],
+    [
+     "It lowers the monthly bill",
+     "Notification terms don't change cost."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-16",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "Which party should be told about a planned maintenance window that will affect a shared service?",
+   "o": [
+    [
+     "Customers and partners who depend on it",
+     "Right. Advance notice lets them plan around the outage."
+    ],
+    [
+     "Only the newest engineer on the team",
+     "Dependents need to know."
+    ],
+    [
+     "Nobody, to avoid worrying anyone",
+     "Surprise outages hurt trust."
+    ],
+    [
+     "Competitors, so they can prepare",
+     "Competitors don't need notice."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-17",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "A SOC collects cloud API logs, VPC flow logs and identity logs in one place and correlates them. What tool is this?",
+   "o": [
+    [
+     "A SIEM",
+     "Right. A SIEM centralizes and correlates security events."
+    ],
+    [
+     "A CDN",
+     "CDNs deliver content."
+    ],
+    [
+     "A code repository",
+     "Repos store code."
+    ],
+    [
+     "A password manager",
+     "That stores credentials."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-18",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "Before running a penetration test against its IaaS workloads, what should the customer check?",
+   "o": [
+    [
+     "The provider's testing policy and any notice it requires",
+     "Right. Providers set rules for testing on their platforms."
+    ],
+    [
+     "Nothing, since the customer owns everything in the cloud",
+     "The provider owns the underlying platform."
+    ],
+    [
+     "Whether other tenants mind being tested too",
+     "Other tenants are never in scope."
+    ],
+    [
+     "Whether the test can be run without logging",
+     "Logging should stay on."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-19",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "A vulnerability scan finds a critical flaw in a public-facing cloud API. Which process should the fix go through?",
+   "o": [
+    [
+     "Change management, with emergency approval if needed",
+     "Right. Even urgent fixes are tracked and approved."
+    ],
+    [
+     "Deploy directly to production with no record",
+     "Unrecorded changes create new risks."
+    ],
+    [
+     "Wait for the next yearly release",
+     "Critical exposed flaws can't wait."
+    ],
+    [
+     "Ask users to avoid the API until next year",
+     "That's not a fix."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-5-20",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "Which practice helps a cloud team make sure it has enough resources before a big seasonal spike?",
+   "o": [
+    [
+     "Capacity management with load testing and auto-scaling",
+     "Right. Planning capacity protects availability."
+    ],
+    [
+     "Turning off monitoring during the spike",
+     "Monitoring is most important then."
+    ],
+    [
+     "Reducing the number of servers just before the spike",
+     "That causes outages."
+    ],
+    [
+     "Disabling auto-scaling to control costs",
+     "That risks running out of capacity."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-01",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "A company's cloud data is stored in a country whose laws let the government demand access. Which risk is this?",
+   "o": [
+    [
+     "Conflicting laws across jurisdictions",
+     "Right. Data in another country falls under that country's laws."
+    ],
+    [
+     "Model drift in an AI system",
+     "Unrelated to legal jurisdiction."
+    ],
+    [
+     "VM sprawl in the account",
+     "That's a management issue."
+    ],
+    [
+     "Hypervisor escape on shared hosts",
+     "That's a technical attack."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-02",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "A lawsuit requires a company to produce relevant emails stored in a SaaS service. What process is this?",
+   "o": [
+    [
+     "eDiscovery",
+     "Right. eDiscovery finds and produces electronic information for legal cases."
+    ],
+    [
+     "Data classification",
+     "Classification labels data."
+    ],
+    [
+     "Penetration testing",
+     "That tests security."
+    ],
+    [
+     "Capacity planning",
+     "That's about resources."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-03",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Why must cloud contracts address where data may be stored?",
+   "o": [
+    [
+     "Some laws restrict moving data out of the country",
+     "Right. Data localization laws can limit storage locations."
+    ],
+    [
+     "Providers can only store data on one continent",
+     "Providers have many regions."
+    ],
+    [
+     "Storage location doesn't affect any legal duties",
+     "It often does."
+    ],
+    [
+     "Location only matters for performance",
+     "It also matters legally."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-04",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Under GDPR, a company that decides why and how personal data is processed in the cloud is called what?",
+   "o": [
+    [
+     "The controller",
+     "Right. The controller decides the purposes and means of processing."
+    ],
+    [
+     "The processor",
+     "The processor acts on the controller's behalf."
+    ],
+    [
+     "The data subject",
+     "That's the individual."
+    ],
+    [
+     "The supervisory authority",
+     "That's the regulator."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-05",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A cloud provider stores and processes personal data only on the customer's instructions. Under GDPR, what is the provider?",
+   "o": [
+    [
+     "A processor",
+     "Right. Processors act on the controller's documented instructions."
+    ],
+    [
+     "The controller of the data",
+     "The customer decides why and how, so it's the controller."
+    ],
+    [
+     "The data protection authority",
+     "That's the regulator."
+    ],
+    [
+     "The data subject",
+     "That's the person the data is about."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-06",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Before launching a cloud service that processes lots of personal data, what should the company perform?",
+   "o": [
+    [
+     "A privacy impact assessment (or DPIA)",
+     "Right. It identifies and reduces privacy risks before launch."
+    ],
+    [
+     "A load test of the login page",
+     "That checks performance."
+    ],
+    [
+     "A logo redesign for the service",
+     "Unrelated to privacy."
+    ],
+    [
+     "A firewall rule cleanup",
+     "Useful, but not a privacy assessment."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-07",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "What is the difference between contractual and regulated private data?",
+   "o": [
+    [
+     "Contracts protect some data; laws protect other data",
+     "Right. Contractual data is protected by agreement, and regulated data by law."
+    ],
+    [
+     "Regulated data is never personal",
+     "Regulated data is often personal."
+    ],
+    [
+     "Contractual data has no protection at all",
+     "The contract is the protection."
+    ],
+    [
+     "They're the same thing",
+     "They come from different sources of obligation."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-08",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "A customer wants a provider report it can share publicly on its website about the provider's controls. Which report fits?",
+   "o": [
+    [
+     "SOC 3",
+     "Right. SOC 3 is a general-use summary report."
+    ],
+    [
+     "SOC 2 Type II",
+     "SOC 2 is restricted use."
+    ],
+    [
+     "SOC 1",
+     "SOC 1 isn't for public sharing or security."
+    ],
+    [
+     "An internal audit memo",
+     "Internal memos aren't independent reports."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-09",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "A customer's audit team wants to inspect a public cloud provider's data center in person. What usually happens instead?",
+   "o": [
+    [
+     "It relies on independent audit reports",
+     "Right. Providers share third-party audit results because they can't host every customer's auditors."
+    ],
+    [
+     "The provider gives every customer unlimited site access",
+     "That isn't practical or secure."
+    ],
+    [
+     "The audit is skipped and the provider is trusted",
+     "Assurance still comes from reports."
+    ],
+    [
+     "The customer hires the provider's staff to audit themselves",
+     "That isn't independent."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-10",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "An auditor compares a company's current cloud controls against a target framework to find missing pieces. What is this?",
+   "o": [
+    [
+     "A gap analysis",
+     "Right. It shows what's missing compared with the target."
+    ],
+    [
+     "A penetration test",
+     "That tests exploitability."
+    ],
+    [
+     "A load test",
+     "That tests capacity."
+    ],
+    [
+     "Data classification",
+     "That labels data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-11",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "Why might a provider's SOC 2 report have limited value for a customer's audit?",
+   "o": [
+    [
+     "Its scope may not cover the services the customer uses",
+     "Right. Always check the report's scope and period."
+    ],
+    [
+     "SOC 2 reports are never independent",
+     "They're done by independent auditors."
+    ],
+    [
+     "SOC 2 reports can't mention security",
+     "Security is a core SOC 2 criterion."
+    ],
+    [
+     "SOC 2 reports are written by customers",
+     "Independent auditors write them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-12",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "Why does moving to the cloud change enterprise risk management?",
+   "o": [
+    [
+     "Some risks now depend on the provider's controls",
+     "Right. The organization must assess and monitor the provider's risk environment."
+    ],
+    [
+     "The cloud removes all of the organization's risk",
+     "Risk remains, it just shifts."
+    ],
+    [
+     "Risk management is no longer needed in the cloud",
+     "It's still needed."
+    ],
+    [
+     "Providers take legal responsibility for all customer data",
+     "Customers keep accountability for their data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-13",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "Which metric would BEST tell leadership whether cloud risk is under control?",
+   "o": [
+    [
+     "Percent of critical misconfigurations fixed on time",
+     "Right. It shows whether the biggest risks are being handled."
+    ],
+    [
+     "Number of cloud accounts created this year",
+     "Counting accounts doesn't measure risk."
+    ],
+    [
+     "The number of emails sent by the cloud team",
+     "Activity isn't risk."
+    ],
+    [
+     "The total size of the logs collected",
+     "Volume isn't risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-14",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "A company decides its tolerance for cloud outages is low, so it pays for multi-region design. Which concept guided the decision?",
+   "o": [
+    [
+     "Risk appetite",
+     "Right. How much risk leadership will accept drives how much it invests."
+    ],
+    [
+     "Data dispersion",
+     "Dispersion is a storage technique."
+    ],
+    [
+     "eDiscovery",
+     "That's a legal process."
+    ],
+    [
+     "Tokenization",
+     "That replaces sensitive values."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-15",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "Which contract document defines measurable targets like 99.9% uptime and the credits paid if they're missed?",
+   "o": [
+    [
+     "The service level agreement (SLA)",
+     "Right. SLAs set service targets and remedies."
+    ],
+    [
+     "The statement of work (SOW)",
+     "A SOW describes specific project work."
+    ],
+    [
+     "The non-disclosure agreement (NDA)",
+     "An NDA protects confidential information."
+    ],
+    [
+     "The acceptable use policy (AUP)",
+     "An AUP governs employee behavior."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-16",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "Why should a cloud contract include exit terms?",
+   "o": [
+    [
+     "So data is returned and deleted at the end",
+     "Right. Exit terms prevent lock-in and data left behind."
+    ],
+    [
+     "So the provider can keep the data as long as it likes",
+     "That's the risk exit terms address."
+    ],
+    [
+     "Exit terms make the service run faster",
+     "They don't affect performance."
+    ],
+    [
+     "They're only needed for on-premises contracts",
+     "Cloud contracts need them most."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-17",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "A customer wants the contractual right to verify the provider's controls. Which clause provides this?",
+   "o": [
+    [
+     "A right-to-audit clause",
+     "Right. It lets the customer or its auditors assess the provider, often through reports."
+    ],
+    [
+     "A force majeure clause",
+     "That excuses performance in disasters."
+    ],
+    [
+     "A non-compete clause",
+     "That limits competition."
+    ],
+    [
+     "A severability clause",
+     "That keeps the contract valid if one part fails."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cs-6-18",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "A company signs one master agreement with a provider and then separate documents for each project's work. What are those per-project documents?",
+   "o": [
+    [
+     "Statements of work (SOWs)",
+     "Right. SOWs define the work under the master service agreement."
+    ],
+    [
+     "Service level agreements",
+     "SLAs set performance targets."
+    ],
+    [
+     "Privacy notices",
+     "Those inform individuals."
+    ],
+    [
+     "Security assessment reports",
+     "Those record assessment results."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "kind": "table",
+   "d": "1.0",
+   "obj": "1.2",
+   "title": "Who manages what in each service model",
+   "short": "Shared responsibility",
+   "scenario": "For each layer, pick who is mainly responsible in the named service model.",
+   "cols": [
+    "Responsible"
+   ],
+   "opts": [
+    [
+     "Customer",
+     "Provider",
+     "Shared"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "IaaS: patching the guest operating system.",
+     "a": [
+      0
+     ],
+     "why": "In IaaS the customer runs the OS."
+    },
+    {
+     "req": "PaaS: patching the runtime and OS under the app.",
+     "a": [
+      1
+     ],
+     "why": "In PaaS the provider manages the platform."
+    },
+    {
+     "req": "SaaS: deciding which users can access the app and its data.",
+     "a": [
+      0
+     ],
+     "why": "Identity and data access always stay with the customer."
+    },
+    {
+     "req": "Any model: physical security of the data center.",
+     "a": [
+      1
+     ],
+     "why": "The provider runs the facilities."
+    },
+    {
+     "req": "IaaS: network security, with provider network plus customer firewall rules.",
+     "a": [
+      2
+     ],
+     "why": "The provider secures the underlying network, and the customer configures its own rules."
+    }
+   ],
+   "t": "pbq",
+   "id": "cs-p-01",
+   "dom": "1.0"
+  },
+  {
+   "kind": "table",
+   "d": "2.0",
+   "obj": "2.3",
+   "title": "Pick the data protection technique",
+   "short": "Data protection",
+   "scenario": "Five needs. Pick the technique that fits each one best.",
+   "cols": [
+    "Technique"
+   ],
+   "opts": [
+    [
+     "Encryption",
+     "Tokenization",
+     "Masking",
+     "Hashing",
+     "Crypto-shredding"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "Replace card numbers in an app with values that only a secure vault can map back.",
+     "a": [
+      1
+     ],
+     "why": "Tokenization swaps data for tokens kept in a vault."
+    },
+    {
+     "req": "Show support agents only the last four digits of an account number.",
+     "a": [
+      2
+     ],
+     "why": "Masking hides part of the value on screen."
+    },
+    {
+     "req": "Check that a downloaded file matches the published fingerprint.",
+     "a": [
+      3
+     ],
+     "why": "Comparing hashes verifies integrity."
+    },
+    {
+     "req": "Make deleted data in a shared cloud unreadable when disks can't be wiped.",
+     "a": [
+      4
+     ],
+     "why": "Destroying the keys makes the encrypted data useless."
+    },
+    {
+     "req": "Protect a database at rest so a stolen copy can't be read.",
+     "a": [
+      0
+     ],
+     "why": "Encryption at rest protects stolen copies."
+    }
+   ],
+   "t": "pbq",
+   "id": "cs-p-02",
+   "dom": "2.0"
+  },
+  {
+   "kind": "match",
+   "d": "6.0",
+   "obj": "6.3",
+   "title": "Choose the audit report",
+   "short": "SOC reports",
+   "scenario": "Four needs. Pick the report or assessment that fits each one. Two options are distractors.",
+   "choices": [
+    "SOC 1",
+    "SOC 2 Type I",
+    "SOC 2 Type II",
+    "SOC 3",
+    "PCI DSS RoC",
+    "ISO 9001"
+   ],
+   "pick": "Report",
+   "items": [
+    {
+     "text": "Your auditors need assurance about the provider's controls over financial reporting.",
+     "a": 0,
+     "why": "SOC 1 covers controls relevant to financial reporting."
+    },
+    {
+     "text": "You need evidence that security controls worked over the past 12 months.",
+     "a": 2,
+     "why": "Type II tests operating effectiveness over a period."
+    },
+    {
+     "text": "Marketing wants a provider report it can post publicly.",
+     "a": 3,
+     "why": "SOC 3 is a general-use summary."
+    },
+    {
+     "text": "You only need to know if controls were designed properly on one date.",
+     "a": 1,
+     "why": "Type I covers design at a point in time."
+    }
+   ],
+   "t": "pbq",
+   "id": "cs-p-03",
+   "dom": "6.0"
+  },
+  {
+   "kind": "match",
+   "d": "4.0",
+   "obj": "4.4",
+   "title": "Pick the security test",
+   "short": "App security tests",
+   "scenario": "Five testing needs in a cloud app's pipeline. Pick the test that fits each. Two options are distractors.",
+   "choices": [
+    "SAST",
+    "DAST",
+    "SCA / SBOM scan",
+    "Abuse case test",
+    "IaC scan",
+    "Load test",
+    "Tabletop"
+   ],
+   "pick": "Test",
+   "items": [
+    {
+     "text": "Find SQL injection by reading the source code before it runs.",
+     "a": 0,
+     "why": "Static analysis reviews code without running it."
+    },
+    {
+     "text": "Probe the running staging site for XSS from the outside.",
+     "a": 1,
+     "why": "Dynamic testing attacks the running app."
+    },
+    {
+     "text": "Find known-vulnerable open-source libraries in the build.",
+     "a": 2,
+     "why": "Software composition analysis checks dependencies."
+    },
+    {
+     "text": "Check whether a user can change another user's order total.",
+     "a": 3,
+     "why": "Abuse cases test how features can be misused."
+    },
+    {
+     "text": "Catch a storage bucket set to public in a Terraform template.",
+     "a": 4,
+     "why": "IaC scanning finds misconfigurations before deployment."
+    }
+   ],
+   "t": "pbq",
+   "id": "cs-p-04",
+   "dom": "4.0"
+  },
+  {
+   "kind": "table",
+   "d": "3.0",
+   "obj": "3.5",
+   "title": "Choose the DR strategy",
+   "short": "DR strategies",
+   "scenario": "Four cloud workloads. Pick the DR approach that best fits each one's recovery needs and budget.",
+   "cols": [
+    "Strategy"
+   ],
+   "opts": [
+    [
+     "Backup and restore",
+     "Pilot light",
+     "Warm standby",
+     "Active-active"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "Internal wiki. Down for a day is fine; lowest cost wins.",
+     "a": [
+      0
+     ],
+     "why": "Restoring from backups is cheapest and slowest."
+    },
+    {
+     "req": "Order system. Core database must replicate; app servers can start in about an hour.",
+     "a": [
+      1
+     ],
+     "why": "A pilot light keeps the core running and scales the rest up."
+    },
+    {
+     "req": "Customer portal. A scaled-down copy runs all the time and must take over within minutes.",
+     "a": [
+      2
+     ],
+     "why": "Warm standby runs a smaller full copy that scales up fast."
+    },
+    {
+     "req": "Payment API. No noticeable downtime allowed, cost is secondary.",
+     "a": [
+      3
+     ],
+     "why": "Active-active serves from both regions at once."
+    }
+   ],
+   "t": "pbq",
+   "id": "cs-p-05",
+   "dom": "3.0"
+  },
+  {
+   "kind": "match",
+   "d": "6.0",
+   "obj": "6.5",
+   "title": "Match the contract term",
+   "short": "Cloud contracts",
+   "scenario": "Four contract needs. Pick the document or clause that covers each one. Two options are distractors.",
+   "choices": [
+    "SLA",
+    "MSA",
+    "SOW",
+    "Right to audit",
+    "NDA",
+    "EULA"
+   ],
+   "pick": "Term",
+   "items": [
+    {
+     "text": "99.95% uptime target with service credits if it's missed.",
+     "a": 0,
+     "why": "SLAs define measurable service levels and remedies."
+    },
+    {
+     "text": "The overall legal terms that govern every future project with the provider.",
+     "a": 1,
+     "why": "The master service agreement sets the overall terms."
+    },
+    {
+     "text": "The tasks, deliverables and dates for one migration project.",
+     "a": 2,
+     "why": "A statement of work describes one project's work."
+    },
+    {
+     "text": "The customer can review the provider's controls or its audit reports.",
+     "a": 3,
+     "why": "A right-to-audit clause gives the customer that ability."
+    }
+   ],
+   "t": "pbq",
+   "id": "cs-p-06",
+   "dom": "6.0"
+  }
+ ]
+}
