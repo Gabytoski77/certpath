@@ -8,6 +8,7 @@ bumped whenever index.html changed since that commit.
 Uses only the Python standard library, so there is nothing to install.
 """
 import base64
+import datetime
 import hashlib
 import json
 import os
@@ -285,6 +286,46 @@ def check_dod8140():
         ok(f"DoD 8140 data matches the pinned matrix {pin['version']} ({len(want)} roles, {n} cert listings)")
 
 
+def check_guide_dates():
+    # Every guide carries checked:"YYYY-MM-DD" (shown on the guide as "Facts last checked"). Missing, malformed or
+    # future dates fail; a date older than 45 days only warns (the monthly fact check is due).
+    with open("index.html", encoding="utf-8") as f:
+        html = f.read()
+    a, b = html.find("var GUIDES={"), html.find("var G_SECS=")
+    if a < 0 or b < a:
+        fail("guide data (var GUIDES={ ... var G_SECS=) not found in index.html, so guide dates can't be checked")
+        return
+    win = html[a:b]
+    starts = list(re.finditer(r'(?m)^(?:GUIDES\["([^"]+)"\]=|"([^"]+)":)\{', win))
+    if len(starts) < 30:
+        fail(f"only {len(starts)} guides found in index.html; the guide date check is looking in the wrong place")
+        return
+    today = datetime.date.today()
+    before, stale = len(failures), []
+    for k, m in enumerate(starts):
+        name = m.group(1) or m.group(2)
+        seg = win[m.end(): starts[k + 1].start() if k + 1 < len(starts) else len(win)]
+        c = re.search(r'(?m)^  checked:"([^"]*)"', seg)
+        if not c:
+            fail(f'guide "{name}" has no checked:"YYYY-MM-DD" field')
+            continue
+        try:
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", c.group(1)):
+                raise ValueError
+            d = datetime.date.fromisoformat(c.group(1))
+        except ValueError:
+            fail(f'guide "{name}" has a bad checked date {c.group(1)!r} (use YYYY-MM-DD)')
+            continue
+        if d > today + datetime.timedelta(days=1):
+            fail(f'guide "{name}" has a checked date in the future: {c.group(1)}')
+        elif (today - d).days > 45:
+            stale.append(f"{name} ({c.group(1)}, {(today - d).days} days)")
+    if stale:
+        print(f"WARN  {len(stale)} guide(s) not fact-checked in over 45 days: " + "; ".join(stale))
+    if len(failures) == before:
+        ok(f"all {len(starts)} guides have a valid checked date")
+
+
 def jpeg_size(path):
     """(width, height) of a baseline or progressive JPEG, read from its SOF marker."""
     with open(path, "rb") as f:
@@ -519,6 +560,7 @@ def main():
     check_index()
     check_404()
     check_dod8140()
+    check_guide_dates()
     check_share_preview()
     check_qbanks()
     version = check_sw()
