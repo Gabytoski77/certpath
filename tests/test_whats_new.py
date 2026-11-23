@@ -56,7 +56,7 @@ def test_dot_clears_after_opening(site):
     assert "new updates" in (p.locator(".wn-btn:visible .wn-vh").first.text_content() or "")
     _open(p)
     assert p.locator(".wn-btn.new").count() == 0, "the dot goes away once it has been opened"
-    assert p.evaluate("localStorage.getItem('cgcp.wn')") == "2.78"
+    assert p.evaluate("localStorage.getItem('cgcp.wn')") == _versions(p)[0].lstrip("v")  # the newest entry, whatever release this is
     p.keyboard.press("Escape")
     p.reload()
     p.wait_for_timeout(1500)

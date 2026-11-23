@@ -2538,7 +2538,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.78</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.79</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -6189,12 +6189,12 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.79",d:"2026-11-23",t:"Full CCST IT Support practice exam."},
   {v:"2.78",d:"2026-11-22",t:"New What\u2019s new page, and every guide now shows the date its exam facts were last checked."},
   {v:"2.77",d:"2026-11-22",t:"Full CCNA 200-301 v2.0 practice exam."},
   {v:"2.76",d:"2026-11-21",t:"Full CCNA Cybersecurity 200-201 practice exam."},
   {v:"2.75",d:"2026-11-21",t:"Full CISSP practice exam."},
-  {v:"2.74",d:"2026-11-20",t:"Full CCSP practice exam."},
-  {v:"2.69",d:"2026-11-19",t:"A readiness score for each cert, and an Add to calendar button for your study plan."}
+  {v:"2.74",d:"2026-11-20",t:"Full CCSP practice exam."}
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -13078,14 +13078,16 @@ GUIDES["CGRC"]={
 };
 GUIDES["CCST IT Support"]={
   id:"ccstit",
+  mock:{cur:"qbank/100-140.json"},
+  mockText:"45 items in 50 minutes, with 4 drag-and-drop style items, flags and a review screen. Cisco doesn't publish the real item count or the topic weights, so this is a stand-in that fits the real 50 minutes, with an even mix across the six domains.",
   lead:"Cisco's entry-level help desk cert. It proves you can work a ticket queue, fix common PC, Mac, phone and printer problems, get users back on the network, spot phishing and social engineering, and document what you did. A low-cost first step for anyone new to IT, and a good warm-up for A+.",
-  checked:"2026-11-14",
+  checked:"2026-11-23",
   planHours:35,
   laneOnly:["20 year career"],
   versions:{
     cur:{code:"100-140",label:"Current exam",status:"50 minutes · US$125 · pass/fail",
       note:"One exam, delivered by Pearson VUE or Certiport, in English and six other languages. No prerequisites. It's built for entry-level jobs like help desk, end user support and computer support specialist.",
-      numbered:true,onote:"Topic list from Global Knowledge's copy of Cisco's 100-140 exam topics; titles are shortened. Cisco publishes no domain weights, so the bars show an even split.",
+      numbered:true,onote:"Topic list from Cisco's own 100-140 exam topic blueprint (PDF, form 4/24); titles are shortened. Cisco publishes no domain weights, so the bars show an even split.",
       domains:[
         {n:"1.0",name:"IT Support Job Tasks and Responsibilities",w:17,obj:[
           ["Explain key help desk concepts","Queue and time management, ticketing systems, service level agreements (SLAs) and key performance indicators (KPIs)."],
@@ -13265,7 +13267,7 @@ GUIDES["CCST IT Support"]={
     {lab:"Use it",big:"Low cost",text:"At $125 it's a cheap, quick proof that you can work a help desk, and good practice before A+.",after:"Add the Credly badge to your résumé and LinkedIn."}],
   sources:[
     ["Cisco: 100-140 CCST IT Support exam page (50 minutes, US$125, languages)","https://www.cisco.com/site/us/en/learn/training-certifications/exams/ccst-it-support.html"],
-    ["Global Knowledge: 100-140 exam objectives (copy of Cisco's topic list)","https://www.globalknowledge.com/en-qa/products/cisco/100-140"],
+    ["Cisco: 100-140 CCST IT Support exam topic blueprint (PDF)","https://learningcontent.cisco.com/documents/100-140+CCST+IT+Support+BP+04052024-FINAL_dm.pdf"],
     ["Cisco: CCST certifications FAQ (5-year validity, recertification)","https://www.cisco.com/site/us/en/learn/training-certifications/certifications/support-technician/faq.html"],
     ["Cisco Press: CCST IT Support 100-140 Official Cert Guide","https://www.informit.com/store/cisco-certified-support-technician-ccst-it-support-9780135403921"]]
 };

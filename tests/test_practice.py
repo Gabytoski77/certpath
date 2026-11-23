@@ -657,3 +657,39 @@ def test_ccna_v20_full_exam(site):
     for dom in ("Network Infrastructure and Connectivity", "Switching and Network Access", "IP Routing",
                 "Network Services and Security", "AI, and Network Operations and Management"):
         assert dom in body, f"{dom} missing from the results"
+
+
+def test_ccst_it_support_full_exam(site):
+    """v2.79: CCST IT Support (100-140) gets a 45-item, 50-minute bank with 4 drag-and-drop items and all six domains scored; nothing overflows at 320 px."""
+    w = site(device="small320")
+    p = w.page
+    open_guide(p, "ccstit")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="cur"]').count() == 1, mxp[:500]
+    assert p.locator("#mxp .mxp-card.soon").count() == 0, mxp[:600]
+    assert "doesn't publish the real item count" in mxp
+    p.locator('#mxp [data-mx="full"][data-ver="cur"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 45")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("49:", "50:")), t
+    assert "100-140" in p.inner_text("#mx-h"), p.inner_text("#mx-h")
+    inner = p.evaluate("() => innerWidth")
+    for _ in range(45):  # every item, including the drag-and-drop ones, must fit a 320 px phone
+        widths = p.evaluate("() => [document.querySelector('#mx-body').scrollWidth, document.querySelector('.mx-top').getBoundingClientRect().width]")
+        assert widths[0] <= inner and widths[1] <= inner, widths
+        opt = p.locator("#mx-body .g-qo").first
+        if opt.count():
+            opt.click()
+        label = p.inner_text("#mx-next")
+        if "Submit" in label or "Review" in label or "Finish" in label:
+            break
+        p.click("#mx-next")
+        p.wait_for_timeout(60)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("IT Support Job Tasks and Responsibilities", "Hardware Issues", "Connectivity and Resource Access Issues",
+                "Operating System and Application Issues", "Common Threats and Preventions", "Job Tools"):
+        assert dom in body, f"{dom} missing from the results"
