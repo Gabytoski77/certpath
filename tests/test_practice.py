@@ -626,3 +626,34 @@ def test_exam_long_title_fits_320(site):
         assert widths[0] <= widths[2] and widths[1] <= widths[2], widths
         p.click("#mx-next")
         p.wait_for_timeout(60)
+
+
+def test_ccna_v20_full_exam(site):
+    """v2.77: CCNA (200-301 v2.0) gets a 100-item, 2-hour bank with 4 drag-and-drop items, CLI output blocks and all five domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "ccna")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v20"]').count() == 1, mxp[:600]
+    assert "February 3, 2027" in mxp and "can't go back" in mxp
+    p.locator('#mxp [data-mx="full"][data-ver="v20"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 100")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("1:59:", "2:00:")), t
+    assert "200-301" in p.inner_text("#mx-h"), p.inner_text("#mx-h")
+    codes = 0
+    for _ in range(100):
+        codes += p.locator("#mx-body pre.g-qcode").count()
+        if p.locator("#mx-next").inner_text().strip().lower().startswith(("review", "submit", "finish")):
+            break
+        p.click("#mx-next")
+        p.wait_for_timeout(30)
+    assert codes >= 5, codes  # show output appears in its own block
+    _answer_all(p, limit=120)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    for dom in ("Network Infrastructure and Connectivity", "Switching and Network Access", "IP Routing",
+                "Network Services and Security", "AI, and Network Operations and Management"):
+        assert dom in body, f"{dom} missing from the results"
