@@ -4,3 +4,6 @@ __pycache__/
 .lighthouseci/
 build/out/
 tests/js-scan/
+# Lighthouse on WSL leaves Windows-style temp folders in the repo root (build/check_all.sh sweeps them)
+C:\\*lighthouse.*/
+lighthouse.*/
