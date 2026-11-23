@@ -710,6 +710,22 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .pv-x:hover{background:rgba(255,255,255,.1)}
 @media (max-width:720px){.pv-in{padding:18px 18px 22px;font-size:13.5px}.pv h2{font-size:26px}}
 
+/* What's new (v2.78): a dialog like the privacy page, opened from the footer; a dot shows until it has been opened once */
+.wn-btn{appearance:none;background:none;border:0;margin:0;padding:6px 2px;font:inherit;color:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:24px}
+.wn-dot{display:none;width:7px;height:7px;border-radius:50%;background:var(--powder,#bcd6ea);box-shadow:0 0 0 3px rgba(188,214,234,.25)}
+.wn-btn.new .wn-dot{display:inline-block}
+.wn-list{list-style:none;margin:14px 0 0;padding:0}
+.pv .wn-list{padding:0}
+.wn-list li{margin:0;padding:12px 0;border-top:1px solid rgba(255,255,255,.1);overflow-wrap:anywhere}
+.wn-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;margin:0 0 4px}
+.wn-v{font:600 12px/1.4 var(--f-mono);letter-spacing:.06em;color:var(--ink)}
+.wn-d{font:400 11px/1.4 var(--f-mono);color:var(--ink-2)}
+.wn-t{margin:0}
+.wn-list li:first-child .wn-v::after{content:"Latest";margin-left:8px;padding:1px 7px;border-radius:999px;border:1px solid rgba(188,214,234,.45);font:600 9.5px/1.4 var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--powder,#bcd6ea)}
+.g-chk{margin:0;padding:12px 0 14px;border-bottom:1px solid var(--v-line);display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 14px}
+.g-chk b{font:600 12px/1.5 var(--f-mono);letter-spacing:.04em;color:var(--v-fg)}
+.g-chk span{font:400 12.5px/1.6 var(--f-ui);color:var(--v-muted)}
+
 /* practice exams (v2.48): the exam screen */
 .mx{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;color:var(--v-fg,#ecebe8);
   background:var(--grain),radial-gradient(120% 55% at 50% -12%,color-mix(in srgb,var(--v-accent) 10%,transparent),transparent 62%),radial-gradient(90% 50% at 50% 115%,rgba(188,214,234,.05),transparent 60%),#12161d;
@@ -2522,7 +2538,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.77</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.78</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2538,7 +2554,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
       </div>
       <div class="st-act" id="st-act"><button type="button" class="st-main" id="st-path">Build my path <small>1 min</small><span class="ar" aria-hidden="true">&rarr;</span></button></div>
       <div class="st-links" id="st-links"><button type="button" data-st="vendors">Browse vendors</button><button type="button" data-st="search">Search a cert</button></div>
-      <p class="st-disc">Not an official U.S. Coast Guard site &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span> &middot; <a class="pv-link" href="#privacy">Privacy</a></p>
+      <p class="st-disc">Not an official U.S. Coast Guard site &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span> &middot; <a class="pv-link" href="#privacy">Privacy</a> &middot; <button type="button" class="pv-link wn-btn">What&rsquo;s new<i class="wn-dot" aria-hidden="true"></i><span class="vh wn-vh"></span></button></p>
     </div></div>
     <div class="stage" id="stage"></div>
     <div class="readout" id="readout" aria-live="polite" data-rv="3">
@@ -2554,7 +2570,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   </main>
 
   <footer class="bottom ui">
-    <div class="foot" data-rv="4"><span class="m-disc">Not an official U.S. Coast Guard site &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span> &middot; <a class="pv-link" href="#privacy">Privacy</a></span><span id="status"></span></div>
+    <div class="foot" data-rv="4"><span class="m-disc">Not an official U.S. Coast Guard site &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span> &middot; <a class="pv-link" href="#privacy">Privacy</a> &middot; <button type="button" class="pv-link wn-btn">What&rsquo;s new<i class="wn-dot" aria-hidden="true"></i><span class="vh wn-vh"></span></button></span><span id="status"></span></div>
   </footer>
 </div>
 
@@ -2580,6 +2596,14 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
     <h3>Questions</h3>
     <p>Email <a href="mailto:security@mynextcert.com">security@mynextcert.com</a>.</p>
     <p class="pv-fine">Not an official U.S. Coast Guard or DoD site. Updated Nov 15, 2026. &copy; 2026 Gabriel Rodriguez</p>
+  </div>
+</dialog>
+<dialog id="wnew" class="pv" aria-labelledby="wn-h">
+  <div class="pv-in">
+    <div class="pv-top"><h2 id="wn-h">What&rsquo;s new.</h2><button type="button" class="pv-x" id="wn-x" aria-label="Close what&rsquo;s new">&times;</button></div>
+    <p class="pv-lead">The latest changes to MyNextCert, newest first.</p>
+    <ol class="wn-list" id="wn-list"></ol>
+    <p class="pv-fine">Not an official U.S. Coast Guard or DoD site. &copy; 2026 Gabriel Rodriguez</p>
   </div>
 </dialog>
 <dialog id="psheet" class="pv ps" aria-labelledby="ps-h">
@@ -6162,6 +6186,34 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
   if(location.hash==="#privacy") setTimeout(openPv,400);
   window.addEventListener("hashchange",function(){if(location.hash==="#privacy") openPv();});
 })();
+/* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
+   Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
+var WHATS_NEW=[
+  {v:"2.78",d:"2026-11-22",t:"New What\u2019s new page, and every guide now shows the date its exam facts were last checked."},
+  {v:"2.77",d:"2026-11-22",t:"Full CCNA 200-301 v2.0 practice exam."},
+  {v:"2.76",d:"2026-11-21",t:"Full CCNA Cybersecurity 200-201 practice exam."},
+  {v:"2.75",d:"2026-11-21",t:"Full CISSP practice exam."},
+  {v:"2.74",d:"2026-11-20",t:"Full CCSP practice exam."},
+  {v:"2.69",d:"2026-11-19",t:"A readiness score for each cert, and an Add to calendar button for your study plan."}
+];
+(function(){
+  var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
+  var KEY="cgcp.wn",latest=WHATS_NEW[0].v;
+  WHATS_NEW.forEach(function(r){
+    var li=document.createElement("li"),top=document.createElement("p"),v=document.createElement("b"),dt=document.createElement("time"),t=document.createElement("p");
+    top.className="wn-top";v.className="wn-v";v.textContent="v"+r.v;dt.className="wn-d";dt.setAttribute("datetime",r.d);dt.textContent=fmtChecked(r.d);
+    t.className="wn-t";t.textContent=r.t;top.appendChild(v);top.appendChild(dt);li.appendChild(top);li.appendChild(t);list.appendChild(li);
+  });
+  function seen(){try{return localStorage.getItem(KEY)===latest;}catch(e){return false;}}
+  function paint(){var n=!seen();Array.prototype.forEach.call(document.querySelectorAll(".wn-btn"),function(b){
+    b.classList.toggle("new",n);b.querySelector(".wn-vh").textContent=n?" (new updates)":"";});}
+  function open(){if(!d.open){try{d.showModal();}catch(e){d.setAttribute("open","");}}d.scrollTop=0;
+    try{localStorage.setItem(KEY,latest);}catch(e){}paint();}
+  document.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".wn-btn")){e.preventDefault();open();}});
+  document.getElementById("wn-x").addEventListener("click",function(){d.close();});
+  d.addEventListener("click",function(e){if(e.target===d) d.close();});
+  paint();
+})();
 /* printable path sheet (v2.46): for instructors and leadership. Certs in order for every career path, with DoD 8140 levels,
    exam fees and CG COOL funding notes. Built from the same data as the rest of the site, so it never drifts from it.
    Opens as a dialog (works offline and in the installed app); mynextcert.com/#print opens it. Printing copies the sheet
@@ -6303,7 +6355,7 @@ var GUIDES={
   id:"secplus",
   mock:{v7:"qbank/sy0-701.json",v8:"qbank/sy0-801.json"},
   lead:"The cert most DoD and Coast Guard IT billets ask for first. It proves you know the core of security work: threats, controls, architecture, incident response and risk.",
-  checked:"Nov 18, 2026",
+  checked:"2026-11-18",
   versions:{
     v8:{code:"SY0-801",label:"V8",status:"Launched Nov 17, 2026 · passing 750",
       note:"The new version. Adds AI security risks and AI-assisted operations. A good pick if you're just starting or will test after spring 2027; study material will keep catching up for a few months after launch.",
@@ -6503,7 +6555,7 @@ GUIDES["A+"]={
   id:"aplus",
   mock:{core1:"qbank/220-1201.json",core2:"qbank/220-1202.json"},
   lead:"Where most IT careers start, and the first cert on the 20 year career path. Two exams prove you can build, fix and support the hardware, networks and operating systems every unit runs on.",
-  checked:"Nov 6, 2026",
+  checked:"2026-11-06",
   verLabel:"Exam (take both)",
   objSub:"A+ is two exams. Switch between Core 1 and Core 2 above; each has its own domains and its own progress. Tick objectives off as you study; your progress stays on this device.",
   planHours:160, planAll:true,
@@ -6710,7 +6762,7 @@ GUIDES["Network+"]={
   id:"netplus",
   mock:{v9:"qbank/n10-009.json"},
   lead:"The networking cert for every IT rating. It proves you can build, run, secure and troubleshoot the networks a unit lives on, and it sets you up for Security+ and CCNA.",
-  checked:"Nov 6, 2026",
+  checked:"2026-11-06",
   planHours:100,
   planSub:"Set how many hours a week you can give it. The plan splits about 100 hours across the domains by exam weight, then saves the last stretch for practice tests, subnetting drills and PBQs.",
   versions:{
@@ -6887,7 +6939,7 @@ GUIDES["Network+"]={
 GUIDES["Cloud+"]={
   id:"cloudplus",
   lead:"The vendor-neutral cloud cert. It proves you can design, deploy, run, secure and fix cloud infrastructure on any provider, and it's the bridge from Security+ to AWS, Azure and CCSP on the Cloud path.",
-  checked:"Nov 6, 2026",
+  checked:"2026-11-06",
   planHours:80,
   laneOnly:["Cloud"],
   mock:{v4:"qbank/cv0-004.json"},
@@ -7072,7 +7124,7 @@ GUIDES["CySA+"]={
   id:"cysa",
   mock:{v4:"qbank/cs0-004.json"},
   lead:"The blue-team analyst cert. It proves you can work a SOC: spot malicious activity, run vulnerability management, respond to incidents and report what happened. The natural next step after Security+.",
-  checked:"Nov 6, 2026",
+  checked:"2026-11-06",
   planHours:100,
   laneOnly:["20 year career","Cyber"],
   versions:{
@@ -7266,7 +7318,7 @@ GUIDES["PenTest+"]={
   id:"pentest",
   mock:{v3:"qbank/pt0-003.json"},
   lead:"The hands-on offensive cert. It proves you can plan an authorized penetration test, find and exploit weaknesses across networks, web apps, cloud and AI systems, then write the report that gets them fixed. Best after Security+ and some time on the defensive side.",
-  checked:"Nov 6, 2026",
+  checked:"2026-11-06",
   planHours:100,
   laneOnly:["Cyber"],
   versions:{
@@ -7468,7 +7520,7 @@ GUIDES["PenTest+"]={
 GUIDES["SecurityX"]={
   id:"securityx",
   lead:"CompTIA's expert-level security cert, formerly called CASP+. It proves you can design and engineer security across a whole enterprise: architecture, zero trust, cryptography, automation and governance. It's built for senior engineers, not beginners.",
-  checked:"Nov 6, 2026",
+  checked:"2026-11-06",
   planHours:150,
   laneOnly:["Cyber"],
   mock:{v5:"qbank/cas-005.json"},
@@ -7665,7 +7717,7 @@ GUIDES["CC"]={
   mock:{v26:"qbank/isc2-cc.json"},
   mockText:"100 questions in 2 hours, with flags and a review screen. The real CC is adaptive: 100 to 125 questions, one at a time, and you can't go back. Practice the same way: answer each one and keep moving.",
   lead:"ISC2's entry-level cert, Certified in Cybersecurity. It proves you know the core ideas of security: risk, access control, networks, cloud and incident response. No experience is required, which makes it a strong first cert for anyone new to cyber.",
-  checked:"Nov 7, 2026",
+  checked:"2026-11-07",
   planHours:30,
   laneOnly:["Cyber"],
   versions:{
@@ -7858,7 +7910,7 @@ GUIDES["SSCP"]={
   mock:{v25:"qbank/isc2-sscp.json"},
   mockText:"100 items in 2 hours, with 3 advanced items, flags and a review screen. The real SSCP is adaptive: 100 to 125 items, one at a time, and you can't go back. Practice the same way: answer each one and keep moving.",
   lead:"ISC2's hands-on security practitioner cert, Systems Security Certified Practitioner. It proves you can run security day to day: access control, monitoring, incident response, crypto and network defense. Built for people already doing security work, and it counts toward the WGU cyber degree.",
-  checked:"Nov 7, 2026",
+  checked:"2026-11-07",
   planHours:75,
   planSub:"Set how many hours a week you can give it. The plan splits about 75 hours across the seven domains by exam weight, then saves the last stretch for practice tests and PBQs.",
   laneOnly:["20 year career","Cyber"],
@@ -8086,7 +8138,7 @@ GUIDES["CCSP"]={
   mock:{v26:"qbank/isc2-ccsp.json"},
   mockText:"125 items in 3 hours, with 4 advanced items, flags and a review screen. The real CCSP is adaptive: 100 to 150 items, one at a time, and you can't go back. Practice the same way: answer each one and keep moving.",
   lead:"ISC2's senior cloud security cert, Certified Cloud Security Professional. It proves you can design, run and govern security for data, apps and infrastructure in the cloud, on any provider. It's the last step on the Cloud path and built for experienced people, not beginners.",
-  checked:"Nov 7, 2026",
+  checked:"2026-11-07",
   planHours:140,
   planSub:"Set how many hours a week you can give it. The plan splits about 140 hours across the six domains by exam weight, then saves the last stretch for practice tests and PBQs.",
   laneOnly:["Cloud"],
@@ -8315,7 +8367,7 @@ GUIDES["CISSP"]={
   mock:{v24:"qbank/isc2-cissp.json"},
   mockText:"125 items in 3 hours, with 4 advanced items, flags and a review screen. The real CISSP is adaptive: 100 to 150 items, one at a time, and you can't go back. Practice the same way: answer each one and keep moving.",
   lead:"ISC2's flagship cert, Certified Information Systems Security Professional. It proves you can design, run and lead a whole security program, from risk and policy to architecture, identity and operations. It caps the 20 year career path and is built for experienced people moving into senior and leadership roles.",
-  checked:"Nov 7, 2026",
+  checked:"2026-11-07",
   planHours:200,
   planSub:"Set how many hours a week you can give it. The plan splits about 200 hours across the eight domains by exam weight, then saves the last stretch for practice tests and PBQs.",
   laneOnly:["20 year career"],
@@ -8609,7 +8661,7 @@ GUIDES["SAL1 · Security Analyst L1"]={
   id:"sal1",
   title:"SAL1",
   lead:"TryHackMe's Security Analyst Level 1 cert. Most of the score comes from working real alerts in a simulated SOC: you triage them, decide true or false positive, escalate the right ones and write case reports. It proves you can do the Tier 1 analyst job, not just describe it.",
-  checked:"Nov 10, 2026",
+  checked:"2026-11-10",
   planHours:80,
   laneOnly:["Cyber"],
   objSub:"Five topic areas from TryHackMe's SAL1 training content. Tick objectives as you study them; progress saves on this device.",
@@ -8821,7 +8873,7 @@ GUIDES["PT1 · Junior Pentester"]={
   id:"pt1",
   title:"PT1",
   lead:"TryHackMe's Junior Penetration Tester cert. There's no multiple choice: you get 48 hours to attack a web app, a network and an Active Directory domain in a legal lab, capture flags, then write the professional report a client would read. It proves you can run a small pentest from start to finish.",
-  checked:"Nov 10, 2026",
+  checked:"2026-11-10",
   planHours:100,
   objSub:"Six topic areas from TryHackMe's PT1 training content. Tick objectives as you study them; progress saves on this device.",
   planSub:"Set how many hours a week you can give it. The plan splits about 100 hours across the six areas, then saves the last stretch for full practice runs with a written report.",
@@ -9041,7 +9093,7 @@ GUIDES["PT1 · Junior Pentester"]={
 GUIDES["CCST Networking"]={
   id:"ccstn",
   lead:"Cisco's entry-level networking cert. It proves you know how a network fits together and can troubleshoot the basics: addressing, cabling, Wi-Fi, switches and routers, and the commands a help desk tech runs every day. Cisco calls it the first step toward CCNA.",
-  checked:"Nov 10, 2026",
+  checked:"2026-11-10",
   planHours:40,
   objSub:"Six topic areas from Cisco's 100-150 exam topics. Tick objectives as you study them; progress saves on this device.",
   versions:{
@@ -9235,7 +9287,7 @@ GUIDES["CCST Networking"]={
 GUIDES["CCST Cybersecurity"]={
   id:"ccstc",
   lead:"Cisco's entry-level security cert. It proves you know what a junior analyst or help desk tech needs: core security ideas, how networks and endpoints get attacked and protected, vulnerability and risk basics, and how incidents are handled. Cisco calls it a first step toward CCNA Cybersecurity.",
-  checked:"Nov 10, 2026",
+  checked:"2026-11-10",
   planHours:40,
   objSub:"Five topic areas from Cisco's 100-160 exam topics. Tick objectives as you study them; progress saves on this device.",
   versions:{
@@ -9412,7 +9464,7 @@ GUIDES["CCNA Cybersecurity"]={
   mock:{v12:"qbank/200-201.json"},
   mockText:"100 items in 2 hours, with 4 drag-and-drop style items, flags and a review screen. Cisco doesn't publish the real item count, and on the real exam you can't go back to a question once you answer it. Practice the same way: answer each one and keep moving.",
   lead:"Cisco's associate SOC analyst cert, called CyberOps Associate until February 2026. It proves you can monitor a network, read host and network evidence, and work an incident by the book. Same 200-201 exam, now version 1.2 with AI topics.",
-  checked:"Nov 10, 2026",
+  checked:"2026-11-10",
   planHours:100,
   laneOnly:["Cyber"],
   versions:{
@@ -9632,7 +9684,7 @@ GUIDES["CCNA"]={
   mock:{v20:"qbank/200-301-v20.json"},
   mockText:"100 items in 2 hours, with 4 drag-and-drop style items, flags and a review screen. Built for the v2.0 exam that starts February 3, 2027. Cisco doesn't publish the real item count, the real exam can include hands-on labs, and you can't go back once you answer. Practice the same way: answer each one and keep moving.",
   lead:"The classic network engineer cert. It proves you can build, run and secure a small to mid-size network on Cisco gear: switching, routing, IP services, security basics and automation. A new version, v2.0, starts February 3, 2027, with more troubleshooting and an AI domain.",
-  checked:"Nov 10, 2026",
+  checked:"2026-11-10",
   planHours:200,
   verLabel:"Exam version",
   versions:{
@@ -9900,7 +9952,7 @@ GUIDES["CCNA"]={
 GUIDES["CCNP Security"]={
   id:"ccnps",
   lead:"Professional-level Cisco security, for engineers who build and run security on Cisco networks. You pass two exams: the SCOR core exam and one concentration of your choice. SCOR moved to version 2.0 on August 27, 2026, adding cloud-delivered security, AI risks and Splunk.",
-  checked:"Nov 10, 2026",
+  checked:"2026-11-10",
   planHours:200,
   objSub:"The six domains of the SCOR v2.0 core exam. Tick topics as you study them; progress saves on this device. The concentration exams are listed in the cards below.",
   planSub:"Set how many hours a week you can give it. The plan covers the SCOR core exam's six domains by weight, then saves time for practice. Budget extra time for your concentration exam after that.",
@@ -10109,7 +10161,7 @@ GUIDES["CCNP Security"]={
 GUIDES["Linux Essentials"]={
   id:"linuxe",
   lead:"LPI's entry-level Linux cert. It proves you can work at the Linux command line: move around the file system, handle files and permissions, read logs, write a short script and log in over SSH. Most SOC tools and servers run Linux, so this is skill you'll use every day.",
-  checked:"Nov 10, 2026",
+  checked:"2026-11-10",
   verLabel:"Objectives version",
   planHours:30,
   objSub:"Both versions earn the same certificate. Version 2.0 is current; 1.6 stays open until April 2027. Pick the one you'll test on, then tick objectives as you study. Progress saves on this device.",
@@ -10360,7 +10412,7 @@ GUIDES["Linux Essentials"]={
 GUIDES["LPIC-1"]={
   id:"lpic1",
   lead:"LPI's first professional Linux cert, earned over two exams. It proves you can run a Linux system from the command line: install software, manage disks, users and services, read logs, set up networking and lock the box down. It's vendor-neutral, so it works on Ubuntu, Red Hat and the Linux servers behind most clouds.",
-  checked:"Nov 10, 2026",
+  checked:"2026-11-10",
   verLabel:"Exam (take both)",
   objSub:"LPIC-1 is two exams. Switch between 101 and 102 above; each has its own topics and its own progress. Tick objectives as you study; your progress stays on this device.",
   planHours:140, planAll:true,
@@ -10615,7 +10667,7 @@ GUIDES["LPIC-1"]={
 GUIDES["Project+"]={
   id:"projplus",
   lead:"CompTIA's entry-level project management cert. It proves you can run a small or medium IT project from start to finish: scope, schedule, budget, risk, change control and communication, in both waterfall and agile. Useful the first time you're put in charge of a cutover, a hardware refresh or a new system.",
-  checked:"Nov 10, 2026",
+  checked:"2026-11-10",
   planHours:50,
   mock:{v5:"qbank/pk0-005.json"},
   objSub:"Four domains and 24 objectives from CompTIA's PK0-005 objectives. Tick objectives as you study; progress saves on this device.",
@@ -10838,7 +10890,7 @@ GUIDES["Project+"]={
 GUIDES["Cloud Practitioner"]={
   id:"clf",
   lead:"AWS's entry cert. It proves you can explain what the AWS Cloud is, who secures what, which core service does which job, and how AWS charges for it. No hands-on work is required. It's a good first cloud cert before Solutions Architect, and it teaches you the words cloud teams and contractors use every day.",
-  checked:"Nov 11, 2026",
+  checked:"2026-11-11",
   planHours:25,
   objSub:"Four domains and 19 task statements from AWS's CLF-C02 exam guide. Tick them off as you study; progress saves on this device.",
   versions:{
@@ -11050,7 +11102,7 @@ GUIDES["Cloud Practitioner"]={
 GUIDES["Solutions Architect Associate"]={
   id:"saa",
   lead:"AWS's most popular cert. It proves you can design systems on AWS that are secure, keep running when parts fail, perform well and don't waste money, following the Well-Architected Framework. Expect long scenarios where two answers would work and you pick the one that best fits what's asked: lowest cost, least effort or highest availability.",
-  checked:"Nov 11, 2026",
+  checked:"2026-11-11",
   planHours:80,
   objSub:"Four domains and 14 task statements from AWS's SAA-C03 exam guide. Tick them off as you study; progress saves on this device.",
   versions:{
@@ -11261,7 +11313,7 @@ GUIDES["Solutions Architect Associate"]={
 GUIDES["Security Specialty"]={
   id:"scs",
   lead:"AWS's security deep dive. It proves you can detect threats, respond to incidents, lock down networks and compute, design IAM at scale, protect data with encryption and secrets, and govern many accounts at once. AWS recommends years of hands-on AWS security work, so it fits best after Solutions Architect Associate and some real cloud time.",
-  checked:"Nov 11, 2026",
+  checked:"2026-11-11",
   planHours:100,
   objSub:"Six domains and 16 task statements from AWS's SCS-C03 exam guide. Tick them off as you study; progress saves on this device.",
   versions:{
@@ -11488,7 +11540,7 @@ GUIDES["Security Specialty"]={
 GUIDES["Azure Fundamentals"]={
   id:"az900",
   lead:"Microsoft's entry cloud cert. It proves you can explain cloud concepts, the core parts of Azure, and how Azure handles identity, security, cost and governance. No hands-on work is required, and it never expires. A good first step if your unit runs Microsoft 365 or Azure, which most of government does.",
-  checked:"Nov 11, 2026",
+  checked:"2026-11-11",
   planHours:25,
   objSub:"Three skill areas and 11 objectives from Microsoft's AZ-900 study guide (skills measured as of July 20, 2026). Tick them off as you study; progress saves on this device.",
   versions:{
@@ -11674,7 +11726,7 @@ GUIDES["Azure Fundamentals"]={
 GUIDES["Azure Administrator"]={
   id:"az104",
   lead:"Microsoft's hands-on Azure cert. It proves you can run an Azure environment day to day: users and access, governance, storage, virtual machines and apps, networking, monitoring and backup. It's a common requirement in Azure job posts, and the base for Microsoft's security and architect certs.",
-  checked:"Nov 11, 2026",
+  checked:"2026-11-11",
   planHours:90,
   objSub:"Five skill areas and 15 objectives from Microsoft's AZ-104 study guide (skills measured as of April 17, 2026). Tick them off as you study; progress saves on this device.",
   versions:{
@@ -11885,7 +11937,7 @@ GUIDES["Azure Administrator"]={
 GUIDES["Cloud and AI Security Engineer"]={
   id:"sc500",
   lead:"Microsoft's Azure security cert, exam SC-500. It proves you can lock down identity, data, networks and compute in Azure and hybrid clouds, secure AI apps and agents, and run security posture and monitoring with Defender for Cloud and Microsoft Sentinel. It replaced Azure Security Engineer (AZ-500), which retired on Aug 31, 2026.",
-  checked:"Nov 11, 2026",
+  checked:"2026-11-11",
   planHours:100,
   objSub:"Four skill areas and 12 objectives from Microsoft's SC-500 study guide. Tick them off as you study; progress saves on this device.",
   versions:{
@@ -12097,7 +12149,7 @@ GUIDES["Cloud and AI Security Engineer"]={
 GUIDES["Linux+"]={
   id:"linuxplus",
   lead:"CompTIA's Linux admin cert. It proves you can run Linux servers from the command line: storage, networking, users, systemd services, containers, hardening, scripting and troubleshooting. Most servers, cloud workloads and security tools run on Linux, and unlike the LPI certs, Linux+ is on the DoD 8140 matrix.",
-  checked:"Nov 13, 2026",
+  checked:"2026-11-13",
   planHours:90,
   laneOnly:["20 year career","Cloud"],
   mock:{v8:"qbank/xk0-006.json"},
@@ -12342,7 +12394,7 @@ GUIDES["Linux+"]={
 GUIDES["Server+"]={
   id:"serverplus",
   lead:"CompTIA's server admin cert. It proves you can rack, set up, secure, back up and fix servers on Windows, Linux and virtual hosts, on premises or in a hybrid cloud. It's the natural step after A+ for anyone who runs a server room, a data closet or a cutter's servers.",
-  checked:"Nov 19, 2026",
+  checked:"2026-11-19",
   planHours:75,
   laneOnly:["20 year career"],
   mock:{v5:"qbank/sk0-005.json"},
@@ -12607,7 +12659,7 @@ GUIDES["Server+"]={
 GUIDES["SecAI+"]={
   id:"secai",
   lead:"CompTIA's AI security cert, launched in February 2026. It proves you can secure AI systems like chatbots, models and AI agents, use AI tools to speed up security work, and follow the rules that govern AI. It builds on Security+ and CySA+ and doesn't replace them.",
-  checked:"Nov 14, 2026",
+  checked:"2026-11-14",
   planHours:50,
   mock:{v1:"qbank/cy0-001.json"},
   laneOnly:["Cyber"],
@@ -12815,7 +12867,7 @@ GUIDES["CGRC"]={
   mock:{cur:"qbank/isc2-cgrc.json"},
   mockText:"125 items in 3 hours, with 4 advanced items, flags and a review screen. The real CGRC is a fixed 125-item exam: multiple choice plus advanced item types.",
   lead:"ISC2's governance, risk and compliance cert, called CAP until 2023. It proves you can take a system through authorization: scope it, pick and put in its controls, get them assessed, win the ATO and keep it compliant. It maps almost step for step to the NIST Risk Management Framework (RMF) that DoD and the Coast Guard use.",
-  checked:"Nov 14, 2026",
+  checked:"2026-11-14",
   planHours:80,
   planSub:"Set how many hours a week you can give it. The plan splits about 80 hours across the seven domains by exam weight, then saves the last stretch for practice tests and PBQs.",
   laneOnly:["Cyber","20 year career"],
@@ -13027,7 +13079,7 @@ GUIDES["CGRC"]={
 GUIDES["CCST IT Support"]={
   id:"ccstit",
   lead:"Cisco's entry-level help desk cert. It proves you can work a ticket queue, fix common PC, Mac, phone and printer problems, get users back on the network, spot phishing and social engineering, and document what you did. A low-cost first step for anyone new to IT, and a good warm-up for A+.",
-  checked:"Nov 14, 2026",
+  checked:"2026-11-14",
   planHours:35,
   laneOnly:["20 year career"],
   versions:{
@@ -13220,7 +13272,7 @@ GUIDES["CCST IT Support"]={
 GUIDES["CCNP Enterprise"]={
   id:"ccnpe",
   lead:"Cisco's professional-level networking cert, for engineers who build and run campus and enterprise networks. You pass two exams: the ENCOR core exam and one concentration of your choice. ENCOR moved to version 1.2 on March 19, 2026: wireless moved out to the new CCNP Wireless, and AI joined automation.",
-  checked:"Nov 14, 2026",
+  checked:"2026-11-14",
   planHours:200,
   objSub:"The six domains of the ENCOR v1.2 core exam. Tick topics as you study them; progress saves on this device. The concentration exams are listed in the cards below.",
   planSub:"Set how many hours a week you can give it. The plan covers the ENCOR core exam's six domains by weight, then saves time for practice. Budget extra time for your concentration exam after that.",
@@ -13431,7 +13483,7 @@ GUIDES["CCNP Enterprise"]={
 GUIDES["CCNP Cybersecurity"]={
   id:"ccnpcbr",
   lead:"Cisco's professional-level SOC cert, called CyberOps Professional until February 2026. It proves you can run security operations: work playbooks, hunt with SIEM and threat intel, investigate endpoints and malware, and automate the response with SOAR, scripts and APIs. You pass the CBRCOR core exam and one concentration.",
-  checked:"Nov 14, 2026",
+  checked:"2026-11-14",
   planHours:200,
   laneOnly:["Cyber"],
   objSub:"The four domains of the CBRCOR v1.2 core exam. Tick topics as you study them; progress saves on this device. The two concentration exams are in the cards below.",
@@ -13663,7 +13715,7 @@ GUIDES["SEC1 · Cyber Security 101"]={
   id:"sec1",
   title:"SEC1",
   lead:"TryHackMe's hands-on beginner cert. There's no multiple choice: you work real tasks on a lab machine across red team, blue team and purple team scenarios. It proves you can use the basic tools of both sides (the command line, Wireshark, logs, password crackers, Burp) before you pick a lane like SAL1 or PT1.",
-  checked:"Nov 14, 2026",
+  checked:"2026-11-14",
   planHours:50,
   laneOnly:["Cyber"],
   objSub:"Six skill areas from TryHackMe's SEC1 training content. Tick objectives as you study them; progress saves on this device.",
@@ -13850,7 +13902,7 @@ GUIDES["SAL2 · Security Analyst L2"]={
   id:"sal2",
   title:"SAL2",
   lead:"TryHackMe's advanced SOC cert, built with NCC Group. Over 72 hours you work 12 multi-stage incidents across three simulated SOC shifts, then make the calls and write the reports a Tier 2 analyst would. It proves you can run an investigation end to end, not just triage alerts.",
-  checked:"Nov 14, 2026",
+  checked:"2026-11-14",
   planHours:120,
   laneOnly:["Cyber"],
   objSub:"Seven areas from TryHackMe's SAL2 exam overview. Tick objectives as you study them; progress saves on this device.",
@@ -14038,7 +14090,7 @@ GUIDES["SAL2 · Security Analyst L2"]={
 GUIDES["Security Essentials"]={
   id:"secess",
   lead:"LPI's entry-level security certificate. It covers the security basics every computer user and new IT member should know: risk and ethics, encryption, device and data protection, network safety, and identity and privacy. One short exam, no prerequisites, and it never expires.",
-  checked:"Nov 14, 2026",
+  checked:"2026-11-14",
   planHours:25,
   laneOnly:["Cyber"],
   objSub:"Five topics and 16 objectives from LPI's Security Essentials (020-100) objectives. Tick objectives as you study; your progress stays on this device.",
@@ -14220,7 +14272,7 @@ GUIDES["LPIC-2"]={
   id:"lpic2",
   verLabel:"Exam (take both)",
   lead:"LPI's advanced Linux engineer cert. It goes past LPIC-1 into kernels, boot recovery, RAID and LVM, advanced networking, and running the services a network depends on: DNS, web, file sharing, LDAP, mail, VPN and firewalls. Two exams, and you need an active LPIC-1 to be awarded it.",
-  checked:"Nov 14, 2026",
+  checked:"2026-11-14",
   objSub:"LPIC-2 is two exams. Switch between 201 and 202 above; each has its own topics and its own progress. Tick objectives as you study; your progress stays on this device.",
   planHours:200, planAll:true,
   planSub:"Set how many hours a week you can give it. The plan covers both exams, about 100 hours each: topics split by exam weight, then a practice stretch before each test.",
@@ -14479,6 +14531,9 @@ GUIDES["LPIC-2"]={
 var G_SECS=[["obj","Objectives"],["plan","Study plan"],["res","Resources"],["quiz","Practice"],["pbq","PBQs"],["map","Roadmap"],["keep","Keep it"]];
 var G_ICON_EXT='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 3 9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
 
+/* "2026-11-22" -> "Nov 22, 2026" (no Date object, so time zones can't shift the day) */
+function fmtChecked(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");if(!m) return "";
+  return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m[2]-1]+" "+(+m[3])+", "+m[1];}
 function renderGuide(i,name){
   var G=GUIDES[name], v=VENDORS[i], body=panel.querySelector("#p-body");
   guideName=name;panel.classList.add("in-guide");gSet("cgcp.last",{k:"g",g:name,t:Date.now()});
@@ -14498,6 +14553,7 @@ function renderGuide(i,name){
      '<aside class="p-aside pr g-ver"><p class="lab">'+gEsc(G.verLabel||"Exam version")+'</p>'+
      (Object.keys(G.versions).length>1?'<div class="seg g-vseg" role="group" aria-label="'+gEsc(G.verLabel||"Exam version")+'">'+Object.keys(G.versions).map(function(k){var V=G.versions[k];return '<button type="button" data-ver="'+k+'" aria-pressed="'+(k===gVer)+'">'+V.label+' &middot; '+V.code+'</button>';}).join("")+'<span class="seg-ind" aria-hidden="true"></span></div>':'<p class="g-vone">'+gEsc(G.versions[gVer].label)+' &middot; '+gEsc(G.versions[gVer].code)+'</p>')+
      '<p class="g-vstat" id="g-vstat"></p><p class="g-vnote" id="g-vnote"></p></aside></div>';
+  h+='<p class="g-chk pr"><b>Facts last checked: <time datetime="'+gEsc(G.checked)+'">'+gEsc(fmtChecked(G.checked))+'</time></b><span>Exam versions, prices and retirement dates are checked monthly against the vendor&rsquo;s official pages.</span></p>';
   h+='<dl class="g-facts pr">'+q8Facts(name,G.facts).map(function(f){return '<div><dt>'+gEsc(f[0])+'</dt><dd><b>'+gEsc(f[1])+'</b><small>'+gEsc(f[2])+'</small></dd></div>';}).join("")+'</dl>';
   /* section number rolls from the previous number to its own as the heading comes in (gFx) */
   function head(k,id,title,sub){var reel='<span class="g-dig" aria-hidden="true"><span class="g-reel" style="--d:'+(k-1)+'">'+'0123456789'.split("").map(function(n){return "<span>"+n+"</span>";}).join("")+'</span></span>';
@@ -14540,7 +14596,7 @@ function renderGuide(i,name){
      '<div class="g-keep g-rv">'+
        q8KeepCards(name,G.keep).map(function(kc){return '<div class="g-kc"><p class="lab">'+gEsc(kc.lab)+'</p><b>'+gEsc(kc.big)+'</b><p>'+gEsc(kc.text)+'</p>'+(kc.list?'<ul class="g-roles">'+kc.list.map(function(r){return '<li>'+gEsc(r)+'</li>';}).join("")+'</ul>':'')+(kc.after?'<p>'+gEsc(kc.after)+'</p>':'')+'</div>';}).join("")+
      '</div>'+q8GuideBlock(name)+
-     '<div class="g-src g-rv"><p class="lab">Sources &middot; checked '+gEsc(G.checked)+'</p><ul>'+q8Sources(name,G.sources).map(function(s){return '<li><a href="'+gEsc(s[1])+'" target="_blank" rel="noopener noreferrer">'+gEsc(s[0])+G_ICON_EXT+'</a></li>';}).join("")+'</ul>'+
+     '<div class="g-src g-rv"><p class="lab">Sources &middot; checked '+gEsc(fmtChecked(G.checked))+'</p><ul>'+q8Sources(name,G.sources).map(function(s){return '<li><a href="'+gEsc(s[1])+'" target="_blank" rel="noopener noreferrer">'+gEsc(s[0])+G_ICON_EXT+'</a></li>';}).join("")+'</ul>'+
      '<p class="g-fine">Exam facts come from '+gEsc(pub)+'. Prices, dates and DoD roles can change; confirm them with the sources above before you book. Domain and objective titles follow the official exam outline, &copy; '+gEsc(pub)+'. Descriptions, quiz questions and PBQs are original to this site.</p></div></section>';
   body.innerHTML='<div class="g" id="guide">'+h+'</div>';
 

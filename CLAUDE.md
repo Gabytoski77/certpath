@@ -30,7 +30,7 @@ different, **this file wins**.
 1. `git switch main && git pull`, then `git switch -c <short-branch-name>`. One change per branch; finish it before starting another.
 2. Edit `src/` (or `sw.js`, `qbank/`, `build/`...). Never `index.html` / `404.html` directly.
 3. `python3 build/build_site.py` (and `python3 build/make_404.py` if the 404 page changed).
-4. If `index.html` changed: bump the visible label `<span>v.2.X</span>` in `src/app.html` (rebuild again) **and** `VERSION` in `sw.js`, or installed phones keep the old copy. CI fails if you forget.
+4. If `index.html` changed: bump the visible label `<span>v.2.X</span>` in `src/app.html` (rebuild again) **and** `VERSION` in `sw.js`, or installed phones keep the old copy. CI fails if you forget. Also add one line at the top of the `WHATS_NEW` array in `src/app.html` (version, ISO date, 1–2 plain lines for users; keep about 6).
 5. `bash build/check_all.sh` (or at least `python3 -m pytest tests -q`). All must pass.
 6. Commit as `Gabytoski77 <Gabytoski77@users.noreply.github.com>` (never a personal email). Message = what changed for users, in plain words.
 7. `git push -u origin <branch>` and open a PR (`gh pr create`). CI runs every check. Merge only when it's green; the Deploy workflow re-runs every check and only then publishes.
@@ -57,7 +57,7 @@ Small edits (typo, link, one fact): batch several on one branch rather than one 
 ## Working on the big source file
 
 `src/app.html` is ~1.7 MB. Never read it whole. Grep for a distinctive word, then Read only those lines (offset/limit), and change it with Edit using the exact text (watch for `·`, `–`, curly quotes).
-Guides are `GUIDES["Name"]={...}` objects just before the `G_SECS=` line; copy the closest existing guide as a template. Search aliases are in `ALIAS` (edit the existing entry; a duplicate key wins).
+Guides are `GUIDES["Name"]={...}` objects just before the `G_SECS=` line; copy the closest existing guide as a template. Search aliases are in `ALIAS` (edit the existing entry; a duplicate key wins). Every guide has `checked:"YYYY-MM-DD"` (shown as "Facts last checked"): set it to the day you really re-verified its facts, never a guess. `check_site.py` fails on a missing, bad or future date and warns after 45 days.
 
 ## Tests
 
