@@ -41,7 +41,7 @@
         "total-byte-weight": [
           "warn",
           {
-            "maxNumericValue": 2000000
+            "maxNumericValue": 1300000
           }
         ],
         "errors-in-console": [

@@ -1,7 +1,9 @@
 """v2.81: three links that had gone dead (issue #55) are replaced and must not come back."""
 import pathlib
 
-INDEX = (pathlib.Path(__file__).resolve().parent.parent / "index.html").read_text(encoding="utf-8")
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+# the page, plus the guides (since v2.83 each guide's links live in guides/<id>.json)
+INDEX = (ROOT / "index.html").read_text(encoding="utf-8") + "".join(f.read_text(encoding="utf-8") for f in sorted((ROOT / "guides").glob("*.json")))
 
 
 def test_dead_links_are_gone_and_replacements_are_there():

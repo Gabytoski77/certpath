@@ -15,7 +15,7 @@ PUBLIC = {
     "index.html", "404.html", "sw.js", "manifest.webmanifest", "robots.txt", "sitemap.xml", "CNAME", "LICENSE",
     "og-image.jpg", "apple-touch-icon.png", "favicon.ico", "favicon.png", "favicon-96.png",
     "icon-192.png", "icon-512.png", "icon-maskable-512.png",
-    ".well-known", "fonts", "vendor", "qbank", "img",
+    ".well-known", "fonts", "vendor", "qbank", "img", "guides",
 }
 PRIVATE = {
     ".github", ".gitignore", ".claude", "CLAUDE.md", "README.md", "_config.yml", "src", "build", "tests",

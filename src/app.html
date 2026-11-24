@@ -1706,6 +1706,8 @@ html.kbd .touch-only{display:none}
 
 /* ---------- cert guide ---------- */
 .g{--ok:#5fd394;--no:#ff8f80}
+.g-load{padding:22vh 0 18vh;text-align:center;color:var(--v-muted,#9aa)}
+.g-load-t{margin:0 auto 18px;max-width:34ch;font:500 15px/1.6 var(--f-ui)}
 .g-wbar button,.g-wleg span,.g-dom{--g-dot:color-mix(in srgb,var(--v-accent) calc(100% - var(--k,0) * 17%),#5d6672)}
 .g .lab{color:var(--v-muted)}
 .g .lab span{color:var(--v-accent)}
@@ -2538,7 +2540,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.82</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.83</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -6189,12 +6191,12 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.83",d:"2026-11-24",t:"The site loads faster the first time: each guide now downloads when you open it."},
   {v:"2.82",d:"2026-11-24",t:"Clearer wording on three CCST IT Support practice questions."},
   {v:"2.81",d:"2026-11-23",t:"Fixed three links that had gone dead: SUNY Empire's Coast Guard page, CompTIA's CE fees and Microsoft's Windows Server trial."},
   {v:"2.80",d:"2026-11-23",t:"The site opens faster when you come back, and Light mode downloads less."},
   {v:"2.79",d:"2026-11-23",t:"Full CCST IT Support practice exam."},
-  {v:"2.78",d:"2026-11-22",t:"New What\u2019s new page, and every guide now shows the date its exam facts were last checked."},
-  {v:"2.77",d:"2026-11-22",t:"Full CCNA 200-301 v2.0 practice exam."}
+  {v:"2.78",d:"2026-11-22",t:"New What\u2019s new page, and every guide now shows the date its exam facts were last checked."}
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -8635,7 +8637,7 @@ var guideName=null, gVer="v8", gIO=null, gSpyRaf=0, gQ=null, gHpw=10;
 function cssEsc(s){return window.CSS&&CSS.escape?CSS.escape(String(s)):String(s).replace(/[^\w-]/g,"\\$&");}
 function gGet(k){try{var r=localStorage.getItem(k);return r?JSON.parse(r):null;}catch(err){return null;}}
 function gDone(G){var d=gGet(gDoneKey(G));return Array.isArray(d)?d.filter(function(x){return typeof x==="string"&&x.length<12;}):[];}
-function gBest(G){var b=gGet("cgcp."+G.id+".quizbest");return (typeof b==="number"&&isFinite(b)&&b>=0&&b<=G.quiz.length)?Math.round(b):null;}
+function gBest(G){var b=gGet("cgcp."+G.id+".quizbest");return (typeof b==="number"&&isFinite(b)&&b>=0&&b<=gQN(G))?Math.round(b):null;}
 function gSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(err){}}
 function gShuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
 /* guide facts: the DoD cell always shows the current 8140 level (v2.29) */
@@ -14536,7 +14538,85 @@ var G_ICON_EXT='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10
 /* "2026-11-22" -> "Nov 22, 2026" (no Date object, so time zones can't shift the day) */
 function fmtChecked(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");if(!m) return "";
   return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m[2]-1]+" "+(+m[3])+", "+m[1];}
+/* ---------- guides load when they are opened (v2.83) ----------
+   The live site's build (build/build_site.py) keeps only a small index of each guide inline (what Search, Compare, Readiness,
+   Countdown, the planner and the Continue card read) and writes the rest to guides/<id>.json, fetched the first time a guide
+   opens. Here in src/app.html every guide is still inline, GUIDES_LAZY stays null and nothing below does anything.
+   Addresses carry ?h=<hash of the file>, so a changed guide is a new address and a stale copy is never served. */
+var GUIDES_LAZY=null;
+var gLoads={}, gSrch="idle";
+function gNeedsLoad(G){return !!(G&&G.lz&&!G.full);}
+/* the guide files are ours, but never let a key like __proto__ reach an assignment */
+function gSafeKey(k){return k!=="__proto__"&&k!=="constructor"&&k!=="prototype";}
+function gQN(G){return G.quiz?G.quiz.length:(G.quizN||0);}
+function gFetchJSON(url,ms){
+  return new Promise(function(ok,no){
+    var ctl=window.AbortController?new AbortController():null, t=setTimeout(function(){if(ctl) ctl.abort();no(new Error("timeout"));},ms||15000);
+    fetch(url,ctl?{signal:ctl.signal}:{}).then(function(r){if(!r.ok) throw new Error("http "+r.status);return r.json();})
+      .then(function(j){clearTimeout(t);ok(j);},function(e){clearTimeout(t);no(e);});
+  });
+}
+function needGuide(name){
+  var G=GUIDES[name];if(!gNeedsLoad(G)) return Promise.resolve(G);
+  if(gLoads[name]) return gLoads[name];
+  var p=gFetchJSON("guides/"+G.id+".json?h="+G.lz).then(function(full){
+    if(!full||full.id!==G.id) throw new Error("wrong guide file");
+    Object.keys(full).forEach(function(k){if(gSafeKey(k)) G[k]=full[k];});G.full=true;delete gLoads[name];return G;
+  },function(e){delete gLoads[name];throw e;});
+  gLoads[name]=p;return p;
+}
+/* the search reads every guide's objectives, PBQs, resources and tips: one small file, fetched when search first opens */
+function gLoadSearch(){
+  if(!GUIDES_LAZY||gSrch==="ready"||gSrch==="loading") return;
+  gSrch="loading";
+  gFetchJSON("guides/_search.json?h="+GUIDES_LAZY.search,20000).then(function(all){
+    Object.keys(all).forEach(function(n){var G=GUIDES[n],a=all[n];if(!G||!a||a.id!==G.id) return;Object.keys(a).forEach(function(k){if(k!=="id"&&gSafeKey(k)) G[k]=a[k];});});
+    gSrch="ready";CIDX=null;
+    var inp=document.getElementById("srch-in");if(inp&&srchOpen) inp.dispatchEvent(new Event("input",{bubbles:true}));
+  },function(){gSrch="failed";});
+}
+/* what shows while a guide downloads, and when it can't */
+function guideLoadView(i,name,failed){
+  var body=panel.querySelector("#p-body");if(!body) return;
+  guideName=name;panel.classList.add("in-guide");
+  var box=document.createElement("div"), s=document.createElement("div"), h=document.createElement("p");
+  box.className="g";box.id="guide";s.className="g-load";s.setAttribute("role","status");h.className="g-load-t";
+  if(!failed){h.textContent="Loading the "+q8Short(name)+" guide…";s.appendChild(h);}
+  else{
+    h.textContent=navigator.onLine===false?"You're offline, and this guide hasn't been downloaded yet. Connect once to download it. After that it works offline.":"Couldn't load this guide. Check your connection and try again.";
+    var b=document.createElement("button");b.type="button";b.className="g-btn g-load-retry";b.textContent="Try again";
+    b.addEventListener("click",function(){renderGuide(i,name);});
+    s.appendChild(h);s.appendChild(b);
+  }
+  box.appendChild(s);body.replaceChildren(box);
+}
+/* quietly download the guides nobody has opened yet, so they work offline too. Not in Lite or Light mode, with Data Saver,
+   on a 2G connection or when offline; one file at a time, and it stops at the first error. */
+function gPrefetch(){
+  if(!GUIDES_LAZY||!window.caches||!navigator.serviceWorker||navigator.onLine===false) return;
+  var cn=navigator.connection;
+  if(LITE.on||(GFX&&GFX.tier>=2)||(cn&&(cn.saveData||/^(slow-)?2g$/.test(cn.effectiveType||"")))) return;
+  navigator.serviceWorker.ready.then(function(){
+    var urls=["guides/_search.json?h="+GUIDES_LAZY.search], k=0;
+    Object.keys(GUIDES).forEach(function(n){var G=GUIDES[n];if(G.lz) urls.push("guides/"+G.id+".json?h="+G.lz);});
+    (function next(){
+      if(k>=urls.length||navigator.onLine===false) return;
+      var u=urls[k++];
+      caches.match(u).then(function(hit){
+        if(hit) return next();
+        return fetch(u,{priority:"low"}).then(function(r){if(!r.ok) throw new Error("http "+r.status);return r.arrayBuffer();}).then(function(){setTimeout(next,200);});
+      }).catch(function(){});
+    })();
+  }).catch(function(){});
+}
+if(GUIDES_LAZY) window.addEventListener("load",function(){setTimeout(function(){if(window.requestIdleCallback) requestIdleCallback(gPrefetch,{timeout:10000});else gPrefetch();},3000);});
 function renderGuide(i,name){
+  if(gNeedsLoad(GUIDES[name])){
+    guideLoadView(i,name,false);
+    needGuide(name).then(function(){if(guideName===name&&panel.querySelector("#guide .g-load")) renderGuide(i,name);},
+      function(){if(guideName===name&&panel.querySelector("#guide .g-load")) guideLoadView(i,name,true);});
+    return;
+  }
   var G=GUIDES[name], v=VENDORS[i], body=panel.querySelector("#p-body");
   guideName=name;panel.classList.add("in-guide");gSet("cgcp.last",{k:"g",g:name,t:Date.now()});
   if(flex){flex.destroy();flex=null;}
@@ -15125,6 +15205,7 @@ async function mxStart(G,kind,opt){
 }
 async function mxResume(){
   var r=mxSaved();if(!r) return;var G=mxGuideOf(r.gid);if(!G){gSet("cgcp.mx.run",null);return;}
+  if(gNeedsLoad(G)){try{await needGuide(mxCertName(G));}catch(e){toast("Couldn't load that guide. Check your connection and try again.");return;}}
   if(r.src==="bank"){try{await mxLoad(G,r.ver);}catch(e){toast("Couldn't load the question bank. Check your connection and try again.");return;}}
   /* drop items whose question no longer exists (a bank update) */
   r.items=r.items.filter(function(it){return mxItemOk(mxQ(r,G,it),it);});if(!r.items.length){gSet("cgcp.mx.run",null);toast("That saved exam can't be resumed.");return;}
@@ -16224,6 +16305,7 @@ window.addEventListener("resize",function(){if(srchOpen&&srchAct>=0) setAct(srch
 var CIDX=null;
 function cIndex(){
   if(CIDX) return CIDX;
+  if(GUIDES_LAZY&&gSrch!=="ready"){gLoadSearch();return [];}
   CIDX=[];
   Object.keys(GUIDES).forEach(function(name){
     var G=GUIDES[name], ce=sByName(name);if(!ce) return;
@@ -17542,7 +17624,7 @@ function stGuide(name){
   var d=gGet("cgcp."+G.id+"."+ver+".done"), n=0;
   if(Array.isArray(d)) d.forEach(function(x){if(typeof x==="string"&&x.length<12&&!ids[x]){ids[x]=1;n++;}});
   var pct=total?Math.min(100,Math.round(n/total*100)):0, best=gBest(G), f=findCert(name);
-  var sub=(pct?"Objectives "+pct+"%":"Objectives not started")+(best!=null?" · Quiz best "+best+"/"+G.quiz.length:"");
+  var sub=(pct?"Objectives "+pct+"%":"Objectives not started")+(best!=null?" · Quiz best "+best+"/"+gQN(G):"");
   return {name:name,sub:sub,p:pct/100,c:VENDORS[f.v].beacon};
 }
 function stRender(){

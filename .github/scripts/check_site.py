@@ -286,44 +286,94 @@ def check_dod8140():
         ok(f"DoD 8140 data matches the pinned matrix {pin['version']} ({len(want)} roles, {n} cert listings)")
 
 
+def inline_guides(html):
+    """The small guide index inside index.html (var GUIDES={ "Name":{...}, ... };), one guide per line, plain JSON (v2.83)."""
+    a = html.find("var GUIDES={")
+    if a < 0:
+        return None
+    b = html.find("\n};", a)
+    if b < 0:
+        return None
+    try:
+        return json.loads(html[a + len("var GUIDES="): b + 2])
+    except ValueError:
+        return None
+
+
 def check_guide_dates():
     # Every guide carries checked:"YYYY-MM-DD" (shown on the guide as "Facts last checked"). Missing, malformed or
     # future dates fail; a date older than 45 days only warns (the monthly fact check is due).
     with open("index.html", encoding="utf-8") as f:
         html = f.read()
-    a, b = html.find("var GUIDES={"), html.find("var G_SECS=")
-    if a < 0 or b < a:
-        fail("guide data (var GUIDES={ ... var G_SECS=) not found in index.html, so guide dates can't be checked")
-        return
-    win = html[a:b]
-    starts = list(re.finditer(r'(?m)^(?:GUIDES\["([^"]+)"\]=|"([^"]+)":)\{', win))
-    if len(starts) < 30:
-        fail(f"only {len(starts)} guides found in index.html; the guide date check is looking in the wrong place")
+    guides = inline_guides(html)
+    if not guides or len(guides) < 30:
+        fail("the guide index (var GUIDES={ ... }; as plain JSON) wasn't found in index.html, so guide dates can't be checked")
         return
     today = datetime.date.today()
     before, stale = len(failures), []
-    for k, m in enumerate(starts):
-        name = m.group(1) or m.group(2)
-        seg = win[m.end(): starts[k + 1].start() if k + 1 < len(starts) else len(win)]
-        c = re.search(r'(?m)^  checked:"([^"]*)"', seg)
-        if not c:
+    for name, g in guides.items():
+        c = g.get("checked")
+        if c is None:
             fail(f'guide "{name}" has no checked:"YYYY-MM-DD" field')
             continue
         try:
-            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", c.group(1)):
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", c):
                 raise ValueError
-            d = datetime.date.fromisoformat(c.group(1))
-        except ValueError:
-            fail(f'guide "{name}" has a bad checked date {c.group(1)!r} (use YYYY-MM-DD)')
+            d = datetime.date.fromisoformat(c)
+        except (ValueError, TypeError):
+            fail(f'guide "{name}" has a bad checked date {c!r} (use YYYY-MM-DD)')
             continue
         if d > today + datetime.timedelta(days=1):
-            fail(f'guide "{name}" has a checked date in the future: {c.group(1)}')
+            fail(f'guide "{name}" has a checked date in the future: {c}')
         elif (today - d).days > 45:
-            stale.append(f"{name} ({c.group(1)}, {(today - d).days} days)")
+            stale.append(f"{name} ({c}, {(today - d).days} days)")
     if stale:
         print(f"WARN  {len(stale)} guide(s) not fact-checked in over 45 days: " + "; ".join(stale))
     if len(failures) == before:
-        ok(f"all {len(starts)} guides have a valid checked date")
+        ok(f"all {len(guides)} guides have a valid checked date")
+
+
+def check_guide_files():
+    """v2.83: every guide lives in guides/<id>.json, loaded when it opens. The files must match the inline index."""
+    sys.path.insert(0, os.path.join("build"))
+    import split_guides
+    with open("index.html", encoding="utf-8") as f:
+        html = f.read()
+    guides = inline_guides(html)
+    if not guides:
+        return  # check_guide_dates already reported it
+    before = len(failures)
+    if re.search(r'(?m)^GUIDES\["', html):
+        fail('index.html still holds a whole guide (GUIDES["..."]=); guides must be in guides/*.json')
+    want = {g.get("id") + ".json" for g in guides.values()} | {"_search.json"}
+    have = set(os.listdir("guides")) if os.path.isdir("guides") else set()
+    for extra in sorted(have - want):
+        fail(f"guides/{extra} isn't used by any guide in the index")
+    for name, g in guides.items():
+        path = f"guides/{g['id']}.json"
+        if not os.path.isfile(path):
+            fail(f"{path} is missing ({name})")
+            continue
+        raw = open(path, "rb").read()
+        try:
+            full = json.loads(raw)
+        except ValueError as e:
+            fail(f"{path} isn't valid JSON ({e})")
+            continue
+        if split_guides.sha8(raw) != g.get("lz"):
+            fail(f"{path}: its hash doesn't match the index (run python3 build/build_site.py)")
+        if full.get("id") != g["id"] or not full.get("quiz"):
+            fail(f"{path}: wrong id or no quiz")
+        if split_guides.slim(full, g.get("lz")) != g:
+            fail(f"{path}: the inline index entry for {name} doesn't match the guide file")
+    sp = "guides/_search.json"
+    lazy = re.search(r'var GUIDES_LAZY=\{"search":"([0-9a-f]{8})"\};', html)
+    if not lazy:
+        fail("index.html has no GUIDES_LAZY search hash")
+    elif not os.path.isfile(sp) or split_guides.sha8(open(sp, "rb").read()) != lazy.group(1):
+        fail(f"{sp} is missing or its hash doesn't match the one in index.html")
+    if len(failures) == before:
+        ok(f"{len(guides)} guide files + search file match the index and their hashes")
 
 
 def jpeg_size(path):
@@ -483,8 +533,8 @@ def check_qbanks():
     with open("index.html", encoding="utf-8") as f:
         html = f.read()
     refs = {}
-    for block in re.findall(r"\bmock:\{([^}]*)\}", html):
-        for ver, path in re.findall(r'(\w+):"([^"]+)"', block):
+    for g in (inline_guides(html) or {}).values():
+        for ver, path in (g.get("mock") or {}).items():
             if not re.fullmatch(r"qbank/[a-z0-9-]{3,40}\.json", path):
                 fail(f"question bank path {path!r} must be qbank/<name>.json")
                 continue
@@ -561,6 +611,7 @@ def main():
     check_404()
     check_dod8140()
     check_guide_dates()
+    check_guide_files()
     check_share_preview()
     check_qbanks()
     version = check_sw()
