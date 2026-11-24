@@ -1349,10 +1349,10 @@
    "id": "it-3-12",
    "d": "3.0",
    "obj": "3.2",
-   "q": "A meeting-room touch panel doesn't react when touched. What is the most sensible first step?",
+   "q": "A meeting-room touch panel is on and shows its app, but doesn't react when touched. What is the most sensible first step?",
    "o": [
     [
-     "Clean the screen, then restart the device",
+     "Wipe the screen clean, then restart the panel",
      "Right. Smudges and glitches are the common causes, and a restart is cheap."
     ],
     [
@@ -1986,8 +1986,8 @@
      "A printer isn't involved."
     ],
     [
-     "Restart, then check settings",
-     "Right. Toggle airplane mode or restart, then check the cellular and VPN settings."
+     "Toggle airplane mode, then check that the app may use cellular data and that the VPN is on",
+     "Right. Cheap steps first: reset the connection, then check the two settings that block one app on cellular."
     ],
     [
      "Replace the phone right away",
@@ -2219,8 +2219,8 @@
      "Then nothing would work."
     ],
     [
-     "Update the saved password",
-     "Right. Old saved passwords cause repeated prompts."
+     "Outlook still has the old password saved",
+     "Right. The saved old password keeps failing, so Outlook asks again. Update it in the saved credentials."
     ],
     [
      "The monitor is too bright",
