@@ -2538,7 +2538,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.80</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.81</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -3177,8 +3177,8 @@ var COLLEGES=[
    facts:[["Built for ITs","Associate of Science in Science, Mathematics and Technology with a computer information systems concentration, made for the Coast Guard IT rating."],
           ["Military rate","$250 net per credit for undergrad after its $45 military grant. Fees, like the $194 per term technology fee, aren't covered by TA."],
           ["Next step","After the associate, look at its BS in Information Technology. Talk to your ESO before you start."]],
-   programs:[["AS in Science, Math and Technology (IT rating)","https://sunyempire.edu/veteran-military/other-groups-served/coast-guard"],["BS Information Technology","https://www.sunyempire.edu/academics/undergraduate-academics/information-technology.html"]],
-   links:[["Coast Guard page","https://sunyempire.edu/veteran-military/other-groups-served/coast-guard"],["Tuition and fees","https://catalog.sunyempire.edu/undergraduate/tuition-fees/"]],
+   programs:[["AS in Science, Math and Technology (IT rating)","https://www.sunyempire.edu/student-support/military-veterans/programs/coast-guard.html"],["BS Information Technology","https://www.sunyempire.edu/academics/undergraduate-academics/information-technology.html"]],
+   links:[["Coast Guard page","https://www.sunyempire.edu/student-support/military-veterans/programs/coast-guard.html"],["Tuition and fees","https://catalog.sunyempire.edu/undergraduate/tuition-fees/"]],
    alias:"suny empire state college esc new york"},
   {id:"tesu",name:"Thomas Edison State University",short:"TESU",rate:"$250 / credit",pay:0,payTxt:"$0",cg:true,
    lead:"Known for turning what you already know into credit. Has degree roadmaps for Coast Guard ratings.",
@@ -6189,12 +6189,12 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.81",d:"2026-11-23",t:"Fixed three links that had gone dead: SUNY Empire's Coast Guard page, CompTIA's CE fees and Microsoft's Windows Server trial."},
   {v:"2.80",d:"2026-11-23",t:"The site opens faster when you come back, and Light mode downloads less."},
   {v:"2.79",d:"2026-11-23",t:"Full CCST IT Support practice exam."},
   {v:"2.78",d:"2026-11-22",t:"New What\u2019s new page, and every guide now shows the date its exam facts were last checked."},
   {v:"2.77",d:"2026-11-22",t:"Full CCNA 200-301 v2.0 practice exam."},
-  {v:"2.76",d:"2026-11-21",t:"Full CCNA Cybersecurity 200-201 practice exam."},
-  {v:"2.75",d:"2026-11-21",t:"Full CISSP practice exam."}
+  {v:"2.76",d:"2026-11-21",t:"Full CCNA Cybersecurity 200-201 practice exam."}
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -12387,7 +12387,7 @@ GUIDES["Linux+"]={
     ["CompTIA Linux+ (V8): exam details (XK0-006, launched Jul 15, 2025, 90 questions, 90 minutes, 720)","https://www.comptia.org/en/certifications/linux/"],
     ["CompTIA: Linux+ XK0-006 exam objectives PDF (document version 5.0)","https://lecbyo.files.cmp.optimizely.com/download/90b9ac985c0e11f0b004a2a93c999a21"],
     ["CompTIA: CEUs required by cert (Linux+ 50)","https://www.comptia.org/continuing-education/learn/earn-continuing-education-units"],
-    ["CompTIA: Continuing education activities chart (CE fee $150)","https://lecbyo.files.cmp.optimizely.com/download/b6c8cb98e95511ef89da52ed0d48d8ee"],
+    ["CompTIA: Continuing education renewal fees (CE fee $150)","https://www.comptia.org/en-us/resources/ce/learn/continuing-education-renewal-fees/"],
     ["Training Camp: What is Linux+ (XK0-005 retired Jan 13, 2026; $399 voucher)","https://trainingcamp.com/what-is-linux-plus/"],
     ["Crucial Exams: 2026 CompTIA voucher prices (Linux+ $399)","https://crucialexams.com/posts/blog/comptia-voucher-price-increase-2026"]]
 };
@@ -12520,7 +12520,7 @@ GUIDES["Server+"]={
       ["SK0-006 draft objectives (PDF)","CompTIA","https://lecbyo.files.cmp.optimizely.com/download/2e207850427211f1abc19eb7e6cccd2a","Free","What V6 will cover. Draft only; it can change."],
       ["CompTIA CertMaster for Server+","CompTIA","","Paid","CompTIA's own course, labs and practice. The difficulty reference for this site's questions."]]},
     {group:"Build a lab",items:[
-      ["Windows Server evaluation","Microsoft","https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server","Free","A free trial of Windows Server for your own lab: roles, DNS, DHCP and file shares."],
+      ["Windows Server evaluation","Microsoft","https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2025","Free","A free trial of Windows Server for your own lab: roles, DNS, DHCP and file shares."],
       ["VirtualBox","Oracle","https://www.virtualbox.org/","Free","Free Type 2 hypervisor. Snapshot before you break things."],
       ["Proxmox VE","Proxmox","https://www.proxmox.com/en/proxmox-virtual-environment/overview","Free","A free Type 1 hypervisor for an old spare PC: VMs, containers, clustering and backups."]]},
     {group:"Free learning",items:[
