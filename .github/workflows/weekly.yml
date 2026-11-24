@@ -29,8 +29,24 @@ jobs:
             --accept 200..=299,403,429
             --exclude-all-private
             --exclude "^https?://(www\.)?example\.(com|org|net)"
+            --exclude "^https?://(192\.0\.2|198\.51\.100|203\.0\.113)\."
+            --exclude "^https://www\.cool\.osd\.mil/"
             --root-dir ${{ github.workspace }}
             index.html 404.html ${{ runner.temp }}/js/inline-2.js
+          fail: true
+          jobSummary: true
+      # The DoD site's certificate isn't trusted by the runner ("SSL certificate not trusted"), so the CG COOL links
+      # get their own small check that skips the certificate test. They still have to answer, so a dead page still fails.
+      - name: Pull out the CG COOL links
+        if: always()
+        run: grep -ohE 'https://www\.cool\.osd\.mil/[^"'"'"' <>)]*' index.html "$RUNNER_TEMP/js/inline-2.js" | sort -u > "$RUNNER_TEMP/cool-links.txt"
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        if: always()
+        with:
+          args: >-
+            --no-progress --max-retries 3 --timeout 30 --insecure
+            --accept 200..=299,403,429
+            ${{ runner.temp }}/cool-links.txt
           fail: true
           jobSummary: true
 

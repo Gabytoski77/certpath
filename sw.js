@@ -1,11 +1,11 @@
 /* MyNextCert service worker: makes the site installable and usable offline.
    Change VERSION whenever you upload a new index.html so phones pick it up quickly. */
-var VERSION = "certpath-v90";
-/* everything the app needs lives on this site (no outside servers). The page, map and fonts are cached on install;
-   three.js and Lenis are saved the first time they're used (Lite mode never loads them). */
+var VERSION = "certpath-v91";
+/* everything the app needs lives on this site (no outside servers). The page, icons and fonts are cached on install;
+   three.js, Lenis and the 3D map file (world.js) are saved the first time they're used. Lite mode never loads them,
+   so it never downloads them either. */
 var SHELL = [ "manifest.webmanifest", "icon-192.png", "icon-512.png",
              "icon-maskable-512.png", "apple-touch-icon.png", "favicon.png", "favicon-96.png",
-             "vendor/world.js",
              "fonts/fonts.css", "fonts/inter-tight.woff", "fonts/geist.woff",
              "fonts/cp-mono-regular.woff", "fonts/cp-mono-medium.woff"];
 
@@ -44,12 +44,14 @@ self.addEventListener("fetch", function (e) {
 
   /* the page itself: network first so updates show right away, cache when offline */
   if (req.mode === "navigate") {
-    /* "no-store" skips the browser's saved copy, so an update shows up the moment it's live */
+    /* "no-cache" still asks the server every time ("has the page changed?"), so an update shows up the moment it's live.
+       If nothing changed, the server answers "no" with an empty reply and the saved copy is used, so the ~544 KB page
+       isn't downloaded again on every open (v2.80). The install step above keeps "no-store" on purpose. */
     /* redirect: "manual" hands a moved page (e.g. a new domain) straight back to the browser to follow,
        instead of failing and leaving people stuck on an old saved copy (v2.43) */
     /* the app's own address ("/" or "/index.html"), as opposed to another file opened in the tab (robots.txt, 404.html...) */
     var home = url.pathname === new URL("./", location.href).pathname || url.pathname === new URL("index.html", location.href).pathname;
-    e.respondWith(fetch(req.url, { cache: "no-store", credentials: "same-origin", redirect: "manual" }).then(function (res) {
+    e.respondWith(fetch(req.url, { cache: "no-cache", credentials: "same-origin", redirect: "manual" }).then(function (res) {
       if (res.type === "opaqueredirect") return res;
       /* an error page never replaces the saved app. A wrong address (404 anywhere but the home page) shows the
          site's own "page not found" page (v2.46); a server error, or a 404 for the home page itself, shows the saved app */
