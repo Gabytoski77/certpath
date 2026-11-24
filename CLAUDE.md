@@ -59,6 +59,18 @@ Small edits (typo, link, one fact): batch several on one branch rather than one 
 `src/app.html` is ~1.7 MB. Never read it whole. Grep for a distinctive word, then Read only those lines (offset/limit), and change it with Edit using the exact text (watch for `·`, `–`, curly quotes).
 Guides are `GUIDES["Name"]={...}` objects just before the `G_SECS=` line; copy the closest existing guide as a template. Search aliases are in `ALIAS` (edit the existing entry; a duplicate key wins). Every guide has `checked:"YYYY-MM-DD"` (shown as "Facts last checked"): set it to the day you really re-verified its facts, never a guess. `check_site.py` fails on a missing, bad or future date and warns after 45 days.
 
+## Helpers (save tokens; none are public files)
+
+Use these instead of reading `src/app.html` or a `qbank/` file by hand. All are in `build/`.
+
+| Command | Use it when |
+|---|---|
+| `python3 build/show_guide.py "Name"` | You need one guide. Add `--outline` to see just its top-level keys; `--names` lists every guide. It prints the line numbers, so you can `Read` with offset/limit or `Edit`. |
+| `python3 build/list_guides.py` | You want every guide's "checked" date and days since, oldest first (monthly fact check, or before editing facts). |
+| `python3 build/check_qbank.py qbank/<file>.json` | You edited a question bank. Same rules as `check_site.py`, in seconds, for one file. |
+
+`.claude/settings.json` pre-approves only safe, read-only or test commands (pytest, these helpers, `build_site.py`, `check_site.py`, git status/diff/log/switch/pull, `gh pr view/checks`, `gh run view/list`). Pushing to main, force pushes and reading `.env` stay denied.
+
 ## Tests
 
 - `pip install -r tests/requirements.txt semgrep==1.186.0 && python3 -m playwright install --with-deps chromium && (cd tests && npm ci)` once. `build/check_all.sh` fails if Semgrep is missing (CI runs it on every PR) and downloads CI's pinned Semgrep rules itself on the first run.

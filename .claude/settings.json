@@ -13,6 +13,25 @@
       "Bash(git push --force*)",
       "Read(./.env)",
       "Read(./.env.*)"
+    ],
+    "allow": [
+      "Bash(python3 -m pytest:*)",
+      "Bash(pytest:*)",
+      "Bash(python3 build/show_guide.py:*)",
+      "Bash(python3 build/list_guides.py:*)",
+      "Bash(python3 build/check_qbank.py:*)",
+      "Bash(python3 build/build_site.py)",
+      "Bash(python3 build/make_404.py)",
+      "Bash(python3 .github/scripts/check_site.py)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git switch:*)",
+      "Bash(git pull:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh run list:*)"
     ]
   }
 }
