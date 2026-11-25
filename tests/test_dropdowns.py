@@ -89,17 +89,22 @@ def test_guide_pbq_dropdown_keyboard_and_escape(site):
 
 
 def test_practice_exam_pbq_dropdown_inside_the_dialog(site):
+    # a saved exam holding one table PBQ: the full exam picks its PBQs at random and can now pick the newer types
+    # (log / rules / terminal / diagram), which do not use this dropdown
+    import json, pathlib, time
+    bank = json.loads((pathlib.Path(__file__).resolve().parent.parent / "qbank" / "sy0-701.json").read_text(encoding="utf8"))
+    q = next(x for x in bank["q"] if x["id"] == "s7-p-01")
+    item = {"id": q["id"], "ro": list(range(len(q["rows"]))), "co": [list(range(len(o))) for o in q["opts"]],
+            "pick": [[-1] * len(q["cols"]) for _ in q["rows"]]}
+    run = {"v": 1, "gid": "secplus", "cert": "Security+", "kind": "full", "src": "bank", "ver": "v7", "title": "Security+ V7",
+           "items": [item], "i": 0, "dur": 5400, "used": 0, "t": int(time.time() * 1000)}
     w = site()
     p = w.page
+    p.evaluate("r=>localStorage.setItem('cgcp.mx.run',JSON.stringify(r))", run)
     open_guide(p, "security+")
-    p.locator('#mxp [data-mx="full"]').first.click()
+    p.click('#mxp [data-mx="resume"]')
     p.wait_for_selector("#mx[open]")
     p.wait_for_timeout(500)
-    for _ in range(95):
-        if p.locator("#mx-body select").count():
-            break
-        p.click("#mx-next")
-        p.wait_for_timeout(30)
     s = p.locator("#mx-body select").first
     _click(p, s)
     assert _pk_open(p)
