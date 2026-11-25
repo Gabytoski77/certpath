@@ -472,6 +472,16 @@ def check_qbank(path, ver):
     pbqs = sum(1 for q in b.get("q", []) if q.get("t") == "pbq")
     if pbqs < F["pbq"]:
         fail(f"{tag}: {pbqs} PBQs but a full exam needs {F['pbq']}")
+    # the half-length exam (same sums as the page's mxBuild): half of the items, PBQs scaled down, same domain split
+    half = F.get("half") or round(F["n"] / 2)
+    half_pbq = min(max(1, round(F["pbq"] * half / F["n"])), half) if F["pbq"] else 0
+    if not 0 < half < F["n"]:
+        fail(f"{tag}: format.half must be between 1 and n ({F['n']})")
+    if pbqs < half_pbq:
+        fail(f"{tag}: {pbqs} PBQs but a half exam needs {half_pbq}")
+    for dn, n in alloc(half - half_pbq, doms).items():
+        if per_dom.get(dn, 0) < n:
+            fail(f"{tag}: domain {dn} has {per_dom.get(dn, 0)} questions but a half exam needs {n}")
     if mc_n and mc_long / mc_n > 0.4:
         fail(f"{tag}: the right answer is the longest option in {mc_long}/{mc_n} questions (a giveaway); keep it under 40%")
     if len(failures) == before:

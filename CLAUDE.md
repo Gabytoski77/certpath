@@ -74,7 +74,7 @@ Use these instead of reading `src/app.html` or a `qbank/` file by hand. All are 
 ## Tests
 
 - `pip install -r tests/requirements.txt semgrep==1.186.0 && python3 -m playwright install --with-deps chromium && (cd tests && npm ci)` once. `build/check_all.sh` fails if Semgrep is missing (CI runs it on every PR) and downloads CI's pinned Semgrep rules itself on the first run.
-- `python3 -m pytest tests -q` (about 2 minutes). Add a test for every bug fixed and every new feature.
+- `python3 -m pytest tests -q -n 2` (runs tests in parallel; more than 2 workers overload the software WebGL on a laptop). Add a test for every bug fixed and every new feature.
 - Known accessibility issues are listed in `tests/a11y-known.json`; when you fix one, delete its line.
 - The site's code is inside an IIFE: tests drive the DOM (search open = `#srch.on`, sheet open = `#sh-grab[aria-expanded=true]`).
 
