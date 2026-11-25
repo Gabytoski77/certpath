@@ -116,16 +116,26 @@ def site(browser, base_url):
 
 
 def open_search(page, text):
-    # Ctrl+K is ignored until the launch screen and intro are done; on a slow CI runner that can take a
-    # while, so press it again instead of failing on the first try.
+    # Ctrl+K TOGGLES search (it closes it when it is open), so a retry could close a search that opened late.
+    # Instead: wait for the launch splash to go, then open with the header button, which does nothing when search
+    # is already open (Ctrl+K only where the header is inert). Check first before every try, then one last generous wait for the real condition.
+    page.wait_for_selector("#splash", state="detached", timeout=60000)
     for _ in range(6):
-        page.keyboard.press("Control+k")
+        if page.locator("#srch.on").count():
+            break
+        try:
+            page.click("#hdr-search", timeout=2000)
+        except Exception:
+            # the header is inert while a guide covers the app; the keyboard shortcut still works there.
+            # Only press it when search is closed right now, since it would toggle an open search shut.
+            if not page.locator("#srch.on").count():
+                page.keyboard.press("Control+k")
         try:
             page.wait_for_selector("#srch.on", timeout=5000)
             break
         except Exception:
             continue
-    page.wait_for_selector("#srch.on", timeout=60000)  # slow runner: wait for the real condition
+    page.wait_for_selector("#srch.on", timeout=60000)
     page.fill("#srch-in", text)
     page.wait_for_timeout(350)
 
