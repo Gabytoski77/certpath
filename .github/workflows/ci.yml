@@ -134,9 +134,10 @@ jobs:
     name: Browser tests
     runs-on: ubuntu-latest
     # Tests run 2 at a time (-n 2, the runner has 2 cores). Only Security+ V7 and CISSP answer a whole exam; every
-    # other bank gets a quick smoke test. About 8 min locally (was 16 serial). TODO: set this to ~2x the first CI time
-    # (min 15) once the first run of this change has finished; the old limit stays until then.
-    timeout-minutes: 35
+    # other bank gets a quick smoke test. About 8 min locally (was 16 serial). Before this change runs took 26 to 35+ min
+    # on CI and 35 cut off three PRs (Nov 24, 2026), so the limit stays at 50 until the first fast CI run is measured;
+    # then set it to ~2x that time (min 15).
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

@@ -112,12 +112,12 @@ def test_dot_does_not_animate(site):
 
 
 # ---- fact-check dates ----
-GUIDE_ISO = re.compile(r'(?m)^  checked:"(\d{4}-\d{2}-\d{2})"')
+GUIDE_ISO = re.compile(r'"checked":"(\d{4}-\d{2}-\d{2})"')   # the guide index inside index.html is plain JSON (v2.83)
 
 
 def test_every_guide_has_an_iso_checked_date():
-    a, b = INDEX.index("var GUIDES={"), INDEX.index("var G_SECS=")
-    dates = GUIDE_ISO.findall(INDEX[a:b])
+    a = INDEX.index("var GUIDES={")
+    dates = GUIDE_ISO.findall(INDEX[a:INDEX.index("\n};", a)])
     assert len(dates) >= 38, len(dates)
     today = datetime.date.today()
     for s in dates:
@@ -162,9 +162,9 @@ def test_checker_passes_real_site(tmp_path, monkeypatch):
 
 def test_checker_fails_missing_bad_and_future(tmp_path, monkeypatch, capsys):
     future = (datetime.date.today() + datetime.timedelta(days=10)).isoformat()
-    html = INDEX.replace('  checked:"', '  checkedX:"', 1)                       # one guide loses its field
-    html = re.sub(r'(?m)^  checked:"\d{4}-\d{2}-\d{2}"', '  checked:"Nov 6, 2026"', html, count=1)   # one bad format
-    html = re.sub(r'(?m)^(GUIDES\["Network\+"\]=\{(?:.|\n)*?)^  checked:"[^"]*"', r'\1  checked:"%s"' % future, html, count=1, flags=0)
+    html = INDEX.replace('"checked":"', '"checkedX":"', 1)                       # one guide loses its field
+    html = re.sub(r'"checked":"\d{4}-\d{2}-\d{2}"', '"checked":"Nov 6, 2026"', html, count=1)   # one bad format
+    html = re.sub(r'(?m)^("Network\+":\{.*?"checked":)"[^"]*"', r'\1"%s"' % future, html, count=1)
     f = _checker(tmp_path, monkeypatch, html)
     text = "\n".join(f)
     assert "no checked" in text or "bad checked date" in text, text
@@ -172,6 +172,6 @@ def test_checker_fails_missing_bad_and_future(tmp_path, monkeypatch, capsys):
 
 
 def test_checker_only_warns_when_old(tmp_path, monkeypatch, capsys):
-    html = re.sub(r'(?m)^  checked:"\d{4}-\d{2}-\d{2}"', '  checked:"2026-01-02"', INDEX, count=1)
+    html = re.sub(r'"checked":"\d{4}-\d{2}-\d{2}"', '"checked":"2026-01-02"', INDEX, count=1)
     assert _checker(tmp_path, monkeypatch, html) == []
     assert "WARN" in capsys.readouterr().out
