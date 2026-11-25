@@ -133,11 +133,11 @@ jobs:
   browser-tests:
     name: Browser tests
     runs-on: ubuntu-latest
-    # Tests run 2 at a time (-n 2, the runner has 2 cores). Only Security+ V7 and CISSP answer a whole exam; every
+    # Tests run 2 at a time (-n 2 --dist loadgroup, the runner has 2 cores). Only Security+ V7 and CISSP answer a whole exam; every
     # other bank gets a quick smoke test.
-    # Browser tests took about 12 min on the 2-core runner after faster CI (PR #62); limit is about 2x that; raise it
-    # only if new tests make the normal run longer.
-    timeout-minutes: 25
+    # Runs vary 12-24 min on GitHub's 2-core runner (Light mode by default, 3D tests share one worker via
+    # --dist loadgroup). Lower this only after several steady runs.
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -154,7 +154,7 @@ jobs:
           python3 -m playwright install --with-deps chromium
           cd tests && npm ci --no-audit --no-fund
       - name: Run the suite (desktop, iPhone, 320 px, 200% zoom, reduced motion, offline, CSP, practice exams, axe)
-        run: python3 -m pytest tests -q -p no:cacheprovider -n 2
+        run: python3 -m pytest tests -q -p no:cacheprovider -n 2 --dist loadgroup
 
   lighthouse:
     name: Lighthouse

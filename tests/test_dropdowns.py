@@ -24,7 +24,7 @@ def _click(p, loc):
     p.wait_for_timeout(250)
 
 
-@pytest.mark.parametrize("lite", [False, True])
+@pytest.mark.parametrize("lite", [pytest.param(False, marks=pytest.mark.xdist_group("3d")), True])
 def test_guide_pbq_dropdown_opens_in_page(site, lite):
     w = site(lite=lite)
     p = w.page

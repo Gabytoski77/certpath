@@ -96,12 +96,13 @@ def test_fits_small_screens(site, device):
     assert p.is_visible("#wn-list li:last-child")
 
 
-@pytest.mark.parametrize("opts", [dict(device="desktop"), dict(device="desktop", lite=True), dict(device="reduced")])
+@pytest.mark.parametrize("opts", [pytest.param(dict(device="desktop", lite=False), marks=pytest.mark.xdist_group("3d")),
+                                  dict(device="desktop", lite=True), dict(device="reduced")])
 def test_axe_clean_in_normal_light_and_reduced_motion(site, opts):
     p = site(**opts).page
     _open(p)
     _check(_axe(p), "whats-new")
-    if opts.get("lite"):
+    if opts.get("lite") is not False:
         assert p.evaluate("document.documentElement.classList.contains('lite')")
 
 

@@ -168,6 +168,7 @@ def test_carry_over_matches_guide_addresses_with_their_query_string():
     assert not rx.search(urlparse("https://x.test/guides/../index.html").path)
 
 
+@pytest.mark.xdist_group("3d")
 def test_background_download_fetches_the_rest_but_not_in_lite(site):
     n_guides = len(_inline()) + 1
     count = """async ()=>{let n=0;for(const k of await caches.keys()){const c=await caches.open(k);

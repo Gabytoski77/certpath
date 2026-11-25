@@ -84,15 +84,19 @@ class Watched:
 
 @pytest.fixture
 def site(browser, base_url):
-    """site(device="desktop", lite=None, path="", wait=2500) -> Watched; checked for errors when the test ends."""
+    """site(device="desktop", lite=True, path="", wait=2500) -> Watched; checked for errors when the test ends.
+
+    Light mode is the default: two Normal-mode pages drawing the 3D globe in software WebGL overload a 2-core runner.
+    Pass lite=False for Normal (3D globe) and mark that test @pytest.mark.xdist_group("3d") so the 3D tests share one
+    worker (CI runs `-n 2 --dist loadgroup`). Pass lite=None to leave the choice unset (the site decides)."""
     opened = []
 
-    def open_site(device="desktop", lite=None, path="", wait=2500, **extra):
+    def open_site(device="desktop", lite=True, path="", wait=2500, **extra):
         ctx = browser.new_context(**{**DEVICES[device], **extra})
         if lite is not None:  # force Lite on or off (the site keeps the choice in localStorage)
             ctx.add_init_script("try{localStorage.setItem('cgcp.lite',%r)}catch(e){}" % ("on" if lite else "off"))
         page = ctx.new_page()
-        # Tests run 2 at a time (-n 2) on a 2-core CI runner with no GPU, where a full-3D page can use a whole core.
+        # Tests run 2 at a time (-n 2 --dist loadgroup) on a 2-core CI runner with no GPU, where a full-3D page can use a whole core.
         # Give page loads and reloads 60 s there (Playwright's default is 30 s; a reload of the 3D home timed out at
         # 30 s on Nov 24, 2026). A load that is fine still returns at once.
         page.set_default_navigation_timeout(60000)
@@ -121,7 +125,7 @@ def open_search(page, text):
             break
         except Exception:
             continue
-    page.wait_for_selector("#srch.on")
+    page.wait_for_selector("#srch.on", timeout=60000)  # slow runner: wait for the real condition
     page.fill("#srch-in", text)
     page.wait_for_timeout(350)
 

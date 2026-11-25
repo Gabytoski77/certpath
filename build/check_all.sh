@@ -42,7 +42,7 @@ if [ "${SKIP_SEMGREP:-}" = 1 ]; then echo "skip semgrep (SKIP_SEMGREP=1)"; else
     --json -q -o "${TMPDIR:-/tmp}/semgrep.json" "$J" 404.html sw.js
   python3 build/semgrep_gate.py "${TMPDIR:-/tmp}/semgrep.json"
 fi
-step "Browser tests";         python3 -m pytest tests -q -p no:cacheprovider -n "${PYTEST_WORKERS:-2}"
+step "Browser tests";         python3 -m pytest tests -q -p no:cacheprovider -n "${PYTEST_WORKERS:-auto}" --dist loadgroup
 # On WSL, chrome-launcher (inside lhci) builds a Windows-style temp path (C:\Users\...\AppData\Local\lighthouse.XXXX)
 # that Linux treats as a folder NAME, so it lands in the repo root. TMPDIR doesn't change that, so sweep them after.
 sweep_lighthouse() { find . -maxdepth 1 -name 'C:\\*lighthouse.*' -exec rm -rf {} + 2>/dev/null || true; }

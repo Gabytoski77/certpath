@@ -5,6 +5,7 @@ build/make_globe_stills.py; if they can't load, the globe is drawn instead.
 """
 import json
 import pathlib
+import pytest
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
@@ -82,6 +83,7 @@ def test_light_falls_back_to_the_drawn_globe(site, browser, base_url):
         ctx.close()
 
 
+@pytest.mark.xdist_group("3d")
 def test_graphics_light_is_the_same_still_version(site):
     """Graphics set to Light (not the Lite switch) gives the same still picture and turns off animations."""
     w = site(device="desktop", lite=False, wait=3000)
