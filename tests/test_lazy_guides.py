@@ -5,7 +5,7 @@ import re
 from urllib.parse import urlparse
 
 import pytest
-from conftest import ROOT, open_guide, open_search
+from conftest import ROOT, open_guide, open_search, wait_until
 from test_offline import _wait_for_sw
 from test_readiness import _exam, _seed
 
@@ -176,7 +176,7 @@ def test_background_download_fetches_the_rest_but_not_in_lite(site):
     w = site(lite=False)
     p = w.page
     _sw_ready(p)
-    p.wait_for_function("(" + count + ")().then(n => n >= %d)" % n_guides, timeout=120000)  # idle download is slower on a busy CI runner
+    wait_until(p, "(" + count + ")().then(n => n >= %d)" % n_guides, timeout=120000, every=2000)  # idle download is slower on a busy CI runner
     lite = site(lite=True)
     q = lite.page
     _sw_ready(q)

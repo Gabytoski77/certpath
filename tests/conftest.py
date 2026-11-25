@@ -115,6 +115,33 @@ def site(browser, base_url):
             w.context.close()
 
 
+def wait_until(page, js, timeout=30000, every=500, msg=None):
+    """Wait until the JS expression `js` is truthy (a Promise is awaited). Returns its value.
+
+    Use this instead of page.wait_for_function in Normal-mode ("3d") tests: wait_for_function turns the text into
+    code inside the page, which the site's CSP (no 'unsafe-eval') can block (EvalError on CI, Nov 24 2026).
+    page.evaluate isn't blocked, so this asks the page with it every `every` ms."""
+    import time
+    end = time.monotonic() + timeout / 1000
+    last = None
+    while True:
+        last = page.evaluate(js)
+        if last:
+            return last
+        if time.monotonic() >= end:
+            raise AssertionError(msg or f"timed out after {timeout} ms waiting for: {js} (last value: {last!r})")
+        page.wait_for_timeout(every)
+
+
+def pytest_collection_modifyitems(config, items):
+    # The Normal-mode tests (xdist_group "3d") draw the 3D globe with software WebGL on GitHub's 2-core runner,
+    # which is slow and uneven: a different one timed out on each of 3 runs on Nov 24 2026. Give ONLY those one
+    # automatic rerun (pytest-rerunfailures); a test that fails twice still fails. No reruns for anything else.
+    for item in items:
+        if any(m.args[:1] == ("3d",) for m in item.iter_markers("xdist_group")):
+            item.add_marker(pytest.mark.flaky(reruns=1, reruns_delay=2))
+
+
 def open_search(page, text):
     # Ctrl+K TOGGLES search (it closes it when it is open), so a retry could close a search that opened late.
     # Instead: wait for the launch splash to go, then open with the header button, which does nothing when search
