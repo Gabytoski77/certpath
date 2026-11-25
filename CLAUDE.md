@@ -17,6 +17,7 @@ different, **this file wins**.
 | `build/build_site.py` | Builds `index.html` from `src/`: swaps CDNs for `vendor/` + `fonts/`, writes the CSP with a sha256 per inline script. |
 | `build/make_404.py` | Writes `404.html`. |
 | `index.html`, `404.html` | **Generated. Never edit by hand** (the CSP hashes break and CI fails). |
+| `guides/*.json` | **Generated. Never edit by hand.** Each guide, split out of `src/app.html` by `build/split_guides.py` when you run `build_site.py`; fetched when a guide opens (`?h=` hash in the address). `index.html` keeps only a small index of each guide. Edit guides in `src/app.html` as before, rebuild, and commit the changed `guides/` files with `index.html`. |
 | `sw.js` | Service worker. `VERSION = "certpath-vN"`. |
 | `qbank/*.json` | Practice exam question banks. |
 | `img/globe/` | Light mode's still globe: one picture per vendor (1000 and 1600 px) + `views.json` (badge tap targets). Made by `build/make_globe_stills.py`; rerun it (about 3 min) after changing how the globe or the vendors look, and commit the results. |
@@ -57,7 +58,7 @@ Small edits (typo, link, one fact): batch several on one branch rather than one 
 ## Working on the big source file
 
 `src/app.html` is ~1.7 MB. Never read it whole. Grep for a distinctive word, then Read only those lines (offset/limit), and change it with Edit using the exact text (watch for `·`, `–`, curly quotes).
-Guides are `GUIDES["Name"]={...}` objects just before the `G_SECS=` line; copy the closest existing guide as a template. Search aliases are in `ALIAS` (edit the existing entry; a duplicate key wins). Every guide has `checked:"YYYY-MM-DD"` (shown as "Facts last checked"): set it to the day you really re-verified its facts, never a guess. `check_site.py` fails on a missing, bad or future date and warns after 45 days.
+Guides are `GUIDES["Name"]={...}` objects just before the `G_SECS=` line (plain data only: no functions or regexes, because the build parses them as data); copy the closest existing guide as a template. Search aliases are in `ALIAS` (edit the existing entry; a duplicate key wins). Every guide has `checked:"YYYY-MM-DD"` (shown as "Facts last checked"): set it to the day you really re-verified its facts, never a guess. `check_site.py` fails on a missing, bad or future date and warns after 45 days.
 
 ## Helpers (save tokens; none are public files)
 
