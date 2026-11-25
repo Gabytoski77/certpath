@@ -1,4 +1,5 @@
-# Publishes mynextcert.com, but only after every CI check passes on the exact commit being shipped.
+# Publishes mynextcert.com. The full CI already passed on the PR (and main must be up to date before merging),
+# so this only re-checks that index.html matches src/ (cheap) and publishes. Saves Actions minutes.
 # Needs: Settings -> Pages -> Build and deployment -> Source = "GitHub Actions".
 name: Deploy
 
@@ -16,13 +17,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  checks:
-    name: All checks
-    uses: ./.github/workflows/ci.yml
-
   deploy:
     name: Publish to GitHub Pages
-    needs: checks              # if any check fails, this job never runs and the live site stays as it was
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -36,6 +32,11 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: index.html is exactly what src/ builds (a failure stops the deploy)
+        run: python3 build/build_site.py --check
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - name: Copy only the public site files
         run: python3 build/stage_site.py _site

@@ -1,10 +1,9 @@
-# MyNextCert checks. Runs on every pull request, and again (through deploy.yml) before anything goes live.
+# MyNextCert checks. Runs on every pull request (deploy.yml no longer re-runs them).
 # Every job must pass. Nothing here can change the repo or the site: the token is read-only.
 name: CI
 
 on:
   pull_request:
-  workflow_call:
   workflow_dispatch:
 
 permissions:

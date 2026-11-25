@@ -30,8 +30,8 @@ Nothing goes live unless every check passes.
 4. CI (`.github/workflows/ci.yml`) runs: build-matches-source, site checks, secret scan (gitleaks), code scan (Semgrep),
    HTML/JS lint, actionlint, Playwright browser tests (desktop, iPhone, 320 px, 200% zoom, reduced motion, offline,
    CSP, practice exams), axe accessibility and Lighthouse.
-5. Merge when green. `deploy.yml` runs every check again and then publishes only the public files
-   (`build/stage_site.py`). `post-deploy.yml` checks the live site and runs an OWASP ZAP baseline scan.
+5. Merge when green. `deploy.yml` re-checks the build and then publishes only the public files
+   (`build/stage_site.py`). `post-deploy.yml` checks the live site; `weekly.yml` runs the OWASP ZAP baseline scan.
    `weekly.yml` checks links, HTTPS certificates and library versions every Monday.
 
 See `CLAUDE.md` for the full rules.
