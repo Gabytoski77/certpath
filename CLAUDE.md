@@ -36,7 +36,7 @@ different, **this file wins**.
 6. Commit as `Gabytoski77 <Gabytoski77@users.noreply.github.com>` (never a personal email). Message = what changed for users, in plain words.
 7. `git push -u origin <branch>` and open a PR (`gh pr create`). CI runs every check. Merge only when it's green; the Deploy workflow re-runs every check and only then publishes.
 8. After the merge, the Post-deploy workflow checks the live site. Tell the owner to close and reopen the app once to see the new label.
-9. Keep the claude.ai preview artifact in sync: publish `src/app.html` to the artifact after merging.
+9. The claude.ai preview artifact syncs itself: the scheduled task "MyNextCert preview auto-sync" copies main to it every 3 hours. Nothing to do here.
 10. Rollback: revert the commit on main through a PR (GitHub's "Revert" button on the merged PR). Deploy runs again.
 
 Small edits (typo, link, one fact): batch several on one branch rather than one PR each. The owner prefers updates queued and shipped together when he says "ship it".
@@ -85,6 +85,14 @@ Use these instead of reading `src/app.html` or a `qbank/` file by hand. All are 
 2. **Simplicity first.** The minimum change that solves the request. No extra features, no abstractions for one use, no "flexibility" nobody asked for.
 3. **Surgical changes.** Touch only what the request needs. Match the existing style. Mention unrelated problems; don't fix them unasked.
 4. **Goal-driven.** Turn the request into something checkable ("write a test that shows the bug, then make it pass") and loop until the checks pass. For multi-step work, write a short plan with a check per step.
+
+## Question banks: writer + reviewer
+
+New bank, new questions or bank fixes: (1) the `qbank-writer` subagent writes; (2) a fresh `qbank-reviewer` subagent grades it (it never saw the writing); (3) the writer fixes what the reviewer found; repeat until the reviewer says PASS. Paste the reviewer's final verdict in the PR description. Never let the writer grade itself.
+
+## Automated helpers (claude.ai scheduled tasks)
+
+Scheduled agents may open PRs on branches named `bot/...` (monthly fact check, weekly bank audit). They never merge: **only the owner merges**. If a `bot/` PR is open when you start work, finish or close it first, or expect a version-bump conflict.
 
 ## Models
 
