@@ -175,7 +175,7 @@ def test_background_download_fetches_the_rest_but_not_in_lite(site):
     w = site(lite=False)
     p = w.page
     _sw_ready(p)
-    p.wait_for_function("(" + count + ")().then(n => n >= %d)" % n_guides, timeout=60000)
+    p.wait_for_function("(" + count + ")().then(n => n >= %d)" % n_guides, timeout=120000)  # idle download is slower on a busy CI runner
     lite = site(lite=True)
     q = lite.page
     _sw_ready(q)

@@ -133,9 +133,10 @@ jobs:
   browser-tests:
     name: Browser tests
     runs-on: ubuntu-latest
-    # 87 tests take ~10 min locally and about twice that on a CI runner (11 full practice exams alone are ~4 min
-    # locally); 20 min cut v2.66 off at 83% (Nov 19, 2026), so leave room for the next banks. 35 min then cut off
-    # three PRs (Nov 24, 2026: runs took 26 to 35+ min), so it is 50 now.
+    # Tests run 2 at a time (-n 2, the runner has 2 cores). Only Security+ V7 and CISSP answer a whole exam; every
+    # other bank gets a quick smoke test. About 8 min locally (was 16 serial). Before this change runs took 26 to 35+ min
+    # on CI and 35 cut off three PRs (Nov 24, 2026), so the limit stays at 50 until the first fast CI run is measured;
+    # then set it to ~2x that time (min 15).
     timeout-minutes: 50
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -153,7 +154,7 @@ jobs:
           python3 -m playwright install --with-deps chromium
           cd tests && npm ci --no-audit --no-fund
       - name: Run the suite (desktop, iPhone, 320 px, 200% zoom, reduced motion, offline, CSP, practice exams, axe)
-        run: python3 -m pytest tests -q -p no:cacheprovider
+        run: python3 -m pytest tests -q -p no:cacheprovider -n 2
 
   lighthouse:
     name: Lighthouse

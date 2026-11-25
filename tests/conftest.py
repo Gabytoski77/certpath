@@ -92,6 +92,10 @@ def site(browser, base_url):
         if lite is not None:  # force Lite on or off (the site keeps the choice in localStorage)
             ctx.add_init_script("try{localStorage.setItem('cgcp.lite',%r)}catch(e){}" % ("on" if lite else "off"))
         page = ctx.new_page()
+        # Tests run 2 at a time (-n 2) on a 2-core CI runner with no GPU, where a full-3D page can use a whole core.
+        # Give page loads and reloads 60 s there (Playwright's default is 30 s; a reload of the 3D home timed out at
+        # 30 s on Nov 24, 2026). A load that is fine still returns at once.
+        page.set_default_navigation_timeout(60000)
         w = Watched(ctx, page, base_url)
         opened.append(w)
         page.goto(base_url + path)

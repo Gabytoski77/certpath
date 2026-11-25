@@ -3,7 +3,8 @@ from conftest import VERSION_LABEL
 
 
 def _wait_for_sw(p):
-    p.wait_for_function("navigator.serviceWorker && navigator.serviceWorker.controller !== null", timeout=15000)
+    # 45 s, not 15: with tests running 2 at a time on CI the service worker can take longer to install and take control
+    p.wait_for_function("navigator.serviceWorker && navigator.serviceWorker.controller !== null", timeout=45000)
 
 
 def test_offline_reload(site):
