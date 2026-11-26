@@ -1,13 +1,13 @@
 /* MyNextCert service worker: makes the site installable and usable offline.
    Change VERSION whenever you upload a new index.html so phones pick it up quickly. */
-var VERSION = "certpath-v96";
+var VERSION = "certpath-v97";
 /* everything the app needs lives on this site (no outside servers). The page, icons and fonts are cached on install;
    three.js, Lenis and the 3D map file (world.js) are saved the first time they're used. Lite mode never loads them,
    so it never downloads them either. */
 var SHELL = [ "manifest.webmanifest", "icon-192.png", "icon-512.png",
              "icon-maskable-512.png", "apple-touch-icon.png", "favicon.png", "favicon-96.png",
-             "fonts/fonts.css", "fonts/inter-tight.woff", "fonts/geist.woff",
-             "fonts/cp-mono-regular.woff", "fonts/cp-mono-medium.woff"];
+             "fonts/fonts.css", "fonts/inter-tight.woff2", "fonts/geist.woff2",
+             "fonts/cp-mono-regular.woff2", "fonts/cp-mono-medium.woff2"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) {
@@ -50,16 +50,17 @@ self.addEventListener("fetch", function (e) {
   if (req.method !== "GET") return;
   var url = new URL(req.url);
 
-  /* the page itself: network first so updates show right away, cache when offline */
+  /* the page itself. The app's home page opens from the saved copy and checks for an update in the background (v2.86);
+     any other page (robots.txt, 404.html, a wrong link) comes from the network, with the saved app as the offline fallback */
   if (req.mode === "navigate") {
-    /* "no-cache" still asks the server every time ("has the page changed?"), so an update shows up the moment it's live.
-       If nothing changed, the server answers "no" with an empty reply and the saved copy is used, so the ~544 KB page
-       isn't downloaded again on every open (v2.80). The install step above keeps "no-store" on purpose. */
+    /* "no-cache" still asks the server every time ("has the page changed?"). If nothing changed, the server answers
+       "no" with an empty reply and the saved copy is used, so the ~544 KB page isn't downloaded again (v2.80).
+       The install step above keeps "no-store" on purpose. */
     /* redirect: "manual" hands a moved page (e.g. a new domain) straight back to the browser to follow,
        instead of failing and leaving people stuck on an old saved copy (v2.43) */
     /* the app's own address ("/" or "/index.html"), as opposed to another file opened in the tab (robots.txt, 404.html...) */
     var home = url.pathname === new URL("./", location.href).pathname || url.pathname === new URL("index.html", location.href).pathname;
-    e.respondWith(fetch(req.url, { cache: "no-cache", credentials: "same-origin", redirect: "manual" }).then(function (res) {
+    var fromNet = function (res) {
       if (res.type === "opaqueredirect") return res;
       /* an error page never replaces the saved app. A wrong address (404 anywhere but the home page) shows the
          site's own "page not found" page (v2.46); a server error, or a 404 for the home page itself, shows the saved app */
@@ -72,7 +73,19 @@ self.addEventListener("fetch", function (e) {
         var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put("index.html", copy); });
       }
       return res;
-    }).catch(function () { return caches.match("index.html"); }));
+    };
+    var net = fetch(req.url, { cache: "no-cache", credentials: "same-origin", redirect: "manual" });
+    if (home) {
+      /* v2.86: open from the saved copy at once, so a slow network never holds up the first screen. The server is
+         still asked in the background (pageRefresh); when the page changed, the new one is saved and the open windows
+         show "New version ready - Refresh". Ignoring that is fine: the next open uses the new saved copy.
+         With no saved copy yet (first visit, cleared data) the page comes from the network as before. */
+      var saved = caches.match("index.html");
+      e.respondWith(saved.then(function (hit) { return hit || net.then(fromNet).catch(function () { return caches.match("index.html"); }); }));
+      e.waitUntil(saved.then(function (hit) { if (hit) return net.then(pageRefresh); }).catch(function () {}));
+      return;
+    }
+    e.respondWith(net.then(fromNet).catch(function () { return caches.match("index.html"); }));
     return;
   }
 
@@ -99,3 +112,32 @@ self.addEventListener("fetch", function (e) {
     }));
   }
 });
+
+/* v2.86: the background check behind an instant open. The saved page is compared with the server's; when they differ,
+   the new one replaces it and every open window is told (the page then shows "New version ready - Refresh"). */
+function pageRefresh(res) {
+  /* the site moved (a redirect): forget the saved copy, so the next open follows the move instead of staying on it (v2.43) */
+  if (res.type === "opaqueredirect") return caches.open(VERSION).then(function (c) { return c.delete("index.html"); }).then(tellPages);
+  if (!res.ok || !/text\/html/i.test(res.headers.get("content-type") || "")) return null;
+  return caches.match("index.html").then(function (old) {
+    if (!old) return caches.open(VERSION).then(function (c) { return c.put("index.html", res); });
+    var tag = res.headers.get("etag");
+    if (tag && tag === old.headers.get("etag")) return null;   /* same file: nothing to do */
+    return Promise.all([old.text(), res.clone().text()]).then(function (t) {
+      if (t[0] === t[1]) return null;
+      return caches.open(VERSION).then(function (c) { return c.put("index.html", res); }).then(tellPages);
+    });
+  });
+}
+/* the window that is opening may not be listed yet, so look again a few times before giving up */
+function tellPages() {
+  var tries = 0;
+  function again() {
+    return self.clients.matchAll({ type: "window" }).then(function (list) {
+      if (!list.length && ++tries < 10) return new Promise(function (r) { setTimeout(r, 500); }).then(again);
+      list.forEach(function (c) { c.postMessage({ type: "update-ready" }); });
+      return null;
+    });
+  }
+  return again();
+}

@@ -78,22 +78,39 @@ def test_sw_page_open_sends_a_has_it_changed_question(site, base_url):
     assert any({"if-modified-since", "if-none-match"} & h for h in heads), heads
 
 
-def test_sw_update_shows_right_away(browser, tmp_path):
-    """The real sw.js on a tiny site: change the page on the server and the very next open shows the new page."""
-    import functools, http.server, os, shutil, threading, time
+def _tiny_site(tmp_path):
+    """The real sw.js on a tiny site whose page shows a version word and records the service worker's messages."""
+    import functools, http.server, shutil, threading
     from conftest import ROOT
     shell = __import__("re").findall(r'"([^"]+)"', _sw_code().split("var SHELL")[1].split("];")[0])
     for f in shell:
         (tmp_path / f).parent.mkdir(parents=True, exist_ok=True)
         (tmp_path / f).write_bytes(b"x")
     shutil.copy(ROOT / "sw.js", tmp_path / "sw.js")
-    page_html = '<!doctype html><title>t</title><p id="v">%s</p><script>navigator.serviceWorker.register("sw.js")</script>'
-    (tmp_path / "index.html").write_text(page_html % "first")
     h = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(tmp_path))
     h.log_message = lambda *a, **k: None
     srv = http.server.ThreadingHTTPServer(("localhost", 0), h)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
-    url = "http://localhost:%d/" % srv.server_address[1]
+    return srv, "http://localhost:%d/" % srv.server_address[1]
+
+
+_PAGE = ('<!doctype html><title>t</title><p id="v">%s</p><script>'
+         'navigator.serviceWorker.addEventListener("message",function(e){document.body.dataset.msg=e.data&&e.data.type;});'
+         'navigator.serviceWorker.startMessages();navigator.serviceWorker.register("sw.js")</script>')
+
+
+def _publish(tmp_path, word):
+    import os, time
+    (tmp_path / "index.html").write_text(_PAGE % word)
+    later = time.time() + 30  # file dates only have one-second detail: make sure the server sees a newer file
+    os.utime(tmp_path / "index.html", (later, later))
+
+
+def test_sw_opens_saved_copy_then_offers_the_update(browser, tmp_path):
+    """v2.86: the app opens from its saved copy at once. When the server has a newer page, the open window is told
+    ("update-ready", which shows the Refresh bar on the real site) and the very next open shows the new page."""
+    (tmp_path / "index.html").write_text(_PAGE % "first")
+    srv, url = _tiny_site(tmp_path)
     ctx = browser.new_context()
     try:
         p = ctx.new_page()
@@ -102,14 +119,45 @@ def test_sw_update_shows_right_away(browser, tmp_path):
         p.reload()
         _wait_for_sw(p)
         assert p.inner_text("#v") == "first"
-        (tmp_path / "index.html").write_text(page_html % "second, newer")
-        later = time.time() + 30  # file dates only have one-second detail: make sure the server sees a newer file
-        os.utime(tmp_path / "index.html", (later, later))
+        p.wait_for_timeout(500)
+        assert not p.evaluate("document.body.dataset.msg"), "no message when nothing changed"
+        _publish(tmp_path, "second, newer")
         p.reload()
-        assert p.inner_text("#v") == "second, newer", "an update must show on the next open, not a saved copy"
+        assert p.inner_text("#v") == "first", "the app should open from its saved copy, not wait for the network"
+        p.wait_for_function("document.body.dataset.msg === 'update-ready'", timeout=15000)
+        p.reload()
+        assert p.inner_text("#v") == "second, newer", "the next open must show the new page"
     finally:
         ctx.close()
         srv.shutdown()
+
+
+def test_sw_first_visit_and_offline_still_work(browser, tmp_path):
+    """With nothing saved yet the page comes from the network; offline, the saved copy opens."""
+    (tmp_path / "index.html").write_text(_PAGE % "only")
+    srv, url = _tiny_site(tmp_path)
+    ctx = browser.new_context()
+    try:
+        p = ctx.new_page()
+        p.goto(url)
+        assert p.inner_text("#v") == "only"
+        p.evaluate("navigator.serviceWorker.ready")
+        p.reload()
+        _wait_for_sw(p)
+        ctx.set_offline(True)
+        p.reload()
+        assert p.inner_text("#v") == "only"
+    finally:
+        ctx.set_offline(False)
+        ctx.close()
+        srv.shutdown()
+
+
+def test_sw_forgets_saved_copy_when_the_site_moves():
+    """A redirect seen by the background check deletes the saved page, so the next open follows the move (v2.43)."""
+    code = _sw_code()
+    ref = code[code.index("function pageRefresh"):code.index("function tellPages")]
+    assert 'opaqueredirect' in ref and 'delete("index.html")' in ref
 
 
 def test_sw_does_not_save_world_js_at_install():

@@ -49,8 +49,8 @@ def build():
     body = swap(body, '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n', '')
     body = swap(body,
         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Geist:wght@300..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap">',
-        '<link rel="preload" href="fonts/inter-tight.woff" as="font" type="font/woff" crossorigin>\n'
-        '<link rel="preload" href="fonts/geist.woff" as="font" type="font/woff" crossorigin>\n'
+        '<link rel="preload" href="fonts/inter-tight.woff2" as="font" type="font/woff2" crossorigin>\n'
+        '<link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>\n'
         '<link rel="stylesheet" href="fonts/fonts.css">')
     # libraries: our own copies (the page writes these tags itself, only when the 3D globe / smooth scrolling will run)
     body = swap(body, '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"><\\/script>',

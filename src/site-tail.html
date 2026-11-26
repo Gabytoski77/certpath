@@ -1,10 +1,18 @@
 <script>
-/* app updates: check for a new version every time the app opens, and reload once when it arrives */
+/* app updates: check for a new version every time the app opens. Since v2.86 the app opens from its saved copy at once,
+   so when a newer version arrives (a new service worker takes over, or it says the page changed) a small bar offers
+   "Refresh" instead of reloading under the reader. Ignoring it is fine: the next open shows the new version. */
 if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){
-  var hadController=!!navigator.serviceWorker.controller, reloaded=false;
-  navigator.serviceWorker.addEventListener("controllerchange",function(){
-    if(!hadController||reloaded) return;reloaded=true;location.reload();
-  });
+  var hadController=!!navigator.serviceWorker.controller, updShown=false;
+  var showUpdate=function(){
+    var bar=document.getElementById("upd-tip");if(updShown||!bar) return;updShown=true;
+    bar.hidden=false;
+    document.getElementById("upd-go").addEventListener("click",function(){location.reload();});
+    document.getElementById("upd-x").addEventListener("click",function(){bar.hidden=true;});
+  };
+  navigator.serviceWorker.addEventListener("controllerchange",function(){if(hadController) showUpdate();});
+  navigator.serviceWorker.addEventListener("message",function(e){if(e.data&&e.data.type==="update-ready") showUpdate();});
+  if(navigator.serviceWorker.startMessages) navigator.serviceWorker.startMessages();
   window.addEventListener("load",function(){
     navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){r.update();}).catch(function(){});
   });

@@ -32,7 +32,7 @@ different, **this file wins**.
 2. Edit `src/` (or `sw.js`, `qbank/`, `build/`...). Never `index.html` / `404.html` directly.
 3. `python3 build/build_site.py` (and `python3 build/make_404.py` if the 404 page changed).
 4. If `index.html` changed: bump the visible label `<span>v.2.X</span>` in `src/app.html` (rebuild again) **and** `VERSION` in `sw.js`, or installed phones keep the old copy. CI fails if you forget. Also add one line at the top of the `WHATS_NEW` array in `src/app.html` (version, ISO date, 1–2 plain lines for users; keep about 6).
-5. `bash build/check_all.sh` (or at least `python3 -m pytest tests -q`). All must pass.
+5. Run the fast checks: `python3 build/build_site.py --check`, `python3 .github/scripts/check_site.py`, `python3 build/check_qbank.py qbank/<file>.json` for a bank you touched, and only the tests you added or changed: `python3 -m pytest tests/<file>.py -q -n 1`. All must pass. GitHub CI runs the full suite on every PR (the repo is public, so Actions minutes are free); the full local run (`bash build/check_all.sh`) is optional because it can freeze a laptop.
 6. Commit as `Gabytoski77 <Gabytoski77@users.noreply.github.com>` (never a personal email). Message = what changed for users, in plain words.
 7. `git push -u origin <branch>` and open a PR (`gh pr create`). CI runs every check. Merge only when it's green; the Deploy workflow re-runs every check and only then publishes.
 8. After the merge, the Post-deploy workflow checks the live site. Tell the owner to close and reopen the app once to see the new label.
@@ -75,7 +75,7 @@ Use these instead of reading `src/app.html` or a `qbank/` file by hand. All are 
 ## Tests
 
 - `pip install -r tests/requirements.txt semgrep==1.186.0 && python3 -m playwright install --with-deps chromium && (cd tests && npm ci)` once. `build/check_all.sh` fails if Semgrep is missing (CI runs it on every PR) and downloads CI's pinned Semgrep rules itself on the first run.
-- `python3 -m pytest tests -q -n 2` (runs tests in parallel; more than 2 workers overload the software WebGL on a laptop). Add a test for every bug fixed and every new feature.
+- Day to day, run only the test files you touched (`python3 -m pytest tests/<file>.py -q -n 1`); CI runs everything. The whole suite locally is `python3 -m pytest tests -q -n 2` (more than 2 workers overload the software WebGL on a laptop, and even 2 can freeze a slow one). Add a test for every bug fixed and every new feature.
 - Known accessibility issues are listed in `tests/a11y-known.json`; when you fix one, delete its line.
 - The site's code is inside an IIFE: tests drive the DOM (search open = `#srch.on`, sheet open = `#sh-grab[aria-expanded=true]`).
 
