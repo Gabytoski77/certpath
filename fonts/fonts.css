@@ -2,7 +2,7 @@
    Inter Tight and Geist are trimmed to the characters the app uses.
    "CP Mono" is IBM Plex Mono by IBM Corp., trimmed the same way. Its license reserves the name "Plex" for unmodified copies,
    so the trimmed copy has its own name. Any character it lacks falls back to the next font in the list. */
-@font-face{font-family:"Inter Tight";font-style:normal;font-weight:100 900;font-display:swap;src:url("inter-tight.woff") format("woff")}
-@font-face{font-family:"Geist";font-style:normal;font-weight:100 900;font-display:swap;src:url("geist.woff") format("woff")}
-@font-face{font-family:"CP Mono";font-style:normal;font-weight:400;font-display:swap;src:url("cp-mono-regular.woff") format("woff")}
-@font-face{font-family:"CP Mono";font-style:normal;font-weight:500;font-display:swap;src:url("cp-mono-medium.woff") format("woff")}
+@font-face{font-family:"Inter Tight";font-style:normal;font-weight:100 900;font-display:swap;src:url("inter-tight.woff2") format("woff2")}
+@font-face{font-family:"Geist";font-style:normal;font-weight:100 900;font-display:swap;src:url("geist.woff2") format("woff2")}
+@font-face{font-family:"CP Mono";font-style:normal;font-weight:400;font-display:swap;src:url("cp-mono-regular.woff2") format("woff2")}
+@font-face{font-family:"CP Mono";font-style:normal;font-weight:500;font-display:swap;src:url("cp-mono-medium.woff2") format("woff2")}

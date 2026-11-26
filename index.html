@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-ct8wCua2YwN3svFLwo7RP0ap7U9l8X0MFQXnJfZm7as=' 'sha256-+9MxalYnSwmjfe08R4MS11SW22d3FMWRYHGfJyXeS8I='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-LenfWmX9zQaChWIXzei12VBdYnBuHw0iWdEbEDy4rXg=' 'sha256-MiqjbLVpTE7Rqp4MFjQB8bZU2inPpEBGtLRHiVRaUmw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -36,8 +36,8 @@
 <meta name="twitter:image" content="https://mynextcert.com/og-image.jpg">
 <meta name="twitter:image:alt" content="MyNextCert: Plan the path. Earn the cert.">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="preload" href="fonts/inter-tight.woff" as="font" type="font/woff" crossorigin>
-<link rel="preload" href="fonts/geist.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="fonts/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
 /* animatable custom properties so glass tint, text tint and vendor color morph smoothly */
@@ -272,12 +272,13 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .lite-pill::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.8}
 @media (hover:hover) and (pointer:fine){.lite-pill:hover{background:rgba(188,214,234,.14)}}
 .lite-pill:active{transform:scale(.96)}
-#lite-tip{position:fixed;left:50%;bottom:calc(var(--sab) + 18px);z-index:41;transform:translateX(-50%);width:min(440px,calc(100vw - 28px));box-sizing:border-box;
+#lite-tip,#upd-tip{position:fixed;left:50%;bottom:calc(var(--sab) + 18px);z-index:41;transform:translateX(-50%);width:min(440px,calc(100vw - 28px));box-sizing:border-box;
   display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:12px 12px 12px 16px;border-radius:16px;
   background:#141a22;border:1px solid rgba(188,214,234,.22);box-shadow:0 20px 50px -20px rgba(0,0,0,.9);color:var(--ink);font:400 12.5px/1.45 var(--f-ui)}
-#lite-tip[hidden]{display:none}
-#lite-tip b{font-weight:600}
-#lite-tip .mp-btn{padding:9px 14px;font-size:11.5px}
+#lite-tip[hidden],#upd-tip[hidden],#set-inst[hidden],.inst-w[hidden]{display:none}
+#upd-tip{z-index:42}
+#lite-tip b,#upd-tip b{font-weight:600}
+#lite-tip .mp-btn,#upd-tip .mp-btn{padding:9px 14px;font-size:11.5px}
 #lite-tip .lt-x{width:30px;height:30px;border-radius:50%;color:var(--ink-3);font-size:16px;line-height:1}
 
 /* color bloom + vendor panel share one backdrop */
@@ -2576,7 +2577,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.85</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.86</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2592,7 +2593,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
       </div>
       <div class="st-act" id="st-act"><button type="button" class="st-main" id="st-path">Build my path <small>1 min</small><span class="ar" aria-hidden="true">&rarr;</span></button></div>
       <div class="st-links" id="st-links"><button type="button" data-st="vendors">Browse vendors</button><button type="button" data-st="search">Search a cert</button></div>
-      <p class="st-disc">Not an official U.S. Coast Guard site &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span> &middot; <a class="pv-link" href="#privacy">Privacy</a> &middot; <button type="button" class="pv-link wn-btn">What&rsquo;s new<i class="wn-dot" aria-hidden="true"></i><span class="vh wn-vh"></span></button></p>
+      <p class="st-disc">Not an official U.S. Coast Guard site &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span> &middot; <a class="pv-link" href="#privacy">Privacy</a> &middot; <button type="button" class="pv-link wn-btn">What&rsquo;s new<i class="wn-dot" aria-hidden="true"></i><span class="vh wn-vh"></span></button><span class="inst-w" hidden> &middot; <button type="button" class="pv-link inst-btn">Install app</button></span></p>
     </div></div>
     <div class="stage" id="stage"></div>
     <div class="readout" id="readout" aria-live="polite" data-rv="3">
@@ -2608,7 +2609,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   </main>
 
   <footer class="bottom ui">
-    <div class="foot" data-rv="4"><span class="m-disc">Not an official U.S. Coast Guard site &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span> &middot; <a class="pv-link" href="#privacy">Privacy</a> &middot; <button type="button" class="pv-link wn-btn">What&rsquo;s new<i class="wn-dot" aria-hidden="true"></i><span class="vh wn-vh"></span></button></span><span id="status"></span></div>
+    <div class="foot" data-rv="4"><span class="m-disc">Not an official U.S. Coast Guard site &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span> &middot; <a class="pv-link" href="#privacy">Privacy</a> &middot; <button type="button" class="pv-link wn-btn">What&rsquo;s new<i class="wn-dot" aria-hidden="true"></i><span class="vh wn-vh"></span></button><span class="inst-w" hidden> &middot; <button type="button" class="pv-link inst-btn">Install app</button></span></span><span id="status"></span></div>
   </footer>
 </div>
 
@@ -2984,6 +2985,12 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
           </div>
           <p class="set-s" id="set-gfx-s" aria-live="polite"></p>
         </section>
+        <section class="set rv-s" id="set-inst" aria-labelledby="set-inst-h" hidden>
+          <p class="lab">This device</p>
+          <h3 class="set-h" id="set-inst-h">Install as an app</h3>
+          <p class="set-p" id="set-inst-p"></p>
+          <div class="set-acts"><button type="button" class="mp-btn" id="set-inst-b">Install MyNextCert</button></div>
+        </section>
         <section class="set rv-s" aria-labelledby="set-bk-h">
           <p class="lab">Your progress</p>
           <h3 class="set-h" id="set-bk-h">Back up and restore</h3>
@@ -3059,6 +3066,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
 <section id="panel" hidden role="dialog" aria-modal="true" aria-labelledby="p-title"></section>
 <div id="toast" role="status"></div>
 <div id="lite-tip" role="dialog" aria-label="Lite mode suggestion" hidden><p style="margin:0"><b>Running slow?</b> Lite mode turns off the 3D effects. You can change it anytime in Settings.</p><button type="button" class="mp-btn" id="lt-on">Use Lite</button><button type="button" class="lt-x" id="lt-x" aria-label="Dismiss">&times;</button></div>
+<div id="upd-tip" role="status" hidden><p style="margin:0"><b>New version ready.</b> Refresh to get the latest MyNextCert.</p><button type="button" class="mp-btn" id="upd-go">Refresh</button><button type="button" class="lt-x" id="upd-x" aria-label="Dismiss">&times;</button></div>
 <div id="srch" aria-hidden="true" inert>
   <div class="sr-bg" data-sr-close></div>
   <div class="sr-card" role="dialog" aria-modal="true" aria-label="Search certifications">
@@ -6230,14 +6238,12 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.86",d:"2026-11-26",t:"The app opens instantly from its saved copy and offers a Refresh when there\u2019s a new version. Smaller fonts, and an Install app link on Edge and Chrome."},
   {v:"2.85",d:"2026-11-25",t:"Lite mode: one click opens a cert card, no more double globe when you pick a vendor, and a steadier title. On slower computers the globe stays still until you drag it."},
   {v:"2.84",d:"2026-11-25",t:"New hands-on practice questions in the Security+ exam: find the bad lines in a log, build firewall rules in order, use a small terminal and place devices on a network diagram."},
   {v:"2.83",d:"2026-11-24",t:"The site loads faster the first time: each guide now downloads when you open it."},
   {v:"2.82",d:"2026-11-24",t:"Clearer wording on three CCST IT Support practice questions."},
-  {v:"2.81",d:"2026-11-23",t:"Fixed three links that had gone dead: SUNY Empire's Coast Guard page, CompTIA's CE fees and Microsoft's Windows Server trial."},
-  {v:"2.80",d:"2026-11-23",t:"The site opens faster when you come back, and Light mode downloads less."},
-  {v:"2.79",d:"2026-11-23",t:"Full CCST IT Support practice exam."},
-  {v:"2.78",d:"2026-11-22",t:"New What\u2019s new page, and every guide now shows the date its exam facts were last checked."}
+  {v:"2.81",d:"2026-11-23",t:"Fixed three links that had gone dead: SUNY Empire's Coast Guard page, CompTIA's CE fees and Microsoft's Windows Server trial."}
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -7999,7 +8005,7 @@ var SIDX=[];
   Object.keys(GUIDES).forEach(function(n){var G=GUIDES[n];mxBankList(G).forEach(function(b){
     SIDX.push({kind:"page",key:"p:mx:"+G.id+":"+b.ver,mxg:n,name:q8Short(n)+" practice exam",sub:"Full timed exam · "+b.code+" · weak-spot drills",fields:[[snorm(q8Short(n)+" practice exam"),95],[snorm(q8Short(n)+" "+b.code+" mock exam timed test practice test full exam weak spots drill"),70]]});});});
   SIDX.push({kind:"page",key:"p:print",print:true,name:"Printable path sheet",sub:"For instructors and leadership · certs by path, DoD 8140, CG COOL",fields:[[snorm("printable path sheet"),95],[snorm("print printable printout pdf save as pdf handout hand out one pager brief briefing instructor instructors leadership command chief master chief counseling sheet paper"),60]]});
-  SIDX.push({kind:"page",key:"p:settings",page:"settings",name:"Settings",sub:"Explore · Lite mode, back up and restore your progress",fields:[[snorm("settings"),95],[snorm("lite mode light mode slow lag laggy battery data saver 3d globe off backup back up restore export import transfer move progress new phone new device save my progress"),60]]});
+  SIDX.push({kind:"page",key:"p:settings",page:"settings",name:"Settings",sub:"Explore · Lite mode, back up and restore your progress",fields:[[snorm("settings"),95],[snorm("install app add to home screen desktop app lite mode light mode slow lag laggy battery data saver 3d globe off backup back up restore export import transfer move progress new phone new device save my progress"),60]]});
   SIDX.push({kind:"page",key:"p:colleges",col:true,name:"Colleges",sub:"Degrees · "+COLLEGES.length+" schools, what you pay after TA",fields:[[snorm("colleges"),95],[snorm("college colleges university universities school schools degree degrees bachelor bachelors associate online tuition assistance ta wgu"),58]]});
   COLLEGES.forEach(function(c){
     SIDX.push({kind:"college",key:"k:"+c.id,name:c.name,v:WG,sub:"Colleges · "+c.short+" · "+(c.pay<0?"free, no TA needed":c.id==="wgu"?"flat rate per term":c.payTxt+" a credit after TA"),
@@ -8549,6 +8555,32 @@ function setLite(v){
   $("#bk-yes").addEventListener("click",bkRestore);
   $("#bk-no").addEventListener("click",function(){bkPending=null;$("#bk-cbox").hidden=true;});
 })();
+
+/* v2.86: install as an app. Edge and Chrome offer it through "beforeinstallprompt": then an "Install app" link shows in
+   the footer and a section in Settings, until it's installed. iPhone and iPad have no prompt, so Settings explains
+   Share > Add to Home Screen instead. Nothing shows when the site already runs as an installed app. */
+var instEvt=null;
+function instStandalone(){try{return matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: window-controls-overlay)").matches||navigator.standalone===true;}catch(e){return false;}}
+function instIOS(){var u=navigator.userAgent||"";return /iPad|iPhone|iPod/.test(u)||(/Macintosh/.test(u)&&navigator.maxTouchPoints>1);}
+function instShow(){
+  var app=instStandalone(), can=!!instEvt&&!app, ios=!can&&!app&&instIOS();
+  document.querySelectorAll(".inst-w").forEach(function(w){w.hidden=!can;});
+  $("#set-inst").hidden=!(can||ios);
+  $("#set-inst-b").hidden=!can;
+  $("#set-inst-p").textContent=can?"Adds MyNextCert to this device's Start menu, dock or home screen with its own icon and window. It opens faster and works offline. You can remove it like any other app.":
+    "On iPhone or iPad: tap Share, then Add to Home Screen. MyNextCert then opens like an app and works offline.";
+}
+function instGo(){
+  if(!instEvt) return;
+  var ev=instEvt;instEvt=null;instShow();   /* the browser lets the prompt run once; it offers a new one later if needed */
+  try{var r=ev.prompt();if(r&&r.catch) r.catch(function(){});}catch(e){return;}
+  if(ev.userChoice&&ev.userChoice.then) ev.userChoice.then(function(c){if(c&&c.outcome==="accepted") toast("Installing MyNextCert");},function(){});
+}
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();instEvt=e;instShow();});
+window.addEventListener("appinstalled",function(){instEvt=null;instShow();toast("MyNextCert is installed");});
+document.querySelectorAll(".inst-btn").forEach(function(b){b.addEventListener("click",instGo);});
+$("#set-inst-b").addEventListener("click",instGo);
+instShow();
 
 /* after a Lite switch or a restore: skip the launch screen, say what happened, reopen Settings */
 var setReopen=null;
@@ -9784,12 +9816,20 @@ function runSplash(){
 })();
 </script>
 <script>
-/* app updates: check for a new version every time the app opens, and reload once when it arrives */
+/* app updates: check for a new version every time the app opens. Since v2.86 the app opens from its saved copy at once,
+   so when a newer version arrives (a new service worker takes over, or it says the page changed) a small bar offers
+   "Refresh" instead of reloading under the reader. Ignoring it is fine: the next open shows the new version. */
 if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){
-  var hadController=!!navigator.serviceWorker.controller, reloaded=false;
-  navigator.serviceWorker.addEventListener("controllerchange",function(){
-    if(!hadController||reloaded) return;reloaded=true;location.reload();
-  });
+  var hadController=!!navigator.serviceWorker.controller, updShown=false;
+  var showUpdate=function(){
+    var bar=document.getElementById("upd-tip");if(updShown||!bar) return;updShown=true;
+    bar.hidden=false;
+    document.getElementById("upd-go").addEventListener("click",function(){location.reload();});
+    document.getElementById("upd-x").addEventListener("click",function(){bar.hidden=true;});
+  };
+  navigator.serviceWorker.addEventListener("controllerchange",function(){if(hadController) showUpdate();});
+  navigator.serviceWorker.addEventListener("message",function(e){if(e.data&&e.data.type==="update-ready") showUpdate();});
+  if(navigator.serviceWorker.startMessages) navigator.serviceWorker.startMessages();
   window.addEventListener("load",function(){
     navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){r.update();}).catch(function(){});
   });
