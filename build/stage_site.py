@@ -49,6 +49,9 @@ def main():
     missing = [f for f in shell if not (OUT / f).exists()]
     if missing:
         sys.exit("FAIL: sw.js SHELL lists files that are not deployed: " + ", ".join(missing))
+    # the practice-exam PBQ engine is loaded by the page on demand (not in SHELL), so make sure it is really deployed
+    if not (OUT / "vendor" / "pbq-engine.js").is_file():
+        sys.exit("FAIL: vendor/pbq-engine.js is not in the staged site")
     n = sum(1 for p in OUT.rglob("*") if p.is_file())
     print("staged %d files in %s" % (n, OUT))
 

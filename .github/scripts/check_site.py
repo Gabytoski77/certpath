@@ -438,6 +438,108 @@ def alloc(n, domains):
     return out
 
 
+NEW_PBQ_KINDS = ("logsel", "rules", "term", "diagram")
+
+
+def check_new_pbq(q, dset):
+    """The new PBQ types (v2.84): same rules as vendor/pbq-engine.js, plus the content rules the page can't check:
+    every scored part has a non-empty "why", references resolve, and the question has something to get wrong."""
+    out = []
+
+    def text(x, n=900):
+        return isinstance(x, str) and 0 < len(x.strip()) <= n
+
+    def why(x, label):
+        if not isinstance(x, dict) or not text(x.get("why"), 700):
+            out.append(f"{label} has no 'why'")
+            return
+        d = x.get("d", q["d"])
+        if "d" in x and x["d"] not in dset:
+            out.append(f"{label} has unknown domain {x['d']!r}")
+        if "obj" in x and not re.fullmatch(r"\d+\.\d+", str(x["obj"])) or ("obj" in x and str(x["obj"]).split(".")[0] + ".0" != d):
+            out.append(f"{label} objective {x.get('obj')!r} doesn't fit domain {d}")
+
+    if not text(q.get("title"), 200) or not text(q.get("scenario")):
+        out.append("needs a title and a scenario")
+    if "ticket" in q and not text(q["ticket"], 700):
+        out.append("bad ticket text")
+    k = q["kind"]
+    if k == "logsel":
+        lines = q.get("lines") or []
+        if not 3 <= len(lines) <= 30 or not any(l.get("bad") for l in lines) or all(l.get("bad") for l in lines):
+            out.append("needs 3-30 lines, with at least one bad and one normal line")
+        for i, l in enumerate(lines):
+            if not text(l.get("text"), 320) or l.get("bad") not in (0, 1):
+                out.append(f"line {i + 1} needs text and bad = 0 or 1")
+            why(l, f"line {i + 1}")
+        a = q.get("ask")
+        if a is not None:
+            if not text(a.get("label"), 200) or not 2 <= len(a.get("opts", [])) <= 6 or not isinstance(a.get("a"), int) or not 0 <= a["a"] < len(a.get("opts", [])):
+                out.append("ask needs a label, 2-6 options and a valid answer")
+            why(a, "ask")
+    elif k == "rules":
+        rules = q.get("rules") or []
+        ids = {r.get("id"): r for r in rules}
+        if not 3 <= len(rules) <= 14 or len(ids) != len(rules):
+            out.append("needs 3-14 rules with unique ids")
+        if sum(1 for r in rules if r.get("need")) < 2 or all(r.get("need") for r in rules):
+            out.append("needs at least 2 needed rules and at least 1 decoy rule")
+        for r in rules:
+            if not text(r.get("text"), 200) or r.get("need") not in (0, 1) or not re.fullmatch(r"[a-z0-9]{1,6}", str(r.get("id"))):
+                out.append(f"rule {r.get('id')!r} needs an id, text and need = 0 or 1")
+            why(r, f"rule {r.get('id')!r}")
+        for b in q.get("before", []):
+            if not (ids.get(b.get("a"), {}).get("need") and ids.get(b.get("b"), {}).get("need")) or b["a"] == b["b"]:
+                out.append("a 'before' pair must name two different needed rules")
+            why(b, "a 'before' pair")
+        if "last" in q:
+            if not ids.get((q["last"] or {}).get("id"), {}).get("need"):
+                out.append("'last' must name a needed rule")
+            why(q["last"] or {}, "'last'")
+    elif k == "term":
+        cmds, checks = q.get("cmds") or [], q.get("checks") or []
+        if not 2 <= len(cmds) <= 40 or not 2 <= len(checks) <= 8:
+            out.append("needs 2-40 commands and 2-8 checks")
+        facts = set()
+        for c in cmds:
+            if not c.get("run") or len(c["run"]) > 16 or not all(text(r, 120) and r.count("{ip}") <= 1 for r in c["run"]) or not isinstance(c.get("out"), str) or len(c.get("out", "")) > 1500:
+                out.append(f"command {str((c.get('run') or ['?'])[0])!r} needs 'run' lines and 'out'")
+            fx = c.get("fx", [])
+            facts.update([fx] if isinstance(fx, str) else fx)
+        pats = [re.compile("^" + re.escape(f).replace(re.escape("{ip}"), r"(?:\d{1,3}\.){3}\d{1,3}") + "$") for f in facts]
+        known = lambda f: any(p.match(f) for p in pats)  # noqa: E731
+        as_list = lambda v: v if isinstance(v, list) else [v]  # noqa: E731
+        for c in checks:
+            if not text(c.get("t"), 200):
+                out.append("every check needs a 't' (what the learner has to do)")
+            why(c, f"check {str(c.get('t'))[:30]!r}")
+            kinds = [x for x in ("has", "lacks", "after") if x in c]
+            if len(kinds) != 1:
+                out.append(f"check {str(c.get('t'))[:30]!r} needs exactly one of has / lacks / after")
+                continue
+            refs = as_list(c["has"] if "has" in c else c["lacks"] if "lacks" in c else c["after"]) + (as_list(c.get("of", [])) if "after" in c else [])
+            for f in refs:
+                if not known(f):
+                    out.append(f"check {str(c.get('t'))[:30]!r} uses '{f}', which no command produces")
+    elif k == "diagram":
+        slots, devs = q.get("slots") or [], q.get("devs") or []
+        if not 2 <= len(slots) <= 8 or len(devs) <= len(slots) or len(devs) > 12:
+            out.append("needs 2-8 spots and more devices than spots (so some are decoys)")
+        used = [d.get("slot") for d in devs if isinstance(d.get("slot"), int) and d["slot"] >= 0]
+        if sorted(used) != list(range(len(slots))):
+            out.append("every spot needs exactly one correct device")
+        if not any(d.get("slot") == -1 for d in devs):
+            out.append("needs at least one decoy device (slot -1)")
+        for s in slots:
+            if not text(s.get("label"), 60) or not text(s.get("zone"), 40):
+                out.append("every spot needs a label and a zone")
+        for d in devs:
+            if not text(d.get("name"), 40) or not re.fullmatch(r"[a-z0-9]{1,6}", str(d.get("id"))):
+                out.append(f"device {d.get('id')!r} needs an id and a name")
+            why(d, f"device {d.get('id')!r}")
+    return out
+
+
 def check_qbank(path, ver):
     """One practice-exam bank: structure, explanations, coverage, pool sizes, duplicates, answer-length tells."""
     tag = f"question bank {path}"
@@ -480,6 +582,11 @@ def check_qbank(path, ver):
                     len(r.get("a", [])) == len(q["cols"]) and all(0 <= v < len(q["opts"][ci]) for ci, v in enumerate(r["a"])) and r.get("why") for r in q["rows"])
             elif q.get("kind") == "match":
                 good = q.get("choices") and q.get("items") and all(0 <= it.get("a", -1) < len(q["choices"]) and it.get("why") and (it.get("log") or it.get("text")) for it in q["items"])
+            elif q.get("kind") in NEW_PBQ_KINDS:
+                problems = check_new_pbq(q, dset)
+                for pr in problems:
+                    fail(f"{tag}: PBQ {qid}: {pr}")
+                good = True
             else:
                 good = False
             if not good:
