@@ -403,7 +403,7 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 #sbar{position:fixed;left:0;right:0;top:0;height:var(--sat);z-index:32;pointer-events:none;background:#0f1319;opacity:0;transition:opacity .35s var(--ez)}
 #sbar.on{opacity:1}
 #veil{position:fixed;inset:0;z-index:16;background:#000;opacity:0;pointer-events:none}
-#sheet{position:fixed;left:0;right:0;bottom:0;margin-inline:auto;width:min(100%,1120px);top:max(52px,calc(var(--sat) + 40px));z-index:18;--peek-all:calc(var(--peek) + var(--sab));
+#sheet{position:fixed;left:0;right:0;bottom:0;margin-inline:auto;width:min(100%,1120px);box-sizing:border-box;top:max(52px,calc(var(--sat) + 40px));z-index:18;--peek-all:calc(var(--peek) + var(--sab));
   display:flex;flex-direction:column;border-radius:16px 16px 0 0;border:1px solid rgba(255,255,255,.09);border-bottom:0;color:var(--ink);
   background:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1.3px) 0 0/4px 4px,linear-gradient(180deg,#1c222c 0%,#151a22 40%,#10141a 100%);background-color:#151a22;
   box-shadow:0 -30px 80px rgba(0,0,0,.6);will-change:transform;transform:translateY(calc(100% - var(--peek) - var(--sab)));transition:opacity .5s var(--ez)}
@@ -2540,7 +2540,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.84</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.85</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2942,7 +2942,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
         <section class="set rv-s" aria-labelledby="set-gfx-h">
           <p class="lab">Display</p>
           <h3 class="set-h" id="set-gfx-h">Graphics</h3>
-          <p class="set-p">For the full version. Auto watches how smoothly this device draws the home screen and steps down on slow computers, like work laptops and remote desktops. Balanced keeps the 3D globe but runs it lighter, with regular scrolling and flat cert cards. Light switches to the same still version as Lite: a picture of the globe and no animations.</p>
+          <p class="set-p">For the full version. Auto watches how smoothly this device draws the home screen and steps down on slow computers, like work laptops and remote desktops. Balanced keeps the 3D globe but runs it lighter (it holds still until you drag it), with regular scrolling and flat cert cards. Light switches to the same still version as Lite: a picture of the globe and no animations.</p>
           <div class="set-seg" id="set-gfx" role="radiogroup" aria-labelledby="set-gfx-h">
             <button type="button" role="radio" data-gfx="auto" aria-checked="false">Auto</button><button type="button" role="radio" data-gfx="high" aria-checked="false">High</button><button type="button" role="radio" data-gfx="bal" aria-checked="false">Balanced</button><button type="button" role="radio" data-gfx="light" aria-checked="false">Light</button>
           </div>
@@ -3424,7 +3424,7 @@ var LITE=(function(){
 /* ---------- Graphics quality for the full version (v2.40) ----------
    Saved as cgcp.gfx: "high", "bal", "light", or nothing for Auto. Auto measures how smoothly the home screen draws and
    steps down on slow computers (work laptops, remote desktops), then remembers the result for this device (cgcp.gfxa).
-   Tier 1 Balanced: globe at 1x resolution and 30 frames a second, regular scrolling, flat cert cards, no looping decorations.
+   Tier 1 Balanced: globe at 1x resolution and 30 frames a second, holds still until you drag it (v2.85), regular scrolling, flat cert cards, no looping decorations.
    Tier 2 Light: the still globe, no particles, no blur; motion stays. Lite mode overrides all of this. */
 var GFX=(function(){
   /* cgcp.gfxa is "tier|time": an Auto result older than a week is checked again from High */
@@ -3648,7 +3648,7 @@ var fieldFront=makeField($("#pk-front"),{density:.9,vmin:14,vmax:26,smin:18,smax
 /* ---------- three.js globe ---------- */
 var has3D=false, renderer, scene, camera, leanG, globe, stars, beacons=[], hitMeshes=[];
 var W=1,H=1, gcx=0,gcy=0, baseDist=4, camDist=4, zoom=1, zoomT=1, badgeBase=0.3, introCam={v:reduced?1:1.6};
-var TILT=0.34, AUTO=reduced?0:0.085;
+var TILT=0.34, AUTO=(reduced||GFX.tier>=1)?0:0.085;   /* v2.85: only High turns the globe by itself; Balanced holds still until you drag it */
 var rotY=-2.1, rotX=TILT, velY=reduced?0:1.15, dragY=0, dragX=0, samples=[];
 var state="idle", tClock=0, diveIdx=-1, dim={v:0}, steering=false, steerId=0, holdUntil=0;
 var dragging=false, dragMoved=0, lastX=0, lastY=0, pointers=new Map(), pinch0=0, zoom0=1;
@@ -3940,7 +3940,9 @@ function stillPic(i){
   /* v2.66: the new picture goes on top and the old one stays under it until the new one has been painted, so the
      globe never blinks out on slow work PCs (decoding="sync" makes the browser paint it only once it's decoded) */
   ready.then(function(){if(tok!==still.tok||still.mode!=="pic") return;pre.alt="";pre.draggable=false;pre.decoding="sync";
-    var old=still.img;still.pic.appendChild(pre);still.img=pre;still.shown=i;stillPlace();
+    var old=still.img;still.pic.appendChild(pre);still.img=pre;still.shown=i;
+    if(old&&old!==pre) old.style.visibility="hidden";   /* v2.85: the new picture is already decoded, so hide the old one in the same step: never two globes (it showed through the new one's clear edges) */
+    stillPlace();
     if(old&&old!==pre) requestAnimationFrame(function(){requestAnimationFrame(function(){if(old.parentNode) old.parentNode.removeChild(old);});});},
     function(){if(tok===still.tok) stillDrawn();});
 }
@@ -4193,7 +4195,7 @@ function updateBeacons(dt){
 
 var splashCover=!!document.getElementById("splash");
 /* Auto graphics: watch about 2.5 s of the home screen at rest. Under 42 frames a second steps down to Balanced,
-   under 24 at Balanced steps down to Light. It only runs while nothing is open, and starts after the launch. */
+   under 40 at Balanced steps down to Light. It only runs while nothing is open, and starts after the launch. */
 var gfxProbe=null, gfxTold=false, covered=false;
 function gfxStart(delay){if(!GFX.auto||!has3D||GFX.tier>=2||!finePointer) return;   /* computers with a mouse only: a phone in low power mode runs at 30 fps on purpose */
   setTimeout(function(){gfxProbe={n:0,t0:0};},delay);}
@@ -4203,13 +4205,14 @@ function gfxSample(now){
   if(!p.t0){p.t0=now;return;}
   p.n++;if(now-p.t0<2500) return;
   var fps=p.n*1000/(now-p.t0);gfxProbe=null;
-  var nt=GFX.tier===0&&fps<42?1:GFX.tier===1&&fps<24?2:GFX.tier;
+  var nt=GFX.tier===0&&fps<42?1:GFX.tier===1&&fps<40?2:GFX.tier;   /* v2.85: Balanced steps down to Light under 40 (was 24) */
   if(nt!==GFX.tier){gfxSet(nt);if(nt<2) gfxStart(1500);}
 }
 function gfxSet(t){
   GFX.tier=t;
   try{localStorage.setItem("cgcp.gfxa",t+"|"+Date.now());}catch(e){}
   var h=document.documentElement;h.classList.toggle("gfx-bal",t>=1);h.classList.toggle("gfx-light",t>=2);
+  if(t>=1) AUTO=0;
   if(t>=1&&has3D&&renderer){renderer.setPixelRatio(1);resize();}
   if(t>=2) goStill();
   if(!gfxTold&&!GFX.had){gfxTold=true;toast("Graphics adjusted for this computer. Change it in Settings.");}
@@ -4257,7 +4260,7 @@ function frame(now){
     if(tt){
       if(!ttDrag){
         var hx=mouse.px-appLeft, hy=mouse.py-appTop, w=tt.word();
-        var inside=state==="idle"&&!dragging&&mouse.px>-999&&!!w&&hy>w.top-50&&hy<w.bottom+50&&!onSphere(hx,hy);
+        var inside=!still.on&&state==="idle"&&!dragging&&mouse.px>-999&&!!w&&hy>w.top-50&&hy<w.bottom+50&&!onSphere(hx,hy);   /* v2.85: no cursor effect on the title with the still globe (Lite, Light): it redrew the word every frame on slow PCs */
         tt.pointer(hx,hy,inside);
       }
       tt.setDisc(gcx,gcy,sphereR()*.995);
@@ -6191,6 +6194,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.85",d:"2026-11-25",t:"Lite mode: one click opens a cert card, no more double globe when you pick a vendor, and a steadier title. On slower computers the globe stays still until you drag it."},
   {v:"2.84",d:"2026-11-25",t:"New hands-on practice questions in the Security+ exam: find the bad lines in a log, build firewall rules in order, use a small terminal and place devices on a network diagram."},
   {v:"2.83",d:"2026-11-24",t:"The site loads faster the first time: each guide now downloads when you open it."},
   {v:"2.82",d:"2026-11-24",t:"Clearer wording on three CCST IT Support practice questions."},
@@ -14778,6 +14782,7 @@ function gFx(){
 function gSpy(){
   gSpyRaf=0;if(!guideName) return;gFx();
   var secs=panel.querySelectorAll(".g-sec"), top=panel.getBoundingClientRect().top+gNavH()+80, id="obj";
+  if(!secs.length) return;   /* v2.85: a scroll while the guide is still being drawn (a one-tap open on a phone) */
   for(var k=0;k<secs.length;k++){if(secs[k].getBoundingClientRect().top<=top) id=secs[k].dataset.sec;}
   if(panel.scrollTop+panel.clientHeight>=panel.scrollHeight-4) id=secs[secs.length-1].dataset.sec;
   if(gNavLock){if(id===gNavLock.id||performance.now()>gNavLock.until) gNavLock=null;else id=gNavLock.id;}
@@ -16991,8 +16996,7 @@ function makeFlex(host,v){
     /* Lite mode and browsers without WebGL2: a plain row of cards. Mouse wheel, drag, the arrow buttons and the keyboard all move it. */
     var row=document.createElement("div");row.className="flex-fb";
     posters.forEach(function(pc,i){var im=pc;im.className="";im.setAttribute("role","img");im.setAttribute("aria-label",items[i].c[0]);
-      im.addEventListener("click",function(){if(dragMoved) return;go(i);});
-      im.addEventListener("dblclick",function(){openItem(i);});
+      im.addEventListener("click",function(){if(dragMoved) return;go(i,true);openItem(i);});   /* v2.85: one click or tap opens the card (it used to need a double-click) */
       im.addEventListener("mouseenter",function(){setHover(i);});im.addEventListener("mouseleave",function(){setHover(-1);});
       row.appendChild(im);});
     function mark(i){Array.prototype.forEach.call(row.children,function(el,k){el.classList.toggle("on",k===i);});}
@@ -17001,7 +17005,8 @@ function makeFlex(host,v){
     function go(i,instant){i=Math.max(0,Math.min(n-1,i));pick();setActive(i);mark(i);row.scrollTo({left:centerOf(i),behavior:(instant||reduced)?"auto":"smooth"});scrollT=performance.now();}
     row.addEventListener("scroll",function(){if(performance.now()-scrollT<600) return;var mid=row.scrollLeft+row.clientWidth/2,best=0,bd=1e9;Array.prototype.forEach.call(row.children,function(el,i){var c=el.offsetLeft+el.offsetWidth/2,dd=Math.abs(c-mid);if(dd<bd){bd=dd;best=i;}});setActive(best);mark(best);},{passive:true});
     host.insertBefore(row,host.firstChild);host.style.cursor="default";host.classList.add("focused");
-    var hint=host.querySelector(".flex-hint");if(hint&&finePointer) hint.innerHTML="Scroll, drag or use &larr; &rarr; &nbsp;&middot;&nbsp; double-click or Open to view";
+    var hint=host.querySelector(".flex-hint");if(hint&&finePointer) hint.innerHTML=finePointer?"Scroll, drag or use &larr; &rarr; &nbsp;&middot;&nbsp; click a card to open it":"Swipe &nbsp;&middot;&nbsp; tap a card to open it";
+    [].forEach.call(panel.querySelectorAll(".pa-meta .g"),function(m){m.textContent=m.textContent.replace(/click again to open|tap again to open/,finePointer?"click to open":"tap to open");});
     /* mouse wheel: up/down moves one card per notch, sideways (trackpad, Shift+wheel) scrolls freely; past the ends the page scrolls */
     row.addEventListener("wheel",function(e){
       if(e.ctrlKey) return;var dx=e.deltaX,dy=e.deltaY;if(e.shiftKey&&Math.abs(dx)<Math.abs(dy)){dx=dy;dy=0;}
@@ -17017,9 +17022,6 @@ function makeFlex(host,v){
       if(dragMoved){row.scrollLeft=drag.left-dx;scrollT=0;}});
     function endDrag(){if(!drag) return;drag=null;if(dragMoved){row.removeAttribute("data-dragging");var mid=row.scrollLeft+row.clientWidth/2,best=0,bd=1e9;Array.prototype.forEach.call(row.children,function(el,i){var dd=Math.abs(el.offsetLeft+el.offsetWidth/2-mid);if(dd<bd){bd=dd;best=i;}});go(best);setTimeout(function(){dragMoved=false;},0);}}
     row.addEventListener("pointerup",endDrag);row.addEventListener("pointercancel",endDrag);
-    var fbTap=null;
-    row.addEventListener("pointerup",function(e){if(e.pointerType==="mouse") return;var im=e.target.closest("img,canvas");if(!im) return;var i=Array.prototype.indexOf.call(row.children,im),now=performance.now();
-      if(fbTap&&fbTap.i===i&&now-fbTap.t<400){fbTap=null;openItem(i);}else fbTap={i:i,t:now};});
     /* keyboard on the carousel itself: arrows, Home/End, Enter or Space opens */
     host.addEventListener("keydown",function(e){
       if(e.target!==host) return;
@@ -17629,6 +17631,18 @@ resize();camDist=baseDist*introCam.v;
 gfxStart(6000);
 window.addEventListener("resize",resize);
 if(window.ResizeObserver) new ResizeObserver(resize).observe(stageEl);
+/* v2.85: measure the globe's spot again whenever the layout can have moved without a window "resize" (a desktop app window
+   that settles after it opens, the display scale changing, fonts arriving, the app frame changing size). A stale spot
+   left the globe off to one side and the bottom bar in the wrong place in a Windows desktop app window. */
+(function(){
+  var raf=0;function again(){if(raf) return;raf=requestAnimationFrame(function(){raf=0;resize();if(typeof setSheet==="function"&&!shAnims) setSheet(sheetP);frameWake();});}
+  if(window.ResizeObserver){var ro2=new ResizeObserver(again);ro2.observe(app);ro2.observe(document.documentElement);}
+  if(window.visualViewport) visualViewport.addEventListener("resize",again);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(again);
+  window.addEventListener("load",function(){again();setTimeout(again,700);setTimeout(again,2500);});
+  window.addEventListener("pageshow",again);
+  try{var mq=matchMedia("(resolution: "+window.devicePixelRatio+"dppx)");(mq.addEventListener?mq.addEventListener.bind(mq,"change"):mq.addListener.bind(mq))(function(){again();});}catch(e){}
+})();
 
 /* opening sequence: camera glides in while the globe spins down, crests pop in one by one, UI settles */
 var T0=performance.now(), homeStarted=false;
