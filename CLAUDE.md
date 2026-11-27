@@ -58,6 +58,7 @@ Small edits (typo, link, one fact): batch several on one branch rather than one 
 ## Working on the big source file
 
 `src/app.html` is ~1.7 MB. Never read it whole. Grep for a distinctive word, then Read only those lines (offset/limit), and change it with Edit using the exact text (watch for `·`, `–`, curly quotes).
+Pipe grep output on src/app.html through cut -c1-300 (line 4 is a long base64 icon).
 Guides are `GUIDES["Name"]={...}` objects just before the `G_SECS=` line (plain data only: no functions or regexes, because the build parses them as data); copy the closest existing guide as a template. Search aliases are in `ALIAS` (edit the existing entry; a duplicate key wins). Every guide has `checked:"YYYY-MM-DD"` (shown as "Facts last checked"): set it to the day you really re-verified its facts, never a guess. `check_site.py` fails on a missing, bad or future date and warns after 45 days.
 
 ## Helpers (save tokens; none are public files)
