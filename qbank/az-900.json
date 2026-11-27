@@ -1,0 +1,1707 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "Azure Fundamentals",
+ "ver": "cur",
+ "exam": "AZ-900",
+ "title": "Azure Fundamentals (AZ-900) practice exam",
+ "rev": "2026-11-26",
+ "format": {
+  "n": 40,
+  "min": 45,
+  "pbq": 3,
+  "half": 20
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Describe cloud concepts",
+   "w": 28,
+   "obj": 3
+  },
+  {
+   "n": "2.0",
+   "name": "Describe Azure architecture and services",
+   "w": 38,
+   "obj": 4
+  },
+  {
+   "n": "3.0",
+   "name": "Describe Azure management and governance",
+   "w": 34,
+   "obj": 4
+  }
+ ],
+ "note": "Original questions written for MyNextCert from Microsoft's public AZ-900 study guide (skills measured as of July 20, 2026; https://learn.microsoft.com/credentials/certifications/resources/study-guides/az-900, checked 2026-11-26). Not real exam questions. The 40 items and 45 minutes follow the guide's typical exam (Microsoft's range is 40-60 items); domain weights use the midpoints of Microsoft's ranges (25-30%, 35-40%, 30-35%). 3 of the 40 items are hands-on.",
+ "q": [
+  {
+   "id": "az-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A unit asks who must patch the guest operating system on a virtual machine it rents from Azure. Under the shared responsibility model, who does that?",
+   "o": [
+    [
+     "Microsoft, because it owns the host",
+     "Microsoft patches the physical host and hypervisor, not the operating system you installed in your VM."
+    ],
+    [
+     "Both, split 50/50 by contract",
+     "There is no fixed split. Duties are set by service type, and the guest OS in a VM is the customer's."
+    ],
+    [
+     "The customer",
+     "Right. With a VM (IaaS) Microsoft runs the host and hardware, but the guest OS and anything above it belong to the customer."
+    ],
+    [
+     "The hardware vendor",
+     "Hardware makers are not part of this model. Microsoft runs the datacenter and its hardware."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A team keeps a small set of servers in its own building but runs its public web front end in Azure, with the two linked by a secure connection. Which cloud model is this?",
+   "o": [
+    [
+     "Hybrid cloud",
+     "Right. Hybrid mixes on-premises (or private) resources with a public cloud and lets them work together."
+    ],
+    [
+     "Public cloud only",
+     "Part of the setup is in the team's own building, so it isn't public only."
+    ],
+    [
+     "Private cloud only",
+     "A private cloud is used by one organization. This design also uses Azure's shared public cloud."
+    ],
+    [
+     "Community cloud",
+     "That is not one of the three models the exam uses: public, private and hybrid."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-1-03",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A planner says the new Azure project lets the unit avoid buying hardware up front and pay monthly for what it uses. What kind of spending is that?",
+   "o": [
+    [
+     "Capital expense (CapEx)",
+     "CapEx is large up-front spending on equipment you own, such as buying servers."
+    ],
+    [
+     "A fixed licence fee",
+     "The cost here changes with use, so it is not a fixed fee."
+    ],
+    [
+     "A sunk cost",
+     "A sunk cost is money already spent that can't be recovered. It is not a billing model."
+    ],
+    [
+     "Operating expense (OpEx)",
+     "Right. Pay-as-you-go cloud costs are ongoing operating expenses that rise and fall with use."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-1-04",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A function should run only when a file lands in a storage container, and the unit wants to be billed only for the time the code runs. Which idea does this describe?",
+   "o": [
+    [
+     "A reserved VM instance",
+     "A reservation is a discount for committing to a VM for one or three years. It bills whether or not code runs."
+    ],
+    [
+     "Serverless computing",
+     "Right. In serverless (such as Azure Functions) you supply code, Azure runs it on events, and billing follows execution."
+    ],
+    [
+     "Dedicated hosting",
+     "Dedicated hosts are physical servers set aside for one customer. You pay for them all the time."
+    ],
+    [
+     "A private cloud",
+     "A private cloud describes who uses the cloud, not how code is billed."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-1-05",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A workload runs steadily on the same VM size all year. Which pricing choice usually lowers the bill the most without changing how the workload runs?",
+   "o": [
+    [
+     "Spot virtual machines",
+     "Spot VMs are cheap but can be taken away at any time, so they suit work that can be interrupted."
+    ],
+    [
+     "A one- or three-year reservation",
+     "Right. Reserving capacity for a set term gives a discount compared with pay-as-you-go for steady use."
+    ],
+    [
+     "Pay-as-you-go rates",
+     "This is the full list price. It suits unpredictable use, not steady use."
+    ],
+    [
+     "Moving to a larger VM size",
+     "A bigger size costs more per hour. It does not lower the bill."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-1-06",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "During a busy filing season, a web app adds more identical servers on its own, then removes them when the rush ends. Which cloud benefit is this?",
+   "o": [
+    [
+     "Disaster recovery",
+     "Disaster recovery restores service after a major failure. This is a response to load."
+    ],
+    [
+     "Data sovereignty",
+     "Sovereignty is about which country's laws apply to data, not about load."
+    ],
+    [
+     "Fault domain isolation",
+     "That describes spreading hardware risk, not adjusting size to demand."
+    ],
+    [
+     "Elasticity",
+     "Right. Elasticity means adding and removing resources automatically to match demand."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-1-07",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A unit wants to handle more load by giving one VM more CPU and memory instead of adding more VMs. What is this called?",
+   "o": [
+    [
+     "Horizontal scaling",
+     "Horizontal scaling (scale out) adds more instances rather than enlarging one."
+    ],
+    [
+     "Geo-replication",
+     "Geo-replication copies data to another region. It does not change a VM's size."
+    ],
+    [
+     "Vertical scaling (scale up)",
+     "Right. Vertical scaling makes one machine bigger. Horizontal scaling adds more machines."
+    ],
+    [
+     "Load balancing",
+     "A load balancer spreads traffic across machines. It does not add CPU to one."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-1-08",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A leader asks what the cloud benefit of reliability means in practice. Which statement matches?",
+   "o": [
+    [
+     "The system recovers from faults",
+     "Right. Reliability is the ability to recover from problems, for example by using resources in other zones or regions."
+    ],
+    [
+     "Costs are fixed for three years",
+     "Cost certainty is part of predictability, not reliability."
+    ],
+    [
+     "Anyone can deploy without approval",
+     "Open deployment is the opposite of governance, and not a reliability feature."
+    ],
+    [
+     "Hardware never fails",
+     "Hardware does fail. Cloud designs expect that and plan around it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-1-09",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "The security office wants every new Azure resource to follow the same rules for allowed regions and required tags. Which cloud benefit does this show?",
+   "o": [
+    [
+     "Elasticity",
+     "Elasticity is about adjusting size to demand."
+    ],
+    [
+     "Governance",
+     "Right. Governance is applying standards and policies across resources, such as with Azure Policy."
+    ],
+    [
+     "Latency",
+     "Latency is delay. Rules for regions and tags do not measure it."
+    ],
+    [
+     "Scalability",
+     "Scalability is the ability to grow. It has nothing to do with enforcing standards."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-1-10",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A team wants a clear picture of what its monthly Azure spend and performance will look like as the app grows. Which benefit helps with this?",
+   "o": [
+    [
+     "Manageability",
+     "Manageability is about easy deployment, automation and monitoring of resources."
+    ],
+    [
+     "High availability",
+     "High availability is about uptime."
+    ],
+    [
+     "Data residency",
+     "Residency is about where data is stored."
+    ],
+    [
+     "Predictability",
+     "Right. Predictability covers both performance and cost, using tools like the pricing calculator and load testing."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-1-11",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A unit rents virtual machines and installs its own database software and a custom operating system image on them. Which service type is it using?",
+   "o": [
+    [
+     "IaaS",
+     "Right. In infrastructure as a service you rent compute, storage and network, and manage everything from the OS up."
+    ],
+    [
+     "PaaS",
+     "With PaaS the provider also runs the operating system and runtime."
+    ],
+    [
+     "SaaS",
+     "SaaS is a finished application, so you would not install your own database or OS."
+    ],
+    [
+     "Container as a service",
+     "Container services run packaged apps on a platform the provider manages. They do not hand you your own OS images."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-1-12",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A team wants to publish a web app and a database in Azure but does not want to patch operating systems or manage the runtime. Which service type fits best?",
+   "o": [
+    [
+     "IaaS",
+     "IaaS leaves OS patching and runtime setup with you."
+    ],
+    [
+     "SaaS",
+     "SaaS is software you simply use. Here the team is building and hosting its own app."
+    ],
+    [
+     "PaaS",
+     "Right. Platform as a service manages the OS and runtime, and you manage the app and its data."
+    ],
+    [
+     "On-premises hosting",
+     "That puts all management back on the team."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-1-13",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Which example is SaaS?",
+   "o": [
+    [
+     "An Azure virtual machine",
+     "A VM is IaaS. You manage what runs on it."
+    ],
+    [
+     "Azure App Service hosting your code",
+     "App Service is PaaS. You bring the code."
+    ],
+    [
+     "Microsoft 365 email in a browser",
+     "Right. SaaS is a complete app that the provider hosts and updates. You just use it."
+    ],
+    [
+     "A Hyper-V host in your own rack",
+     "That is on-premises hardware, not a cloud service."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A company needs its app to keep running if a whole Azure region goes down, with the data copied to another area far away. Which feature is designed for that purpose?",
+   "o": [
+    [
+     "An availability zone",
+     "Zones are separate datacenters inside one region. They do not help if the entire region is lost."
+    ],
+    [
+     "A resource group",
+     "A resource group is a logical container and gives no protection."
+    ],
+    [
+     "A management group",
+     "Management groups organize subscriptions. They give no resilience."
+    ],
+    [
+     "A region pair",
+     "Right. Each region is paired with another in the same geography, usually far apart, so a regional disaster is unlikely to hit both."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A US agency must keep workloads in a physically and logically separate Azure cloud that meets government compliance rules. Which option fits?",
+   "o": [
+    [
+     "Azure Government",
+     "Right. Azure Government is a sovereign cloud for US government customers, separate from the public Azure regions."
+    ],
+    [
+     "A region pair",
+     "Pairs are for resilience in the public cloud, not for separation."
+    ],
+    [
+     "An availability set",
+     "Availability sets spread VMs across hardware in one datacenter."
+    ],
+    [
+     "A larger subscription",
+     "Subscriptions are billing and access boundaries and do not change which cloud you are in."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which statement about resource groups is true?",
+   "o": [
+    [
+     "Resource groups can be nested inside each other",
+     "Resource groups cannot be nested."
+    ],
+    [
+     "Each resource sits in one resource group",
+     "Right. Every resource belongs to one group, though it can be moved to another."
+    ],
+    [
+     "Deleting a group leaves its resources behind",
+     "Deleting a group deletes every resource inside it."
+    ],
+    [
+     "A group can span several subscriptions",
+     "A resource group belongs to a single subscription."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-2-04",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "The finance office wants one place to set a policy that applies to 12 different subscriptions at the same time. What should it use?",
+   "o": [
+    [
+     "A resource group",
+     "A resource group lives inside one subscription, so it cannot cover twelve."
+    ],
+    [
+     "A virtual network",
+     "Networks carry traffic. They don't hold policies for subscriptions."
+    ],
+    [
+     "A management group",
+     "Right. Management groups sit above subscriptions, and policy and access set there flow down to every subscription under them."
+    ],
+    [
+     "An availability zone",
+     "Zones are physical locations inside a region."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-2-05",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A web job must be able to scale out to many identical VMs, which Azure adds and removes by rule. Which compute option provides that?",
+   "o": [
+    [
+     "An availability set",
+     "Availability sets spread a fixed group of VMs across hardware, but do not add or remove VMs."
+    ],
+    [
+     "A dedicated host",
+     "A dedicated host is one physical server for your VMs. It doesn't autoscale VMs."
+    ],
+    [
+     "Azure Virtual Desktop",
+     "Virtual Desktop delivers desktops and apps to users. It is not a general scaling group."
+    ],
+    [
+     "Virtual machine scale sets",
+     "Right. Scale sets manage a group of identical, load-balanced VMs and can add or remove them automatically."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-2-06",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Remote staff need a full Windows desktop, hosted in Azure, that they can open from any device. Which service provides that?",
+   "o": [
+    [
+     "Azure Functions",
+     "Functions run small pieces of code on events."
+    ],
+    [
+     "Azure DNS",
+     "DNS translates names to IP addresses. It does not host desktops."
+    ],
+    [
+     "Azure Virtual Desktop",
+     "Right. It delivers virtualized Windows desktops and apps from Azure to users on many device types."
+    ],
+    [
+     "Azure Container Instances",
+     "Containers run packaged apps, not user desktops."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-2-07",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Two virtual networks in different regions must exchange traffic privately over Microsoft's backbone, with no gateway needed. What should you set up?",
+   "o": [
+    [
+     "A public IP on each VM",
+     "This sends traffic over the internet instead of keeping it on the private backbone."
+    ],
+    [
+     "Virtual network peering",
+     "Right. Peering connects virtual networks so traffic stays on Microsoft's private network."
+    ],
+    [
+     "Azure DNS",
+     "DNS resolves names and does not carry traffic between networks."
+    ],
+    [
+     "A resource lock",
+     "Locks prevent changes or deletion. They don't connect networks."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-2-08",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A team wants to reach an Azure SQL database using a private IP address from inside its virtual network, so that traffic never goes to a public address. Which feature does this?",
+   "o": [
+    [
+     "A private endpoint",
+     "Right. A private endpoint gives the service a private IP in your virtual network using Azure Private Link."
+    ],
+    [
+     "A public endpoint",
+     "The public endpoint uses a public address, which is the opposite of what is wanted."
+    ],
+    [
+     "A VPN Gateway",
+     "A VPN Gateway links networks or users to a virtual network. It is not how a PaaS service gets a private IP."
+    ],
+    [
+     "A region pair",
+     "Pairs relate to disaster recovery, not network paths."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-2-09",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A developer needs to run a short script when a message arrives, and does not want to manage servers or containers. Which Azure compute option fits best?",
+   "o": [
+    [
+     "A single large VM",
+     "A VM must be sized, patched and paid for even when idle."
+    ],
+    [
+     "Azure Functions",
+     "Right. Functions is event-driven, serverless code that runs only when triggered."
+    ],
+    [
+     "An availability set",
+     "This is a way to spread VMs across hardware, not a way to run code on events."
+    ],
+    [
+     "Azure Virtual Desktop",
+     "This delivers desktops to users and doesn't run triggered code."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-2-10",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Which choice is a key difference between containers and virtual machines?",
+   "o": [
+    [
+     "Containers each include a full guest OS",
+     "A full guest OS per instance describes a VM."
+    ],
+    [
+     "Containers need a physical server each",
+     "They do not. Many containers can share one host."
+    ],
+    [
+     "Containers can run only in Azure",
+     "Containers run on many platforms, including your own machines."
+    ],
+    [
+     "Containers share the host's OS kernel",
+     "Right. Containers package an app and share the host kernel, so they start fast and are lighter than VMs."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-2-11",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Old project files must be kept for years, are almost never read, and can wait hours to be retrieved. Which blob access tier has the lowest storage cost?",
+   "o": [
+    [
+     "Archive",
+     "Right. Archive is the cheapest to store but the data is offline and must be rehydrated first, which takes hours."
+    ],
+    [
+     "Hot",
+     "Hot has the highest storage cost and is for data used often."
+    ],
+    [
+     "Cool",
+     "Cool is cheaper than hot but costs more to store than archive."
+    ],
+    [
+     "Premium",
+     "Premium is for fast, low-latency workloads and costs the most."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-2-12",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A storage account must survive the loss of one datacenter in its region, but the unit does not want to pay for a second region. Which redundancy fits?",
+   "o": [
+    [
+     "LRS",
+     "LRS keeps three copies in a single datacenter, so losing it loses the data."
+    ],
+    [
+     "GRS",
+     "GRS does survive that, but it also pays for a copy in a second region."
+    ],
+    [
+     "ZRS",
+     "Right. Zone-redundant storage keeps copies in separate zones of one region, so one datacenter can fail."
+    ],
+    [
+     "GZRS",
+     "GZRS adds a second region on top of zones, which costs more than needed."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-2-13",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Which Azure storage service is used for a shared drive that Windows and Linux machines mount as a network file share?",
+   "o": [
+    [
+     "Azure Queue storage",
+     "Queues hold messages for apps to process."
+    ],
+    [
+     "Azure Table storage",
+     "Table storage keeps structured NoSQL data."
+    ],
+    [
+     "Azure Blob storage",
+     "Blob storage keeps unstructured objects and is not mounted as a normal share."
+    ],
+    [
+     "Azure Files",
+     "Right. Azure Files offers fully managed file shares using SMB or NFS."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-2-14",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A unit has 80 TB of data in a site with very slow internet and needs it in Azure in a few weeks. Which option suits this best?",
+   "o": [
+    [
+     "AzCopy over the link",
+     "AzCopy is a good tool, but 80 TB over a slow link would take far too long."
+    ],
+    [
+     "Azure Data Box",
+     "Right. Data Box is a rugged device that Microsoft ships to you. You load it and ship it back for upload."
+    ],
+    [
+     "Azure File Sync",
+     "File Sync keeps Windows file servers in step with Azure Files over the network."
+    ],
+    [
+     "Azure Storage Explorer",
+     "Explorer is a desktop app for browsing and moving files over the network."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-2-15",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "An admin wants a free command-line tool to copy blobs between storage accounts from a script. Which tool is meant for this?",
+   "o": [
+    [
+     "Azure Migrate",
+     "Migrate assesses and moves servers, databases and apps to Azure."
+    ],
+    [
+     "Azure Advisor",
+     "Advisor gives recommendations about your resources."
+    ],
+    [
+     "AzCopy",
+     "Right. AzCopy is a command-line tool for copying data to, from and between storage accounts."
+    ],
+    [
+     "Microsoft Purview",
+     "Purview governs data. It isn't a copy tool."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-2-16",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A unit wants staff to sign in once and reach every approved app, without typing a password for each. What is this called?",
+   "o": [
+    [
+     "Single sign-on (SSO)",
+     "Right. SSO lets one identity from Microsoft Entra ID reach many apps."
+    ],
+    [
+     "Multifactor authentication",
+     "MFA adds a second proof when you sign in. It doesn't remove the need to sign in to each app."
+    ],
+    [
+     "Role-based access control",
+     "RBAC decides what an identity can do on Azure resources."
+    ],
+    [
+     "Federation of firewalls",
+     "This is not a real Azure sign-in feature."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-2-17",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "Which pair counts as multifactor authentication?",
+   "o": [
+    [
+     "A password and a security question",
+     "Both are things you know, so this is a single factor type."
+    ],
+    [
+     "Two different passwords",
+     "Two passwords are the same kind of factor."
+    ],
+    [
+     "A username and a password",
+     "A username is an identifier, not a second proof."
+    ],
+    [
+     "A password and an app code",
+     "Right. A password is something you know and the app code is something you have. They are two different factors."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-2-18",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A contractor from another company needs access to one app in your Microsoft Entra tenant, using their own work account. Which feature lets you invite them?",
+   "o": [
+    [
+     "Microsoft Entra Domain Services",
+     "This gives a managed domain for older apps. It is not for inviting outsiders."
+    ],
+    [
+     "A resource lock",
+     "A lock protects a resource from changes. It has nothing to do with sign-in."
+    ],
+    [
+     "Entra External ID (B2B)",
+     "Right. B2B collaboration invites outside users as guests so that they sign in with their own identity."
+    ],
+    [
+     "Azure Policy",
+     "Policy controls the settings of resources."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-2-19",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A user has the Reader role on a subscription. An admin then gives the same user Contributor on one resource group inside it. What can the user do in that resource group?",
+   "o": [
+    [
+     "Manage resources in that group",
+     "Right. Roles are added together. Contributor at the lower scope lets the user manage resources in that group, while Reader still applies elsewhere."
+    ],
+    [
+     "Only read resources in the group",
+     "Reader is still in effect for the subscription, but the new Contributor role adds more at its scope."
+    ],
+    [
+     "Grant access to others",
+     "Contributor cannot assign roles. That takes Owner or User Access Administrator."
+    ],
+    [
+     "Nothing, the roles conflict",
+     "Azure RBAC is additive, so there is no conflict."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-2-20",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "Which statement matches the Zero Trust model?",
+   "o": [
+    [
+     "Trust every device on the internal network",
+     "That is the old perimeter idea that Zero Trust replaces."
+    ],
+    [
+     "Verify every request, assume breach",
+     "Right. Zero Trust means verifying explicitly, using least privilege and assuming a breach has happened."
+    ],
+    [
+     "Grant admin rights to all staff",
+     "Zero Trust uses least privilege, not broad rights."
+    ],
+    [
+     "Check identity only once a year",
+     "Verification happens on every request, not yearly."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-2-21",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "The security office wants a single score and a list of fixes showing how well its Azure resources follow security best practice, plus alerts about threats. Which service gives this?",
+   "o": [
+    [
+     "Azure Service Health",
+     "Service Health reports Azure outages and maintenance."
+    ],
+    [
+     "Azure Monitor alerts",
+     "Alerts fire on metrics and logs. They don't give a posture score."
+    ],
+    [
+     "Microsoft Defender for Cloud",
+     "Right. Defender for Cloud shows a secure score and recommendations and protects workloads from threats."
+    ],
+    [
+     "The pricing calculator",
+     "The calculator estimates costs."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-2-22",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "Which layered approach describes defense in depth?",
+   "o": [
+    [
+     "One very strong firewall at the network edge",
+     "A single control is a single point of failure."
+    ],
+    [
+     "Layers of controls, from data to physical",
+     "Right. Layers such as physical, identity, perimeter, network, compute, application and data each add protection if another fails."
+    ],
+    [
+     "Training users, then relying on them alone",
+     "Training is useful but is just one layer."
+    ],
+    [
+     "Encrypting data and adding nothing else",
+     "Encryption is one layer among many."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-2-23",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A legacy app needs LDAP, Kerberos and domain join, and the team does not want to run or patch domain controllers in Azure. Which service fits?",
+   "o": [
+    [
+     "Microsoft Entra External ID",
+     "External ID is for outside users and customers."
+    ],
+    [
+     "Azure Virtual Desktop",
+     "Virtual Desktop hosts desktops. It does not provide domain services."
+    ],
+    [
+     "Azure DNS",
+     "DNS answers name lookups and is not a directory service."
+    ],
+    [
+     "Microsoft Entra Domain Services",
+     "Right. It provides a managed domain with those legacy features, without domain controllers for you to run."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which of these actions usually costs the most in Azure data transfer fees?",
+   "o": [
+    [
+     "Sending data out to the internet",
+     "Right. Data going into Azure is generally free, while outbound data is charged."
+    ],
+    [
+     "Sending data into Azure",
+     "Inbound transfer is generally free."
+    ],
+    [
+     "Moving data within one virtual network",
+     "Traffic inside one network is generally not charged as internet egress."
+    ],
+    [
+     "Reading a tag",
+     "Reading tags is a free management action."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A manager wants an email whenever monthly spending on a subscription reaches 80% of the plan. Which tool offers that?",
+   "o": [
+    [
+     "The Azure pricing calculator",
+     "The calculator estimates costs before deployment. It does not watch real spend."
+    ],
+    [
+     "Azure Service Health",
+     "Service Health reports on outages and maintenance."
+    ],
+    [
+     "A resource lock",
+     "A lock blocks changes or deletion. It does not alert on cost."
+    ],
+    [
+     "Cost Management budgets",
+     "Right. A budget with an alert threshold notifies people as spending approaches the limit."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Finance needs to split Azure costs by the unit that owns each resource, across many resource groups. What should be applied to the resources?",
+   "o": [
+    [
+     "Resource locks",
+     "Locks stop changes and deletion."
+    ],
+    [
+     "Tags such as CostCenter=Unit42",
+     "Right. Tags are name and value labels that you can group costs by in Cost Management."
+    ],
+    [
+     "Availability zones",
+     "Zones set where a resource runs."
+    ],
+    [
+     "A larger VM size",
+     "Resizing changes cost, but it does not label it."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-3-04",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which factor can change the price of the same VM size in Azure?",
+   "o": [
+    [
+     "The color of the portal theme",
+     "Display settings have no effect on price."
+    ],
+    [
+     "The tag names used",
+     "Tags are labels and do not change the price."
+    ],
+    [
+     "The region where it runs",
+     "Right. Prices differ by region, because local costs for energy, taxes and capacity differ."
+    ],
+    [
+     "The name of the resource group",
+     "A group name has no bearing on cost."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-3-05",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A rule must stop anyone from creating storage accounts that allow public blob access. Which tool enforces that rule?",
+   "o": [
+    [
+     "A resource lock",
+     "Locks block delete or change of existing resources and don't judge settings of new ones."
+    ],
+    [
+     "Microsoft Purview",
+     "Purview governs and classifies data, not Azure resource settings."
+    ],
+    [
+     "Azure Policy",
+     "Right. Policy can deny a resource whose settings break the rule, and report on existing ones that do."
+    ],
+    [
+     "Azure Advisor",
+     "Advisor recommends actions but cannot block a deployment."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-3-06",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "The legal office wants to find and label sensitive data across the unit's databases, file shares and cloud storage. Which service is built for that?",
+   "o": [
+    [
+     "Azure Policy",
+     "Policy governs Azure resource settings, not the content of data."
+    ],
+    [
+     "Azure Arc",
+     "Arc extends Azure management to servers outside Azure."
+    ],
+    [
+     "Azure Monitor",
+     "Monitor collects metrics and logs about resource health."
+    ],
+    [
+     "Microsoft Purview",
+     "Right. Purview helps you discover, classify and govern data across many sources."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-3-07",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "An admin places a ReadOnly lock on a resource group. What happens to a user who has the Owner role and tries to change a VM in it?",
+   "o": [
+    [
+     "The change goes through, since Owners override locks",
+     "Locks apply to all roles. An Owner would first have to remove the lock."
+    ],
+    [
+     "The change is blocked until the lock is removed",
+     "Right. Locks apply to everyone, including Owners, and child resources inherit them."
+    ],
+    [
+     "Only the resource group itself is protected",
+     "Locks are inherited by the resources inside."
+    ],
+    [
+     "The VM is deleted after 30 days",
+     "A lock never deletes anything."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-3-08",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which statement correctly compares Azure Policy and RBAC?",
+   "o": [
+    [
+     "Policy sets resource rules, RBAC sets who acts",
+     "Right. Policy checks resource properties. RBAC grants users permissions at a scope."
+    ],
+    [
+     "Policy decides who can sign in, RBAC sets allowed regions",
+     "This swaps their jobs."
+    ],
+    [
+     "They are the same feature with two names",
+     "They are separate tools with different purposes."
+    ],
+    [
+     "RBAC only works on tags",
+     "RBAC works on actions at a scope, not just on tags."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-3-09",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A junior admin wants to run Azure CLI commands from a browser with nothing to install on the laptop. Which tool should they use?",
+   "o": [
+    [
+     "Azure Cloud Shell",
+     "Right. Cloud Shell is a browser-based shell in the portal with Azure CLI and PowerShell ready to use."
+    ],
+    [
+     "Azure Arc",
+     "Arc brings outside servers under Azure management."
+    ],
+    [
+     "Azure Advisor",
+     "Advisor gives recommendations, not a command line."
+    ],
+    [
+     "Azure Service Health",
+     "Service Health reports incidents."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-3-10",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A team needs to deploy the same set of resources into several environments and get an identical result each time, from a file kept in version control. What approach is this?",
+   "o": [
+    [
+     "Clicking through the portal",
+     "Manual clicks are slow and vary from run to run."
+    ],
+    [
+     "Copying a VM image by hand",
+     "This copies one machine but does not describe the whole environment."
+    ],
+    [
+     "Writing the steps in a document",
+     "A document can't deploy anything by itself."
+    ],
+    [
+     "Infrastructure as code (ARM)",
+     "Right. A declarative template describes the desired resources and Azure Resource Manager makes it so, repeatably."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-3-11",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A unit runs Windows and Linux servers in its own datacenter and in another cloud. It wants to see and govern them from the Azure portal. Which service does this?",
+   "o": [
+    [
+     "Azure Migrate",
+     "Migrate moves workloads into Azure. Here the servers stay where they are."
+    ],
+    [
+     "Azure Arc",
+     "Right. Arc projects servers outside Azure into Azure so you can manage them with the same tools."
+    ],
+    [
+     "Azure Cloud Shell",
+     "Cloud Shell is a command-line experience, not a way to onboard servers."
+    ],
+    [
+     "Azure DNS",
+     "DNS answers name lookups."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-3-12",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Whether an admin uses the portal, the CLI, PowerShell or a template, each request is handled by one Azure layer that checks permissions and carries out the change. What is it?",
+   "o": [
+    [
+     "Azure Advisor",
+     "Advisor offers recommendations."
+    ],
+    [
+     "Microsoft Entra Connect",
+     "This syncs on-premises identities to Entra ID."
+    ],
+    [
+     "Azure Resource Manager (ARM)",
+     "Right. ARM is the deployment and management layer that every Azure tool and API goes through."
+    ],
+    [
+     "Azure Monitor",
+     "Monitor collects telemetry. It is not the deployment layer."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-3-13",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "The team wants advice that points out idle VMs it could shut down to save money, plus security and reliability tips for its subscriptions. Which service does this?",
+   "o": [
+    [
+     "Azure Service Health",
+     "Service Health reports Azure incidents that affect you, not advice on your design."
+    ],
+    [
+     "Azure Policy",
+     "Policy enforces rules but does not give general advice."
+    ],
+    [
+     "Azure Advisor",
+     "Right. Advisor analyzes your resources and gives recommendations on cost, security, reliability, operational excellence and performance."
+    ],
+    [
+     "Microsoft Purview",
+     "Purview covers data governance."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-3-14",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "An admin needs a notice about planned Azure maintenance that will affect the services and regions the unit uses. Where should they look?",
+   "o": [
+    [
+     "Azure Advisor",
+     "Advisor gives design recommendations, not maintenance notices."
+    ],
+    [
+     "Cost Management",
+     "This tracks spending."
+    ],
+    [
+     "Microsoft Entra ID",
+     "Entra ID manages identities."
+    ],
+    [
+     "Azure Service Health",
+     "Right. Service Health tracks service issues, planned maintenance and health advisories for your resources."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "az-3-15",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "A team wants to collect logs from many resources in one workspace and search them with queries. Which Azure Monitor part supports this?",
+   "o": [
+    [
+     "Application Insights metrics only",
+     "Application Insights watches app performance. It is not the shared log store for everything."
+    ],
+    [
+     "Log Analytics",
+     "Right. Log Analytics stores log data in a workspace and lets you query it using Kusto Query Language."
+    ],
+    [
+     "Azure Advisor",
+     "Advisor does not store logs."
+    ],
+    [
+     "Azure Data Box",
+     "Data Box is a shipping device for bulk data transfer."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "az-3-16",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "A web team wants to track response times and failures inside its running web app, including which requests are slow. Which feature suits that?",
+   "o": [
+    [
+     "Application Insights",
+     "Right. It is the application performance monitoring part of Azure Monitor."
+    ],
+    [
+     "Azure Service Health",
+     "Service Health covers Azure platform events, not your app's internals."
+    ],
+    [
+     "Azure Advisor",
+     "Advisor gives recommendations."
+    ],
+    [
+     "Azure Policy",
+     "Policy enforces resource rules."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "az-3-17",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Which statement about Azure CLI and Azure PowerShell is true?",
+   "o": [
+    [
+     "Only PowerShell runs on Linux",
+     "Azure CLI runs on Linux too, and so does current PowerShell."
+    ],
+    [
+     "They can manage only virtual machines",
+     "Both manage nearly all Azure services."
+    ],
+    [
+     "Both script Azure on any major OS",
+     "Right. Both are cross-platform command-line tools, so the choice is mostly about which syntax you prefer."
+    ],
+    [
+     "Both need a physical server on-premises",
+     "Both talk to Azure over the network and need no local server."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "az-p-01",
+   "t": "pbq",
+   "kind": "logsel",
+   "d": "2.0",
+   "obj": "2.4",
+   "dom": "2.0",
+   "title": "Read the Microsoft Entra sign-in log",
+   "short": "Entra sign-in log",
+   "scenario": "The tenant owner asked you to review this morning's exported Microsoft Entra ID sign-in and audit log for the unit's Microsoft 365 tenant. You are authorized to read this export only. Mark every line that belongs to the attack, then say which control would have stopped it.",
+   "ticket": "Ticket SEC-2207: possible stolen mailbox. Written approval from the tenant owner is attached. Export covers 02:00 to 10:30.",
+   "lines": [
+    {
+     "text": "03:12:04 SignIn FAIL user=kwong app=Exchange Online client=IMAP (legacy) ip=203.0.113.50 country=outside US result=invalid password",
+     "bad": 1,
+     "why": "A failed legacy-protocol sign-in from an outside address. Alone it is noise, but it starts a pattern."
+    },
+    {
+     "text": "03:12:06 SignIn FAIL user=tnguyen app=Exchange Online client=IMAP (legacy) ip=203.0.113.50 country=outside US result=invalid password",
+     "bad": 1,
+     "why": "The same address tries a different user two seconds later. One guess against many accounts is a password spray."
+    },
+    {
+     "text": "03:12:09 SignIn FAIL user=rortiz app=Exchange Online client=IMAP (legacy) ip=203.0.113.50 country=outside US result=invalid password",
+     "bad": 1,
+     "why": "A third user from the same address. The spray is clear now."
+    },
+    {
+     "text": "03:12:13 SignIn SUCCESS user=dsmith app=Exchange Online client=IMAP (legacy) ip=203.0.113.50 MFA=not evaluated",
+     "bad": 1,
+     "why": "The spray worked on one account. Legacy protocols such as IMAP cannot do MFA, so the sign-in got in with just a password."
+    },
+    {
+     "text": "03:15:40 AUDIT user=dsmith action=New-InboxRule rule=forward all mail to an external address ip=203.0.113.50",
+     "bad": 1,
+     "why": "The attacker now quietly copies the victim's mail out. A new forwarding rule right after an odd sign-in is a classic sign of a taken-over mailbox."
+    },
+    {
+     "text": "07:55:10 SignIn FAIL user=hlee app=Outlook client=browser ip=10.4.2.8 (unit office) result=invalid password",
+     "bad": 0,
+     "why": "One typo from the unit's own office address. It is followed by a good sign-in, so it is normal."
+    },
+    {
+     "text": "07:56:02 SignIn SUCCESS user=hlee app=Outlook client=browser ip=10.4.2.8 (unit office) MFA=satisfied (Authenticator)",
+     "bad": 0,
+     "why": "The same user signed in correctly from the office and passed MFA."
+    },
+    {
+     "text": "09:30:47 SignIn SUCCESS user=contractor@partner.example (guest) app=SharePoint ip=198.51.100.20 country=US MFA=satisfied",
+     "bad": 0,
+     "why": "An invited guest (external identity) used MFA to reach one app. That is the expected path for a contractor."
+    },
+    {
+     "text": "10:05:11 SignIn SUCCESS user=admin1 app=Azure portal method=FIDO2 security key ip=10.4.2.15 (unit office) MFA=satisfied",
+     "bad": 0,
+     "why": "A passwordless, phishing-resistant sign-in from the office. Nothing here is odd."
+    }
+   ],
+   "ask": {
+    "label": "Which single change would most likely have stopped the successful sign-in?",
+    "opts": [
+     "A Conditional Access policy that blocks legacy authentication",
+     "A resource lock on the Exchange subscription",
+     "A larger Azure region pair for the tenant",
+     "A budget alert on the Microsoft 365 spend"
+    ],
+    "a": 0,
+    "why": "Legacy protocols such as IMAP cannot do MFA, so a guessed password was enough. A Conditional Access policy that blocks legacy authentication (plus MFA for everyone) closes that gap. Locks, region pairs and budgets do not control sign-ins."
+   }
+  },
+  {
+   "id": "az-p-02",
+   "t": "pbq",
+   "kind": "diagram",
+   "d": "2.0",
+   "obj": "2.1",
+   "dom": "2.0",
+   "title": "Build the Azure layout for a new project",
+   "short": "Azure hierarchy",
+   "scenario": "A unit is setting up Azure for a new project. Place each part in the right spot, from the top down to where the workload runs. Three parts in the tray do not fit these spots.",
+   "ticket": "Design note AZ-14. Rules: one policy must cover all of the unit's subscriptions, billing for this project must be separate, and the VMs must survive the loss of one datacenter.",
+   "top": "Microsoft Entra tenant",
+   "slots": [
+    {
+     "label": "Spot A",
+     "zone": "Top scope",
+     "hint": "holds several subscriptions; policy set here flows down"
+    },
+    {
+     "label": "Spot B",
+     "zone": "Billing boundary",
+     "hint": "separate bill and access boundary for the project"
+    },
+    {
+     "label": "Spot C",
+     "zone": "Container",
+     "hint": "groups resources that share a life cycle; can't nest"
+    },
+    {
+     "label": "Spot D",
+     "zone": "Workload",
+     "hint": "the item that runs the app"
+    },
+    {
+     "label": "Spot E",
+     "zone": "Resilience",
+     "hint": "separate datacenter in a region with its own power and cooling"
+    }
+   ],
+   "devs": [
+    {
+     "id": "mg",
+     "name": "Management group",
+     "slot": 0,
+     "why": "Management groups sit above subscriptions. A policy set here reaches every subscription below it."
+    },
+    {
+     "id": "sub",
+     "name": "Subscription",
+     "slot": 1,
+     "why": "A subscription is the billing and access boundary, so a separate project bill means a separate subscription."
+    },
+    {
+     "id": "rg",
+     "name": "Resource group",
+     "slot": 2,
+     "why": "A resource group holds resources that share a life cycle. It sits inside a subscription and cannot be nested."
+    },
+    {
+     "id": "vm",
+     "name": "Virtual machine",
+     "slot": 3,
+     "why": "A VM is a resource, the item that actually runs the workload."
+    },
+    {
+     "id": "az",
+     "name": "Availability zone",
+     "slot": 4,
+     "why": "Zones are separate datacenters in one region. Spreading VMs across them survives a datacenter loss."
+    },
+    {
+     "id": "pair",
+     "name": "Region pair",
+     "slot": -1,
+     "why": "A region pair covers loss of a whole region. It is not a spot inside the hierarchy and is more than the rule asks for."
+    },
+    {
+     "id": "lock",
+     "name": "Resource lock",
+     "slot": -1,
+     "why": "A lock prevents deletes or changes. It is not a place in the layout."
+    },
+    {
+     "id": "tag",
+     "name": "Tag",
+     "slot": -1,
+     "why": "A tag is a label for sorting and cost reports. It doesn't hold resources."
+    }
+   ]
+  },
+  {
+   "id": "az-p-03",
+   "t": "pbq",
+   "kind": "term",
+   "d": "3.0",
+   "obj": "3.3",
+   "dom": "3.0",
+   "title": "Set up a project resource group from Cloud Shell",
+   "short": "Azure CLI in Cloud Shell",
+   "scenario": "You are in Azure Cloud Shell (bash) for a sandbox subscription your team lead gave you written permission to use. Create a resource group for the Unit 42 pilot, tagged so finance can sort the bill, then protect it from accidental deletion while the team can still change what is inside. Do not touch anything else.",
+   "ticket": "Task CLD-31: group name rg-unit42-dev, region eastus, tag CostCenter=Unit42, lock name nodelete. Scope: this sandbox subscription only. The group rg-prod-ops belongs to another team.",
+   "host": "cloudshell",
+   "intro": "Azure Cloud Shell (bash). Azure CLI is signed in. Type a command.",
+   "suggest": [
+    "az account show",
+    "az group list -o table",
+    "az group create --name rg-unit42-dev --location eastus --tags CostCenter=Unit42"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "whoami"
+     ],
+     "out": "unit-user"
+    },
+    {
+     "run": [
+      "az login"
+     ],
+     "out": "Cloud Shell is already signed in. Use 'az account show' to see the current subscription."
+    },
+    {
+     "run": [
+      "az account show",
+      "az account show -o table",
+      "az account list",
+      "az account list -o table"
+     ],
+     "out": "Name              CloudName    State    IsDefault\nSandbox-Unit42    AzureCloud   Enabled  True",
+     "fx": "acct:show"
+    },
+    {
+     "run": [
+      "az group list -o table",
+      "az group list",
+      "az group list --output table"
+     ],
+     "out": "Name          Location   Status\nrg-prod-ops   eastus     Succeeded\nrg-training   eastus     Succeeded"
+    },
+    {
+     "run": [
+      "az group create --name rg-unit42-dev --location eastus --tags CostCenter=Unit42",
+      "az group create --name rg-unit42-dev --tags CostCenter=Unit42 --location eastus",
+      "az group create --location eastus --name rg-unit42-dev --tags CostCenter=Unit42",
+      "az group create --location eastus --tags CostCenter=Unit42 --name rg-unit42-dev",
+      "az group create --tags CostCenter=Unit42 --name rg-unit42-dev --location eastus",
+      "az group create --tags CostCenter=Unit42 --location eastus --name rg-unit42-dev",
+      "az group create --name rg-unit42-dev --location eastus --tags CostCenter=Unit42 Owner=ops",
+      "az group create --name rg-unit42-dev --tags CostCenter=Unit42 Owner=ops --location eastus",
+      "az group create --location eastus --name rg-unit42-dev --tags CostCenter=Unit42 Owner=ops",
+      "az group create --location eastus --tags CostCenter=Unit42 Owner=ops --name rg-unit42-dev",
+      "az group create --tags CostCenter=Unit42 Owner=ops --name rg-unit42-dev --location eastus",
+      "az group create --tags CostCenter=Unit42 Owner=ops --location eastus --name rg-unit42-dev",
+      "az group create -n rg-unit42-dev -l eastus --tags CostCenter=Unit42",
+      "az group create -n rg-unit42-dev -l eastus --tags CostCenter=Unit42 Owner=ops"
+     ],
+     "out": "{\n  \"name\": \"rg-unit42-dev\",\n  \"location\": \"eastus\",\n  \"properties\": {\"provisioningState\": \"Succeeded\"},\n  \"tags\": {\"CostCenter\": \"Unit42\"}\n}",
+     "fx": "rg:tag"
+    },
+    {
+     "run": [
+      "az group create --name rg-unit42-dev --location eastus",
+      "az group create --location eastus --name rg-unit42-dev",
+      "az group create -n rg-unit42-dev -l eastus"
+     ],
+     "out": "{\n  \"name\": \"rg-unit42-dev\",\n  \"location\": \"eastus\",\n  \"properties\": {\"provisioningState\": \"Succeeded\"},\n  \"tags\": null\n}",
+     "fx": "rg:plain"
+    },
+    {
+     "run": [
+      "az group show --name rg-unit42-dev",
+      "az group show -n rg-unit42-dev"
+     ],
+     "out": "(ResourceGroupNotFound) Resource group 'rg-unit42-dev' could not be found.",
+     "alt": {
+      "if": "rg:tag",
+      "out": "{\n  \"name\": \"rg-unit42-dev\",\n  \"location\": \"eastus\",\n  \"tags\": {\"CostCenter\": \"Unit42\"}\n}"
+     }
+    },
+    {
+     "run": [
+      "az lock create --name nodelete --resource-group rg-unit42-dev --lock-type CanNotDelete",
+      "az lock create --name nodelete --lock-type CanNotDelete --resource-group rg-unit42-dev",
+      "az lock create --resource-group rg-unit42-dev --name nodelete --lock-type CanNotDelete",
+      "az lock create --resource-group rg-unit42-dev --lock-type CanNotDelete --name nodelete",
+      "az lock create --lock-type CanNotDelete --name nodelete --resource-group rg-unit42-dev",
+      "az lock create --lock-type CanNotDelete --resource-group rg-unit42-dev --name nodelete",
+      "az lock create -n nodelete -g rg-unit42-dev -t CanNotDelete"
+     ],
+     "out": "{\n  \"name\": \"nodelete\",\n  \"level\": \"CanNotDelete\"\n}",
+     "fx": "lock:del"
+    },
+    {
+     "run": [
+      "az lock create --name nodelete --resource-group rg-unit42-dev --lock-type ReadOnly",
+      "az lock create --name nodelete --lock-type ReadOnly --resource-group rg-unit42-dev",
+      "az lock create --resource-group rg-unit42-dev --name nodelete --lock-type ReadOnly",
+      "az lock create --resource-group rg-unit42-dev --lock-type ReadOnly --name nodelete",
+      "az lock create --lock-type ReadOnly --name nodelete --resource-group rg-unit42-dev",
+      "az lock create --lock-type ReadOnly --resource-group rg-unit42-dev --name nodelete",
+      "az lock create -n nodelete -g rg-unit42-dev -t ReadOnly"
+     ],
+     "out": "{\n  \"name\": \"nodelete\",\n  \"level\": \"ReadOnly\"\n}",
+     "fx": "lock:ro"
+    },
+    {
+     "run": [
+      "az lock list --resource-group rg-unit42-dev",
+      "az lock list -g rg-unit42-dev"
+     ],
+     "out": "[]"
+    },
+    {
+     "run": [
+      "az vm list -o table",
+      "az vm list"
+     ],
+     "out": "Name   ResourceGroup   Location\n(no virtual machines in this subscription yet)"
+    },
+    {
+     "run": [
+      "az group delete --name rg-prod-ops --yes",
+      "az group delete -n rg-prod-ops --yes",
+      "az group delete --name rg-prod-ops",
+      "az group delete -n rg-prod-ops",
+      "az group delete --name rg-prod-ops -y",
+      "az group delete -n rg-prod-ops -y"
+     ],
+     "out": "Deleting rg-prod-ops ...",
+     "fx": "trap:prod"
+    },
+    {
+     "run": [
+      "az group delete --name rg-unit42-dev --yes",
+      "az group delete -n rg-unit42-dev --yes",
+      "az group delete --name rg-unit42-dev",
+      "az group delete -n rg-unit42-dev"
+     ],
+     "out": "Deleting rg-unit42-dev ...",
+     "fx": "trap:delete"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Checked which subscription you are in before changing anything",
+     "has": "acct:show",
+     "why": "The name Sandbox-Unit42 confirms you are in the subscription you were approved to use. Check first, then change."
+    },
+    {
+     "t": "Created the resource group with the CostCenter tag",
+     "has": "rg:tag",
+     "why": "A tag is a name and value label. With CostCenter=Unit42 on the group, Cost Management can sort spending by unit."
+    },
+    {
+     "t": "Locked the group with a CanNotDelete lock",
+     "has": "lock:del",
+     "why": "A CanNotDelete lock blocks deletion by anyone, even an Owner, but still lets the team change what is inside."
+    },
+    {
+     "t": "Did not use a ReadOnly lock",
+     "lacks": "lock:ro",
+     "why": "ReadOnly blocks every change as well as deleting, so the team could not work in the group. The task asked only to stop accidental deletion."
+    },
+    {
+     "t": "Did not delete any resource group",
+     "lacks": [
+      "trap:prod",
+      "trap:delete"
+     ],
+     "why": "Deleting rg-prod-ops would break another team's work and is outside your approval. Deleting your own new group would undo the task."
+    }
+   ]
+  }
+ ]
+}

@@ -2578,7 +2578,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.89</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.90</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -6271,6 +6271,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.90",d:"2026-11-26",t:"Four new practice exams: Azure Fundamentals (AZ-900), Cloud Practitioner (CLF-C02), Linux Essentials (010-200) and Security Essentials (020-100)."},
   {v:"2.89",d:"2026-11-26",t:"Two new Cisco practice exams: CCST Cybersecurity (100-160) and CCST Networking (100-150), each with hands-on questions."},
   {v:"2.88",d:"2026-11-26",t:"New hands-on practice questions in all the CompTIA exams: read logs, put rules in order, use a small terminal and fill in network diagrams."},
   {v:"2.87",d:"2026-11-26",t:"On phones, a Jump to button in the corner of every guide. Smoother zoom into the globe. Link to any guide section, and share a practice set with a friend by link."},
@@ -10247,6 +10248,7 @@ GUIDES["CCNP Security"]={
 
 GUIDES["Linux Essentials"]={
   id:"linuxe",
+  mock:{v20:"qbank/010-200.json"},
   lead:"LPI's entry-level Linux cert. It proves you can work at the Linux command line: move around the file system, handle files and permissions, read logs, write a short script and log in over SSH. Most SOC tools and servers run Linux, so this is skill you'll use every day.",
   checked:"2026-11-10",
   verLabel:"Objectives version",
@@ -10976,6 +10978,7 @@ GUIDES["Project+"]={
 
 GUIDES["Cloud Practitioner"]={
   id:"clf",
+  mock:{c02:"qbank/clf-c02.json"},
   lead:"AWS's entry cert. It proves you can explain what the AWS Cloud is, who secures what, which core service does which job, and how AWS charges for it. No hands-on work is required. It's a good first cloud cert before Solutions Architect, and it teaches you the words cloud teams and contractors use every day.",
   checked:"2026-11-11",
   planHours:25,
@@ -11626,6 +11629,7 @@ GUIDES["Security Specialty"]={
 
 GUIDES["Azure Fundamentals"]={
   id:"az900",
+  mock:{cur:"qbank/az-900.json"},
   lead:"Microsoft's entry cloud cert. It proves you can explain cloud concepts, the core parts of Azure, and how Azure handles identity, security, cost and governance. No hands-on work is required, and it never expires. A good first step if your unit runs Microsoft 365 or Azure, which most of government does.",
   checked:"2026-11-11",
   planHours:25,
@@ -14178,6 +14182,7 @@ GUIDES["SAL2 · Security Analyst L2"]={
 };
 GUIDES["Security Essentials"]={
   id:"secess",
+  mock:{v10:"qbank/020-100.json"},
   lead:"LPI's entry-level security certificate. It covers the security basics every computer user and new IT member should know: risk and ethics, encryption, device and data protection, network safety, and identity and privacy. One short exam, no prerequisites, and it never expires.",
   checked:"2026-11-14",
   planHours:25,
