@@ -9,14 +9,21 @@ The live site serves libraries and fonts itself (vendor/, fonts/) and locks the 
 Policy whose script hashes are computed here, so they always match the inline scripts that ship.
 
 Usage:
-  python3 build/build_site.py            # writes index.html
-  python3 build/build_site.py --check    # builds in memory, fails if index.html is different (used by CI)
+  python3 build/build_site.py            # writes index.html and guides/*.json
+  python3 build/build_site.py --check    # builds in memory, fails if index.html or guides/*.json differ (used by CI)
+
+The guides are split out of src/app.html by build/split_guides.py: each one becomes guides/<id>.json (fetched when the
+guide opens) and only a small index of them stays inline in index.html.
 """
 import base64, hashlib, pathlib, re, sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import split_guides
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 OUT = ROOT / "index.html"
+GUIDES_DIR = ROOT / "guides"
 
 
 def swap(s, a, b, n=1):
@@ -26,6 +33,7 @@ def swap(s, a, b, n=1):
 
 def build():
     art = (SRC / "app.html").read_text(encoding="utf8")
+    art, files, _ = split_guides.split(art)
     pre = (SRC / "site-head.html").read_text(encoding="utf8")
     reg = (SRC / "site-tail.html").read_text(encoding="utf8")
     body = art[art.index('<meta name="referrer"'):]
@@ -41,8 +49,8 @@ def build():
     body = swap(body, '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n', '')
     body = swap(body,
         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Geist:wght@300..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap">',
-        '<link rel="preload" href="fonts/inter-tight.woff" as="font" type="font/woff" crossorigin>\n'
-        '<link rel="preload" href="fonts/geist.woff" as="font" type="font/woff" crossorigin>\n'
+        '<link rel="preload" href="fonts/inter-tight.woff2" as="font" type="font/woff2" crossorigin>\n'
+        '<link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>\n'
         '<link rel="stylesheet" href="fonts/fonts.css">')
     # libraries: our own copies (the page writes these tags itself, only when the 3D globe / smooth scrolling will run)
     body = swap(body, '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"><\\/script>',
@@ -64,20 +72,30 @@ def build():
            "font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; "
            "base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests") % hashes
     page = swap(page, '<meta charset="utf-8">\n', '<meta charset="utf-8">\n<meta http-equiv="Content-Security-Policy" content="%s">\n' % csp)
-    return page, len(inline)
+    return page, len(inline), files
 
 
 def main():
-    page, n = build()
+    page, n, files = build()
     if "--check" in sys.argv:
+        have = {"guides/" + f.name for f in GUIDES_DIR.glob("*")} if GUIDES_DIR.is_dir() else set()
+        bad = sorted(set(files) ^ have) + sorted(k for k, v in files.items() if k in have and (ROOT / k).read_bytes() != v)
+        if bad:
+            sys.exit("FAIL: guides/ does not match a fresh build of src/ (%s). Run: python3 build/build_site.py" % ", ".join(bad[:8]))
         cur = OUT.read_text(encoding="utf8") if OUT.exists() else ""
         if cur != page:
             import difflib
             diff = list(difflib.unified_diff(cur.splitlines(), page.splitlines(), "index.html (committed)", "index.html (built from src/)", n=1, lineterm=""))
             print("\n".join(d[:300] for d in diff[:60]))
             sys.exit("FAIL: index.html does not match a fresh build of src/. Run: python3 build/build_site.py")
-        print("ok: index.html matches a fresh build of src/ (%d inline scripts hashed)" % n)
+        print("ok: index.html and %d guide files match a fresh build of src/ (%d inline scripts hashed)" % (len(files), n))
         return
+    GUIDES_DIR.mkdir(exist_ok=True)
+    for old in GUIDES_DIR.glob("*"):
+        if "guides/" + old.name not in files:
+            old.unlink()
+    for k, v in files.items():
+        (ROOT / k).write_bytes(v)
     OUT.write_text(page, encoding="utf8")
     print("built", OUT.name, len(page), "bytes;", n, "inline scripts hashed")
 

@@ -42,6 +42,17 @@ if [ "${SKIP_SEMGREP:-}" = 1 ]; then echo "skip semgrep (SKIP_SEMGREP=1)"; else
     --json -q -o "${TMPDIR:-/tmp}/semgrep.json" "$J" 404.html sw.js
   python3 build/semgrep_gate.py "${TMPDIR:-/tmp}/semgrep.json"
 fi
-step "Browser tests";         python3 -m pytest tests -q -p no:cacheprovider
+step "Browser tests";         python3 -m pytest tests -q -p no:cacheprovider -n "${PYTEST_WORKERS:-auto}" --dist loadgroup
+# On WSL, chrome-launcher (inside lhci) builds a Windows-style temp path (C:\Users\...\AppData\Local\lighthouse.XXXX)
+# that Linux treats as a folder NAME, so it lands in the repo root. TMPDIR doesn't change that, so sweep them after.
+sweep_lighthouse() { find . -maxdepth 1 -name 'C:\\*lighthouse.*' -exec rm -rf {} + 2>/dev/null || true; }
+trap sweep_lighthouse EXIT
+# Also on WSL, Lighthouse finds the Windows Chrome, whose debug port WSL can't reach ("Unable to connect to Chrome").
+# Use the Linux Chromium that Playwright installed, unless CHROME_PATH is already set.
+if [ -z "${CHROME_PATH:-}" ]; then
+  PW_CHROME=$(ls -d "$HOME"/.cache/ms-playwright/chromium-*/chrome-linux*/chrome 2>/dev/null | sort -V | tail -1 || true)
+  [ -n "$PW_CHROME" ] && export CHROME_PATH="$PW_CHROME"
+fi
 step "Lighthouse";            tests/node_modules/.bin/lhci autorun --config=tests/lighthouserc.json
+sweep_lighthouse
 printf '\nAll local checks passed.\n'

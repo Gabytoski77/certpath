@@ -88,5 +88,7 @@
  "insecure-innerhtml cd94aca8f417ae62": 2,
  "insecure-innerhtml eb6df7e108427980": 1,
  "insecure-innerhtml f8dbc19ffe42b209": 1,
+ "prototype-pollution-assignment 1d273058942fcb5d": 1,
+ "prototype-pollution-assignment 840c0d950f0fe2de": 1,
  "raw-html-concat c40cf1591bbf67cb": 1
 }

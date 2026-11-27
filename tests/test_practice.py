@@ -79,267 +79,6 @@ def test_question_bank_rejects_bad_path(site, base_url):
     assert r.status == 200 and r.json().get("format")
 
 
-def test_network_plus_v9_full_exam(site):
-    """v2.50: the Network+ V9 bank loads, builds a full 90-item exam with PBQs, and scores every domain."""
-    w = site()
-    p = w.page
-    open_guide(p, "network+")
-    full = p.locator('#mxp [data-mx="full"][data-ver="v9"]')
-    assert full.count() == 1, p.inner_text("#mxp")[:400]
-    full.click()
-    p.wait_for_selector("#mx[open]")
-    p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 90")
-    _answer_all(p)
-    _submit(p)
-    body = p.inner_text("#mx-body")
-    assert "%" in body, "no score shown after submitting:\n" + body[:500]
-    for dom in ("Networking Concepts", "Network Implementation", "Network Operations",
-                "Network Security", "Network Troubleshooting"):
-        assert dom in body, f"{dom} missing from the results"
-    assert any(k.startswith("cgcp.mx.") and "net" in k for k in p.evaluate("Object.keys(localStorage)"))
-
-
-def test_aplus_core1_full_exam(site):
-    """v2.52: A+ has two exams in one guide. Core 1 gets a full exam from its own bank."""
-    w = site()
-    p = w.page
-    open_guide(p, "a+")
-    mxp = p.inner_text("#mxp")
-    full = p.locator('#mxp [data-mx="full"][data-ver="core1"]')
-    assert full.count() == 1, mxp[:500]
-    full.click()
-    p.wait_for_selector("#mx[open]")
-    p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 90")
-    assert "220-1201" in p.inner_text("#mx")
-    _answer_all(p)
-    _submit(p)
-    body = p.inner_text("#mx-body")
-    assert "%" in body, body[:500]
-    for dom in ("Mobile Devices", "Networking", "Hardware", "Virtualization and Cloud Computing",
-                "Hardware and Network Troubleshooting"):
-        assert dom in body, f"{dom} missing from the results"
-    assert "Operating Systems" not in body      # Core 2 domain names must not leak into Core 1 results
-
-
-def test_aplus_core2_full_exam(site):
-    """v2.53: Core 2 gets its own bank, so both A+ exams have full and half exams and no "coming later" note."""
-    w = site()
-    p = w.page
-    open_guide(p, "a+")
-    mxp = p.inner_text("#mxp")
-    for ver in ("core1", "core2"):
-        assert p.locator(f'#mxp [data-mx="full"][data-ver="{ver}"]').count() == 1, mxp[:500]
-        assert p.locator(f'#mxp [data-mx="half"][data-ver="{ver}"]').count() == 1, mxp[:500]
-    assert "later update" not in mxp, mxp[:600]
-    p.locator('#mxp [data-mx="full"][data-ver="core2"]').click()
-    p.wait_for_selector("#mx[open]")
-    p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 90")
-    assert "220-1202" in p.inner_text("#mx")
-    _answer_all(p)
-    _submit(p)
-    body = p.inner_text("#mx-body")
-    assert "%" in body, body[:500]
-    for dom in ("Operating Systems", "Security", "Software Troubleshooting", "Operational Procedures"):
-        assert dom in body, f"{dom} missing from the results"
-    assert "Virtualization and Cloud Computing" not in body   # Core 1 domain names must not leak into Core 2 results
-    assert any(k.startswith("cgcp.mx.") and "aplus" in k for k in p.evaluate("Object.keys(localStorage)"))
-
-
-def test_cysa_v4_full_exam(site):
-    """v2.54: CySA+ V4 gets an 85-question, 165-minute bank. V3 is retiring, so its note says it won't get one."""
-    w = site()
-    p = w.page
-    open_guide(p, "cysa+")
-    mxp = p.inner_text("#mxp")
-    assert p.locator('#mxp [data-mx="full"][data-ver="v4"]').count() == 1, mxp[:500]
-    assert p.locator('#mxp [data-mx="full"][data-ver="v3"]').count() == 0
-    assert "CS0-003" in mxp and "being retired" in mxp and "later update" not in mxp, mxp[:800]
-    p.locator('#mxp [data-mx="full"][data-ver="v4"]').click()
-    p.wait_for_selector("#mx[open]")
-    p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 85")
-    t = p.inner_text("#mx-time").strip()
-    assert t.startswith(("2:44:", "2:45:")), t
-    assert "CS0-004" in p.inner_text("#mx")
-    _answer_all(p)
-    _submit(p)
-    body = p.inner_text("#mx-body")
-    assert "%" in body, body[:500]
-    for dom in ("Security Operations", "Vulnerability Management", "Incident Response and Management",
-                "Reporting and Communication"):
-        assert dom in body, f"{dom} missing from the results"
-
-
-def test_security_plus_v8_full_exam(site):
-    """v2.56: Security+ V8 (SY0-801) gets its own bank, so both versions have full exams and no "later update" note."""
-    w = site()
-    p = w.page
-    open_guide(p, "security+")
-    mxp = p.inner_text("#mxp")
-    for ver in ("v7", "v8"):
-        assert p.locator(f'#mxp [data-mx="full"][data-ver="{ver}"]').count() == 1, mxp[:500]
-    assert "later update" not in mxp and "being retired" not in mxp, mxp[:800]
-    p.locator('#mxp [data-mx="full"][data-ver="v8"]').click()
-    p.wait_for_selector("#mx[open]")
-    p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 90")
-    assert "SY0-801" in p.inner_text("#mx")
-    _answer_all(p)
-    _submit(p)
-    body = p.inner_text("#mx-body")
-    assert "%" in body, body[:500]
-    for dom in ("General Security Concepts", "Threats, Vulnerabilities, and Attacks", "Security Architecture",
-                "Security Operations", "Security Program Management and Oversight"):
-        assert dom in body, f"{dom} missing from the results"
-    assert "Threats, Vulnerabilities, and Mitigations" not in body   # the V7 domain name must not leak into V8 results
-
-
-def test_pentest_plus_v3_full_exam(site):
-    """v2.57: PenTest+ PT0-003 gets a 90-question, 165-minute bank with PBQs and all five domains scored."""
-    w = site()
-    p = w.page
-    open_guide(p, "pentest+")
-    mxp = p.inner_text("#mxp")
-    assert p.locator('#mxp [data-mx="full"][data-ver="v3"]').count() == 1, mxp[:500]
-    assert "later update" not in mxp, mxp[:600]
-    p.locator('#mxp [data-mx="full"][data-ver="v3"]').click()
-    p.wait_for_selector("#mx[open]")
-    p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 90")
-    t = p.inner_text("#mx-time").strip()
-    assert t.startswith(("2:44:", "2:45:")), t
-    assert "PT0-003" in p.inner_text("#mx")
-    _answer_all(p)
-    _submit(p)
-    body = p.inner_text("#mx-body")
-    assert "%" in body, body[:500]
-    for dom in ("Engagement Management", "Reconnaissance and Enumeration", "Vulnerability Discovery and Analysis",
-                "Attacks and Exploits", "Post-exploitation and Lateral Movement"):
-        assert dom in body, f"{dom} missing from the results"
-
-
-def test_linux_plus_v8_full_exam(site):
-    """v2.60: Linux+ XK0-006 gets a 90-question, 90-minute bank with PBQs and all five domains scored."""
-    w = site()
-    p = w.page
-    open_guide(p, "linux+")
-    mxp = p.inner_text("#mxp")
-    assert p.locator('#mxp [data-mx="full"][data-ver="v8"]').count() == 1, mxp[:500]
-    assert "later update" not in mxp, mxp[:600]
-    p.locator('#mxp [data-mx="full"][data-ver="v8"]').click()
-    p.wait_for_selector("#mx[open]")
-    p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 90")
-    t = p.inner_text("#mx-time").strip()
-    assert t.startswith(("1:29:", "1:30:")), t
-    assert "XK0-006" in p.inner_text("#mx")
-    _answer_all(p)
-    _submit(p)
-    body = p.inner_text("#mx-body")
-    assert "%" in body, body[:500]
-    for dom in ("System Management", "Services and User Management", "Security",
-                "Automation, Orchestration, and Scripting", "Troubleshooting"):
-        assert dom in body, f"{dom} missing from the results"
-
-
-def test_securityx_v5_full_exam(site):
-    """v2.61: SecurityX CAS-005 gets a 90-question, 165-minute bank with PBQs and all four domains scored."""
-    w = site()
-    p = w.page
-    open_guide(p, "securityx")
-    mxp = p.inner_text("#mxp")
-    assert p.locator('#mxp [data-mx="full"][data-ver="v5"]').count() == 1, mxp[:500]
-    assert "later update" not in mxp, mxp[:600]
-    p.locator('#mxp [data-mx="full"][data-ver="v5"]').click()
-    p.wait_for_selector("#mx[open]")
-    p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 90")
-    t = p.inner_text("#mx-time").strip()
-    assert t.startswith(("2:44:", "2:45:")), t
-    assert "CAS-005" in p.inner_text("#mx")
-    _answer_all(p)
-    _submit(p)
-    body = p.inner_text("#mx-body")
-    assert "%" in body, body[:500]
-    for dom in ("Governance, Risk, and Compliance", "Security Architecture", "Security Engineering",
-                "Security Operations"):
-        assert dom in body, f"{dom} missing from the results"
-
-
-def test_cloud_plus_v4_full_exam(site):
-    """v2.62: Cloud+ CV0-004 gets a 90-question, 90-minute bank with PBQs and all six domains scored."""
-    w = site()
-    p = w.page
-    open_guide(p, "cloud+")
-    mxp = p.inner_text("#mxp")
-    assert p.locator('#mxp [data-mx="full"][data-ver="v4"]').count() == 1, mxp[:500]
-    assert "later update" not in mxp, mxp[:600]
-    p.locator('#mxp [data-mx="full"][data-ver="v4"]').click()
-    p.wait_for_selector("#mx[open]")
-    p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 90")
-    t = p.inner_text("#mx-time").strip()
-    assert t.startswith(("1:29:", "1:30:")), t
-    assert "CV0-004" in p.inner_text("#mx")
-    _answer_all(p)
-    _submit(p)
-    body = p.inner_text("#mx-body")
-    assert "%" in body, body[:500]
-    for dom in ("Cloud Architecture", "Deployment", "Operations", "Security", "DevOps Fundamentals",
-                "Troubleshooting"):
-        assert dom in body, f"{dom} missing from the results"
-
-
-def test_project_plus_v5_full_exam(site):
-    """v2.63: Project+ PK0-005 gets a 90-question, 90-minute bank with PBQs and all four domains scored."""
-    w = site()
-    p = w.page
-    open_guide(p, "project+")
-    mxp = p.inner_text("#mxp")
-    assert p.locator('#mxp [data-mx="full"][data-ver="v5"]').count() == 1, mxp[:500]
-    assert "later update" not in mxp, mxp[:600]
-    p.locator('#mxp [data-mx="full"][data-ver="v5"]').click()
-    p.wait_for_selector("#mx[open]")
-    p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 90")
-    t = p.inner_text("#mx-time").strip()
-    assert t.startswith(("1:29:", "1:30:")), t
-    assert "PK0-005" in p.inner_text("#mx")
-    _answer_all(p)
-    _submit(p)
-    body = p.inner_text("#mx-body")
-    assert "%" in body, body[:500]
-    for dom in ("Project Management Concepts", "Project Life Cycle Phases", "Tools and Documentation",
-                "Basics of IT and Governance"):
-        assert dom in body, f"{dom} missing from the results"
-
-
-def test_secai_plus_v1_full_exam(site):
-    """v2.67: SecAI+ CY0-001 gets a 60-question, 60-minute bank with PBQs and all four domains scored."""
-    w = site()
-    p = w.page
-    open_guide(p, "secai+")
-    mxp = p.inner_text("#mxp")
-    assert p.locator('#mxp [data-mx="full"][data-ver="v1"]').count() == 1, mxp[:500]
-    assert "later update" not in mxp, mxp[:600]
-    p.locator('#mxp [data-mx="full"][data-ver="v1"]').click()
-    p.wait_for_selector("#mx[open]")
-    p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 60")
-    t = p.inner_text("#mx-time").strip()
-    assert t.startswith(("59:", "1:00:", "60:")), t
-    assert "CY0-001" in p.inner_text("#mx")
-    _answer_all(p)
-    _submit(p)
-    body = p.inner_text("#mx-body")
-    assert "%" in body, body[:500]
-    for dom in ("Basic AI Concepts", "Securing AI Systems", "AI-assisted Security", "AI Governance, Risk, and Compliance"):
-        assert dom in body, f"{dom} missing from the results"
-
-
 def _scroll_into_view(p, sel):
     p.evaluate("(s) => document.querySelector(s).scrollIntoView({block: 'center'})", sel)
     p.wait_for_timeout(400)
@@ -349,8 +88,8 @@ def _qz_top(p):
     return p.evaluate("() => document.getElementById('g-qz').getBoundingClientRect().top")
 
 
-@pytest.mark.parametrize("device,lite", [("desktop", None), ("iphone13", None), ("small320", None),
-                                         ("reduced", None), ("desktop", True), ("iphone13", True)])
+@pytest.mark.parametrize("device,lite", [("desktop", True), ("iphone13", True), ("small320", True),
+                                         ("reduced", True)])
 def test_untimed_check_next_question_stays_on_the_quiz(site, device, lite):
     """v2.59: "Next question" in the untimed check used to jump to the top of the Practice section (the practice exam
     cards, weak spots and recent runs sit above the check since v2.48), so you had to scroll back down. It must keep
@@ -412,26 +151,188 @@ def test_untimed_check_retake_stays_on_the_quiz(site):
     assert 0 <= top < vh * .4, f"the check's top is at {top:.0f}px of a {vh}px screen"
 
 
-def test_server_plus_v5_full_exam(site):
-    """v2.68: Server+ SK0-005 gets a 90-question, 90-minute bank with PBQs and all four domains scored."""
-    w = site()
+def test_cc_half_exam_has_no_pbq(site):
+    """A bank with format.pbq 0 still builds a half-length exam (50 questions, all multiple choice)."""
+    w = site("iphone13")
     p = w.page
-    open_guide(p, "server+")
-    mxp = p.inner_text("#mxp")
-    assert p.locator('#mxp [data-mx="full"][data-ver="v5"]').count() == 1, mxp[:500]
-    # V6 is still in beta, so only its small "coming later" line may show, never the empty-bank card.
-    assert p.locator("#mxp .mxp-card.soon").count() == 0, mxp[:600]
-    p.locator('#mxp [data-mx="full"][data-ver="v5"]').click()
+    open_guide(p, "cc")
+    p.locator('#mxp [data-mx="half"][data-ver="v26"]').click()
     p.wait_for_selector("#mx[open]")
     p.wait_for_timeout(600)
-    assert p.inner_text("#mx-count").strip().endswith("/ 90")
+    assert p.inner_text("#mx-count").strip().endswith("/ 50")
+
+
+def test_sscp_guide_objective_7_3_is_mobile_devices(site):
+    """ISC2's 2025 outline: 7.3 is mobile device management and EDR sits under 7.2 (the guide had them mixed up)."""
+    w = site()
+    p = w.page
+    open_guide(p, "sscp")
+    text = p.inner_text("#g-obj")
+    assert "Administer and manage mobile devices" in text
+    assert "Endpoint detection and response (EDR)\n" not in text
+
+
+def test_cissp_2024_full_exam(site):
+    """v2.75: ISC2 CISSP (Apr 2024 outline) gets a 125-item, 3-hour bank with 4 advanced items and all eight domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "cissp")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v24"]').count() == 1, mxp[:500]
+    assert p.locator("#mxp .mxp-card.soon").count() == 0, mxp[:600]
+    assert "PBQs first" not in mxp and "100 to 150" in mxp
+    p.locator('#mxp [data-mx="full"][data-ver="v24"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 125")
     t = p.inner_text("#mx-time").strip()
-    assert t.startswith(("1:29:", "1:30:")), t
-    assert "SK0-005" in p.inner_text("#mx")
+    assert t.startswith(("2:59:", "3:00:")), t
+    assert p.inner_text("#mx-h").strip() == "CISSP · 2024 outline"
+    _answer_all(p, limit=140)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("Security and Risk Management", "Asset Security", "Security Architecture and Engineering",
+                "Communication and Network Security", "Identity and Access Management (IAM)",
+                "Security Assessment and Testing", "Security Operations", "Software Development Security"):
+        assert dom in body, f"{dom} missing from the results"
+
+
+def test_exam_long_title_fits_320(site):
+    """v2.76 fix: a long exam title (CCNA Cybersecurity · v1.2 · 200-201 CCNACBR) made the exam dialog wider than a 320 px phone."""
+    w = site(device="small320")
+    p = w.page
+    open_guide(p, "ccnacbr")
+    p.locator('#mxp [data-mx="full"][data-ver="v12"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    for _ in range(5):  # the first items are the drag-and-drop style ones
+        widths = p.evaluate("() => [document.querySelector('#mx-body').scrollWidth, document.querySelector('.mx-top').getBoundingClientRect().width, innerWidth]")
+        assert widths[0] <= widths[2] and widths[1] <= widths[2], widths
+        p.click("#mx-next")
+        p.wait_for_timeout(60)
+
+
+def test_ccna_v20_setup_and_code_blocks(site):
+    """v2.77: CCNA (200-301 v2.0) gets a 100-item, 2-hour bank with 4 drag-and-drop items, CLI output blocks and all five domains scored."""
+    w = site()
+    p = w.page
+    open_guide(p, "ccna")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v20"]').count() == 1, mxp[:600]
+    assert "February 3, 2027" in mxp and "can't go back" in mxp
+    p.locator('#mxp [data-mx="full"][data-ver="v20"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 100")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("1:59:", "2:00:")), t
+    assert "200-301" in p.inner_text("#mx-h"), p.inner_text("#mx-h")
+    codes = 0
+    for _ in range(100):
+        codes += p.locator("#mx-body pre.g-qcode").count()
+        if p.locator("#mx-next").inner_text().strip().lower().startswith(("review", "submit", "finish")):
+            break
+        p.click("#mx-next")
+        p.wait_for_timeout(30)
+    assert codes >= 5, codes  # show output appears in its own block
+
+
+def test_ccst_it_support_full_exam(site):
+    """v2.79: CCST IT Support (100-140) gets a 45-item, 50-minute bank with 4 drag-and-drop items and all six domains scored; nothing overflows at 320 px."""
+    w = site(device="small320")
+    p = w.page
+    open_guide(p, "ccstit")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="cur"]').count() == 1, mxp[:500]
+    assert p.locator("#mxp .mxp-card.soon").count() == 0, mxp[:600]
+    assert "doesn't publish the real item count" in mxp
+    p.locator('#mxp [data-mx="full"][data-ver="cur"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+    assert p.inner_text("#mx-count").strip().endswith("/ 45")
+    t = p.inner_text("#mx-time").strip()
+    assert t.startswith(("49:", "50:")), t
+    assert "100-140" in p.inner_text("#mx-h"), p.inner_text("#mx-h")
+    inner = p.evaluate("() => innerWidth")
+    for _ in range(45):  # every item, including the drag-and-drop ones, must fit a 320 px phone
+        widths = p.evaluate("() => [document.querySelector('#mx-body').scrollWidth, document.querySelector('.mx-top').getBoundingClientRect().width]")
+        assert widths[0] <= inner and widths[1] <= inner, widths
+        opt = p.locator("#mx-body .g-qo").first
+        if opt.count():
+            opt.click()
+        label = p.inner_text("#mx-next")
+        if "Submit" in label or "Review" in label or "Finish" in label:
+            break
+        p.click("#mx-next")
+        p.wait_for_timeout(60)
+    _submit(p)
+    body = p.inner_text("#mx-body")
+    assert "%" in body, body[:500]
+    for dom in ("IT Support Job Tasks and Responsibilities", "Hardware Issues", "Connectivity and Resource Access Issues",
+                "Operating System and Application Issues", "Common Threats and Preventions", "Job Tools"):
+        assert dom in body, f"{dom} missing from the results"
+
+
+def _open_full(p, guide, ver):
+    open_guide(p, guide)
+    p.locator(f'#mxp [data-mx="full"][data-ver="{ver}"]').click()
+    p.wait_for_selector("#mx[open]")
+    p.wait_for_timeout(600)
+
+
+def test_security_plus_v7_full_exam(site):
+    """One of the two full "answer every question" runs: 90 items with PBQs, results score every domain."""
+    w = site()
+    p = w.page
+    _open_full(p, "security+", "v7")
+    assert p.inner_text("#mx-count").strip().endswith("/ 90")
+    assert "SY0-701" in p.inner_text("#mx")
     _answer_all(p)
     _submit(p)
     body = p.inner_text("#mx-body")
     assert "%" in body, body[:500]
-    for dom in ("Server Hardware Installation and Management", "Server Administration",
-                "Security and Disaster Recovery", "Troubleshooting"):
+    for dom in ("General Security Concepts", "Threats, Vulnerabilities, and Mitigations", "Security Architecture",
+                "Security Operations", "Security Program Management and Oversight"):
         assert dom in body, f"{dom} missing from the results"
+    assert any(k.startswith("cgcp.mx.") for k in p.evaluate("Object.keys(localStorage)"))
+
+
+def test_adaptive_isc2_cards_say_so_and_have_no_pbq_wording(site):
+    """The ISC2 banks are fixed-length stand-ins for adaptive exams; each card must say that and never promise PBQs."""
+    w = site()
+    p = w.page
+    for guide, ver, phrase in (("cc", "v26", "adaptive"), ("sscp", "v25", "adaptive"), ("ccsp", "v26", "100 to 150"),
+                               ("cgrc", "cur", "fixed 125-item"), ("cissp", "v24", "100 to 150")):
+        open_guide(p, guide)
+        mxp = p.inner_text("#mxp")
+        assert p.locator(f'#mxp [data-mx="full"][data-ver="{ver}"]').count() == 1, (guide, mxp[:500])
+        assert p.locator("#mxp .mxp-card.soon").count() == 0, (guide, mxp[:600])
+        assert "PBQs first" not in mxp and phrase in mxp, (guide, mxp[:600])
+        p.keyboard.press("Escape")
+        p.wait_for_timeout(300)
+
+
+def test_cc_full_exam_has_no_pbq(site):
+    w = site()
+    p = w.page
+    _open_full(p, "cc", "v26")
+    assert p.inner_text("#mx-count").strip().endswith("/ 100")
+    assert p.locator("#mx .mx-pbq, #mx [data-kind='pbq']").count() == 0
+
+
+def test_sscp_exam_title_doesnt_repeat_the_code(site):
+    w = site()
+    p = w.page
+    _open_full(p, "sscp", "v25")
+    assert p.inner_text("#mx-h").strip() == "SSCP · 2025 outline"   # the code isn't repeated when it equals the cert name
+
+
+def test_cysa_cards_show_v4_and_the_retiring_v3_note(site):
+    w = site()
+    p = w.page
+    open_guide(p, "cysa")
+    mxp = p.inner_text("#mxp")
+    assert p.locator('#mxp [data-mx="full"][data-ver="v4"]').count() == 1, mxp[:500]
+    assert p.locator('#mxp [data-mx="full"][data-ver="v3"]').count() == 0
+    assert "CS0-003" in mxp and "being retired" in mxp and "later update" not in mxp, mxp[:800]

@@ -1,6 +1,6 @@
 """A small local web server that behaves like GitHub Pages for the tests:
 serves the repo folder, answers any missing path with /404.html and status 404, and serves
-.webmanifest / .json / .woff with the right types. Bind to "localhost" so the service worker can register.
+.webmanifest / .json / .woff2 with the right types. Bind to "localhost" so the service worker can register.
 
 Run by hand:  python3 tests/ghp_server.py [port]
 """
@@ -12,7 +12,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 class Handler(http.server.SimpleHTTPRequestHandler):
     extensions_map = {**http.server.SimpleHTTPRequestHandler.extensions_map,
                       ".webmanifest": "application/manifest+json", ".json": "application/json",
-                      ".woff": "font/woff", ".js": "text/javascript", ".txt": "text/plain"}
+                      ".woff": "font/woff", ".woff2": "font/woff2", ".js": "text/javascript", ".txt": "text/plain"}
 
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=str(ROOT), **kw)

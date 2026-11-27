@@ -19,6 +19,7 @@ def test_home_loads(site, device):
     assert over <= 1, "page is %d px wider than the screen" % over
 
 
+@pytest.mark.xdist_group("3d")
 def test_full_mode_real_globe(site):
     """Full (non-Lite) mode with the real 3D globe: three.js and Lenis load from vendor/, no errors."""
     w = site(device="desktop", lite=False, wait=5000)

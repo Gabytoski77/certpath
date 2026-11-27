@@ -7,7 +7,7 @@ solid hexagon and the decoded globe picture is swapped in whole.
 import pytest
 
 
-@pytest.mark.parametrize("lite", [False, True])
+@pytest.mark.parametrize("lite", [pytest.param(False, marks=pytest.mark.xdist_group("3d")), True])
 def test_crests_are_solid(site, lite):
     w = site(lite=lite)
     p = w.page

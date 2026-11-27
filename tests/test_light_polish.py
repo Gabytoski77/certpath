@@ -6,7 +6,7 @@
 - Laptops at 125-150% scaling get the new 1300 px globe picture instead of the 1600 px one.
 """
 import pytest
-from conftest import open_guide  # noqa: F401  (keeps the import style of the other test files)
+from conftest import open_guide, wait_until  # noqa: F401  (open_guide keeps the import style of the other test files)
 
 RAF_COUNTER = """() => { window.__raf = 0; const o = window.requestAnimationFrame.bind(window);
   window.requestAnimationFrame = function (cb) { window.__raf++; return o(cb); }; }"""
@@ -31,14 +31,15 @@ def test_home_loop_sleeps_in_light_and_wakes_on_input(site):
     assert p.evaluate("window.__raf") > 5
 
 
+@pytest.mark.xdist_group("3d")
 def test_normal_mode_loop_keeps_running(site):
     w = site(lite=False, wait=3000)
     p = w.page
     if "lite" in p.evaluate("document.documentElement.className"):
         pytest.skip("Auto graphics stepped down to Light on this runner")
     p.evaluate(RAF_COUNTER)
-    p.wait_for_timeout(2500)   # the 3D globe is slow under software WebGL, but it never stops
-    assert p.evaluate("window.__raf") >= 3
+    # the 3D globe is slow under software WebGL, but it never stops: wait for the frames, not a fixed time
+    wait_until(p, "window.__raf >= 3", timeout=30000, msg="the 3D globe drew fewer than 3 frames in 30 s")
 
 
 def test_vendor_change_never_leaves_the_globe_empty(site):
@@ -77,5 +78,6 @@ def test_explore_opens_and_switches_in_one_step_in_light(site):
 def test_globe_picture_size_for_work_laptops(site, vp, dpr, size):
     w = site(lite=True, wait=3000, viewport={"width": vp[0], "height": vp[1]}, device_scale_factor=dpr)
     p = w.page
+    p.wait_for_function("document.querySelector('#gpic img') && document.querySelector('#gpic img').getAttribute('src')", timeout=30000)
     src = p.evaluate("document.querySelector('#gpic img').getAttribute('src')")
     assert src.endswith(f"-{size}.webp"), src

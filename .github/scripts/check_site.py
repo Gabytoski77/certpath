@@ -8,6 +8,7 @@ bumped whenever index.html changed since that commit.
 Uses only the Python standard library, so there is nothing to install.
 """
 import base64
+import datetime
 import hashlib
 import json
 import os
@@ -285,6 +286,96 @@ def check_dod8140():
         ok(f"DoD 8140 data matches the pinned matrix {pin['version']} ({len(want)} roles, {n} cert listings)")
 
 
+def inline_guides(html):
+    """The small guide index inside index.html (var GUIDES={ "Name":{...}, ... };), one guide per line, plain JSON (v2.83)."""
+    a = html.find("var GUIDES={")
+    if a < 0:
+        return None
+    b = html.find("\n};", a)
+    if b < 0:
+        return None
+    try:
+        return json.loads(html[a + len("var GUIDES="): b + 2])
+    except ValueError:
+        return None
+
+
+def check_guide_dates():
+    # Every guide carries checked:"YYYY-MM-DD" (shown on the guide as "Facts last checked"). Missing, malformed or
+    # future dates fail; a date older than 45 days only warns (the monthly fact check is due).
+    with open("index.html", encoding="utf-8") as f:
+        html = f.read()
+    guides = inline_guides(html)
+    if not guides or len(guides) < 30:
+        fail("the guide index (var GUIDES={ ... }; as plain JSON) wasn't found in index.html, so guide dates can't be checked")
+        return
+    today = datetime.date.today()
+    before, stale = len(failures), []
+    for name, g in guides.items():
+        c = g.get("checked")
+        if c is None:
+            fail(f'guide "{name}" has no checked:"YYYY-MM-DD" field')
+            continue
+        try:
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", c):
+                raise ValueError
+            d = datetime.date.fromisoformat(c)
+        except (ValueError, TypeError):
+            fail(f'guide "{name}" has a bad checked date {c!r} (use YYYY-MM-DD)')
+            continue
+        if d > today + datetime.timedelta(days=1):
+            fail(f'guide "{name}" has a checked date in the future: {c}')
+        elif (today - d).days > 45:
+            stale.append(f"{name} ({c}, {(today - d).days} days)")
+    if stale:
+        print(f"WARN  {len(stale)} guide(s) not fact-checked in over 45 days: " + "; ".join(stale))
+    if len(failures) == before:
+        ok(f"all {len(guides)} guides have a valid checked date")
+
+
+def check_guide_files():
+    """v2.83: every guide lives in guides/<id>.json, loaded when it opens. The files must match the inline index."""
+    sys.path.insert(0, os.path.join("build"))
+    import split_guides
+    with open("index.html", encoding="utf-8") as f:
+        html = f.read()
+    guides = inline_guides(html)
+    if not guides:
+        return  # check_guide_dates already reported it
+    before = len(failures)
+    if re.search(r'(?m)^GUIDES\["', html):
+        fail('index.html still holds a whole guide (GUIDES["..."]=); guides must be in guides/*.json')
+    want = {g.get("id") + ".json" for g in guides.values()} | {"_search.json"}
+    have = set(os.listdir("guides")) if os.path.isdir("guides") else set()
+    for extra in sorted(have - want):
+        fail(f"guides/{extra} isn't used by any guide in the index")
+    for name, g in guides.items():
+        path = f"guides/{g['id']}.json"
+        if not os.path.isfile(path):
+            fail(f"{path} is missing ({name})")
+            continue
+        raw = open(path, "rb").read()
+        try:
+            full = json.loads(raw)
+        except ValueError as e:
+            fail(f"{path} isn't valid JSON ({e})")
+            continue
+        if split_guides.sha8(raw) != g.get("lz"):
+            fail(f"{path}: its hash doesn't match the index (run python3 build/build_site.py)")
+        if full.get("id") != g["id"] or not full.get("quiz"):
+            fail(f"{path}: wrong id or no quiz")
+        if split_guides.slim(full, g.get("lz")) != g:
+            fail(f"{path}: the inline index entry for {name} doesn't match the guide file")
+    sp = "guides/_search.json"
+    lazy = re.search(r'var GUIDES_LAZY=\{"search":"([0-9a-f]{8})"\};', html)
+    if not lazy:
+        fail("index.html has no GUIDES_LAZY search hash")
+    elif not os.path.isfile(sp) or split_guides.sha8(open(sp, "rb").read()) != lazy.group(1):
+        fail(f"{sp} is missing or its hash doesn't match the one in index.html")
+    if len(failures) == before:
+        ok(f"{len(guides)} guide files + search file match the index and their hashes")
+
+
 def jpeg_size(path):
     """(width, height) of a baseline or progressive JPEG, read from its SOF marker."""
     with open(path, "rb") as f:
@@ -347,6 +438,114 @@ def alloc(n, domains):
     return out
 
 
+NEW_PBQ_KINDS = ("logsel", "rules", "term", "diagram")
+
+
+def obj_prefix(d):
+    """What a domain's objectives start with: CompTIA-style "1.0" -> "1" (objectives 1.1, 1.2...);
+    LPI-style topic "011" -> "011" (objectives 011.1, 011.2...)."""
+    return d[:-2] if d.endswith(".0") else d
+
+
+def check_new_pbq(q, dset):
+    """The new PBQ types (v2.84): same rules as vendor/pbq-engine.js, plus the content rules the page can't check:
+    every scored part has a non-empty "why", references resolve, and the question has something to get wrong."""
+    out = []
+
+    def text(x, n=900):
+        return isinstance(x, str) and 0 < len(x.strip()) <= n
+
+    def why(x, label):
+        if not isinstance(x, dict) or not text(x.get("why"), 700):
+            out.append(f"{label} has no 'why'")
+            return
+        d = x.get("d", q["d"])
+        if "d" in x and x["d"] not in dset:
+            out.append(f"{label} has unknown domain {x['d']!r}")
+        if "obj" in x and not re.fullmatch(r"\d+\.\d+", str(x["obj"])) or ("obj" in x and str(x["obj"]).split(".")[0] != obj_prefix(d)):
+            out.append(f"{label} objective {x.get('obj')!r} doesn't fit domain {d}")
+
+    if not text(q.get("title"), 200) or not text(q.get("scenario")):
+        out.append("needs a title and a scenario")
+    if "ticket" in q and not text(q["ticket"], 700):
+        out.append("bad ticket text")
+    k = q["kind"]
+    if k == "logsel":
+        lines = q.get("lines") or []
+        if not 3 <= len(lines) <= 30 or not any(l.get("bad") for l in lines) or all(l.get("bad") for l in lines):
+            out.append("needs 3-30 lines, with at least one bad and one normal line")
+        for i, l in enumerate(lines):
+            if not text(l.get("text"), 320) or l.get("bad") not in (0, 1):
+                out.append(f"line {i + 1} needs text and bad = 0 or 1")
+            why(l, f"line {i + 1}")
+        a = q.get("ask")
+        if a is not None:
+            if not text(a.get("label"), 200) or not 2 <= len(a.get("opts", [])) <= 6 or not isinstance(a.get("a"), int) or not 0 <= a["a"] < len(a.get("opts", [])):
+                out.append("ask needs a label, 2-6 options and a valid answer")
+            why(a, "ask")
+    elif k == "rules":
+        rules = q.get("rules") or []
+        ids = {r.get("id"): r for r in rules}
+        if not 3 <= len(rules) <= 14 or len(ids) != len(rules):
+            out.append("needs 3-14 rules with unique ids")
+        if sum(1 for r in rules if r.get("need")) < 2 or all(r.get("need") for r in rules):
+            out.append("needs at least 2 needed rules and at least 1 decoy rule")
+        for r in rules:
+            if not text(r.get("text"), 200) or r.get("need") not in (0, 1) or not re.fullmatch(r"[a-z0-9]{1,6}", str(r.get("id"))):
+                out.append(f"rule {r.get('id')!r} needs an id, text and need = 0 or 1")
+            why(r, f"rule {r.get('id')!r}")
+        for b in q.get("before", []):
+            if not (ids.get(b.get("a"), {}).get("need") and ids.get(b.get("b"), {}).get("need")) or b["a"] == b["b"]:
+                out.append("a 'before' pair must name two different needed rules")
+            why(b, "a 'before' pair")
+        if "last" in q:
+            if not ids.get((q["last"] or {}).get("id"), {}).get("need"):
+                out.append("'last' must name a needed rule")
+            why(q["last"] or {}, "'last'")
+    elif k == "term":
+        cmds, checks = q.get("cmds") or [], q.get("checks") or []
+        if not 2 <= len(cmds) <= 40 or not 2 <= len(checks) <= 8:
+            out.append("needs 2-40 commands and 2-8 checks")
+        facts = set()
+        for c in cmds:
+            if not c.get("run") or len(c["run"]) > 16 or not all(text(r, 120) and r.count("{ip}") <= 1 for r in c["run"]) or not isinstance(c.get("out"), str) or len(c.get("out", "")) > 1500:
+                out.append(f"command {str((c.get('run') or ['?'])[0])!r} needs 'run' lines and 'out'")
+            fx = c.get("fx", [])
+            facts.update([fx] if isinstance(fx, str) else fx)
+        pats = [re.compile("^" + re.escape(f).replace(re.escape("{ip}"), r"(?:\d{1,3}\.){3}\d{1,3}") + "$") for f in facts]
+        known = lambda f: any(p.match(f) for p in pats)  # noqa: E731
+        as_list = lambda v: v if isinstance(v, list) else [v]  # noqa: E731
+        for c in checks:
+            if not text(c.get("t"), 200):
+                out.append("every check needs a 't' (what the learner has to do)")
+            why(c, f"check {str(c.get('t'))[:30]!r}")
+            kinds = [x for x in ("has", "lacks", "after") if x in c]
+            if len(kinds) != 1:
+                out.append(f"check {str(c.get('t'))[:30]!r} needs exactly one of has / lacks / after")
+                continue
+            refs = as_list(c["has"] if "has" in c else c["lacks"] if "lacks" in c else c["after"]) + (as_list(c.get("of", [])) if "after" in c else [])
+            for f in refs:
+                if not known(f):
+                    out.append(f"check {str(c.get('t'))[:30]!r} uses '{f}', which no command produces")
+    elif k == "diagram":
+        slots, devs = q.get("slots") or [], q.get("devs") or []
+        if not 2 <= len(slots) <= 8 or len(devs) <= len(slots) or len(devs) > 12:
+            out.append("needs 2-8 spots and more devices than spots (so some are decoys)")
+        used = [d.get("slot") for d in devs if isinstance(d.get("slot"), int) and d["slot"] >= 0]
+        if sorted(used) != list(range(len(slots))):
+            out.append("every spot needs exactly one correct device")
+        if not any(d.get("slot") == -1 for d in devs):
+            out.append("needs at least one decoy device (slot -1)")
+        for s in slots:
+            if not text(s.get("label"), 60) or not text(s.get("zone"), 40):
+                out.append("every spot needs a label and a zone")
+        for d in devs:
+            if not text(d.get("name"), 40) or not re.fullmatch(r"[a-z0-9]{1,6}", str(d.get("id"))):
+                out.append(f"device {d.get('id')!r} needs an id and a name")
+            why(d, f"device {d.get('id')!r}")
+    return out
+
+
 def check_qbank(path, ver):
     """One practice-exam bank: structure, explanations, coverage, pool sizes, duplicates, answer-length tells."""
     tag = f"question bank {path}"
@@ -381,7 +580,7 @@ def check_qbank(path, ver):
             continue
         obj = str(q.get("obj", ""))
         m = re.fullmatch(r"(\d+)\.(\d+)", obj)
-        if not m or m.group(1) + ".0" != q["d"] or int(m.group(2)) > dset[q["d"]].get("obj", 99):
+        if not m or m.group(1) != obj_prefix(q["d"]) or int(m.group(2)) > dset[q["d"]].get("obj", 99):
             fail(f"{tag}: {qid} objective {obj!r} doesn't fit domain {q['d']}")
         if q.get("t") == "pbq":
             if q.get("kind") == "table":
@@ -389,6 +588,11 @@ def check_qbank(path, ver):
                     len(r.get("a", [])) == len(q["cols"]) and all(0 <= v < len(q["opts"][ci]) for ci, v in enumerate(r["a"])) and r.get("why") for r in q["rows"])
             elif q.get("kind") == "match":
                 good = q.get("choices") and q.get("items") and all(0 <= it.get("a", -1) < len(q["choices"]) and it.get("why") and (it.get("log") or it.get("text")) for it in q["items"])
+            elif q.get("kind") in NEW_PBQ_KINDS:
+                problems = check_new_pbq(q, dset)
+                for pr in problems:
+                    fail(f"{tag}: PBQ {qid}: {pr}")
+                good = True
             else:
                 good = False
             if not good:
@@ -422,8 +626,8 @@ def check_qbank(path, ver):
                 mc_long += 1
     for d in doms:
         for k in range(1, d.get("obj", 0) + 1):
-            if per_obj.get(f"{d['n'][:-2]}.{k}", 0) < 2:
-                fail(f"{tag}: objective {d['n'][:-2]}.{k} has fewer than 2 questions")
+            if per_obj.get(f"{obj_prefix(d['n'])}.{k}", 0) < 2:
+                fail(f"{tag}: objective {obj_prefix(d['n'])}.{k} has fewer than 2 questions")
     need = alloc(F["n"] - F["pbq"], doms)
     for dn, n in need.items():
         if per_dom.get(dn, 0) < n:
@@ -431,10 +635,38 @@ def check_qbank(path, ver):
     pbqs = sum(1 for q in b.get("q", []) if q.get("t") == "pbq")
     if pbqs < F["pbq"]:
         fail(f"{tag}: {pbqs} PBQs but a full exam needs {F['pbq']}")
+    # the half-length exam (same sums as the page's mxBuild): half of the items, PBQs scaled down, same domain split
+    half = F.get("half") or round(F["n"] / 2)
+    half_pbq = min(max(1, round(F["pbq"] * half / F["n"])), half) if F["pbq"] else 0
+    if not 0 < half < F["n"]:
+        fail(f"{tag}: format.half must be between 1 and n ({F['n']})")
+    if pbqs < half_pbq:
+        fail(f"{tag}: {pbqs} PBQs but a half exam needs {half_pbq}")
+    for dn, n in alloc(half - half_pbq, doms).items():
+        if per_dom.get(dn, 0) < n:
+            fail(f"{tag}: domain {dn} has {per_dom.get(dn, 0)} questions but a half exam needs {n}")
     if mc_n and mc_long / mc_n > 0.4:
         fail(f"{tag}: the right answer is the longest option in {mc_long}/{mc_n} questions (a giveaway); keep it under 40%")
     if len(failures) == before:
         ok(f"{tag}: {len(ids)} items, every objective covered, full exam fits, longest-answer tell {round(100 * mc_long / max(mc_n, 1))}%")
+
+
+def check_bank_domains(path, ver, gid):
+    """A bank's domains must be the guide version's domains (same numbers and names): the results screen and the
+    weak-spot tracker look domain names up in the guide by number, so a mismatch shows "Domain 1.0" or the wrong name."""
+    tag = f"question bank {path}"
+    try:
+        with open(f"guides/{gid}.json", encoding="utf-8") as f:
+            gdoms = (json.load(f).get("versions") or {}).get(ver, {}).get("domains") or []
+        with open(path, encoding="utf-8") as f:
+            bdoms = json.load(f).get("domains") or []
+    except Exception as e:
+        fail(f"{tag}: can't compare with guides/{gid}.json ({e})")
+        return
+    want = [(d.get("n"), d.get("name")) for d in gdoms]
+    got = [(d.get("n"), d.get("name")) for d in bdoms]
+    if want != got:
+        fail(f"{tag}: domains {got} don't match guide {gid} version {ver} {want}")
 
 
 def check_qbanks():
@@ -442,17 +674,18 @@ def check_qbanks():
     with open("index.html", encoding="utf-8") as f:
         html = f.read()
     refs = {}
-    for block in re.findall(r"\bmock:\{([^}]*)\}", html):
-        for ver, path in re.findall(r'(\w+):"([^"]+)"', block):
+    for g in (inline_guides(html) or {}).values():
+        for ver, path in (g.get("mock") or {}).items():
             if not re.fullmatch(r"qbank/[a-z0-9-]{3,40}\.json", path):
                 fail(f"question bank path {path!r} must be qbank/<name>.json")
                 continue
-            refs[path] = ver
-    for path, ver in sorted(refs.items()):
+            refs[path] = (ver, g.get("id"))
+    for path, (ver, gid) in sorted(refs.items()):
         if not os.path.isfile(path):
             fail(f"{path} is referenced by a guide but missing")
         else:
             check_qbank(path, ver)
+            check_bank_domains(path, ver, gid)
     if os.path.isdir("qbank"):
         for f in sorted(os.listdir("qbank")):
             if f.endswith(".json") and "qbank/" + f not in refs:
@@ -519,6 +752,8 @@ def main():
     check_index()
     check_404()
     check_dod8140()
+    check_guide_dates()
+    check_guide_files()
     check_share_preview()
     check_qbanks()
     version = check_sw()

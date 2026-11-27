@@ -1,0 +1,3267 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "CCST IT Support",
+ "ver": "cur",
+ "exam": "100-140",
+ "title": "CCST IT Support (100-140) practice exam",
+ "rev": "2026-11-23",
+ "format": {
+  "n": 45,
+  "min": 50,
+  "pbq": 4,
+  "half": 22
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "IT Support Job Tasks and Responsibilities",
+   "w": 17,
+   "obj": 3
+  },
+  {
+   "n": "2.0",
+   "name": "Hardware Issues",
+   "w": 17,
+   "obj": 5
+  },
+  {
+   "n": "3.0",
+   "name": "Connectivity and Resource Access Issues",
+   "w": 17,
+   "obj": 3
+  },
+  {
+   "n": "4.0",
+   "name": "Operating System and Application Issues",
+   "w": 17,
+   "obj": 5
+  },
+  {
+   "n": "5.0",
+   "name": "Common Threats and Preventions",
+   "w": 16,
+   "obj": 3
+  },
+  {
+   "n": "6.0",
+   "name": "Job Tools",
+   "w": 16,
+   "obj": 2
+  }
+ ],
+ "note": "Original questions written for MyNextCert from Cisco's public 100-140 CCST IT Support exam topic blueprint (form 4/24, checked 2026-11-23). Not real exam questions. Cisco doesn't publish the number of items or the topic weights, so this is a 45-item stand-in that fits the real 50 minutes, with an even split across the six domains and 4 drag-and-drop style items.",
+ "q": [
+  {
+   "id": "it-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Forty tickets are waiting at 9 a.m. One is a password reset, one is a file-server outage that stops 200 people from working, and the rest are routine. Which one do you work first?",
+   "o": [
+    [
+     "The one from the loudest caller",
+     "Volume isn't priority. Impact and urgency set the order."
+    ],
+    [
+     "Whichever came in first, to keep it fair",
+     "First-in, first-out ignores impact. A big outage costs more with every minute."
+    ],
+    [
+     "The password reset, since it takes two minutes",
+     "Quick wins feel good, but they don't help 200 blocked users."
+    ],
+    [
+     "The outage, because it hurts the most people",
+     "Right. Order the queue by impact and urgency, not by who asked first."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Your contract says every high-priority ticket must get a first reply within 15 minutes. What is that promise called?",
+   "o": [
+    [
+     "A change request",
+     "A change request asks permission to alter a system."
+    ],
+    [
+     "An acceptable use policy",
+     "That policy tells users what they may do with company equipment."
+    ],
+    [
+     "A service level agreement (SLA)",
+     "Right. An SLA sets the response and fix times the help desk has agreed to."
+    ],
+    [
+     "A key performance indicator (KPI)",
+     "A KPI is a number you track, such as how often you meet the SLA."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-1-03",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A manager wants one number that shows how often tickets are solved without handing them to another team. Which KPI is that?",
+   "o": [
+    [
+     "Number of user accounts",
+     "A head count says nothing about how well tickets are solved."
+    ],
+    [
+     "First-contact resolution rate",
+     "Right. It counts the tickets fixed on the first contact."
+    ],
+    [
+     "Mean time between failures",
+     "That rates how reliable hardware is."
+    ],
+    [
+     "Uptime percentage",
+     "Uptime measures how long a service stays available, not how tickets are handled."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-1-04",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Why does a help desk log every request in a ticketing system instead of working from phone calls and hallway chats?",
+   "o": [
+    [
+     "It makes problems fix themselves once logged",
+     "Logging doesn't fix anything. People do."
+    ],
+    [
+     "It removes the need for an SLA",
+     "SLA timers are usually tracked inside the ticketing system."
+    ],
+    [
+     "Each request gets an owner and a history",
+     "Right. A ticket is the single record of who asked, who owns it and what was done."
+    ],
+    [
+     "It lets technicians skip writing notes",
+     "The ticket is only as useful as the notes you add to it."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-1-05",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "You have spent two hours on one hard ticket. Four more are waiting, and one of them is about to break its SLA. What is the best move?",
+   "o": [
+    [
+     "Note what you tried, then escalate or ask for help",
+     "Right. Escalate with notes so the next person doesn't start over, and get back to the queue."
+    ],
+    [
+     "Ignore the waiting tickets because this one was first",
+     "Order is set by priority and SLA time left, not by who got there first."
+    ],
+    [
+     "Keep going alone until it is solved",
+     "Stalling on one ticket lets the others breach their SLAs."
+    ],
+    [
+     "Close the ticket and tell the user to open a new one",
+     "Closing without a fix is dishonest and hides the problem in your numbers."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-1-06",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Which ticket note would help the next technician the most?",
+   "o": [
+    [
+     "Fixed printer.",
+     "Too thin. The next tech can't see what was tried or what worked."
+    ],
+    [
+     "Printer offline. Checked power and cable, cleared the queue, reinstalled the driver. It prints now and the user confirmed.",
+     "Right. It gives the problem, the steps and the result."
+    ],
+    [
+     "User can't work a printer, my guess is it's their fault.",
+     "A guess about blame is opinion, not fact."
+    ],
+    [
+     "Did the usual steps. Works now.",
+     "'The usual steps' means nothing to someone who wasn't there."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-1-07",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A technician writes 'this user is clueless and breaks everything' in a ticket. What is wrong with that?",
+   "o": [
+    [
+     "It is too short to be useful",
+     "Length isn't the issue. The content is."
+    ],
+    [
+     "Ticket notes must be factual and professional, because other people read them",
+     "Right. Notes can be read by users, managers and auditors. Stick to facts."
+    ],
+    [
+     "Nothing, because internal notes can hold opinions",
+     "Internal notes still get read, and opinions can cause real harm."
+    ],
+    [
+     "It should have been said in a chat message instead",
+     "Moving it to chat doesn't make it professional."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-1-08",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Which TWO items belong in a ticket's closing notes? (Choose two.)",
+   "o": [
+    [
+     "Details of unrelated tickets",
+     "Each ticket should hold only its own facts."
+    ],
+    [
+     "The result, such as the user confirming it works",
+     "Right. The result shows the problem is really closed."
+    ],
+    [
+     "The cause, if known, and the fix that worked",
+     "Right. This is what lets the next tech solve it faster."
+    ],
+    [
+     "The user's password, so it's handy next time",
+     "Never store passwords in a ticket."
+    ],
+    [
+     "A guess about who is to blame",
+     "Blame is opinion and has no place in a ticket."
+    ]
+   ],
+   "t": "ms",
+   "a": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "it-1-09",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Why write down the steps that did NOT fix the problem?",
+   "o": [
+    [
+     "Because every SLA needs at least ten steps",
+     "No SLA counts steps."
+    ],
+    [
+     "To make the ticket look like more work was done",
+     "Padding is dishonest. Notes should be true and useful."
+    ],
+    [
+     "So the user can see their mistakes",
+     "Notes are for the team, not for blaming the user."
+    ],
+    [
+     "It shows the next tech what's already ruled out",
+     "Right. Dead ends save the next tech time."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-1-10",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "During a call the user reads out their password so you can 'log in as them'. What do you do with it when you write the ticket?",
+   "o": [
+    [
+     "Ignore it, since the ticket is internal",
+     "Internal doesn't mean safe."
+    ],
+    [
+     "Write it in the ticket in case it's needed again",
+     "Tickets are read by many people. Passwords don't belong there."
+    ],
+    [
+     "Leave it out, and tell the user to change it",
+     "Right. A password in a ticket is a leak, and the user should treat it as exposed."
+    ],
+    [
+     "Put it in the private notes only",
+     "Private notes can still be seen by admins and in exports."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-1-11",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A user says 'the Wi-Fi is slow'. Which step of the process comes first?",
+   "o": [
+    [
+     "Reboot the router",
+     "Rebooting is a guess without details."
+    ],
+    [
+     "Define the problem",
+     "Right. First make sure you understand the problem the way the user sees it."
+    ],
+    [
+     "Rebuild the laptop",
+     "A rebuild is a last resort, not a first step."
+    ],
+    [
+     "Replace the access point",
+     "That is a fix. You don't have a cause yet."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-1-12",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "You changed a DNS setting and the website now loads. What comes next?",
+   "o": [
+    [
+     "Confirm with the user, then document",
+     "Right. Check that it holds and the user agrees, then record the fix."
+    ],
+    [
+     "Close the ticket without checking",
+     "Always confirm with the user first."
+    ],
+    [
+     "Make a second change to be safe",
+     "Extra changes make it harder to know what worked."
+    ],
+    [
+     "Go back and gather information again",
+     "The problem is solved. Only repeat if it is not."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-1-13",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Your first fix didn't work. What does the process tell you to do?",
+   "o": [
+    [
+     "Close it as 'cannot reproduce' right away",
+     "That should only come after real checks."
+    ],
+    [
+     "Tell the user nothing is wrong",
+     "The problem is still real."
+    ],
+    [
+     "Pick another likely cause, or escalate",
+     "Right. Loop back with new information, and ask for help if you're stuck."
+    ],
+    [
+     "Apply every possible fix at once",
+     "You'd never know which change worked, and might break more."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-1-14",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A user says 'my computer is broken'. Which follow-up best gathers detail?",
+   "o": [
+    [
+     "Did you install something you shouldn't have?",
+     "That blames the user and puts them on the defensive."
+    ],
+    [
+     "Have you read the IT policy?",
+     "That doesn't help find the cause."
+    ],
+    [
+     "Can you just bring it to the help desk?",
+     "That jumps to a solution before you know the problem."
+    ],
+    [
+     "What happens, since when, and what changed?",
+     "Right. Open questions about symptoms and changes give you clues."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-1-15",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Why does the process say to test the simplest, most likely causes first?",
+   "o": [
+    [
+     "They're quick, likely and low risk",
+     "Right. A loose cable is far more likely than a failed board."
+    ],
+    [
+     "Every SLA requires it",
+     "SLAs set times, not troubleshooting order."
+    ],
+    [
+     "Simple fixes never need documenting",
+     "Every fix gets documented."
+    ],
+    [
+     "Complex causes never happen on user devices",
+     "They do. They are just less likely, so they come later."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "You are about to replace the RAM in a desktop. How do you protect the module from static?",
+   "o": [
+    [
+     "Touch the gold contacts to check they're clean",
+     "Fingers add oil and static to the contacts."
+    ],
+    [
+     "Stand on carpet so you stay still",
+     "Carpet builds up static."
+    ],
+    [
+     "Wear rubber gloves and leave the PC plugged in",
+     "Gloves don't drain static, and a live PC is a shock risk."
+    ],
+    [
+     "Unplug it and wear an ESD wrist strap",
+     "Right. Unplug first. The strap then drains static so it can't zap the module, and you hold it by the edges."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A desktop's power supply smells burnt and you must open the case. What do you do first?",
+   "o": [
+    [
+     "Shut down, unplug it and wait before opening",
+     "Right. Remove the power first, and give parts time to cool and discharge."
+    ],
+    [
+     "Open the case while it runs, to see what is burning",
+     "A live, damaged PSU is a shock and fire risk."
+    ],
+    [
+     "Spray the inside with a water-based cleaner",
+     "Water on live parts is dangerous."
+    ],
+    [
+     "Vacuum the dust out while it is on",
+     "Vacuums create static and the PC is still powered."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A laptop's battery has swollen and the case is bulging. What should you do?",
+   "o": [
+    [
+     "Charge it overnight to see if it goes down",
+     "Charging a damaged battery raises the fire risk."
+    ],
+    [
+     "Stop using it and use the disposal process",
+     "Right. A swollen lithium battery can catch fire, so isolate it and dispose of it properly."
+    ],
+    [
+     "Throw it in the regular trash",
+     "Lithium batteries need proper recycling."
+    ],
+    [
+     "Press it flat so the case closes",
+     "Pressing a swollen cell can puncture it and start a fire."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-2-04",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "You must lift a 25 kg printer from a cart onto a desk. Which is the safest method?",
+   "o": [
+    [
+     "Drag it across the floor by its cable",
+     "You'd damage the cable and the printer."
+    ],
+    [
+     "Twist your body while lifting to place it",
+     "Twisting under a load causes injury."
+    ],
+    [
+     "Bend at the waist and lift quickly",
+     "That strains your back."
+    ],
+    [
+     "Bend your knees and get a second person",
+     "Right. Lift with your legs, and share the load."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-2-05",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which TWO habits keep you safe while working inside a PC? (Choose two.)",
+   "o": [
+    [
+     "Keep a drink next to the open case",
+     "A spill could cause a short."
+    ],
+    [
+     "Remove loose jewelry and tie back long hair",
+     "Right. Both can touch live parts or get caught in fans."
+    ],
+    [
+     "Work with the PSU cover open",
+     "Never open a power supply. It holds dangerous charge."
+    ],
+    [
+     "Unplug the power cord before opening the case",
+     "Right. This removes the main shock risk."
+    ],
+    [
+     "Leave tools and cables across the walkway",
+     "That is a trip hazard."
+    ]
+   ],
+   "t": "ms",
+   "a": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "it-2-06",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A user must tell you the host name and Windows version. Which tool shows both together?",
+   "o": [
+    [
+     "The Task Manager Startup tab",
+     "It lists the apps that start with Windows."
+    ],
+    [
+     "Device Manager",
+     "It lists hardware and drivers."
+    ],
+    [
+     "System Information",
+     "Right. System Information lists the system name, OS version and hardware."
+    ],
+    [
+     "Event Viewer",
+     "It holds logs, not a summary."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-2-07",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A Mac user wants to read you the model, memory and macOS version quickly. Where do they look?",
+   "o": [
+    [
+     "Apple menu > About This Mac",
+     "Right. It shows the chip, memory and macOS version on one screen."
+    ],
+    [
+     "AirDrop",
+     "It shares files. It doesn't show hardware details."
+    ],
+    [
+     "Activity Monitor",
+     "It shows live processes."
+    ],
+    [
+     "Console",
+     "It shows logs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-2-08",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A user pastes this from a command prompt. Which value is the MAC address?",
+   "o": [
+    [
+     "192.168.1.1",
+     "That is the default gateway."
+    ],
+    [
+     "LAPTOP-0427",
+     "That is the host name."
+    ],
+    [
+     "00-1A-2B-3C-4D-5E",
+     "Right. 'Physical Address' is the MAC address, six pairs of hex digits."
+    ],
+    [
+     "192.168.1.45",
+     "That is the IPv4 address."
+    ]
+   ],
+   "a": 2,
+   "code": "C:\\> ipconfig /all\n\n   Host Name . . . . . . : LAPTOP-0427\n   Physical Address. . . : 00-1A-2B-3C-4D-5E\n   IPv4 Address. . . . . : 192.168.1.45\n   Default Gateway . . . : 192.168.1.1"
+  },
+  {
+   "id": "it-2-09",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A user's PC restarted by itself overnight. Which Windows tool shows the errors from that time?",
+   "o": [
+    [
+     "Device Manager",
+     "It shows device and driver status."
+    ],
+    [
+     "Event Viewer",
+     "Right. It keeps timestamped logs of system errors and events."
+    ],
+    [
+     "System Information",
+     "It shows the setup, not a history of events."
+    ],
+    [
+     "Task Manager",
+     "It shows what is running now, not the past."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-2-10",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A Mac feels slow. Which tool shows live CPU and memory use by app?",
+   "o": [
+    [
+     "Activity Monitor",
+     "Right. It is the Mac's version of Task Manager."
+    ],
+    [
+     "Disk Utility",
+     "It checks and formats disks."
+    ],
+    [
+     "About This Mac",
+     "It shows the specs, not live use."
+    ],
+    [
+     "System Settings",
+     "It changes settings and doesn't show live use."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-2-11",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A meeting-room TV has HDMI. A user's thin laptop only has USB-C ports. What is the quickest fix?",
+   "o": [
+    [
+     "A USB-C to HDMI adapter",
+     "Right. Many USB-C ports carry video, and an adapter completes the link if the port supports it."
+    ],
+    [
+     "A Micro USB charging cable",
+     "That only carries power and a little data."
+    ],
+    [
+     "An RJ-45 patch cable",
+     "That is for network links, not video."
+    ],
+    [
+     "A USB-A to HDMI cable",
+     "The laptop has no USB-A port, and USB-A can't carry video this way."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-2-12",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Which cable is shielded to help in places with a lot of electrical noise?",
+   "o": [
+    [
+     "Shielded twisted pair (STP)",
+     "Right. The metal shield cuts interference."
+    ],
+    [
+     "Unshielded twisted pair (UTP)",
+     "UTP has no shield. It suits most offices."
+    ],
+    [
+     "A VGA cable",
+     "VGA carries analog video and is no network cable."
+    ],
+    [
+     "A power cord",
+     "A power cord carries no data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-2-13",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Which connector do you find on a wired Ethernet cable?",
+   "o": [
+    [
+     "DisplayPort",
+     "That is a video connector."
+    ],
+    [
+     "RJ-45",
+     "Right. RJ-45 is the standard Ethernet plug."
+    ],
+    [
+     "USB-B",
+     "That is a square USB plug used on printers."
+    ],
+    [
+     "VGA",
+     "That is an analog video connector."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-2-14",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "An old projector only has a blue, 15-pin analog video port. What is it?",
+   "o": [
+    [
+     "Thunderbolt",
+     "Thunderbolt uses a USB-C style plug."
+    ],
+    [
+     "HDMI",
+     "HDMI is digital and has a thin trapezoid plug."
+    ],
+    [
+     "VGA",
+     "Right. VGA is the blue 15-pin analog port."
+    ],
+    [
+     "DisplayPort",
+     "DisplayPort is digital and has a flat, notched plug."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-2-15",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A laptop's USB-C port has a small lightning-bolt symbol next to it. What does that usually mean?",
+   "o": [
+    [
+     "It supports Thunderbolt",
+     "Right. Thunderbolt 3 and 4 use the USB-C shape, with fast data, video and power on one cable."
+    ],
+    [
+     "It is a serial port",
+     "Serial ports are old D-shaped connectors."
+    ],
+    [
+     "It only charges the battery",
+     "Thunderbolt carries much more than power."
+    ],
+    [
+     "It accepts only Ethernet",
+     "Ethernet uses RJ-45."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-2-16",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A user's PC boots from a slow hard disk. Which upgrade will make it feel fastest?",
+   "o": [
+    [
+     "Add a second hard disk",
+     "More space doesn't make the boot drive faster."
+    ],
+    [
+     "Replace the drive with an SSD",
+     "Right. An SSD has no moving parts and loads the OS and apps much faster."
+    ],
+    [
+     "Add a sound card",
+     "That has no effect on boot speed."
+    ],
+    [
+     "Buy a bigger monitor",
+     "That has no effect on speed."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-2-17",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "Which statement about an M.2 NVMe drive is true?",
+   "o": [
+    [
+     "It needs both a SATA data cable and a power cable",
+     "A SATA drive does. An M.2 card sits on the board."
+    ],
+    [
+     "It is slower than a hard disk",
+     "It is far faster."
+    ],
+    [
+     "It plugs into the board and beats SATA speed",
+     "Right. No cables are needed, and NVMe uses fast PCIe lanes."
+    ],
+    [
+     "It only works in laptops",
+     "Many desktop boards have M.2 slots."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-2-18",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "After a graphics card is installed, the screen is stuck at a low resolution and Device Manager lists 'Microsoft Basic Display Adapter'. What do you do?",
+   "o": [
+    [
+     "Install the driver",
+     "Right. The basic adapter is Windows' stand-in until the real driver is installed."
+    ],
+    [
+     "Turn on BitLocker",
+     "BitLocker encrypts drives. It has nothing to do with this."
+    ],
+    [
+     "Reseat the RAM",
+     "RAM isn't the cause."
+    ],
+    [
+     "Replace the monitor",
+     "The monitor is fine. The driver is missing."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-2-19",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "An old motherboard has failed and the shelf is full. Where should it go?",
+   "o": [
+    [
+     "Into the regular trash",
+     "Electronics contain hazardous materials."
+    ],
+    [
+     "Back on the supply shelf, unmarked",
+     "Someone could install a bad part later."
+    ],
+    [
+     "To an approved e-waste recycler",
+     "Right. Boards hold materials that shouldn't go to a landfill."
+    ],
+    [
+     "Into a burn barrel",
+     "Burning electronics releases toxic fumes."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-2-20",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A desktop board has DDR5 memory slots. Which module can you install?",
+   "o": [
+    [
+     "Any module that looks about right",
+     "Check the type the board supports first."
+    ],
+    [
+     "A laptop SO-DIMM, pushed in hard",
+     "It is a different size. Forcing it breaks things."
+    ],
+    [
+     "A DDR4 DIMM",
+     "It has a different notch and won't fit or work."
+    ],
+    [
+     "A DDR5 DIMM",
+     "Right. Memory generations aren't interchangeable."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-2-21",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "A user's PC shows no lights and won't turn on. What do you check first?",
+   "o": [
+    [
+     "Update the BIOS",
+     "The PC can't even start."
+    ],
+    [
+     "Reinstall Windows",
+     "The OS isn't the problem if nothing powers up."
+    ],
+    [
+     "Replace the motherboard",
+     "That is a costly last step."
+    ],
+    [
+     "Check the power cable",
+     "Right. Start with the simplest cause: is it plugged in and powered on?"
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-2-22",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "A designer's 3D app needs 16 GB of RAM and a dedicated graphics card. The PC has 8 GB and integrated graphics, and the app crawls. What is the likely cause?",
+   "o": [
+    [
+     "An expired certificate",
+     "That would show errors, not slowness."
+    ],
+    [
+     "A full browser cache",
+     "The app isn't a web page."
+    ],
+    [
+     "The PC doesn't meet the app's hardware requirements",
+     "Right. Always compare an app's requirements with the device."
+    ],
+    [
+     "A weak Wi-Fi signal",
+     "The app runs on the PC itself."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-2-23",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "Device Manager shows a yellow warning triangle on the webcam. What does it mean?",
+   "o": [
+    [
+     "The webcam is working and in use",
+     "A working device shows no warning."
+    ],
+    [
+     "The user turned the webcam off",
+     "A disabled device shows a down arrow instead."
+    ],
+    [
+     "A BIOS update is installing",
+     "A BIOS update doesn't show this way."
+    ],
+    [
+     "A device problem, often a driver",
+     "Right. Open its properties to read the error, then fix the driver."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-2-24",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "What is one danger of a firmware update?",
+   "o": [
+    [
+     "It always deletes the user's files",
+     "Firmware doesn't touch user files."
+    ],
+    [
+     "It extends the warranty",
+     "Updates don't change warranty terms."
+    ],
+    [
+     "A bad update can leave it unable to start",
+     "Right. Firmware runs before the OS, so a failed update can brick the device."
+    ],
+    [
+     "It can only be done by reinstalling the OS",
+     "Most updates run from a vendor tool."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-2-25",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "A desktop gives a repeating beep pattern at power-on and won't start. What is the best next step?",
+   "o": [
+    [
+     "Look up the board's beep codes",
+     "Right. Beep codes are a built-in status signal."
+    ],
+    [
+     "Ignore the beeps, they're normal",
+     "Repeating beeps signal a fault."
+    ],
+    [
+     "Reset the user's password",
+     "A hardware fault has nothing to do with passwords."
+    ],
+    [
+     "Replace the monitor",
+     "The beeps come from the PC, not the screen."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A user returns from vacation and can't sign in because the account is locked. What do you do?",
+   "o": [
+    [
+     "Verify them, then unlock it",
+     "Right. Check who is asking, then unlock the account in the directory (such as Active Directory)."
+    ],
+    [
+     "Replace the keyboard",
+     "A keyboard doesn't lock an account."
+    ],
+    [
+     "Delete the account and make a new one",
+     "That would lose their settings, group memberships and files access."
+    ],
+    [
+     "Reinstall the operating system",
+     "A locked account is a directory issue, not an OS fault."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A user got a new phone and can't approve sign-in prompts from their authenticator app. What is the best step?",
+   "o": [
+    [
+     "Verify them, then re-register the app",
+     "Right. Verify identity first, then help them set up the authenticator again through the approved process."
+    ],
+    [
+     "Email them a one-time code with no checks",
+     "You haven't confirmed who is asking."
+    ],
+    [
+     "Have them borrow a coworker's phone",
+     "MFA devices belong to one person."
+    ],
+    [
+     "Turn MFA off for the account for good",
+     "That weakens the account for everyone who might attack it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A user's S: drive shows a red X. Coworkers can still open it. What do you check first?",
+   "o": [
+    [
+     "Reformat the file server",
+     "That would destroy everyone's data."
+    ],
+    [
+     "Check VPN and group membership",
+     "Right. Network reach and group membership are the usual causes of a drive that suddenly stops working."
+    ],
+    [
+     "Re-image every PC on the floor",
+     "Only one user is affected."
+    ],
+    [
+     "Replace the user's monitor",
+     "A display has no link to a drive mapping."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-3-04",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "You added a user to a group that gets a mapped drive through Group Policy, but the drive hasn't appeared. Which command pulls the new policy now?",
+   "o": [
+    [
+     "nslookup",
+     "That tests name lookups."
+    ],
+    [
+     "gpupdate /force",
+     "Right. It refreshes Group Policy without waiting for the next cycle."
+    ],
+    [
+     "ipconfig /renew",
+     "That renews the DHCP address lease."
+    ],
+    [
+     "netstat -an",
+     "That lists connections and ports."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-3-05",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A user can open a shared folder but gets 'Access denied' when saving a file in it. What is the likely cause?",
+   "o": [
+    [
+     "They only have read access",
+     "Right. Reading works, but saving needs write permission."
+    ],
+    [
+     "Their MAC address changed",
+     "They're connected. This is a permission problem."
+    ],
+    [
+     "The folder is in a different time zone",
+     "Time zones don't control permissions."
+    ],
+    [
+     "DNS is down",
+     "They reached the folder, so names are resolving."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-3-06",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A company signs users in to its cloud apps with Microsoft Entra ID. What is Entra ID?",
+   "o": [
+    [
+     "A DNS server program",
+     "DNS turns names into addresses."
+    ],
+    [
+     "A cloud-based identity service",
+     "Right. It's Microsoft's cloud identity and access management service."
+    ],
+    [
+     "A printer driver library",
+     "Drivers have nothing to do with sign-in."
+    ],
+    [
+     "A hypervisor for virtual machines",
+     "A hypervisor runs virtual machines."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-3-07",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A user's print job sits in the queue. The printer is on and shows Ready. What is the most direct fix?",
+   "o": [
+    [
+     "Rename the printer",
+     "A new name won't clear a stuck job."
+    ],
+    [
+     "Replace the toner",
+     "Toner doesn't hold a job in the queue."
+    ],
+    [
+     "Update the monitor driver",
+     "The monitor isn't involved."
+    ],
+    [
+     "Clear the print queue",
+     "Right. A stuck job blocks the ones behind it. Clear the queue or restart the print spooler, then resend."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-3-08",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A laser printer leaves faded streaks on every page, and its toner is low. What do you do?",
+   "o": [
+    [
+     "Replace the toner cartridge",
+     "Right. Low toner is the usual cause of faded streaks."
+    ],
+    [
+     "Clear the browser cache",
+     "A cache doesn't affect print quality."
+    ],
+    [
+     "Load the paper upside down",
+     "That won't fix toner streaks."
+    ],
+    [
+     "Reinstall the operating system",
+     "It's a printer supply problem."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-3-09",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Paper has jammed inside a printer. What is the safe way to clear it?",
+   "o": [
+    [
+     "Spray lubricant on the rollers",
+     "Oil makes the paper slip and hurts print quality."
+    ],
+    [
+     "Yank it out from whichever side is easiest",
+     "Pulling the wrong way tears paper and bends parts."
+    ],
+    [
+     "Leave it and print again",
+     "That makes the jam worse."
+    ],
+    [
+     "Open the access panel and pull gently",
+     "Right. Gentle pulling with the feed direction avoids tearing and damage."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-3-10",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A Bluetooth headset connects, but the other people on a video call can't hear the user. What do you check first?",
+   "o": [
+    [
+     "Replace the monitor",
+     "The screen isn't the issue."
+    ],
+    [
+     "Update the BIOS",
+     "The BIOS has no part in this."
+    ],
+    [
+     "Clear the browser cache",
+     "A cache doesn't control the microphone."
+    ],
+    [
+     "Choose it as the mic",
+     "Right. A headset can pair for audio out and still not be the selected input."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-3-11",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A wireless mouse is jumpy and sometimes freezes. What is the best first step?",
+   "o": [
+    [
+     "Reinstall Windows",
+     "That is far too drastic."
+    ],
+    [
+     "Replace the motherboard",
+     "Overkill for a mouse."
+    ],
+    [
+     "Reset the user's password",
+     "Passwords don't affect a mouse."
+    ],
+    [
+     "Replace the batteries",
+     "Right. Weak batteries and distance are the usual causes."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-3-12",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A meeting-room touch panel is on and shows its app, but doesn't react when touched. What is the most sensible first step?",
+   "o": [
+    [
+     "Wipe the screen clean, then restart the panel",
+     "Right. Smudges and glitches are the common causes, and a restart is cheap."
+    ],
+    [
+     "Order a replacement right away",
+     "Try the simple steps before spending money."
+    ],
+    [
+     "Reset the network switch for the whole building",
+     "That would disrupt everybody."
+    ],
+    [
+     "Change the room's light bulbs",
+     "Light has no effect on a touch panel."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-3-13",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A user's PC shows this output. What does it tell you?",
+   "o": [
+    [
+     "DHCP failed, so it self-assigned",
+     "Right. An address that starts 169.254 is self-assigned (APIPA), which means DHCP failed."
+    ],
+    [
+     "The PC has a valid address from the router",
+     "A router-assigned address would be in your normal range."
+    ],
+    [
+     "DNS is set up wrong",
+     "DNS is a separate setting."
+    ],
+    [
+     "The PC is using a public internet address",
+     "169.254.x.x isn't a public address."
+    ]
+   ],
+   "a": 0,
+   "code": "C:\\> ipconfig\n\n   IPv4 Address. . . . . : 169.254.13.88\n   Subnet Mask . . . . . : 255.255.0.0\n   Default Gateway . . . :"
+  },
+  {
+   "id": "it-3-14",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A user can ping 8.8.8.8 but web pages won't load by name. What is the most likely problem?",
+   "o": [
+    [
+     "The default gateway is down",
+     "Pinging an outside address shows the gateway works."
+    ],
+    [
+     "DNS name lookups failing",
+     "Right. Reaching an IP address proves the link works, so names aren't resolving."
+    ],
+    [
+     "The PC has a self-assigned address",
+     "Then the ping would have failed too."
+    ],
+    [
+     "The network cable is cut",
+     "The ping got through."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-3-15",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A new laptop has IP 192.168.1.50, mask 255.255.255.0 and gateway 192.168.5.1. It can't leave its network. Why?",
+   "o": [
+    [
+     "The mask is too long to use",
+     "A /24 mask is common and fine."
+    ],
+    [
+     "The address is a public one",
+     "192.168.x.x is private."
+    ],
+    [
+     "The gateway is in a different subnet, so the laptop can't reach it",
+     "Right. A gateway must sit in the same subnet as the host."
+    ],
+    [
+     "The laptop needs a bigger hard drive",
+     "Storage has no part in routing."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-3-16",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Which of these is a private IPv4 address?",
+   "o": [
+    [
+     "8.8.4.4",
+     "That is a public DNS server."
+    ],
+    [
+     "172.32.0.5",
+     "172.32 is just outside the private range."
+    ],
+    [
+     "172.16.40.9",
+     "Right. 172.16.0.0 to 172.31.255.255 is private."
+    ],
+    [
+     "11.0.0.1",
+     "That is a public range."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-3-17",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A PC shows only an IPv6 address that starts fe80::. What does that tell you?",
+   "o": [
+    [
+     "It has a link-local address only, and no global address has been assigned",
+     "Right. fe80:: is link-local, used on the local link."
+    ],
+    [
+     "It is an IPv4 address in short form",
+     "IPv4 and IPv6 are different formats."
+    ],
+    [
+     "It is a MAC address",
+     "A MAC address doesn't use colons in this form."
+    ],
+    [
+     "It has a public internet IPv6 address",
+     "A public address would not start fe80."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-3-18",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Two Wi-Fi names appear: 'CorpWiFi' and 'CorpWiFi-Guest'. An employee wants to use an internal printer. Which should they join?",
+   "o": [
+    [
+     "Neither, a wired port is required",
+     "Wi-Fi to the corporate network is fine."
+    ],
+    [
+     "CorpWiFi, since guest is kept separate",
+     "Right. The SSID tells you which network you're on. Guest networks isolate users."
+    ],
+    [
+     "CorpWiFi-Guest, because it has the most users",
+     "Guest networks usually can't reach internal devices."
+    ],
+    [
+     "Either one, they always match",
+     "Different SSIDs can be different networks with different rules."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-3-19",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "After a firewall rule change, an internal web app on port 8443 won't load, but other sites work. What is the likely cause?",
+   "o": [
+    [
+     "The DHCP lease expired",
+     "Other sites would be down too."
+    ],
+    [
+     "The monitor is set to the wrong input",
+     "The display isn't related."
+    ],
+    [
+     "The firewall is blocking that port",
+     "Right. A firewall allows or blocks traffic by port and address."
+    ],
+    [
+     "The keyboard is faulty",
+     "A keyboard has no effect on one port."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-3-20",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Which command shows the path packets take to a host and where they stop?",
+   "o": [
+    [
+     "traceroute",
+     "Right. traceroute (tracert on Windows) lists each hop, so you see where traffic dies."
+    ],
+    [
+     "nslookup",
+     "It looks up DNS records."
+    ],
+    [
+     "ipconfig /all",
+     "It shows your own settings."
+    ],
+    [
+     "gpupdate",
+     "It refreshes Group Policy."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-3-21",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Which Linux command lists open ports and active connections on a host?",
+   "o": [
+    [
+     "traceroute",
+     "It maps the path to a host."
+    ],
+    [
+     "ip addr",
+     "It shows addresses, not connections."
+    ],
+    [
+     "nslookup",
+     "It tests name lookups."
+    ],
+    [
+     "ss (or netstat)",
+     "Right. Both show listening ports and connections."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A second monitor is plugged in but stays black. Where do you check in Windows?",
+   "o": [
+    [
+     "Windows Update history",
+     "That lists installed updates."
+    ],
+    [
+     "The Display settings",
+     "Right. Windows must detect the screen and be told how to use it."
+    ],
+    [
+     "BitLocker settings",
+     "That controls drive encryption."
+    ],
+    [
+     "Power Options sleep timer",
+     "That sets when the screen turns off."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "After a BIOS update a laptop asks for a 48-digit key before it will start Windows. What is it asking for?",
+   "o": [
+    [
+     "The BitLocker recovery key",
+     "Right. BitLocker asks for it when the startup setup has changed. IT can look it up for the device or user."
+    ],
+    [
+     "The user's sign-in password",
+     "A password isn't 48 digits."
+    ],
+    [
+     "The Wi-Fi password",
+     "Wi-Fi isn't up before Windows starts."
+    ],
+    [
+     "The Windows product key",
+     "That activates Windows. It isn't used at startup."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-4-03",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A PC has said 'restart required to finish updates' for days, and the security tool reports it is out of date. What do you advise?",
+   "o": [
+    [
+     "Turn updates off for good",
+     "Skipping updates leaves known holes open."
+    ],
+    [
+     "Restart to finish updates",
+     "Right. Many updates only complete after a restart."
+    ],
+    [
+     "Delete the update folder",
+     "That can break Windows."
+    ],
+    [
+     "Reinstall Windows",
+     "A restart is enough."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-4-04",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Windows won't load normally after a driver install. What do you try?",
+   "o": [
+    [
+     "Delete the Windows folder",
+     "That destroys the OS."
+    ],
+    [
+     "Boot into Safe Mode",
+     "Right. Safe Mode starts with minimal drivers, so you can remove or roll back the new one."
+    ],
+    [
+     "Clear the browser cache",
+     "A browser cache doesn't affect booting."
+    ],
+    [
+     "Reset the router",
+     "The problem is on the PC."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-4-05",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A user's laptop was replaced, and Desktop and Documents backup was on in OneDrive. How do you get their files back?",
+   "o": [
+    [
+     "Pull them from the printer's memory",
+     "Printers don't store user files."
+    ],
+    [
+     "Use Task Manager's history",
+     "Task Manager doesn't hold files."
+    ],
+    [
+     "Ask BitLocker to rebuild them",
+     "BitLocker only encrypts drives."
+    ],
+    [
+     "Sign in to OneDrive on the new PC",
+     "Right. Cloud backup keeps the files off the old device."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-4-06",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A user says a web page still shows old prices after the company updated it. What is a quick, safe fix?",
+   "o": [
+    [
+     "Replace the network cable",
+     "The connection works. The page copy is old."
+    ],
+    [
+     "Delete the user's profile",
+     "That's far too much for a cached page."
+    ],
+    [
+     "Reinstall the browser's operating system",
+     "A browser doesn't have its own OS."
+    ],
+    [
+     "Clear the browser cache and reload the page",
+     "Right. A cached copy can be served after the real page has changed."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-4-07",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A Mac app can't record the screen during a call. Where do you check?",
+   "o": [
+    [
+     "AirDrop visibility",
+     "AirDrop is for sharing files."
+    ],
+    [
+     "Time Machine settings",
+     "Time Machine handles backups."
+    ],
+    [
+     "Allow it under Screen Recording",
+     "Right. macOS makes you approve each app for the screen."
+    ],
+    [
+     "The Activity Monitor energy tab",
+     "It shows power use."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-4-08",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A USB drive is plugged into a Mac and doesn't appear on the desktop. Which tool shows whether the Mac sees it?",
+   "o": [
+    [
+     "Mission Control",
+     "It arranges windows and spaces."
+    ],
+    [
+     "Disk Utility",
+     "Right. Disk Utility lists connected drives and can mount them."
+    ],
+    [
+     "Activity Monitor",
+     "It lists processes."
+    ],
+    [
+     "AirDrop",
+     "It shares files wirelessly."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-4-09",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A user can't see a coworker's Mac in AirDrop. What do you check?",
+   "o": [
+    [
+     "The Time Machine backup disk",
+     "Backups don't affect AirDrop."
+    ],
+    [
+     "Wi-Fi and Bluetooth on",
+     "Right. AirDrop needs both radios on, and the Mac must be visible to Contacts Only or Everyone."
+    ],
+    [
+     "Safe Mode only",
+     "No need to boot differently."
+    ],
+    [
+     "The screen resolution",
+     "That doesn't affect sharing."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-4-10",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A Mac app freezes with a spinning wheel. Which tool lets you see it is not responding and quit it?",
+   "o": [
+    [
+     "Time Machine",
+     "It restores from backups."
+    ],
+    [
+     "Console",
+     "It displays logs and doesn't end apps."
+    ],
+    [
+     "Activity Monitor, or Force Quit",
+     "Right. Both can end a stuck process."
+    ],
+    [
+     "Disk Utility",
+     "It repairs disks."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-4-11",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A user deleted a document by mistake an hour ago, and uses Time Machine on an external drive. What do you do?",
+   "o": [
+    [
+     "Reinstall macOS",
+     "That's drastic and doesn't bring back the file."
+    ],
+    [
+     "Erase the Mac and start over",
+     "That would wipe more data."
+    ],
+    [
+     "Boot into Safe Mode",
+     "Safe Mode doesn't restore files."
+    ],
+    [
+     "Restore it in Time Machine",
+     "Right. Time Machine keeps older copies of files."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-4-12",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A user with low vision needs a Mac to read on-screen text aloud. Which feature is that?",
+   "o": [
+    [
+     "Time Machine",
+     "It makes backups."
+    ],
+    [
+     "AirDrop",
+     "It shares files."
+    ],
+    [
+     "VoiceOver, in the Accessibility settings",
+     "Right. VoiceOver is the built-in screen reader."
+    ],
+    [
+     "Gatekeeper",
+     "It checks app safety."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-4-13",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A phone won't charge from a wall charger. What do you try first?",
+   "o": [
+    [
+     "Try another cable and charger",
+     "Right. Cables and dirty ports are the usual cause."
+    ],
+    [
+     "Install a new keyboard app",
+     "A keyboard doesn't affect charging."
+    ],
+    [
+     "Leave airplane mode on forever",
+     "It doesn't relate to charging."
+    ],
+    [
+     "A factory reset right away",
+     "That wipes the phone and rarely helps here."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-4-14",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A new phone can't send work email because the account isn't set up. What is needed?",
+   "o": [
+    [
+     "Update the camera app",
+     "The camera has no link to mail."
+    ],
+    [
+     "Turn on Bluetooth",
+     "Bluetooth doesn't carry email."
+    ],
+    [
+     "Jailbreak the phone",
+     "That breaks security and isn't needed."
+    ],
+    [
+     "Add the work account",
+     "Right. Mail needs the right account details or a profile from the company."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-4-15",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A user lost a company phone that holds work email. Which MDM action protects the data?",
+   "o": [
+    [
+     "Remotely lock or wipe it",
+     "Right. MDM can lock or wipe a lost device."
+    ],
+    [
+     "Email the user their old password",
+     "That does nothing for the phone."
+    ],
+    [
+     "Wait a week and see if it turns up",
+     "Delay leaves data exposed."
+    ],
+    [
+     "Reset the user's monitor",
+     "A monitor isn't involved."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-4-16",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A phone shows full cellular bars but a work app won't load, while coworkers on Wi-Fi are fine. What do you try first?",
+   "o": [
+    [
+     "Delete the user's account",
+     "That's way too much."
+    ],
+    [
+     "Update the printer firmware",
+     "A printer isn't involved."
+    ],
+    [
+     "Toggle airplane mode, then check that the app may use cellular data and that the VPN is on",
+     "Right. Cheap steps first: reset the connection, then check the two settings that block one app on cellular."
+    ],
+    [
+     "Replace the phone right away",
+     "Test cheap steps first."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-4-17",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A phone is slow and apps crash, and its storage is almost full. What should the technician suggest?",
+   "o": [
+    [
+     "Keep it charged to 100% only",
+     "Charge level doesn't fix storage."
+    ],
+    [
+     "Root or jailbreak it",
+     "That removes protections."
+    ],
+    [
+     "Free up space and restart",
+     "Right. Full storage causes crashes."
+    ],
+    [
+     "Turn off all security updates",
+     "That leaves the phone open to attack."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-4-18",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "Microsoft 365 is used by a company through a web browser, and the vendor runs everything behind it. Which cloud model is that?",
+   "o": [
+    [
+     "On-premises hosting",
+     "On-premises means the company runs it in its own building."
+    ],
+    [
+     "Infrastructure as a service (IaaS)",
+     "IaaS rents servers and storage."
+    ],
+    [
+     "Platform as a service (PaaS)",
+     "PaaS rents a platform to build and run apps."
+    ],
+    [
+     "Software as a service (SaaS)",
+     "Right. SaaS means you use the finished app and the vendor runs it."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-4-19",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "What does a hypervisor do?",
+   "o": [
+    [
+     "It encrypts a laptop disk",
+     "BitLocker or similar does that."
+    ],
+    [
+     "It filters spam email",
+     "That's a mail filter's job."
+    ],
+    [
+     "It runs virtual machines",
+     "Right. It shares the host's hardware between VMs."
+    ],
+    [
+     "It assigns IP addresses",
+     "DHCP does that."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-4-20",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "A SaaS app is down for everyone at the company. Who fixes it?",
+   "o": [
+    [
+     "The vendor fixes it; you update users",
+     "Right. You can't fix the vendor's service. You can keep users informed."
+    ],
+    [
+     "The printer team",
+     "They don't own this service."
+    ],
+    [
+     "The user, by clearing their cache",
+     "A cache can't fix a vendor outage."
+    ],
+    [
+     "You, by reinstalling the app on every PC",
+     "The app is hosted by the vendor."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-4-21",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "Which TWO are public cloud providers? (Choose two.)",
+   "o": [
+    [
+     "Hyper-V",
+     "It's a hypervisor."
+    ],
+    [
+     "Google Cloud Platform (GCP)",
+     "Right. GCP is one of the big three."
+    ],
+    [
+     "Amazon Web Services (AWS)",
+     "Right. AWS is a major public cloud."
+    ],
+    [
+     "VNC",
+     "That's a remote desktop tool."
+    ],
+    [
+     "Active Directory",
+     "It's a directory service."
+    ]
+   ],
+   "t": "ms",
+   "a": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "it-4-22",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "A team wants to rent virtual servers and manage the operating system themselves. Which model is that?",
+   "o": [
+    [
+     "Infrastructure as a service (IaaS)",
+     "Right. With IaaS the provider supplies the hardware and the customer manages the OS and above."
+    ],
+    [
+     "Software as a service (SaaS)",
+     "SaaS gives you a finished app."
+    ],
+    [
+     "Platform as a service (PaaS)",
+     "PaaS hides the OS from you."
+    ],
+    [
+     "A private leased line",
+     "That is a network link."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-4-23",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "A user asks you to install a free PDF tool from a pop-up ad. What do you do?",
+   "o": [
+    [
+     "Install it on the server instead",
+     "That spreads the risk to more systems."
+    ],
+    [
+     "Install it, because it's free",
+     "Free tools from ads often hide malware."
+    ],
+    [
+     "Install it after turning off antivirus",
+     "Never disable security to install something."
+    ],
+    [
+     "Decline and offer an approved tool",
+     "Right. Only install approved software from trusted sources, such as the company's software catalog."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-4-24",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "Why is installing an app from 'unknown sources' risky?",
+   "o": [
+    [
+     "It is never possible to remove them",
+     "They can be removed. The risk is what they do first."
+    ],
+    [
+     "It voids the SLA",
+     "An SLA is a service contract."
+    ],
+    [
+     "It always makes the phone slower",
+     "It isn't about speed."
+    ],
+    [
+     "Apps outside the official store aren't checked and may carry malware",
+     "Right. Stores vet apps. Random downloads aren't vetted."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-4-25",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "Outlook keeps asking for a password right after the user changed it. What is the likely cause?",
+   "o": [
+    [
+     "The printer queue is full",
+     "Printers aren't involved."
+    ],
+    [
+     "The firewall has no ports",
+     "Then nothing would work."
+    ],
+    [
+     "Outlook still has the old password saved",
+     "Right. The saved old password keeps failing, so Outlook asks again. Update it in the saved credentials."
+    ],
+    [
+     "The monitor is too bright",
+     "Brightness has no link."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-4-26",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "In a collaboration app, a user's microphone works in other apps but not in this one. What do you check first?",
+   "o": [
+    [
+     "App audio settings",
+     "Right. The app may be using the wrong device or lack permission to use the microphone."
+    ],
+    [
+     "The printer driver",
+     "Printers aren't involved."
+    ],
+    [
+     "The BIOS version",
+     "It's an app setting, not a firmware issue."
+    ],
+    [
+     "The monitor cable",
+     "Video isn't audio."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-4-27",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "A user can only open an Excel file read-only because a coworker has it open. What do you tell them?",
+   "o": [
+    [
+     "Turn off the firewall",
+     "Firewalls don't lock files."
+    ],
+    [
+     "Delete the file and start over",
+     "That loses the work."
+    ],
+    [
+     "Wait for them to close it",
+     "Right. A file open for editing is locked to others."
+    ],
+    [
+     "Reinstall Office",
+     "The app works. The file is in use."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-5-01",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A user gets an email from an unknown sender: 'Your mailbox is full. Click here to keep your account.' What kind of threat is it?",
+   "o": [
+    [
+     "A hardware fault",
+     "It's a message, not a device failure."
+    ],
+    [
+     "A software update notice",
+     "Real updates don't ask you to click an email link to keep your account."
+    ],
+    [
+     "Phishing",
+     "Right. It uses a fake urgent message to push you to click."
+    ],
+    [
+     "A DHCP error",
+     "DHCP hands out addresses."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-5-02",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "After installing a free tool, a user's PC is slow and shows pop-ups. What are the best first steps?",
+   "o": [
+    [
+     "Disconnect it and scan for malware",
+     "Right. Contain it, check it, and tell the security team."
+    ],
+    [
+     "Delete the Windows folder",
+     "That destroys the OS and doesn't remove the cause."
+    ],
+    [
+     "Share the tool with coworkers who also want it",
+     "That spreads the infection."
+    ],
+    [
+     "Keep working and ignore it",
+     "Malware spreads and steals data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-5-03",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Which statement describes spoofing?",
+   "o": [
+    [
+     "Encrypting files and asking for payment",
+     "That is ransomware."
+    ],
+    [
+     "Faking a trusted sender or address, such as the CEO's email",
+     "Right. Spoofing pretends to be someone or something you trust."
+    ],
+    [
+     "Guessing a password one try at a time",
+     "That is a brute-force attack."
+    ],
+    [
+     "Sending bulk adverts to many people",
+     "That is spam."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-5-04",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A user gets a sign-in alert from another country for their account, and they were not travelling. What do you do?",
+   "o": [
+    [
+     "Reset the password and escalate",
+     "Right. Unrecognized sign-ins suggest someone else has the password. Review MFA too."
+    ],
+    [
+     "Tell the user to turn alerts off",
+     "That hides the warning."
+    ],
+    [
+     "Ignore it until there are three alerts",
+     "One alert is enough to act on."
+    ],
+    [
+     "Delete the user's mailbox",
+     "That destroys data and doesn't stop the attacker."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-5-05",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Which password advice should you give a user?",
+   "o": [
+    [
+     "A long, unique passphrase for each account",
+     "Right. Length and uniqueness matter, and a manager makes it easy."
+    ],
+    [
+     "Use a birthday with an exclamation mark",
+     "Birthdays are easy to guess."
+    ],
+    [
+     "Use the same strong password everywhere",
+     "One leak would expose every account."
+    ],
+    [
+     "Use a short password and change it daily",
+     "Short passwords are easy to crack, and daily changes lead to sticky notes."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-5-06",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A user's files suddenly have odd extensions and a note demands payment. What do you do first?",
+   "o": [
+    [
+     "Pay the demand quickly",
+     "Payment is a policy decision, and it funds attackers."
+    ],
+    [
+     "Forward the note to the whole company",
+     "That would cause panic and risk more infections."
+    ],
+    [
+     "Disconnect it and call security",
+     "Right. Contain it and let the security team lead."
+    ],
+    [
+     "Restart the PC and keep working",
+     "That could spread the damage."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-5-07",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A caller says he is the CFO, is in a rush, and demands a password reset without the usual checks. What do you do?",
+   "o": [
+    [
+     "Reset it, because he's the CFO",
+     "Rank doesn't prove who is calling."
+    ],
+    [
+     "Reset it, then verify later",
+     "The damage is done by then."
+    ],
+    [
+     "Follow the verification procedure",
+     "Right. Attackers rely on urgency and rank. The process protects everyone."
+    ],
+    [
+     "Text the new password to the number that called you",
+     "You'd hand a password to an unverified person."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-5-08",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Which is the strongest sign that an email from 'IT Support' is phishing?",
+   "o": [
+    [
+     "It is addressed to your name",
+     "Attackers can personalize mail too."
+    ],
+    [
+     "Urgency and a look-alike link",
+     "Right. Urgency and a look-alike link are classic signs."
+    ],
+    [
+     "It has the company's name in it",
+     "Attackers copy company names."
+    ],
+    [
+     "It was sent during working hours",
+     "The time of day proves nothing."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-5-09",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Why are help desk staff a prime target for social engineering?",
+   "o": [
+    [
+     "They never use computers",
+     "They use them all day."
+    ],
+    [
+     "They are paid the most in the company",
+     "Pay isn't the reason."
+    ],
+    [
+     "They can reset passwords",
+     "Right. Attackers use that helpfulness to get access."
+    ],
+    [
+     "They don't have a manager",
+     "Everyone has a manager."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-5-10",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A stranger in a delivery uniform asks you to hold open a badge-controlled door. What do you do?",
+   "o": [
+    [
+     "Politely direct them to reception or security to be let in",
+     "Right. Tailgating is a common way in. Let the process work."
+    ],
+    [
+     "Let them in and walk them to any floor",
+     "You'd be bypassing access control."
+    ],
+    [
+     "Hold the door, since they're wearing a uniform",
+     "Uniforms are easy to fake."
+    ],
+    [
+     "Give them your badge for a minute",
+     "Never share badges."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-5-11",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Which TWO are signs of a social engineering call? (Choose two.)",
+   "o": [
+    [
+     "Pressure to act right now",
+     "Right. Urgency keeps you from thinking."
+    ],
+    [
+     "The caller waits while you verify them",
+     "Patience is a good sign."
+    ],
+    [
+     "A request to skip the normal verification steps",
+     "Right. Attackers want you to bypass the checks."
+    ],
+    [
+     "The caller asks to be added to the queue",
+     "That's an ordinary request."
+    ],
+    [
+     "The caller reads back their ticket number",
+     "That is normal for a real customer."
+    ]
+   ],
+   "t": "ms",
+   "a": [
+    0,
+    2
+   ]
+  },
+  {
+   "id": "it-5-12",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Which item is personally identifiable information (PII)?",
+   "o": [
+    [
+     "The company's public phone number",
+     "That's public business information."
+    ],
+    [
+     "The office Wi-Fi network name",
+     "It names a network, not a person."
+    ],
+    [
+     "A printer's model number",
+     "It identifies a device, not a person."
+    ],
+    [
+     "A customer's name and SSN together",
+     "Right. Those two together identify a person."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-5-13",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A user wants to email a spreadsheet of employee SSNs to a personal account to work from home. What do you advise?",
+   "o": [
+    [
+     "Don't. Use approved tools instead",
+     "Right. Sensitive data stays inside approved systems."
+    ],
+    [
+     "Go ahead, it's only one email",
+     "One email can leak thousands of records."
+    ],
+    [
+     "Send it as a screenshot",
+     "A screenshot still leaks the data."
+    ],
+    [
+     "Rename the file so no one notices",
+     "That's hiding it, not protecting it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-5-14",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Which is an example of proprietary information?",
+   "o": [
+    [
+     "A public press release",
+     "It is already public."
+    ],
+    [
+     "Source code the company owns",
+     "Right. Proprietary information is the company's own valuable work."
+    ],
+    [
+     "The cafeteria menu",
+     "It is not sensitive."
+    ],
+    [
+     "A public job posting",
+     "It is already public."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-5-15",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "While fixing a laptop you see HR files open on the screen. What do you do?",
+   "o": [
+    [
+     "Read through them, since you're there",
+     "Curiosity about private files can be a policy violation."
+    ],
+    [
+     "Tell coworkers what you saw",
+     "That spreads private information."
+    ],
+    [
+     "Copy them to your USB drive as a backup",
+     "That is a data leak."
+    ],
+    [
+     "Don't read or copy the files",
+     "Right. Respect confidentiality and keep to your task."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-5-16",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Why do companies have confidentiality policies?",
+   "o": [
+    [
+     "To stop users from using computers",
+     "They guide use. They don't ban it."
+    ],
+    [
+     "To make work slower on purpose",
+     "Policies aren't meant to slow people down."
+    ],
+    [
+     "To protect private information",
+     "Right. Policies set rules for who can see and share data."
+    ],
+    [
+     "To avoid hiring more staff",
+     "Hiring isn't the goal."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-6-01",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "A user is working from home, and an app has failed. Which tool lets you see and control their screen after they accept?",
+   "o": [
+    [
+     "Disk Defragmenter",
+     "It tidies a drive."
+    ],
+    [
+     "Remote Assistance",
+     "Right. Remote Assistance (or a similar tool) shares the screen once the user agrees."
+    ],
+    [
+     "ping",
+     "It only tests whether a host replies."
+    ],
+    [
+     "tracert",
+     "It maps the path to a host."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-6-02",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "What should you do before you start a remote session on a user's PC?",
+   "o": [
+    [
+     "Nothing, since you're IT",
+     "Remote control needs consent."
+    ],
+    [
+     "Get the user's consent",
+     "Right. Consent and clear communication come first."
+    ],
+    [
+     "Ask for their password",
+     "Remote tools don't need their password."
+    ],
+    [
+     "Turn off their antivirus",
+     "Never weaken security for support."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "it-6-03",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Which TWO are remote support tools? (Choose two.)",
+   "o": [
+    [
+     "TeamViewer",
+     "Right. It's a remote support and control tool."
+    ],
+    [
+     "DHCP",
+     "It hands out IP addresses."
+    ],
+    [
+     "Disk Management",
+     "It manages local drives."
+    ],
+    [
+     "DNS",
+     "It turns names into addresses."
+    ],
+    [
+     "Virtual Network Computing (VNC)",
+     "Right. VNC shares a desktop across the network."
+    ]
+   ],
+   "t": "ms",
+   "a": [
+    0,
+    4
+   ]
+  },
+  {
+   "id": "it-6-04",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Which Windows feature connects to the full desktop of another Windows PC?",
+   "o": [
+    [
+     "Remote Desktop",
+     "Right. Remote Desktop gives you a session on the other PC."
+    ],
+    [
+     "Snipping Tool",
+     "It takes screenshots."
+    ],
+    [
+     "Event Viewer",
+     "It reads logs."
+    ],
+    [
+     "BitLocker",
+     "It encrypts drives."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "it-6-05",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "You have finished a remote session. What is the right way to close it?",
+   "o": [
+    [
+     "Ask the user to log you out tomorrow",
+     "Close it yourself now."
+    ],
+    [
+     "Delete the session log",
+     "Logs are evidence."
+    ],
+    [
+     "Leave it open in case you need it again",
+     "Open remote access is a security risk."
+    ],
+    [
+     "End it, close access, note it",
+     "Right. Close access and record what happened."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-6-06",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A technician pastes a customer's error log, with names and account numbers, into a public AI chatbot. What is the problem?",
+   "o": [
+    [
+     "The log is too long to read",
+     "Length isn't the concern."
+    ],
+    [
+     "AI can't read logs",
+     "It can, but that's not the point."
+    ],
+    [
+     "It may expose private data",
+     "Right. Don't put private data into tools the company hasn't approved."
+    ],
+    [
+     "AI chatbots are always private",
+     "Public tools may store what you type."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-6-07",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "An AI tool gives a confident fix that doesn't work. What does this show?",
+   "o": [
+    [
+     "The user typed the question wrong",
+     "Don't assume it's the user's fault."
+    ],
+    [
+     "AI should replace the knowledge base",
+     "It doesn't replace verified documentation."
+    ],
+    [
+     "AI can be wrong, so check it",
+     "Right. Verify against trusted sources and test."
+    ],
+    [
+     "AI is always right if it sounds sure",
+     "Confidence is not accuracy."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-6-08",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Which is an example of predictive AI in IT support?",
+   "o": [
+    [
+     "A tool that draws a picture from text",
+     "That is generative AI."
+    ],
+    [
+     "A search box that matches exact words",
+     "That isn't AI."
+    ],
+    [
+     "A chatbot that writes a new help article from a prompt",
+     "That is generative AI."
+    ],
+    [
+     "A model that flags tickets likely to miss their SLA, based on past data",
+     "Right. Predictive AI forecasts outcomes from past patterns."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "it-6-09",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A company app shows an odd error that only your company uses. Where do you look first for a known fix?",
+   "o": [
+    [
+     "A guess from memory",
+     "A guess isn't documentation."
+    ],
+    [
+     "Ask the user to work it out",
+     "That's your job to help with."
+    ],
+    [
+     "The internal knowledge base",
+     "Right. Company-specific fixes are written down there."
+    ],
+    [
+     "A random forum post",
+     "Outsiders may not know your setup."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "it-6-10",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A forum post recommends a risky registry edit for a problem you are seeing. What do you do?",
+   "o": [
+    [
+     "Apply it on the user's PC at once",
+     "Untested changes can break the PC."
+    ],
+    [
+     "Post the user's data to ask for more help",
+     "That leaks private data."
+    ],
+    [
+     "Check the source and test it safely",
+     "Right. Forums can help, but prefer vendor documentation and test fixes safely before using them."
+    ],
+    [
+     "Never use any forum",
+     "Forums can be useful once checked."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "kind": "table",
+   "d": "1.0",
+   "obj": "1.3",
+   "title": "Match the ticket note to the step",
+   "short": "Problem-solving steps",
+   "scenario": "Six notes from one ticket. Pick the step of the problem-solving process each note shows.",
+   "cols": [
+    "Step"
+   ],
+   "opts": [
+    [
+     "Define the problem",
+     "Gather information",
+     "Find the probable cause",
+     "Make the change",
+     "Watch the result",
+     "Document it"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "The user says: the Wi-Fi drops in the meeting room.",
+     "a": [
+      0
+     ],
+     "why": "This writes the problem down in the user's own words."
+    },
+    {
+     "req": "Two other people on the third floor have it too, since Monday's update.",
+     "a": [
+      1
+     ],
+     "why": "Asking who else is hit, and since when, is gathering detail."
+    },
+    {
+     "req": "The new access point firmware is the likely cause.",
+     "a": [
+      2
+     ],
+     "why": "Picking the most likely cause from the facts."
+    },
+    {
+     "req": "Rolled the access point back to the older firmware.",
+     "a": [
+      3
+     ],
+     "why": "Carrying out the plan is the change."
+    },
+    {
+     "req": "Watched the room for an hour with no drops.",
+     "a": [
+      4
+     ],
+     "why": "Checking that the fix holds."
+    },
+    {
+     "req": "Recorded the cause, the rollback and the result in the ticket.",
+     "a": [
+      5
+     ],
+     "why": "Writing it down closes the loop."
+    }
+   ],
+   "t": "pbq",
+   "id": "it-p-01",
+   "dom": "1.0"
+  },
+  {
+   "kind": "match",
+   "d": "2.0",
+   "obj": "2.3",
+   "title": "Pick the port or cable",
+   "short": "Ports and cables",
+   "scenario": "Four needs. Pick the connector for each. Two options are distractors.",
+   "choices": [
+    "HDMI",
+    "USB-C",
+    "VGA",
+    "RJ-45",
+    "DisplayPort",
+    "Serial"
+   ],
+   "pick": "Connector",
+   "items": [
+    {
+     "text": "A wired network jack in an office.",
+     "a": 3,
+     "why": "RJ-45 is the Ethernet plug."
+    },
+    {
+     "text": "An old projector with a blue 15-pin analog port.",
+     "a": 2,
+     "why": "VGA is the blue analog connector."
+    },
+    {
+     "text": "One slim port for data, power and video on a thin laptop.",
+     "a": 1,
+     "why": "USB-C can carry all three."
+    },
+    {
+     "text": "Digital video and sound to a TV.",
+     "a": 0,
+     "why": "HDMI carries both in one cable."
+    }
+   ],
+   "t": "pbq",
+   "id": "it-p-02",
+   "dom": "2.0"
+  },
+  {
+   "kind": "table",
+   "d": "3.0",
+   "obj": "3.3",
+   "title": "Read the address",
+   "short": "IP addresses",
+   "scenario": "Five addresses from a help desk ticket. Pick what each one is.",
+   "cols": [
+    "What it is"
+   ],
+   "opts": [
+    [
+     "Self-assigned (APIPA)",
+     "Private address",
+     "Public address",
+     "IPv6 link-local"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "169.254.22.7",
+     "a": [
+      0
+     ],
+     "why": "169.254.x.x means DHCP failed and the PC picked its own address."
+    },
+    {
+     "req": "172.20.4.9",
+     "a": [
+      1
+     ],
+     "why": "172.16.0.0 to 172.31.255.255 is private."
+    },
+    {
+     "req": "203.0.113.50",
+     "a": [
+      2
+     ],
+     "why": "It is outside every private range, so it counts as a public address."
+    },
+    {
+     "req": "fe80::2f4:1a",
+     "a": [
+      3
+     ],
+     "why": "fe80:: is an IPv6 link-local address."
+    },
+    {
+     "req": "10.0.0.5",
+     "a": [
+      1
+     ],
+     "why": "10.0.0.0/8 is private."
+    }
+   ],
+   "t": "pbq",
+   "id": "it-p-03",
+   "dom": "3.0"
+  },
+  {
+   "kind": "match",
+   "d": "3.0",
+   "obj": "3.3",
+   "title": "Pick the command",
+   "short": "Network commands",
+   "scenario": "Four jobs. Pick the command for each. Two options are distractors.",
+   "choices": [
+    "ipconfig /all",
+    "ping",
+    "tracert",
+    "nslookup",
+    "netstat",
+    "gpupdate /force"
+   ],
+   "pick": "Command",
+   "items": [
+    {
+     "text": "Check whether a name turns into the right IP address.",
+     "a": 3,
+     "why": "nslookup asks DNS for the answer."
+    },
+    {
+     "text": "Find where traffic stops between you and a website.",
+     "a": 2,
+     "why": "tracert lists every hop on the way."
+    },
+    {
+     "text": "See the PC's address, mask, gateway and DNS in one view.",
+     "a": 0,
+     "why": "ipconfig /all shows the full settings."
+    },
+    {
+     "text": "Pull new Group Policy settings right now.",
+     "a": 5,
+     "why": "gpupdate /force refreshes policy at once."
+    }
+   ],
+   "t": "pbq",
+   "id": "it-p-04",
+   "dom": "3.0"
+  },
+  {
+   "kind": "table",
+   "d": "4.0",
+   "obj": "4.1",
+   "title": "Pick the tool",
+   "short": "Windows and Mac tools",
+   "scenario": "Five problems. Pick the tool that helps the most.",
+   "cols": [
+    "Tool"
+   ],
+   "opts": [
+    [
+     "Task Manager",
+     "Event Viewer",
+     "Device Manager",
+     "Activity Monitor",
+     "Time Machine"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "A Windows app is frozen and will not close.",
+     "a": [
+      0
+     ],
+     "why": "Task Manager can end the task."
+    },
+    {
+     "req": "You need last night's crash errors on a Windows PC.",
+     "a": [
+      1
+     ],
+     "why": "Event Viewer keeps the log with timestamps."
+    },
+    {
+     "req": "A Windows driver shows a yellow warning icon.",
+     "a": [
+      2
+     ],
+     "why": "Device Manager shows device and driver status."
+    },
+    {
+     "req": "A Mac is slow and you need to see which app uses the CPU.",
+     "a": [
+      3
+     ],
+     "why": "Activity Monitor is the Mac's live process view."
+    },
+    {
+     "req": "A Mac user deleted a file and has a backup disk.",
+     "a": [
+      4
+     ],
+     "why": "Time Machine restores older copies."
+    }
+   ],
+   "t": "pbq",
+   "id": "it-p-05",
+   "dom": "4.0"
+  },
+  {
+   "kind": "match",
+   "d": "5.0",
+   "obj": "5.1",
+   "title": "Name the threat",
+   "short": "Threat types",
+   "scenario": "Five events. Pick the threat each one shows. One option is a distractor.",
+   "choices": [
+    "Phishing",
+    "Malware",
+    "Spam",
+    "Social engineering",
+    "Unauthorized access",
+    "Spoofing"
+   ],
+   "pick": "Threat",
+   "items": [
+    {
+     "text": "Bulk junk email with adverts and no attack.",
+     "a": 2,
+     "why": "Unwanted bulk email is spam."
+    },
+    {
+     "text": "A fake bank email links to a look-alike login page.",
+     "a": 0,
+     "why": "Phishing tricks you into entering your login."
+    },
+    {
+     "text": "A program encrypts files and demands payment.",
+     "a": 1,
+     "why": "Ransomware is a kind of malware."
+    },
+    {
+     "text": "A caller presses the help desk to reset a VP's password with no ID check.",
+     "a": 3,
+     "why": "Pressure and impersonation is social engineering."
+    },
+    {
+     "text": "Many failed sign-ins, then a success from an unknown country.",
+     "a": 4,
+     "why": "Someone got in who shouldn't have."
+    }
+   ],
+   "t": "pbq",
+   "id": "it-p-06",
+   "dom": "5.0"
+  }
+ ]
+}

@@ -1,0 +1,4476 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "CISSP",
+ "ver": "v24",
+ "exam": "CISSP",
+ "title": "CISSP (2024 outline) practice exam",
+ "rev": "2026-11-20",
+ "format": {
+  "n": 125,
+  "min": 180,
+  "pbq": 4,
+  "half": 62
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Security and Risk Management",
+   "w": 16,
+   "obj": 12
+  },
+  {
+   "n": "2.0",
+   "name": "Asset Security",
+   "w": 10,
+   "obj": 6
+  },
+  {
+   "n": "3.0",
+   "name": "Security Architecture and Engineering",
+   "w": 13,
+   "obj": 10
+  },
+  {
+   "n": "4.0",
+   "name": "Communication and Network Security",
+   "w": 13,
+   "obj": 3
+  },
+  {
+   "n": "5.0",
+   "name": "Identity and Access Management (IAM)",
+   "w": 13,
+   "obj": 6
+  },
+  {
+   "n": "6.0",
+   "name": "Security Assessment and Testing",
+   "w": 12,
+   "obj": 5
+  },
+  {
+   "n": "7.0",
+   "name": "Security Operations",
+   "w": 13,
+   "obj": 15
+  },
+  {
+   "n": "8.0",
+   "name": "Software Development Security",
+   "w": 10,
+   "obj": 5
+  }
+ ],
+ "note": "Original questions written for MyNextCert from ISC2's public CISSP exam outline (effective Apr 15, 2024). Not real exam questions. The real CISSP is adaptive (100-150 items in 3 hours, multiple choice and advanced item types); this is a fixed 125-item stand-in with 4 advanced items.",
+ "q": [
+  {
+   "id": "ci-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Your employer's code of conduct conflicts with the ISC2 Code of Ethics on a matter of public safety. Which should guide your action?",
+   "o": [
+    [
+     "Protecting society and public safety",
+     "Right. The first ISC2 canon puts society and the common good ahead of other duties."
+    ],
+    [
+     "Whatever your employer's code requires",
+     "Duty to principals is the third canon, below society and honesty."
+    ],
+    [
+     "Whichever rule is newer",
+     "Age of a rule doesn't decide which duty comes first."
+    ],
+    [
+     "Your manager's personal judgment",
+     "A manager's opinion can't override the canons."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Which list puts the four ISC2 Code of Ethics canons in the correct priority order, highest first?",
+   "o": [
+    [
+     "Society; honor and law; principals; the profession",
+     "Right. Protect society, act honorably and legally, serve principals, then advance the profession."
+    ],
+    [
+     "Principals; society; the profession; honor and law",
+     "Principals come third, not first."
+    ],
+    [
+     "The profession; principals; society; honor and law",
+     "Society comes first, not third."
+    ],
+    [
+     "Honor and law; the profession; society; principals",
+     "Society is the top canon."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-03",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A digitally signed email proves the sender can't later deny sending it. Which concept is this?",
+   "o": [
+    [
+     "Non-repudiation",
+     "Right. A signature tied to the sender's private key prevents credible denial."
+    ],
+    [
+     "Confidentiality",
+     "A signature alone doesn't hide the message."
+    ],
+    [
+     "Availability",
+     "Availability is about access when needed."
+    ],
+    [
+     "Accountability",
+     "Accountability is related, but proof against denial is non-repudiation."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-04",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "An attacker changes the destination account on a wire transfer while it's in transit. Which property was violated FIRST?",
+   "o": [
+    [
+     "Integrity",
+     "Right. The data was changed without authorization."
+    ],
+    [
+     "Confidentiality",
+     "Reading wasn't the attack. Changing was."
+    ],
+    [
+     "Availability",
+     "The transfer still went through."
+    ],
+    [
+     "Authenticity of the user",
+     "The user was real. The data was altered."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-05",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Who is ULTIMATELY responsible for the security of an organization's information?",
+   "o": [
+    [
+     "Senior management",
+     "Right. Leadership is accountable, even when tasks are delegated."
+    ],
+    [
+     "The security administrator",
+     "Admins carry out controls, but accountability sits with leadership."
+    ],
+    [
+     "Each data custodian",
+     "Custodians handle data day to day for the owner."
+    ],
+    [
+     "The external auditor",
+     "Auditors evaluate. They aren't accountable for security."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-06",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A company checks a vendor's security before signing, then keeps applying the agreed controls every day after. What do these two activities show, in order?",
+   "o": [
+    [
+     "Due diligence, then due care",
+     "Right. Diligence is the research before acting; care is doing the right things ongoing."
+    ],
+    [
+     "Due care, then due diligence",
+     "The order is reversed."
+    ],
+    [
+     "Risk avoidance, then risk acceptance",
+     "Neither step avoids or accepts risk."
+    ],
+    [
+     "Separation of duties, then least privilege",
+     "Those are access principles."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-07",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Why should the security function report outside the IT department?",
+   "o": [
+    [
+     "To avoid a conflict of interest",
+     "Right. Independence lets security challenge IT decisions."
+    ],
+    [
+     "Because IT never handles any security tasks at all",
+     "IT handles many security tasks."
+    ],
+    [
+     "To lower the cost of the security team",
+     "Reporting lines aren't about cost."
+    ],
+    [
+     "So security can approve its own budget",
+     "No group should approve its own budget."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-08",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "A U.S. company wants to ship strong encryption software to customers abroad. Which legal area must it check FIRST?",
+   "o": [
+    [
+     "Export controls",
+     "Right. Rules like the EAR can restrict exporting encryption technology."
+    ],
+    [
+     "Copyright registration",
+     "Copyright protects expression, not export permission."
+    ],
+    [
+     "Trademark law",
+     "Trademarks protect brand names."
+    ],
+    [
+     "Patent licensing",
+     "Patents don't decide export permission."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-09",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "A company's secret recipe is protected only by confidentiality agreements and strict access controls. What type of intellectual property is this?",
+   "o": [
+    [
+     "A trade secret",
+     "Right. Trade secrets are protected by keeping them secret, not by registration."
+    ],
+    [
+     "A patent",
+     "Patents require public disclosure."
+    ],
+    [
+     "A copyright",
+     "Copyright protects creative works, not a recipe's secrecy."
+    ],
+    [
+     "A trademark",
+     "Trademarks protect names and logos."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-10",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "Personal data of EU residents is sent to a processor in a country without an EU adequacy decision. What does GDPR require?",
+   "o": [
+    [
+     "A transfer safeguard, like SCCs",
+     "Right. Transfers need adequacy or appropriate safeguards."
+    ],
+    [
+     "Nothing, as long as the data is encrypted in transit",
+     "Encryption helps but isn't a legal transfer basis."
+    ],
+    [
+     "Approval from each data subject's employer",
+     "Employers don't approve transfers."
+    ],
+    [
+     "Deleting the data within 24 hours",
+     "There's no such rule."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-11",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "Which type of investigation requires proof \"beyond a reasonable doubt\"?",
+   "o": [
+    [
+     "Criminal",
+     "Right. Criminal cases have the highest standard of proof."
+    ],
+    [
+     "Civil",
+     "Civil cases use a preponderance of the evidence."
+    ],
+    [
+     "Administrative",
+     "Administrative reviews follow internal policy standards."
+    ],
+    [
+     "Regulatory",
+     "Regulatory standards vary but are lower than criminal."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-12",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "HR asks security to look into an employee who broke the acceptable use policy. Nothing illegal is suspected. What type of investigation is this?",
+   "o": [
+    [
+     "Administrative",
+     "Right. Internal policy violations are administrative matters."
+    ],
+    [
+     "Criminal",
+     "No crime is suspected."
+    ],
+    [
+     "Civil",
+     "No lawsuit between parties is involved."
+    ],
+    [
+     "Regulatory",
+     "No regulator is investigating."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-13",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "Which document is high-level, mandatory and approved by senior management?",
+   "o": [
+    [
+     "A policy",
+     "Right. Policies state management's intent and direction."
+    ],
+    [
+     "A guideline",
+     "Guidelines are recommendations."
+    ],
+    [
+     "A procedure",
+     "Procedures are detailed steps."
+    ],
+    [
+     "A baseline",
+     "Baselines are minimum configurations."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-14",
+   "d": "1.0",
+   "obj": "1.6",
+   "q": "A document recommends, but doesn't require, using a password manager. What is it?",
+   "o": [
+    [
+     "A guideline",
+     "Right. Guidelines give optional advice."
+    ],
+    [
+     "A standard",
+     "Standards are mandatory."
+    ],
+    [
+     "A policy",
+     "Policies are mandatory."
+    ],
+    [
+     "A procedure",
+     "Procedures are required steps."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-15",
+   "d": "1.0",
+   "obj": "1.7",
+   "q": "During a BIA, the team finds the payroll process can be down for at most 3 days before the damage is unacceptable. What value is this?",
+   "o": [
+    [
+     "Maximum tolerable downtime (MTD)",
+     "Right. MTD is the longest a process can be unavailable."
+    ],
+    [
+     "Recovery point objective (RPO)",
+     "RPO is about data loss."
+    ],
+    [
+     "Mean time between failures (MTBF)",
+     "MTBF predicts failure frequency."
+    ],
+    [
+     "Annualized rate of occurrence (ARO)",
+     "ARO is how often a threat happens per year."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-16",
+   "d": "1.0",
+   "obj": "1.7",
+   "q": "Why must the BIA include outside dependencies like payment processors and utilities?",
+   "o": [
+    [
+     "A supplier failure can stop a process",
+     "Right. External dependencies can stop internal processes."
+    ],
+    [
+     "Suppliers write the organization's BC plan for it",
+     "The organization writes its own plan."
+    ],
+    [
+     "Dependencies don't affect recovery time",
+     "They often decide it."
+    ],
+    [
+     "The BIA only covers external companies",
+     "It covers internal processes and what they depend on."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-17",
+   "d": "1.0",
+   "obj": "1.8",
+   "q": "Why should an employee be required to take a mandatory vacation of two consecutive weeks?",
+   "o": [
+    [
+     "A stand-in may uncover fraud",
+     "Right. Fraud often surfaces when the person can't cover it up."
+    ],
+    [
+     "It reduces the company's payroll costs for the year",
+     "Vacation is still paid."
+    ],
+    [
+     "It replaces the need for job rotation",
+     "They work together."
+    ],
+    [
+     "It's needed to renew their badge",
+     "Badges aren't tied to vacations."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-18",
+   "d": "1.0",
+   "obj": "1.8",
+   "q": "An administrator is being fired. When should his access be removed?",
+   "o": [
+    [
+     "At the time he's notified, or just before",
+     "Right. Removing access at notification prevents sabotage."
+    ],
+    [
+     "At the end of his last day",
+     "That leaves a window for damage."
+    ],
+    [
+     "After HR finishes the paperwork next week",
+     "Days of access is a big risk."
+    ],
+    [
+     "Only if he seems angry",
+     "Mood isn't a reliable control."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-19",
+   "d": "1.0",
+   "obj": "1.9",
+   "q": "An asset is worth $200,000. A fire would destroy 40% of it, and fires happen once every 20 years. What is the ALE?",
+   "o": [
+    [
+     "$4,000",
+     "Right. SLE = $200,000 × 0.4 = $80,000. ALE = $80,000 × 0.05 = $4,000."
+    ],
+    [
+     "$80,000",
+     "That's the SLE before applying the yearly rate."
+    ],
+    [
+     "$16,000",
+     "That multiplies by 0.2 instead of 0.05."
+    ],
+    [
+     "$10,000",
+     "That divides the asset value by 20 and skips the exposure factor."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-20",
+   "d": "1.0",
+   "obj": "1.9",
+   "q": "A safeguard costs $6,000 per year and lowers ALE from $20,000 to $8,000. What is its yearly value to the company?",
+   "o": [
+    [
+     "$6,000",
+     "Right. ($20,000 - $8,000) - $6,000 = $6,000."
+    ],
+    [
+     "$12,000",
+     "That's the ALE reduction before subtracting the safeguard's cost."
+    ],
+    [
+     "$14,000",
+     "That subtracts the cost from the original ALE only."
+    ],
+    [
+     "$2,000",
+     "That subtracts the cost from the new ALE."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-21",
+   "d": "1.0",
+   "obj": "1.9",
+   "q": "Which risk analysis approach ranks risks using categories like High, Medium and Low instead of dollar values?",
+   "o": [
+    [
+     "Qualitative analysis",
+     "Right. Qualitative analysis uses relative ratings and judgment."
+    ],
+    [
+     "Quantitative analysis",
+     "Quantitative uses numbers like SLE and ALE."
+    ],
+    [
+     "Penetration testing",
+     "Pentests find exploitable flaws."
+    ],
+    [
+     "Cost accounting",
+     "Accounting isn't a risk method."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-22",
+   "d": "1.0",
+   "obj": "1.10",
+   "q": "In STRIDE, an attacker uses a stolen session token to act as another user. Which threat category is this?",
+   "o": [
+    [
+     "Spoofing",
+     "Right. Pretending to be someone else is spoofing identity."
+    ],
+    [
+     "Tampering",
+     "Tampering means changing data."
+    ],
+    [
+     "Repudiation",
+     "Repudiation means denying an action."
+    ],
+    [
+     "Denial of service",
+     "DoS stops the service."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-23",
+   "d": "1.0",
+   "obj": "1.10",
+   "q": "Which threat modeling method is risk-centric and has seven stages, from defining objectives to analyzing risk and impact?",
+   "o": [
+    [
+     "PASTA",
+     "Right. PASTA is a seven-stage, risk-focused process."
+    ],
+    [
+     "STRIDE",
+     "STRIDE is a list of threat categories."
+    ],
+    [
+     "DREAD",
+     "DREAD scores threats."
+    ],
+    [
+     "CVSS",
+     "CVSS scores vulnerability severity."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-24",
+   "d": "1.0",
+   "obj": "1.11",
+   "q": "A company receives network switches from an unknown reseller at an unusually low price. Which supply chain risk is MOST likely?",
+   "o": [
+    [
+     "Counterfeit or tampered hardware",
+     "Right. Gray-market gear may be fake or modified."
+    ],
+    [
+     "Licensing fees for the firmware",
+     "Cost isn't the main risk."
+    ],
+    [
+     "Shipping delays from the reseller",
+     "Delays are a logistics issue."
+    ],
+    [
+     "Too much rack space being used",
+     "Space isn't a security risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-25",
+   "d": "1.0",
+   "obj": "1.11",
+   "q": "Which artifact helps a company find out quickly whether vulnerable open-source components are in the software it buys?",
+   "o": [
+    [
+     "A software bill of materials (SBOM)",
+     "Right. An SBOM lists the components inside the software."
+    ],
+    [
+     "A business impact analysis",
+     "A BIA ranks business processes."
+    ],
+    [
+     "A service level agreement",
+     "An SLA sets service targets."
+    ],
+    [
+     "A non-disclosure agreement",
+     "An NDA protects confidential information."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-26",
+   "d": "1.0",
+   "obj": "1.12",
+   "q": "How can a security team BEST measure whether its awareness program is working?",
+   "o": [
+    [
+     "Track phishing click and report rates",
+     "Right. Behavior trends show whether training changes what people do."
+    ],
+    [
+     "Count how many slides are in each training deck",
+     "Slide count doesn't measure behavior."
+    ],
+    [
+     "Ask employees if they liked the training",
+     "Satisfaction isn't effectiveness."
+    ],
+    [
+     "Record how long the training video is",
+     "Length doesn't show results."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-1-27",
+   "d": "1.0",
+   "obj": "1.12",
+   "q": "New deepfake voice scams are targeting finance staff. How should the awareness program respond?",
+   "o": [
+    [
+     "Add current examples and call-back checks",
+     "Right. Content must stay current with new attack methods."
+    ],
+    [
+     "Wait for next year's annual training",
+     "The threat is happening now."
+    ],
+    [
+     "Tell staff to trust any voice they recognize",
+     "Voices can now be faked."
+    ],
+    [
+     "Remove phone calls from the training entirely this year",
+     "Phone scams are exactly the issue."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Who should decide the classification level of a data set?",
+   "o": [
+    [
+     "The data owner",
+     "Right. Owners are accountable for the data and set its classification."
+    ],
+    [
+     "The data custodian",
+     "Custodians protect data as the owner directs."
+    ],
+    [
+     "The help desk",
+     "The help desk doesn't own data."
+    ],
+    [
+     "The end user",
+     "Users follow handling rules."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "What is the MAIN reason to classify data?",
+   "o": [
+    [
+     "To protect it according to its value",
+     "Right. Classification lets controls fit the data instead of treating everything the same."
+    ],
+    [
+     "To make every file encrypted in exactly the same way",
+     "Classification exists so controls can differ."
+    ],
+    [
+     "To reduce the number of files stored",
+     "Classification doesn't shrink storage."
+    ],
+    [
+     "To decide which employees get raises",
+     "That isn't a security purpose."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-03",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A Confidential report must be sent to a partner. Which handling rule would a policy MOST likely require?",
+   "o": [
+    [
+     "Encrypt it in transit and label it",
+     "Right. Handling rules cover marking, storage and transmission for each level."
+    ],
+    [
+     "Print it and leave copies in the lobby for pickup",
+     "That exposes it."
+    ],
+    [
+     "Post it on the company website",
+     "That makes it public."
+    ],
+    [
+     "Rename the file to hide its contents",
+     "Renaming isn't protection."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-04",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Why must backup tapes carry the same classification label as the data on them?",
+   "o": [
+    [
+     "They need the same protection",
+     "Right. Media inherits the classification of what it holds."
+    ],
+    [
+     "Tapes are always lower risk than spinning disks",
+     "Tapes can hold just as much sensitive data."
+    ],
+    [
+     "Labels make tapes restore faster",
+     "Labels don't affect speed."
+    ],
+    [
+     "Only paper needs labels",
+     "All media needs labels."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-05",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Which practice is MOST important before you can protect assets?",
+   "o": [
+    [
+     "An accurate inventory with owners",
+     "Right. You can't protect what you don't know you have."
+    ],
+    [
+     "Buying the newest firewall",
+     "Tools don't replace knowing your assets."
+    ],
+    [
+     "Writing a press release",
+     "That isn't asset management."
+    ],
+    [
+     "Letting users install any software they like",
+     "That makes asset control harder."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-06",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "An employee leaves the company. What should happen to the laptop and data issued to her?",
+   "o": [
+    [
+     "Recover them and update the inventory",
+     "Right. Assets must be returned and their records kept current."
+    ],
+    [
+     "Let her keep the laptop as a thank-you",
+     "That takes company data out the door."
+    ],
+    [
+     "Ignore it if the laptop is old",
+     "Old laptops still hold data."
+    ],
+    [
+     "Wait to see if she returns it",
+     "Recovery should be part of offboarding."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-07",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "Which role carries out day-to-day backups and access controls for data, as the owner directs?",
+   "o": [
+    [
+     "The data custodian",
+     "Right. Custodians protect and maintain the data."
+    ],
+    [
+     "The data owner",
+     "Owners make decisions. Custodians carry them out."
+    ],
+    [
+     "The data subject",
+     "That's the person the data describes."
+    ],
+    [
+     "The data controller",
+     "Controllers decide why and how personal data is processed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-08",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "After files are deleted, traces of the data can still be recovered from the disk. What is this called?",
+   "o": [
+    [
+     "Data remanence",
+     "Right. Remanence is the leftover data after deletion."
+    ],
+    [
+     "Data dispersion",
+     "Dispersion spreads data across locations."
+    ],
+    [
+     "Data masking",
+     "Masking hides data on screens."
+    ],
+    [
+     "Data minimization",
+     "Minimization means collecting less data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-09",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "Which method BEST destroys data on a failed solid-state drive that can't be wiped?",
+   "o": [
+    [
+     "Physical destruction",
+     "Right. When a drive can't be sanitized, destroy it."
+    ],
+    [
+     "Degaussing the SSD",
+     "Degaussing doesn't work on flash memory."
+    ],
+    [
+     "Deleting the partition table",
+     "The data is still on the chips."
+    ],
+    [
+     "Formatting it in another computer first",
+     "A format may not remove data, and the drive has failed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-10",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "Why is keeping data longer than required a risk?",
+   "o": [
+    [
+     "It can be breached or demanded in a lawsuit",
+     "Right. Extra data means extra exposure and discovery costs."
+    ],
+    [
+     "Older data can't be encrypted",
+     "Old data can still be encrypted."
+    ],
+    [
+     "Laws always require deleting data after one year",
+     "Retention periods vary by law and data."
+    ],
+    [
+     "Storage systems slow down with old files",
+     "Performance isn't the main risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-11",
+   "d": "2.0",
+   "obj": "2.5",
+   "q": "A server's operating system reaches end of support next month. What should the asset plan include?",
+   "o": [
+    [
+     "Replace or upgrade it in time",
+     "Right. Unsupported systems stop getting security fixes."
+    ],
+    [
+     "Keep it, since it still boots",
+     "Booting isn't being secure."
+    ],
+    [
+     "Remove it from the inventory",
+     "That hides the risk."
+    ],
+    [
+     "Turn off its logging to save disk space",
+     "That reduces visibility."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-12",
+   "d": "2.0",
+   "obj": "2.6",
+   "q": "Which data state is HARDEST to protect with encryption alone?",
+   "o": [
+    [
+     "Data in use",
+     "Right. Data is usually decrypted in memory while it's processed."
+    ],
+    [
+     "Data at rest on a disk",
+     "Disk and database encryption protect it."
+    ],
+    [
+     "Data in transit over a network",
+     "TLS protects it."
+    ],
+    [
+     "Data on a backup tape",
+     "Tapes can be encrypted at rest."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-13",
+   "d": "2.0",
+   "obj": "2.6",
+   "q": "A company adopts the NIST moderate baseline, then removes controls that don't apply and adjusts others. What is this?",
+   "o": [
+    [
+     "Scoping and tailoring",
+     "Right. Baselines are adjusted to fit the system."
+    ],
+    [
+     "Data classification",
+     "Classification labels data."
+    ],
+    [
+     "Risk transference",
+     "Nothing is transferred."
+    ],
+    [
+     "Change management",
+     "That controls changes to systems."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-2-14",
+   "d": "2.0",
+   "obj": "2.6",
+   "q": "Which technology keeps restrictions, like no printing, attached to a document wherever it goes?",
+   "o": [
+    [
+     "Digital rights management (DRM)",
+     "Right. DRM controls use of the content itself."
+    ],
+    [
+     "A network firewall",
+     "Firewalls control traffic, not document use."
+    ],
+    [
+     "A load balancer",
+     "Load balancers spread traffic."
+    ],
+    [
+     "A RAID array",
+     "RAID protects disks from failure."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A system is set up so that if its access check fails, it denies access rather than allowing it. Which principle is this?",
+   "o": [
+    [
+     "Fail securely (secure defaults)",
+     "Right. Failures should leave the system in a safe state."
+    ],
+    [
+     "Defense in depth",
+     "That's about layering controls."
+    ],
+    [
+     "Separation of duties",
+     "That's about splitting tasks."
+    ],
+    [
+     "Shared responsibility",
+     "That's about cloud roles."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which approach builds privacy into a system from the start rather than adding it later?",
+   "o": [
+    [
+     "Privacy by design",
+     "Right. Privacy is part of the design, not an afterthought."
+    ],
+    [
+     "Security through obscurity",
+     "Hiding details isn't privacy by design."
+    ],
+    [
+     "Trust but verify",
+     "That's a general saying, not a design principle."
+    ],
+    [
+     "Defense by default",
+     "That isn't a recognized principle."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which design goal is described as \"keep it simple\" to reduce flaws?",
+   "o": [
+    [
+     "Economy of mechanism",
+     "Right. Simpler designs have fewer places for bugs to hide."
+    ],
+    [
+     "Open design",
+     "Open design means security doesn't depend on secrecy."
+    ],
+    [
+     "Complete mediation",
+     "That means checking every access."
+    ],
+    [
+     "Psychological acceptability",
+     "That means controls should be easy to use."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-04",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which model is about CONFIDENTIALITY and uses \"no read up, no write down\"?",
+   "o": [
+    [
+     "Bell-LaPadula",
+     "Right. It stops secrets from leaking to lower levels."
+    ],
+    [
+     "Biba",
+     "Biba is about integrity: no read down, no write up."
+    ],
+    [
+     "Clark-Wilson",
+     "Clark-Wilson enforces integrity through well-formed transactions."
+    ],
+    [
+     "Brewer-Nash",
+     "Brewer-Nash prevents conflicts of interest."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-05",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A consultant who has seen Bank A's data is blocked from seeing its competitor Bank B's data. Which model is this?",
+   "o": [
+    [
+     "Brewer-Nash (Chinese Wall)",
+     "Right. It changes access based on what the user has already seen."
+    ],
+    [
+     "Bell-LaPadula",
+     "BLP uses clearance levels, not conflicts of interest."
+    ],
+    [
+     "Biba",
+     "Biba protects integrity."
+    ],
+    [
+     "Take-Grant",
+     "Take-Grant models how rights are passed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-06",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which model enforces integrity by having users change data only through approved programs and by separating duties?",
+   "o": [
+    [
+     "Clark-Wilson",
+     "Right. It uses well-formed transactions and separation of duties."
+    ],
+    [
+     "Bell-LaPadula",
+     "BLP focuses on confidentiality."
+    ],
+    [
+     "Brewer-Nash",
+     "That's about conflicts of interest."
+    ],
+    [
+     "Graham-Denning",
+     "Graham-Denning defines rules for creating and deleting subjects and objects."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-07",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A system processes classified data and needs strict, label-based access. Which control approach fits the requirement BEST?",
+   "o": [
+    [
+     "Mandatory access control",
+     "Right. MAC enforces labels the users can't change."
+    ],
+    [
+     "Discretionary access control",
+     "Owners could share data at will."
+    ],
+    [
+     "A shared admin account",
+     "That breaks accountability."
+    ],
+    [
+     "No access control",
+     "That fails the requirement."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-08",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "How should controls be chosen for a new system?",
+   "o": [
+    [
+     "Based on its requirements and risk",
+     "Right. Requirements and risk drive control selection."
+    ],
+    [
+     "Based on whatever the last project happened to use",
+     "Every system has different needs."
+    ],
+    [
+     "Based on the cheapest products",
+     "Price alone ignores risk."
+    ],
+    [
+     "Based on what the vendor recommends",
+     "Vendors don't know your risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-09",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "Which hardware component securely stores keys and supports measured boot on a laptop?",
+   "o": [
+    [
+     "The Trusted Platform Module (TPM)",
+     "Right. The TPM protects keys and records boot measurements."
+    ],
+    [
+     "The graphics card",
+     "GPUs process graphics."
+    ],
+    [
+     "The network card",
+     "NICs handle network traffic."
+    ],
+    [
+     "The power supply",
+     "It supplies power."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-10",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "Which OS feature stops one process from reading another process's memory?",
+   "o": [
+    [
+     "Memory protection (process isolation)",
+     "Right. Isolation keeps each process in its own space."
+    ],
+    [
+     "Disk defragmentation",
+     "That organizes files on disk."
+    ],
+    [
+     "Screen savers",
+     "They lock or dim the screen."
+    ],
+    [
+     "Time synchronization",
+     "That keeps clocks accurate."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-11",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "Why are industrial control systems (ICS) hard to patch?",
+   "o": [
+    [
+     "Downtime can halt operations or safety",
+     "Right. Availability and safety come first in ICS, so patching needs careful planning."
+    ],
+    [
+     "Their vendors are legally banned from releasing any patches",
+     "There's no such ban."
+    ],
+    [
+     "They are never connected to any network",
+     "Many ICS networks are connected."
+    ],
+    [
+     "They are always brand new and don't need patches",
+     "ICS often run for decades."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-12",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "A web app takes user input and builds a database query directly from it. Which vulnerability is MOST likely?",
+   "o": [
+    [
+     "SQL injection",
+     "Right. Unsanitized input in queries lets attackers run their own SQL."
+    ],
+    [
+     "Cross-site request forgery",
+     "CSRF tricks a user's browser into sending requests."
+    ],
+    [
+     "Buffer overflow in the kernel",
+     "That's a memory flaw in low-level code."
+    ],
+    [
+     "Clickjacking",
+     "Clickjacking hides elements to trick clicks."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-13",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "Which risk is specific to serverless functions?",
+   "o": [
+    [
+     "Over-permissive function roles",
+     "Right. Each function needs only the permissions it uses."
+    ],
+    [
+     "Unpatched host operating systems the customer must update",
+     "The provider manages the host in serverless."
+    ],
+    [
+     "Physical theft of the server",
+     "The provider protects the hardware."
+    ],
+    [
+     "Running out of hard drive space",
+     "Storage isn't managed that way in serverless."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-14",
+   "d": "3.0",
+   "obj": "3.6",
+   "q": "Two parties need to agree on a shared secret key over an untrusted network without sending the key. Which method fits?",
+   "o": [
+    [
+     "Diffie-Hellman key exchange",
+     "Right. It lets both sides derive the same key."
+    ],
+    [
+     "AES encryption",
+     "AES needs a key already agreed."
+    ],
+    [
+     "SHA-256 hashing",
+     "Hashing doesn't create shared keys."
+    ],
+    [
+     "Base64 encoding",
+     "Encoding isn't key exchange."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-15",
+   "d": "3.0",
+   "obj": "3.6",
+   "q": "In PKI, which component confirms identity before a certificate authority issues a certificate?",
+   "o": [
+    [
+     "The registration authority (RA)",
+     "Right. The RA verifies requesters for the CA."
+    ],
+    [
+     "The certificate revocation list (CRL)",
+     "The CRL lists revoked certificates."
+    ],
+    [
+     "The online certificate status protocol (OCSP)",
+     "OCSP checks certificate status."
+    ],
+    [
+     "The key escrow agent",
+     "Escrow stores copies of keys."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-16",
+   "d": "3.0",
+   "obj": "3.6",
+   "q": "Why do organizations plan for post-quantum cryptography now?",
+   "o": [
+    [
+     "Data stolen now could be decrypted later",
+     "Right. \"Harvest now, decrypt later\" makes long-lived secrets urgent."
+    ],
+    [
+     "Quantum computers already break AES-256 easily",
+     "AES-256 is still considered strong."
+    ],
+    [
+     "Post-quantum algorithms are faster than all current ones",
+     "Speed isn't the main reason."
+    ],
+    [
+     "Laws already ban RSA in every country",
+     "There's no such universal ban."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-17",
+   "d": "3.0",
+   "obj": "3.7",
+   "q": "An attacker measures how long a server takes to process different inputs to learn its secret key. Which attack is this?",
+   "o": [
+    [
+     "A timing (side-channel) attack",
+     "Right. Timing differences leak information about the key."
+    ],
+    [
+     "A birthday attack",
+     "That looks for hash collisions."
+    ],
+    [
+     "A dictionary attack",
+     "That guesses passwords from a word list."
+    ],
+    [
+     "A replay attack",
+     "That resends captured messages."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-18",
+   "d": "3.0",
+   "obj": "3.7",
+   "q": "An attacker captures a user's NTLM password hash and uses it to log in without cracking it. What is this?",
+   "o": [
+    [
+     "Pass-the-hash",
+     "Right. The hash itself is used to authenticate."
+    ],
+    [
+     "Rainbow table attack",
+     "That cracks hashes by lookup."
+    ],
+    [
+     "Kerberoasting",
+     "That targets service ticket hashes for offline cracking."
+    ],
+    [
+     "Known-plaintext attack",
+     "That uses known plaintext to find a key."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-19",
+   "d": "3.0",
+   "obj": "3.7",
+   "q": "Which attack looks for two different inputs that produce the same hash?",
+   "o": [
+    [
+     "A birthday (collision) attack",
+     "Right. Collision attacks exploit the birthday paradox."
+    ],
+    [
+     "A brute-force attack on a password",
+     "That tries every key or password."
+    ],
+    [
+     "A frequency analysis attack",
+     "That studies letter frequency in ciphertext."
+    ],
+    [
+     "A man-in-the-middle attack",
+     "That intercepts communications."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-20",
+   "d": "3.0",
+   "obj": "3.8",
+   "q": "A company uses landscaping, lighting and clear sightlines around its building to discourage intruders. What approach is this?",
+   "o": [
+    [
+     "Crime Prevention Through Environmental Design (CPTED)",
+     "Right. CPTED uses design to deter crime naturally."
+    ],
+    [
+     "Defense in depth for networks",
+     "That's about layered IT controls."
+    ],
+    [
+     "Separation of duties",
+     "That's an administrative control."
+    ],
+    [
+     "Data loss prevention",
+     "That protects data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-21",
+   "d": "3.0",
+   "obj": "3.8",
+   "q": "Where should a data center ideally be placed inside a building?",
+   "o": [
+    [
+     "In the center, away from outer walls",
+     "Right. Interior placement limits exposure to break-ins, weather and accidents."
+    ],
+    [
+     "On the ground floor, right next to the main entrance",
+     "That increases exposure."
+    ],
+    [
+     "In the basement below the water line",
+     "Basements risk flooding."
+    ],
+    [
+     "On the roof for easy cooling",
+     "Roofs face weather and access risks."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-22",
+   "d": "3.0",
+   "obj": "3.9",
+   "q": "Which fire suppression system is BEST for a data center because water stays out of the pipes until a fire is confirmed?",
+   "o": [
+    [
+     "Pre-action sprinklers",
+     "Right. Pre-action needs two triggers before water enters the pipes."
+    ],
+    [
+     "Wet pipe sprinklers",
+     "Wet pipes are always full of water."
+    ],
+    [
+     "Deluge sprinklers",
+     "Deluge floods a whole area at once."
+    ],
+    [
+     "Portable class A extinguishers only",
+     "Those aren't a building system."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-23",
+   "d": "3.0",
+   "obj": "3.9",
+   "q": "A brief, total loss of power is called what?",
+   "o": [
+    [
+     "A fault",
+     "Right. A fault is a momentary loss of power. A blackout is prolonged."
+    ],
+    [
+     "A brownout",
+     "A brownout is a long period of low voltage."
+    ],
+    [
+     "A spike",
+     "A spike is a short burst of high voltage."
+    ],
+    [
+     "A sag",
+     "A sag is a short period of low voltage."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-24",
+   "d": "3.0",
+   "obj": "3.9",
+   "q": "Which control BEST protects servers from a short power failure while generators start?",
+   "o": [
+    [
+     "A UPS",
+     "Right. A UPS bridges the gap until the generator takes over."
+    ],
+    [
+     "A surge protector alone",
+     "It protects against spikes, not outages."
+    ],
+    [
+     "A larger circuit breaker",
+     "Breakers protect against overload."
+    ],
+    [
+     "An extra network cable",
+     "That's unrelated to power."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-25",
+   "d": "3.0",
+   "obj": "3.10",
+   "q": "In the information system lifecycle, when should security requirements be defined?",
+   "o": [
+    [
+     "At the start",
+     "Right. Early requirements are cheapest to build in."
+    ],
+    [
+     "Only after the system goes live",
+     "Late fixes cost more."
+    ],
+    [
+     "During disposal",
+     "That's too late."
+    ],
+    [
+     "Never, if the system is only used internally",
+     "Internal systems need security too."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-3-26",
+   "d": "3.0",
+   "obj": "3.10",
+   "q": "A system is being retired. Which step protects its data?",
+   "o": [
+    [
+     "Sanitize media and update records",
+     "Right. Disposal must remove data and keep records accurate."
+    ],
+    [
+     "Unplug it and store it in a locked closet",
+     "The data is still there."
+    ],
+    [
+     "Sell it online as-is",
+     "That exposes data."
+    ],
+    [
+     "Delete the user accounts only",
+     "The data remains on disk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "At which OSI layer does a router make forwarding decisions using IP addresses?",
+   "o": [
+    [
+     "Layer 3, Network",
+     "Right. Routing by IP address is a Network layer job."
+    ],
+    [
+     "Layer 2, Data Link",
+     "Layer 2 uses MAC addresses."
+    ],
+    [
+     "Layer 4, Transport",
+     "Layer 4 handles ports and sessions."
+    ],
+    [
+     "Layer 7, Application",
+     "Layer 7 is for application protocols."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Which protocol should replace SNMPv2c for managing network devices securely?",
+   "o": [
+    [
+     "SNMPv3",
+     "Right. SNMPv3 adds authentication and encryption."
+    ],
+    [
+     "Telnet",
+     "Telnet is clear text."
+    ],
+    [
+     "TFTP",
+     "TFTP has no security."
+    ],
+    [
+     "SNMPv1",
+     "SNMPv1 is even weaker."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-03",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A company separates its payment card systems from the rest of its network to limit PCI DSS scope. What is this?",
+   "o": [
+    [
+     "Network segmentation",
+     "Right. Segmentation isolates sensitive systems and shrinks the audit scope."
+    ],
+    [
+     "Port mirroring",
+     "Mirroring copies traffic for monitoring."
+    ],
+    [
+     "Load balancing",
+     "That spreads traffic."
+    ],
+    [
+     "Network address translation",
+     "NAT rewrites addresses."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-04",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Which IPsec mode encrypts the entire original IP packet and adds a new header, as used between two gateways?",
+   "o": [
+    [
+     "Tunnel mode",
+     "Right. Tunnel mode wraps the whole packet, which suits site-to-site VPNs."
+    ],
+    [
+     "Transport mode",
+     "Transport mode protects only the payload."
+    ],
+    [
+     "Promiscuous mode",
+     "That's a network card setting."
+    ],
+    [
+     "Monitor mode",
+     "That's a wireless capture setting."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-05",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "In software-defined networking, what is separated from the data plane?",
+   "o": [
+    [
+     "The control plane",
+     "Right. SDN moves decisions to a central controller."
+    ],
+    [
+     "The physical layer",
+     "Cables still carry the traffic."
+    ],
+    [
+     "The application layer",
+     "Apps sit above the network."
+    ],
+    [
+     "The power supply",
+     "Power isn't a network plane."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-06",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Which wireless security option gives each user their own credentials through 802.1X?",
+   "o": [
+    [
+     "WPA3-Enterprise",
+     "Right. Enterprise mode authenticates each user, usually through RADIUS."
+    ],
+    [
+     "WPA3-Personal",
+     "Personal mode uses a shared passphrase."
+    ],
+    [
+     "WEP",
+     "WEP is broken."
+    ],
+    [
+     "Open Wi-Fi with MAC filtering",
+     "MAC addresses are easy to spoof."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-07",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Microsegmentation and a policy that every request must be verified, wherever it comes from, are core parts of which architecture?",
+   "o": [
+    [
+     "Zero trust",
+     "Right. Zero trust removes implicit trust inside the network."
+    ],
+    [
+     "A flat network",
+     "Flat networks trust everything inside."
+    ],
+    [
+     "A DMZ only",
+     "A DMZ is one zone, not the whole approach."
+    ],
+    [
+     "Star topology",
+     "That's a physical layout."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-08",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Which device checks a laptop's patch level and antivirus before letting it onto the network?",
+   "o": [
+    [
+     "Network access control (NAC)",
+     "Right. NAC checks device health before granting access."
+    ],
+    [
+     "A hub",
+     "Hubs just repeat traffic."
+    ],
+    [
+     "A repeater",
+     "Repeaters boost signals."
+    ],
+    [
+     "A patch panel",
+     "Patch panels organize cables."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-09",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Which transmission medium is hardest to tap without being noticed?",
+   "o": [
+    [
+     "Fiber optic cable",
+     "Right. Fiber doesn't leak signals the way copper does."
+    ],
+    [
+     "Unshielded twisted pair",
+     "UTP emits signals that can be picked up."
+    ],
+    [
+     "Coaxial cable",
+     "Coax can be tapped."
+    ],
+    [
+     "Wi-Fi",
+     "Radio signals can be captured from a distance."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-10",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A core switch failure would take down the whole office. What design change fixes this?",
+   "o": [
+    [
+     "Add a redundant failover switch",
+     "Right. Redundancy removes the single point of failure."
+    ],
+    [
+     "Add more VLANs to the same core switch",
+     "More VLANs don't add redundancy."
+    ],
+    [
+     "Use a longer cable",
+     "Cable length doesn't help."
+    ],
+    [
+     "Turn off spanning tree",
+     "That risks loops."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-11",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Which endpoint control detects suspicious behavior on a laptop and can isolate it from the network?",
+   "o": [
+    [
+     "Endpoint detection and response (EDR)",
+     "Right. EDR monitors, alerts and can isolate hosts."
+    ],
+    [
+     "A KVM switch",
+     "KVM switches share keyboards and monitors."
+    ],
+    [
+     "A label printer",
+     "Unrelated."
+    ],
+    [
+     "A port mirror",
+     "Mirrors copy traffic for analysis."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-12",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Why should network device firmware be kept current?",
+   "o": [
+    [
+     "Updates fix exploitable flaws",
+     "Right. Unpatched network gear is a common way in."
+    ],
+    [
+     "Updates make cables carry more data",
+     "Firmware doesn't change cable capacity."
+    ],
+    [
+     "Updates are needed for warranty only",
+     "Security is the main reason."
+    ],
+    [
+     "Updates remove the need for device passwords",
+     "Passwords are still needed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-13",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Remote staff need encrypted access to internal apps from home. Which option fits BEST?",
+   "o": [
+    [
+     "A VPN with MFA",
+     "Right. The VPN encrypts traffic, and MFA protects the login."
+    ],
+    [
+     "Opening RDP directly to the internet",
+     "Exposed RDP is a top attack target."
+    ],
+    [
+     "Sharing a single team password",
+     "That breaks accountability."
+    ],
+    [
+     "Using plain FTP to move files",
+     "FTP is unencrypted."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-14",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Which protocol protects voice-over-IP media streams?",
+   "o": [
+    [
+     "SRTP",
+     "Right. Secure RTP encrypts the voice and video media."
+    ],
+    [
+     "SIP over UDP without TLS",
+     "That leaves signaling unprotected."
+    ],
+    [
+     "TFTP",
+     "TFTP transfers files without security."
+    ],
+    [
+     "SNMPv1",
+     "That's for monitoring."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-15",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A partner connects to your network to exchange orders. What should govern that connection?",
+   "o": [
+    [
+     "An interconnection agreement",
+     "Right. Third-party links need documented, monitored security terms."
+    ],
+    [
+     "Trust, since the partner is a large and well-known company",
+     "Size doesn't guarantee security."
+    ],
+    [
+     "An open firewall rule from any partner IP",
+     "That's far too broad."
+    ],
+    [
+     "Nothing, if traffic is small",
+     "Volume doesn't change the risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-16",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Video meetings share confidential designs. Which control MOST directly protects them?",
+   "o": [
+    [
+     "Encryption and meeting access controls",
+     "Right. Encryption and controlled access protect the content."
+    ],
+    [
+     "A faster internet connection",
+     "Speed isn't protection."
+    ],
+    [
+     "A larger screen in the room",
+     "Unrelated."
+    ],
+    [
+     "Public meeting links posted on the company website",
+     "That invites outsiders."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-17",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Which protocol and port should replace plain HTTP for a login page?",
+   "o": [
+    [
+     "HTTPS on TCP 443",
+     "Right. TLS encrypts the login and session."
+    ],
+    [
+     "Telnet on TCP 23",
+     "Telnet is clear text."
+    ],
+    [
+     "FTP on TCP 21",
+     "FTP is clear text."
+    ],
+    [
+     "SMTP on TCP 25",
+     "SMTP is for mail."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-4-18",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Which remote access approach gives contractors app access without putting their devices on the internal network?",
+   "o": [
+    [
+     "Virtual desktop infrastructure (VDI)",
+     "Right. Only the screen reaches the contractor; data stays inside."
+    ],
+    [
+     "A full-tunnel VPN for every contractor laptop",
+     "That brings unmanaged devices onto the network."
+    ],
+    [
+     "A shared remote desktop password",
+     "Shared logins break accountability."
+    ],
+    [
+     "Port forwarding to internal servers",
+     "That exposes servers."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-01",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Which control type is a badge reader on a server room door?",
+   "o": [
+    [
+     "Physical access control",
+     "Right. It controls entry to a physical space."
+    ],
+    [
+     "Logical access control",
+     "Logical controls protect systems and data."
+    ],
+    [
+     "Administrative control",
+     "That's policy and procedure."
+    ],
+    [
+     "Corrective control",
+     "Corrective controls fix problems after they happen."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-02",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Why should access to a company's code repositories be controlled as tightly as access to its servers?",
+   "o": [
+    [
+     "Code and its secrets are valuable",
+     "Right. Repos often hold secrets and logic attackers want."
+    ],
+    [
+     "Repositories can't be logged",
+     "They can be logged."
+    ],
+    [
+     "Code is always public",
+     "Most company code isn't."
+    ],
+    [
+     "Servers don't need access control at all",
+     "They do."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-03",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Which authentication factor type is a fingerprint?",
+   "o": [
+    [
+     "Something you are",
+     "Right. Biometrics are inherence factors."
+    ],
+    [
+     "Something you know",
+     "That's a password or PIN."
+    ],
+    [
+     "Something you have",
+     "That's a token or card."
+    ],
+    [
+     "Somewhere you are",
+     "That's location."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-04",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A biometric system is tuned so it rarely lets in the wrong person but sometimes rejects the right one. Which error is being kept low?",
+   "o": [
+    [
+     "False acceptance rate (Type II)",
+     "Right. Lowering FAR makes it harder for impostors, often raising false rejections."
+    ],
+    [
+     "False rejection rate (Type I)",
+     "FRR is rising in this setup."
+    ],
+    [
+     "Crossover error rate",
+     "CER is where FAR and FRR are equal."
+    ],
+    [
+     "Failure to enroll rate",
+     "That's about users who can't register."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-05",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Why are session timeouts important after a user logs in?",
+   "o": [
+    [
+     "They limit misuse of idle sessions",
+     "Right. Expiring sessions reduces hijacking risk."
+    ],
+    [
+     "They make logins faster",
+     "They don't affect login speed."
+    ],
+    [
+     "They replace MFA",
+     "MFA is still needed."
+    ],
+    [
+     "They're only needed on public kiosks",
+     "All systems benefit."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-06",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "In SAML federation, which party issues the assertion that a user has authenticated?",
+   "o": [
+    [
+     "The identity provider (IdP)",
+     "Right. The IdP authenticates the user and sends the assertion."
+    ],
+    [
+     "The service provider (SP)",
+     "The SP consumes the assertion."
+    ],
+    [
+     "The user's browser on its own",
+     "The browser carries it, but the IdP issues it."
+    ],
+    [
+     "The DNS server",
+     "DNS isn't part of SAML authentication."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-07",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A company uses its on-premises directory to log users in to cloud SaaS apps. What is this setup called?",
+   "o": [
+    [
+     "Hybrid federation",
+     "Right. On-premises identity is federated to cloud services."
+    ],
+    [
+     "Discretionary access control",
+     "That's an authorization model."
+    ],
+    [
+     "Mandatory vacation",
+     "That's a personnel control."
+    ],
+    [
+     "A flat network",
+     "That's a network design."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-08",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Which access model grants access using attributes like department, device health and time of day?",
+   "o": [
+    [
+     "Attribute-based access control (ABAC)",
+     "Right. ABAC evaluates many attributes in its policies."
+    ],
+    [
+     "Role-based access control (RBAC)",
+     "RBAC uses roles only."
+    ],
+    [
+     "Discretionary access control (DAC)",
+     "DAC is owner-based."
+    ],
+    [
+     "Mandatory access control (MAC)",
+     "MAC uses labels and clearances."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-09",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "In an access control architecture, which component makes the allow or deny decision?",
+   "o": [
+    [
+     "The policy decision point (PDP)",
+     "Right. The PDP evaluates policy and decides."
+    ],
+    [
+     "The policy enforcement point (PEP)",
+     "The PEP enforces the decision."
+    ],
+    [
+     "The certificate authority",
+     "CAs issue certificates."
+    ],
+    [
+     "The DHCP server",
+     "DHCP hands out addresses."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-10",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "A login system asks for extra verification when a user signs in from a new country. Which approach is this?",
+   "o": [
+    [
+     "Risk-based access control",
+     "Right. The system adjusts requirements based on risk signals."
+    ],
+    [
+     "Discretionary access control",
+     "No owner is deciding."
+    ],
+    [
+     "Mandatory access control",
+     "No labels are involved."
+    ],
+    [
+     "Rule-based access by time only",
+     "Location and risk drive this, not time."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-11",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "During an access review, a manager finds an analyst still has admin rights from a previous job. What is this?",
+   "o": [
+    [
+     "Privilege creep",
+     "Right. Access built up across job changes."
+    ],
+    [
+     "Separation of duties",
+     "SoD splits tasks."
+    ],
+    [
+     "Least privilege",
+     "That's the goal being violated."
+    ],
+    [
+     "Federation",
+     "That's identity trust between organizations."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-12",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "Which account type needs special handling because no person logs in with it, yet it often has broad access?",
+   "o": [
+    [
+     "Service accounts",
+     "Right. They need owners, least privilege and credential rotation."
+    ],
+    [
+     "Guest accounts",
+     "Guest accounts are usually limited."
+    ],
+    [
+     "Standard user accounts",
+     "Those are tied to people."
+    ],
+    [
+     "Disabled accounts",
+     "Disabled accounts can't be used."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-13",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "An attacker uses a flaw to go from a normal user account to administrator. What is this called?",
+   "o": [
+    [
+     "Privilege escalation",
+     "Right. It's gaining higher rights than granted."
+    ],
+    [
+     "Deprovisioning",
+     "That removes access."
+    ],
+    [
+     "Federation",
+     "That's identity trust."
+    ],
+    [
+     "Account lockout",
+     "That's a defensive control."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-14",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "In Kerberos, what does the Key Distribution Center issue first after the user authenticates?",
+   "o": [
+    [
+     "A ticket-granting ticket (TGT)",
+     "Right. The TGT is then used to request service tickets."
+    ],
+    [
+     "A SAML assertion",
+     "SAML is a different protocol."
+    ],
+    [
+     "An OAuth access token",
+     "OAuth is a different framework."
+    ],
+    [
+     "A RADIUS accept message",
+     "RADIUS is a different protocol."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-15",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "Why must clocks be synchronized in a Kerberos environment?",
+   "o": [
+    [
+     "Tickets are time-stamped and expire",
+     "Right. Time checks help stop replay attacks."
+    ],
+    [
+     "Kerberos encrypts all data with the current time",
+     "Time isn't the encryption key."
+    ],
+    [
+     "Clocks decide which users are admins",
+     "Admin rights come from authorization."
+    ],
+    [
+     "It makes the network faster",
+     "Speed isn't the reason."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-16",
+   "d": "5.0",
+   "obj": "5.6",
+   "q": "Which protocol adds an identity layer on top of OAuth 2.0 for user login?",
+   "o": [
+    [
+     "OpenID Connect (OIDC)",
+     "Right. OIDC adds ID tokens for authentication."
+    ],
+    [
+     "LDAP",
+     "LDAP is a directory protocol."
+    ],
+    [
+     "Kerberos",
+     "Kerberos is a separate ticket system."
+    ],
+    [
+     "TACACS+",
+     "TACACS+ is for device administration."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-17",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Users store dozens of passwords. Which tool reduces reuse while keeping them protected?",
+   "o": [
+    [
+     "A credential vault (password manager)",
+     "Right. Vaults generate unique passwords and store them encrypted."
+    ],
+    [
+     "A shared spreadsheet of passwords",
+     "That exposes everyone's credentials."
+    ],
+    [
+     "Writing them on a desk calendar",
+     "Anyone can read it."
+    ],
+    [
+     "Using one strong password everywhere",
+     "One breach then exposes everything."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-5-18",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "A file owner shares a folder with two coworkers by choice. Which access model is this?",
+   "o": [
+    [
+     "Discretionary access control (DAC)",
+     "Right. Owners decide who gets access."
+    ],
+    [
+     "Mandatory access control (MAC)",
+     "MAC uses labels set by the system."
+    ],
+    [
+     "Rule-based access control",
+     "No system-wide rule is involved."
+    ],
+    [
+     "Attribute-based access control (ABAC)",
+     "No attribute policy is involved."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-01",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Why use an independent third party for some security assessments?",
+   "o": [
+    [
+     "For an objective, unbiased view",
+     "Right. Independence increases trust in the results."
+    ],
+    [
+     "Because internal teams aren't allowed to run tests",
+     "Internal testing is common and useful."
+    ],
+    [
+     "Because third parties never miss anything",
+     "No assessor is perfect."
+    ],
+    [
+     "To avoid writing a report",
+     "Third parties still write reports."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-02",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Before a penetration test begins, what must be agreed in writing?",
+   "o": [
+    [
+     "Scope, rules and authorization",
+     "Right. Written permission and scope make the test legal and safe."
+    ],
+    [
+     "Only the tester's hourly rate",
+     "Cost isn't enough."
+    ],
+    [
+     "Nothing, if the tester is experienced and certified",
+     "Experience doesn't replace authorization."
+    ],
+    [
+     "The attacker's real identity",
+     "Testers aren't attackers."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-03",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "A company tests both its main data center and its remote branch offices. Which strategy element does this cover?",
+   "o": [
+    [
+     "Location",
+     "Right. Strategies should cover every site, not just headquarters."
+    ],
+    [
+     "Encryption strength",
+     "That's a control, not a strategy element."
+    ],
+    [
+     "Password length",
+     "That's a policy setting."
+    ],
+    [
+     "Vendor selection",
+     "That's procurement."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-04",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Which team defends during an exercise while the red team attacks?",
+   "o": [
+    [
+     "The blue team",
+     "Right. Blue teams detect and respond."
+    ],
+    [
+     "The purple team",
+     "Purple teams combine red and blue to improve together."
+    ],
+    [
+     "The white team",
+     "White teams referee the exercise."
+    ],
+    [
+     "The green team",
+     "That isn't a standard exercise role."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-05",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Testers are given full knowledge of the system, including source code and network diagrams. What kind of test is this?",
+   "o": [
+    [
+     "White-box (full knowledge) testing",
+     "Right. Testers get full information."
+    ],
+    [
+     "Black-box testing",
+     "Black-box testers get no inside information."
+    ],
+    [
+     "Gray-box testing",
+     "Gray-box testers get partial information."
+    ],
+    [
+     "Blind testing",
+     "Blind testing means the testers start with no information."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-06",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Which test feeds random, malformed input to a program to find crashes?",
+   "o": [
+    [
+     "Fuzzing",
+     "Right. Fuzzing finds input-handling bugs."
+    ],
+    [
+     "Static code review",
+     "That reads code without running it."
+    ],
+    [
+     "Regression testing",
+     "That checks old features still work."
+    ],
+    [
+     "Interface testing",
+     "That checks interfaces between components."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-07",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A team runs a safe, automated simulation of real attack techniques to check whether detections fire. What is this?",
+   "o": [
+    [
+     "Breach and attack simulation",
+     "Right. It continuously tests whether controls detect known techniques."
+    ],
+    [
+     "A tabletop exercise",
+     "Tabletops are discussions."
+    ],
+    [
+     "A code review",
+     "That's for source code."
+    ],
+    [
+     "A load test",
+     "That's for performance."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-08",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "Which is a KEY RISK INDICATOR rather than a performance indicator?",
+   "o": [
+    [
+     "Critical vulnerabilities over 30 days old",
+     "Right. It signals rising risk."
+    ],
+    [
+     "Number of training sessions held this quarter",
+     "That counts activity."
+    ],
+    [
+     "Help desk tickets closed per day",
+     "That measures performance."
+    ],
+    [
+     "Pages in the security policy",
+     "That's not a risk measure."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-09",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "Why should backup verification data be collected regularly?",
+   "o": [
+    [
+     "To prove backups can actually be restored",
+     "Right. Verification data shows recovery will work."
+    ],
+    [
+     "To reduce backup storage costs",
+     "Cost isn't the purpose."
+    ],
+    [
+     "To replace the DR plan",
+     "The plan is still needed."
+    ],
+    [
+     "Because backups expire legally after a month",
+     "There's no such rule."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-10",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "A vulnerability can't be fixed for 90 days because of a vendor dependency. What should happen?",
+   "o": [
+    [
+     "Document a time-limited exception",
+     "Right. Exceptions must be formal, time-limited and approved."
+    ],
+    [
+     "Ignore it until the vendor eventually fixes it",
+     "Untracked risk is unmanaged risk."
+    ],
+    [
+     "Remove it from the report",
+     "That hides the risk."
+    ],
+    [
+     "Mark it as fixed",
+     "That's false."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-11",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "A researcher finds a flaw in a vendor's product. What is the responsible way to report it?",
+   "o": [
+    [
+     "Tell the vendor privately first",
+     "Right. Coordinated disclosure protects users while the fix is made."
+    ],
+    [
+     "Post it publicly right away",
+     "That helps attackers before a fix exists."
+    ],
+    [
+     "Sell it to the highest bidder on a forum",
+     "That's unethical and possibly illegal."
+    ],
+    [
+     "Keep it secret forever",
+     "Users stay exposed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-12",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "Who should receive an executive summary of a penetration test?",
+   "o": [
+    [
+     "Senior management",
+     "Right. Leaders need impact and priorities, not raw tool output."
+    ],
+    [
+     "Every employee in the company",
+     "Reports are sensitive."
+    ],
+    [
+     "The general public",
+     "Results are confidential."
+    ],
+    [
+     "Only the tester's friends",
+     "That's a breach of confidentiality."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-13",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "A customer audits a vendor's controls under the right-to-audit clause in their contract. Which kind of audit is this?",
+   "o": [
+    [
+     "A third-party (external) audit",
+     "Right. An outside party audits another organization."
+    ],
+    [
+     "An internal audit",
+     "Internal audits are done by the organization's own auditors."
+    ],
+    [
+     "A self-assessment",
+     "The vendor isn't assessing itself."
+    ],
+    [
+     "A code review",
+     "That's a technical test."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-14",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "Which SOC report is meant for public distribution?",
+   "o": [
+    [
+     "SOC 3",
+     "Right. SOC 3 is a general-use summary."
+    ],
+    [
+     "SOC 2 Type II",
+     "SOC 2 is restricted use."
+    ],
+    [
+     "SOC 1 Type I",
+     "SOC 1 is for financial reporting auditors."
+    ],
+    [
+     "SOC 2 Type I",
+     "Still restricted use."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-15",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "Why should audit findings be tracked to closure?",
+   "o": [
+    [
+     "So weaknesses are actually fixed",
+     "Right. Findings without follow-up leave the risk in place."
+    ],
+    [
+     "So the audit can be skipped entirely next year",
+     "Audits continue."
+    ],
+    [
+     "To find out who to blame",
+     "Tracking is about fixing, not blaming."
+    ],
+    [
+     "Because auditors like spreadsheets",
+     "The goal is remediation."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-16",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Why review logs as part of security control testing?",
+   "o": [
+    [
+     "To confirm controls log what they should",
+     "Right. Logs show whether detective controls actually work."
+    ],
+    [
+     "To delete old entries and save space",
+     "Testing isn't log cleanup."
+    ],
+    [
+     "Because logs replace penetration tests completely",
+     "They complement each other."
+    ],
+    [
+     "To speed up the network",
+     "Logs don't change speed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-6-17",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "Which data shows whether account management is working?",
+   "o": [
+    [
+     "Active accounts of departed staff",
+     "Right. Leftover accounts show gaps in deprovisioning."
+    ],
+    [
+     "The color of the login page",
+     "Unrelated."
+    ],
+    [
+     "The number of printers on each floor",
+     "Unrelated to accounts."
+    ],
+    [
+     "The CEO's calendar",
+     "Unrelated."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-01",
+   "d": "7.0",
+   "obj": "7.1",
+   "q": "Which evidence should be collected FIRST from a live system?",
+   "o": [
+    [
+     "CPU registers, cache and memory",
+     "Right. Collect in order of volatility, most volatile first."
+    ],
+    [
+     "Archived backup tapes",
+     "Tapes are the least volatile."
+    ],
+    [
+     "The hard drive",
+     "Disks keep data after power-off."
+    ],
+    [
+     "Printed reports",
+     "Paper doesn't change."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-02",
+   "d": "7.0",
+   "obj": "7.1",
+   "q": "What does chain of custody prove about evidence?",
+   "o": [
+    [
+     "Who handled it, and that it's unaltered",
+     "Right. It shows the evidence is trustworthy in court."
+    ],
+    [
+     "That the suspect is guilty",
+     "Custody records don't prove guilt."
+    ],
+    [
+     "That the evidence is encrypted",
+     "Encryption isn't the point."
+    ],
+    [
+     "That the investigation is finished and closed",
+     "It covers handling, not completion."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-03",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "Which monitoring focuses on data leaving the organization's network?",
+   "o": [
+    [
+     "Egress monitoring",
+     "Right. It watches outbound traffic for exfiltration."
+    ],
+    [
+     "Ingress filtering",
+     "That controls inbound traffic."
+    ],
+    [
+     "Port mirroring only",
+     "That copies traffic but isn't a monitoring focus."
+    ],
+    [
+     "Capacity planning",
+     "That's about resources."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-04",
+   "d": "7.0",
+   "obj": "7.2",
+   "q": "A tool learns each user's normal behavior and alerts when an account suddenly downloads far more than usual. What is it?",
+   "o": [
+    [
+     "User and entity behavior analytics (UEBA)",
+     "Right. UEBA flags deviations from normal behavior."
+    ],
+    [
+     "A signature-based antivirus",
+     "Signatures match known malware."
+    ],
+    [
+     "A load balancer",
+     "It spreads traffic."
+    ],
+    [
+     "A vulnerability scanner",
+     "That finds weaknesses."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-05",
+   "d": "7.0",
+   "obj": "7.3",
+   "q": "Servers are built automatically from scripts that apply the approved baseline every time. Which benefit does this give MOST?",
+   "o": [
+    [
+     "Consistent secure configurations",
+     "Right. Automation prevents drift and human error."
+    ],
+    [
+     "It removes the need for patching",
+     "Patching is still needed."
+    ],
+    [
+     "It makes servers immune to attacks",
+     "Nothing is immune."
+    ],
+    [
+     "It removes the need for change control entirely",
+     "Changes to the scripts still need control."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-06",
+   "d": "7.0",
+   "obj": "7.3",
+   "q": "A server's settings no longer match the approved baseline, with no record of why. What is this?",
+   "o": [
+    [
+     "Configuration drift",
+     "Right. Unrecorded changes moved it away from the baseline."
+    ],
+    [
+     "Separation of duties",
+     "That's about splitting tasks."
+    ],
+    [
+     "Job rotation",
+     "That's moving people between roles."
+    ],
+    [
+     "A zero-day",
+     "That's an unknown vulnerability."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-07",
+   "d": "7.0",
+   "obj": "7.4",
+   "q": "Moving staff through different roles periodically helps detect fraud and spreads knowledge. What is this?",
+   "o": [
+    [
+     "Job rotation",
+     "Right. Rotation reveals irregularities and builds backup skills."
+    ],
+    [
+     "Least privilege",
+     "That limits access."
+    ],
+    [
+     "Need to know",
+     "That limits information."
+    ],
+    [
+     "Dual control",
+     "That requires two people for one task."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-08",
+   "d": "7.0",
+   "obj": "7.4",
+   "q": "Opening the company vault requires two people, each with half the combination. What principle is this?",
+   "o": [
+    [
+     "Dual control (split knowledge)",
+     "Right. No one person can act alone."
+    ],
+    [
+     "Job rotation",
+     "That's moving people between roles."
+    ],
+    [
+     "Least privilege",
+     "Related, but this is specifically dual control."
+    ],
+    [
+     "Mandatory vacation",
+     "That's a time-off control."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-09",
+   "d": "7.0",
+   "obj": "7.5",
+   "q": "How should backup tapes be moved to an offsite vault?",
+   "o": [
+    [
+     "Encrypted and tracked by a bonded courier",
+     "Right. Media in transit needs protection and accountability."
+    ],
+    [
+     "In an employee's personal car, with no records kept",
+     "That's untracked and risky."
+    ],
+    [
+     "Mailed in a plain envelope",
+     "That's untracked."
+    ],
+    [
+     "Left at the front desk for pickup",
+     "That's unattended."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-10",
+   "d": "7.0",
+   "obj": "7.5",
+   "q": "Which practice protects data on laptops if they're lost?",
+   "o": [
+    [
+     "Full-disk encryption",
+     "Right. Encrypted disks are unreadable without the key."
+    ],
+    [
+     "A bright laptop case",
+     "That doesn't protect data."
+    ],
+    [
+     "A larger hard drive",
+     "Size doesn't protect data."
+    ],
+    [
+     "A screen protector",
+     "That protects the screen."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-11",
+   "d": "7.0",
+   "obj": "7.6",
+   "q": "After an incident is contained and systems are restored, what should the team do next?",
+   "o": [
+    [
+     "Hold a lessons-learned review",
+     "Right. The review improves the process for next time."
+    ],
+    [
+     "Delete all the evidence",
+     "Evidence may still be needed."
+    ],
+    [
+     "Skip documentation to save time",
+     "Documentation is essential."
+    ],
+    [
+     "Blame the user who clicked the link",
+     "Reviews focus on process, not blame."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-12",
+   "d": "7.0",
+   "obj": "7.6",
+   "q": "In ISC2's incident management steps, which step comes right after detection?",
+   "o": [
+    [
+     "Response",
+     "Right. Detection, response, mitigation, reporting, recovery, remediation, lessons learned."
+    ],
+    [
+     "Mitigation",
+     "Mitigation (containing the damage) comes after response starts."
+    ],
+    [
+     "Recovery",
+     "Recovery comes after mitigation and reporting."
+    ],
+    [
+     "Lessons learned",
+     "That's the last step."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-13",
+   "d": "7.0",
+   "obj": "7.7",
+   "q": "A decoy server is set up to attract attackers and study their methods. What is it?",
+   "o": [
+    [
+     "A honeypot",
+     "Right. Honeypots lure attackers away from real systems."
+    ],
+    [
+     "A bastion host",
+     "A bastion host is a hardened, exposed server."
+    ],
+    [
+     "A jump box",
+     "A jump box is an admin access server."
+    ],
+    [
+     "A proxy server",
+     "A proxy forwards requests."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-14",
+   "d": "7.0",
+   "obj": "7.7",
+   "q": "Suspicious email attachments are opened in an isolated environment to see what they do. What is this?",
+   "o": [
+    [
+     "Sandboxing",
+     "Right. A sandbox runs untrusted content safely."
+    ],
+    [
+     "Tokenization",
+     "That replaces sensitive data."
+    ],
+    [
+     "Federation",
+     "That's identity trust."
+    ],
+    [
+     "Clustering",
+     "That's about availability."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-15",
+   "d": "7.0",
+   "obj": "7.8",
+   "q": "A critical patch is released for an internet-facing server. What is the BEST order?",
+   "o": [
+    [
+     "Test, deploy via change control, verify",
+     "Right. Test, deploy and verify, quickly for critical exposed systems."
+    ],
+    [
+     "Deploy to production first, then test",
+     "That risks outages."
+    ],
+    [
+     "Wait six months to see if others have problems",
+     "That leaves a critical gap open."
+    ],
+    [
+     "Skip it because the server still works",
+     "Working isn't the same as secure."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-16",
+   "d": "7.0",
+   "obj": "7.8",
+   "q": "How should vulnerability fixes be prioritized?",
+   "o": [
+    [
+     "By severity, exploitability and value",
+     "Right. Real risk decides order."
+    ],
+    [
+     "Alphabetically by CVE ID",
+     "Order of IDs means nothing."
+    ],
+    [
+     "By whichever is easiest",
+     "Easy isn't the same as important."
+    ],
+    [
+     "By the date the scanner was first installed",
+     "Unrelated."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-17",
+   "d": "7.0",
+   "obj": "7.9",
+   "q": "What should happen BEFORE a change is approved?",
+   "o": [
+    [
+     "Impact analysis and a back-out plan",
+     "Right. Approval depends on understanding risk and having a rollback."
+    ],
+    [
+     "It's deployed to production first to test it",
+     "Testing should come before production."
+    ],
+    [
+     "It's kept secret from operations",
+     "Operations must know."
+    ],
+    [
+     "The change board is skipped for speed",
+     "Skipping control adds risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-18",
+   "d": "7.0",
+   "obj": "7.9",
+   "q": "An admin makes an emergency firewall change to stop an attack. What must happen afterward?",
+   "o": [
+    [
+     "Document it and review it afterward",
+     "Right. Emergency changes still go through review."
+    ],
+    [
+     "Nothing, since it was an emergency",
+     "Every change needs a record."
+    ],
+    [
+     "Undo it immediately once the attack stops",
+     "Undoing may reopen the hole; review first."
+    ],
+    [
+     "Delete the logs of the change",
+     "That destroys accountability."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-19",
+   "d": "7.0",
+   "obj": "7.10",
+   "q": "Which recovery site has equipment and current data ready, so it can take over within hours or less?",
+   "o": [
+    [
+     "A hot site",
+     "Right. Hot sites are fully ready."
+    ],
+    [
+     "A cold site",
+     "Cold sites have space and power only."
+    ],
+    [
+     "A warm site",
+     "Warm sites need time to be readied."
+    ],
+    [
+     "A mobile site",
+     "Mobile sites must be delivered and set up."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-20",
+   "d": "7.0",
+   "obj": "7.10",
+   "q": "Which RAID level mirrors data on two disks?",
+   "o": [
+    [
+     "RAID 1",
+     "Right. RAID 1 writes the same data to both disks."
+    ],
+    [
+     "RAID 0",
+     "RAID 0 stripes with no redundancy."
+    ],
+    [
+     "RAID 5",
+     "RAID 5 stripes with parity."
+    ],
+    [
+     "RAID 10 with only one disk",
+     "RAID 10 needs at least four disks."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-21",
+   "d": "7.0",
+   "obj": "7.11",
+   "q": "During a disaster, who should communicate with the public about the outage?",
+   "o": [
+    [
+     "The spokesperson named in the plan",
+     "Right. One trained voice keeps messages accurate."
+    ],
+    [
+     "Any employee with social media",
+     "That leads to mixed and wrong messages."
+    ],
+    [
+     "The attacker, if it's a cyberattack",
+     "Never."
+    ],
+    [
+     "No one, ever",
+     "Stakeholders need information."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-22",
+   "d": "7.0",
+   "obj": "7.11",
+   "q": "What is the FIRST priority in any disaster recovery effort?",
+   "o": [
+    [
+     "The safety of people",
+     "Right. Life safety always comes first."
+    ],
+    [
+     "Restoring the email server",
+     "Systems come after people."
+    ],
+    [
+     "Saving the backup tapes",
+     "People come first."
+    ],
+    [
+     "Calling the insurance company",
+     "That comes later."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-23",
+   "d": "7.0",
+   "obj": "7.12",
+   "q": "The recovery site runs real workloads at the same time as production, without stopping the primary site. Which test is this?",
+   "o": [
+    [
+     "A parallel test",
+     "Right. Both sites run; production isn't interrupted."
+    ],
+    [
+     "A full interruption test",
+     "That shuts down the primary site."
+    ],
+    [
+     "A read-through (checklist) test",
+     "That's reviewing the document."
+    ],
+    [
+     "A walkthrough (tabletop) test",
+     "That's a discussion."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-24",
+   "d": "7.0",
+   "obj": "7.12",
+   "q": "Which DR test is MOST realistic but also MOST risky?",
+   "o": [
+    [
+     "A full interruption test",
+     "Right. Production really fails over, so a problem causes a real outage."
+    ],
+    [
+     "A read-through test",
+     "It's very low risk."
+    ],
+    [
+     "A simulation",
+     "It doesn't move production."
+    ],
+    [
+     "A walkthrough",
+     "It's a discussion."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-25",
+   "d": "7.0",
+   "obj": "7.13",
+   "q": "Who should approve the business continuity plan?",
+   "o": [
+    [
+     "Senior management",
+     "Right. Leadership owns the business and its continuity."
+    ],
+    [
+     "The newest IT technician",
+     "BC needs executive authority."
+    ],
+    [
+     "The vendor that sold the backup software",
+     "Vendors don't own your BC plan."
+    ],
+    [
+     "Each employee individually",
+     "Approval comes from leadership."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-26",
+   "d": "7.0",
+   "obj": "7.13",
+   "q": "Why exercise the BC plan regularly?",
+   "o": [
+    [
+     "Changes can make the plan unworkable",
+     "Right. Exercises keep the plan current and the team ready."
+    ],
+    [
+     "Exercises replace the BIA",
+     "The BIA is still needed."
+    ],
+    [
+     "Plans legally expire every month unless renewed",
+     "There's no such rule."
+    ],
+    [
+     "Only auditors read BC plans",
+     "Staff must be able to use them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-27",
+   "d": "7.0",
+   "obj": "7.14",
+   "q": "Which perimeter control BEST stops vehicles from ramming a building entrance?",
+   "o": [
+    [
+     "Bollards",
+     "Right. Bollards block vehicles while letting people through."
+    ],
+    [
+     "Motion-sensor lights",
+     "Lights deter, but don't stop vehicles."
+    ],
+    [
+     "A visitor log",
+     "Logs record visits."
+    ],
+    [
+     "A sign saying \"No entry\"",
+     "Signs don't stop vehicles."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-28",
+   "d": "7.0",
+   "obj": "7.14",
+   "q": "Which control detects someone in a server room after hours?",
+   "o": [
+    [
+     "Alarmed motion detectors",
+     "Right. They detect presence and raise an alert."
+    ],
+    [
+     "A fence",
+     "Fences delay or deter."
+    ],
+    [
+     "A lock on the door",
+     "Locks prevent entry but don't detect."
+    ],
+    [
+     "A fire extinguisher by the door",
+     "Unrelated."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-29",
+   "d": "7.0",
+   "obj": "7.15",
+   "q": "An employee is forced at gunpoint to open a secure door. What should a good duress system let them do?",
+   "o": [
+    [
+     "Send a silent alarm while complying",
+     "Right. Duress codes signal for help without alerting the attacker."
+    ],
+    [
+     "Sound a loud siren immediately to scare them",
+     "That could put the employee in danger."
+    ],
+    [
+     "Lock themselves in the room",
+     "Complying safely comes first."
+    ],
+    [
+     "Refuse and fight the attacker",
+     "Safety comes first."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-7-30",
+   "d": "7.0",
+   "obj": "7.15",
+   "q": "Before an employee travels to a high-risk country, which precaution helps protect company data?",
+   "o": [
+    [
+     "Issue a clean loaner device",
+     "Right. Loaners limit what's exposed if the device is seized or tampered with."
+    ],
+    [
+     "Bring every laptop they own",
+     "More devices mean more exposure."
+    ],
+    [
+     "Turn off the device's encryption",
+     "Encryption should stay on."
+    ],
+    [
+     "Share the admin password with the hotel's IT staff",
+     "Never share credentials."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-01",
+   "d": "8.0",
+   "obj": "8.1",
+   "q": "Which maturity model measures how well an organization builds security into software?",
+   "o": [
+    [
+     "OWASP SAMM",
+     "Right. SAMM assesses software assurance maturity."
+    ],
+    [
+     "The OSI model",
+     "That describes network layers."
+    ],
+    [
+     "The Cyber Kill Chain",
+     "That describes attacker stages."
+    ],
+    [
+     "ITIL",
+     "ITIL is IT service management."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-02",
+   "d": "8.0",
+   "obj": "8.1",
+   "q": "In DevSecOps, when are security checks run?",
+   "o": [
+    [
+     "Automatically, at every stage",
+     "Right. Security is built into every stage."
+    ],
+    [
+     "Only after release",
+     "That's too late."
+    ],
+    [
+     "Only once a year",
+     "That's far too rare."
+    ],
+    [
+     "Never, to keep release speed high",
+     "Speed and security can coexist."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-03",
+   "d": "8.0",
+   "obj": "8.1",
+   "q": "Why should software changes go through change management even in Agile teams?",
+   "o": [
+    [
+     "So changes are reviewed and traceable",
+     "Right. Agile speeds delivery but still needs control over production."
+    ],
+    [
+     "Agile teams are banned from releasing code to production",
+     "They release often."
+    ],
+    [
+     "Change management replaces testing",
+     "Testing is still needed."
+    ],
+    [
+     "It slows releases on purpose",
+     "The goal is safe releases."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-04",
+   "d": "8.0",
+   "obj": "8.2",
+   "q": "Developers keep committing API keys to the code repository. Which control helps MOST?",
+   "o": [
+    [
+     "Secret scanning plus a secrets vault",
+     "Right. Scanning blocks leaks, and a vault removes the need to hard-code."
+    ],
+    [
+     "Making the repository public for transparency",
+     "That makes the leak worse."
+    ],
+    [
+     "Using shorter API keys",
+     "Shorter keys are weaker and still leak."
+    ],
+    [
+     "Turning off commit history",
+     "Leaked secrets must be rotated anyway."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-05",
+   "d": "8.0",
+   "obj": "8.2",
+   "q": "Why should third-party libraries be scanned during the build?",
+   "o": [
+    [
+     "They may contain known vulnerabilities",
+     "Right. Software composition analysis finds vulnerable components."
+    ],
+    [
+     "They make the code run slower",
+     "Speed isn't the security reason."
+    ],
+    [
+     "They're always written in a different language",
+     "Language isn't the issue."
+    ],
+    [
+     "Licenses require it",
+     "Security is the reason here."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-06",
+   "d": "8.0",
+   "obj": "8.2",
+   "q": "Which test analyzes a running web app from the outside for flaws like XSS?",
+   "o": [
+    [
+     "Dynamic application security testing (DAST)",
+     "Right. DAST attacks the running app."
+    ],
+    [
+     "Static application security testing (SAST)",
+     "SAST reads code."
+    ],
+    [
+     "Unit testing",
+     "Unit tests check small pieces of logic."
+    ],
+    [
+     "Code formatting",
+     "That's style."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-07",
+   "d": "8.0",
+   "obj": "8.3",
+   "q": "Why should changes to production code be logged and audited?",
+   "o": [
+    [
+     "To trace who changed what",
+     "Right. Audit trails support accountability and investigations."
+    ],
+    [
+     "To make the code smaller",
+     "Logging doesn't change code size."
+    ],
+    [
+     "Because logs replace code reviews for every change",
+     "Both are needed."
+    ],
+    [
+     "To speed up deployments",
+     "Logging isn't about speed."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-08",
+   "d": "8.0",
+   "obj": "8.3",
+   "q": "After a release, a risk analysis finds a new feature exposes sensitive data. What should happen?",
+   "o": [
+    [
+     "Track it as a risk to fix",
+     "Right. Findings feed back into development."
+    ],
+    [
+     "Ignore it until a customer complains about it",
+     "That leaves known risk open."
+    ],
+    [
+     "Delete the risk analysis",
+     "That hides the issue."
+    ],
+    [
+     "Mark the feature as secure anyway",
+     "That's false."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-09",
+   "d": "8.0",
+   "obj": "8.4",
+   "q": "Before buying a SaaS product, what should the security team review?",
+   "o": [
+    [
+     "Its security reports and contract terms",
+     "Right. Acquired services must meet your requirements."
+    ],
+    [
+     "Only the product's price",
+     "Price ignores risk."
+    ],
+    [
+     "Only the product's logo",
+     "Branding isn't security."
+    ],
+    [
+     "Nothing, since SaaS security is entirely the provider's problem",
+     "The customer keeps accountability for its data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-10",
+   "d": "8.0",
+   "obj": "8.4",
+   "q": "A team wants to use an open-source library maintained by one volunteer with no updates for three years. What is the MAIN risk?",
+   "o": [
+    [
+     "Unfixed, unpatched vulnerabilities",
+     "Right. Abandoned components don't get security patches."
+    ],
+    [
+     "The license will cost too much",
+     "Open source is usually free to use."
+    ],
+    [
+     "It will run too fast",
+     "Speed isn't a risk."
+    ],
+    [
+     "It's illegal to use open source in business",
+     "It isn't."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-11",
+   "d": "8.0",
+   "obj": "8.4",
+   "q": "Which assurance helps when buying commercial off-the-shelf (COTS) software?",
+   "o": [
+    [
+     "Independent evaluations and patch history",
+     "Right. Evidence of testing and support shows how risky it is."
+    ],
+    [
+     "The vendor's marketing slogans",
+     "Slogans aren't evidence."
+    ],
+    [
+     "The number of colors in the UI",
+     "Unrelated."
+    ],
+    [
+     "How popular the vendor is on social media sites",
+     "Popularity isn't assurance."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-12",
+   "d": "8.0",
+   "obj": "8.5",
+   "q": "Which coding practice BEST prevents cross-site scripting (XSS)?",
+   "o": [
+    [
+     "Context-aware output encoding",
+     "Right. Output encoding keeps input from running as script."
+    ],
+    [
+     "Using longer variable names",
+     "Names don't affect XSS."
+    ],
+    [
+     "Storing passwords in plain text in the database",
+     "That's a different, serious flaw."
+    ],
+    [
+     "Turning off HTTPS",
+     "That makes things worse."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-13",
+   "d": "8.0",
+   "obj": "8.5",
+   "q": "An API returns other customers' records when a user changes the ID in the URL. What flaw is this?",
+   "o": [
+    [
+     "Broken object-level authorization (insecure direct object reference)",
+     "Right. The API doesn't check that the user owns the record."
+    ],
+    [
+     "A buffer overflow",
+     "That's a memory flaw."
+    ],
+    [
+     "A race condition",
+     "That's a timing flaw."
+    ],
+    [
+     "Cross-site request forgery",
+     "CSRF abuses a logged-in user's browser."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ci-8-14",
+   "d": "8.0",
+   "obj": "8.5",
+   "q": "Why should error messages shown to users avoid stack traces and SQL details?",
+   "o": [
+    [
+     "They reveal internal details",
+     "Right. Generic errors avoid information leaks."
+    ],
+    [
+     "They make pages load slowly",
+     "Speed isn't the issue."
+    ],
+    [
+     "They break the website's colors and layout",
+     "Unrelated."
+    ],
+    [
+     "Users like long error messages",
+     "That's not the reason."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "kind": "table",
+   "d": "1.0",
+   "obj": "1.9",
+   "title": "Pick the risk response",
+   "short": "Risk responses",
+   "scenario": "Five risks after an assessment. Pick the response that fits each one best.",
+   "cols": [
+    "Response"
+   ],
+   "opts": [
+    [
+     "Accept",
+     "Avoid",
+     "Mitigate",
+     "Transfer"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "A low-value internal wiki has a minor flaw that would cost more to fix than any likely loss.",
+     "a": [
+      0
+     ],
+     "why": "Low risk and high fix cost suit documented acceptance."
+    },
+    {
+     "req": "A planned feature would store card numbers it doesn't need. The team drops the feature.",
+     "a": [
+      1
+     ],
+     "why": "Removing the risky activity avoids the risk."
+    },
+    {
+     "req": "Admin logins have no MFA. The team adds MFA.",
+     "a": [
+      2
+     ],
+     "why": "Adding a control reduces the risk."
+    },
+    {
+     "req": "The company buys cyber insurance for breach costs.",
+     "a": [
+      3
+     ],
+     "why": "Insurance shifts financial impact to another party."
+    },
+    {
+     "req": "A web server is unpatched. The team patches it.",
+     "a": [
+      2
+     ],
+     "why": "Patching reduces the risk."
+    }
+   ],
+   "t": "pbq",
+   "id": "ci-p-01",
+   "dom": "1.0"
+  },
+  {
+   "kind": "match",
+   "d": "3.0",
+   "obj": "3.2",
+   "title": "Match the security model",
+   "short": "Security models",
+   "scenario": "Four rules. Pick the security model each one comes from. Two options are distractors.",
+   "choices": [
+    "Bell-LaPadula",
+    "Biba",
+    "Clark-Wilson",
+    "Brewer-Nash",
+    "OSI model",
+    "STRIDE"
+   ],
+   "pick": "Model",
+   "items": [
+    {
+     "text": "A Secret user can't read Top Secret data or write to Unclassified.",
+     "a": 0,
+     "why": "No read up, no write down protects confidentiality."
+    },
+    {
+     "text": "A user can't read lower-integrity data or write to higher-integrity data.",
+     "a": 1,
+     "why": "No read down, no write up protects integrity."
+    },
+    {
+     "text": "Users change data only through approved programs, with duties split.",
+     "a": 2,
+     "why": "Well-formed transactions and separation of duties."
+    },
+    {
+     "text": "Seeing one client's data blocks access to a competitor's data.",
+     "a": 3,
+     "why": "The Chinese Wall model prevents conflicts of interest."
+    }
+   ],
+   "t": "pbq",
+   "id": "ci-p-02",
+   "dom": "3.0"
+  },
+  {
+   "kind": "table",
+   "d": "5.0",
+   "obj": "5.4",
+   "title": "Pick the access control model",
+   "short": "Access models",
+   "scenario": "Five access rules. Pick the model each one uses.",
+   "cols": [
+    "Model"
+   ],
+   "opts": [
+    [
+     "DAC",
+     "MAC",
+     "RBAC",
+     "Rule-based",
+     "ABAC"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "A file's owner decides who can read it.",
+     "a": [
+      0
+     ],
+     "why": "Owner-driven access is discretionary."
+    },
+    {
+     "req": "The system enforces Secret and Top Secret labels that users can't change.",
+     "a": [
+      1
+     ],
+     "why": "Labels and clearances are mandatory access control."
+    },
+    {
+     "req": "Everyone in the Nurse group gets the same chart access.",
+     "a": [
+      2
+     ],
+     "why": "Access comes from the role."
+    },
+    {
+     "req": "The firewall blocks all inbound traffic except HTTPS for everyone.",
+     "a": [
+      3
+     ],
+     "why": "One rule applies to all subjects."
+    },
+    {
+     "req": "Access needs Finance department, a managed device and a U.S. location.",
+     "a": [
+      4
+     ],
+     "why": "Several attributes decide access."
+    }
+   ],
+   "t": "pbq",
+   "id": "ci-p-03",
+   "dom": "5.0"
+  },
+  {
+   "kind": "match",
+   "d": "7.0",
+   "obj": "7.12",
+   "title": "Match the DR test",
+   "short": "DR tests",
+   "scenario": "Four DR test descriptions. Pick the test type each one describes. Two options are distractors.",
+   "choices": [
+    "Read-through",
+    "Walkthrough",
+    "Parallel",
+    "Full interruption",
+    "Penetration test",
+    "Code review"
+   ],
+   "pick": "Test",
+   "items": [
+    {
+     "text": "Team members each review the plan on their own and send comments.",
+     "a": 0,
+     "why": "A read-through (checklist) review is individual and document-based."
+    },
+    {
+     "text": "The team meets and talks through a scenario step by step.",
+     "a": 1,
+     "why": "A walkthrough (tabletop) is a group discussion."
+    },
+    {
+     "text": "The recovery site processes real work while production keeps running.",
+     "a": 2,
+     "why": "A parallel test runs both without stopping production."
+    },
+    {
+     "text": "Production is shut down and operations move to the recovery site.",
+     "a": 3,
+     "why": "A full interruption test really fails over."
+    }
+   ],
+   "t": "pbq",
+   "id": "ci-p-04",
+   "dom": "7.0"
+  },
+  {
+   "kind": "table",
+   "d": "6.0",
+   "obj": "6.2",
+   "title": "Pick the testing approach",
+   "short": "Testing approaches",
+   "scenario": "Four testing needs. Pick the approach that fits each one best.",
+   "cols": [
+    "Approach"
+   ],
+   "opts": [
+    [
+     "Black-box",
+     "White-box",
+     "Gray-box",
+     "Fuzzing"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "Simulate an outside attacker who knows nothing about the network.",
+     "a": [
+      0
+     ],
+     "why": "Black-box testers start with no inside knowledge."
+    },
+    {
+     "req": "Review every code path with full access to source and diagrams.",
+     "a": [
+      1
+     ],
+     "why": "White-box testers have full information."
+    },
+    {
+     "req": "Test as a partner who has a normal user account but no diagrams.",
+     "a": [
+      2
+     ],
+     "why": "Gray-box testers have partial knowledge."
+    },
+    {
+     "req": "Throw malformed input at a file parser to find crashes.",
+     "a": [
+      3
+     ],
+     "why": "Fuzzing finds input-handling bugs."
+    }
+   ],
+   "t": "pbq",
+   "id": "ci-p-05",
+   "dom": "6.0"
+  },
+  {
+   "kind": "table",
+   "d": "2.0",
+   "obj": "2.4",
+   "title": "Name the data role",
+   "short": "Data roles",
+   "scenario": "Four people and what they do with data. Pick the role each one holds.",
+   "cols": [
+    "Role"
+   ],
+   "opts": [
+    [
+     "Data owner",
+     "Data custodian",
+     "Data controller",
+     "Data processor"
+    ]
+   ],
+   "rows": [
+    {
+     "req": "The VP of Sales decides how customer data is classified and who may see it.",
+     "a": [
+      0
+     ],
+     "why": "Owners are accountable and set classification."
+    },
+    {
+     "req": "The database admin runs backups and applies the access rules the owner set.",
+     "a": [
+      1
+     ],
+     "why": "Custodians carry out day-to-day protection."
+    },
+    {
+     "req": "Under GDPR, the company decides why and how customers' personal data is processed.",
+     "a": [
+      2
+     ],
+     "why": "Controllers decide purposes and means."
+    },
+    {
+     "req": "A payroll vendor processes employee data only on the company's instructions.",
+     "a": [
+      3
+     ],
+     "why": "Processors act on the controller's instructions."
+    }
+   ],
+   "t": "pbq",
+   "id": "ci-p-06",
+   "dom": "2.0"
+  }
+ ]
+}
