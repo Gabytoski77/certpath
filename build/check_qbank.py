@@ -26,6 +26,11 @@ def main(argv):
         print("FAIL  can't read %s (%s)" % (path, e))
         return 1
     check_site.check_qbank(path, ver)
+    rel = "qbank/" + pathlib.Path(path).name   # the guide whose mock list points at this bank, if it's built yet
+    for g in sorted((ROOT / "guides").glob("*.json")):
+        mock = json.loads(g.read_text(encoding="utf-8")).get("mock") if not g.name.startswith("_") else None
+        if isinstance(mock, dict) and mock.get(ver) == rel:
+            check_site.check_bank_domains(rel, ver, g.stem)
     return 1 if check_site.failures else 0
 
 

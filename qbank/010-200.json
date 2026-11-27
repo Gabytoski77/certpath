@@ -1,0 +1,2151 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "Linux Essentials",
+ "ver": "v20",
+ "exam": "010-200",
+ "title": "Linux Essentials (010-200) practice exam",
+ "rev": "2026-11-26",
+ "format": {
+  "n": 40,
+  "min": 60,
+  "pbq": 3,
+  "half": 20
+ },
+ "domains": [
+  {
+   "n": "011",
+   "name": "The Linux Operating System and Open Source Software",
+   "w": 18,
+   "obj": 4
+  },
+  {
+   "n": "012",
+   "name": "Command Line Basics",
+   "w": 22,
+   "obj": 4
+  },
+  {
+   "n": "013",
+   "name": "Data Processing",
+   "w": 22,
+   "obj": 3
+  },
+  {
+   "n": "014",
+   "name": "Linux System Administration Basics",
+   "w": 20,
+   "obj": 4
+  },
+  {
+   "n": "015",
+   "name": "Security and File System Permissions",
+   "w": 18,
+   "obj": 4
+  }
+ ],
+ "note": "Original questions written for MyNextCert from LPI's public Linux Essentials 010-200 objectives, version 2.0 only (https://www.lpi.org/our-certifications/exam-010-objectives/, checked 2026-11-26). Not real exam questions. The real exam has 40 questions in 60 minutes; this bank has a larger pool and 3 hands-on items, and draws an exam by the official topic weights (18, 22, 22, 20 and 18 percent).",
+ "q": [
+  {
+   "id": "le-p-01",
+   "t": "pbq",
+   "kind": "term",
+   "d": "014",
+   "obj": "014.3",
+   "dom": "014",
+   "title": "Find out why a service will not start",
+   "short": "systemctl, journalctl, ls -l",
+   "scenario": "On your own practice VM, the notes web service stopped after an update. You have written approval from the VM's owner (you) and sudo rights on this machine only. Find out why it failed, fix it with the least access needed, and start it again. Do not wipe logs or open files to everyone.",
+   "ticket": "Lab ticket LE-210: service notes is down on labvm. Scope: this VM only. The service runs as the system user notes. The config file holds a database password.",
+   "host": "labvm",
+   "intro": "labvm (Ubuntu practice VM, user student, sudo allowed). Type a command.",
+   "suggest": [
+    "systemctl status notes",
+    "whoami",
+    "hostname"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "whoami"
+     ],
+     "out": "student"
+    },
+    {
+     "run": [
+      "hostname"
+     ],
+     "out": "labvm"
+    },
+    {
+     "run": [
+      "pwd"
+     ],
+     "out": "/home/student"
+    },
+    {
+     "run": [
+      "systemctl status notes",
+      "systemctl status notes.service",
+      "systemctl status notes --no-pager",
+      "systemctl is-active notes"
+     ],
+     "out": "x notes.service - Notes web service\n     Loaded: loaded (/etc/systemd/system/notes.service; enabled)\n     Active: failed (Result: exit-code) since Wed 2026-11-25 16:05:02 UTC; 3min ago\n    Process: 2210 ExecStart=/usr/local/bin/notes (code=exited, status=1/FAILURE)",
+     "fx": "svc:status",
+     "alt": {
+      "if": "svc:restart",
+      "out": "* notes.service - Notes web service\n     Loaded: loaded (/etc/systemd/system/notes.service; enabled)\n     Active: active (running) since Wed 2026-11-25 16:09:41 UTC; 5s ago"
+     }
+    },
+    {
+     "run": [
+      "journalctl -u notes",
+      "journalctl -u notes --no-pager",
+      "journalctl -u notes -b",
+      "journalctl -u notes.service",
+      "journalctl -xeu notes"
+     ],
+     "out": "Nov 25 16:05:02 labvm systemd[1]: Started Notes web service.\nNov 25 16:05:02 labvm notes[2210]: FATAL: cannot open /etc/notes/app.conf: Permission denied\nNov 25 16:05:02 labvm systemd[1]: notes.service: Main process exited, code=exited, status=1/FAILURE\nNov 25 16:05:02 labvm systemd[1]: notes.service: Failed with result 'exit-code'.",
+     "fx": "log:svc"
+    },
+    {
+     "run": [
+      "ls -l /etc/notes/app.conf",
+      "ls -l /etc/notes",
+      "ls -la /etc/notes",
+      "ls -l /etc/notes/"
+     ],
+     "out": "-rw-r----- 1 root root 112 Nov 25 16:02 /etc/notes/app.conf",
+     "fx": "perm:look",
+     "alt": {
+      "if": "fix:grp",
+      "out": "-rw-r----- 1 root notes 112 Nov 25 16:02 /etc/notes/app.conf"
+     }
+    },
+    {
+     "run": [
+      "id notes"
+     ],
+     "out": "uid=998(notes) gid=998(notes) groups=998(notes)",
+     "fx": "id:notes"
+    },
+    {
+     "run": [
+      "cat /etc/notes/app.conf"
+     ],
+     "out": "db_host=10.0.0.8\ndb_user=notes\ndb_pass=********"
+    },
+    {
+     "run": [
+      "chown root:notes /etc/notes/app.conf",
+      "chgrp notes /etc/notes/app.conf",
+      "chown :notes /etc/notes/app.conf"
+     ],
+     "out": " ",
+     "fx": "fix:grp"
+    },
+    {
+     "run": [
+      "systemctl restart notes",
+      "systemctl restart notes.service",
+      "systemctl start notes"
+     ],
+     "out": "Job for notes.service failed because the control process exited with error code.\nSee \"systemctl status notes.service\" and \"journalctl -xeu notes.service\" for details.",
+     "fx": "svc:restart",
+     "alt": {
+      "if": "fix:grp",
+      "out": " "
+     }
+    },
+    {
+     "run": [
+      "chmod 777 /etc/notes/app.conf",
+      "chmod 666 /etc/notes/app.conf",
+      "chmod 644 /etc/notes/app.conf",
+      "chmod a+r /etc/notes/app.conf",
+      "chmod o+r /etc/notes/app.conf",
+      "chmod -R 777 /etc/notes"
+     ],
+     "out": "Not run. The file holds a database password, and this would let every account on the machine read it. Give the notes service access, not everyone.",
+     "fx": "trap:open"
+    },
+    {
+     "run": [
+      "rm -rf /var/log/journal",
+      "journalctl --vacuum-time=1s",
+      "rm /etc/notes/app.conf",
+      "rm -rf /etc/notes"
+     ],
+     "out": "Not run. This destroys logs or the configuration you are trying to fix. Look first, then make the smallest change.",
+     "fx": "trap:wipe"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Checked the service state with systemctl",
+     "has": "svc:status",
+     "why": "systemctl status shows the service is failed and that its start command exited with an error. It is the first stop for any service problem."
+    },
+    {
+     "t": "Read the service's log with journalctl",
+     "has": "log:svc",
+     "why": "journalctl -u notes shows the exact reason: the service could not open /etc/notes/app.conf because of Permission denied."
+    },
+    {
+     "t": "Looked at the file's owner and permissions with ls -l",
+     "has": "perm:look",
+     "why": "ls -l shows the file belongs to root and group root, with no permissions for others. The notes user falls in the 'others' part, so it cannot read it."
+    },
+    {
+     "t": "Fixed it by giving the notes group the file",
+     "has": "fix:grp",
+     "why": "Making notes the group lets the existing rw-r----- mode give the service read access, and everyone else stays locked out. That is the least access that works."
+    },
+    {
+     "t": "Restarted the service after the fix",
+     "after": "svc:restart",
+     "of": "fix:grp",
+     "why": "The service only reads its config at start. Restarting after the fix brings it up, while a restart before the fix would fail again."
+    },
+    {
+     "t": "Did not open the file to everyone or wipe logs and config",
+     "lacks": [
+      "trap:open",
+      "trap:wipe"
+     ],
+     "why": "chmod 777 or 644 would expose a database password to every account, and deleting logs or the config removes the evidence you need. Smallest safe change first."
+    }
+   ]
+  },
+  {
+   "id": "le-p-02",
+   "t": "pbq",
+   "kind": "logsel",
+   "d": "015",
+   "obj": "015.1",
+   "dom": "015",
+   "title": "Read the login log of a Linux server",
+   "short": "auth.log and sshd",
+   "scenario": "srv1 is a lab Linux server that you run for practice. You have written approval to review its authentication log. Mark every line that belongs to an attack, then say what happened and what to do first.",
+   "ticket": "Lab ticket LE-215: weekly review of /var/log/auth.log on srv1. Scope: reading this log only.",
+   "lines": [
+    {
+     "text": "Nov 25 03:00:01 srv1 CRON[2201]: pam_unix(cron:session): session opened for user root by (uid=0)",
+     "bad": 0,
+     "why": "The nightly cron job runs at 03:00 as root. A scheduled session at a set time is routine."
+    },
+    {
+     "text": "Nov 25 08:02:11 srv1 sshd[3140]: Accepted publickey for amy from 10.0.4.22 port 50122 ssh2",
+     "bad": 0,
+     "why": "Amy signs in with her key from an inside address, the way she normally does."
+    },
+    {
+     "text": "Nov 25 09:14:40 srv1 sshd[3392]: Failed password for invalid user admin from 203.0.113.9 port 40001 ssh2",
+     "bad": 1,
+     "why": "A password try for an account that does not exist, from an outside address. This starts a guessing run."
+    },
+    {
+     "text": "Nov 25 09:14:42 srv1 sshd[3394]: Failed password for invalid user test from 203.0.113.9 port 40003 ssh2",
+     "bad": 1,
+     "why": "The same address now tries another common name two seconds later. Guessing, not a user who forgot something."
+    },
+    {
+     "text": "Nov 25 09:14:45 srv1 sshd[3397]: Failed password for invalid user oracle from 203.0.113.9 port 40006 ssh2",
+     "bad": 1,
+     "why": "A third made-up name from the same address in five seconds is a scripted attack."
+    },
+    {
+     "text": "Nov 25 09:14:49 srv1 sshd[3401]: Failed password for amy from 203.0.113.9 port 40009 ssh2",
+     "bad": 1,
+     "why": "The attacker now tries a real account name. Amy normally logs in from an inside address, not this one."
+    },
+    {
+     "text": "Nov 25 09:14:53 srv1 sshd[3405]: Accepted password for amy from 203.0.113.9 port 40012 ssh2",
+     "bad": 1,
+     "why": "A password login for Amy from the outside address, after failures. She uses keys. The guess worked."
+    },
+    {
+     "text": "Nov 25 09:15:30 srv1 sudo: amy : TTY=pts/1 ; PWD=/home/amy ; USER=root ; COMMAND=/usr/sbin/useradd -m support",
+     "bad": 1,
+     "why": "Right after the login, an account called support is created with root rights. That is an attacker setting up a way back in."
+    },
+    {
+     "text": "Nov 25 09:16:02 srv1 sudo: amy : TTY=pts/1 ; PWD=/home/amy ; USER=root ; COMMAND=/usr/bin/tee -a /root/.ssh/authorized_keys",
+     "bad": 1,
+     "why": "Adding a key to root's authorized_keys gives lasting root login that survives a password change."
+    },
+    {
+     "text": "Nov 25 09:40:15 srv1 sshd[3480]: Accepted publickey for bob from 10.0.4.30 port 51200 ssh2",
+     "bad": 0,
+     "why": "Bob uses a key from an inside address. Nothing odd."
+    },
+    {
+     "text": "Nov 25 10:05:12 srv1 sshd[3511]: Failed password for bob from 10.0.4.30 port 51244 ssh2",
+     "bad": 0,
+     "why": "One failed password from an inside address is a typing mistake. It is not a pattern."
+    },
+    {
+     "text": "Nov 25 10:05:18 srv1 sshd[3512]: Accepted password for bob from 10.0.4.30 port 51250 ssh2",
+     "bad": 0,
+     "why": "Bob succeeded on his next try from the same address. Normal."
+    }
+   ],
+   "ask": {
+    "label": "What does this log show, and what is the best first step?",
+    "opts": [
+     "An outside address guessed Amy's password, then added a user and a root key; block it and remove them",
+     "A normal morning with a few mistyped passwords, so nobody needs to do anything about it",
+     "A broken cron job that runs at the wrong time, so edit the crontab and set a new schedule",
+     "A system update that created a new user account, so restart the server to finish it"
+    ],
+    "a": 0,
+    "why": "The outside address tried several names, got Amy's password, then used sudo to create the support account and plant a root key. Stop the access and remove what was added. The mistyped password is Bob's inside login and is harmless. No cron fault or update creates these steps."
+   }
+  },
+  {
+   "id": "le-p-03",
+   "t": "pbq",
+   "kind": "rules",
+   "d": "015",
+   "obj": "015.3",
+   "dom": "015",
+   "title": "Set up a team folder with the right permissions",
+   "short": "groups, chgrp, chmod",
+   "scenario": "On a practice Linux server you own, a small team needs a shared folder at /srv/ops. Members of the group ops must read and write there, and nobody else may enter. Add the steps in a sensible order. Some ideas do not belong.",
+   "ticket": "Lab ticket LE-220: create the shared folder /srv/ops for group ops. You are the administrator of this practice server.",
+   "rules": [
+    {
+     "id": "a",
+     "text": "Create the group ops with groupadd",
+     "need": 1,
+     "why": "The group must exist before you can give it a folder or add people to it."
+    },
+    {
+     "id": "b",
+     "text": "Add the team members to the group ops",
+     "need": 1,
+     "why": "With the group in place, members are added so they get access."
+    },
+    {
+     "id": "c",
+     "text": "Create the folder /srv/ops with mkdir",
+     "need": 1,
+     "why": "The folder must exist before you can change its group or permissions."
+    },
+    {
+     "id": "d",
+     "text": "Set the folder's group to ops with chgrp",
+     "need": 1,
+     "why": "This ties the folder to the group. It needs both the group and the folder to exist."
+    },
+    {
+     "id": "e",
+     "text": "Set the mode to 770 with chmod",
+     "need": 1,
+     "why": "Owner and group get full access, and others get none."
+    },
+    {
+     "id": "f",
+     "text": "Check the result with ls -ld /srv/ops",
+     "need": 1,
+     "why": "Checking last proves the owner, group and mode are what you intended."
+    },
+    {
+     "id": "g",
+     "text": "Set the mode to 777 so nothing can go wrong",
+     "need": 0,
+     "why": "777 lets every user read, change and delete files in the folder. It defeats the point of a team folder."
+    },
+    {
+     "id": "h",
+     "text": "Give every team member full sudo rights",
+     "need": 0,
+     "why": "Folder access needs a group, not root rights. Extra sudo access is more power than anyone needs."
+    },
+    {
+     "id": "i",
+     "text": "Copy the team's passwords into a shared file",
+     "need": 0,
+     "why": "Sharing passwords breaks accountability and is never needed to share a folder."
+    }
+   ],
+   "before": [
+    {
+     "a": "a",
+     "b": "b",
+     "why": "A user can only be added to a group that exists."
+    },
+    {
+     "a": "a",
+     "b": "d",
+     "why": "The group has to exist before it can be set on the folder."
+    },
+    {
+     "a": "c",
+     "b": "d",
+     "why": "The folder has to exist before you can change its group."
+    },
+    {
+     "a": "d",
+     "b": "e",
+     "why": "Set the group first, then the mode, so the group bits apply to the right group."
+    }
+   ],
+   "last": {
+    "id": "f",
+    "why": "A final listing proves the result before the team starts to use the folder."
+   }
+  },
+  {
+   "id": "le-1-01",
+   "d": "011",
+   "obj": "011.1",
+   "q": "In a Linux system, which part is the kernel?",
+   "o": [
+    [
+     "The desktop and the apps that sit on top",
+     "The desktop, tools and apps are userspace. They ask the kernel to do the low-level work."
+    ],
+    [
+     "The installer image used to set up a PC",
+     "An installer image is only the media used to put the system on a disk. It is not a running part of the system."
+    ],
+    [
+     "The online store that holds software packages",
+     "That is a package repository. It supplies software but does not control the hardware."
+    ],
+    [
+     "The core that manages hardware, memory and running programs",
+     "Right. The kernel sits between programs and the hardware. Everything else is built on top of it."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-1-02",
+   "d": "011",
+   "obj": "011.1",
+   "q": "A unit wants a server that gets security fixes for several years without big feature changes. Which release type fits best?",
+   "o": [
+    [
+     "A rolling release that updates continuously",
+     "A rolling release keeps pulling in new versions. That means frequent change, which is the opposite of what the unit asked for."
+    ],
+    [
+     "A long-term support (LTS) release",
+     "Right. LTS releases promise fixes for a long, fixed period and keep changes small, which suits servers."
+    ],
+    [
+     "A nightly build for developers",
+     "Nightly builds are unfinished test versions. They are not meant for production servers."
+    ],
+    [
+     "A beta image built for testers",
+     "A beta is a preview. It has no long support promise."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-1-03",
+   "d": "011",
+   "obj": "011.1",
+   "q": "How does Android relate to Linux?",
+   "o": [
+    [
+     "It uses the Linux kernel with its own user-facing software on top",
+     "Right. Android runs on a modified Linux kernel, but its apps, libraries and interface are Google's own, so it is not a classic distribution."
+    ],
+    [
+     "It is a Debian spin that installs software with apt",
+     "Android does not use apt or Debian packages. Its apps come as APK files."
+    ],
+    [
+     "It has its own kernel with no Linux code",
+     "Android's kernel is Linux-based, so this is wrong."
+    ],
+    [
+     "It is a Windows layer made to run phone apps",
+     "Android is not built on Windows in any way."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-1-04",
+   "d": "011",
+   "obj": "011.1",
+   "q": "A container image must stay very small and starts from a distribution that uses the apk package tool. Which distribution is that?",
+   "o": [
+    [
+     "Ubuntu Server",
+     "Ubuntu belongs to the Debian family and installs packages with apt."
+    ],
+    [
+     "Rocky Linux",
+     "Rocky is an Enterprise Linux system and uses dnf."
+    ],
+    [
+     "Alpine Linux",
+     "Right. Alpine is tiny and uses apk, which is why it is popular as a base for containers."
+    ],
+    [
+     "openSUSE",
+     "openSUSE belongs to the SUSE family and uses zypper."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-1-05",
+   "d": "011",
+   "obj": "011.2",
+   "q": "Windows laptops need to open shared folders that live on a Linux file server. Which software provides that sharing?",
+   "o": [
+    [
+     "NGINX",
+     "NGINX serves web pages and acts as a proxy. It does not share folders with Windows."
+    ],
+    [
+     "Samba",
+     "Right. Samba speaks the file-sharing protocol that Windows uses, so Windows clients can reach Linux shares."
+    ],
+    [
+     "PostgreSQL",
+     "PostgreSQL is a database server. It stores tables, not shared folders."
+    ],
+    [
+     "LibreOffice",
+     "LibreOffice is an office suite for documents and spreadsheets."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-1-06",
+   "d": "011",
+   "obj": "011.2",
+   "q": "Which command installs the package nginx on a Rocky Linux server?",
+   "o": [
+    [
+     "apt install nginx",
+     "apt belongs to Debian and Ubuntu systems."
+    ],
+    [
+     "zypper install nginx",
+     "zypper is the package tool of the SUSE family."
+    ],
+    [
+     "dnf install nginx",
+     "Right. Rocky Linux is an Enterprise Linux system, and dnf is its package tool."
+    ],
+    [
+     "apk add nginx",
+     "apk is the package tool of Alpine Linux."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-1-07",
+   "d": "011",
+   "obj": "011.2",
+   "q": "The Linux kernel itself is mostly written in which language?",
+   "o": [
+    [
+     "Python",
+     "Python is a popular scripting language, but the kernel is not written in it."
+    ],
+    [
+     "JavaScript",
+     "JavaScript mostly runs in web browsers. It is not used to build the kernel."
+    ],
+    [
+     "PHP",
+     "PHP is a web scripting language and is not used for kernels."
+    ],
+    [
+     "C",
+     "Right. C is compiled into fast machine code and lets the kernel work close to the hardware."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-1-08",
+   "d": "011",
+   "obj": "011.3",
+   "q": "A developer wants anyone who shares changed copies of the code to share them under the same terms. Which kind of license does that?",
+   "o": [
+    [
+     "A copyleft license such as the GPL",
+     "Right. Copyleft means changes must stay under the same free terms when shared."
+    ],
+    [
+     "A permissive license such as BSD",
+     "Permissive licenses let others reuse the code, even in closed products, with few rules."
+    ],
+    [
+     "A Creative Commons license",
+     "Creative Commons licenses are for creative works like photos and text, not mainly for software."
+    ],
+    [
+     "A closed-source user agreement",
+     "That keeps the code private. It does not require sharing changes."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-1-09",
+   "d": "011",
+   "obj": "011.3",
+   "q": "Which group maintains the Open Source Definition and approves licenses against it?",
+   "o": [
+    [
+     "Creative Commons",
+     "Creative Commons writes licenses for creative works. It does not maintain the Open Source Definition."
+    ],
+    [
+     "The Open Source Initiative (OSI)",
+     "Right. OSI keeps the Open Source Definition and lists licenses that meet it."
+    ],
+    [
+     "The Linux Professional Institute",
+     "LPI runs Linux certifications. It does not approve licenses."
+    ],
+    [
+     "The Wi-Fi Alliance",
+     "That group certifies wireless gear. It has nothing to do with software licenses."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-1-10",
+   "d": "011",
+   "obj": "011.3",
+   "q": "A unit wants to publish its training photos so that others may reuse them if they give credit. Which license family was made for this?",
+   "o": [
+    [
+     "Creative Commons",
+     "Right. Creative Commons licenses are made for sharing photos, text and other creative works, and one option only asks for credit."
+    ],
+    [
+     "GNU General Public License",
+     "The GPL is aimed at software source code."
+    ],
+    [
+     "BSD license",
+     "The BSD license is a permissive software license."
+    ],
+    [
+     "A hardware warranty",
+     "A warranty is a promise about repairs. It is not a license for reuse."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-1-11",
+   "d": "011",
+   "obj": "011.4",
+   "q": "Which statement about where Linux is used is true?",
+   "o": [
+    [
+     "It runs mostly on desktop computers and few servers",
+     "Desktops are only a small share. Servers and embedded devices are far more common."
+    ],
+    [
+     "It runs in a virtual machine only with special licenses",
+     "Linux runs in virtual machines freely and is very common there."
+    ],
+    [
+     "It needs a graphical desktop for most server jobs",
+     "Most servers run with no graphical desktop at all."
+    ],
+    [
+     "It runs on cloud servers, embedded devices and phones",
+     "Right. Linux is used across many device types, from tiny embedded boards to large cloud server farms."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-1-12",
+   "d": "011",
+   "obj": "011.4",
+   "q": "You are in vi and have pressed Esc. Which keys save the file and quit?",
+   "o": [
+    [
+     ":q! then Enter",
+     "This quits and throws away your changes."
+    ],
+    [
+     "Ctrl+X",
+     "That is the quit key in nano. In vi it does nothing useful here."
+    ],
+    [
+     ":wq then Enter",
+     "Right. In vi, :w writes the file and :q quits, so :wq does both."
+    ],
+    [
+     "i then Enter",
+     "The i key switches to insert mode so you can type. It does not save."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-1-13",
+   "d": "011",
+   "obj": "011.4",
+   "q": "A website offers a passkey sign-in. What is a main benefit over a typed password?",
+   "o": [
+    [
+     "It is a short code you may reuse on several trusted sites",
+     "Passkeys are tied to one site each. They are not reusable codes."
+    ],
+    [
+     "It sends your password in clear text faster",
+     "A passkey is not a password and nothing is sent in clear text."
+    ],
+    [
+     "It turns off HTTPS to save time",
+     "HTTPS stays on. A passkey does not replace it."
+    ],
+    [
+     "A secret key stays on your device, so there is nothing to type or phish",
+     "Right. Passkeys use a private key held on the device. A fake site can't trick you into typing it."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-1-14",
+   "d": "011",
+   "obj": "011.4",
+   "q": "You find an unknown USB drive in the parking lot. What is the safest action?",
+   "o": [
+    [
+     "Plug it into a lab PC to see what is on it",
+     "That risks infecting the PC. Even a lab PC can be on the network."
+    ],
+    [
+     "Plug it into your phone to scan it",
+     "A phone is not a safe test box, and it may hold work data."
+    ],
+    [
+     "Do not plug it in and hand it to your security office",
+     "Right. Unknown drives can carry malware or act like a keyboard that types commands. Report it instead of testing it."
+    ],
+    [
+     "Format it on your laptop and reuse it",
+     "Even connecting it to a laptop is the risk you are trying to avoid."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-2-01",
+   "d": "012",
+   "obj": "012.1",
+   "q": "A user named kim runs: echo 'Hi $USER'. What does it print?",
+   "o": [
+    [
+     "Hi $USER",
+     "Right. Single quotes stop the shell from expanding variables, so the text is printed exactly as typed."
+    ],
+    [
+     "Hi kim",
+     "That would happen with double quotes. Single quotes block the expansion."
+    ],
+    [
+     "Hi",
+     "That would only happen if the variable were empty and expanded."
+    ],
+    [
+     "An error about the quote",
+     "The command is valid. Quoted text is fine."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-2-02",
+   "d": "012",
+   "obj": "012.1",
+   "q": "You set PROJ=alpha in your shell. A script you run from it cannot see PROJ. Which command makes the variable available to the script?",
+   "o": [
+    [
+     "unset PROJ",
+     "unset removes the variable completely."
+    ],
+    [
+     "export PROJ",
+     "Right. export marks the variable so child processes, like a script, inherit it."
+    ],
+    [
+     "alias PROJ",
+     "alias makes a command shortcut. It does not pass variables on."
+    ],
+    [
+     "history PROJ",
+     "history lists past commands. It does not change variables."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-2-03",
+   "d": "012",
+   "obj": "012.1",
+   "q": "Running type cd shows that cd is a shell builtin. What does that mean?",
+   "o": [
+    [
+     "It is a program stored in /usr/bin",
+     "type would then show a file path instead of builtin."
+    ],
+    [
+     "It is a shortcut the user made",
+     "A shortcut would be reported as an alias."
+    ],
+    [
+     "It is part of bash itself and has no separate program file",
+     "Right. Builtins run inside the shell. That is why cd can change the shell's own directory."
+    ],
+    [
+     "It can only be used by the root user",
+     "Any user can run cd. Builtin has nothing to do with privilege."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-2-04",
+   "d": "012",
+   "obj": "012.1",
+   "q": "A script named tool sits in your current folder. Typing tool says command not found, but ./tool works. What is the most likely reason?",
+   "o": [
+    [
+     "The current directory is not listed in PATH",
+     "Right. The shell only searches the folders in PATH. The ./ prefix points straight at the file."
+    ],
+    [
+     "The file name is too short",
+     "Length of the name does not matter."
+    ],
+    [
+     "The shell is in read-only mode",
+     "There is no such mode that blocks commands by name."
+    ],
+    [
+     "The script was written in uppercase",
+     "The file name case would only matter if you typed it differently."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-2-05",
+   "d": "012",
+   "obj": "012.2",
+   "q": "Which command opens the manual page that explains the file format of /etc/passwd (manual section 5)?",
+   "o": [
+    [
+     "passwd --help",
+     "That prints short usage for the passwd command, not the file format."
+    ],
+    [
+     "man 5 passwd",
+     "Right. man takes the section number first. Section 5 covers file formats."
+    ],
+    [
+     "help passwd",
+     "help covers shell builtins. passwd is a program."
+    ],
+    [
+     "whatis passwd",
+     "whatis shows a one-line summary only."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-2-06",
+   "d": "012",
+   "obj": "012.2",
+   "q": "Which command prints a short usage summary straight to the terminal, without opening the full manual?",
+   "o": [
+    [
+     "man cp",
+     "This opens the full manual in a pager."
+    ],
+    [
+     "whatis cp",
+     "This prints one line describing the command."
+    ],
+    [
+     "type cp",
+     "This only tells you how the shell interprets the name."
+    ],
+    [
+     "cp --help",
+     "Right. Most GNU tools accept --help and print a quick summary."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-2-07",
+   "d": "012",
+   "obj": "012.2",
+   "q": "Where do many installed packages keep extra documentation such as README files and examples?",
+   "o": [
+    [
+     "/usr/local/readme",
+     "/etc holds configuration files, not documentation."
+    ],
+    [
+     "/var/spool",
+     "/var/spool holds queued work such as print jobs."
+    ],
+    [
+     "/usr/share/doc",
+     "Right. Packages place docs in a folder under /usr/share/doc."
+    ],
+    [
+     "/boot",
+     "/boot holds the kernel and boot loader files."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-2-08",
+   "d": "012",
+   "obj": "012.3",
+   "q": "Which option makes ls also show hidden files, such as .bashrc?",
+   "o": [
+    [
+     "ls -l",
+     "-l gives the long format but still hides dot files."
+    ],
+    [
+     "ls -h",
+     "-h only makes sizes readable, and only along with -l."
+    ],
+    [
+     "ls -t",
+     "-t sorts by time. It does not change which files appear."
+    ],
+    [
+     "ls -a",
+     "Right. The -a option means all, so names that start with a dot are shown too."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-2-09",
+   "d": "012",
+   "obj": "012.3",
+   "q": "Your current folder is /home/ana/docs. Which relative path reaches /home/ana/pics?",
+   "o": [
+    [
+     "../pics",
+     "Right. The two dots mean the parent folder (/home/ana), and pics is inside it."
+    ],
+    [
+     "./pics",
+     "./ means the current folder, which would be /home/ana/docs/pics."
+    ],
+    [
+     "../../pics",
+     "That climbs two levels to /home, giving /home/pics."
+    ],
+    [
+     "/pics",
+     "The leading slash makes it absolute, starting at the top of the tree."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-2-10",
+   "d": "012",
+   "obj": "012.3",
+   "q": "In bash, what does the ~ symbol stand for?",
+   "o": [
+    [
+     "The top folder of the whole file system",
+     "The top is / and is called the root directory."
+    ],
+    [
+     "The home folder of the current user",
+     "Right. The shell expands ~ to the home directory, such as /home/ana."
+    ],
+    [
+     "The folder you were in before",
+     "That is what cd - uses, not the tilde."
+    ],
+    [
+     "The parent of the current folder",
+     "The parent folder is written .."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-2-11",
+   "d": "012",
+   "obj": "012.3",
+   "q": "Which command finds a file named report.txt anywhere under /srv?",
+   "o": [
+    [
+     "find report.txt /srv",
+     "find expects the folder first. The name would be read as a start folder."
+    ],
+    [
+     "find /srv -name report.txt",
+     "Right. find takes the starting folder first, then the test, here -name."
+    ],
+    [
+     "find /srv -type report.txt",
+     "-type takes f, d and similar letters, not a file name."
+    ],
+    [
+     "find -name /srv report.txt",
+     "The options are in the wrong places and the command would fail."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-2-12",
+   "d": "012",
+   "obj": "012.4",
+   "q": "A folder holds both Report.txt and report.txt. Why is that possible?",
+   "o": [
+    [
+     "One of them is a hidden copy",
+     "Hidden files start with a dot. These do not."
+    ],
+    [
+     "One is a link the other cannot change",
+     "Neither is a link just because the case differs."
+    ],
+    [
+     "The system will soon delete one",
+     "Nothing is removed. Both names stay."
+    ],
+    [
+     "Linux file names are case sensitive, so they are two files",
+     "Right. Upper and lower case letters make different names on a Linux file system."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-2-13",
+   "d": "012",
+   "obj": "012.4",
+   "q": "Which command deletes only the files ending in .log in the current folder?",
+   "o": [
+    [
+     "rm .log",
+     "This would try to remove a single file named .log."
+    ],
+    [
+     "rm log.*",
+     "This matches names starting with log. and may hit other files."
+    ],
+    [
+     "rm *.log",
+     "Right. The * wildcard matches any name, and .log limits it to names ending that way."
+    ],
+    [
+     "rm -r *",
+     "This deletes everything in the folder, including folders."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-2-14",
+   "d": "012",
+   "obj": "012.4",
+   "q": "Which command renames draft.txt to final.txt?",
+   "o": [
+    [
+     "mv draft.txt final.txt",
+     "Right. mv moves a file, and moving to a new name in the same folder is a rename."
+    ],
+    [
+     "cp draft.txt final.txt",
+     "cp keeps the old file and makes a copy."
+    ],
+    [
+     "touch draft.txt final.txt",
+     "touch creates or updates files. It does not rename."
+    ],
+    [
+     "mkdir draft.txt final.txt",
+     "mkdir creates folders."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-2-15",
+   "d": "012",
+   "obj": "012.4",
+   "q": "You need the nested folders a/b/c, but a does not exist yet. Which single command creates them?",
+   "o": [
+    [
+     "mkdir a/b/c",
+     "Without -p this fails because a/b does not exist."
+    ],
+    [
+     "rmdir a/b/c",
+     "rmdir removes empty folders. It does not create them."
+    ],
+    [
+     "mkdir a ; mkdir b ; mkdir c",
+     "This makes three separate folders side by side in the current folder, not a nested chain."
+    ],
+    [
+     "mkdir -p a/b/c",
+     "Right. The -p option creates every missing parent folder along the way."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-3-01",
+   "d": "013",
+   "obj": "013.1",
+   "q": "Which command creates a gzip-compressed archive named docs.tar.gz from the folder docs?",
+   "o": [
+    [
+     "tar -czf docs.tar.gz docs",
+     "Right. c creates, z compresses with gzip and f names the file."
+    ],
+    [
+     "tar -xzf docs.tar.gz docs",
+     "x extracts, so this unpacks an archive instead of making one."
+    ],
+    [
+     "tar -tzf docs.tar.gz docs",
+     "t lists the contents of an existing archive."
+    ],
+    [
+     "gunzip docs.tar.gz docs",
+     "gunzip undoes gzip compression. It does not create anything."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-3-02",
+   "d": "013",
+   "obj": "013.1",
+   "q": "How can you list what is inside backup.tar without extracting it?",
+   "o": [
+    [
+     "tar -xf backup.tar",
+     "x extracts the files into the current folder."
+    ],
+    [
+     "tar -cf backup.tar",
+     "c creates an archive and could overwrite the one you have."
+    ],
+    [
+     "tar -tf backup.tar",
+     "Right. The t option lists the contents and leaves the files alone."
+    ],
+    [
+     "tar -zf backup.tar",
+     "z handles gzip and still needs an action letter like t or x."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-3-03",
+   "d": "013",
+   "obj": "013.1",
+   "q": "Of gzip, bzip2 and xz, which usually makes the smallest file but takes the longest?",
+   "o": [
+    [
+     "gzip",
+     "gzip is the fastest of the three but makes larger files."
+    ],
+    [
+     "xz",
+     "Right. xz trades speed for a better compression ratio."
+    ],
+    [
+     "bzip2",
+     "bzip2 sits in the middle for both speed and size."
+    ],
+    [
+     "tar",
+     "tar bundles files but does not compress by itself."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-3-04",
+   "d": "013",
+   "obj": "013.2",
+   "q": "What does the command ls /etc | wc -l print?",
+   "o": [
+    [
+     "The total size of /etc in bytes",
+     "wc -l counts lines, not bytes, and ls does not print a size total here."
+    ],
+    [
+     "The number of names listed in /etc",
+     "Right. The pipe sends the list to wc, and -l counts its lines."
+    ],
+    [
+     "The word count of every file in /etc",
+     "The pipe carries the names, not the file contents."
+    ],
+    [
+     "Nothing, because a pipe needs a file",
+     "A pipe connects the output of one command to the next without a file."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-3-05",
+   "d": "013",
+   "obj": "013.2",
+   "q": "You want to add the line done to the end of log.txt without erasing what is there. Which command does it?",
+   "o": [
+    [
+     "echo done > log.txt",
+     "A single > overwrites the whole file."
+    ],
+    [
+     "echo done < log.txt",
+     "< feeds a file into a command as input."
+    ],
+    [
+     "echo done >> log.txt",
+     "Right. >> appends to the file."
+    ],
+    [
+     "echo done | tee log.txt",
+     "tee without -a overwrites the file, so the old lines would be lost."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-3-06",
+   "d": "013",
+   "obj": "013.2",
+   "q": "Which command line uses the second output stream, to send only error messages to errors.txt?",
+   "o": [
+    [
+     "backup.sh 2> errors.txt",
+     "Right. File number 2 is standard error, so 2> sends just the errors to the file."
+    ],
+    [
+     "backup.sh > errors.txt",
+     "This sends normal output, not the errors, to the file."
+    ],
+    [
+     "backup.sh < errors.txt",
+     "This reads the file as input."
+    ],
+    [
+     "backup.sh | tee errors.txt",
+     "tee copies normal output to the file. Error messages are not sent through the pipe."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-3-07",
+   "d": "013",
+   "obj": "013.2",
+   "q": "Why do you usually run sort before uniq?",
+   "o": [
+    [
+     "uniq can only read sorted files stored in /etc",
+     "uniq has no such folder limit."
+    ],
+    [
+     "sort deletes blank lines that break uniq",
+     "sort does not delete lines."
+    ],
+    [
+     "uniq refuses to run on text files",
+     "uniq works on text. The problem is only about neighbors."
+    ],
+    [
+     "uniq only merges duplicate lines that are next to each other",
+     "Right. Sorting puts equal lines side by side so uniq can merge or count them."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-3-08",
+   "d": "013",
+   "obj": "013.2",
+   "q": "A text file uses colons between its fields. Which command prints only the first field of every line of /etc/passwd?",
+   "o": [
+    [
+     "cut -d' ' -f1 /etc/passwd",
+     "This splits on spaces, but the fields are separated by colons, so each whole line prints."
+    ],
+    [
+     "cut -d: -f1 /etc/passwd",
+     "Right. -d sets the delimiter to a colon and -f1 picks the first field."
+    ],
+    [
+     "cut -c1 /etc/passwd",
+     "-c1 prints only the first character of each line."
+    ],
+    [
+     "grep -f1 /etc/passwd",
+     "-f in grep reads patterns from a file, so this is wrong."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-3-09",
+   "d": "013",
+   "obj": "013.2",
+   "q": "Which command shows lines in app.log that contain either error or fail?",
+   "o": [
+    [
+     "grep 'error|fail' app.log",
+     "Without -E, GNU grep takes the bar as a plain character."
+    ],
+    [
+     "grep -v 'error|fail' app.log",
+     "-v would show the lines that do not match."
+    ],
+    [
+     "grep -c error fail app.log",
+     "This treats fail as a file name, and -c only counts."
+    ],
+    [
+     "grep -E 'error|fail' app.log",
+     "Right. With -E, the bar means or, so either word matches."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-3-10",
+   "d": "013",
+   "obj": "013.3",
+   "q": "A script runs with bash deploy.sh but ./deploy.sh says Permission denied. What is the best fix?",
+   "o": [
+    [
+     "chown root deploy.sh",
+     "Changing the owner does not add execute permission."
+    ],
+    [
+     "export deploy.sh",
+     "export is for variables, not for permissions."
+    ],
+    [
+     "chmod +x deploy.sh",
+     "Right. Running a file directly needs the execute permission, and chmod +x adds it."
+    ],
+    [
+     "mv deploy.sh /bin",
+     "Moving the file is not needed and may also need extra rights."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-3-11",
+   "d": "013",
+   "obj": "013.3",
+   "q": "Inside a bash script, which variable holds the first argument given on the command line?",
+   "o": [
+    [
+     "$1",
+     "Right. $1 is the first argument, $2 the second, and so on."
+    ],
+    [
+     "$0",
+     "$0 holds the name of the script itself."
+    ],
+    [
+     "$#",
+     "$# holds how many arguments were given."
+    ],
+    [
+     "$?",
+     "$? holds the exit status of the last command."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-3-12",
+   "d": "013",
+   "obj": "013.3",
+   "q": "Right after a command finishes, which command shows its exit status?",
+   "o": [
+    [
+     "echo $$",
+     "$$ is the process number of the current shell."
+    ],
+    [
+     "echo $!",
+     "$! is the process number of the last background job."
+    ],
+    [
+     "echo $0",
+     "$0 is the name of the script or shell."
+    ],
+    [
+     "echo $?",
+     "Right. $? holds the exit status of the last command. Zero means success."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-3-13",
+   "d": "013",
+   "obj": "013.3",
+   "q": "Which test is true when /etc/hosts exists and is a regular file?",
+   "o": [
+    [
+     "[ -f /etc/hosts ]",
+     "Right. -f checks for a regular file."
+    ],
+    [
+     "[ -d /etc/hosts ]",
+     "-d checks for a directory."
+    ],
+    [
+     "[ -z /etc/hosts ]",
+     "-z checks whether a string is empty."
+    ],
+    [
+     "[ -x /etc/hosts ]",
+     "-x checks the execute permission, not whether the file exists."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-3-14",
+   "d": "013",
+   "obj": "013.3",
+   "q": "What does for f in *.txt; do echo \"$f\"; done print?",
+   "o": [
+    [
+     "The contents of each .txt file",
+     "echo prints the name held in the variable, not the file's text."
+    ],
+    [
+     "The name of each .txt file in the folder, one per line",
+     "Right. The loop runs once for every name that the wildcard matches."
+    ],
+    [
+     "Only the first .txt file name",
+     "The loop goes through every match."
+    ],
+    [
+     "Nothing, because for needs a number range",
+     "for can loop over any list of words, including a wildcard."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-4-01",
+   "d": "014",
+   "obj": "014.1",
+   "q": "Which feature lets a Windows PC run a Linux command-line environment without rebooting?",
+   "o": [
+    [
+     "A dual-boot setup",
+     "Dual boot needs a restart to switch between systems."
+    ],
+    [
+     "A Live ISO on USB",
+     "A live USB boots Linux in place of Windows."
+    ],
+    [
+     "Windows Subsystem for Linux (WSL)",
+     "Right. WSL runs Linux tools alongside Windows apps on the same machine."
+    ],
+    [
+     "A BIOS update",
+     "A BIOS update changes firmware and does not run Linux."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-4-02",
+   "d": "014",
+   "obj": "014.1",
+   "q": "A cloud provider lets you start a ready-made Linux server in minutes from a stored template. What is the server called?",
+   "o": [
+    [
+     "A dual-boot partition",
+     "Dual boot uses the disk of one local computer."
+    ],
+    [
+     "A kernel module",
+     "A module adds a driver to a running kernel."
+    ],
+    [
+     "A bootloader entry",
+     "A bootloader entry only lists a system to start."
+    ],
+    [
+     "An instance created from an image",
+     "Right. A cloud instance is a virtual server that starts from an image."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-4-03",
+   "d": "014",
+   "obj": "014.2",
+   "q": "What happens to data you write to /dev/null?",
+   "o": [
+    [
+     "It is saved to the first disk",
+     "The first disk is a different device, such as /dev/sda."
+    ],
+    [
+     "It is discarded and never stored",
+     "Right. /dev/null is a special device that swallows everything written to it."
+    ],
+    [
+     "It becomes a stream of random bytes",
+     "Random bytes come out of /dev/urandom, not /dev/null."
+    ],
+    [
+     "It is sent to the printer",
+     "Printers are not handled by this device."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-4-04",
+   "d": "014",
+   "obj": "014.2",
+   "q": "What does the device name /dev/sda1 normally refer to?",
+   "o": [
+    [
+     "The second disk in the machine, whatever its type",
+     "The second disk would be /dev/sdb."
+    ],
+    [
+     "The first network card",
+     "Network cards do not appear as device files in /dev this way."
+    ],
+    [
+     "The first partition of the first sd disk",
+     "Right. sda is the first SATA, SCSI-style or USB disk, and the number 1 is its first partition."
+    ],
+    [
+     "The first CPU core",
+     "CPU cores are not shown as files like this."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-4-05",
+   "d": "014",
+   "obj": "014.2",
+   "q": "Which command lists the kernel modules that are currently loaded?",
+   "o": [
+    [
+     "lsmod",
+     "Right. lsmod prints the loaded modules, which are drivers and other kernel add-ons."
+    ],
+    [
+     "lspci",
+     "lspci lists devices on the PCI bus."
+    ],
+    [
+     "lsblk",
+     "lsblk lists disks and partitions."
+    ],
+    [
+     "lscpu",
+     "lscpu shows information about the processor."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-4-06",
+   "d": "014",
+   "obj": "014.3",
+   "q": "Which command gives a live view of running processes, refreshed every few seconds?",
+   "o": [
+    [
+     "free",
+     "free shows memory totals, not processes."
+    ],
+    [
+     "uptime",
+     "uptime shows how long the system has run and the load average."
+    ],
+    [
+     "ps aux",
+     "ps prints one snapshot and exits, rather than refreshing."
+    ],
+    [
+     "top",
+     "Right. top updates its list of processes and their CPU and memory use as you watch."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-4-07",
+   "d": "014",
+   "obj": "014.3",
+   "q": "Which command starts the sshd service now and also makes it start at every boot?",
+   "o": [
+    [
+     "systemctl start sshd",
+     "start runs it now only. It will not return after a reboot."
+    ],
+    [
+     "systemctl enable sshd.service",
+     "enable alone sets the boot behavior and does not start it now."
+    ],
+    [
+     "systemctl enable --now sshd",
+     "Right. enable sets it to start at boot, and --now also starts it immediately."
+    ],
+    [
+     "systemctl status sshd",
+     "status only shows its current state."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-4-08",
+   "d": "014",
+   "obj": "014.3",
+   "q": "Which command shows the log lines for the nginx service since the system last booted?",
+   "o": [
+    [
+     "journalctl -u nginx -b",
+     "Right. -u picks the unit and -b limits output to the current boot."
+    ],
+    [
+     "dmesg nginx",
+     "dmesg shows kernel messages and takes no service name."
+    ],
+    [
+     "cat /proc/nginx",
+     "/proc has no file with that name."
+    ],
+    [
+     "systemctl journal nginx --boot",
+     "systemctl has no log command."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-4-09",
+   "d": "014",
+   "obj": "014.3",
+   "q": "A USB device was plugged in and you want the kernel's own messages about it. Which command shows them?",
+   "o": [
+    [
+     "free -h",
+     "free reports memory use."
+    ],
+    [
+     "dmesg",
+     "Right. dmesg prints the kernel's message buffer, which includes hardware events."
+    ],
+    [
+     "ps aux",
+     "ps lists processes."
+    ],
+    [
+     "uptime",
+     "uptime shows how long the system has run."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-4-10",
+   "d": "014",
+   "obj": "014.4",
+   "q": "Which command shows the IP addresses assigned to this computer's network interfaces?",
+   "o": [
+    [
+     "ip route",
+     "ip route lists the routes and the default gateway."
+    ],
+    [
+     "ip addr",
+     "Right. ip addr lists every interface and the addresses it holds."
+    ],
+    [
+     "ss -tln",
+     "ss lists sockets, such as listening ports."
+    ],
+    [
+     "ping localhost",
+     "ping tests whether a host answers. It does not list addresses."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-4-11",
+   "d": "014",
+   "obj": "014.4",
+   "q": "Which command shows the default gateway your computer uses?",
+   "o": [
+    [
+     "ip addr",
+     "ip addr shows addresses on interfaces, not routes."
+    ],
+    [
+     "resolvectl status",
+     "This shows DNS settings, not the gateway."
+    ],
+    [
+     "ss -s",
+     "This prints socket statistics."
+    ],
+    [
+     "ip route",
+     "Right. The route table has a default entry that names the gateway."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-4-12",
+   "d": "014",
+   "obj": "014.4",
+   "q": "A technician wants to point a name at a fixed IP address on one computer only, without using DNS. Which file is checked for that?",
+   "o": [
+    [
+     "/etc/hosts",
+     "Right. The hosts file maps names to addresses locally and is usually checked first."
+    ],
+    [
+     "/etc/resolv.conf",
+     "This lists the DNS servers to ask."
+    ],
+    [
+     "/etc/shadow",
+     "This stores password hashes."
+    ],
+    [
+     "/etc/skel",
+     "This holds starter files for new home folders."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-4-13",
+   "d": "014",
+   "obj": "014.4",
+   "q": "An IPv6 laptop builds its own address from router announcements and no server keeps a lease list. What is this called?",
+   "o": [
+    [
+     "DHCPv6",
+     "DHCPv6 can hand out addresses from a server that keeps a lease list."
+    ],
+    [
+     "NAT",
+     "NAT rewrites addresses on a router. It does not create host addresses."
+    ],
+    [
+     "SLAAC",
+     "Right. Stateless address autoconfiguration lets the host form its own IPv6 address."
+    ],
+    [
+     "ARP",
+     "ARP finds the hardware address that matches an IPv4 address on the local network."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-4-14",
+   "d": "014",
+   "obj": "014.4",
+   "q": "Which command lists TCP ports where a service is listening on this computer?",
+   "o": [
+    [
+     "ip link",
+     "ip link shows the network interfaces and their state."
+    ],
+    [
+     "ss -tln",
+     "Right. ss shows sockets, and -t -l -n limits it to listening TCP sockets with numbers."
+    ],
+    [
+     "host example.org",
+     "host looks up a DNS name."
+    ],
+    [
+     "ping -c1 example.org",
+     "ping tests if one remote host answers."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-5-01",
+   "d": "015",
+   "obj": "015.1",
+   "q": "Why do admins often run single commands with sudo instead of logging in as root?",
+   "o": [
+    [
+     "It means your own password is checked less often than usual",
+     "sudo normally asks for your password, and it does not relax that check."
+    ],
+    [
+     "It turns your account into a system account",
+     "Your account type does not change."
+    ],
+    [
+     "It lets that command skip some file permission checks",
+     "Root already ignores most permission checks. sudo does not switch permissions off."
+    ],
+    [
+     "Only that command runs with root rights, and it is logged",
+     "Right. sudo limits the time spent as root and leaves a record of who did what."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-5-02",
+   "d": "015",
+   "obj": "015.1",
+   "q": "On the server, which file lists the public keys allowed to log in to a user's account?",
+   "o": [
+    [
+     "~/.ssh/id_ed25519.pub",
+     "This is your own public key file on the client. It is not the list of keys the server allows."
+    ],
+    [
+     "~/.ssh/known_hosts",
+     "This is the client's list of server fingerprints."
+    ],
+    [
+     "~/.ssh/authorized_keys",
+     "Right. The server reads this file in the user's home folder to match the key a client offers."
+    ],
+    [
+     "/etc/ssh/ssh_host_ed25519_key",
+     "This is the server's own private host key. It proves the server's identity and lists nobody."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-5-03",
+   "d": "015",
+   "obj": "015.1",
+   "q": "Which command copies report.pdf to /srv/in on the host fs1 as the user ana?",
+   "o": [
+    [
+     "scp report.pdf ana@fs1:/srv/in",
+     "Right. scp uses source first, then user@host:path for the remote end."
+    ],
+    [
+     "scp ana@fs1 report.pdf:/srv/in",
+     "The user and host belong with the remote path, not the file name."
+    ],
+    [
+     "ssh report.pdf ana@fs1:/srv/in",
+     "ssh opens a login and does not copy files."
+    ],
+    [
+     "scp report.pdf fs1@ana:/srv/in",
+     "The user comes before the @ sign and the host after."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-5-04",
+   "d": "015",
+   "obj": "015.2",
+   "q": "Which file holds the password hashes and is readable only by root?",
+   "o": [
+    [
+     "/etc/shadow",
+     "Right. Hashes were moved out of /etc/passwd into the more tightly locked /etc/shadow."
+    ],
+    [
+     "/etc/passwd",
+     "This lists accounts and can be read by every user."
+    ],
+    [
+     "/etc/group",
+     "This lists groups and their members."
+    ],
+    [
+     "/etc/skel",
+     "This holds the starter files given to new users."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-5-05",
+   "d": "015",
+   "obj": "015.2",
+   "q": "Which command creates the account lee and also makes the home folder?",
+   "o": [
+    [
+     "sudo passwd lee",
+     "passwd sets a password for an account that already exists."
+    ],
+    [
+     "sudo useradd -m lee",
+     "Right. useradd adds the account, and -m creates the home folder."
+    ],
+    [
+     "sudo groupadd -m lee",
+     "groupadd only creates a group and has no -m option."
+    ],
+    [
+     "id lee",
+     "id shows information about an existing account."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-5-06",
+   "d": "015",
+   "obj": "015.2",
+   "q": "Where do the default files copied into a new user's home folder come from?",
+   "o": [
+    [
+     "/etc/shadow",
+     "This stores password hashes."
+    ],
+    [
+     "/var/tmp",
+     "This holds temporary files kept across reboots."
+    ],
+    [
+     "/etc/skel",
+     "Right. The skeleton folder holds starter files like .bashrc."
+    ],
+    [
+     "/usr/share/doc",
+     "This holds package documentation."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-5-07",
+   "d": "015",
+   "obj": "015.2",
+   "q": "Which command lists recent logins, including sessions that already ended?",
+   "o": [
+    [
+     "users",
+     "users prints only the names of people logged in now."
+    ],
+    [
+     "whoami",
+     "whoami prints only your own user name."
+    ],
+    [
+     "who",
+     "who lists only users who are logged in now."
+    ],
+    [
+     "last",
+     "Right. last reads the login history and lists past and current sessions."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-5-08",
+   "d": "015",
+   "obj": "015.3",
+   "q": "A file shows -rwxr-x--- in ls -l. Who may execute it?",
+   "o": [
+    [
+     "The owner and members of the file's group",
+     "Right. The owner has rwx and the group has r-x. Others have no permissions."
+    ],
+    [
+     "Only the owner",
+     "The group part also contains an x."
+    ],
+    [
+     "Everyone on the system",
+     "Others have no permission at all."
+    ],
+    [
+     "Nobody, because it is not a script",
+     "Execute permission is separate from what the file contains."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "le-5-09",
+   "d": "015",
+   "obj": "015.3",
+   "q": "Which command gives the owner read and write, the group read only, and others nothing?",
+   "o": [
+    [
+     "chmod 604 notes.txt",
+     "This gives the group nothing and others read."
+    ],
+    [
+     "chmod 460 notes.txt",
+     "This gives the owner read only and the group read and write."
+    ],
+    [
+     "chmod 750 notes.txt",
+     "This gives the owner full rights, which adds execute."
+    ],
+    [
+     "chmod 640 notes.txt",
+     "Right. 6 is read plus write, 4 is read, and 0 is nothing."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-5-10",
+   "d": "015",
+   "obj": "015.3",
+   "q": "Which command adds the execute permission for the owner of run.sh only?",
+   "o": [
+    [
+     "chmod o+x run.sh",
+     "o is for others, which means everyone else."
+    ],
+    [
+     "chmod u+x run.sh",
+     "Right. u means user (the owner), and +x adds execute."
+    ],
+    [
+     "chmod a-x run.sh",
+     "a-x would remove execute for all."
+    ],
+    [
+     "chmod g+x run.sh",
+     "g is for the group."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "le-5-11",
+   "d": "015",
+   "obj": "015.3",
+   "q": "Which command makes bob the owner and staff the group of data.csv?",
+   "o": [
+    [
+     "chown staff:bob data.csv",
+     "This swaps them, making staff the owner and bob the group."
+    ],
+    [
+     "chmod bob:staff data.csv",
+     "chmod changes permission bits and does not accept a user:group."
+    ],
+    [
+     "chown bob:staff data.csv",
+     "Right. chown takes owner:group, in that order."
+    ],
+    [
+     "chgrp bob staff",
+     "This would set the group bob on a file named staff."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "le-5-12",
+   "d": "015",
+   "obj": "015.4",
+   "q": "The /tmp folder shows drwxrwxrwt. What does the final t mean?",
+   "o": [
+    [
+     "The folder holds only temporary text files",
+     "The t is a permission flag, not about file type."
+    ],
+    [
+     "Only root may write in the folder",
+     "Everyone can write there, as the rwx for others shows."
+    ],
+    [
+     "The folder is a symbolic link",
+     "A link would start with an l in the first column."
+    ],
+    [
+     "The sticky bit, so users can only delete their own files there",
+     "Right. With the sticky bit set, only the file's owner (or root) can delete or rename it, even though everyone can write in the folder."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "le-5-13",
+   "d": "015",
+   "obj": "015.4",
+   "q": "Which command creates a symbolic link named latest that points to /data/v2?",
+   "o": [
+    [
+     "ln -s /data/v2 latest",
+     "Right. ln -s takes the target first and the link name second."
+    ],
+    [
+     "ln -s latest /data/v2",
+     "This reverses the two names."
+    ],
+    [
+     "ln /data/v2 latest",
+     "Without -s this makes a hard link, and it fails for folders."
+    ],
+    [
+     "mv /data/v2 latest",
+     "This moves the folder and does not create a link."
+    ]
+   ],
+   "a": 0
+  }
+ ]
+}

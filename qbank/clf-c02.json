@@ -1,0 +1,2138 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "Cloud Practitioner",
+ "ver": "c02",
+ "exam": "CLF-C02",
+ "title": "AWS Cloud Practitioner (CLF-C02) practice exam",
+ "rev": "2026-11-26",
+ "format": {
+  "n": 60,
+  "min": 90,
+  "pbq": 3,
+  "half": 30
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Cloud Concepts",
+   "w": 24,
+   "obj": 4
+  },
+  {
+   "n": "2.0",
+   "name": "Security and Compliance",
+   "w": 30,
+   "obj": 4
+  },
+  {
+   "n": "3.0",
+   "name": "Cloud Technology and Services",
+   "w": 34,
+   "obj": 8
+  },
+  {
+   "n": "4.0",
+   "name": "Billing, Pricing, and Support",
+   "w": 12,
+   "obj": 3
+  }
+ ],
+ "note": "Original questions written for MyNextCert from AWS's public CLF-C02 exam guide (domains, weights and task statements; https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/cloud-practitioner-02.html), checked 2026-11-26. Not real exam questions. The real exam has 65 questions (50 scored and 15 unscored) in 90 minutes with no hands-on items. This bank is a 60-item stand-in that fits 90 minutes, follows the 24/30/34/12 domain weights, and adds 4 hands-on items (AWS CLI, CloudTrail log, account lockdown order, VPC layout; each exam draws 3) plus a few choose-two items like the real exam.",
+ "q": [
+  {
+   "id": "clf-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A unit's web portal sees ten times its normal traffic for one week each year during open enrollment, then drops back. Which cloud benefit best fits this pattern?",
+   "o": [
+    [
+     "Elasticity: capacity grows, then shrinks",
+     "Right. Elasticity means resources scale out and back in with demand, so you pay for the peak only while it lasts."
+    ],
+    [
+     "Buying hardware sized for the busiest week",
+     "That is the on-premises habit. The hardware sits idle the other fifty-one weeks."
+    ],
+    [
+     "A fixed monthly price whatever the usage",
+     "Most AWS services bill by use. A flat price would not follow the spikes."
+    ],
+    [
+     "Moving the portal to a single large server",
+     "One big server is still a fixed size. It cannot grow past its limit or shrink when traffic falls."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A team needs a test environment in another country by Friday. On premises, this would mean ordering and shipping hardware. Which AWS cloud advantage does this describe?",
+   "o": [
+    [
+     "Lower prices from your own purchasing power",
+     "Economies of scale are AWS's, from its huge size. They lower per-unit prices but do not cover the speed of deploying abroad."
+    ],
+    [
+     "Global reach by using another Region",
+     "Right. AWS Regions around the world let you deploy close to users with a few clicks or one template, with no shipping."
+    ],
+    [
+     "Guaranteed zero downtime for every resource",
+     "AWS offers high availability tools, but you still design for failure. Nothing is guaranteed zero downtime."
+    ],
+    [
+     "Owning the hardware in the new country",
+     "With AWS you do not own the hardware. That is the point of the model."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-1-03",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Which statement describes the benefit of massive economies of scale in the AWS Cloud?",
+   "o": [
+    [
+     "Each customer usually gets a private data center",
+     "Most services run on shared infrastructure. Private hardware costs extra, as with Dedicated Hosts."
+    ],
+    [
+     "Customers need a three-year contract for price cuts",
+     "Pay-as-you-go needs no contract. Commitments such as Savings Plans are optional extras."
+    ],
+    [
+     "AWS buys at huge volume and passes on lower prices",
+     "Right. AWS buys hardware and runs data centers at huge volume, and passes part of that saving to customers."
+    ],
+    [
+     "AWS takes over securing the customer's data",
+     "Security is still shared. You protect your own data and access."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-1-04",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Which TWO items are benefits of the AWS Cloud? (Choose two.)",
+   "o": [
+    [
+     "Pay for a full data center even when it is idle",
+     "That is how on-premises works. The cloud lets you stop paying when you stop using."
+    ],
+    [
+     "Stop guessing capacity: scale up or down as needs change",
+     "Right. You no longer buy hardware based on a forecast that might be wrong."
+    ],
+    [
+     "Wait several weeks for hardware to arrive",
+     "Resources launch in minutes, which is a core benefit."
+    ],
+    [
+     "Trade fixed expenses for variable expenses",
+     "Right. Instead of large up-front purchases, you pay for what you use, when you use it."
+    ],
+    [
+     "Keep full responsibility for the physical buildings",
+     "AWS owns and secures the facilities under the shared responsibility model."
+    ]
+   ],
+   "a": [
+    1,
+    3
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "clf-1-05",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A review team asks whether the workload can recover from a failed Availability Zone and still meet its targets. Which Well-Architected pillar is being checked?",
+   "o": [
+    [
+     "Cost optimization",
+     "This pillar looks at avoiding unneeded spending, not recovery from failures."
+    ],
+    [
+     "Sustainability",
+     "This pillar covers reducing the environmental impact of running workloads."
+    ],
+    [
+     "Performance efficiency",
+     "This pillar is about choosing the right resource types and sizes for the job."
+    ],
+    [
+     "Reliability",
+     "Right. Reliability is the ability to recover from failures and meet demand, such as surviving the loss of a zone."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-1-06",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A company moves a batch job to smaller instances during off hours and shuts down test servers at night to avoid paying for idle capacity. Which pillar does this follow?",
+   "o": [
+    [
+     "Cost optimization",
+     "Right. Matching capacity to need and switching off waste is the heart of cost optimization."
+    ],
+    [
+     "Security",
+     "The security pillar is about protecting data and systems, not trimming spend."
+    ],
+    [
+     "Operational excellence",
+     "That pillar is about running, monitoring and improving operations. Saving money is not its main aim."
+    ],
+    [
+     "Reliability",
+     "Shutting off test servers does nothing for recovery or availability."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-1-07",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Which design principle in the Well-Architected Framework is applied when you enable encryption, grant least privilege and trace every action?",
+   "o": [
+    [
+     "Performance efficiency pillar",
+     "This pillar concerns using computing resources efficiently as needs change."
+    ],
+    [
+     "Security pillar",
+     "Right. Protecting data, managing identities and keeping traceability are all in the security pillar."
+    ],
+    [
+     "Sustainability pillar",
+     "This pillar focuses on reducing environmental impact."
+    ],
+    [
+     "Operational excellence pillar",
+     "It covers running and improving workloads, not protecting data or identities."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-1-08",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Which TWO choices are among the six pillars of the AWS Well-Architected Framework? (Choose two.)",
+   "o": [
+    [
+     "Compliance",
+     "Compliance is a goal supported by the pillars, but it is not one of the six."
+    ],
+    [
+     "Performance efficiency",
+     "Right. It covers selecting the right resources and keeping them effective as demand shifts."
+    ],
+    [
+     "Scalability",
+     "Scalability is a property that the pillars help you achieve. It is not a pillar by itself."
+    ],
+    [
+     "Profitability",
+     "Profit is a business result, not a pillar."
+    ],
+    [
+     "Sustainability",
+     "Right. Sustainability was added as the sixth pillar to cover environmental impact."
+    ]
+   ],
+   "a": [
+    1,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "clf-1-09",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A group wants guidance on how its business, people, governance and security teams should prepare for moving to AWS. Which resource organizes this advice into perspectives?",
+   "o": [
+    [
+     "AWS Well-Architected Tool",
+     "It reviews a specific workload against the pillars. It does not plan organization-wide adoption."
+    ],
+    [
+     "AWS Trusted Advisor",
+     "It checks your account for cost, security and performance recommendations."
+    ],
+    [
+     "AWS Cloud Adoption Framework (AWS CAF)",
+     "Right. The CAF groups guidance into perspectives such as business, people, governance, platform, security and operations."
+    ],
+    [
+     "AWS Artifact",
+     "It provides AWS compliance reports and agreements."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-1-10",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Eight hundred terabytes must reach AWS from a site with a very slow Internet link, and it cannot wait months. Which option fits?",
+   "o": [
+    [
+     "Copy it over the Internet with a single script",
+     "At a slow link speed this would take far too long."
+    ],
+    [
+     "Amazon CloudFront",
+     "CloudFront delivers content to users quickly. It is not a bulk import tool."
+    ],
+    [
+     "AWS Shield",
+     "Shield defends against DDoS attacks, which has nothing to do with moving data."
+    ],
+    [
+     "Snowball Edge devices shipped both ways",
+     "Right. Snow Family devices carry data physically, which beats a slow link for very large transfers."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-1-11",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A team moves its database from a self-managed server to Amazon RDS but keeps the application as it is. Which migration strategy is this?",
+   "o": [
+    [
+     "Replatform",
+     "Right. Replatforming makes a few cloud changes, such as using a managed database, without redesigning the app."
+    ],
+    [
+     "Rehost",
+     "Rehost moves the system with no changes at all, including its database."
+    ],
+    [
+     "Retire",
+     "Retire switches off an application you no longer need."
+    ],
+    [
+     "Refactor",
+     "Refactor rebuilds the application, for example into serverless functions. That goes well beyond swapping the database."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-1-12",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "A unit's lawyers want to know why moving to the cloud often lowers total cost of ownership. Which on-premises costs go away or shrink?",
+   "o": [
+    [
+     "Software licenses that you bring with you",
+     "Bring-your-own-license costs stay with you. AWS does not cover them."
+    ],
+    [
+     "Space, power, cooling and hardware refresh",
+     "Right. AWS carries these costs, so the customer no longer budgets for them directly."
+    ],
+    [
+     "Salaries for the staff who manage user access",
+     "Identity and access management stays your job."
+    ],
+    [
+     "Fees to move data out of AWS",
+     "Data transfer out is a cost that on-premises networks did not have in the same form."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-1-13",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "Which choice shows how a managed service lowers cloud costs for a team that has no database administrator?",
+   "o": [
+    [
+     "Installing the database engine on an EC2 instance",
+     "This gives you control but leaves patches and backups to your team."
+    ],
+    [
+     "Buying a larger server to be safe",
+     "Oversizing adds cost. Right-sizing is the cost-saving habit."
+    ],
+    [
+     "RDS handles patching and backups for the team",
+     "Right. Managed services take over routine work, which saves staff time and lowers the cost of running the database."
+    ],
+    [
+     "Keeping the database in a closet server room",
+     "Local hardware brings power, cooling and refresh costs."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-1-14",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "A review finds that a production server uses 8% of its CPU and memory every day. Which action best reduces cost without hurting the workload?",
+   "o": [
+    [
+     "Move to a larger instance type for headroom",
+     "A larger size costs more and the data shows it is not needed."
+    ],
+    [
+     "Stop using monitoring to save on fees",
+     "Without monitoring you cannot right-size at all."
+    ],
+    [
+     "Buy a three-year commitment for the current size",
+     "Committing to an oversized instance locks in waste."
+    ],
+    [
+     "Right-size to a smaller instance type",
+     "Right. Matching size to measured use cuts the bill. You can scale back up if needs grow."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Under the shared responsibility model, which task belongs to AWS for an Amazon EC2 instance?",
+   "o": [
+    [
+     "Securing the data center and its network",
+     "Right. Security OF the cloud, meaning facilities, hardware and core network, is always AWS's job."
+    ],
+    [
+     "Installing operating system patches",
+     "On EC2 the guest operating system is the customer's job."
+    ],
+    [
+     "Choosing which ports the security group opens",
+     "Firewall rules for your instances are set by you."
+    ],
+    [
+     "Deciding who can read the data you store",
+     "Data classification and access are the customer's responsibility."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A customer runs an app on AWS Lambda. Compared with EC2, which duty has moved from the customer to AWS?",
+   "o": [
+    [
+     "Writing secure application code",
+     "Your code is still yours to secure."
+    ],
+    [
+     "Maintaining the servers under the code",
+     "Right. With Lambda, AWS manages the servers and the platform under your code."
+    ],
+    [
+     "Managing IAM permissions for the function",
+     "Permissions for who and what can invoke or be reached remain with the customer."
+    ],
+    [
+     "Encrypting your own data",
+     "Deciding how your data is protected is shared with you, not moved away."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which TWO responsibilities belong to the customer when using Amazon S3? (Choose two.)",
+   "o": [
+    [
+     "Maintaining the storage hardware",
+     "AWS owns and replaces the hardware."
+    ],
+    [
+     "Protecting the data center with guards and cameras",
+     "Physical security is AWS's responsibility."
+    ],
+    [
+     "Setting bucket policies and access permissions",
+     "Right. Controlling who can read or write the bucket is a customer duty."
+    ],
+    [
+     "Patching the S3 service software",
+     "AWS runs and patches the service itself."
+    ],
+    [
+     "Choosing whether to encrypt objects and managing the keys used",
+     "Right. Customers decide how their data is encrypted. S3 gives the options."
+    ]
+   ],
+   "a": [
+    2,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "clf-2-04",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which statement about the shared responsibility model is correct?",
+   "o": [
+    [
+     "AWS handles nearly everything inside customer accounts",
+     "Customers remain responsible for their data, identities and settings."
+    ],
+    [
+     "The customer is responsible for AWS's data centers",
+     "Facilities are AWS's."
+    ],
+    [
+     "The split of duties changes depending on the AWS service used",
+     "Right. For example, the customer handles more with EC2 and less with a managed service like DynamoDB."
+    ],
+    [
+     "It applies mainly to government customers",
+     "The model applies to every AWS customer."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-2-05",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "An auditor asks for evidence that AWS data centers meet a recognized standard. Where does the unit download AWS's own audit reports?",
+   "o": [
+    [
+     "AWS Config",
+     "Config records how your own resources are configured over time."
+    ],
+    [
+     "Amazon Inspector",
+     "Inspector scans your workloads for software flaws."
+    ],
+    [
+     "AWS CloudFormation",
+     "CloudFormation builds resources from templates. It holds no reports."
+    ],
+    [
+     "AWS Artifact",
+     "Right. Artifact is the portal for AWS's compliance reports and agreements."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-2-06",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Security needs a record of who called which API in an account, including from the console and the CLI. Which service provides this?",
+   "o": [
+    [
+     "AWS CloudTrail",
+     "Right. CloudTrail logs account activity and API calls, which gives you an audit trail."
+    ],
+    [
+     "Amazon CloudWatch",
+     "CloudWatch collects metrics and logs for performance and alarms. The API history comes from CloudTrail."
+    ],
+    [
+     "AWS Shield",
+     "Shield protects against DDoS attacks."
+    ],
+    [
+     "Amazon Route 53",
+     "Route 53 is DNS and does not track account actions."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-2-07",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A team must show every month that its resources still match required settings, such as encrypted volumes, and see when one changes. Which service records and evaluates resource configurations?",
+   "o": [
+    [
+     "Amazon GuardDuty",
+     "GuardDuty detects suspicious activity. It is not a configuration tracker."
+    ],
+    [
+     "AWS Config",
+     "Right. Config tracks configuration history and can check it against rules."
+    ],
+    [
+     "AWS Direct Connect",
+     "Direct Connect is a private network link."
+    ],
+    [
+     "Amazon SNS",
+     "SNS sends notifications and does not record configurations."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-2-08",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Which TWO methods protect data in transit on AWS? (Choose two.)",
+   "o": [
+    [
+     "Turning on server-side encryption of an S3 bucket",
+     "This protects data at rest, once it is stored."
+    ],
+    [
+     "Enabling EBS encryption",
+     "That is encryption at rest for volumes."
+    ],
+    [
+     "Using TLS for connections to services",
+     "Right. TLS encrypts data as it moves between client and service."
+    ],
+    [
+     "Creating a backup of a database",
+     "A backup helps recovery. It does not encrypt traffic."
+    ],
+    [
+     "Using an IPsec VPN to connect an office to a VPC",
+     "Right. A VPN tunnel encrypts traffic across the Internet."
+    ]
+   ],
+   "a": [
+    2,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "clf-2-09",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "What is the best practice for the AWS account root user after the account is created?",
+   "o": [
+    [
+     "Share its password with the whole admin team",
+     "Sharing destroys accountability and raises the risk of misuse."
+    ],
+    [
+     "Create access keys for it and put them in scripts",
+     "Root access keys should never exist. They can do everything."
+    ],
+    [
+     "Turn on MFA, then avoid using it for daily tasks",
+     "Right. The root user has unlimited power, so protect it with MFA and use other identities for work."
+    ],
+    [
+     "Give it to a vendor for safekeeping",
+     "This hands the keys of the account to someone else."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-2-10",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A new analyst needs read-only access to a few S3 buckets and nothing else. Which principle should guide the permissions?",
+   "o": [
+    [
+     "Administrator access, so nothing is blocked",
+     "Full access gives a mistake or stolen login the widest possible reach."
+    ],
+    [
+     "Shared credentials for the whole team",
+     "Shared logins make actions untraceable to a person."
+    ],
+    [
+     "Public access to the buckets",
+     "Public buckets expose data to everyone."
+    ],
+    [
+     "Least privilege, granting only the access needed",
+     "Right. Give the smallest set of permissions that lets the person do the job."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-2-11",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "An app running on an EC2 instance needs to call the DynamoDB service. What is the most secure way to give it access?",
+   "o": [
+    [
+     "Attach an IAM role to the instance",
+     "Right. Roles supply temporary credentials that rotate automatically, so there is no long-lived key."
+    ],
+    [
+     "Store an IAM user's access key in the application code",
+     "Keys in code get copied, committed to repositories and leaked."
+    ],
+    [
+     "Use the root user's credentials",
+     "Root should never be used by an application."
+    ],
+    [
+     "Open the table to the public",
+     "This exposes the data to the whole Internet."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-2-12",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A department with many AWS accounts wants staff to sign in once with their existing directory credentials and reach their accounts. Which service fits?",
+   "o": [
+    [
+     "AWS Secrets Manager",
+     "It stores and rotates secrets like database passwords. It does not sign people in."
+    ],
+    [
+     "AWS IAM Identity Center",
+     "Right. IAM Identity Center provides single sign-on across accounts and applications."
+    ],
+    [
+     "AWS WAF",
+     "WAF filters web requests and does not manage logins."
+    ],
+    [
+     "Amazon Inspector",
+     "Inspector scans for software vulnerabilities."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-2-13",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Which TWO actions strengthen the security of IAM users? (Choose two.)",
+   "o": [
+    [
+     "Attach the AdministratorAccess policy to every user",
+     "This gives everyone too much power."
+    ],
+    [
+     "Write the access keys in a shared document",
+     "A shared document leaks easily."
+    ],
+    [
+     "Require multi-factor authentication",
+     "Right. A second factor blocks most logins that use only a stolen password."
+    ],
+    [
+     "Reuse one password across all accounts",
+     "One leak then opens every account."
+    ],
+    [
+     "Rotate access keys on a schedule and remove those unused",
+     "Right. Old or unused keys are a common way in."
+    ]
+   ],
+   "a": [
+    2,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "clf-2-14",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A web application is being hit by SQL injection and cross-site scripting attempts. Which AWS service filters these requests at the application layer?",
+   "o": [
+    [
+     "Amazon Macie",
+     "Macie finds sensitive data in S3."
+    ],
+    [
+     "AWS Artifact",
+     "Artifact is a library of compliance documents."
+    ],
+    [
+     "AWS WAF",
+     "Right. WAF inspects web requests and blocks common attack patterns with rules you set."
+    ],
+    [
+     "Amazon Inspector",
+     "Inspector scans for vulnerabilities, but it does not filter live web traffic."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-2-15",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A video site is flooded with traffic from thousands of sources and users cannot connect. Which service is built to protect against this type of attack?",
+   "o": [
+    [
+     "AWS Config",
+     "Config tracks configuration changes."
+    ],
+    [
+     "AWS KMS",
+     "KMS manages encryption keys."
+    ],
+    [
+     "Amazon Cognito",
+     "Cognito handles sign-in for app users."
+    ],
+    [
+     "AWS Shield",
+     "Right. Shield defends applications against distributed denial of service attacks."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-2-16",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "Which service continuously analyzes CloudTrail events, VPC flow logs and DNS logs to find threats such as a compromised instance?",
+   "o": [
+    [
+     "Amazon GuardDuty",
+     "Right. GuardDuty is a managed threat detection service that needs no agents to install."
+    ],
+    [
+     "Amazon Inspector",
+     "Inspector looks for software vulnerabilities, not live threat activity."
+    ],
+    [
+     "AWS Trusted Advisor",
+     "It gives account best-practice checks."
+    ],
+    [
+     "AWS Artifact",
+     "It provides compliance reports."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-2-17",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "Which statement describes a security group in a VPC?",
+   "o": [
+    [
+     "A stateless filter applied to a whole subnet",
+     "That describes a network ACL."
+    ],
+    [
+     "A stateful firewall at the instance level that allows traffic by rule",
+     "Right. Security groups are stateful and only allow traffic. Return traffic is permitted automatically."
+    ],
+    [
+     "A service that scans instances for flaws",
+     "That is Amazon Inspector."
+    ],
+    [
+     "A rule set that blocks Internet attacks in front of CloudFront",
+     "That is AWS WAF or Shield."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-2-18",
+   "d": "2.0",
+   "obj": "2.4",
+   "q": "A security officer wants one place to see findings from GuardDuty, Inspector and other services, with checks against security standards. Which service does this?",
+   "o": [
+    [
+     "AWS Direct Connect",
+     "Direct Connect provides a private network connection."
+    ],
+    [
+     "Amazon SQS",
+     "SQS is a message queue."
+    ],
+    [
+     "AWS Security Hub",
+     "Right. Security Hub gathers findings and runs automated checks against standards."
+    ],
+    [
+     "AWS Snowball",
+     "Snowball is for moving large data offline."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A team wants to build the same set of servers and networks in three accounts from one text file that can be reviewed and reused. Which service fits?",
+   "o": [
+    [
+     "AWS Direct Connect",
+     "This is a private network link, not a deployment tool."
+    ],
+    [
+     "Amazon Route 53",
+     "Route 53 is DNS and domain registration."
+    ],
+    [
+     "AWS Snowcone",
+     "A Snowcone is a small physical data-transfer device."
+    ],
+    [
+     "AWS CloudFormation",
+     "Right. CloudFormation provisions resources from templates, which is infrastructure as code."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "An office needs a private, dedicated connection to AWS that does not travel over the public Internet. Which option provides it?",
+   "o": [
+    [
+     "AWS Direct Connect",
+     "Right. Direct Connect is a dedicated network link from your site to AWS."
+    ],
+    [
+     "AWS Site-to-Site VPN",
+     "A VPN encrypts traffic but still goes over the public Internet."
+    ],
+    [
+     "Amazon CloudFront",
+     "CloudFront caches content near users."
+    ],
+    [
+     "Internet gateway",
+     "An Internet gateway links a VPC to the Internet, which is public by nature."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which way of working with AWS lets an engineer run repeatable tasks from a terminal or script?",
+   "o": [
+    [
+     "The console's graphical pages only",
+     "Clicking works for one-off tasks but is hard to repeat the same way."
+    ],
+    [
+     "The AWS Command Line Interface (CLI)",
+     "Right. The CLI turns commands into scripts that can be repeated and checked."
+    ],
+    [
+     "AWS Artifact reports",
+     "Artifact holds documents, not a way to run tasks."
+    ],
+    [
+     "A support case",
+     "Support helps with problems and does not run your tasks."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-3-04",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A company must keep customer data in a specific country because of the law. Which choice lets it control this?",
+   "o": [
+    [
+     "Selecting an edge location in that country",
+     "Edge locations cache content. They do not hold the primary copy of your data."
+    ],
+    [
+     "Using more Availability Zones",
+     "AZs add resilience within one Region. They do not pick a country."
+    ],
+    [
+     "Selecting an AWS Region in that country",
+     "Right. Data stays in the Region you choose unless you move it."
+    ],
+    [
+     "Using a larger instance size",
+     "Size has no link to where data lives."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-3-05",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A company wants an application to survive the failure of a whole data center. Which design does this?",
+   "o": [
+    [
+     "Place all instances in a single Availability Zone",
+     "One zone is one failure domain."
+    ],
+    [
+     "Use only one large instance",
+     "A single server is a single point of failure."
+    ],
+    [
+     "Back up to the same server",
+     "A backup on the failed server is lost too."
+    ],
+    [
+     "Spread instances across two or more Availability Zones",
+     "Right. AZs are separate data centers, so one failing does not take down the rest."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-3-06",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "What does Amazon CloudFront use edge locations for?",
+   "o": [
+    [
+     "Caching content near viewers",
+     "Right. Edge locations store copies of content near viewers so pages load faster."
+    ],
+    [
+     "Running the primary database for an app",
+     "Databases run in Regions, not at the edge."
+    ],
+    [
+     "Replacing Availability Zones",
+     "They have different roles. Edge locations do not host your main workloads."
+    ],
+    [
+     "Holding compliance reports",
+     "Those are in AWS Artifact."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-3-07",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A web store needs the number of servers to grow when traffic rises and shrink when it falls, without staff action. Which service does this?",
+   "o": [
+    [
+     "Elastic Load Balancing",
+     "A load balancer spreads traffic but does not add or remove instances by itself."
+    ],
+    [
+     "Amazon EC2 Auto Scaling",
+     "Right. Auto Scaling adds and removes instances based on rules you set."
+    ],
+    [
+     "Amazon S3 Glacier",
+     "This is archive storage."
+    ],
+    [
+     "AWS Direct Connect",
+     "This is a network link."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-3-08",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A developer wants to run code in response to a file upload and pay only while the code runs, with no servers to manage. Which service fits?",
+   "o": [
+    [
+     "Amazon EC2 Reserved Instances",
+     "Reserved capacity bills whether or not it is used and still means managing servers."
+    ],
+    [
+     "Amazon Lightsail",
+     "Lightsail gives simple virtual servers that you manage."
+    ],
+    [
+     "AWS Lambda",
+     "Right. Lambda is serverless compute billed by the time your code runs."
+    ],
+    [
+     "AWS Elastic Beanstalk",
+     "Beanstalk deploys apps on managed instances. You still pay for those instances all the time."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-3-09",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Which TWO services run containers on AWS? (Choose two.)",
+   "o": [
+    [
+     "Amazon Elastic Container Service (Amazon ECS)",
+     "Right. ECS is AWS's own container orchestration service."
+    ],
+    [
+     "Amazon Redshift",
+     "Redshift is a data warehouse."
+    ],
+    [
+     "Amazon Elastic Kubernetes Service (Amazon EKS)",
+     "Right. EKS runs Kubernetes on AWS."
+    ],
+    [
+     "Amazon Athena",
+     "Athena queries data in S3 with SQL."
+    ],
+    [
+     "AWS Artifact",
+     "Artifact is a compliance portal."
+    ]
+   ],
+   "a": [
+    0,
+    2
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "clf-3-10",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "A unit wants a relational database without managing the operating system or taking backups by hand. Which service fits?",
+   "o": [
+    [
+     "MySQL installed on an EC2 instance",
+     "This works but leaves patches and backups to your team."
+    ],
+    [
+     "Amazon S3",
+     "S3 is object storage, not a relational database."
+    ],
+    [
+     "Amazon ElastiCache",
+     "ElastiCache is an in-memory cache and not a main relational store."
+    ],
+    [
+     "Amazon RDS",
+     "Right. RDS is a managed relational database that handles patching and automatic backups."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-3-11",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "An online game needs a key-value database with single-digit millisecond response at any scale and no servers to manage. Which service fits?",
+   "o": [
+    [
+     "Amazon DynamoDB",
+     "Right. DynamoDB is a serverless NoSQL database built for fast key-value access."
+    ],
+    [
+     "Amazon Redshift",
+     "Redshift is for analytics on large data sets."
+    ],
+    [
+     "Amazon RDS for Oracle",
+     "A relational database that you size and scale."
+    ],
+    [
+     "Amazon Neptune",
+     "A graph database for connected data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-3-12",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "A social app must store and query relationships such as who follows whom. Which database type is designed for this?",
+   "o": [
+    [
+     "A data warehouse such as Amazon Redshift",
+     "Warehouses are designed for reporting across large tables."
+    ],
+    [
+     "A graph database such as Amazon Neptune",
+     "Right. Graph databases are built to follow relationships between items."
+    ],
+    [
+     "An in-memory cache such as Amazon ElastiCache",
+     "Caches speed up reads. They are not a relationship store."
+    ],
+    [
+     "Object storage such as Amazon S3",
+     "S3 holds files, not linked records."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-3-13",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "Which component directs traffic out of a private subnet to the Internet for updates, but blocks connections started from the Internet?",
+   "o": [
+    [
+     "A route to an Internet gateway in the private subnet",
+     "With a route to an Internet gateway the subnet is public, and inbound access would be possible."
+    ],
+    [
+     "A second VPC peering link",
+     "Peering joins VPCs. It does not give Internet access."
+    ],
+    [
+     "A NAT gateway",
+     "Right. A NAT gateway lets private instances start outbound connections only."
+    ],
+    [
+     "AWS Shield",
+     "Shield defends against DDoS and does not route traffic."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-3-14",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "Which service provides DNS and can route users to the healthiest or closest endpoint?",
+   "o": [
+    [
+     "AWS Global Accelerator",
+     "Global Accelerator improves routing over the AWS network by static IP addresses. It is not DNS."
+    ],
+    [
+     "AWS Direct Connect",
+     "This is a dedicated network link."
+    ],
+    [
+     "Amazon VPC",
+     "A VPC is your private network. It is not a DNS service."
+    ],
+    [
+     "Amazon Route 53",
+     "Right. Route 53 is AWS's DNS service with health checks and routing policies."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-3-15",
+   "d": "3.0",
+   "obj": "3.5",
+   "q": "What is the main difference between a network ACL and a security group?",
+   "o": [
+    [
+     "A network ACL is stateless and works at the subnet level",
+     "Right. NACLs check each direction separately and can allow or deny."
+    ],
+    [
+     "A network ACL is stateful and works on a single instance",
+     "That reverses the two. Security groups are stateful."
+    ],
+    [
+     "A security group can write explicit deny rules",
+     "Security groups only have allow rules."
+    ],
+    [
+     "Both are the same thing",
+     "They are two layers with different scope and behavior."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-3-16",
+   "d": "3.0",
+   "obj": "3.6",
+   "q": "A company stores records for seven years. They are almost never read, and a retrieval time of several hours is fine. Which S3 storage class is the cheapest fit?",
+   "o": [
+    [
+     "S3 Standard",
+     "Standard is for frequent access and costs more to hold."
+    ],
+    [
+     "S3 Glacier Deep Archive",
+     "Right. Deep Archive is the lowest-cost class for data kept long and rarely accessed."
+    ],
+    [
+     "S3 Intelligent-Tiering",
+     "It moves objects by access pattern. Archive classes are cheaper for known cold data."
+    ],
+    [
+     "Amazon EBS",
+     "EBS is a block volume for an EC2 instance."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-3-17",
+   "d": "3.0",
+   "obj": "3.6",
+   "q": "Linux servers in several Availability Zones must mount the same shared file system at once. Which service fits?",
+   "o": [
+    [
+     "Amazon EBS",
+     "An EBS volume sits in one AZ and normally attaches to one instance."
+    ],
+    [
+     "Amazon S3 Glacier",
+     "This is archive storage."
+    ],
+    [
+     "Amazon EFS",
+     "Right. EFS is a shared, elastic file system that many instances can use together."
+    ],
+    [
+     "Instance store",
+     "It belongs to one host and is lost when the instance stops."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-3-18",
+   "d": "3.0",
+   "obj": "3.6",
+   "q": "A team wants S3 to move objects to a cheaper class after 90 days and delete them after a year, with no manual work. Which feature does this?",
+   "o": [
+    [
+     "S3 Transfer Acceleration",
+     "It speeds uploads from far away. It does not manage age rules."
+    ],
+    [
+     "S3 Object Lock",
+     "It prevents deletion for a period. It does not move or expire data."
+    ],
+    [
+     "S3 bucket policy",
+     "A policy controls who can access the bucket."
+    ],
+    [
+     "S3 Lifecycle rules",
+     "Right. Lifecycle rules change storage class or delete objects on a schedule."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-3-19",
+   "d": "3.0",
+   "obj": "3.7",
+   "q": "A researcher wants to run SQL queries directly on files stored in S3 without loading them into a database or managing servers. Which service fits?",
+   "o": [
+    [
+     "Amazon Athena",
+     "Right. Athena is a serverless query service for data in S3."
+    ],
+    [
+     "Amazon RDS",
+     "RDS is a database service. You would first load the data."
+    ],
+    [
+     "Amazon EMR",
+     "EMR runs big data clusters that you set up."
+    ],
+    [
+     "Amazon Lex",
+     "Lex builds chatbots."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-3-20",
+   "d": "3.0",
+   "obj": "3.7",
+   "q": "A call center wants to turn recorded phone calls into written text. Which AI service does this?",
+   "o": [
+    [
+     "Amazon Polly",
+     "Polly does the reverse: it turns text into speech."
+    ],
+    [
+     "Amazon Transcribe",
+     "Right. Transcribe converts speech to text."
+    ],
+    [
+     "Amazon Rekognition",
+     "Rekognition analyzes images and video."
+    ],
+    [
+     "Amazon Comprehend",
+     "Comprehend analyzes text for meaning, such as sentiment. It does not transcribe audio."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-3-21",
+   "d": "3.0",
+   "obj": "3.7",
+   "q": "Which service helps a team build interactive dashboards and charts to share business data across the organization?",
+   "o": [
+    [
+     "AWS Glue",
+     "Glue prepares and moves data, with no dashboards."
+    ],
+    [
+     "Amazon Kinesis",
+     "Kinesis handles streaming data."
+    ],
+    [
+     "Amazon QuickSight",
+     "Right. QuickSight is AWS's business intelligence and dashboard service."
+    ],
+    [
+     "Amazon Textract",
+     "Textract pulls text and fields out of scanned documents."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-3-22",
+   "d": "3.0",
+   "obj": "3.8",
+   "q": "An order system needs to decouple the website from the processing step so orders are held in a queue until a worker is ready. Which service fits?",
+   "o": [
+    [
+     "Amazon SNS",
+     "SNS pushes a message to many subscribers at once. It is not a holding queue."
+    ],
+    [
+     "Amazon CloudWatch",
+     "CloudWatch monitors metrics and logs."
+    ],
+    [
+     "AWS CodeBuild",
+     "CodeBuild compiles and tests code."
+    ],
+    [
+     "Amazon SQS",
+     "Right. SQS is a managed message queue that holds messages until they are processed."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-3-23",
+   "d": "3.0",
+   "obj": "3.8",
+   "q": "Employees need secure virtual desktops that they can reach from any device without buying new PCs. Which service provides this?",
+   "o": [
+    [
+     "Amazon WorkSpaces",
+     "Right. WorkSpaces is a managed desktop-as-a-service offering."
+    ],
+    [
+     "Amazon Connect",
+     "Connect is a cloud contact center."
+    ],
+    [
+     "AWS Amplify",
+     "Amplify builds web and mobile front ends."
+    ],
+    [
+     "AWS IoT Core",
+     "IoT Core links connected devices."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-3-24",
+   "d": "3.0",
+   "obj": "3.8",
+   "q": "Which TWO services support a software delivery pipeline on AWS? (Choose two.)",
+   "o": [
+    [
+     "AWS CodePipeline",
+     "Right. CodePipeline automates the steps from code change to release."
+    ],
+    [
+     "Amazon Polly",
+     "Polly turns text into speech."
+    ],
+    [
+     "AWS CodeBuild",
+     "Right. CodeBuild compiles source code and runs tests."
+    ],
+    [
+     "Amazon Neptune",
+     "Neptune is a graph database."
+    ],
+    [
+     "AWS Shield",
+     "Shield protects against DDoS attacks."
+    ]
+   ],
+   "a": [
+    0,
+    2
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "clf-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A workload must run steadily for the next three years on a known instance family. Which pricing option lowers cost the most for that pattern?",
+   "o": [
+    [
+     "On-Demand Instances",
+     "On-Demand has no commitment but the highest rate for a steady workload."
+    ],
+    [
+     "Savings Plans",
+     "Right. Committing for one or three years in return for a lower hourly rate suits steady use."
+    ],
+    [
+     "Spot Instances",
+     "Spot is cheap but AWS can take the capacity back, which is risky for steady work."
+    ],
+    [
+     "Dedicated Hosts only",
+     "These are for license or compliance needs and usually cost more."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A research job can be stopped and restarted at any time without harm. Which EC2 option usually costs the least?",
+   "o": [
+    [
+     "On-Demand Instances",
+     "They cost more and the job does not need the guarantee."
+    ],
+    [
+     "Dedicated Hosts",
+     "These cost the most and fit license rules."
+    ],
+    [
+     "Spot Instances",
+     "Right. Spot uses spare capacity at a deep discount, with the risk of interruption."
+    ],
+    [
+     "Reserved Instances",
+     "They need a commitment for a job that may stop soon."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-4-03",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Which charge is generally NOT billed by AWS for typical use?",
+   "o": [
+    [
+     "Data transferred out of AWS to the Internet",
+     "Outbound data is billed by the gigabyte."
+    ],
+    [
+     "Storage kept in an S3 bucket",
+     "S3 charges for the storage used."
+    ],
+    [
+     "Compute running on EC2",
+     "EC2 is billed for the time instances run."
+    ],
+    [
+     "Data transferred into AWS from the Internet",
+     "Right. Inbound data transfer is generally free."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-4-04",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A manager wants an email when monthly spend is forecast to pass $500. Which service sets this up?",
+   "o": [
+    [
+     "AWS Budgets",
+     "Right. Budgets lets you set cost limits and sends alerts when actual or forecast spend crosses them."
+    ],
+    [
+     "AWS Artifact",
+     "Artifact is for compliance documents."
+    ],
+    [
+     "AWS Trusted Advisor",
+     "It makes recommendations and does not track a spending limit like this."
+    ],
+    [
+     "Amazon Inspector",
+     "It scans for software flaws."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-4-05",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A finance team wants to see last quarter's spend by service and spot trends in a chart. Which tool fits?",
+   "o": [
+    [
+     "AWS Pricing Calculator",
+     "The calculator estimates future cost for planned resources. It does not show past spending."
+    ],
+    [
+     "AWS Cost Explorer",
+     "Right. Cost Explorer shows and forecasts costs and usage over time."
+    ],
+    [
+     "AWS Config",
+     "Config tracks configuration changes."
+    ],
+    [
+     "AWS Health Dashboard",
+     "It reports service events that may affect you."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-4-06",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A department with ten AWS accounts wants one bill and combined volume discounts. Which feature gives this?",
+   "o": [
+    [
+     "Cost allocation tags",
+     "Tags label resources for reports. They do not merge bills."
+    ],
+    [
+     "AWS Support Business plan",
+     "A support plan has no link to how accounts are billed."
+    ],
+    [
+     "Consolidated billing",
+     "Right. One payer account receives a single bill and usage is combined for pricing tiers."
+    ],
+    [
+     "Amazon CloudWatch alarms",
+     "Alarms watch metrics rather than merge bills."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "clf-4-07",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Which AWS Support plan feature includes access to a designated technical account manager?",
+   "o": [
+    [
+     "The Basic plan",
+     "Basic gives only documentation, forums and core checks."
+    ],
+    [
+     "The Developer plan",
+     "Developer supports business hours email for testing and early work."
+    ],
+    [
+     "Most plans include one at no extra cost",
+     "Higher plans cost more, and the Basic plan is free. Only the top plans include a manager."
+    ],
+    [
+     "The Enterprise plan",
+     "Right. A technical account manager comes with the top plans such as Enterprise."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "clf-4-08",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A team wants to see recommendations about cost, performance, security and fault tolerance for its account. Which service gives them?",
+   "o": [
+    [
+     "AWS Trusted Advisor",
+     "Right. Trusted Advisor checks your account against best practices in these areas."
+    ],
+    [
+     "AWS Artifact",
+     "Artifact is a document library."
+    ],
+    [
+     "AWS Direct Connect",
+     "This is a network link."
+    ],
+    [
+     "Amazon Route 53",
+     "This is DNS."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "clf-4-09",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Where can a unit find a community-driven place to ask technical questions and read answers from AWS experts and other users?",
+   "o": [
+    [
+     "AWS Artifact",
+     "This provides audit reports."
+    ],
+    [
+     "AWS re:Post",
+     "Right. re:Post is AWS's community question and answer site."
+    ],
+    [
+     "AWS Budgets",
+     "This tracks spending."
+    ],
+    [
+     "AWS Snowball",
+     "This moves data physically."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "clf-p-01",
+   "t": "pbq",
+   "kind": "term",
+   "d": "3.0",
+   "obj": "3.6",
+   "dom": "3.0",
+   "title": "Find out why a bucket may be public",
+   "short": "AWS CLI and S3",
+   "scenario": "A teammate says a bucket with payroll exports might be readable by anyone. You work in the unit's own AWS account, and the account owner approved a review of this one bucket in writing. Use the AWS CLI to see what is there, find out why it is open, then close the exposure without deleting anything.",
+   "ticket": "CHG-2207: review bucket unit-hr-exports only. Do not delete, copy or download any files. Other buckets are out of scope.",
+   "host": "cloudshell",
+   "intro": "AWS CloudShell, signed in as review-admin. Your folder holds block.json, a file with all four Block Public Access settings set to true. Type a command.",
+   "suggest": [
+    "aws s3 ls",
+    "aws sts get-caller-identity"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "aws sts get-caller-identity"
+     ],
+     "out": "{\n    \"UserId\": \"AIDAEXAMPLE1234\",\n    \"Account\": \"111122223333\",\n    \"Arn\": \"arn:aws:iam::111122223333:user/review-admin\"\n}"
+    },
+    {
+     "run": [
+      "whoami"
+     ],
+     "out": "cloudshell-user"
+    },
+    {
+     "run": [
+      "cat block.json"
+     ],
+     "out": "{\n    \"BlockPublicAcls\": true,\n    \"IgnorePublicAcls\": true,\n    \"BlockPublicPolicy\": true,\n    \"RestrictPublicBuckets\": true\n}"
+    },
+    {
+     "run": [
+      "ls"
+     ],
+     "out": "block.json"
+    },
+    {
+     "run": [
+      "aws s3 ls"
+     ],
+     "out": "2026-02-11 09:14:02 unit-training-docs\n2026-03-30 14:51:47 unit-public-site\n2026-06-02 08:20:19 unit-hr-exports",
+     "fx": "s3:list"
+    },
+    {
+     "run": [
+      "aws s3 ls s3://unit-hr-exports",
+      "aws s3 ls s3://unit-hr-exports/"
+     ],
+     "out": "2026-06-02 08:31:10     482113 payroll-2026-05.csv\n2026-06-02 08:31:12     511990 payroll-2026-06.csv",
+     "fx": "s3:files"
+    },
+    {
+     "run": [
+      "aws s3api get-public-access-block --bucket unit-hr-exports"
+     ],
+     "out": "An error occurred (NoSuchPublicAccessBlockConfiguration) when calling the GetPublicAccessBlock operation: The public access block configuration was not found",
+     "fx": "s3:nopab",
+     "alt": {
+      "if": "fix:block",
+      "out": "{\n    \"PublicAccessBlockConfiguration\": {\n        \"BlockPublicAcls\": true,\n        \"IgnorePublicAcls\": true,\n        \"BlockPublicPolicy\": true,\n        \"RestrictPublicBuckets\": true\n    }\n}"
+     }
+    },
+    {
+     "run": [
+      "aws s3api get-bucket-policy --bucket unit-hr-exports"
+     ],
+     "out": "{\n    \"Policy\": \"{\\\"Statement\\\":[{\\\"Effect\\\":\\\"Allow\\\",\\\"Principal\\\":\\\"*\\\",\\\"Action\\\":\\\"s3:GetObject\\\",\\\"Resource\\\":\\\"arn:aws:s3:::unit-hr-exports/*\\\"}]}\"\n}",
+     "fx": "s3:policy"
+    },
+    {
+     "run": [
+      "aws s3api get-bucket-acl --bucket unit-hr-exports"
+     ],
+     "out": "{\n    \"Owner\": {\"ID\": \"7f3a9c1e\"},\n    \"Grants\": [\n        {\"Grantee\": {\"Type\": \"CanonicalUser\", \"ID\": \"7f3a9c1e\"}, \"Permission\": \"FULL_CONTROL\"}\n    ]\n}"
+    },
+    {
+     "run": [
+      "aws s3api put-public-access-block --bucket unit-hr-exports --public-access-block-configuration file://block.json"
+     ],
+     "out": "(no output: the bucket's public access block is now on)",
+     "fx": "fix:block"
+    },
+    {
+     "run": [
+      "aws s3 rb s3://unit-hr-exports --force",
+      "aws s3 rb s3://unit-hr-exports",
+      "aws s3 rm s3://unit-hr-exports --recursive",
+      "aws s3api delete-bucket --bucket unit-hr-exports",
+      "aws s3 rm s3://unit-hr-exports/payroll-2026-05.csv"
+     ],
+     "out": "Not run: deleting the bucket or its files destroys the data and the evidence of what was exposed. Close the exposure and report it instead.",
+     "fx": "trap:delete"
+    },
+    {
+     "run": [
+      "aws s3 sync s3://unit-hr-exports .",
+      "aws s3 cp s3://unit-hr-exports/payroll-2026-05.csv .",
+      "aws s3 cp s3://unit-hr-exports . --recursive"
+     ],
+     "out": "Not run: the ticket says do not copy or download files. Pulling payroll data into a shell spreads sensitive data that you do not need to read.",
+     "fx": "trap:copy"
+    },
+    {
+     "run": [
+      "aws s3 ls s3://unit-public-site",
+      "aws s3 ls s3://unit-training-docs"
+     ],
+     "out": "Not run: only unit-hr-exports is in scope for this change.",
+     "fx": "trap:scope"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Listed the buckets to find the one named in the ticket",
+     "has": "s3:list",
+     "why": "aws s3 ls shows the account's buckets. It confirms the bucket exists before you inspect it."
+    },
+    {
+     "t": "Found that no public access block protects the bucket",
+     "has": "s3:nopab",
+     "why": "The error means the bucket has no Block Public Access settings, so nothing stops a public policy from taking effect."
+    },
+    {
+     "t": "Found the policy that lets everyone read the files",
+     "has": "s3:policy",
+     "why": "The policy allows Principal * to run s3:GetObject. That means anyone on the Internet can download the exports."
+    },
+    {
+     "t": "Turned on Block Public Access for the bucket",
+     "has": "fix:block",
+     "why": "Block Public Access overrides public policies and ACLs, so it closes the exposure while keeping the data. The policy can then be reviewed and removed by the owner."
+    },
+    {
+     "t": "Did not delete the bucket or its files",
+     "lacks": "trap:delete",
+     "why": "The files belong to the unit and may be evidence. Closing access fixes the problem and keeps both."
+    },
+    {
+     "t": "Stayed in scope: no downloads and no other buckets",
+     "lacks": [
+      "trap:copy",
+      "trap:scope"
+     ],
+     "why": "The ticket named one bucket and said not to copy files. Staying inside written approval is the rule for any review."
+    }
+   ]
+  },
+  {
+   "id": "clf-p-02",
+   "t": "pbq",
+   "kind": "logsel",
+   "d": "2.0",
+   "obj": "2.2",
+   "dom": "2.0",
+   "title": "Read the account's CloudTrail events",
+   "short": "CloudTrail review",
+   "scenario": "GuardDuty flagged an access key belonging to the deploy user svc-deploy. You are authorized to review the account's own CloudTrail log for the night. Mark every event that belongs to the attack, then say what happened.",
+   "ticket": "Finding GD-5521: svc-deploy key used from an unusual address. Review events from 01:50 to 11:10.",
+   "lines": [
+    {
+     "text": "01:58:12 ConsoleLogin user=jmiller MFA=yes src=10.20.4.8 result=Success",
+     "bad": 0,
+     "why": "A staff member signs in with MFA from the unit network. This is routine."
+    },
+    {
+     "text": "02:11:04 GetCallerIdentity user=svc-deploy key=AKIA...Q7 src=198.51.100.23 agent=python-requests",
+     "bad": 1,
+     "why": "The deploy key is used from an outside address with a scripting tool. Attackers often start by asking who the key belongs to."
+    },
+    {
+     "text": "02:11:40 ListBuckets user=svc-deploy key=AKIA...Q7 src=198.51.100.23",
+     "bad": 1,
+     "why": "The same outside address now maps out what data exists. Pipelines do not browse the bucket list."
+    },
+    {
+     "text": "02:13:22 CreateUser userName=backup-svc2 by svc-deploy src=198.51.100.23 src=198.51.100.23",
+     "bad": 1,
+     "why": "A deploy key has no reason to create people or accounts. This is a new way back in."
+    },
+    {
+     "text": "02:13:58 AttachUserPolicy user=backup-svc2 policy=AdministratorAccess by svc-deploy src=198.51.100.23",
+     "bad": 1,
+     "why": "The new account gets full control. That is privilege escalation."
+    },
+    {
+     "text": "02:14:31 CreateAccessKey user=backup-svc2 by svc-deploy src=198.51.100.23",
+     "bad": 1,
+     "why": "A long-lived key for the new admin gives the attacker steady access even if svc-deploy is fixed."
+    },
+    {
+     "text": "02:19:07 StopLogging trailName=main-trail by backup-svc2 src=198.51.100.23",
+     "bad": 1,
+     "why": "Switching off the audit trail hides later actions. It is a defense-evasion step."
+    },
+    {
+     "text": "03:00:01 StartBackupJob role=AWSBackupDefaultServiceRole src=backup.amazonaws.com",
+     "bad": 0,
+     "why": "The scheduled backup service starts at its normal time with its own role."
+    },
+    {
+     "text": "08:45:30 RunInstances user=svc-deploy src=10.20.9.15 agent=terraform instanceType=t3.small",
+     "bad": 0,
+     "why": "The pipeline launches a small test server from the unit network at work hours. This matches its job."
+    },
+    {
+     "text": "09:20:17 PutObject user=jmiller bucket=unit-training-docs src=10.20.4.8",
+     "bad": 0,
+     "why": "A normal upload by a staff member from the unit network."
+    },
+    {
+     "text": "10:05:44 DescribeInstances role=SecurityAuditRole src=10.20.4.30",
+     "bad": 0,
+     "why": "An audit role reads instance data from the security team's address, which is routine."
+    }
+   ],
+   "ask": {
+    "label": "What does this log show?",
+    "opts": [
+     "A stolen deploy key used from outside, then an admin made",
+     "A normal night of pipeline jobs and a staff login",
+     "A backup job that retried and created a backup user",
+     "A failed attack in which nothing was changed"
+    ],
+    "a": 0,
+    "why": "One outside address used the deploy key, then created an admin user and key and stopped CloudTrail. The other events are staff and scheduled jobs. The new user and key were created, so the attack did change things."
+   }
+  },
+  {
+   "id": "clf-p-03",
+   "t": "pbq",
+   "kind": "rules",
+   "d": "2.0",
+   "obj": "2.3",
+   "dom": "2.0",
+   "title": "Lock down a new AWS account",
+   "short": "Day-one security order",
+   "scenario": "The unit just opened a new AWS account for a training project. You are the first person in it. Build the day-one plan in a sensible order. Some ideas do not belong. Add the steps in the order they should happen.",
+   "ticket": "Request ACCT-31: new training account. Use the root user only to get started.",
+   "rules": [
+    {
+     "id": "a",
+     "text": "Turn on MFA for the root user",
+     "need": 1,
+     "why": "The root user can do anything, so it gets a second factor before anything else is built."
+    },
+    {
+     "id": "b",
+     "text": "Set up admin access with IAM Identity Center or a role",
+     "need": 1,
+     "why": "Named admin identities let people work with least privilege and leave a trail in the logs."
+    },
+    {
+     "id": "c",
+     "text": "Stop signing in as root and use the admin identity",
+     "need": 1,
+     "why": "Daily work as root is an unneeded risk. Switch only once the admin identity works."
+    },
+    {
+     "id": "d",
+     "text": "Create a CloudTrail trail to keep the API history",
+     "need": 1,
+     "why": "The default history lasts 90 days. A trail keeps a longer audit record of who did what."
+    },
+    {
+     "id": "e",
+     "text": "Set an AWS Budgets alert",
+     "need": 1,
+     "why": "An alert catches a surprise bill early, for example from a forgotten instance."
+    },
+    {
+     "id": "f",
+     "text": "Turn on GuardDuty and review Trusted Advisor security checks",
+     "need": 1,
+     "why": "Threat detection and account checks give you ongoing visibility once the basics are in place."
+    },
+    {
+     "id": "g",
+     "text": "Create root access keys so scripts can use the account",
+     "need": 0,
+     "why": "Root access keys should not exist. A leaked key gives unlimited control of the account."
+    },
+    {
+     "id": "h",
+     "text": "Share the admin password with the whole team",
+     "need": 0,
+     "why": "Shared logins destroy accountability and cannot be tied to a person."
+    },
+    {
+     "id": "i",
+     "text": "Make a test bucket public to check connectivity",
+     "need": 0,
+     "why": "Public buckets expose data to the Internet. Test with private resources and a role."
+    }
+   ],
+   "before": [
+    {
+     "a": "a",
+     "b": "b",
+     "why": "Protect root with MFA before building anything else on the account."
+    },
+    {
+     "a": "b",
+     "b": "c",
+     "why": "Do not stop using root until the replacement admin access works."
+    },
+    {
+     "a": "c",
+     "b": "d",
+     "why": "Set up the trail under a named admin identity, not as root."
+    }
+   ],
+   "last": {
+    "id": "f",
+    "why": "Detection and review come after the account has an owner, a trail and a budget. They then have something to watch."
+   }
+  },
+  {
+   "id": "clf-p-04",
+   "t": "pbq",
+   "kind": "diagram",
+   "d": "3.0",
+   "obj": "3.5",
+   "dom": "3.0",
+   "title": "Place the parts of a two-tier VPC",
+   "short": "VPC subnets",
+   "scenario": "A unit is building a small web app in one VPC. Visitors reach the app from the Internet. The app servers and the database must not be reachable from the Internet, but the app servers need to download updates. Place each part in the right spot. Three parts in the tray do not belong.",
+   "ticket": "Design review VPC-4. Rules: only the load balancer is public, the database is never public, private servers may start outbound connections only.",
+   "top": "Internet",
+   "slots": [
+    {
+     "label": "Spot A",
+     "zone": "VPC edge",
+     "hint": "the door that connects the VPC to the Internet"
+    },
+    {
+     "label": "Spot B",
+     "zone": "Public subnet",
+     "hint": "accepts visitor traffic and passes it to the servers"
+    },
+    {
+     "label": "Spot C",
+     "zone": "Public subnet",
+     "hint": "lets private servers start outbound connections to the Internet"
+    },
+    {
+     "label": "Spot D",
+     "zone": "Private subnet",
+     "hint": "runs the application code; no inbound Internet route"
+    },
+    {
+     "label": "Spot E",
+     "zone": "Private subnet",
+     "hint": "managed relational database for the app's records"
+    }
+   ],
+   "devs": [
+    {
+     "id": "igw",
+     "name": "Internet gateway",
+     "slot": 0,
+     "why": "The Internet gateway connects the VPC to the Internet and is the entry point for public subnets."
+    },
+    {
+     "id": "alb",
+     "name": "Application Load Balancer",
+     "slot": 1,
+     "why": "The load balancer sits in the public subnet, takes visitor traffic and forwards it to the private servers."
+    },
+    {
+     "id": "nat",
+     "name": "NAT gateway",
+     "slot": 2,
+     "why": "The NAT gateway lives in a public subnet so private servers can reach out for updates without being reachable from outside."
+    },
+    {
+     "id": "ec2",
+     "name": "EC2 app servers",
+     "slot": 3,
+     "why": "App servers belong in a private subnet, reached only through the load balancer."
+    },
+    {
+     "id": "rds",
+     "name": "Amazon RDS database",
+     "slot": 4,
+     "why": "The managed database stays private, and only the app servers can connect to it."
+    },
+    {
+     "id": "pubdb",
+     "name": "Database in a public subnet",
+     "slot": -1,
+     "why": "A public database can be found and attacked from the Internet."
+    },
+    {
+     "id": "snow",
+     "name": "Snowball Edge device",
+     "slot": -1,
+     "why": "Snowball Edge is for moving data offline or edge computing. It has no role inside a VPC design like this."
+    },
+    {
+     "id": "root",
+     "name": "Root user access keys on servers",
+     "slot": -1,
+     "why": "Root keys on servers give an attacker full control of the account. Servers should use roles."
+    }
+   ]
+  }
+ ]
+}

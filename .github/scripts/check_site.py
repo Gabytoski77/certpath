@@ -441,6 +441,12 @@ def alloc(n, domains):
 NEW_PBQ_KINDS = ("logsel", "rules", "term", "diagram")
 
 
+def obj_prefix(d):
+    """What a domain's objectives start with: CompTIA-style "1.0" -> "1" (objectives 1.1, 1.2...);
+    LPI-style topic "011" -> "011" (objectives 011.1, 011.2...)."""
+    return d[:-2] if d.endswith(".0") else d
+
+
 def check_new_pbq(q, dset):
     """The new PBQ types (v2.84): same rules as vendor/pbq-engine.js, plus the content rules the page can't check:
     every scored part has a non-empty "why", references resolve, and the question has something to get wrong."""
@@ -456,7 +462,7 @@ def check_new_pbq(q, dset):
         d = x.get("d", q["d"])
         if "d" in x and x["d"] not in dset:
             out.append(f"{label} has unknown domain {x['d']!r}")
-        if "obj" in x and not re.fullmatch(r"\d+\.\d+", str(x["obj"])) or ("obj" in x and str(x["obj"]).split(".")[0] + ".0" != d):
+        if "obj" in x and not re.fullmatch(r"\d+\.\d+", str(x["obj"])) or ("obj" in x and str(x["obj"]).split(".")[0] != obj_prefix(d)):
             out.append(f"{label} objective {x.get('obj')!r} doesn't fit domain {d}")
 
     if not text(q.get("title"), 200) or not text(q.get("scenario")):
@@ -574,7 +580,7 @@ def check_qbank(path, ver):
             continue
         obj = str(q.get("obj", ""))
         m = re.fullmatch(r"(\d+)\.(\d+)", obj)
-        if not m or m.group(1) + ".0" != q["d"] or int(m.group(2)) > dset[q["d"]].get("obj", 99):
+        if not m or m.group(1) != obj_prefix(q["d"]) or int(m.group(2)) > dset[q["d"]].get("obj", 99):
             fail(f"{tag}: {qid} objective {obj!r} doesn't fit domain {q['d']}")
         if q.get("t") == "pbq":
             if q.get("kind") == "table":
@@ -620,8 +626,8 @@ def check_qbank(path, ver):
                 mc_long += 1
     for d in doms:
         for k in range(1, d.get("obj", 0) + 1):
-            if per_obj.get(f"{d['n'][:-2]}.{k}", 0) < 2:
-                fail(f"{tag}: objective {d['n'][:-2]}.{k} has fewer than 2 questions")
+            if per_obj.get(f"{obj_prefix(d['n'])}.{k}", 0) < 2:
+                fail(f"{tag}: objective {obj_prefix(d['n'])}.{k} has fewer than 2 questions")
     need = alloc(F["n"] - F["pbq"], doms)
     for dn, n in need.items():
         if per_dom.get(dn, 0) < n:
@@ -645,6 +651,24 @@ def check_qbank(path, ver):
         ok(f"{tag}: {len(ids)} items, every objective covered, full exam fits, longest-answer tell {round(100 * mc_long / max(mc_n, 1))}%")
 
 
+def check_bank_domains(path, ver, gid):
+    """A bank's domains must be the guide version's domains (same numbers and names): the results screen and the
+    weak-spot tracker look domain names up in the guide by number, so a mismatch shows "Domain 1.0" or the wrong name."""
+    tag = f"question bank {path}"
+    try:
+        with open(f"guides/{gid}.json", encoding="utf-8") as f:
+            gdoms = (json.load(f).get("versions") or {}).get(ver, {}).get("domains") or []
+        with open(path, encoding="utf-8") as f:
+            bdoms = json.load(f).get("domains") or []
+    except Exception as e:
+        fail(f"{tag}: can't compare with guides/{gid}.json ({e})")
+        return
+    want = [(d.get("n"), d.get("name")) for d in gdoms]
+    got = [(d.get("n"), d.get("name")) for d in bdoms]
+    if want != got:
+        fail(f"{tag}: domains {got} don't match guide {gid} version {ver} {want}")
+
+
 def check_qbanks():
     # 9. Practice-exam question banks referenced by the guides (v2.48)
     with open("index.html", encoding="utf-8") as f:
@@ -655,12 +679,13 @@ def check_qbanks():
             if not re.fullmatch(r"qbank/[a-z0-9-]{3,40}\.json", path):
                 fail(f"question bank path {path!r} must be qbank/<name>.json")
                 continue
-            refs[path] = ver
-    for path, ver in sorted(refs.items()):
+            refs[path] = (ver, g.get("id"))
+    for path, (ver, gid) in sorted(refs.items()):
         if not os.path.isfile(path):
             fail(f"{path} is referenced by a guide but missing")
         else:
             check_qbank(path, ver)
+            check_bank_domains(path, ver, gid)
     if os.path.isdir("qbank"):
         for f in sorted(os.listdir("qbank")):
             if f.endswith(".json") and "qbank/" + f not in refs:
