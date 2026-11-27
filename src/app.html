@@ -2578,7 +2578,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.91</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.92</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -3482,7 +3482,7 @@ var GFX=(function(){
 })();
 if(GFX.tier>=1) document.documentElement.classList.add("gfx-bal");
 if(GFX.tier>=2) document.documentElement.classList.add("gfx-light");
-var still={cv:null,ctx:null,R:0,R0:0,lon:-40,lat:22,rings:null,on:false,mode:"",pic:null,img:null,views:null,shown:-1,tok:0};   /* the still globe (see stillInit) */
+var still={cv:null,ctx:null,R:0,R0:0,lon:-40,lat:22,rings:null,on:false,mode:"",pic:null,img:null,views:null,shown:-1,tok:0,bad:{}};   /* the still globe (see stillInit) */
 /* Lite, and Graphics set to Light, are the same still version (v2.58): a picture of the globe, no animations */
 if(LITE.on||GFX.tier>=2){
   reduced=true;document.documentElement.classList.add("lite");
@@ -3968,15 +3968,21 @@ function stillDrawn(){
   if(worldGeo) stillGeo(worldGeo);else loadWorld();
   resize();if(frontIdx>=0) stillFace(frontIdx);
 }
-/* the smallest saved size that covers the globe at this screen's pixel density */
+/* the smallest saved size that covers the globe at this screen's pixel density.
+   v2.92: a size that failed to load is skipped, so a blocked or offline network falls back to any size this browser
+   already saved (a new screen size used to ask only for the missing one, fail, and show a grid with no map).
+   null = no size left to try. */
 function stillSrc(i){
-  var j=still.views, s=j.sizes||[1000], need=2*j.span*Math.max(still.R,still.R0)*Math.min(window.devicePixelRatio||1,2), pick=s[s.length-1];
+  var j=still.views, id=VENDORS[i].id, s=(j.sizes||[1000]).filter(function(n){return !still.bad[id+"-"+n];}),
+      need=2*j.span*Math.max(still.R,still.R0)*Math.min(window.devicePixelRatio||1,2), pick=s[s.length-1];
+  if(!s.length) return null;
   for(var k=0;k<s.length;k++) if(s[k]>=need*.9){pick=s[k];break;}
-  return "img/globe/"+VENDORS[i].id+"-"+pick+".webp";
+  return "img/globe/"+id+"-"+pick+".webp";
 }
 function stillPic(i){
   var j=still.views;if(!j||!j.views[VENDORS[i].id]) return;   /* no picture for this vendor: keep the last one */
   var src=stillSrc(i), tok=++still.tok;
+  if(!src){stillDrawn();return;}
   if(still.shown===i&&still.img.getAttribute("src")===src){stillPlace();return;}
   var pre=new Image();pre.decoding="async";pre.src=src;
   var ready=pre.decode?pre.decode():new Promise(function(res,rej){pre.onload=res;pre.onerror=rej;});
@@ -3989,7 +3995,9 @@ function stillPic(i){
     if(old&&old!==pre) old.style.visibility="hidden";   /* v2.85: the new picture is already decoded, so hide the old one in the same step: never two globes (it showed through the new one's clear edges) */
     stillPlace();
     if(old&&old!==pre) requestAnimationFrame(function(){requestAnimationFrame(function(){if(old.parentNode) old.parentNode.removeChild(old);});});},
-    function(){if(tok===still.tok) stillDrawn();});
+    function(){if(tok!==still.tok) return;
+      still.bad[src.replace(/^img\/globe\/|\.webp$/g,"")]=1;   /* v2.92: try another saved size before drawing the globe */
+      stillPic(i);});
 }
 /* put the picture and the badge tap targets where the layout's globe is */
 function stillPlace(){
@@ -4005,7 +4013,7 @@ function stillPlace(){
     el.style.setProperty("--mt",(L.mt*Rr).toFixed(0)+"px");el.style.opacity="1";
     el.classList.remove("off");el.classList.toggle("front",!!L.front);
   });
-  if(still.img.getAttribute("src")!==stillSrc(still.shown)) stillPic(still.shown);   /* the window grew: swap in the bigger picture */
+  var want=stillSrc(still.shown);if(want&&still.img.getAttribute("src")!==want) stillPic(still.shown);   /* the window grew: swap in the bigger picture */
 }
 /* fetch the other vendors' pictures once someone starts browsing vendors (hovering or focusing the vendor badges,
    or the arrow keys), or after 12 s, so switching is instant without making the first visit heavier. Skipped with Data Saver. */
@@ -4013,7 +4021,7 @@ function stillPreload(){
   var cn=navigator.connection;if(cn&&cn.saveData) return;
   var done=false, t=0, go=function(){
     if(done||!still.views) return;done=true;clearTimeout(t);
-    VENDORS.forEach(function(v,i){if(i===frontIdx||!still.views.views[v.id]) return;var im=new Image();im.decoding="async";try{im.fetchPriority="low";}catch(e){}im.src=stillSrc(i);});
+    VENDORS.forEach(function(v,i){if(i===frontIdx||!still.views.views[v.id]) return;var im=new Image();im.decoding="async";try{im.fetchPriority="low";}catch(e){}var u=stillSrc(i);if(u) im.src=u;});
   };
   roDots.addEventListener("pointerenter",go,{once:true});roDots.addEventListener("focusin",go,{once:true});
   document.addEventListener("keydown",function k(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){document.removeEventListener("keydown",k);go();}});
@@ -4174,8 +4182,10 @@ function placeStart(){
   if(!(r.bottom>bandTop&&r.top<bandBot&&r.right>wl&&r.left<wr)) return;
   var hh=head.getBoundingClientRect().height;
   st.classList.add("split");r=st.getBoundingClientRect();
-  /* only split when both halves then clear the wordmark */
-  if(r.top<bandBot-pad||bandTop-hh<midEl.getBoundingClientRect().top-4){st.classList.remove("split");st.classList.add("over");return;}
+  /* v2.92: lift the promise above the wordmark whenever it fits there, even if the card below still touches the bottom
+     of the word (laptop sizes with an exam countdown card): the card stays where it was either way, and a promise left
+     in place on its dark backing covered the "My" of the logo. Only when it can't fit above does it keep the backing. */
+  if(bandTop-hh<midEl.getBoundingClientRect().top-4){st.classList.remove("split");st.classList.add("over");return;}
   st.style.setProperty("--st-lift",Math.round(r.bottom-bandTop)+"px");
 }
 function watchReadout(){
@@ -6271,12 +6281,12 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.92",d:"2026-11-27",t:"On laptop screens, the \u201cWhich certs to take\u201d text no longer covers the MyNextCert name. In Light mode, the globe keeps its map when the network is spotty."},
   {v:"2.91",d:"2026-11-27",t:"A new MyNextCert logo: a badge with an open side and an arrow pushing through it, for moving on to your next cert. New app and tab icons too."},
   {v:"2.90",d:"2026-11-26",t:"Four new practice exams: Azure Fundamentals (AZ-900), Cloud Practitioner (CLF-C02), Linux Essentials (010-200) and Security Essentials (020-100)."},
   {v:"2.89",d:"2026-11-26",t:"Two new Cisco practice exams: CCST Cybersecurity (100-160) and CCST Networking (100-150), each with hands-on questions."},
   {v:"2.88",d:"2026-11-26",t:"New hands-on practice questions in all the CompTIA exams: read logs, put rules in order, use a small terminal and fill in network diagrams."},
   {v:"2.87",d:"2026-11-26",t:"On phones, a Jump to button in the corner of every guide. Smoother zoom into the globe. Link to any guide section, and share a practice set with a friend by link."},
-  {v:"2.86",d:"2026-11-26",t:"The app opens instantly from its saved copy and offers a Refresh when there\u2019s a new version. Smaller fonts, and an Install app link on Edge and Chrome."},
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
