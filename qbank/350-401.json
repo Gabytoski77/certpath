@@ -1,0 +1,4953 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "CCNP Enterprise",
+ "ver": "v12",
+ "exam": "350-401",
+ "title": "CCNP Enterprise core (350-401 ENCOR v1.2) practice exam",
+ "rev": "2026-11-27",
+ "format": {
+  "n": 100,
+  "min": 120,
+  "pbq": 4,
+  "half": 50
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Architecture",
+   "w": 15,
+   "obj": 4
+  },
+  {
+   "n": "2.0",
+   "name": "Virtualization",
+   "w": 10,
+   "obj": 3
+  },
+  {
+   "n": "3.0",
+   "name": "Infrastructure",
+   "w": 30,
+   "obj": 3
+  },
+  {
+   "n": "4.0",
+   "name": "Network Assurance",
+   "w": 10,
+   "obj": 6
+  },
+  {
+   "n": "5.0",
+   "name": "Security",
+   "w": 20,
+   "obj": 4
+  },
+  {
+   "n": "6.0",
+   "name": "Automation and Artificial Intelligence",
+   "w": 15,
+   "obj": 7
+  }
+ ],
+ "note": "Original questions written for MyNextCert from Cisco's public 350-401 ENCOR v1.2 exam topics (https://learningcontent.cisco.com/documents/marketing/exam-topics/350-401-ENCORE-v1.2.pdf, checked 2026-11-27). Wireless is not tested in v1.2. Not real exam questions. Cisco doesn't publish the number of items; this is a 100-item stand-in in 120 minutes with 4 hands-on style items. Practice in your own lab or Cisco Modeling Labs, never on work networks.",
+ "q": [
+  {
+   "id": "e4-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A single-building campus has six access closets and no plans to grow. The team wants the fewest device layers that still give redundant uplinks. Which design fits best?",
+   "o": [
+    [
+     "Three-tier, with separate access, distribution and core layers",
+     "A dedicated core only pays off when many distribution blocks must be joined, so here it adds cost for nothing."
+    ],
+    [
+     "Daisy-chained access switches with one uplink to the router",
+     "This uses few layers, but the single path is a single point of failure, so it is not redundant."
+    ],
+    [
+     "Spine-leaf fabric with VXLAN between every closet",
+     "Spine-leaf suits data centers and fabrics. It is far more than six closets in one building need."
+    ],
+    [
+     "Two-tier, with a collapsed core pair",
+     "Right. Fewer layers means fewer devices to buy and manage, and a redundant pair of collapsed-core switches still protects every closet."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Why do large campuses with many buildings add a dedicated core layer to the classic access and distribution design?",
+   "o": [
+    [
+     "Without it, every block needs links to every other block",
+     "Right. A core joins the distribution blocks with a small number of high-speed links, so the number of links grows slowly as buildings are added."
+    ],
+    [
+     "It lets the access switches skip redundant uplinks to the distribution layer",
+     "Redundant uplinks are still needed at the access layer. The core does not change that."
+    ],
+    [
+     "It is required so that spanning tree can converge across buildings",
+     "STP does not need a core layer. Routed links in the core are chosen to avoid relying on STP."
+    ],
+    [
+     "It removes the need for any routing between all of the buildings",
+     "Routing between buildings still happens, usually at the distribution and core layers."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-1-03",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "In a spine-leaf design, how does a server on one leaf reach a server on a different leaf?",
+   "o": [
+    [
+     "Through whichever spine spanning tree left unblocked",
+     "Fabrics use routed links and equal-cost multipath, not STP, so all spine paths are used."
+    ],
+    [
+     "Through any spine switch, so every leaf-to-leaf path has the same hop count",
+     "Right. Each leaf connects to every spine, so any leaf-to-leaf path is leaf, spine, leaf. That gives predictable latency and equal-cost paths."
+    ],
+    [
+     "Through a separate core switch that all of the spine switches connect up to",
+     "Spines are the top layer. There is no further core above them in this design."
+    ],
+    [
+     "Over a direct link between the two leaf switches",
+     "Leaf switches do not connect to each other in a spine-leaf design. They connect only to spines."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-1-04",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A dual-supervisor chassis switches over to its standby supervisor. Which combination keeps packets flowing during the switchover?",
+   "o": [
+    [
+     "RPR mode, where line cards reload when the standby takes over",
+     "RPR keeps the standby only partly ready, and a switchover causes a much longer outage."
+    ],
+    [
+     "HSRP with preempt on both supervisors",
+     "HSRP is a first-hop redundancy protocol between two devices. It does not sync supervisors inside one chassis."
+    ],
+    [
+     "SSO to sync state, plus NSF to keep forwarding while routing re-converges",
+     "Right. With SSO, the standby already has the state. NSF lets the line cards keep forwarding using the last known tables while neighbors re-learn routes."
+    ],
+    [
+     "LACP on the uplinks of the failed supervisor",
+     "LACP bundles links. It does not carry supervisor state to a standby."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-1-05",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Two distribution switches serve 200 hosts. The hosts must keep their default gateway setting when one switch fails. What provides this?",
+   "o": [
+    [
+     "Placing the STP root bridge on the first distribution switch",
+     "The STP root controls Layer 2 paths. It does not give hosts a gateway that survives a failure."
+    ],
+    [
+     "An FHRP such as HSRP or VRRP, with a shared virtual IP and MAC",
+     "Right. The hosts point at the virtual IP. Whichever router is active answers, and no host needs to change."
+    ],
+    [
+     "The same IP address configured on the SVIs of both distribution switches",
+     "Duplicate IP addresses on one VLAN cause conflicts, so neither switch could answer ARP reliably."
+    ],
+    [
+     "DHCP option 3 listing both switch addresses",
+     "Most hosts use only the first gateway they get, so they will not move to the second on their own."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-1-06",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Which Catalyst SD-WAN component distributes overlay routes and centralized policy to the WAN Edge routers over OMP?",
+   "o": [
+    [
+     "SD-WAN Controller, formerly vSmart",
+     "Right. The controller is the control plane. It peers with each WAN Edge over OMP and tells it which routes and policies to use."
+    ],
+    [
+     "SD-WAN Manager, formerly vManage",
+     "The manager is the management plane used for templates, monitoring and software. It is not the OMP route server."
+    ],
+    [
+     "SD-WAN Validator, formerly vBond",
+     "The validator authenticates devices and tells them where the controllers are. It does not distribute routes."
+    ],
+    [
+     "WAN Edge router at the data center",
+     "A WAN Edge forwards traffic and receives routes. It does not distribute them to the other edges."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-1-07",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A new WAN Edge router powers up at a branch. Which SD-WAN component does it contact first to learn the addresses of the controllers and the manager?",
+   "o": [
+    [
+     "The SD-WAN Manager",
+     "The manager pushes templates after the edge has joined the overlay. It is not the first contact."
+    ],
+    [
+     "An SD-WAN Controller",
+     "The edge forms its OMP session with a controller only after the validator tells it where to find one."
+    ],
+    [
+     "The SD-WAN Validator",
+     "Right. The validator is the first point of contact. It authenticates the new device and hands it the controller and manager addresses."
+    ],
+    [
+     "The hub WAN Edge at the data center",
+     "Edges do not learn about controllers from other edges."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-1-08",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Which pairing describes the Catalyst SD-WAN data plane between two WAN Edge routers?",
+   "o": [
+    [
+     "OMP sessions over DTLS, carrying user packets",
+     "OMP and DTLS belong to the control plane. They carry routes and policy, not user traffic."
+    ],
+    [
+     "GRE tunnels, with OSPF hellos checking each path",
+     "SD-WAN does not use OSPF hellos to measure tunnel quality. OSPF may run on the service side only."
+    ],
+    [
+     "VXLAN tunnels, with LISP map-requests choosing the path",
+     "VXLAN and LISP are the SD-Access fabric pair, not the SD-WAN pair."
+    ],
+    [
+     "IPsec tunnels, with BFD probing each path for loss, latency and jitter",
+     "Right. User traffic is encrypted in IPsec tunnels, and BFD measures every path so application-aware routing can choose the best one."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-1-09",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "In Catalyst SD-WAN, what does a TLOC identify?",
+   "o": [
+    [
+     "The site ID and location where the WAN Edge is installed",
+     "The site ID labels a location, but it is not the transport locator."
+    ],
+    [
+     "The routing locator that a LISP tunnel router uses for its site",
+     "RLOC belongs to LISP in SD-Access. SD-WAN uses the term TLOC."
+    ],
+    [
+     "One transport link of a WAN Edge: system IP, color and encapsulation",
+     "Right. The TLOC is the address that edges use to build the data-plane tunnels, so each transport link has its own."
+    ],
+    [
+     "VPN 512, the management VPN used for out-of-band access",
+     "That is VPN 512, a special management VPN, not a TLOC."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-1-10",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "What is a real limit to plan for when adopting Catalyst SD-WAN?",
+   "o": [
+    [
+     "Path steering cannot add bandwidth the circuits lack",
+     "Right. The overlay can steer traffic around bad paths. It still depends on the quality and capacity of the underlay circuits."
+    ],
+    [
+     "Branches must send all internet traffic through the data center",
+     "Direct internet access at the branch is a supported design choice."
+    ],
+    [
+     "Only one transport type, such as MPLS, can be used at each site",
+     "Sites can use MPLS, broadband and LTE at the same time. Mixing transports is a main benefit."
+    ],
+    [
+     "Policy can only be set on one device at a time, through its CLI",
+     "Centralized policy and templates are pushed from the controller and manager to many devices."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-1-11",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Which protocol provides the SD-Access fabric control plane by mapping endpoint identifiers to the edge nodes behind which they sit?",
+   "o": [
+    [
+     "VXLAN",
+     "VXLAN is the SD-Access data plane. It carries traffic but does not keep the endpoint location table."
+    ],
+    [
+     "BGP EVPN",
+     "EVPN is used in many data-center fabrics. SD-Access uses LISP for the campus control plane."
+    ],
+    [
+     "OSPF",
+     "A routing protocol can build the underlay, but it does not track endpoint locations."
+    ],
+    [
+     "LISP",
+     "Right. Edge nodes register each endpoint with the control plane node, which answers location queries using LISP."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-1-12",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "In an SD-Access fabric, which node connects the endpoints, registers them with the control plane and hosts the anycast default gateway?",
+   "o": [
+    [
+     "Intermediate node",
+     "An intermediate node forwards underlay IP only and has no endpoints or gateways."
+    ],
+    [
+     "Edge node",
+     "Right. The access switches that endpoints plug into are edge nodes. They register each host and give it a local gateway."
+    ],
+    [
+     "Control plane node",
+     "This node holds the location database. It does not connect users."
+    ],
+    [
+     "Border node",
+     "Border nodes link the fabric to outside networks. They do not usually onboard endpoints."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-1-13",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "An SD-Access fabric must reach a data-center firewall and the internet, which sit outside the fabric. Which node type connects the fabric to those networks?",
+   "o": [
+    [
+     "Intermediate node",
+     "It carries underlay traffic between fabric nodes. It has no handoff to outside networks."
+    ],
+    [
+     "Control plane node",
+     "It only answers endpoint location queries."
+    ],
+    [
+     "Border node",
+     "Right. The border node translates between fabric and non-fabric networks, for example by handing traffic off in VRFs."
+    ],
+    [
+     "Edge node",
+     "Edge nodes serve endpoints inside the fabric and do not connect to external networks."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-1-14",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "During a migration, hosts still on a traditional VLAN must stay in the same subnet as hosts that have moved into the fabric. What makes this possible?",
+   "o": [
+    [
+     "A LISP map-server on the old distribution switch",
+     "The map-server is a fabric role. Putting it on a non-fabric switch does not join the two networks."
+    ],
+    [
+     "A Layer 2 handoff on a border node",
+     "Right. The border node can extend a fabric subnet to a traditional VLAN, so both sets of hosts share one subnet during the move."
+    ],
+    [
+     "A trunk between two intermediate nodes",
+     "Intermediate nodes carry only the underlay. They cannot bridge a VLAN to the old network."
+    ],
+    [
+     "The anycast gateway on the traditional switches",
+     "Anycast gateways exist on fabric edge nodes. Traditional switches do not run them."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-1-15",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "How does SD-Access carry a group tag (SGT) between fabric devices so policy can be enforced?",
+   "o": [
+    [
+     "In the 802.1Q CoS bits that are copied from the VLAN tag header",
+     "CoS is a 3-bit priority field and cannot hold a group tag."
+    ],
+    [
+     "In the DSCP value of the outer IP header",
+     "DSCP is used for QoS marking, not group policy."
+    ],
+    [
+     "In a LISP map-reply that is sent along at each hop of the path",
+     "Map-replies answer location queries. They do not travel with each packet."
+    ],
+    [
+     "In the VXLAN header, using the group policy option",
+     "Right. The SGT rides inside the VXLAN-GPO header, so the destination device can apply group policy to the packet."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-1-16",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "Which DSCP marking is the standard choice for voice media (RTP) packets?",
+   "o": [
+    [
+     "EF (46)",
+     "Right. Expedited Forwarding gives low-latency, low-jitter treatment, which is what voice media needs."
+    ],
+    [
+     "CS1 (8)",
+     "CS1 is for scavenger or bulk traffic that should yield to everything else."
+    ],
+    [
+     "AF41 (34)",
+     "AF41 is commonly used for interactive video."
+    ],
+    [
+     "CS3 (24)",
+     "CS3 is commonly used for call signaling, not for the voice media itself."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-1-17",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "An ISP drops everything above the 50 Mb/s a branch has bought. Which tool smooths outbound bursts by holding extra packets in a queue instead of dropping them?",
+   "o": [
+    [
+     "Policing",
+     "A policer drops or re-marks traffic over the rate instead of holding it."
+    ],
+    [
+     "WRED",
+     "WRED starts dropping some packets early when queues fill. It does not smooth bursts to a rate."
+    ],
+    [
+     "Shaping",
+     "Right. A shaper buffers excess packets and sends them at the configured rate, so fewer packets are dropped by the ISP."
+    ],
+    [
+     "Marking",
+     "Marking sets a priority value in the packet header. It does not change the sending rate."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-1-18",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "Interface Gi0/1 is congested and the policy below is applied outbound. What happens to class VOICE?",
+   "o": [
+    [
+     "It is guaranteed 20 percent of the link but waits its turn in the queue behind the CRITICAL class",
+     "That describes bandwidth in CBWFQ. The priority command gives strict-priority service instead."
+    ],
+    [
+     "Served first from a strict-priority queue, limited to 20 percent in congestion",
+     "Right. LLQ gives voice first service. Under congestion, the priority queue is policed so it cannot starve other classes."
+    ],
+    [
+     "It is dropped first because it has the smallest percent",
+     "Voice is the best-served class here, not the first to be dropped."
+    ],
+    [
+     "It is shaped to 20 percent of the link and delayed in a buffer during congestion",
+     "Priority service is not delayed by shaping. Excess voice during congestion is dropped."
+    ]
+   ],
+   "a": 1,
+   "code": "policy-map WAN-OUT\n class VOICE\n  priority percent 20\n class CRITICAL\n  bandwidth percent 30\n class class-default\n  fair-queue\n!\ninterface GigabitEthernet0/1\n service-policy output WAN-OUT"
+  },
+  {
+   "id": "e4-1-19",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "A packet is marked EF but is not matched by access list RTP-PORTS. It arrives on an interface that uses the class map below. What happens to it?",
+   "o": [
+    [
+     "It matches VOICE, because the DSCP check is made first and decides",
+     "Both lines are tested. A pass on the first one does not end the check."
+    ],
+    [
+     "It matches VOICE, because one match line is enough",
+     "One line is enough only with match-any. This class map uses match-all."
+    ],
+    [
+     "It is dropped for failing the ACL",
+     "A class map only sorts traffic. A packet that does not match is treated by the next class, not dropped."
+    ],
+    [
+     "It does not match VOICE, because match-all needs both conditions to be true",
+     "Right. The default in a class map is match-all, so a packet must satisfy every match line to be in the class."
+    ]
+   ],
+   "a": 3,
+   "code": "class-map match-all VOICE\n match dscp ef\n match access-group name RTP-PORTS"
+  },
+  {
+   "id": "e4-1-20",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "Where should traffic normally be marked with its DSCP value?",
+   "o": [
+    [
+     "Near the source, at a trust boundary",
+     "Right. Marking early lets every later device queue on the mark, and the trust boundary keeps users from setting their own."
+    ],
+    [
+     "At the distribution layer, after traffic is aggregated",
+     "By then traffic has crossed the access layer unmarked, so the access switches could not queue on the mark."
+    ],
+    [
+     "At the WAN edge, where the slowest links are",
+     "Marking only there leaves the LAN hops with no mark, and voice can suffer on a busy LAN uplink."
+    ],
+    [
+     "On each hop independently, ignoring any earlier mark",
+     "Re-marking everywhere defeats a consistent end-to-end policy."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A team needs a hypervisor for production servers where VM performance and isolation matter most. It must run directly on the hardware with no general-purpose OS underneath. Which fits?",
+   "o": [
+    [
+     "A Type 1 hypervisor, such as VMware ESXi",
+     "Right. A Type 1 hypervisor is installed on bare metal and manages the hardware itself, which gives better performance and isolation."
+    ],
+    [
+     "A container engine, such as Docker running on a Linux host",
+     "A container engine shares the host's kernel. It is not a hypervisor that creates virtual hardware."
+    ],
+    [
+     "KVM running inside a Linux VM",
+     "A hypervisor nested inside another VM adds a layer and costs performance, so it is not the choice for production servers."
+    ],
+    [
+     "A Type 2 hypervisor, such as VirtualBox on a desktop OS",
+     "Type 2 runs as an application on top of a host operating system."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "How does a container differ from a virtual machine?",
+   "o": [
+    [
+     "Containers each carry their own kernel for stronger isolation",
+     "That describes a VM. Containers rely on the host kernel."
+    ],
+    [
+     "Containers must run on top of a Type 1 hypervisor",
+     "A container engine runs on a normal host OS. A hypervisor is not required."
+    ],
+    [
+     "Containers cannot have their own IP address",
+     "Containers get their own virtual interfaces and addresses."
+    ],
+    [
+     "Containers share the host's OS kernel, while each VM has its own guest OS",
+     "Right. Sharing the kernel makes containers small and quick to start. A VM carries a full OS, which costs more memory."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Two VMs on the same host share one VLAN and talk to each other. Where is their traffic switched?",
+   "o": [
+    [
+     "At the default gateway, since it is the only Layer 3 device",
+     "Same-VLAN traffic is switched at Layer 2. The gateway is not used."
+    ],
+    [
+     "Inside the host's virtual switch, without ever leaving the server",
+     "Right. The vSwitch forwards frames between VMs in memory, so the traffic never reaches the physical network."
+    ],
+    [
+     "At the physical access switch, then back down the same uplink",
+     "This hairpin happens only in special designs, not in the default vSwitch behavior."
+    ],
+    [
+     "On the spine switches of the data center fabric",
+     "Spines never see traffic between two VMs on one host."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-2-04",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Why does a standard virtual switch with two uplinks to two physical switches not create a Layer 2 loop?",
+   "o": [
+    [
+     "It sends BPDUs so the physical switches treat it as the root",
+     "It sends no BPDUs and takes no part in root election."
+    ],
+    [
+     "It runs RSTP and blocks one of the two physical uplinks",
+     "A standard vSwitch does not run spanning tree."
+    ],
+    [
+     "It never sends a frame from one uplink out of another uplink",
+     "Right. The vSwitch knows its VMs are behind vNICs, so uplink-to-uplink forwarding does not occur and no loop can form."
+    ],
+    [
+     "It puts each uplink into a separate VLAN automatically",
+     "VLAN assignment is not changed per uplink. The loop is avoided by its forwarding rules."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-2-05",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Two tenants at one site need to use the same 10.1.1.0/24 range on the same router. What is required?",
+   "o": [
+    [
+     "Policy-based routing on each of the LAN interfaces",
+     "PBR picks a next hop but still looks in one routing table."
+    ],
+    [
+     "Two OSPF processes with different process IDs",
+     "Both processes still share the global routing table, so the duplicate prefixes would still conflict."
+    ],
+    [
+     "One VRF per tenant, each with its own table",
+     "Right. Each VRF keeps its own table and interfaces, so overlapping addresses do not conflict."
+    ],
+    [
+     "A second loopback address for each of the tenants",
+     "Extra loopbacks do not separate routing tables."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-2-06",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "An admin enters the commands below and then finds that Gi0/1 has no IP address. What happened?",
+   "o": [
+    [
+     "vrf forwarding needs an address family configured under the interface first",
+     "The address family belongs under the vrf definition, not on the interface."
+    ],
+    [
+     "Applying vrf forwarding cleared the IP address, so it must be entered again",
+     "Right. Moving an interface into a VRF clears its IP address. The address has to be configured after the VRF command."
+    ],
+    [
+     "The VRF needs a route distinguisher value before any interface can use it",
+     "A route distinguisher is needed for MPLS VPNs, not for a basic VRF-lite setup."
+    ],
+    [
+     "The interface must be shut down before the vrf forwarding command is entered",
+     "Shutting down is not required to apply a VRF."
+    ]
+   ],
+   "a": 1,
+   "code": "interface GigabitEthernet0/1\n ip address 10.1.1.1 255.255.255.0\n vrf forwarding TENANT-A"
+  },
+  {
+   "id": "e4-2-07",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Which statement is true about a GRE tunnel used by itself between two sites?",
+   "o": [
+    [
+     "It carries multicast but does not encrypt",
+     "Right. GRE wraps many protocols in IP, so OSPF can run across it, but the payload is sent in the clear."
+    ],
+    [
+     "It cannot carry multicast, so OSPF needs static neighbors",
+     "GRE supports multicast, which is why routing protocols can run over it."
+    ],
+    [
+     "It encrypts the payload with AES-256 unless that is turned off",
+     "GRE has no encryption. IPsec is added when protection is needed."
+    ],
+    [
+     "It authenticates the two peers using certificates from a CA",
+     "GRE has no built-in authentication of peers."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-2-08",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A GRE tunnel keeps going down. The log shows: %TUN-5-RECURDOWN: Tunnel0 temporarily disabled due to recursive routing. What is the usual cause?",
+   "o": [
+    [
+     "The ISP is filtering GRE traffic, which is IP protocol 47, on its network",
+     "A block would stop the tunnel from coming up, but it would not log a recursive routing error."
+    ],
+    [
+     "The tunnel source is a loopback interface that is reachable by an IGP route",
+     "A loopback source is common and works fine when it is reachable by a non-tunnel route."
+    ],
+    [
+     "The tunnel MTU was set larger than the MTU of the physical interface",
+     "An MTU problem causes drops of big packets, not this message."
+    ],
+    [
+     "The route to the tunnel destination is learned through the tunnel itself",
+     "Right. If the best path to the far end goes over the tunnel, the tunnel depends on itself and the router shuts it down."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-2-09",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A firewall between two IPsec peers must allow IKE and ESP. The peers use no NAT. What should it permit?",
+   "o": [
+    [
+     "TCP port 500 and IP protocol 47",
+     "IKE uses UDP, not TCP, and IP protocol 47 is GRE."
+    ],
+    [
+     "UDP port 500 and IP protocol 47 only",
+     "Protocol 47 is GRE. Without ESP (protocol 50), the encrypted traffic is blocked."
+    ],
+    [
+     "UDP port 4500 and IP protocol 51 only",
+     "UDP 4500 is for NAT traversal and 51 is AH. The basic case needs UDP 500 and ESP."
+    ],
+    [
+     "UDP port 500 and IP protocol 50",
+     "Right. IKE negotiates on UDP 500, and ESP is IP protocol 50. UDP 4500 is added only for NAT traversal."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-2-10",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "What does IPsec tunnel mode do to an original IP packet?",
+   "o": [
+    [
+     "Encrypts only the payload and keeps the original header",
+     "That is transport mode."
+    ],
+    [
+     "Signs the packet with AH but leaves the data readable",
+     "AH authenticates without encrypting, but tunnel mode with ESP encrypts."
+    ],
+    [
+     "Encrypts the original packet, adds a new IP header",
+     "Right. Tunnel mode protects the original header and payload and wraps them behind a new IP header for the path between gateways."
+    ],
+    [
+     "Works only between a host and its own default gateway",
+     "Tunnel mode is used mostly between gateways and works between any peers."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-2-11",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "What problem does LISP solve by separating an endpoint's identity (EID) from its location (RLOC)?",
+   "o": [
+    [
+     "It gives hosts a shared virtual gateway that survives a router failure",
+     "That is the job of an FHRP or an anycast gateway."
+    ],
+    [
+     "A host keeps its address when it moves; routing tables shrink",
+     "Right. Routing uses RLOCs, while EIDs are looked up in a mapping system. Moving a host only changes its mapping."
+    ],
+    [
+     "It replaces ARP so that hosts inside each VLAN can find each other",
+     "LISP maps identities to locations across a network. It does not replace ARP."
+    ],
+    [
+     "It encrypts all of the traffic that flows between two LISP sites",
+     "LISP encapsulates traffic but does not encrypt it."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-2-12",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "In LISP, which device registers its EID prefixes with the map-server?",
+   "o": [
+    [
+     "The ETR",
+     "Right. The egress tunnel router tells the mapping system which EIDs sit behind it using a Map-Register."
+    ],
+    [
+     "The map-resolver",
+     "The map-resolver receives Map-Requests from ITRs. It does not register EIDs."
+    ],
+    [
+     "The proxy tunnel router",
+     "A proxy router forwards between LISP and non-LISP sites. It is not what registers prefixes."
+    ],
+    [
+     "The ITR",
+     "The ingress tunnel router encapsulates packets and sends Map-Requests."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-2-13",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A LISP ITR receives a packet for an EID that is not in its map cache. What does it do?",
+   "o": [
+    [
+     "Asks the map-resolver with a Map-Request to learn the RLOC",
+     "Right. The reply fills the map cache, and later packets for that EID are encapsulated toward the learned RLOC."
+    ],
+    [
+     "Sends a DNS query to find the RLOC of the destination host",
+     "DNS is not part of the LISP lookup."
+    ],
+    [
+     "Floods the packet toward every RLOC held in the map cache",
+     "LISP does not flood. It asks the mapping system."
+    ],
+    [
+     "Sends a Map-Register to the map-server to announce the prefix",
+     "Map-Register is sent by ETRs to announce prefixes, not by an ITR to find one."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-2-14",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Which description of VXLAN is correct?",
+   "o": [
+    [
+     "Layer 2 frames carried in GRE with a 12-bit VLAN ID",
+     "A 12-bit ID is the VLAN limit that VXLAN was built to get around, and VXLAN does not use GRE."
+    ],
+    [
+     "Layer 3 packets protected in ESP with a 16-bit tag",
+     "That describes IPsec, not an overlay for Layer 2 segments."
+    ],
+    [
+     "Layer 2 frames carried in UDP packets (port 4789) with a 24-bit VNI",
+     "Right. This MAC-in-UDP wrapping lets a Layer 2 segment stretch across a routed network."
+    ],
+    [
+     "IP packets carried in MPLS labels with a 20-bit label",
+     "That describes MPLS."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-2-15",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "How many network segments can the VXLAN VNI field identify, compared with 802.1Q VLAN IDs?",
+   "o": [
+    [
+     "About 4,096 segments, the same as the VLAN limit",
+     "VXLAN was designed to go well beyond the VLAN limit."
+    ],
+    [
+     "About 16 million, versus 4,094 usable VLANs",
+     "Right. The VNI is 24 bits, so it gives about 16 million segments. A VLAN ID is only 12 bits."
+    ],
+    [
+     "About 65,000 segments, versus 1,024 usable VLANs",
+     "Neither number is right. The VNI is 24 bits and VLAN IDs run to 4,094."
+    ],
+    [
+     "About 1 million segments, versus 255 usable VLANs",
+     "The VNI field is 24 bits, and VLAN IDs are 12 bits."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "SW1 and SW2 are joined by a link. Both ends are set to switchport mode dynamic auto. What state does the link end up in?",
+   "o": [
+    [
+     "Err-disabled, because both ends use the same DTP mode",
+     "Matching modes do not trigger err-disable. The port simply stays an access port."
+    ],
+    [
+     "An 802.1Q trunk, because both sides allow trunking",
+     "Dynamic auto waits to be asked. Two waiting sides never form a trunk."
+    ],
+    [
+     "An ISL trunk, because DTP chooses the older encapsulation",
+     "ISL is not chosen this way, and no trunk forms in this pairing."
+    ],
+    [
+     "Access, because neither side asks the other to trunk",
+     "Right. Dynamic auto only agrees to trunk if the other side asks. With two passive sides, nobody asks."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "The log shows: CDP-4-NATIVE_VLAN_MISMATCH: native VLAN mismatch discovered on Gi1/0/2 (1), with SW2 Gi1/0/2 (99). What is the effect?",
+   "o": [
+    [
+     "Untagged frames leak between VLANs 1 and 99; STP may complain",
+     "Right. Each side puts untagged frames into its own native VLAN, so traffic lands in the wrong VLAN."
+    ],
+    [
+     "All tagged VLANs are blocked until the native VLANs match on both switches",
+     "Tagged VLANs keep passing. The problem affects the untagged traffic."
+    ],
+    [
+     "DTP renegotiates the trunk using ISL encapsulation instead",
+     "DTP does not switch to ISL because of a native VLAN mismatch."
+    ],
+    [
+     "The trunk drops to an access port and uses VLAN 1 on both sides",
+     "A native VLAN mismatch does not change the port mode."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "The trunk between SW1 and SW2 is up and VLANs 10 and 20 work, but VLAN 30 does not cross it. On SW1, the allowed list is 10,20 and on SW2 it is 10,20,30. Which command on SW1 fixes it without breaking VLANs 10 and 20?",
+   "o": [
+    [
+     "switchport mode dynamic desirable on both ends",
+     "The trunk is already up. Changing the DTP mode does not edit the allowed list."
+    ],
+    [
+     "switchport trunk allowed vlan add 30",
+     "Right. The add keyword appends VLAN 30 to the existing list and leaves 10 and 20 in place."
+    ],
+    [
+     "switchport trunk allowed vlan 30 on the SW1 trunk",
+     "Without add, this replaces the whole list, so VLANs 10 and 20 would stop crossing."
+    ],
+    [
+     "switchport trunk native vlan 30 on both switches",
+     "This changes which VLAN is untagged. It does not add VLAN 30 to the allowed list."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-04",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "SW1 uses channel-group 1 mode active on its two uplinks. SW2 uses channel-group 1 mode on. What is the result?",
+   "o": [
+    [
+     "A PAgP channel forms, because on falls back to PAgP negotiation",
+     "On is a static mode and does not fall back to any protocol."
+    ],
+    [
+     "A channel forms, but with only one working member link",
+     "Both links are treated the same way, so a channel with one link is not expected here."
+    ],
+    [
+     "No working channel forms, because on sends no negotiation",
+     "Right. Active sends LACP frames and expects replies. A static on side never answers them."
+    ],
+    [
+     "An LACP channel forms, because active works with any mode",
+     "Active forms a channel only with active or passive. Mode on does not take part in LACP."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-05",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which pair of EtherChannel modes forms an LACP channel?",
+   "o": [
+    [
+     "desirable and active",
+     "Desirable is a PAgP mode and active is an LACP mode, so they cannot negotiate."
+    ],
+    [
+     "auto and passive",
+     "Auto is a PAgP mode, and passive is an LACP mode, so they do not match."
+    ],
+    [
+     "passive and passive",
+     "Neither side starts negotiation, so no channel forms."
+    ],
+    [
+     "passive and active",
+     "Right. LACP forms when at least one side is active. Passive waits for the other side to start."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-06",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "In show etherchannel summary, Po1 appears as (SD). What does that flag pair mean?",
+   "o": [
+    [
+     "A Layer 3 port-channel that is down",
+     "Layer 3 is shown with R, so this would read RD."
+    ],
+    [
+     "A suspended port-channel that is in default state",
+     "Suspended ports are marked s on members. The SD here describes the channel itself."
+    ],
+    [
+     "A Layer 2 port-channel that is in use",
+     "In use would show SU, not SD."
+    ],
+    [
+     "A Layer 2 port-channel that is down",
+     "Right. S means Layer 2 and D means down. A working Layer 2 channel shows SU."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-07",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "In show etherchannel summary, Gi1/0/1 is (P) but Gi1/0/2 is (s). Which problem most likely explains the second port?",
+   "o": [
+    [
+     "Gi1/0/2 has a different trunk mode or allowed VLANs than the bundle",
+     "Right. Members must match the bundle's key settings. A mismatch suspends the port."
+    ],
+    [
+     "Gi1/0/2 is cabled to the same partner switch as Gi1/0/1",
+     "Connecting to the same partner is required. It does not cause suspension."
+    ],
+    [
+     "Gi1/0/2 has a different spanning-tree PortFast setting from Gi1/0/1",
+     "PortFast is not one of the settings that must match for bundling."
+    ],
+    [
+     "Gi1/0/2 has a lower LACP port priority than the other member",
+     "Port priority only decides which links are active when there are more than the maximum."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-08",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which TWO settings must match on every physical member of an EtherChannel? (Choose two.)",
+   "o": [
+    [
+     "Switchport mode and allowed VLANs",
+     "Right. Members must carry the same Layer 2 settings, such as trunk mode and VLAN list."
+    ],
+    [
+     "LACP port priority",
+     "Priority can differ. It only influences which links are active."
+    ],
+    [
+     "STP port cost on each member",
+     "Spanning tree treats the bundle as one port, so the cost is set on the port-channel."
+    ],
+    [
+     "Speed and duplex",
+     "Right. A bundle needs members with the same speed and duplex, or the port is suspended."
+    ],
+    [
+     "Interface description",
+     "Descriptions are only labels and do not have to match."
+    ]
+   ],
+   "a": [
+    0,
+    3
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "e4-3-09",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "In show spanning-tree vlan 10, the root bridge priority is 24586. How was that value built?",
+   "o": [
+    [
+     "A configured priority of 24586, set in steps of 10",
+     "Priority is configured in steps of 4096. The extra 10 comes from the VLAN ID."
+    ],
+    [
+     "A priority of 24576 plus the VLAN ID 10",
+     "Right. The extended system ID adds the VLAN number to the configured priority, so 24576 + 10 = 24586."
+    ],
+    [
+     "A priority of 24576 plus the number of ports in the VLAN",
+     "The port count is not part of the bridge ID."
+    ],
+    [
+     "A priority of 24576 plus the hop count of 10",
+     "Hop count is not part of the bridge ID."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-10",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Port Gi1/0/24 faces an access switch that must never become root. The port should move to a root-inconsistent state if a superior BPDU arrives, and recover when the BPDUs stop. Which feature does this?",
+   "o": [
+    [
+     "BPDU guard",
+     "BPDU guard err-disables the port, and it stays down until someone or a recovery timer re-enables it."
+    ],
+    [
+     "Loop guard",
+     "Loop guard acts when BPDUs stop arriving, which is the opposite case."
+    ],
+    [
+     "Root guard",
+     "Right. Root guard blocks a port that hears superior BPDUs and restores it on its own once they stop."
+    ],
+    [
+     "BPDU filter",
+     "BPDU filter hides or ignores BPDUs. It would not enforce the root position."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-11",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A PortFast edge port was shut down after it received a BPDU. Which command lets the switch bring such ports back automatically after a timer?",
+   "o": [
+    [
+     "errdisable recovery cause bpduguard",
+     "Right. This makes the switch re-enable ports that BPDU guard shut down after the recovery interval."
+    ],
+    [
+     "udld aggressive",
+     "UDLD detects one-way links. It does not recover BPDU guard ports."
+    ],
+    [
+     "spanning-tree loopguard default",
+     "Loop guard protects against missing BPDUs. It does not re-enable ports."
+    ],
+    [
+     "spanning-tree bpduguard timeout 300",
+     "No such command exists, so the switch would reject it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-12",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "SW1 and SW2 both use MST with the same region name and revision. SW1 maps VLAN 20 to instance 1, and SW2 maps VLAN 20 to instance 2. What is the result?",
+   "o": [
+    [
+     "They merge into one region using the higher instance number",
+     "MST has no merge rule. Each switch's mapping must be identical."
+    ],
+    [
+     "Both fall back to PVST+ on the link",
+     "PVST+ interaction is for switches running PVST+, not for MST switches with different mappings."
+    ],
+    [
+     "SW2's uplink goes err-disabled",
+     "A region mismatch does not err-disable a port."
+    ],
+    [
+     "They are in different MST regions and meet only at the boundary",
+     "Right. The VLAN-to-instance mapping is part of the region identity, so the mismatch splits them into two regions."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-13",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which THREE items must be identical for two switches to belong to the same MST region? (Choose three.)",
+   "o": [
+    [
+     "Region name",
+     "Right. The name is part of the region identity."
+    ],
+    [
+     "VLAN-to-instance mapping",
+     "Right. The full mapping table must match."
+    ],
+    [
+     "Native VLAN on the trunk",
+     "The native VLAN is a trunk setting and is not part of the MST region identity."
+    ],
+    [
+     "Bridge priority",
+     "Priority is set per instance and can differ."
+    ],
+    [
+     "Revision number",
+     "Right. A different revision number puts the switch in a different region."
+    ]
+   ],
+   "a": [
+    0,
+    1,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "e4-3-14",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "How does RSTP reach forwarding faster than 802.1D on a point-to-point link?",
+   "o": [
+    [
+     "The listening state is cut from 15 seconds to 2 seconds",
+     "RSTP removes the need for listening on these links. It does not shorten it."
+    ],
+    [
+     "Only the root bridge sends BPDUs, which every switch relays",
+     "In RSTP every bridge sends its own BPDUs."
+    ],
+    [
+     "A proposal and agreement handshake moves a port to forwarding without waiting for timers",
+     "Right. Neighbors agree directly, so a designated port can start forwarding in about a second instead of waiting 30 seconds."
+    ],
+    [
+     "All ports skip learning and go to forwarding after a link comes up",
+     "Only edge ports skip the wait. Other ports use the handshake."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-15",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which statement correctly compares EIGRP and OSPF?",
+   "o": [
+    [
+     "OSPF keeps feasible successors for fast failover, but EIGRP cannot",
+     "It is the other way round. Feasible successors are an EIGRP feature."
+    ],
+    [
+     "EIGRP uses DUAL with feasible successors; OSPF floods LSAs per area",
+     "Right. DUAL gives EIGRP feasible successors, and OSPF routers in one area share the same link-state database."
+    ],
+    [
+     "Both protocols flood LSAs through the area to build a topology map",
+     "Only OSPF floods LSAs. EIGRP sends updates about routes to its neighbors."
+    ],
+    [
+     "EIGRP runs SPF on a topology database, while OSPF uses DUAL",
+     "This swaps the two protocols."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-16",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "R1 has a successor route with a feasible distance of 3072. Neighbor A reports a distance of 2560 for the same prefix. Neighbor B reports 3072, and neighbor C reports 3584. Which neighbors qualify as feasible successors?",
+   "o": [
+    [
+     "Neighbors A and B",
+     "B reports 3072, which equals the feasible distance and is not lower, so it fails."
+    ],
+    [
+     "None, because only the successor can be a backup",
+     "Feasible successors exist to be backups, and neighbor A meets the rule."
+    ],
+    [
+     "Only neighbor A",
+     "Right. The reported distance must be lower than the feasible distance of the successor. Only 2560 is lower than 3072."
+    ],
+    [
+     "Only neighbor C, because it has the highest metric",
+     "A higher reported distance never qualifies as loop-free."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-17",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A router learns 10.9.0.0/16 from OSPF, from internal EIGRP and from eBGP, all with default administrative distances. Which route is installed?",
+   "o": [
+    [
+     "The eBGP route, with distance 20",
+     "Right. The lowest administrative distance wins. eBGP is 20, internal EIGRP is 90 and OSPF is 110."
+    ],
+    [
+     "All three, load-balanced",
+     "Different protocols are not load-balanced together. Only one route is installed."
+    ],
+    [
+     "The EIGRP route, with distance 90",
+     "EIGRP loses to eBGP, which has a lower distance."
+    ],
+    [
+     "The OSPF route, with distance 110",
+     "OSPF has the highest distance of the three."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-18",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Four routers join one Ethernet segment at the same time: R1 priority 1 (router ID 1.1.1.1), R2 priority 100 (2.2.2.2), R3 priority 0 (3.3.3.3), and R4 priority 1 (4.4.4.4). Which router becomes the BDR?",
+   "o": [
+    [
+     "R2",
+     "R2 is elected DR, and a router cannot hold both roles."
+    ],
+    [
+     "R1",
+     "R1 ties with R4 on priority, and loses on router ID."
+    ],
+    [
+     "R3",
+     "Priority 0 means the router never takes part in the DR or BDR election."
+    ],
+    [
+     "R4",
+     "Right. R2 wins DR on priority. For BDR, R1 and R4 tie on priority 1 and the higher router ID, R4, wins. R3 is not eligible."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-19",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "On an ABR, area 1 holds 10.1.0.0/24 through 10.1.3.0/24. Which command advertises one summary into the backbone?",
+   "o": [
+    [
+     "area 0 range 10.1.0.0 255.255.252.0 on the ABR",
+     "The range names the area where the networks live. That is area 1, not area 0."
+    ],
+    [
+     "area 1 range 10.1.0.0 255.255.252.0",
+     "Right. The area range command summarizes the prefixes that live in the named area as they leave through the ABR."
+    ],
+    [
+     "summary-address 10.1.0.0 255.255.252.0",
+     "That command summarizes external routes on an ASBR, not inter-area routes on an ABR."
+    ],
+    [
+     "area 1 range 10.1.0.0 0.0.3.255 on the ABR",
+     "The command uses a subnet mask, not a wildcard mask."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-20",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Area 2 must not receive external routes (type 5 LSAs) but should still get inter-area routes. The ABR will send a default route. Which area type fits?",
+   "o": [
+    [
+     "An NSSA, which allows an ASBR inside",
+     "An NSSA allows an ASBR inside the area and carries its routes as type 7 LSAs."
+    ],
+    [
+     "A stub area",
+     "Right. A stub area blocks type 5 LSAs and gets a default route, but it keeps inter-area (type 3) routes."
+    ],
+    [
+     "The backbone area",
+     "Area 0 cannot be a stub and must accept all LSA types."
+    ],
+    [
+     "A totally stubby area",
+     "It also blocks inter-area routes, leaving only the default route."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-21",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which statement about OSPFv3 on IOS XE is correct?",
+   "o": [
+    [
+     "It sends hellos to 224.0.0.5 over IPv6",
+     "It uses the IPv6 multicast address FF02::5. 224.0.0.5 is an IPv4 address."
+    ],
+    [
+     "It uses network statements under the process to pick interfaces",
+     "Interfaces are enabled directly instead of by network statements."
+    ],
+    [
+     "It is enabled on each interface, and it still uses a 32-bit router ID",
+     "Right. OSPFv3 is turned on per interface, and the router ID stays in dotted-decimal form."
+    ],
+    [
+     "It builds its router ID from the highest IPv6 address",
+     "The router ID is 32 bits, so an IPv6 address cannot be used for it."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-22",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "On an ABR, the goal is to stop the prefix 10.1.9.0/24 in area 1 from being advertised into area 0. Which approach does this on the ABR?",
+   "o": [
+    [
+     "distribute-list prefix NO-TEST in under router ospf",
+     "A distribute-list filters only what is installed in the local routing table. The LSAs still spread."
+    ],
+    [
+     "passive-interface on the ABR's area 0 link",
+     "A passive interface would stop the adjacency and everything behind it."
+    ],
+    [
+     "ip ospf database-filter all out on one interface",
+     "This blocks every LSA on that interface, not just one prefix."
+    ],
+    [
+     "area 1 filter-list prefix NO-TEST out",
+     "Right. A filter-list on the ABR removes the matching type 3 LSAs as they leave area 1."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-23",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Two OSPF routers stay in EXSTART/EXCHANGE and never reach FULL. Both interfaces are up and the hello timers match. What is the most likely cause?",
+   "o": [
+    [
+     "An MTU mismatch between the two interfaces",
+     "Right. Database descriptions that are too large for one side are dropped, so the exchange never completes."
+    ],
+    [
+     "Duplicate router IDs on the two routers",
+     "Duplicate router IDs log a duplicate router ID message and cause flapping LSAs, not a neighbor stuck in EXSTART."
+    ],
+    [
+     "A wrong authentication key on one of the neighbors",
+     "Authentication failures stop the hellos from being accepted, so the neighbor does not progress to EXSTART."
+    ],
+    [
+     "Different area IDs configured on the two interfaces",
+     "An area mismatch also blocks the neighbor relationship early."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-24",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "R1 uses neighbor 192.0.2.2 remote-as 65002, but R2 really runs AS 65020. What happens?",
+   "o": [
+    [
+     "The session forms but R1 ignores all the prefixes that R2 sends",
+     "A mismatch stops the session before any prefixes are exchanged."
+    ],
+    [
+     "The session forms, and only the MED attribute is affected",
+     "MED has nothing to do with the AS number check."
+    ],
+    [
+     "The session forms as an iBGP session between the two routers",
+     "iBGP needs the same AS number on both sides. These differ."
+    ],
+    [
+     "R1 rejects R2's OPEN with a notification, so the session never establishes",
+     "Right. R2's OPEN carries AS 65020, which does not match remote-as 65002, so R1 answers with a notification (bad peer AS)."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-25",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A BGP neighbor shows Active in show ip bgp summary. What does Active mean?",
+   "o": [
+    [
+     "OPEN messages were exchanged and the router awaits a KEEPALIVE",
+     "That describes OpenConfirm."
+    ],
+    [
+     "It is still trying to open the TCP session on port 179",
+     "Right. Active means the router is still trying to start the TCP connection to the peer."
+    ],
+    [
+     "The neighbor is administratively shut down",
+     "An administrative shutdown shows as Idle (Admin)."
+    ],
+    [
+     "The session is established and prefixes are being exchanged",
+     "That would show a prefix count instead of a state name."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-26",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "R1 has the command network 198.51.100.0 mask 255.255.255.0 under BGP, but the prefix is not advertised. The routing table holds only 198.51.100.0/25. Why?",
+   "o": [
+    [
+     "An exact /24 route must exist, and only a /25 does",
+     "Right. BGP advertises a network command prefix only if the same prefix and mask are in the routing table."
+    ],
+    [
+     "next-hop-self is missing on the neighbor statement for R2",
+     "Next-hop settings do not affect whether the prefix is originated."
+    ],
+    [
+     "The prefix must first be redistributed from connected routes",
+     "A network command does not need redistribution. It needs an exact route."
+    ],
+    [
+     "The mask must be written as a wildcard mask in this command",
+     "BGP network commands use a normal subnet mask."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-27",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "R1 hears 203.0.113.0/24 from two eBGP peers. Weights are equal. R1's inbound route maps set local preference 100 on Peer A's route (AS path length 3) and 200 on Peer B's route (AS path length 5). Which route does R1 choose?",
+   "o": [
+    [
+     "Peer A's route, because it was received first and is the oldest path",
+     "Oldest path is a late tie-breaker. Local preference decides long before it."
+    ],
+    [
+     "Peer B's route, because a longer AS path is always preferred",
+     "A longer AS path is worse, not better. B wins because of its local preference."
+    ],
+    [
+     "Peer B, because local preference outranks AS path length",
+     "Right. Higher local preference wins before the path length is compared."
+    ],
+    [
+     "Peer A's route, because its AS path is shorter than B's",
+     "AS path length is checked only after local preference."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-28",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which attribute does the Cisco BGP best-path process check first?",
+   "o": [
+    [
+     "AS path length, where shorter is better",
+     "AS path length is checked after weight and local preference."
+    ],
+    [
+     "Local preference, where higher is better",
+     "Local preference comes after weight."
+    ],
+    [
+     "MED, where lower is better",
+     "MED is compared much later, and lower values are preferred."
+    ],
+    [
+     "Weight, where higher is better",
+     "Right. Weight is Cisco-specific and local to the router. It is the first check."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-29",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which configuration steers traffic from source network 10.10.10.0/24 to a different next hop, no matter what the routing table says for the destination?",
+   "o": [
+    [
+     "A route map applied with ip policy route-map on the ingress interface",
+     "Right. PBR looks at the source and other fields before the routing table, on traffic coming in through that interface."
+    ],
+    [
+     "An OSPF distribute-list that blocks the preferred path to the destination",
+     "A distribute-list changes which routes are installed. It does not choose paths by source."
+    ],
+    [
+     "The same route map applied with ip policy route-map on the egress interface",
+     "Policy routing is applied to packets as they arrive, so the egress interface is the wrong place."
+    ],
+    [
+     "A static route with a lower administrative distance for 10.10.10.0/24",
+     "Static routes match on destination, not on source."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-30",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A route map is applied with ip policy route-map on the LAN interface. Pings that the router itself sends are not affected. Why?",
+   "o": [
+    [
+     "PBR works only for TCP traffic, so the ICMP pings from the router never match",
+     "PBR can match many kinds of traffic, including ICMP."
+    ],
+    [
+     "Local pings use the management VRF automatically",
+     "They use the global table unless a VRF is specified."
+    ],
+    [
+     "Interface PBR misses router-made packets; use ip local policy",
+     "Right. Packets from the router do not arrive on any interface, so a separate local policy is needed."
+    ],
+    [
+     "The route map needs a higher sequence number",
+     "The sequence number decides clause order and does not affect locally generated traffic."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-31",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A PBR route map sets a next hop of 192.0.2.9. When 192.0.2.9 goes down, traffic is still sent toward it. Which addition checks that the next hop is alive?",
+   "o": [
+    [
+     "set ip default next-hop 192.0.2.9 on the same clause",
+     "The default next hop is used only when the routing table has no explicit route, and it does not check health."
+    ],
+    [
+     "set ip next-hop verify-availability with a track",
+     "Right. The router tracks the next hop, often with IP SLA, and stops using it when the track goes down."
+    ],
+    [
+     "match ip next-hop 192.0.2.9 in the route-map clause",
+     "Matching on a next hop selects routes in a policy. It does not test reachability."
+    ],
+    [
+     "A higher sequence number on the route-map clause",
+     "Sequence numbers decide the order of clauses and do not check for failures."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-32",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "In the output of show ntp associations, a line starts with *. What does the asterisk mean?",
+   "o": [
+    [
+     "The peer is a candidate but is not the one in use",
+     "A plus sign marks a candidate peer."
+    ],
+    [
+     "The peer failed the sanity checks",
+     "An x marks a peer the router considers a falseticker."
+    ],
+    [
+     "The peer is configured but has not answered",
+     "A tilde marks a configured peer. It is not the sync marker."
+    ],
+    [
+     "The router is synchronized to that peer",
+     "Right. The asterisk marks the peer the router has selected and synced its clock to."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-33",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "R1 is a stratum 3 NTP server. R2 uses R1 as its only server. What stratum does R2 show once synchronized?",
+   "o": [
+    [
+     "Stratum 4",
+     "Right. Each hop away from the time source adds one, so a client of a stratum 3 server becomes stratum 4."
+    ],
+    [
+     "Stratum 3",
+     "A client does not share its server's stratum. It is one level further away."
+    ],
+    [
+     "Stratum 5",
+     "The stratum increases by one per hop, not by two."
+    ],
+    [
+     "Stratum 16",
+     "Stratum 16 means unsynchronized. R2 is synchronized in this case."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-34",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A client needs authenticated NTP with a server. It has ntp authentication-key 1 md5 EXAMPLEKEY and ntp server 192.0.2.10 key 1, but it stays unsynchronized. Which commands are still missing?",
+   "o": [
+    [
+     "ntp source GigabitEthernet0/0 and ntp max-associations 2",
+     "A source interface sets the source address. It does not enable authentication."
+    ],
+    [
+     "ntp authenticate and ntp trusted-key 1",
+     "Right. Authentication must be turned on, and the key must be marked trusted before the client accepts time sources that use it."
+    ],
+    [
+     "ntp master 1 and ntp peer 192.0.2.10 with version 4",
+     "Master makes the router a time source, which is not what the client needs."
+    ],
+    [
+     "ntp access-group serve-only 10",
+     "An access group limits who can talk to the router. It does not make a key trusted."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-35",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "How does PTP (IEEE 1588) differ from NTP?",
+   "o": [
+    [
+     "PTP is accurate to about a few milliseconds, like NTP",
+     "PTP is designed to do much better than that."
+    ],
+    [
+     "PTP is NTP running over TCP so that time messages arrive reliably",
+     "They are separate protocols, and PTP uses its own messages."
+    ],
+    [
+     "It elects a grandmaster and uses hardware timestamps for sub-microsecond accuracy",
+     "Right. PTP is built for tight timing in networks that need it, such as financial or media networks."
+    ],
+    [
+     "PTP uses stratum levels to rank its sources",
+     "Stratum is an NTP idea. PTP ranks clocks with its best-master algorithm."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-36",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "In a PTP network, a switch must pass PTP messages through while adding the time each message spent inside it, without becoming a clock source. What kind of clock is it?",
+   "o": [
+    [
+     "Boundary clock",
+     "A boundary clock ends PTP on one side and becomes the time source for its downstream ports."
+    ],
+    [
+     "Grandmaster clock",
+     "The grandmaster is the primary time source for the network."
+    ],
+    [
+     "Ordinary clock with a single PTP port",
+     "An ordinary clock is an endpoint with one port. It does not relay messages."
+    ],
+    [
+     "Transparent clock",
+     "Right. A transparent clock updates a correction field with its residence time, and does not set the time for others."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-37",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Hosts on 10.0.1.0/24 cannot reach the internet. show ip nat translations is empty, and show ip nat statistics lists no inside or outside interfaces. What is missing?",
+   "o": [
+    [
+     "An extended ACL in place of the standard ACL used for the NAT rule",
+     "A standard ACL can select the source networks for NAT."
+    ],
+    [
+     "The overload keyword on the end of the NAT rule",
+     "Overload is needed for many-to-one translation, but the statistics show the interface marking is the issue."
+    ],
+    [
+     "The ip nat inside and ip nat outside interface markings",
+     "Right. NAT translates only on interfaces marked inside or outside. With neither marked, no translations are built."
+    ],
+    [
+     "A static NAT entry for each of the hosts on the LAN",
+     "Dynamic NAT or PAT is the normal way for many hosts. Static entries are not required."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-38",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Which command gives the inside server 10.0.5.20 the public address 203.0.113.20 all the time?",
+   "o": [
+    [
+     "ip nat inside source static 10.0.5.20 203.0.113.20",
+     "Right. This creates a permanent one-to-one translation for an inside host."
+    ],
+    [
+     "ip nat outside source static 10.0.5.20 203.0.113.20",
+     "The outside source form translates addresses of outside hosts."
+    ],
+    [
+     "ip nat pool PUBLIC 203.0.113.20 203.0.113.20 netmask 255.255.255.0",
+     "A pool only defines addresses. Without a rule that uses it, nothing is translated."
+    ],
+    [
+     "ip nat inside source list 10 pool PUBLIC overload",
+     "This builds dynamic PAT from a pool, and the mapping is not fixed for one host."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-39",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "In show ip nat translations, a server has inside local 10.0.5.20 and inside global 203.0.113.20. What does the inside global address represent?",
+   "o": [
+    [
+     "The real address of an outside host as seen on its own network",
+     "That is the outside global address."
+    ],
+    [
+     "How the inside host appears to the outside network",
+     "Right. The inside global address is the translated address that outside devices see."
+    ],
+    [
+     "How an outside host appears to inside users",
+     "That is the outside local address."
+    ],
+    [
+     "The private address configured on the host",
+     "That is the inside local address."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-40",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Two inside hosts open connections from source port 50000 to the same server at the same time, using one public address. How does PAT keep the flows apart?",
+   "o": [
+    [
+     "It assigns each host its own public address from a large pool",
+     "That is dynamic NAT with a pool, not PAT."
+    ],
+    [
+     "It also translates the source port so every flow gets a unique one",
+     "Right. The router keeps a table of address and port pairs and matches returning traffic to the right host."
+    ],
+    [
+     "It adds a different VLAN tag to each flow that leaves the router",
+     "VLAN tags are not used to tell NAT flows apart."
+    ],
+    [
+     "It matches returning traffic by the host's MAC address",
+     "NAT works at Layer 3 and 4 and does not use MAC addresses for matching."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-41",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "R1 has HSRP priority 110 and R2 has 100 in the same group. R1 reboots, R2 becomes active, and R1 comes back but stays standby. Why?",
+   "o": [
+    [
+     "R1 lacks preempt, so it does not reclaim the active role",
+     "Right. HSRP preempt is off by default, so a higher priority alone does not take over."
+    ],
+    [
+     "R2 has the higher IP address, which always wins the active election",
+     "IP address is only a tie-breaker when priorities are equal."
+    ],
+    [
+     "HSRP version 1 never allows a router to take over again",
+     "Preempt works in both versions."
+    ],
+    [
+     "A priority difference of less than 20 cannot cause a takeover",
+     "There is no such rule. The preempt command is what matters."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-42",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "R1 (priority 110) and R2 (priority 100) both have preempt configured. R1 has standby 1 track 10 decrement 20. What happens when tracked object 10 goes down?",
+   "o": [
+    [
+     "R1 stays active, and the track only logs a message",
+     "A tracked object that goes down lowers the priority by the decrement."
+    ],
+    [
+     "R1's priority falls to 0, and it leaves the group",
+     "The priority drops by the decrement. It does not fall to 0."
+    ],
+    [
+     "R1's priority drops to 90, and R2 becomes active",
+     "Right. With R1 at 90 and R2 at 100, R2's higher priority and preempt make it active."
+    ],
+    [
+     "R1's priority rises to 130",
+     "A failed track lowers the priority. It does not raise it."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-43",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Interface Gi0/2 faces users. The engineer wants OSPF to advertise that subnet but form no neighbors on it. Which command under router ospf does this?",
+   "o": [
+    [
+     "ip ospf network non-broadcast",
+     "This changes the network type and still sends hellos to configured neighbors."
+    ],
+    [
+     "distribute-list out on Gi0/2",
+     "A distribute-list filters routes in updates and does not stop neighbors from forming."
+    ],
+    [
+     "no network 10.20.0.0 0.0.0.255 area 0",
+     "Removing the network statement stops advertising the subnet, which is not what is wanted."
+    ],
+    [
+     "passive-interface GigabitEthernet0/2",
+     "Right. A passive interface is still advertised, but sends no hellos, so no adjacency forms."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-44",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Which virtual MAC address does HSRP version 2 use for group 10?",
+   "o": [
+    [
+     "0000.0C9F.F00A",
+     "Right. HSRP version 2 uses 0000.0C9F.Fxxx, with the group number in hexadecimal, and 10 is 00A."
+    ],
+    [
+     "0000.0C07.AC0A",
+     "That is the HSRP version 1 format."
+    ],
+    [
+     "0000.5E00.010A",
+     "That is the VRRP format."
+    ],
+    [
+     "0000.0C9F.F010",
+     "This writes group 10 in decimal instead of hexadecimal."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-45",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "In VRRP, a router owns the same IP address as the virtual router. What priority does it use?",
+   "o": [
+    [
+     "0",
+     "Priority 0 is sent by a master that is giving up its role."
+    ],
+    [
+     "255",
+     "Right. The address owner always uses 255, so it becomes master when it is up."
+    ],
+    [
+     "100",
+     "That is the default priority of a router that does not own the address."
+    ],
+    [
+     "254",
+     "The highest value used for a non-owner is 254, but the owner takes 255."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-46",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A router receives a multicast packet from source 198.51.100.7 on Gi0/1. Its unicast route to 198.51.100.7 points out Gi0/2. What does the router do?",
+   "o": [
+    [
+     "It forwards the packet normally, then sends a PIM prune toward the source",
+     "The RPF check happens first. A failed check means the packet is dropped."
+    ],
+    [
+     "It forwards the packet back out Gi0/2 toward the source",
+     "Forwarding back toward the source would risk loops."
+    ],
+    [
+     "It drops the packet, because the RPF check fails",
+     "Right. Multicast is accepted only on the interface the router would use to reach the source."
+    ],
+    [
+     "It sends an IGMP leave message for the group to the source",
+     "IGMP is for hosts and routers on a LAN. It is not part of the RPF check."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-47",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "In PIM sparse mode, how does a receiver's last-hop router first find the sources for a group?",
+   "o": [
+    [
+     "It asks an MSDP peer for the address of the active source",
+     "MSDP shares sources between RPs in different domains and is not asked by last-hop routers."
+    ],
+    [
+     "It floods the group's traffic everywhere and waits for prunes",
+     "That describes dense mode."
+    ],
+    [
+     "It sends IGMP queries to the source",
+     "IGMP works between hosts and their local router, not toward sources."
+    ],
+    [
+     "It sends a (*,G) join toward the rendezvous point",
+     "Right. Sources register with the RP, and receivers join the shared tree rooted there."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-3-48",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Which statement about Source-Specific Multicast (SSM) is correct?",
+   "o": [
+    [
+     "The default range is 239.0.0.0/8",
+     "That is the administratively scoped range. SSM uses 232.0.0.0/8."
+    ],
+    [
+     "Receivers join a chosen (S,G) pair using IGMPv3, and no RP is needed",
+     "Right. The receiver names the source, so the router builds a path to it directly. The default range is 232.0.0.0/8."
+    ],
+    [
+     "Receivers join with IGMPv2 and an RP finds the source",
+     "IGMPv2 cannot name a source, and SSM does not use an RP."
+    ],
+    [
+     "Receivers join a shared (*,G) tree rooted at the RP",
+     "That describes sparse mode."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-3-49",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "EIGRP neighbors on a shared link do not form. Which setting must be the same on both routers?",
+   "o": [
+    [
+     "The hold timer value that each router advertises",
+     "Each router advertises its own hold time, and the values do not have to match."
+    ],
+    [
+     "The process name used under router eigrp",
+     "EIGRP has no process name that must match."
+    ],
+    [
+     "The autonomous system number",
+     "Right. EIGRP only forms neighbors with routers in the same AS, and the K values must also match."
+    ],
+    [
+     "The router ID, which must also be identical on both routers",
+     "Router IDs must be different, not the same."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-3-50",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "An application has many sources and many receivers, and the design should avoid per-source state and register messages. Which PIM mode fits?",
+   "o": [
+    [
+     "Bidirectional PIM, which uses only the shared tree",
+     "Right. Traffic flows both up and down the shared tree, so routers keep (*,G) state only."
+    ],
+    [
+     "SSM with IGMPv3 source-specific joins",
+     "SSM builds a tree per source, so it needs the most per-source state."
+    ],
+    [
+     "PIM dense mode with its flood-and-prune behavior",
+     "Dense mode floods and prunes, and it keeps per-source state."
+    ],
+    [
+     "PIM sparse mode with SPT switchover",
+     "Switchover creates (S,G) state for each active source."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-3-51",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Which protocol lets rendezvous points in different PIM domains tell each other about active sources?",
+   "o": [
+    [
+     "IGMPv3",
+     "IGMPv3 is used between hosts and routers."
+    ],
+    [
+     "RPF",
+     "RPF is a check on incoming packets, and it is not a protocol that shares source information."
+    ],
+    [
+     "BSR",
+     "BSR distributes RP information inside one PIM domain."
+    ],
+    [
+     "MSDP",
+     "Right. MSDP peers send Source Active messages between RPs, so receivers in one domain can reach sources in another."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A production router is busy, and an engineer needs debug output for only one interface. Which command narrows the output to that interface?",
+   "o": [
+    [
+     "debug all, then filter the output with a pipe",
+     "This turns on every debug and can overload the router."
+    ],
+    [
+     "logging console debugging with a lower buffer size",
+     "This sends messages to the console and does not narrow what is produced."
+    ],
+    [
+     "terminal monitor on the SSH session",
+     "This only shows log messages in the session. It does not limit them."
+    ],
+    [
+     "debug condition interface GigabitEthernet0/1",
+     "Right. A condition limits the supported debugs to events on the named interface, which reduces CPU load."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "An engineer turned on a debug over an SSH session, but no output appears. What is the most likely missing command?",
+   "o": [
+    [
+     "terminal monitor",
+     "Right. Debug output goes to the console by default. A remote session must ask to see log messages."
+    ],
+    [
+     "no logging console",
+     "Turning off console logging does not move the output to the SSH session."
+    ],
+    [
+     "logging buffered 4096",
+     "This stores messages in memory. It does not send them to the SSH session."
+    ],
+    [
+     "service timestamps debug datetime",
+     "Timestamps only change the format of messages."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-4-03",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Which TWO habits keep debugging safe on a production router? (Choose two.)",
+   "o": [
+    [
+     "Run undebug all as soon as the data is collected",
+     "Right. Leaving debugs on wastes CPU and can fill logs."
+    ],
+    [
+     "Start with debug all, then narrow down",
+     "Starting wide risks overloading the device before you narrow anything."
+    ],
+    [
+     "Limit the debug to one condition, such as a single interface or neighbor",
+     "Right. A narrow debug produces less output and puts less load on the router."
+    ],
+    [
+     "Leave debugs on overnight to catch rare events",
+     "Long-running debugs add load and can fill buffers. Use logging or captures for that."
+    ],
+    [
+     "Turn on debug ip packet with no ACL to see everything",
+     "This can produce huge output and lock up a busy router."
+    ]
+   ],
+   "a": [
+    0,
+    2
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "e4-4-04",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A traceroute shows hop 3 as * * * and hop 4 answers normally. What does that tell you?",
+   "o": [
+    [
+     "The destination replied from hop 3, and the lines below it are leftover probes",
+     "The destination would reply and the trace would end."
+    ],
+    [
+     "A routing loop exists at hop 3",
+     "A loop shows the same addresses repeating over several hops."
+    ],
+    [
+     "Hop 3 sent no replies, maybe filtering ICMP, but traffic passes it",
+     "Right. Later hops replying shows the packets are getting through the silent device."
+    ],
+    [
+     "Hop 3 is down, and traffic stops there",
+     "If traffic stopped at hop 3, hop 4 could not answer."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-4-05",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "An extended ping prints UUUUU. What does U mean?",
+   "o": [
+    [
+     "Each probe timed out",
+     "A timeout is shown as a period."
+    ],
+    [
+     "A router on the path returned an ICMP destination unreachable",
+     "Right. U marks that the probe was answered with an unreachable message."
+    ],
+    [
+     "The packet needed fragmenting but DF was set",
+     "That case is shown as M."
+    ],
+    [
+     "Each reply was received",
+     "A successful reply is shown as an exclamation mark."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-4-06",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "An engineer sets logging trap warnings on a router. Which messages are sent to the syslog server?",
+   "o": [
+    [
+     "Levels 0 through 5, up to notifications",
+     "Notifications are level 5, which is above the warnings setting."
+    ],
+    [
+     "Levels 4 through 7, from warnings to debugging",
+     "This reverses the direction, since 7 is the least severe."
+    ],
+    [
+     "Severity levels 0 through 4, from emergencies to warnings",
+     "Right. The trap level sets the least severe message that is sent, and warnings are level 4."
+    ],
+    [
+     "Only level 4 messages",
+     "The setting is a ceiling that includes all more severe levels."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-4-07",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Which SNMP configuration gives both authentication and encryption of messages?",
+   "o": [
+    [
+     "SNMPv3 with the authPriv security level",
+     "Right. authPriv uses authentication and privacy together."
+    ],
+    [
+     "SNMPv3 with the authNoPriv security level",
+     "This authenticates messages, but sends them unencrypted."
+    ],
+    [
+     "SNMPv2c with a long and random community string",
+     "The community string is sent in clear text, and messages are not encrypted."
+    ],
+    [
+     "SNMPv3 with the noAuthNoPriv security level",
+     "This uses only a username, with no authentication or encryption."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-4-08",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "In Flexible NetFlow, which component says which fields are matched and collected for each flow?",
+   "o": [
+    [
+     "The flow monitor",
+     "The monitor ties a record and an exporter together and is attached to an interface."
+    ],
+    [
+     "The flow record",
+     "Right. The record lists the key fields that define a flow and the extra fields to collect."
+    ],
+    [
+     "The flow sampler",
+     "A sampler picks which packets are looked at, and does not define the fields."
+    ],
+    [
+     "The flow exporter",
+     "The exporter says where to send the data."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-4-09",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A record, an exporter and a monitor are configured, but the collector receives nothing. What is the last step?",
+   "o": [
+    [
+     "Enable the legacy ip route-cache flow command on the interface",
+     "Flexible NetFlow does not use the legacy command."
+    ],
+    [
+     "Apply the exporter to the interface with ip flow exporter",
+     "Exporters are attached to monitors, not directly to interfaces."
+    ],
+    [
+     "Apply the record to the collector's address",
+     "A record defines fields. It has no destination."
+    ],
+    [
+     "Apply the monitor to an interface with ip flow monitor",
+     "Right. The monitor starts to cache and export only when it is applied to an interface."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-4-10",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "In a Flexible NetFlow record, what is the difference between match and collect?",
+   "o": [
+    [
+     "Match fields are for IPv4, and collect fields are for IPv6",
+     "Both can be used with either address family."
+    ],
+    [
+     "Match fields are keys that define a flow, and collect fields add extra data such as byte counts",
+     "Right. Two packets are in the same flow when all match fields are the same. Collected data is added to the flow entry."
+    ],
+    [
+     "Collect fields define the flow, and match fields add extra data",
+     "This swaps the two keywords."
+    ],
+    [
+     "Match fields apply to input traffic, and collect fields apply to output traffic",
+     "Direction is set when the monitor is applied to the interface."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-4-11",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Which Flexible NetFlow component holds the collector's address and the UDP port used for export?",
+   "o": [
+    [
+     "The flow exporter",
+     "Right. The exporter defines where records are sent and how."
+    ],
+    [
+     "The flow monitor",
+     "The monitor ties a record and an exporter together."
+    ],
+    [
+     "The interface",
+     "The interface only has the monitor applied to it."
+    ],
+    [
+     "The flow record",
+     "The record lists which fields are matched and collected."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-4-12",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "An analyzer is attached to SW-C. The traffic to be captured enters on ports of SW-A, and the switches are joined by trunks. What is needed?",
+   "o": [
+    [
+     "VTP pruning turned on for all of the trunks",
+     "Pruning cuts unneeded VLAN traffic. It does not create a monitor path."
+    ],
+    [
+     "Matching session numbers on each switch in the path",
+     "Session numbers have only local meaning, and the VLAN is what links them."
+    ],
+    [
+     "A dedicated RSPAN VLAN on every switch in the path",
+     "Right. The RSPAN VLAN carries the copied traffic across the trunks to the destination switch."
+    ],
+    [
+     "A GRE tunnel between SW-A and SW-C over the trunks",
+     "GRE is what ERSPAN uses across Layer 3, not RSPAN across trunks."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-4-13",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "The analyzer sits in a different routed subnet from the switch whose ports must be copied. Which feature copies the traffic across the Layer 3 network?",
+   "o": [
+    [
+     "Local SPAN with encapsulation replicate",
+     "That keeps VLAN tags on copied frames, but the analyzer must still be on the same switch."
+    ],
+    [
+     "RSPAN",
+     "RSPAN relies on a VLAN across trunks, so the path must be Layer 2."
+    ],
+    [
+     "Flexible NetFlow",
+     "NetFlow exports records about flows. It does not copy packets."
+    ],
+    [
+     "ERSPAN",
+     "Right. ERSPAN wraps the copied traffic in GRE so that it can be routed to a remote destination."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-4-14",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "Which IP SLA operation measures jitter and packet loss for voice, and needs a responder at the far end?",
+   "o": [
+    [
+     "icmp-echo",
+     "It measures round-trip time and reachability, but not one-way jitter."
+    ],
+    [
+     "http get",
+     "It measures the time to fetch a web page."
+    ],
+    [
+     "tcp-connect",
+     "It measures how long a TCP handshake takes to a port."
+    ],
+    [
+     "udp-jitter",
+     "Right. It sends a stream of UDP packets, and the responder timestamps them so jitter, delay and loss can be calculated."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-4-15",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "A branch has a primary default route through ISP-1 and a backup through ISP-2. The router must switch when ISP-1's gateway stops answering, even though the link stays up. What is a good design?",
+   "o": [
+    [
+     "An IP SLA operation with a schedule but no track object bound to the route",
+     "Without a track object, nothing reads the result and the routes do not change."
+    ],
+    [
+     "An IP SLA echo to the gateway, tracked by the primary static default route",
+     "Right. When the probe fails, the track goes down and the tracked route leaves the table, so the floating static route takes over."
+    ],
+    [
+     "A floating static route alone, with a higher distance for ISP-2",
+     "It switches only when the primary route disappears, and a failure upstream may leave the link up."
+    ],
+    [
+     "A higher OSPF cost on the ISP-1 interface of the branch router",
+     "Cost changes do not react to a gateway that stops answering."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-4-16",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "An IP SLA operation is configured but show ip sla statistics shows no results. What is most likely missing?",
+   "o": [
+    [
+     "ip sla schedule for the operation",
+     "Right. An operation does not start until it is scheduled."
+    ],
+    [
+     "A track object for the operation",
+     "Tracking is used to react to results. The operation can run without it."
+    ],
+    [
+     "ip sla responder on the source router",
+     "A responder is needed on the far end for some operations, not on the source."
+    ],
+    [
+     "A higher frequency value",
+     "The frequency sets how often the operation repeats and does not start it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-4-17",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "Which Catalyst Center area is used to define sites, network settings such as DNS and NTP, and the image repository?",
+   "o": [
+    [
+     "Policy",
+     "Policy defines things like virtual networks and group-based access."
+    ],
+    [
+     "Assurance",
+     "Assurance monitors health and issues. It does not define settings."
+    ],
+    [
+     "Design",
+     "Right. Design is where the site hierarchy and shared network settings are defined first."
+    ],
+    [
+     "Provision",
+     "Provision applies the settings to devices after they are designed."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-4-18",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "A new switch arrives with no configuration. Which Catalyst Center feature can find it and apply a day-0 configuration with little hands-on work?",
+   "o": [
+    [
+     "Path Trace between two endpoints",
+     "Path Trace shows the route between two endpoints, so it needs a working network."
+    ],
+    [
+     "Software Image Management",
+     "It manages image versions and updates, but it does not onboard a new device by itself."
+    ],
+    [
+     "Plug and Play",
+     "Right. The switch asks for a controller and gets its image and configuration from the Plug and Play process."
+    ],
+    [
+     "Assurance issues",
+     "Issues show problems on devices that are already known to the system."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-4-19",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "What does Assurance in Catalyst Center provide?",
+   "o": [
+    [
+     "Authentication of users and devices with 802.1X and RADIUS",
+     "User authentication is the job of ISE or a similar policy server."
+    ],
+    [
+     "Configuration templates pushed to many switches at once",
+     "That is the job of provisioning and templates."
+    ],
+    [
+     "Control plane services for the SD-WAN overlay",
+     "Control plane services in SD-WAN are provided by the controllers."
+    ],
+    [
+     "Health scores and issues built from device and client telemetry",
+     "Right. It turns telemetry into a view of network health, and helps find the cause of problems."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-4-20",
+   "d": "4.0",
+   "obj": "4.6",
+   "q": "Which transport and port does NETCONF use by default?",
+   "o": [
+    [
+     "SSH on TCP 830, with XML messages",
+     "Right. NETCONF runs over an SSH subsystem on port 830 and exchanges XML."
+    ],
+    [
+     "HTTPS on TCP 443, with JSON bodies",
+     "That fits RESTCONF better than NETCONF."
+    ],
+    [
+     "Telnet on TCP 23, with plain text commands",
+     "Telnet is a CLI protocol and not part of NETCONF."
+    ],
+    [
+     "SNMP on UDP 161, with MIB objects",
+     "SNMP uses its own protocol and data model."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-4-21",
+   "d": "4.0",
+   "obj": "4.6",
+   "q": "Which RESTCONF method replaces the whole target resource with the data sent?",
+   "o": [
+    [
+     "PATCH",
+     "PATCH merges the supplied data with what already exists."
+    ],
+    [
+     "PUT",
+     "Right. PUT replaces the resource with the supplied data."
+    ],
+    [
+     "GET",
+     "GET only reads data."
+    ],
+    [
+     "POST",
+     "POST creates a new child resource."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-4-22",
+   "d": "4.0",
+   "obj": "4.6",
+   "q": "RESTCONF requests to a Catalyst switch fail with connection refused on port 443. Which commands enable it on the IOS XE device?",
+   "o": [
+    [
+     "ip http server and restconf",
+     "Plain HTTP on port 80 is enabled, but nothing answers on HTTPS port 443."
+    ],
+    [
+     "netconf-yang and ip http secure-server",
+     "HTTPS is enabled, but netconf-yang turns on NETCONF over SSH and does not turn on RESTCONF."
+    ],
+    [
+     "ip http secure-server and snmp-server enable traps",
+     "HTTPS is enabled, but SNMP traps are unrelated and the restconf command is still missing."
+    ],
+    [
+     "restconf and ip http secure-server",
+     "Right. RESTCONF is served over the device's HTTPS server, so both must be on."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-4-23",
+   "d": "4.0",
+   "obj": "4.6",
+   "q": "Which NETCONF operation changes the configuration on a device?",
+   "o": [
+    [
+     "edit-config",
+     "Right. edit-config sends changes to a configuration datastore."
+    ],
+    [
+     "hello, sent at the start of a session",
+     "The hello message is only used at the start to share capabilities."
+    ],
+    [
+     "get, which reads state and configuration data",
+     "It reads state and configuration data."
+    ],
+    [
+     "get-config, which reads a datastore",
+     "It reads a configuration datastore and does not change it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-5-01",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Which vty line configuration allows only SSH logins checked against local usernames?",
+   "o": [
+    [
+     "login, with a line password and transport input telnet ssh",
+     "This uses a shared line password, and Telnet is still allowed."
+    ],
+    [
+     "no login, with transport input ssh",
+     "Without login, the line asks for no credentials at all."
+    ],
+    [
+     "login local, with transport input ssh",
+     "Right. login local checks the local user database, and transport input ssh blocks Telnet."
+    ],
+    [
+     "login local, with transport input all",
+     "Local usernames are used, but Telnet and every other protocol are still accepted."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-5-02",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Which TWO steps are needed before SSH will work on a new IOS XE router? (Choose two.)",
+   "o": [
+    [
+     "Set a hostname and a domain name",
+     "Right. The router builds its RSA key name from the hostname and domain name."
+    ],
+    [
+     "Set the vty lines to transport input telnet",
+     "This would allow Telnet and does not prepare SSH."
+    ],
+    [
+     "Enable the ip http secure-server command",
+     "That enables the web server, not SSH."
+    ],
+    [
+     "Configure an enable password with service password-encryption",
+     "Neither command is a prerequisite for SSH."
+    ],
+    [
+     "Generate an RSA key pair, such as crypto key generate rsa modulus 2048",
+     "Right. SSH needs a key pair to protect the session."
+    ]
+   ],
+   "a": [
+    0,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "e4-5-03",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Which command stores a local user's password using a strong one-way scrypt hash?",
+   "o": [
+    [
+     "service password-encryption, with the passwords entered as usual",
+     "This applies type 7 to plain passwords, and it is easy to reverse."
+    ],
+    [
+     "username ADMIN algorithm-type scrypt secret EXAMPLEPASS",
+     "Right. The scrypt secret option (type 9) is hashed and cannot be reversed easily."
+    ],
+    [
+     "username ADMIN password EXAMPLEPASS with privilege 15",
+     "The password option stores the text in clear in the configuration."
+    ],
+    [
+     "username ADMIN password 7 EXAMPLEHASH with privilege 15",
+     "Type 7 is a weak reversible encoding."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-5-04",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "The line below is configured. The TACACS+ server is reachable but rejects a user's password. What happens?",
+   "o": [
+    [
+     "The router asks the same server again with a new session",
+     "A reject is final for that attempt."
+    ],
+    [
+     "The router tries the local database and may let the user in",
+     "Fallback is only used when the server cannot be reached."
+    ],
+    [
+     "The login fails; local is tried only when no server answers",
+     "Right. A server that replies with a reject has answered, so the router does not try the next method."
+    ],
+    [
+     "The router skips authentication on the line and lets the user in",
+     "Authentication is never skipped without the none method."
+    ]
+   ],
+   "a": 2,
+   "code": "aaa new-model\naaa authentication login default group tacacs+ local"
+  },
+  {
+   "id": "e4-5-05",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Why is TACACS+ usually chosen over RADIUS for device administration?",
+   "o": [
+    [
+     "It uses UDP for faster logins on busy networks",
+     "TACACS+ uses TCP port 49."
+    ],
+    [
+     "It combines authentication and authorization in one reply to keep it simple",
+     "That describes RADIUS."
+    ],
+    [
+     "It encrypts only the password field and leaves the rest readable by a sniffer",
+     "That describes RADIUS, which leaves the rest of the message readable."
+    ],
+    [
+     "It splits AAA into separate functions and encrypts the whole body",
+     "Right. This makes per-command authorization possible, and protects more than the password."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-5-06",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "What does the command aaa authorization exec default group tacacs+ local control?",
+   "o": [
+    [
+     "Whether the user gets an EXEC session, and its level",
+     "Right. Exec authorization decides if a shell is granted and what level it starts at."
+    ],
+    [
+     "Which individual commands each user may type after login",
+     "Command authorization is configured separately with the commands keyword."
+    ],
+    [
+     "Whether the user's password is accepted by the server",
+     "That is authentication."
+    ],
+    [
+     "Which commands are logged for later audit and review",
+     "That is accounting."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-5-07",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "An admin applies only aaa authentication login default group tacacs+ and the TACACS+ server is down. What is the result?",
+   "o": [
+    [
+     "The console always bypasses AAA on the default method list",
+     "The console uses the default list unless a different one is applied to it."
+    ],
+    [
+     "Default-list logins fail, including on the console",
+     "Right. With no fallback method, the router cannot authenticate anyone, and the admin may be locked out."
+    ],
+    [
+     "The router skips the login prompt when no server answers",
+     "Authentication is not skipped. The login simply fails."
+    ],
+    [
+     "The router falls back to the local user database automatically",
+     "Fallback happens only if the list names the local method."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-5-08",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "An ACL must permit hosts 172.16.8.0 through 172.16.11.255 only. Which line does this?",
+   "o": [
+    [
+     "permit 172.16.8.0 0.0.4.255",
+     "The wildcard 4 does not form a contiguous block and does not match the intended range."
+    ],
+    [
+     "permit 172.16.8.0 0.0.3.255",
+     "Right. The wildcard 0.0.3.255 leaves 2 bits free in the third octet, covering 8 to 11."
+    ],
+    [
+     "permit 172.16.8.0 0.0.7.255",
+     "This covers 8 to 15, which is too wide."
+    ],
+    [
+     "permit 172.16.8.0 255.255.252.0",
+     "An ACL line needs a wildcard mask, not a subnet mask."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-5-09",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Where is a standard ACL normally placed?",
+   "o": [
+    [
+     "As close to the source as possible",
+     "That placement is for extended ACLs, which can match the destination."
+    ],
+    [
+     "On the device with the most CPU",
+     "Placement depends on what the ACL matches, not on CPU power."
+    ],
+    [
+     "As close to the destination as possible",
+     "Right. A standard ACL matches only the source address, so placing it near the source could block that host from everything."
+    ],
+    [
+     "Only on the outbound side of the WAN link",
+     "The right place depends on the traffic to be controlled."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-5-10",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "After an inbound ACL that permits only TCP 443 is applied to a router interface, the OSPF neighbor on that link is lost. Why?",
+   "o": [
+    [
+     "An inbound ACL also blocks the hellos the router sends out",
+     "An inbound ACL only checks packets that arrive."
+    ],
+    [
+     "ACLs on the router interface cannot affect packets sent to the router",
+     "ACLs do filter traffic that is destined to the router."
+    ],
+    [
+     "OSPF needs ip ospf authentication to run beside an ACL",
+     "Authentication is a separate feature and has nothing to do with ACLs."
+    ],
+    [
+     "The implicit deny at the end drops OSPF packets, which are IP protocol 89",
+     "Right. Anything the ACL does not permit is denied, and OSPF hellos are not TCP."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-5-11",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A named extended ACL has lines numbered 10, 20 and 30. How can an engineer add a new deny between lines 20 and 30 without rebuilding the ACL?",
+   "o": [
+    [
+     "Enter the new line with sequence number 25 in ACL configuration mode on the router",
+     "Right. A sequence number places the entry between existing ones."
+    ],
+    [
+     "Enter ip access-list extended NAME insert 25",
+     "There is no insert keyword."
+    ],
+    [
+     "Enter the deny without a number, and the router sorts it by specificity",
+     "Without a number, a new line goes at the end."
+    ],
+    [
+     "Remove the ACL from the interface and add every line again",
+     "That works but is unneeded, and it leaves the interface unprotected for a moment."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-5-12",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A web permit rule should work only on weekdays from 08:00 to 17:00. Which configuration does this?",
+   "o": [
+    [
+     "A reflexive ACL that tracks the return traffic of each session",
+     "Reflexive ACLs track return traffic and have no time of day."
+    ],
+    [
+     "A dynamic lock-and-key ACL that opens after a user logs in",
+     "Lock-and-key opens a hole after a user logs in. It is not a schedule."
+    ],
+    [
+     "A periodic weekday time-range, referenced by the ACE",
+     "Right. A periodic time range repeats every week, and the ACE is active only inside it."
+    ],
+    [
+     "A time-range with an absolute start and end",
+     "Absolute ranges run once between two dates and do not repeat."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-5-13",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Control plane policing (CoPP) is attached to which target?",
+   "o": [
+    [
+     "The control-plane, with service-policy input",
+     "Right. CoPP uses the QoS tools, and applies the policy to traffic going to the route processor."
+    ],
+    [
+     "The management VRF, using a policy map on the VRF",
+     "A VRF separates routing tables and is not a place to attach CoPP."
+    ],
+    [
+     "The vty lines, with an access-class on each line",
+     "Access-class filters who may open a session and is not CoPP."
+    ],
+    [
+     "Each physical interface, in the outbound direction",
+     "CoPP is not applied per interface."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-5-14",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Which traffic does CoPP police?",
+   "o": [
+    [
+     "Transit traffic that is forwarded in hardware with no CPU involvement",
+     "Plain transit traffic never reaches the route processor, so CoPP does not police it."
+    ],
+    [
+     "Packets sent to or from the router's own CPU",
+     "Right. CoPP protects the control plane from floods of traffic such as SSH, ICMP or routing protocols."
+    ],
+    [
+     "All of the user traffic passing through the router",
+     "Transit traffic is forwarded in hardware and is not handled by CoPP."
+    ],
+    [
+     "Mostly management sessions, such as SSH, HTTPS and SNMP, but not routing protocols",
+     "Routing protocol packets sent to the router are also control plane traffic, so they are included."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-5-15",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "An API call uses HTTP Basic authentication. Which statement is correct?",
+   "o": [
+    [
+     "Base64 encrypts the credentials, so HTTP is safe",
+     "Base64 is not encryption."
+    ],
+    [
+     "The password is hashed with SHA-256 before it is sent",
+     "Basic authentication does no hashing."
+    ],
+    [
+     "The credentials are sent in the body, not in a header",
+     "Basic authentication uses the Authorization header."
+    ],
+    [
+     "Credentials are only Base64-encoded, so use HTTPS",
+     "Right. Base64 is an encoding that anyone can reverse. HTTPS protects it in transit."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-5-16",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A script authenticates to Catalyst Center with a POST to /dna/system/api/v1/auth/token using Basic authentication. How does it use the returned token?",
+   "o": [
+    [
+     "It sends the token in the query string of each URL",
+     "URLs are logged by many devices, so secrets should not go there."
+    ],
+    [
+     "It sends the password again with each request, along with the token",
+     "The token exists to avoid that."
+    ],
+    [
+     "It sends the token as a cookie named JSESSIONID",
+     "That cookie belongs to SD-WAN Manager."
+    ],
+    [
+     "It sends it in the X-Auth-Token header each time",
+     "Right. The token replaces the password on every call, so the password is sent only once."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-5-17",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Why should API keys not be passed in the URL query string?",
+   "o": [
+    [
+     "Query strings cannot hold special characters such as spaces or slashes",
+     "They can, using percent encoding."
+    ],
+    [
+     "URLs end up in proxy logs, server logs and browser history",
+     "Right. A key in a URL can leak to many places, even over HTTPS."
+    ],
+    [
+     "Keys longer than 64 characters are cut off by most web servers",
+     "There is no such rule."
+    ],
+    [
+     "Query strings are not encrypted by HTTPS, so anyone on the path can read them",
+     "The query string is encrypted in transit, but it is still logged at the ends."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-5-18",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A reporting script only reads device inventory through a REST API. Which practice is best?",
+   "o": [
+    [
+     "Share one account among all scripts to keep things simple",
+     "Shared accounts hide who did what and widen exposure."
+    ],
+    [
+     "A read-only account using Basic auth on every call over HTTPS",
+     "HTTPS protects the credentials in transit, but sending the password on every call exposes it far more often than a short-lived token."
+    ],
+    [
+     "Use a dedicated read-only service account with short-lived tokens",
+     "Right. Least privilege limits the harm if the script or token is stolen."
+    ],
+    [
+     "An admin account whose token is refreshed hourly",
+     "Short-lived tokens help, but an admin account gives far more access than a read-only report needs."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-5-19",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A script logs in to SD-WAN Manager and gets a JSESSIONID cookie. Which extra item is needed for a POST request?",
+   "o": [
+    [
+     "The X-XSRF-TOKEN header, using the token from /dataservice/client/token",
+     "Right. The token protects against cross-site request forgery for requests that change data."
+    ],
+    [
+     "The X-Auth-Token header from the Catalyst Center token call",
+     "That is the Catalyst Center header, not the SD-WAN one."
+    ],
+    [
+     "A new login form post for each POST",
+     "The session stays valid, and a new login is unnecessary."
+    ],
+    [
+     "An Authorization: Basic header on every call",
+     "Basic is not what SD-WAN Manager uses after login."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-5-20",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Which technology tags traffic with a Security Group Tag and enforces policy between groups with SGACLs?",
+   "o": [
+    [
+     "Cisco TrustSec",
+     "Right. TrustSec classifies endpoints into groups, and policy is applied between groups instead of IP addresses."
+    ],
+    [
+     "VRF-lite on the access layer switches",
+     "VRF-lite separates routing tables."
+    ],
+    [
+     "CoPP applied to the control plane",
+     "CoPP protects the control plane of one device."
+    ],
+    [
+     "MACsec with MKA key agreement",
+     "MACsec encrypts frames on a link. It does not classify groups."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-5-21",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "What does MACsec (802.1AE) protect?",
+   "o": [
+    [
+     "DNS lookups sent from the clients to a resolver",
+     "DNS needs its own protections."
+    ],
+    [
+     "Routing updates between two routers over the internet",
+     "MACsec works on directly connected Ethernet links, not across routed paths."
+    ],
+    [
+     "Ethernet frames on a link, hop by hop, with MKA keys",
+     "Right. It encrypts frames between a host and a switch, or between two switches."
+    ],
+    [
+     "Traffic end to end between two hosts across a routed WAN",
+     "That is a job for IPsec or TLS."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-5-22",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "What most clearly separates a next-generation firewall from a stateful packet-filtering firewall?",
+   "o": [
+    [
+     "It translates private addresses to public ones for internet access",
+     "NAT is a feature of many devices."
+    ],
+    [
+     "It tracks the state of TCP connections and the UDP flows",
+     "Stateful tracking is something a basic stateful firewall already does."
+    ],
+    [
+     "It can block traffic by port number and by IP address",
+     "Port filtering is something basic firewalls do."
+    ],
+    [
+     "It identifies applications and combines IPS and URL filtering in one policy",
+     "Right. Application awareness lets the policy name the app, not just the port."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-5-23",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "In an 802.1X deployment on an access switch, what role does the switch play?",
+   "o": [
+    [
+     "Supplicant, the client software",
+     "The supplicant is the client software on the endpoint."
+    ],
+    [
+     "Authenticator",
+     "Right. The switch passes the supplicant's credentials to the authentication server and enforces the result on the port."
+    ],
+    [
+     "Authentication server",
+     "This role is usually played by a RADIUS server such as ISE."
+    ],
+    [
+     "Certificate authority",
+     "A CA issues certificates and is not part of the 802.1X roles."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-5-24",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Which product type is installed on laptops to detect and block malware and to help with investigation after an alert?",
+   "o": [
+    [
+     "DNS-layer security such as Cisco Umbrella on the network edge",
+     "It blocks lookups of bad domains, and it does not run on the device."
+    ],
+    [
+     "Endpoint protection such as Cisco Secure Endpoint",
+     "Right. It runs on the device and watches for malicious files and behavior."
+    ],
+    [
+     "MACsec on the access port of the laptop's switch",
+     "It encrypts frames on the link and does not scan files."
+    ],
+    [
+     "An email security gateway in front of the mail server",
+     "It filters mail before delivery and does not inspect the laptop."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-5-25",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Which control blocks requests to known malicious domains before a connection is made, even for devices off the corporate network?",
+   "o": [
+    [
+     "DNS-layer security such as Cisco Umbrella",
+     "Right. It decides at lookup time and so stops the connection before it begins."
+    ],
+    [
+     "A stateful packet filter at the data center edge",
+     "It sees only traffic that passes through that edge."
+    ],
+    [
+     "802.1X on every switch port",
+     "802.1X controls who connects to a port, not which domains are visited."
+    ],
+    [
+     "A sandbox that detonates files",
+     "Sandboxes analyze files and do not stop DNS lookups."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-5-26",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Some switches cannot insert an SGT into packets. How can they still learn the SGT of an IP address?",
+   "o": [
+    [
+     "With BGP communities set on the access switches",
+     "BGP communities are not used to share endpoint SGT bindings."
+    ],
+    [
+     "With CDP messages that are sent on every port of the switch",
+     "CDP shares device information, and it has no SGT bindings."
+    ],
+    [
+     "With OSPF opaque LSAs flooded into area 0",
+     "OSPF does not carry SGT bindings."
+    ],
+    [
+     "With SXP, which shares IP-to-SGT bindings over TCP",
+     "Right. SXP sends the bindings between devices that cannot tag packets inline."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-6-01",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "What does this script print?",
+   "o": [
+    [
+     "sw1 and sw2, each on its own line",
+     "That would be devices[:2]. This slice starts at index 1."
+    ],
+    [
+     "Only sw2, because the slice stops after one item",
+     "The slice runs to the end of the list, not just one item."
+    ],
+    [
+     "sw2 and sw3, each on its own line",
+     "Right. The slice [1:] starts at index 1, so the first item is skipped."
+    ],
+    [
+     "An IndexError, because index 1 is out of range",
+     "Slicing does not cause an IndexError."
+    ]
+   ],
+   "a": 2,
+   "code": "devices = [\"sw1\", \"sw2\", \"sw3\"]\nfor d in devices[1:]:\n    print(d)"
+  },
+  {
+   "id": "e4-6-02",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "What happens when this code runs?",
+   "o": [
+    [
+     "A KeyError, because the key user does not exist in the dictionary",
+     "Right. Reading a missing key with square brackets raises a KeyError."
+    ],
+    [
+     "An IndexError, because user is not a valid position",
+     "An IndexError is for list positions, not dictionary keys."
+    ],
+    [
+     "It prints None, as the get method would",
+     "None would be printed by the get method, not by square brackets."
+    ],
+    [
+     "It prints an empty string for the missing key",
+     "Python does not make an empty value for a missing key."
+    ]
+   ],
+   "a": 0,
+   "code": "cfg = {\"host\": \"192.0.2.5\", \"port\": 830}\nprint(cfg[\"user\"])"
+  },
+  {
+   "id": "e4-6-03",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "In this script, what does r.json() return?",
+   "o": [
+    [
+     "The request headers as a dictionary",
+     "The request headers are what was sent, not parsed from the body."
+    ],
+    [
+     "The HTTP status code of the response, as an integer",
+     "The status code is read with r.status_code."
+    ],
+    [
+     "A JSON string made from a Python dictionary",
+     "That is what json.dumps does."
+    ],
+    [
+     "The body parsed into a Python dict or list",
+     "Right. It converts the JSON text of the reply into Python objects."
+    ]
+   ],
+   "a": 3,
+   "code": "r = requests.get(url, headers=h, verify=False)\ndata = r.json()"
+  },
+  {
+   "id": "e4-6-04",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "What does this code print?",
+   "o": [
+    [
+     "VLAN20",
+     "That would be the result if no prefix were passed."
+    ],
+    [
+     "ENG-20",
+     "Right. The second argument replaces the default prefix, and str(vid) turns 20 into text so it can be joined."
+    ],
+    [
+     "A TypeError",
+     "The number is converted with str, so the join works."
+    ],
+    [
+     "ENG-VLAN20",
+     "The prefix argument replaces the default and is not added to it."
+    ]
+   ],
+   "a": 1,
+   "code": "def vlan_name(vid, prefix=\"VLAN\"):\n    return prefix + str(vid)\n\nprint(vlan_name(20, \"ENG-\"))"
+  },
+  {
+   "id": "e4-6-05",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Which of the following is valid JSON?",
+   "o": [
+    [
+     "{\"name\": \"Gi0/1\", \"enabled\": yes}",
+     "yes is not a JSON value. Booleans must be written true or false."
+    ],
+    [
+     "{'name': 'Gi0/1', 'enabled': true}",
+     "JSON does not allow single quotes."
+    ],
+    [
+     "{\"name\": \"Gi0/1\", \"enabled\": true}",
+     "Right. Keys use double quotes and true is lowercase, so this is valid."
+    ],
+    [
+     "{\"name\": \"Gi0/1\", \"enabled\": true,}",
+     "A trailing comma is not allowed in JSON."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-6-06",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "After json.loads puts the text below into a variable d, which expression returns 20?",
+   "o": [
+    [
+     "d[\"vlans\"][1][\"id\"]",
+     "Right. vlans is a list, index 1 is the second item, and then the id key is read."
+    ],
+    [
+     "d[\"vlans\"][2][\"id\"]",
+     "Index 2 would be a third item, and the list has only two."
+    ],
+    [
+     "d[\"vlans\"][\"id\"][1]",
+     "A list cannot be read by a key name."
+    ],
+    [
+     "d[vlans][1][id]",
+     "The keys are strings and must be quoted."
+    ]
+   ],
+   "a": 0,
+   "code": "{\"vlans\": [{\"id\": 10}, {\"id\": 20}]}"
+  },
+  {
+   "id": "e4-6-07",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "In a YANG model, what does a node marked config false represent?",
+   "o": [
+    [
+     "A node that NETCONF hides from every client",
+     "Clients can read these nodes."
+    ],
+    [
+     "Operational state that is read-only, such as counters",
+     "Right. config false marks state data. It can be read but not set through edit-config."
+    ],
+    [
+     "Data that can be changed with edit-config",
+     "Only config true nodes can be changed."
+    ],
+    [
+     "Configuration that is only applied at boot time",
+     "That is not a YANG idea. Config nodes can be changed while the device runs."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-6-08",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "What does a YANG model describe?",
+   "o": [
+    [
+     "A scripting language used to run CLI commands on many devices at once",
+     "YANG describes data, and it is not a language for running commands."
+    ],
+    [
+     "The TCP port number that clients use to reach the device's API service",
+     "Ports belong to the transport, not to the data model."
+    ],
+    [
+     "Data structure and types, independent of encoding",
+     "Right. A model describes what data a device exposes. NETCONF and RESTCONF then carry it in XML or JSON."
+    ],
+    [
+     "The XML message format that NETCONF uses on the wire between devices",
+     "YANG is not an encoding. The same model can be sent as XML or JSON."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-6-09",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "In a YANG model, which node type holds a single value, such as an interface MTU?",
+   "o": [
+    [
+     "container",
+     "A container groups other nodes."
+    ],
+    [
+     "leaf-list",
+     "A leaf-list holds several values of the same type."
+    ],
+    [
+     "list",
+     "A list holds several entries, each with a key."
+    ],
+    [
+     "leaf",
+     "Right. A leaf is one value of one type."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-6-10",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "What is the main benefit of model-driven programmability over screen-scraping CLI output?",
+   "o": [
+    [
+     "No authentication is required for model-based calls",
+     "Authentication is still required."
+    ],
+    [
+     "Commands run faster on the device CPU and use less memory",
+     "Speed depends on the device and is not the main benefit."
+    ],
+    [
+     "It works without any transport protocol such as SSH or HTTPS",
+     "Models are carried by NETCONF, RESTCONF or gNMI."
+    ],
+    [
+     "Structured data, so scripts do not parse text",
+     "Right. A script reads named fields instead of guessing at column positions."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-6-11",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "Which Catalyst Center API would an app use to read the device inventory or request a change in the network?",
+   "o": [
+    [
+     "The multivendor SDK, a southbound interface",
+     "That is how Catalyst Center talks to devices, not how apps talk to it."
+    ],
+    [
+     "SNMP traps from the appliance",
+     "Traps are sent for events and are not an interface for reading inventory."
+    ],
+    [
+     "The Intent API, a northbound REST API",
+     "Right. It gives applications access to Catalyst Center functions through REST calls."
+    ],
+    [
+     "The CLI of each device",
+     "Direct CLI use does not go through Catalyst Center."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-6-12",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "SD-WAN Manager REST calls begin with which path?",
+   "o": [
+    [
+     "/dataservice",
+     "Right. The SD-WAN Manager REST API lives under /dataservice."
+    ],
+    [
+     "/restconf/data",
+     "That is the RESTCONF path on a device."
+    ],
+    [
+     "/api/v2/network",
+     "This is not the SD-WAN Manager path."
+    ],
+    [
+     "/dna/intent/api/v1",
+     "That is the Catalyst Center intent API path."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-6-13",
+   "d": "6.0",
+   "obj": "6.4",
+   "q": "A Catalyst Center API call that changes the network returns 202 and a taskId. What should the script do next?",
+   "o": [
+    [
+     "Treat the change as complete, since 202 means success",
+     "A 202 only means the work was queued."
+    ],
+    [
+     "Poll the task API with the taskId until it finishes",
+     "Right. A 202 means the request was accepted, and the result is known only when the task completes."
+    ],
+    [
+     "Send the same request again to confirm it was accepted",
+     "Repeating a request can create duplicate work."
+    ],
+    [
+     "Switch to RESTCONF on the device to read the result",
+     "The task result is read from the Catalyst Center task API."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-6-14",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "A script holds a valid token, but a request to delete a site returns 403. What does that mean?",
+   "o": [
+    [
+     "The site does not exist on the controller",
+     "A missing resource gives 404."
+    ],
+    [
+     "The JSON body is malformed or has a missing field",
+     "A malformed request gives 400."
+    ],
+    [
+     "The account is known but not allowed to do this",
+     "Right. 403 Forbidden means the server knows who you are and refuses the action."
+    ],
+    [
+     "The token has expired and must be requested again",
+     "An expired or missing token gives 401."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-6-15",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "A RESTCONF PUT replaces an existing interface description and the change succeeds. Which response is expected?",
+   "o": [
+    [
+     "204 No Content",
+     "Right. When an existing resource is replaced, the server returns 204 with no body."
+    ],
+    [
+     "404 Not Found, because the interface is missing",
+     "The resource exists, so it is found."
+    ],
+    [
+     "409 Conflict, because the data already exists",
+     "A conflict means the request clashes with the existing data."
+    ],
+    [
+     "201 Created, because the resource was made",
+     "201 is returned when the PUT creates a new resource."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-6-16",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "A RESTCONF POST tries to create Loopback99, which already exists. Which status does the device return?",
+   "o": [
+    [
+     "400 Bad Request",
+     "The request is well formed. The problem is that the data already exists."
+    ],
+    [
+     "409 Conflict",
+     "Right. The data already exists, so the create request conflicts with it."
+    ],
+    [
+     "201 Created",
+     "201 is returned when a new resource was created."
+    ],
+    [
+     "404 Not Found",
+     "The resource exists, so it is found."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-6-17",
+   "d": "6.0",
+   "obj": "6.5",
+   "q": "An API call with valid credentials and a correct body returns 500. What does that tell you?",
+   "o": [
+    [
+     "The credentials are wrong, so request a new token",
+     "Bad credentials give 401."
+    ],
+    [
+     "The request was malformed, so fix the JSON",
+     "A malformed request gives 400."
+    ],
+    [
+     "The URL points to a missing resource, so check the path",
+     "A missing resource gives 404."
+    ],
+    [
+     "The server failed while handling a valid request, so retry later or escalate",
+     "Right. 5xx codes mean a server-side error."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-6-18",
+   "d": "6.0",
+   "obj": "6.6",
+   "q": "When does this EEM applet run?",
+   "o": [
+    [
+     "Every 2 minutes",
+     "That would need a different cron entry."
+    ],
+    [
+     "At 02:00 on the first of each month",
+     "That would need 1 in the day-of-month field."
+    ],
+    [
+     "Only when started by hand",
+     "A manual start uses the event none trigger."
+    ],
+    [
+     "Every day at 02:00",
+     "Right. The cron entry 0 2 * * * means minute 0, hour 2, every day."
+    ]
+   ],
+   "a": 3,
+   "code": "event manager applet NIGHTLY\n event timer cron cron-entry \"0 2 * * *\"\n action 1.0 cli command \"enable\"\n action 2.0 cli command \"show ip interface brief | append flash:ints.txt\""
+  },
+  {
+   "id": "e4-6-19",
+   "d": "6.0",
+   "obj": "6.6",
+   "q": "Which EEM event detector starts an applet when a specific log message appears?",
+   "o": [
+    [
+     "event syslog pattern",
+     "Right. It matches log messages against a pattern and runs the actions."
+    ],
+    [
+     "event snmp oid, which watches an SNMP object",
+     "It reacts to the value of an SNMP object, not to a log message."
+    ],
+    [
+     "event none",
+     "It lets the applet be started only by a manual command."
+    ],
+    [
+     "event timer cron, which runs on a schedule",
+     "It runs on a schedule."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-6-20",
+   "d": "6.0",
+   "obj": "6.6",
+   "q": "An applet uses event none. How is it started?",
+   "o": [
+    [
+     "It starts when any CLI command is typed",
+     "That needs an event cli trigger."
+    ],
+    [
+     "With event manager run and the applet name",
+     "Right. The none event waits for a manual run."
+    ],
+    [
+     "It starts when the router reloads or its config is saved",
+     "A reload is not what event none waits for."
+    ],
+    [
+     "It starts at the next syslog message",
+     "That needs an event syslog trigger."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-6-21",
+   "d": "6.0",
+   "obj": "6.7",
+   "q": "An agent on each managed server contacts its configuration server every 30 minutes and downloads its settings. Which model is this?",
+   "o": [
+    [
+     "An event-driven model only",
+     "Nothing here is triggered by an event. The agent checks in on a timer."
+    ],
+    [
+     "An out-of-band model",
+     "Out-of-band describes the management path, not who starts the exchange."
+    ],
+    [
+     "A pull model",
+     "Right. The managed node asks the server for its configuration. Puppet and Chef agents work this way."
+    ],
+    [
+     "A push model",
+     "In a push model the control node connects out to the devices on demand."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-6-22",
+   "d": "6.0",
+   "obj": "6.7",
+   "q": "In which format are Ansible playbooks written?",
+   "o": [
+    [
+     "Ruby, as recipes",
+     "That is how Chef recipes are written."
+    ],
+    [
+     "HCL",
+     "That is the language used for Terraform."
+    ],
+    [
+     "YAML",
+     "Right. Playbooks are YAML files listing tasks to run on hosts."
+    ],
+    [
+     "XML",
+     "Playbooks use YAML and not XML."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "e4-6-23",
+   "d": "6.0",
+   "obj": "6.7",
+   "q": "Why does Ansible work well for network devices that cannot run extra software?",
+   "o": [
+    [
+     "It pulls its configuration from a master every 30 minutes",
+     "That is how agent-based tools such as Puppet behave."
+    ],
+    [
+     "It needs a Python agent installed on every switch it manages",
+     "That is not required."
+    ],
+    [
+     "It works only on Linux hosts, not on network devices",
+     "Ansible manages many network platforms."
+    ],
+    [
+     "It connects over SSH or APIs, so no agent is needed",
+     "Right. This agentless design suits switches and routers."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "e4-1-21",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Which TWO statements describe a two-tier collapsed core design? (Choose two.)",
+   "o": [
+    [
+     "Access switches connect straight to the WAN router",
+     "Access switches connect to the distribution and core pair, not directly to the WAN router."
+    ],
+    [
+     "Distribution and core functions run on one redundant pair of switches",
+     "Right. The collapsed core pair does both jobs, so there is no separate core layer."
+    ],
+    [
+     "It removes the need for redundant uplinks from the access switches",
+     "Access switches still need redundant uplinks to the pair."
+    ],
+    [
+     "It suits a small campus served by one pair",
+     "Right. A single pair is enough when the campus is small, which keeps cost and cabling down."
+    ],
+    [
+     "Each building needs its own separate core layer",
+     "A separate core per building is the opposite of collapsing the layers."
+    ]
+   ],
+   "a": [
+    1,
+    3
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "e4-2-16",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Which TWO statements about VRF-lite are correct? (Choose two.)",
+   "o": [
+    [
+     "VRF-lite requires MPLS labels on every link",
+     "Labels are used by MPLS VPNs. VRF-lite does not need them."
+    ],
+    [
+     "All VRFs share one routing table and are separated by VLAN tags",
+     "They do not share a table."
+    ],
+    [
+     "An interface belongs to one VRF at a time",
+     "Right. An interface is assigned to one VRF, or to the global table."
+    ],
+    [
+     "The same prefix may not be used in two VRFs",
+     "Overlapping prefixes are allowed because the tables are separate."
+    ],
+    [
+     "Each VRF has its own routing table, so the same prefix can exist in two VRFs",
+     "Right. Separate tables are the whole point, so the same prefix can exist in two VRFs."
+    ]
+   ],
+   "a": [
+    2,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "e4-3-52",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which TWO statements about the OSPF point-to-point network type are correct? (Choose two.)",
+   "o": [
+    [
+     "Hello and dead timers default to 10 and 40 seconds",
+     "Right. These are the defaults on point-to-point links, as on broadcast networks."
+    ],
+    [
+     "Neighbors must be configured by hand with the neighbor command",
+     "Hellos are multicast and find neighbors on their own."
+    ],
+    [
+     "The default hello interval is 30 seconds",
+     "30 seconds is the default on non-broadcast networks."
+    ],
+    [
+     "No DR or BDR is elected",
+     "Right. The two routers on the link become adjacent directly, so no election is needed."
+    ],
+    [
+     "A DR is elected using the highest priority",
+     "DR election belongs to the broadcast network type."
+    ]
+   ],
+   "a": [
+    0,
+    3
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "e4-4-24",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Which TWO statements about local SPAN on a Catalyst switch are correct? (Choose two.)",
+   "o": [
+    [
+     "Traffic routed between VLANs is captured by a VLAN source",
+     "Inter-VLAN routed traffic is not monitored by VLAN-based SPAN."
+    ],
+    [
+     "The destination port cannot be an EtherChannel",
+     "Right. The destination must be a physical port."
+    ],
+    [
+     "Source ports and source VLANs can be mixed in one session",
+     "They cannot be mixed. A session uses one type or the other."
+    ],
+    [
+     "The destination port cannot also be one of the source ports",
+     "Right. A destination is dedicated to the session and is not monitored."
+    ],
+    [
+     "A destination port can serve several sessions at once",
+     "A destination port serves only one session at a time."
+    ]
+   ],
+   "a": [
+    1,
+    3
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "e4-5-27",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Which TWO statements about ACL processing are correct? (Choose two.)",
+   "o": [
+    [
+     "A standard ACL can match the destination port",
+     "Standard ACLs match only the source address."
+    ],
+    [
+     "An implicit deny ends every ACL",
+     "Right. Packets that match no line are dropped."
+    ],
+    [
+     "Entries are checked from the top, and the first match decides",
+     "Right. After a match, the remaining entries are not checked."
+    ],
+    [
+     "A 1 bit in a wildcard mask means the bit must match",
+     "It is the reverse. A 0 bit must match and a 1 bit is ignored."
+    ],
+    [
+     "An outbound ACL filters packets the router itself generates",
+     "Outbound ACLs do not filter traffic that the router originates."
+    ]
+   ],
+   "a": [
+    1,
+    2
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "e4-6-24",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A script runs json.dumps({'up': True, 'mtu': None}). What text does it produce?",
+   "o": [
+    [
+     "{\"up\": true, \"mtu\": null}",
+     "Right. dumps converts Python True to true and None to null, and uses double quotes."
+    ],
+    [
+     "{'up': True, 'mtu': None}",
+     "That is how Python prints the dictionary. JSON text does not use single quotes or Python names."
+    ],
+    [
+     "{\"up\": True, \"mtu\": None}",
+     "The keys are quoted, but True and None are not valid JSON values."
+    ],
+    [
+     "{\"up\": \"true\", \"mtu\": \"null\"}",
+     "The values would become strings, but dumps keeps booleans and null as real JSON values."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-6-25",
+   "d": "6.0",
+   "obj": "6.6",
+   "q": "Which TWO things can an EEM applet do? (Choose two.)",
+   "o": [
+    [
+     "Send a syslog message when its event occurs",
+     "Right. A syslog action is one of the standard applet actions."
+    ],
+    [
+     "Install a Python agent into the router operating system",
+     "Applets run CLI and logging actions. They do not install software agents."
+    ],
+    [
+     "Create new YANG models for the device",
+     "Models come from the platform software, not from an applet."
+    ],
+    [
+     "Change the configuration of neighboring routers directly",
+     "An applet acts on the device that runs it."
+    ],
+    [
+     "Run CLI commands, such as a show command, and save the output to a file",
+     "Right. A cli command action runs on the local device, and the output can go to flash."
+    ]
+   ],
+   "a": [
+    0,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "e4-4-25",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "Catalyst Center's AI-powered workflow suggests a fix for a problem that keeps returning on two core switches. What should the operator do first?",
+   "o": [
+    [
+     "Apply the suggestion to the two affected switches now, since it came from Assurance telemetry",
+     "Telemetry is not approval. A change to core switches still needs review and an approved change."
+    ],
+    [
+     "Review the suggestion and its impact, then apply it by the normal change process",
+     "Right. An AI suggestion is advice. The operator still checks the effect and gets the change approved before a core device is touched."
+    ],
+    [
+     "Open a TAC case before reading the suggestion",
+     "Reading the suggestion is the first step. A TAC case may come later if the review shows a real need."
+    ],
+    [
+     "Mark the issue resolved so the AI learns the fix",
+     "Closing the issue does not fix anything, and the problem would come back unnoticed."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "e4-5-28",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "What happens to SSH packets that arrive at the router faster than 64 kb/s?",
+   "o": [
+    [
+     "The excess is dropped before it reaches the route processor",
+     "Right. The police command drops traffic over the rate on the control-plane input policy."
+    ],
+    [
+     "The excess is queued and sent later",
+     "Queuing and delay is shaping. This policy uses police with an exceed action of drop."
+    ],
+    [
+     "All SSH traffic through the router is limited to 64 kb/s",
+     "The policy is on the control plane and only counts packets sent to the router."
+    ],
+    [
+     "The excess is forwarded with a lower priority mark",
+     "Re-marking needs an exceed action of set-dscp. This one drops."
+    ]
+   ],
+   "a": 0,
+   "code": "ip access-list extended SSH-IN\n permit tcp any any eq 22\nclass-map match-all COPP-SSH\n match access-group name SSH-IN\npolicy-map COPP\n class COPP-SSH\n  police 64000 conform-action transmit exceed-action drop\ncontrol-plane\n service-policy input COPP"
+  },
+  {
+   "id": "e4-5-29",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "Which protocol negotiates and distributes the keys that two devices use for MACsec on a link?",
+   "o": [
+    [
+     "MKA, the MACsec Key Agreement protocol",
+     "Right. MKA runs after 802.1X or a pre-shared key and sets up the session keys."
+    ],
+    [
+     "SXP, which shares IP-to-SGT bindings",
+     "SXP shares IP-to-SGT bindings and does not carry keys."
+    ],
+    [
+     "LACP, which bundles links together",
+     "LACP bundles links and has nothing to do with encryption keys."
+    ],
+    [
+     "IKEv2, which sets up IPsec tunnels",
+     "IKEv2 sets up IPsec tunnels. MACsec uses MKA."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "e4-5-30",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "The ACL below is applied inbound on the outside interface. An outside host opens a new TCP connection to a lab server. What happens?",
+   "o": [
+    [
+     "It is denied and logged, because a first packet has SYN but no ACK",
+     "Right. The established keyword matches only segments with ACK or RST, so a new connection falls to the deny line."
+    ],
+    [
+     "It is permitted by the first line, because it is TCP",
+     "The first line permits only TCP segments that already have ACK or RST set."
+    ],
+    [
+     "It is permitted, because ACLs track connections on their own",
+     "A plain ACL does not track state."
+    ],
+    [
+     "It is dropped without being logged",
+     "The final line includes the log keyword."
+    ]
+   ],
+   "a": 0,
+   "code": "ip access-list extended OUT-IN\n permit tcp any any established\n permit udp any eq 53 any\n deny ip any any log"
+  },
+  {
+   "id": "e4-5-31",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "What does access-class MGMT-ONLY in do on these vty lines?",
+   "o": [
+    [
+     "Only hosts that the ACL permits can open sessions to the lines",
+     "Right. The access-class filters who may connect to the vty lines."
+    ],
+    [
+     "It decides which users may enter enable mode",
+     "Privilege access is decided by the enable secret or AAA, not by this ACL."
+    ],
+    [
+     "It filters user traffic passing through the router to the management subnet",
+     "Access-class applies to sessions to the router, not to transit traffic."
+    ],
+    [
+     "It encrypts the sessions to the lines",
+     "Encryption comes from SSH, which transport input ssh requires."
+    ]
+   ],
+   "a": 0,
+   "code": "line vty 0 4\n login local\n transport input ssh\n exec-timeout 5 0\n access-class MGMT-ONLY in"
+  },
+  {
+   "id": "e4-p-01",
+   "t": "pbq",
+   "kind": "term",
+   "d": "3.0",
+   "obj": "3.2",
+   "dom": "3.0 · 4.0",
+   "title": "Find why the lab OSPF neighbor never comes up",
+   "short": "IOS XE OSPF adjacency",
+   "scenario": "In the unit's own lab, R1 and its neighbor R2 (192.0.2.2) share the link 192.0.2.0/30 and both should run OSPF process 1 in area 0. Users on the lab LAN lost the route to R2's networks. R2 was last checked and uses default OSPF timers. You have written approval to run read-only commands on R1 only. Find the cause. Do not change anything.",
+   "ticket": "CHG-5521 (lab, read-only): R1 has no OSPF neighbor on Gi0/1. Report the cause in the ticket. The engineer makes the fix.",
+   "host": "R1",
+   "intro": "R1 (Cisco IOS XE lab router, console). Type a command. Show commands and ping only.",
+   "suggest": [
+    "show ip interface brief",
+    "show ip ospf neighbor",
+    "ping 192.0.2.2"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "enable",
+      "en"
+     ],
+     "out": "(now in privileged EXEC mode, prompt R1#)"
+    },
+    {
+     "run": [
+      "show ip interface brief",
+      "show ip int brief",
+      "sh ip int br",
+      "show ip int br"
+     ],
+     "out": "Interface              IP-Address      OK? Method Status                Protocol\nGigabitEthernet0/0     unassigned      YES unset  administratively down down\nGigabitEthernet0/1     192.0.2.1       YES manual up                    up\nLoopback0              10.255.0.1      YES manual up                    up",
+     "fx": "show:brief"
+    },
+    {
+     "run": [
+      "ping 192.0.2.2"
+     ],
+     "out": "Type escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.0.2.2, timeout is 2 seconds:\n!!!!!\nSuccess rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms",
+     "fx": "ping:nbr"
+    },
+    {
+     "run": [
+      "show ip ospf neighbor",
+      "sh ip ospf neighbor",
+      "show ip ospf nei",
+      "sh ip ospf nei"
+     ],
+     "out": "",
+     "fx": "show:nbr"
+    },
+    {
+     "run": [
+      "show ip ospf interface GigabitEthernet0/1",
+      "show ip ospf interface gi0/1",
+      "sh ip ospf int gi0/1",
+      "show ip ospf interface gigabitethernet0/1",
+      "show ip ospf int gi0/1",
+      "show ip ospf interface",
+      "show ip ospf int brief"
+     ],
+     "out": "GigabitEthernet0/1 is up, line protocol is up\n  Internet Address 192.0.2.1/30, Interface ID 3, Area 0\n  Process ID 1, Router ID 10.255.0.1, Network Type BROADCAST, Cost: 1\n  Transmit Delay is 1 sec, State DR, Priority 1\n  Designated Router (ID) 10.255.0.1, Interface address 192.0.2.1\n  No backup designated router on this network\n  Timer intervals configured, Hello 5, Dead 20, Wait 20, Retransmit 5\n    Hello due in 00:00:03\n  Neighbor Count is 0, Adjacent neighbor count is 0\n  Suppress hello for 0 neighbor(s)",
+     "fx": "show:ospfint"
+    },
+    {
+     "run": [
+      "show running-config interface GigabitEthernet0/1",
+      "show run int gi0/1",
+      "show running-config interface gi0/1",
+      "sh run int gi0/1",
+      "show run interface gi0/1"
+     ],
+     "out": "Building configuration...\n\nCurrent configuration : 158 bytes\n!\ninterface GigabitEthernet0/1\n description LAB-LINK-TO-R2\n ip address 192.0.2.1 255.255.255.252\n ip ospf hello-interval 5\n ip ospf 1 area 0\n negotiation auto\nend",
+     "fx": "show:cfg"
+    },
+    {
+     "run": [
+      "show version",
+      "sh ver"
+     ],
+     "out": "Cisco IOS XE Software, Version 17.09.04a\nR1 uptime is 2 days, 3 hours, 11 minutes\nSystem image file is \"bootflash:packages.conf\""
+    },
+    {
+     "run": [
+      "configure terminal",
+      "conf t",
+      "config t"
+     ],
+     "out": "[lab] That changes or restarts the router. This ticket allows read-only checks. Stop and report it.",
+     "fx": "trap:config"
+    },
+    {
+     "run": [
+      "reload"
+     ],
+     "out": "[lab] That changes or restarts the router. This ticket allows read-only checks. Stop and report it.",
+     "fx": "trap:config"
+    },
+    {
+     "run": [
+      "clear ip ospf process",
+      "clear ip ospf *"
+     ],
+     "out": "[lab] That changes or restarts the router. This ticket allows read-only checks. Stop and report it.",
+     "fx": "trap:config"
+    },
+    {
+     "run": [
+      "debug all"
+     ],
+     "out": "[lab] A wide debug can overload the router, and this ticket allows show commands and ping only. Stop and report it.",
+     "fx": "trap:config"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Checked the interface list with show ip interface brief",
+     "has": "show:brief",
+     "why": "Gi0/1 shows up and up with 192.0.2.1, so the cable, the port and the address are fine. The fault is not at Layer 1 or 2."
+    },
+    {
+     "t": "Pinged the neighbor at 192.0.2.2",
+     "has": "ping:nbr",
+     "why": "All five pings succeed, so IP reachability to R2 works. Only OSPF itself is failing to form the neighbor."
+    },
+    {
+     "t": "Looked at the OSPF neighbor table",
+     "has": "show:nbr",
+     "why": "The table is empty. R1 does not even see R2 in an early state, which points to hellos that one side ignores."
+    },
+    {
+     "t": "Read the OSPF settings on Gi0/1",
+     "has": "show:ospfint",
+     "why": "Hello is 5 and Dead is 20. R2 uses the default 10 and 40. OSPF neighbors must agree on both timers, so each ignores the other's hellos."
+    },
+    {
+     "t": "Found the line ip ospf hello-interval 5 in the interface configuration",
+     "has": "show:cfg",
+     "why": "This is the exact line behind the mismatch. You only read it. The engineer decides whether to remove it or to change R2."
+    },
+    {
+     "t": "Did not change the configuration, clear OSPF or turn on debugs",
+     "lacks": "trap:config",
+     "why": "The approval was read-only. Clearing OSPF or reloading drops other routes, and a wide debug can overload a router."
+    }
+   ]
+  },
+  {
+   "id": "e4-p-02",
+   "t": "pbq",
+   "kind": "logsel",
+   "d": "4.0",
+   "obj": "4.1",
+   "dom": "4.0 · 3.0",
+   "title": "Read the syslog from a router with a bouncing link",
+   "short": "Syslog",
+   "scenario": "Users on the unit's lab network report that the path to R2 drops and returns every few minutes. Below is the syslog from the lab router R1. Mark every line that belongs to the problem, then say what the log shows. This is a read-only review.",
+   "ticket": "Ticket INC-3308 (lab): intermittent loss to R2. Read the log only. No changes are requested.",
+   "lines": [
+    {
+     "text": "Nov 27 08:01:12: %SYS-5-CONFIG_I: Configured from console by lab-admin on vty0 (198.51.100.20)",
+     "bad": 0,
+     "why": "A known admin saved a change earlier in the morning. It is a normal notice and not part of the drops."
+    },
+    {
+     "text": "Nov 27 08:15:03: %LINK-3-UPDOWN: Interface GigabitEthernet0/2, changed state to down",
+     "bad": 1,
+     "why": "The physical port facing R2 lost link. This is the first sign of the problem."
+    },
+    {
+     "text": "Nov 27 08:15:03: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down",
+     "bad": 1,
+     "why": "The line protocol follows the link going down, so the interface is fully down."
+    },
+    {
+     "text": "Nov 27 08:15:03: %OSPF-5-ADJCHG: Process 1, Nbr 10.255.0.2 on GigabitEthernet0/2 from FULL to DOWN, Neighbor Down: Interface down or detached",
+     "bad": 1,
+     "why": "OSPF lost R2 because the interface went down, which is the reason in the message."
+    },
+    {
+     "text": "Nov 27 08:15:09: %LINK-3-UPDOWN: Interface GigabitEthernet0/2, changed state to up",
+     "bad": 1,
+     "why": "The link came back six seconds later. A link that goes down and up like this is flapping."
+    },
+    {
+     "text": "Nov 27 08:15:12: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to up",
+     "bad": 1,
+     "why": "The line protocol returned after the link did."
+    },
+    {
+     "text": "Nov 27 08:15:42: %OSPF-5-ADJCHG: Process 1, Nbr 10.255.0.2 on GigabitEthernet0/2 from LOADING to FULL, Loading Done",
+     "bad": 1,
+     "why": "OSPF rebuilt the neighbor after the link returned, so routes were missing for about 40 seconds."
+    },
+    {
+     "text": "Nov 27 08:20:01: %SYS-6-CLOCKUPDATE: System clock has been updated from 08:20:00 UTC Fri Nov 27 2026 to 08:20:01 UTC Fri Nov 27 2026, configured from NTP by 192.0.2.123 (192.0.2.123).",
+     "bad": 0,
+     "why": "A one-second correction from the NTP server is normal. It does not explain link drops."
+    },
+    {
+     "text": "Nov 27 08:30:41: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: lab-admin] [Source: 198.51.100.20] [localport: 22] at 08:30:41 UTC Fri Nov 27 2026",
+     "bad": 0,
+     "why": "A normal SSH login by the lab admin from the lab management host."
+    },
+    {
+     "text": "Nov 27 08:34:55: %LINK-3-UPDOWN: Interface GigabitEthernet0/3, changed state to up",
+     "bad": 0,
+     "why": "A different port came up once and stayed up, for example when a lab PC was plugged in. It does not repeat."
+    },
+    {
+     "text": "Nov 27 08:41:27: %LINK-3-UPDOWN: Interface GigabitEthernet0/2, changed state to down",
+     "bad": 1,
+     "why": "The same port drops again. The repeat shows a pattern and not a one-time event."
+    },
+    {
+     "text": "Nov 27 08:41:27: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down",
+     "bad": 1,
+     "why": "The line protocol follows the link down again, as in the first drop."
+    },
+    {
+     "text": "Nov 27 08:41:27: %OSPF-5-ADJCHG: Process 1, Nbr 10.255.0.2 on GigabitEthernet0/2 from FULL to DOWN, Neighbor Down: Interface down or detached",
+     "bad": 1,
+     "why": "The neighbor goes down at the same second as the link, again with the reason Interface down."
+    }
+   ],
+   "ask": {
+    "label": "What does this log show?",
+    "opts": [
+     "A hello timer mismatch with R2 that keeps resetting the neighbor",
+     "A physical link on Gi0/2 that keeps dropping and taking OSPF down with it",
+     "Repeated outside attempts to log in to the router over SSH",
+     "A clock problem on R1 that is making OSPF time out"
+    ],
+    "a": 1,
+    "why": "Each OSPF drop follows a link-down message on the same port, and the reason says Interface down or detached. A timer mismatch would show Dead timer expired, and the only login and clock lines are normal. Check the cable, the optics and the far-end port.",
+    "d": "4.0",
+    "obj": "4.1"
+   }
+  },
+  {
+   "id": "e4-p-03",
+   "t": "pbq",
+   "kind": "rules",
+   "d": "3.0",
+   "obj": "3.3",
+   "dom": "3.0",
+   "title": "Plan an HSRP-safe upgrade of the active switch",
+   "short": "HSRP maintenance",
+   "scenario": "In the unit's lab, DS1 (HSRP active, priority 110) and DS2 (standby, priority 100) share the gateway 10.10.10.1 for VLAN 10 in HSRP group 10. Neither has preempt. The approved change is to upgrade DS1's software without losing the gateway. Build the plan in the right order. Some ideas do not belong.",
+   "ticket": "CHG-5530 (lab): upgrade DS1 during the approved window. The gateway must stay up. Roll back if hosts lose 10.10.10.1.",
+   "rules": [
+    {
+     "id": "a",
+     "text": "Copy both running configs to flash and note the rollback steps",
+     "need": 1,
+     "why": "A saved copy and a written rollback let you undo the change fast if the gateway is lost."
+    },
+    {
+     "id": "b",
+     "text": "Check show standby brief: DS2 must be Standby and ready",
+     "need": 1,
+     "why": "Moving the gateway to a switch that is not ready would cause the outage you are trying to avoid."
+    },
+    {
+     "id": "c",
+     "text": "Raise DS2's priority above DS1 and enable preempt so DS2 becomes active",
+     "need": 1,
+     "why": "This moves the gateway to DS2 on purpose, so DS1 can be upgraded without users noticing."
+    },
+    {
+     "id": "d",
+     "text": "Confirm DS2 shows Active and a test host still pings 10.10.10.1",
+     "need": 1,
+     "why": "Proof that traffic flows through DS2 tells you it is safe to take DS1 down."
+    },
+    {
+     "id": "e",
+     "text": "Upgrade and reload DS1",
+     "need": 1,
+     "why": "With DS2 active and tested, the reload of DS1 no longer affects the gateway."
+    },
+    {
+     "id": "f",
+     "text": "When DS1 is back in the group, return DS2's priority and preempt settings to what they were",
+     "need": 1,
+     "why": "This puts the design back to its approved state so a later change starts from known settings."
+    },
+    {
+     "id": "g",
+     "text": "Record the result in the change ticket",
+     "need": 1,
+     "why": "The ticket must show what was done and that the gateway stayed up."
+    },
+    {
+     "id": "h",
+     "text": "Shut down DS1's uplinks first and watch whether HSRP reacts",
+     "need": 0,
+     "why": "This is an unplanned failover test. Users lose service while you wait to see what happens."
+    },
+    {
+     "id": "i",
+     "text": "Lower DS1's priority to 90 and leave preempt off on DS2",
+     "need": 0,
+     "why": "With no preempt on DS2, DS1 stays active even at priority 90, so the gateway does not move and DS1 still goes down with the gateway on it."
+    },
+    {
+     "id": "j",
+     "text": "Turn off HSRP on DS2 so it cannot interfere",
+     "need": 0,
+     "why": "DS2 is the switch that carries the gateway while DS1 is down. Turning HSRP off there removes the backup."
+    }
+   ],
+   "before": [
+    {
+     "a": "a",
+     "b": "c",
+     "why": "Back up and write the rollback before the first configuration change."
+    },
+    {
+     "a": "b",
+     "b": "c",
+     "why": "Check that DS2 is ready before you force the gateway onto it."
+    },
+    {
+     "a": "c",
+     "b": "d",
+     "why": "You can only confirm DS2 is active after you have made it active."
+    },
+    {
+     "a": "d",
+     "b": "e",
+     "why": "Do not reload DS1 until DS2 is proven to carry the gateway."
+    },
+    {
+     "a": "e",
+     "b": "f",
+     "why": "Restoring settings makes sense only once DS1 has come back."
+    }
+   ],
+   "last": {
+    "id": "g",
+    "why": "Documenting comes last because the ticket must show the finished result."
+   }
+  },
+  {
+   "id": "e4-p-04",
+   "t": "pbq",
+   "kind": "diagram",
+   "d": "1.0",
+   "obj": "1.3",
+   "dom": "1.0 · 4.0",
+   "title": "Place the roles in a small SD-Access lab fabric",
+   "short": "SD-Access roles",
+   "scenario": "The unit's lab team is building a small SD-Access fabric from a design drawing. One switch keeps the endpoint location table. One links the fabric to the lab firewall and the internet. Access switches host the laptops. Two servers outside the fabric supply policy and automation. Drag each device into the spot where it belongs. Some devices do not belong anywhere.",
+   "ticket": "Design DS-77 (lab only): fabric of 3 switches plus two management servers. Place each role once.",
+   "top": "Lab firewall and internet",
+   "slots": [
+    {
+     "label": "Spot A",
+     "zone": "Fabric services",
+     "hint": "holds the LISP map-server and map-resolver; answers where each endpoint is"
+    },
+    {
+     "label": "Spot B",
+     "zone": "Fabric border (exit to outside networks)",
+     "hint": "connects the fabric to the lab firewall and the internet"
+    },
+    {
+     "label": "Spot C",
+     "zone": "Access closet",
+     "hint": "laptops plug in here; it also hosts the anycast gateway"
+    },
+    {
+     "label": "Spot D",
+     "zone": "Policy server",
+     "hint": "assigns group tags (SGTs) to authenticated users"
+    },
+    {
+     "label": "Spot E",
+     "zone": "Automation",
+     "hint": "runs LAN automation, design and assurance for the fabric"
+    }
+   ],
+   "devs": [
+    {
+     "id": "cp",
+     "name": "Control plane node",
+     "slot": 0,
+     "why": "The control plane node runs the LISP map-server and map-resolver. Edge switches register endpoints with it and ask it where to send traffic."
+    },
+    {
+     "id": "bd",
+     "name": "Border node",
+     "slot": 1,
+     "why": "The border node is the exit from the fabric to networks outside it, such as the firewall and the internet."
+    },
+    {
+     "id": "ed",
+     "name": "Edge node",
+     "slot": 2,
+     "why": "Access switches that endpoints connect to are edge nodes. They register hosts and give them the anycast default gateway."
+    },
+    {
+     "id": "ise",
+     "name": "Cisco ISE",
+     "slot": 3,
+     "why": "ISE authenticates users and devices and assigns the group tags that fabric policy uses."
+    },
+    {
+     "id": "cc",
+     "name": "Catalyst Center",
+     "slot": 4,
+     "why": "Catalyst Center designs, automates and monitors the fabric, including building the underlay with LAN automation."
+    },
+    {
+     "id": "int",
+     "name": "Intermediate node",
+     "slot": -1,
+     "why": "An intermediate node only carries underlay IP traffic between fabric nodes. It has no role in any of these five spots."
+    },
+    {
+     "id": "val",
+     "name": "SD-WAN Validator",
+     "slot": -1,
+     "why": "The validator is part of Catalyst SD-WAN, a different solution. It does not belong in an SD-Access fabric."
+    },
+    {
+     "id": "stp",
+     "name": "Spanning-tree root bridge",
+     "slot": -1,
+     "why": "A fabric uses routed links, so no spanning-tree root is placed as a fabric role."
+    }
+   ]
+  },
+  {
+   "id": "e4-p-05",
+   "t": "pbq",
+   "kind": "term",
+   "d": "6.0",
+   "obj": "6.5",
+   "dom": "6.0 · 5.0",
+   "title": "Find why a script gets a 401 from RESTCONF",
+   "short": "RESTCONF curl test",
+   "scenario": "A lab Python script reads Loopback99 from the lab switch at 192.0.2.10 with RESTCONF and always gets 401. You have written approval for read-only GET requests from the lab jump host, using the lab account lab-api. The -k option skips certificate checks and is only acceptable in this lab. Work out what the script is missing. Do not send changes.",
+   "ticket": "TCK-6612 (lab, read-only): script returns 401 on GET Loopback99. Reproduce with curl and report the cause.",
+   "host": "jump01",
+   "intro": "jump01 (Linux lab jump host). Type a command. GET requests only. Your folder holds lab.netrc with the read-only lab-api account, so the password never goes on the command line.",
+   "suggest": [
+    "curl -k -i https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+    "curl --version"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "curl -k -i https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -ki https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -i -k https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99"
+     ],
+     "out": "HTTP/1.1 401 Unauthorized\nServer: nginx\nContent-Type: text/html\nWWW-Authenticate: Basic realm=\"restconf\"\n\n<html><head><title>401 Unauthorized</title></head></html>",
+     "fx": "rest:401"
+    },
+    {
+     "run": [
+      "curl -k -i --netrc-file lab.netrc https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99"
+     ],
+     "out": "HTTP/1.1 200 OK\nContent-Type: application/yang-data+xml\n\n<interface xmlns=\"urn:ietf:params:xml:ns:yang:ietf-interfaces\"><name>Loopback99</name><type xmlns:ianaift=\"urn:ietf:params:xml:ns:yang:iana-if-type\">ianaift:softwareLoopback</type><description>LAB-TEST</description><enabled>true</enabled></interface>",
+     "fx": "rest:200"
+    },
+    {
+     "run": [
+      "curl -k -i --netrc-file lab.netrc https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback98"
+     ],
+     "out": "HTTP/1.1 404 Not Found\nContent-Length: 0",
+     "fx": "rest:404"
+    },
+    {
+     "run": [
+      "curl --version"
+     ],
+     "out": "curl 7.88.1 (x86_64-pc-linux-gnu) libcurl/7.88.1 OpenSSL/3.0.11\nProtocols: http https"
+    },
+    {
+     "run": [
+      "hostname"
+     ],
+     "out": "jump01"
+    },
+    {
+     "run": [
+      "curl -k -X DELETE https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -k -i -X DELETE https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -X DELETE https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99"
+     ],
+     "out": "[lab] That sends a change to the device. This ticket allows read-only requests. Stop and report it.",
+     "fx": "trap:write"
+    },
+    {
+     "run": [
+      "curl -k -X PUT https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -k -i -X PUT https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -X PUT https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -k --netrc-file lab.netrc -X PUT https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99"
+     ],
+     "out": "[lab] That sends a change to the device. This ticket allows read-only requests. Stop and report it.",
+     "fx": "trap:write"
+    },
+    {
+     "run": [
+      "curl -k -X POST https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -k -i -X POST https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -X POST https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -k --netrc-file lab.netrc -X POST https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99"
+     ],
+     "out": "[lab] That sends a change to the device. This ticket allows read-only requests. Stop and report it.",
+     "fx": "trap:write"
+    },
+    {
+     "run": [
+      "curl -k -X PATCH https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -k -i -X PATCH https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -X PATCH https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99",
+      "curl -k --netrc-file lab.netrc -X PATCH https://192.0.2.10/restconf/data/ietf-interfaces:interfaces/interface=Loopback99"
+     ],
+     "out": "[lab] That sends a change to the device. This ticket allows read-only requests. Stop and report it.",
+     "fx": "trap:write"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Sent the GET with no credentials",
+     "has": "rest:401",
+     "why": "The device answers 401 and offers WWW-Authenticate: Basic. The service is up, and it wants credentials that the request did not carry."
+    },
+    {
+     "t": "Sent the GET with the lab-api account",
+     "has": "rest:200",
+     "why": "With credentials, the same URL returns 200 and the Loopback99 data. The account works and the resource exists, so the script is not sending a valid Authorization header."
+    },
+    {
+     "t": "Asked for a loopback that does not exist",
+     "has": "rest:404",
+     "why": "A missing resource gives 404, not 401. That rules out a wrong path as the cause of the script's 401."
+    },
+    {
+     "t": "Did not send a PUT, POST, PATCH or DELETE",
+     "lacks": "trap:write",
+     "why": "Only reads were approved. Those methods change the device, and they would be wrong even in a lab without the owner's approval."
+    }
+   ]
+  }
+ ]
+}
