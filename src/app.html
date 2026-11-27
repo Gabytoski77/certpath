@@ -2578,7 +2578,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.88</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg><b class="vh">MyNextCert</b><span>v.2.89</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -6271,6 +6271,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.89",d:"2026-11-26",t:"Two new Cisco practice exams: CCST Cybersecurity (100-160) and CCST Networking (100-150), each with hands-on questions."},
   {v:"2.88",d:"2026-11-26",t:"New hands-on practice questions in all the CompTIA exams: read logs, put rules in order, use a small terminal and fill in network diagrams."},
   {v:"2.87",d:"2026-11-26",t:"On phones, a Jump to button in the corner of every guide. Smoother zoom into the globe. Link to any guide section, and share a practice set with a friend by link."},
   {v:"2.86",d:"2026-11-26",t:"The app opens instantly from its saved copy and offers a Refresh when there\u2019s a new version. Smaller fonts, and an Install app link on Edge and Chrome."},
@@ -9174,8 +9175,10 @@ GUIDES["PT1 · Junior Pentester"]={
 
 GUIDES["CCST Networking"]={
   id:"ccstn",
+  mock:{cur:"qbank/100-150.json"},
+  mockText:"45 items in 50 minutes, with 4 hands-on items (logs, terminal, ordering, diagram), flags and a review screen. Cisco doesn't publish the real item count or the topic weights, so this is a stand-in that fits the real 50 minutes, with an even mix across the six domains.",
   lead:"Cisco's entry-level networking cert. It proves you know how a network fits together and can troubleshoot the basics: addressing, cabling, Wi-Fi, switches and routers, and the commands a help desk tech runs every day. Cisco calls it the first step toward CCNA.",
-  checked:"2026-11-10",
+  checked:"2026-11-26",
   planHours:40,
   objSub:"Six topic areas from Cisco's 100-150 exam topics. Tick objectives as you study them; progress saves on this device.",
   versions:{
@@ -9368,8 +9371,10 @@ GUIDES["CCST Networking"]={
 
 GUIDES["CCST Cybersecurity"]={
   id:"ccstc",
+  mock:{cur:"qbank/100-160.json"},
+  mockText:"45 items in 50 minutes, with 4 hands-on items (logs, terminal, ordering, diagram), flags and a review screen. Cisco doesn't publish the real item count or the topic weights, so this is a stand-in that fits the real 50 minutes, with an even mix across the five domains.",
   lead:"Cisco's entry-level security cert. It proves you know what a junior analyst or help desk tech needs: core security ideas, how networks and endpoints get attacked and protected, vulnerability and risk basics, and how incidents are handled. Cisco calls it a first step toward CCNA Cybersecurity.",
-  checked:"2026-11-10",
+  checked:"2026-11-26",
   planHours:40,
   objSub:"Five topic areas from Cisco's 100-160 exam topics. Tick objectives as you study them; progress saves on this device.",
   versions:{
