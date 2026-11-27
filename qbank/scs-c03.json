@@ -1,0 +1,2931 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "Security Specialty",
+ "ver": "c03",
+ "exam": "SCS-C03",
+ "title": "Security Specialty (SCS-C03) practice exam",
+ "rev": "2026-11-27",
+ "format": {
+  "n": 65,
+  "min": 170,
+  "pbq": 4,
+  "half": 32
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Detection",
+   "w": 16,
+   "obj": 3
+  },
+  {
+   "n": "2.0",
+   "name": "Incident Response",
+   "w": 14,
+   "obj": 2
+  },
+  {
+   "n": "3.0",
+   "name": "Infrastructure Security",
+   "w": 18,
+   "obj": 3
+  },
+  {
+   "n": "4.0",
+   "name": "Identity and Access Management",
+   "w": 20,
+   "obj": 2
+  },
+  {
+   "n": "5.0",
+   "name": "Data Protection",
+   "w": 18,
+   "obj": 3
+  },
+  {
+   "n": "6.0",
+   "name": "Security Foundations and Governance",
+   "w": 14,
+   "obj": 3
+  }
+ ],
+ "note": "Original questions written for MyNextCert from AWS's public SCS-C03 exam guide (domains, weights and task statements; https://docs.aws.amazon.com/aws-certification/latest/security-specialty-03/security-specialty-03.html), checked 2026-11-27. Not real exam questions. The real exam has 65 questions (50 scored and 15 unscored) in 170 minutes and uses multiple choice, multiple response, ordering and matching items. This bank is a 65-item stand-in that follows the 16/14/18/20/18/14 domain weights, adds 5 hands-on items (CloudTrail log, incident-response order, AWS CLI, two diagrams; each exam draws 4) that stand in for ordering and matching practice, plus choose-two items like the real exam. Practice in your own free-tier or lab account, never with work accounts or a government card.",
+ "q": [
+  {
+   "id": "ss-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A company has 40 AWS accounts in AWS Organizations. The security team wants one account to see AWS Config compliance data from every account and every Region, without logging in to each one. Which setup does that?",
+   "o": [
+    [
+     "Create an organization-wide Config aggregator in a delegated administrator account",
+     "Right. An aggregator in a delegated admin account pulls resource and compliance data from all member accounts and Regions into one view."
+    ],
+    [
+     "Turn on Config in the management account and rely on it to record the member accounts",
+     "Config records only the account where it is enabled. Each member account still needs its own recorder, and nothing collects the data."
+    ],
+    [
+     "Create an organization trail and read configuration history from the CloudTrail bucket",
+     "CloudTrail records API calls. It does not hold Config's resource configuration items or rule compliance results."
+    ],
+    [
+     "Ask each account owner to export a Config snapshot to a shared bucket every week",
+     "Manual weekly exports are slow, easy to forget, and give you old data instead of a live compliance view."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Security Hub is turned on in 12 Regions of one account, and analysts now open 12 consoles to triage findings. They want one place to see and filter findings from all of those Regions. What should the administrator do?",
+   "o": [
+    [
+     "Create an AWS Config aggregator in the home Region",
+     "A Config aggregator collects Config data and rule results. It does not merge Security Hub findings from other Regions."
+    ],
+    [
+     "Write an EventBridge rule in each Region that e-mails every finding to the analysts",
+     "This sends alerts, not a searchable view with workflow status, and it floods the mailbox. The aggregator is the built-in feature."
+    ],
+    [
+     "Enable Security Hub in only one Region and delete it from the others",
+     "This throws away detection in the other Regions. Findings from resources there would no longer be checked or collected."
+    ],
+    [
+     "Create a Security Hub finding aggregator and pick one home Region",
+     "Right. A finding aggregator in Security Hub (Security Hub CSPM) copies findings and updates from linked Regions into the home Region, so analysts work in one console."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-1-03",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "The team must be told within minutes whenever anyone signs in to the console as the root user in any account of the organization. Which design is the most direct?",
+   "o": [
+    [
+     "A daily IAM credential report that shows when the root password was last used",
+     "A report once a day cannot meet within minutes, and it shows only when root was last used, not a live sign-in alert."
+    ],
+    [
+     "A weekly Amazon Macie job that scans the CloudTrail bucket for the word root and e-mails a summary on Mondays",
+     "Macie finds sensitive data such as personal information. A weekly job is far too slow, and it is not an alerting tool for sign-ins."
+    ],
+    [
+     "An EventBridge rule for root ConsoleLogin events, forwarded to a central bus and SNS",
+     "Right. CloudTrail records the sign-in, and a rule that matches the Root identity type can notify within minutes. Root sign-ins can be recorded in us-east-1, us-east-2 or us-west-2, so put the rule in each of those Regions or forward the events to one central bus."
+    ],
+    [
+     "A GuardDuty root credential usage finding reviewed in the weekly Security Hub summary",
+     "GuardDuty can flag root credential use, but reading a weekly summary is far slower than within minutes."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-1-04",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A security engineer needs recurring, automatic checks that find drift in resource settings and in instance configuration, with no person running them. Which TWO actions meet this? (Choose two.)",
+   "o": [
+    [
+     "Run an AWS Config advanced query by hand at the start of each month",
+     "A manual query is a point-in-time check done by a person, not a recurring automatic one."
+    ],
+    [
+     "Deploy an AWS Config conformance pack to the organization",
+     "Right. A conformance pack bundles Config rules and keeps checking resources against them, flagging drift as settings change."
+    ],
+    [
+     "Enable Amazon Macie across the organization",
+     "Macie finds sensitive data in S3. It does not check resource or instance configuration for drift."
+    ],
+    [
+     "Create a Systems Manager State Manager association on a schedule",
+     "Right. State Manager re-applies or checks a desired configuration on managed instances at set times, which catches configuration drift."
+    ],
+    [
+     "Download a credential report from IAM once a quarter and review it by hand",
+     "This is a manual, point-in-time review. The requirement was automatic and recurring."
+    ]
+   ],
+   "a": [
+    1,
+    3
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "ss-1-05",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A company stores documents in many S3 buckets in many accounts. Compliance wants to know continuously which buckets hold personal data such as national IDs, with findings sent to Security Hub. Which service should be enabled and managed from the security account?",
+   "o": [
+    [
+     "Amazon GuardDuty S3 Protection",
+     "GuardDuty S3 Protection spots suspicious access, such as unusual API calls on buckets. It does not read object contents to find personal data."
+    ],
+    [
+     "Amazon Macie with automated sensitive data discovery",
+     "Right. Macie inspects S3 object contents for sensitive data, can run across the organization, and sends findings to Security Hub."
+    ],
+    [
+     "Amazon Detective",
+     "Detective builds graphs to investigate findings that already exist. It does not scan objects for personal data."
+    ],
+    [
+     "AWS Config managed rule s3-bucket-versioning-enabled",
+     "This checks a bucket setting. It tells you nothing about what the files contain."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-1-06",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Auditors require that API activity from all accounts be logged in a way that member-account administrators cannot change or delete, and that tampering can be detected afterward. Which design fits best?",
+   "o": [
+    [
+     "One trail per account, each writing to a bucket inside that same account",
+     "Each member admin owns both the trail and the bucket, so they could stop the trail or delete the logs."
+    ],
+    [
+     "An organization trail delivering to a bucket in a separate log archive account, with log file validation on",
+     "Right. An organization trail covers every account, the bucket sits where member admins have no rights, and digest files let you prove files were not altered."
+    ],
+    [
+     "Rely on CloudTrail Event history in each account",
+     "Event history keeps only 90 days of management events and cannot be locked down or validated like a trail can."
+    ],
+    [
+     "A trail in the management account writing to a bucket there, with public read for auditors",
+     "A public bucket exposes sensitive log data to everyone. Auditors should get a narrow, read-only role instead."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-1-07",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Investigators want to run SQL over logs from many accounts and many sources (CloudTrail, VPC Flow Logs, Route 53 Resolver logs, Security Hub findings) in one common schema, and share the data with a third-party tool. Which service is built for this?",
+   "o": [
+    [
+     "Amazon Security Lake, which stores logs in OCSF format and supports subscribers",
+     "Right. Security Lake collects security data from many accounts and sources, normalizes it to the Open Cybersecurity Schema Framework, and lets approved subscribers query it."
+    ],
+    [
+     "Amazon Macie with a custom data identifier run across every account's S3 buckets",
+     "Macie finds sensitive data in S3. It does not collect or normalize security logs."
+    ],
+    [
+     "AWS CloudTrail Insights, which flags unusual API call volumes across the account's trails",
+     "Insights flags unusual API call volume in CloudTrail only. It does not combine other log sources."
+    ],
+    [
+     "AWS Trusted Advisor",
+     "Trusted Advisor gives account best-practice checks. It is not a log store or query tool."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-08",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A team suspects an instance is contacting a command-and-control domain. For the investigation they need a record of every domain name each instance looked up in the past month, tied to the instance. GuardDuty is on, but it reports only the domains it judged bad. Which source gives the full record?",
+   "o": [
+    [
+     "VPC Flow Logs, which record the address and port of each connection",
+     "Flow logs show IP addresses and ports. They do not hold the names that were looked up, so the domain is missing."
+    ],
+    [
+     "GuardDuty findings exported to Security Hub, listing the domains it flagged",
+     "These cover only domains GuardDuty already judged bad. The team needs every lookup, including the ones that looked harmless."
+    ],
+    [
+     "CloudTrail management events for the VPC and its subnets",
+     "CloudTrail records API calls that change or describe resources. DNS lookups from instances are not API calls."
+    ],
+    [
+     "Route 53 Resolver query logs",
+     "Right. Resolver query logs list every DNS name that resources in the VPC ask for, with the source instance and the answer."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-1-09",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "An application writes JSON logs to CloudWatch Logs only. During an incident an analyst must count errors per source IP for the last two hours within seconds, with no data export. What should the analyst use?",
+   "o": [
+    [
+     "Amazon Athena on an S3 export that someone sets up after the incident has already started",
+     "Setting up an export, a table and permissions during an incident is slow, and recent logs are not in S3 yet."
+    ],
+    [
+     "AWS Config advanced queries over the instance's recorded configuration items",
+     "Config queries resource configuration data, not application log lines."
+    ],
+    [
+     "CloudWatch Logs Insights with a query that filters and groups by source IP",
+     "Right. Logs Insights queries log groups in place, lets you filter and aggregate fields, and returns results quickly."
+    ],
+    [
+     "Amazon Detective finding groups",
+     "Detective explores activity tied to findings from AWS sources. It does not run ad-hoc queries on your application's log group."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-1-10",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Two VPCs in different accounts are joined by a transit gateway. The security team needs flow records for traffic that crosses between the attachments, with the attachment IDs, and does not want to install anything on instances. What should they enable?",
+   "o": [
+    [
+     "VPC Flow Logs on both VPCs, published to one S3 bucket",
+     "They record only what reaches each VPC's own network interfaces and have no transit gateway attachment details, so the path through the gateway is not shown."
+    ],
+    [
+     "A Reachability Analyzer analysis between the two VPCs",
+     "This checks whether a path could work from the configuration. It does not record the traffic that actually flowed."
+    ],
+    [
+     "Transit gateway flow logs",
+     "Right. These logs record flows that pass through the transit gateway, including the source and destination attachments."
+    ],
+    [
+     "Network Firewall flow logs from an inspection VPC",
+     "They exist only if a firewall sits in the path, and nothing in this design includes one."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-1-11",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "An organization trail was created, but no log files reach the S3 bucket in the log archive account. The trail's status shows an access error for the bucket. What is the most likely fix?",
+   "o": [
+    [
+     "Give the management account's admin role s3:PutObject on the bucket, because that account created the trail",
+     "The trail's delivery is done by the CloudTrail service, not by an administrator's role, so granting the role does not help."
+    ],
+    [
+     "Add a bucket policy statement for the CloudTrail service principal with s3:GetBucketAcl and s3:PutObject",
+     "Right. CloudTrail delivers logs as a service principal. Without those statements in the bucket policy, a bucket in another account refuses it."
+    ],
+    [
+     "Replace the organization trail with one trail in each member account, each with its own settings",
+     "The same bucket policy would still block delivery from each new trail, and member administrators could change them."
+    ],
+    [
+     "Turn on default encryption for the bucket and wait for the next delivery cycle",
+     "Encryption settings do not grant CloudTrail the right to write, so delivery keeps failing the same way."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-1-12",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Application servers run the CloudWatch agent, but their logs never reach CloudWatch Logs. The agent log shows AccessDenied calls to logs:PutLogEvents. What should be changed?",
+   "o": [
+    [
+     "Add the needed CloudWatch Logs permissions to the instance profile's role",
+     "Right. The agent signs calls with the instance role. That role must allow actions such as CreateLogStream and PutLogEvents."
+    ],
+    [
+     "Open inbound port 443 on the instance's security group",
+     "The agent makes outbound calls, and security groups are stateful. The error is an authorization error, not a blocked connection."
+    ],
+    [
+     "Turn on log file validation on the organization trail",
+     "Validation applies to CloudTrail digest files and has no effect on the CloudWatch agent."
+    ],
+    [
+     "Increase the log group retention to never expire",
+     "Retention controls how long stored logs are kept. The agent is being denied before anything is stored."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-1-13",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A trail encrypts its logs with a customer managed KMS key. After someone edited the key policy, log delivery stopped and CloudTrail reports that it cannot use the key. What should the engineer restore?",
+   "o": [
+    [
+     "A bucket policy statement that allows s3:DeleteObject and s3:PutBucketPolicy for the CloudTrail principal",
+     "Deleting objects is not how delivery works, and the error points to the key, not the bucket."
+    ],
+    [
+     "A grant that gives the CloudTrail service role kms:Decrypt on the key",
+     "The failing step is generating data keys for encryption, which the key policy must allow. Decrypt is for readers."
+    ],
+    [
+     "A key policy statement that lets the trail's S3 bucket use the key",
+     "The bucket is not the principal that needs the permission. The CloudTrail service principal is."
+    ],
+    [
+     "A key policy statement that lets cloudtrail.amazonaws.com use kms:GenerateDataKey for the trail",
+     "Right. CloudTrail needs permission in the key policy to generate data keys, or delivery with SSE-KMS fails."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-1-14",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "GuardDuty in the delegated administrator account detects findings in eu-west-1. An EventBridge rule in us-east-1 for GuardDuty findings never fires for those. Why?",
+   "o": [
+    [
+     "GuardDuty sends findings to EventBridge only for the management account and not for delegated administrators",
+     "Findings are delivered for the account that owns them, including a delegated administrator's view. Account type is not the cause."
+    ],
+    [
+     "EventBridge rules cannot match GuardDuty findings",
+     "They can, and this is the standard pattern for automating responses."
+    ],
+    [
+     "Findings in other Regions are held for 30 days before being sent",
+     "There is no such delay. Delivery is near real time in the Region of the finding."
+    ],
+    [
+     "EventBridge rules are Regional, so the rule only sees events generated in the Region where it exists",
+     "Right. Findings are sent to the default event bus in the Region where they were generated. You need a rule there, or event forwarding to another bus."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A company wants a safe place to analyze copies of disks from compromised instances without risking production. Which preparation is best?",
+   "o": [
+    [
+     "Attach the copied volume to a spare instance in the same production VPC",
+     "Malware on the copy could reach production systems, and production admins would see the evidence."
+    ],
+    [
+     "A separate VPC in the production account with no Internet route",
+     "Production administrators and roles can still reach the evidence in the same account, and one permission mistake would expose it."
+    ],
+    [
+     "A locked-down forensic account with a cross-account role and shared encrypted snapshots",
+     "Right. A separate account keeps analysis tools and evidence apart from production, and access can be limited to the response team."
+    ],
+    [
+     "A sandbox account in the Workloads OU with Internet access and shared admin roles",
+     "Shared admin roles and Internet access make it easy for malware or people to reach other things. A forensic account is locked down."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "One application's access keys leaked last year and the attacker reached unrelated systems because everything shared one account. The team wants the strongest cut in blast radius for future leaks. Which change gives it?",
+   "o": [
+    [
+     "Keep one account and add a permissions boundary to every role the teams create",
+     "Boundaries cap what a role can do, but a leaked key can still reach everything those roles are allowed to touch in the shared account."
+    ],
+    [
+     "Give each workload and environment its own AWS account under OUs",
+     "Right. An account is the strongest isolation boundary. A leaked credential then reaches only that one account's resources."
+    ],
+    [
+     "Keep one account and use an SCP to block each team from other teams' resources",
+     "An SCP is attached to the whole account. Splitting teams inside it needs fragile tag or ARN conditions, and every team still shares one account boundary, so a leak can still reach other teams' resources."
+    ],
+    [
+     "Keep one account and limit each team to its own Region with a Region-deny control",
+     "This keeps teams in different Regions, but identity and data in the same account are still shared, so one leak still reaches all of it."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A team built an automated response that isolates an instance when GuardDuty reports a certain finding. They want to prove it works without waiting for a real attacker or attacking anything. What should they do?",
+   "o": [
+    [
+     "Generate GuardDuty sample findings and watch the automation run in a test account",
+     "Right. Sample findings use the same format as real ones, so they trigger the EventBridge rule and the runbook safely."
+    ],
+    [
+     "Replay last month's CloudTrail log files into the trail's bucket and watch for findings",
+     "GuardDuty reads its own copy of the event streams, not files you put in a bucket, so replayed files do not trigger findings."
+    ],
+    [
+     "Run a port scan against the production load balancer and tell the owners only after it finishes",
+     "Unannounced testing against production can break service and breaks the rule of acting only with written authorization."
+    ],
+    [
+     "Run a real malware sample in the production account during a quiet hour",
+     "This is unsafe and needs approval. Sample findings test the same pipeline with no risk."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-04",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A GuardDuty finding says an instance is talking to a known malicious address. The team wants it contained within seconds and its evidence kept. Which design fits best?",
+   "o": [
+    [
+     "An EventBridge rule on the finding that starts a Systems Manager Automation runbook to isolate the instance",
+     "Right. EventBridge reacts to the finding at once, and the runbook applies a tested isolation step while the instance keeps running."
+    ],
+    [
+     "A CloudWatch alarm on network-out bytes that triggers a Lambda function to terminate the instance",
+     "Termination ends the attack but destroys memory and may delete volumes, which removes the evidence the team wants to keep."
+    ],
+    [
+     "A Security Hub custom action that posts the finding to the on-call chat so a person isolates the instance",
+     "This depends on someone seeing the message and acting, so it is slower than the seconds required."
+    ],
+    [
+     "An AWS Config rule that marks the instance noncompliant and is re-checked every day",
+     "Config evaluates settings on its own schedule and does not react to a threat finding or isolate anything."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-05",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "As part of the incident response plan, a company protects its public applications with Shield Advanced. It wants the Shield Response Team to contact it during a suspected attack without waiting for a support case. What should it set up?",
+   "o": [
+    [
+     "A DDoS runbook that opens an AWS Support case from an alarm when traffic spikes",
+     "A case is opened by you and waits in the queue. It is not the response team reaching out on its own."
+    ],
+    [
+     "Subscribe the on-call team to Shield Standard notifications through an SNS topic",
+     "Shield Standard has no response team engagement. Notifications alone do not make the team call you."
+    ],
+    [
+     "Automatic application layer DDoS mitigation on the web ACL, which also pages the team",
+     "That setting adds WAF rules during an attack, but it does not make the response team contact you."
+    ],
+    [
+     "Proactive engagement, with health checks and current emergency contacts",
+     "Right. Health checks let Shield see that the application is unhealthy, and contacts let the response team call you straight away."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-2-06",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which TWO preparations should a team finish BEFORE an incident to respond faster? (Choose two.)",
+   "o": [
+    [
+     "Give every responder AdministratorAccess in each account ahead of time, so nobody has to ask during an incident",
+     "Broad standing access raises risk and breaks least privilege. Read-only audit roles with a tested way to get more access are safer."
+    ],
+    [
+     "Keep CloudTrail data events only in the test accounts to cut cost",
+     "Responders need production data events to confirm what was touched. Without them, scope is guesswork."
+    ],
+    [
+     "Write and rehearse runbooks, including an isolation security group that is ready to apply",
+     "Right. A tested runbook with a pre-built deny-all security group turns containment into a quick, repeatable step."
+    ],
+    [
+     "Decide on tools, access and contacts only after the first alert, to keep the plan flexible",
+     "Waiting wastes the most valuable hours and often leads to unsafe shortcuts. Access and contacts must exist before the alert."
+    ],
+    [
+     "Create read-only security audit roles that responders can assume, and test them",
+     "Right. Access that exists and is tested saves time and avoids handing out broad permissions in a rush."
+    ]
+   ],
+   "a": [
+    2,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "ss-2-07",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "GuardDuty reports that a production instance is mining cryptocurrency. The team must stop the spread and keep the evidence. Which first containment step is best?",
+   "o": [
+    [
+     "Stop the instance, snapshot its volumes, and start it again from the snapshot",
+     "Stopping loses memory and running processes, which can hold the best evidence about what the attacker did."
+    ],
+    [
+     "Tag the instance, terminate it, and rely on the nightly backup for the evidence the team needs",
+     "The nightly backup misses memory and recent changes, and termination can delete the volumes along with the attack's traces."
+    ],
+    [
+     "Apply a deny-all isolation security group, keep it running, and snapshot the volumes",
+     "Right. Isolation blocks new traffic while memory and processes stay available, and snapshots keep the disks. Tracked connections can outlive a security group change, so a network ACL deny is often added to cut them at once."
+    ],
+    [
+     "Revoke the instance role's sessions and leave its security groups open so the attacker is not alerted",
+     "The attacker's connections and the mining would continue, and spread to other hosts is not stopped by revoking sessions alone."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-2-08",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "An attacker stole temporary credentials from an instance role and keeps using them. The team fixed the vulnerability, but sessions already issued are still valid. What stops those sessions without breaking the role for good?",
+   "o": [
+    [
+     "Edit the role trust policy to remove ec2.amazonaws.com",
+     "Trust policy changes affect new assume-role calls, not sessions that were already issued, and the instance would lose its role."
+    ],
+    [
+     "Use the role's Revoke active sessions action, which adds a deny for tokens issued before now",
+     "Right. This blocks all older sessions, and new sessions created afterward by the real instance work again."
+    ],
+    [
+     "Wait for the instance's metadata service to rotate the credentials",
+     "Rotation happens on its schedule, and the attacker's copy stays valid until it expires."
+    ],
+    [
+     "Delete the instance profile",
+     "This breaks the real workload and does not invalidate credentials the attacker already holds."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-2-09",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "An analyst must see which resources a suspicious IAM role touched over three weeks, including unusual API volume and new source locations, in a prebuilt visual view without writing queries. Which service is the best fit?",
+   "o": [
+    [
+     "Amazon Security Lake, queried with Athena over the OCSF tables",
+     "This stores the data well, but the analyst would have to write the queries and build the comparisons themselves."
+    ],
+    [
+     "Amazon Detective",
+     "Right. Detective builds behavior graphs from CloudTrail and network data, so analysts see changes in a role's activity without writing queries."
+    ],
+    [
+     "CloudTrail Lake with a saved SQL query for the role's ARN",
+     "This returns the raw events for the role. It does not draw the behavior baseline or show new locations on its own."
+    ],
+    [
+     "The GuardDuty finding details for the IAM finding type",
+     "A finding describes one detection. It does not show three weeks of the role's other activity."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-2-10",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "After a suspected breach, the team must find every API call made by one access key across 30 accounts over the last year. The organization has an event data store in CloudTrail Lake. What is the quickest approach?",
+   "o": [
+    [
+     "Run an SQL query in CloudTrail Lake filtered on the access key ID",
+     "Right. CloudTrail Lake keeps events from many accounts in one store and lets you query them with SQL, even across long periods."
+    ],
+    [
+     "Open Event history in the console of each of the 30 accounts, one Region at a time",
+     "Event history covers 90 days and one account and Region at a time, so a year of data across 30 accounts is not reachable."
+    ],
+    [
+     "Ask each account owner to search their own application logs for the access key ID",
+     "Application logs do not hold AWS API calls, and this takes much longer."
+    ],
+    [
+     "Search Security Hub findings only",
+     "Findings are summaries of detections. They do not contain every API call."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-2-11",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A GuardDuty finding says a role downloaded a huge amount of data from an S3 bucket. The team wants to know exactly which objects were read and by whom. Which evidence source answers this?",
+   "o": [
+    [
+     "CloudTrail management events only",
+     "These record bucket-level actions such as creating buckets or changing policies, not each object read."
+    ],
+    [
+     "AWS Config configuration history of the bucket and its attached bucket policy over time",
+     "Config tracks settings of the bucket, not who read which object."
+    ],
+    [
+     "Amazon Inspector findings",
+     "Inspector reports vulnerabilities. It holds no record of S3 object access."
+    ],
+    [
+     "CloudTrail S3 data events, if they were enabled for the bucket before the incident",
+     "Right. Data events record object-level calls such as GetObject, with the caller identity and key name."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-2-12",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Ransomware encrypted the volumes of a file server. The team has isolated the instance and copied evidence. Which TWO recovery steps are appropriate? (Choose two.)",
+   "o": [
+    [
+     "Delete the forensic snapshots to save storage cost",
+     "Those snapshots are evidence for root cause analysis. Keep them until the investigation ends."
+    ],
+    [
+     "Restore the newest backup straight into production, since it holds the latest data",
+     "The newest backup might already contain the malware or encrypted files, and restoring it straight into production skips any check."
+    ],
+    [
+     "Restore a clean pre-infection recovery point into an isolated environment first",
+     "Right. A known-good recovery point removes the encrypted data, and testing it in isolation checks it is clean before returning to production."
+    ],
+    [
+     "Rotate credentials and secrets that were stored on or reachable from the affected host",
+     "Right. The attacker may have copied them. Rotating closes the door they might use again."
+    ],
+    [
+     "Re-enable the compromised role's old sessions so work can continue",
+     "Old sessions are exactly what must stay blocked. Allowing them again lets the attacker back in."
+    ]
+   ],
+   "a": [
+    2,
+    3
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "ss-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A login page behind an Application Load Balancer is hit by a script trying thousands of passwords from changing addresses. The team wants to slow any single client down without blocking normal users. What should they add?",
+   "o": [
+    [
+     "A network ACL rule that denies one of the attacking source addresses on the load balancer subnet",
+     "Attackers rotate addresses, and a NACL has a limited number of rules. It cannot count requests per client."
+    ],
+    [
+     "AWS Shield Standard alone",
+     "Shield Standard handles common network and transport-layer floods. It does not throttle password guessing on one URL."
+    ],
+    [
+     "An AWS WAF rate-based rule on the web ACL, scoped to the login path",
+     "Right. A rate-based rule counts requests per client over a window and blocks only the ones above the limit."
+    ],
+    [
+     "A security group rule that allows only port 443",
+     "The attacker already uses port 443 like a normal user, so this blocks nothing."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Private documents are stored in an S3 bucket encrypted with SSE-KMS. They should be reachable only through a CloudFront distribution. Which origin setup meets this?",
+   "o": [
+    [
+     "Origin access identity with a bucket policy naming the identity",
+     "OAI is the older method and does not support SSE-KMS encrypted objects, so reads would fail."
+    ],
+    [
+     "Make the bucket public and have CloudFront add a secret Referer header that the bucket policy checks on every read",
+     "A public bucket can be read by anyone who finds the name, and the header is easy to copy."
+    ],
+    [
+     "CloudFront origin access control, with a bucket policy allowing cloudfront.amazonaws.com when AWS:SourceArn matches the distribution",
+     "Right. OAC signs requests to S3, supports SSE-KMS, and lets the bucket policy accept only that one distribution. With SSE-KMS, the key policy must also let cloudfront.amazonaws.com use kms:Decrypt when AWS:SourceArn is the distribution."
+    ],
+    [
+     "Give the bucket a public website endpoint and block other countries",
+     "Geography filtering is not authentication. The bucket would still be open to anyone in allowed countries."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A company has a public web app on an Application Load Balancer. It needs help from AWS experts during a large attack, and wants protection against charges from traffic spikes caused by a DDoS. Which service provides both?",
+   "o": [
+    [
+     "AWS Shield Standard",
+     "Standard is free and automatic but has no response team and no cost protection."
+    ],
+    [
+     "AWS Shield Advanced",
+     "Right. It adds Shield Response Team support and cost protection for scaling charges caused by a DDoS, on top of the basic protection."
+    ],
+    [
+     "An AWS WAF web ACL with managed rule groups",
+     "WAF rules filter requests, but they do not include expert response or reimbursement of scaling costs."
+    ],
+    [
+     "AWS Network Firewall",
+     "It filters VPC traffic with stateful rules. It has no response team and does not cover spike costs."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-3-04",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A public Application Load Balancer must refuse requests from certain countries, record each blocked request, and show a custom response. CloudFront is not used. What should be used?",
+   "o": [
+    [
+     "An AWS WAF rule with a geo match condition, attached to the load balancer",
+     "Right. WAF supports geo match on ALBs and gives logging and custom responses."
+    ],
+    [
+     "CloudFront geographic restrictions on a distribution placed in front of the load balancer",
+     "These only work on a CloudFront distribution, which is not in this design."
+    ],
+    [
+     "A network ACL that denies by country name and lets the VPC keep its normal rules everywhere else",
+     "NACLs match IP ranges, not countries."
+    ],
+    [
+     "A Route 53 geolocation routing policy",
+     "DNS routing changes answers for lookups. Someone can still reach the load balancer directly by its address."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-05",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A public REST API receives SQL injection attempts and traffic from known bad bots. Which TWO actions help most? (Choose two.)",
+   "o": [
+    [
+     "Enable AWS WAF Bot Control on the web ACL",
+     "Right. Bot Control identifies and manages automated traffic, including known bad bots."
+    ],
+    [
+     "Rely on AWS Shield Standard",
+     "Standard protects against network-level floods. It does not inspect HTTP bodies for injection."
+    ],
+    [
+     "Add AWS managed rule groups for SQL injection and common threats to the web ACL",
+     "Right. Managed rule groups block known attack patterns without the team writing every rule."
+    ],
+    [
+     "Run Amazon Inspector once a month",
+     "Inspector reports software weaknesses. It does not block live attack traffic."
+    ],
+    [
+     "Add a network ACL rule that denies the addresses of last week's attackers",
+     "Attackers change addresses, and a network ACL cannot inspect HTTP requests for injection."
+    ]
+   ],
+   "a": [
+    0,
+    2
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "ss-3-06",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A company must build golden AMIs that follow a hardening benchmark, are scanned for vulnerabilities, and are rebuilt each month with the latest patches. Which approach is best?",
+   "o": [
+    [
+     "Log in to a running server, harden it by hand, and create an image from it for the whole company to reuse",
+     "Manual work is not repeatable and drifts from one image to the next."
+    ],
+    [
+     "A user data script that hardens each instance at launch from the stock AMI",
+     "This repeats on every launch, can fail without anyone noticing, and gives no scanned and tested image."
+    ],
+    [
+     "Encrypt the image's snapshot with a customer managed key and treat the image as hardened",
+     "Encryption protects data at rest. It does not apply any hardening to the operating system."
+    ],
+    [
+     "An EC2 Image Builder pipeline with hardening components, tests and a monthly schedule",
+     "Right. Image Builder automates build, test, hardening and distribution, and rebuilds on a schedule so images stay current."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-3-07",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A Lambda function reads objects from one S3 bucket. A developer proposes putting an IAM user's access keys in its environment variables. What is the better design?",
+   "o": [
+    [
+     "Store the keys in a plain text file inside the deployment package that the function loads at start",
+     "Anyone with access to the package can read them, and they never expire."
+    ],
+    [
+     "Attach an EC2 instance profile to the function",
+     "Instance profiles are for EC2. Lambda uses execution roles."
+    ],
+    [
+     "Add a resource policy on the function that grants the function s3:GetObject on the bucket",
+     "A function's resource policy controls who can invoke it. Its own permissions come from the execution role."
+    ],
+    [
+     "Give the function an execution role that allows only s3:GetObject on that bucket",
+     "Right. The function gets short-lived credentials automatically, with permissions limited to its single job."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-3-08",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "The team wants continuous vulnerability scanning of container images in Amazon ECR and of Lambda functions, with findings sent to Security Hub. Which option does this?",
+   "o": [
+    [
+     "Amazon GuardDuty with Lambda protection and runtime monitoring enabled",
+     "GuardDuty detects threats in activity. It does not list known vulnerable packages in images and functions."
+    ],
+    [
+     "AWS Config managed rules for ECR and Lambda settings across the organization",
+     "These rules check configuration, such as whether scanning is on, and not the packages inside the images."
+    ],
+    [
+     "Amazon Inspector with ECR and Lambda scanning turned on",
+     "Right. Inspector scans images and functions for known software vulnerabilities and sends the findings to Security Hub."
+    ],
+    [
+     "Security Hub standards enabled in every account with a weekly report",
+     "Standards check account settings. Security Hub shows vulnerability findings only when a scanner like Inspector produces them."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-3-09",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Administrators need shell access to instances in private subnets. The policy says no inbound SSH from anywhere, no shared key pairs, and every session must be logged. Which option meets all three?",
+   "o": [
+    [
+     "A bastion host with port 22 open to the Internet, and a key pair kept by each administrator",
+     "This opens the exact inbound SSH the policy forbids."
+    ],
+    [
+     "Systems Manager Session Manager with session logs sent to S3 or CloudWatch Logs",
+     "Right. Session Manager uses outbound connections from the agent, IAM controls who connects, and sessions can be logged."
+    ],
+    [
+     "EC2 Instance Connect over the instance's public address, with a temporary key pushed for each login",
+     "It still needs port 22 reachable on the instance and does not give the session logging asked for."
+    ],
+    [
+     "A shared key pair kept in a team spreadsheet",
+     "Shared keys remove accountability and are easy to leak."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-3-10",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A company has long-lived instances that must be patched in place on a schedule inside approved windows, with a report of which instances still miss patches. Which approach fits?",
+   "o": [
+    [
+     "Systems Manager Patch Manager with a patch baseline and maintenance window",
+     "Right. Patch Manager applies approved patches in the window and reports compliance for each instance."
+    ],
+    [
+     "An EC2 Image Builder pipeline that rebuilds the AMI monthly, then replacing the instances by hand",
+     "Rebuilding images is a good practice for new instances, but it does not patch the running long-lived instances or report their missing patches."
+    ],
+    [
+     "An Amazon Inspector scan with an EventBridge rule that runs a shell command for each finding",
+     "Inspector reports vulnerabilities. Patching on a schedule inside approved windows is not what it is built to do."
+    ],
+    [
+     "An AWS Config rule that marks instances noncompliant when their AMI is older than 90 days",
+     "This reports instance age. It does not install patches or show which patches are missing."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-11",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A company builds a customer chat app on a foundation model. It wants to block prompt injection attempts, deny certain topics, and mask personal data in answers. Which solution fits best?",
+   "o": [
+    [
+     "Amazon Bedrock Guardrails with prompt attack and sensitive information filters",
+     "Right. Guardrails check both prompts and model responses and can block attacks and topics, and mask personal data."
+    ],
+    [
+     "AWS WAF managed rule groups for SQL injection and known bad inputs on the app's load balancer",
+     "These rules look for web attack patterns. They do not understand instructions hidden in natural language prompts."
+    ],
+    [
+     "Amazon Macie scanning the S3 bucket that stores the chat transcripts for personal data",
+     "Macie finds personal data in stored objects after the fact. It does not filter live prompts and answers."
+    ],
+    [
+     "A system prompt that tells the model never to reveal personal data or follow user instructions to ignore it",
+     "A prompt is only a request to the model, and attackers can often talk around it. It is not an enforced control."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-3-12",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Servers in private subnets must reach only an approved list of domain names on the Internet, and every other destination must be blocked and logged. Which control fits?",
+   "o": [
+    [
+     "Security group outbound rules that list the approved domain names one by one",
+     "Security groups use IP addresses, security groups and prefix lists, not domain names."
+    ],
+    [
+     "A Route 53 Resolver DNS Firewall allow list with no other egress control",
+     "DNS Firewall filters DNS lookups only. Servers can still connect straight to an address with no lookup, so other destinations are not blocked."
+    ],
+    [
+     "A NAT gateway with a security group listing the approved sites' current IP addresses",
+     "NAT gateways cannot have security groups, and the sites' addresses change."
+    ],
+    [
+     "AWS Network Firewall with a stateful domain allow-list rule group",
+     "Right. It can match on domain names for outbound traffic and log what it blocks."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-3-13",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A subnet's network ACL allows inbound TCP 443 and has no outbound rules except the default deny. Clients cannot get a response from the web server. What explains this?",
+   "o": [
+    [
+     "Security groups are stateless, so the return traffic needs a rule in the other direction",
+     "Security groups are stateful. Their replies are allowed automatically."
+    ],
+    [
+     "The NACL needs an inbound rule for port 80 as well",
+     "The server needs return traffic to work, not another inbound rule for a port clients do not use."
+    ],
+    [
+     "Network ACLs are stateless, so return traffic on ephemeral ports needs its own outbound allow rule",
+     "Right. Unlike security groups, a NACL checks each direction separately, so the replies are denied."
+    ],
+    [
+     "The instance needs an Elastic IP before it can respond",
+     "An address is not what blocks the responses. The NACL does."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-3-14",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "The security team wants to find any resource in 20 VPCs that can be reached from an internet gateway when only the load balancers should be, by analyzing configuration and without sending test traffic. Which tool fits?",
+   "o": [
+    [
+     "Reachability Analyzer, run once for each resource against the internet gateway",
+     "It tests one source and destination at a time, so checking every resource in 20 VPCs would not scale."
+    ],
+    [
+     "Network Access Analyzer with a scope that flags paths from internet gateways",
+     "Right. It analyzes configuration across VPCs and reports every path that matches an unwanted access scope."
+    ],
+    [
+     "Amazon Inspector network reachability findings for EC2 instances",
+     "These cover EC2 instances only. Other resources such as endpoints are not examined."
+    ],
+    [
+     "VPC Flow Logs filtered for traffic from the internet gateway",
+     "Flow logs show traffic that already happened. Paths that exist but were not used would be missed."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-3-15",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A company's Direct Connect link carries sensitive data between its data center and AWS. Policy says all traffic must be encrypted in transit. What must the company do?",
+   "o": [
+    [
+     "Nothing, because a Direct Connect circuit is private and encrypts traffic by default",
+     "Direct Connect is a private link, but it does not encrypt your data unless you add something."
+    ],
+    [
+     "Run a Site-to-Site VPN over Direct Connect, or use MACsec on a dedicated connection",
+     "Right. Direct Connect is private but not encrypted by default. IPsec or MACsec adds encryption."
+    ],
+    [
+     "Create a private virtual interface, which encrypts the traffic between the router and the VPC",
+     "Interface types control routing and addressing. They do not add encryption."
+    ],
+    [
+     "Put a TLS-terminating Network Load Balancer on the AWS side of the connection",
+     "This could protect one application's session, but the link itself, and every other protocol on it, stays unencrypted."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-3-16",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A database in an isolated subnet should accept connections only from the application tier, and the app tier's addresses change as it scales. Which rule keeps the database tight?",
+   "o": [
+    [
+     "A database security group rule that allows the database port from the app tier's security group",
+     "Right. Referencing a security group follows instances as they come and go, with no address lists to maintain."
+    ],
+    [
+     "Allow the database port from the whole VPC CIDR so every new app instance is covered automatically",
+     "Any host in the VPC, including a compromised one, could then connect."
+    ],
+    [
+     "Allow the database port from the app tier's subnet CIDR ranges",
+     "Any other host in those subnets could connect, and the ranges need upkeep as tiers change."
+    ],
+    [
+     "Allow the database port only in the subnet's network ACL and leave the security group open to the VPC",
+     "A NACL is stateless and subnet-wide. Without tight security group rules, any host in the subnet range gets through."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A company wants employees to sign in once with their corporate identity provider and reach 30 AWS accounts with different roles, using short-lived credentials and no IAM users. What should they set up?",
+   "o": [
+    [
+     "An IAM user in each account with a long password policy",
+     "This gives long-lived users in 30 places to manage and offboard."
+    ],
+    [
+     "An Amazon Cognito user pool for the employees",
+     "Cognito user pools are meant for customers of an application, not for workforce access to AWS accounts."
+    ],
+    [
+     "One role per account that people assume with a long-lived key kept in a password manager",
+     "Long-lived keys are the opposite of short-lived credentials, and there is no single sign-in with the corporate identity."
+    ],
+    [
+     "IAM Identity Center connected to the external identity provider, with permission sets assigned to groups",
+     "Right. Identity Center federates sign-in and creates temporary role sessions in each assigned account."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A mobile app lets customers sign in with Google or Apple, and then upload files directly to a bucket with temporary AWS credentials that cover only their own folder. Which design fits best?",
+   "o": [
+    [
+     "IAM Identity Center users for every customer",
+     "Identity Center is for the workforce and is not built for millions of app customers."
+    ],
+    [
+     "A Cognito user pool alone, with the app sending the user pool ID token to S3 as its credentials",
+     "An ID token proves who the user is, but S3 does not accept it. An identity pool exchanges it for AWS credentials."
+    ],
+    [
+     "Cognito user pool for sign-in, plus a Cognito identity pool that issues scoped temporary credentials",
+     "Right. The user pool handles social sign-in and the identity pool exchanges tokens for temporary credentials with a limited role."
+    ],
+    [
+     "A bucket policy that allows Principal * to write, with the app checking folder names",
+     "This lets anyone write anywhere in the bucket and removes any per-customer control."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-4-03",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "On-premises servers need to call the AWS API. The company runs its own certificate authority and does not want long-lived access keys on the servers. Which option is best?",
+   "o": [
+    [
+     "An IAM user with access keys saved in a protected file on each server and replaced every year",
+     "Keys do not expire and are often copied or leaked."
+    ],
+    [
+     "An EC2 instance profile attached to the on-premises servers",
+     "Instance profiles work only for EC2 instances."
+    ],
+    [
+     "IAM Roles Anywhere, with a trust anchor for the company CA and a profile mapped to a role",
+     "Right. Servers use X.509 certificates to get temporary credentials for the role without stored access keys."
+    ],
+    [
+     "A Cognito user pool with a shared service account",
+     "User pools are for app users. A shared account also removes accountability."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-4-04",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Employees using SAML federation get an error that they are not authorized to perform sts:AssumeRoleWithSAML. The identity provider side works. What should the administrator check first?",
+   "o": [
+    [
+     "The role's permissions policy allows sts:AssumeRoleWithSAML on the SAML provider",
+     "A permissions policy decides what the session may do after it starts. The right to assume comes from the trust policy."
+    ],
+    [
+     "The role's trust policy lists the SAML provider and a matching audience condition",
+     "Right. AssumeRoleWithSAML is decided by the role's trust policy, which must name the provider and match values such as saml:aud."
+    ],
+    [
+     "The SAML provider's metadata was uploaded to IAM in the same Region as the role",
+     "IAM SAML providers are global, so there is no Region match to check."
+    ],
+    [
+     "The user's group has AdministratorAccess in the target account",
+     "Existing permissions do not matter yet, because the failure happens before any session exists."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-4-05",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A developer creates a presigned S3 URL valid for 12 hours while using a role session that lasts one hour. The URL stops working after about one hour. Why?",
+   "o": [
+    [
+     "A presigned URL only works as long as the credentials that signed it are valid",
+     "Right. When the role session ends, the signature no longer validates, whatever the URL's own expiry says."
+    ],
+    [
+     "S3 caps every presigned URL at one hour, whichever credentials were used to sign it",
+     "Longer expiry is possible when signed with long-lived IAM user credentials, so there is no fixed cap at one hour."
+    ],
+    [
+     "The bucket's versioning setting expired the URL after the first object version changed",
+     "Versioning has nothing to do with presigned URL validity."
+    ],
+    [
+     "The URL was cached by CloudFront",
+     "Caching does not shorten a URL's validity."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-06",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A company lets a third-party monitoring vendor assume a role in its account. To prevent the vendor from being tricked into acting on behalf of another customer, which element belongs in the trust policy?",
+   "o": [
+    [
+     "A condition requiring MFA from the vendor's service",
+     "Automated services cannot answer MFA prompts, and MFA does not stop confused deputy."
+    ],
+    [
+     "A wildcard principal so any vendor account can assume the role as long as it knows the role name",
+     "This allows anyone to try assuming the role, which is far too open."
+    ],
+    [
+     "A permissions boundary on the vendor's role",
+     "A boundary caps permissions. It does not prove which customer the request is made for."
+    ],
+    [
+     "A condition requiring a unique sts:ExternalId that only this customer and the vendor know",
+     "Right. The external ID stops another vendor customer from using the vendor to reach this account (the confused deputy problem)."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-4-07",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A new employee signs in to IAM Identity Center successfully but sees no accounts in the access portal. The user is a member of the right group. What is the most likely cause?",
+   "o": [
+    [
+     "The user needs an IAM user created in every account before the portal shows anything",
+     "Identity Center creates role sessions without IAM users."
+    ],
+    [
+     "An administrator must register an MFA device for the user in IAM Identity Center",
+     "Sign-in already succeeded, so MFA is not what hides the accounts."
+    ],
+    [
+     "The SAML provider in each account must be created by hand first",
+     "Identity Center sets up what it needs in the accounts it is assigned to."
+    ],
+    [
+     "The group has not been assigned to any account with a permission set",
+     "Right. Access appears only after a group or user is assigned to an account with a permission set."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-4-08",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "An S3 request from a role in a member account is denied. The role's identity policy allows s3:GetObject, the bucket policy allows the role, and nothing has an explicit deny. The organization has an SCP that allows only EC2 and CloudWatch actions. Why is the request denied?",
+   "o": [
+    [
+     "The bucket policy must be moved into the identity policy, and the bucket policy then deleted",
+     "Both can coexist. Moving the text would not lift the limit that the SCP sets."
+    ],
+    [
+     "The role needs a permissions boundary that allows S3",
+     "A boundary can only reduce permissions, so adding one does not override an SCP."
+    ],
+    [
+     "The SCP does not allow s3 actions, and an SCP sets the maximum permissions for the account",
+     "Right. SCPs never grant permissions but they limit them. Without an allow for S3 at that level, nothing can enable it."
+    ],
+    [
+     "The bucket policy must name the role session ARN, not the role ARN",
+     "A bucket policy that names the role ARN also covers its sessions. The block comes from the SCP."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-4-09",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A company lets developers create IAM roles for their apps but must stop them from creating roles more powerful than themselves. Which control accomplishes this?",
+   "o": [
+    [
+     "Give developers read-only IAM access and an ops team that creates every role",
+     "This blocks the feature rather than controlling it, and slows development."
+    ],
+    [
+     "Allow iam:CreateRole only when the request sets a specific permissions boundary policy",
+     "Right. The condition forces every new role to carry the boundary, which caps what those roles can do."
+    ],
+    [
+     "A permissions boundary on each developer that denies all iam:* actions",
+     "This stops the creation altogether, but the goal is to let developers create roles safely."
+    ],
+    [
+     "Enable MFA for developers",
+     "MFA proves who is signing in and does not cap what roles they create."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-4-10",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A user has an identity policy that allows all actions on all resources. The user's permissions boundary allows only s3:Get* and ec2:Describe*. No SCP or session policy applies. Which action can the user perform?",
+   "o": [
+    [
+     "s3:GetObject",
+     "Right. A boundary and an identity policy must both allow the action, and s3:GetObject is in both."
+    ],
+    [
+     "ec2:RunInstances",
+     "The identity policy allows it, but the boundary does not, so it is denied."
+    ],
+    [
+     "iam:CreateUser",
+     "The boundary does not allow IAM actions, so this is denied."
+    ],
+    [
+     "s3:DeleteObject",
+     "The boundary allows only s3:Get* for S3, so deletion is not permitted."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-11",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A role in account A must read an object in a bucket owned by account B. Which statement describes what is required for this cross-account access to work?",
+   "o": [
+    [
+     "The role's identity policy in A must allow the action, and the bucket policy in B must allow the role or account A",
+     "Right. For cross-account access, both sides have to allow it. Each account controls its own side."
+    ],
+    [
+     "Only the bucket policy in B is needed, because the owner decides",
+     "For a role in another account, the identity policy in A must allow it as well."
+    ],
+    [
+     "Only the identity policy in A is needed, because the role is trusted and that trust makes the bucket policy optional",
+     "Account B must also grant access on the bucket. A cannot give itself access to B's resources."
+    ],
+    [
+     "Account B must create an IAM user with the same name as the role",
+     "User names are irrelevant. Cross-account access is granted through policies."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-12",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "The organization wants to guarantee that no principal from outside the organization can reach its S3 buckets and KMS keys, even if a team edits a bucket policy carelessly. What should it use?",
+   "o": [
+    [
+     "An SCP on the organization root that denies S3 and KMS actions unless aws:PrincipalOrgID matches",
+     "An SCP limits principals that belong to your own accounts. It does not restrict outside principals who reach your resources."
+    ],
+    [
+     "A VPC endpoint policy on every S3 gateway endpoint that allows only organization principals",
+     "It controls only traffic that goes through those endpoints, and nothing stops access that comes another way."
+    ],
+    [
+     "A bucket policy template deployed to every bucket and key with StackSets",
+     "A careless edit or drift in one bucket would still leave it open, so nothing guarantees the rule holds."
+    ],
+    [
+     "A resource control policy with an organization ID condition",
+     "Right. An RCP sets the maximum access to resources in member accounts, including requests from outside principals."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-4-13",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A broker application gives each customer temporary access to one S3 prefix, using one shared IAM role. How can the broker narrow each session to that customer's prefix at run time?",
+   "o": [
+    [
+     "Attach a separate permissions boundary to each customer's session",
+     "Boundaries attach to users and roles. They cannot be attached to a single session."
+    ],
+    [
+     "Create one role per customer, each with an inline policy for the customer's prefix",
+     "This works but is not what the broker needs: thousands of roles would need creating, tracking and cleaning up, and the question asks for one shared role."
+    ],
+    [
+     "Pass a session policy scoped to the customer's prefix when assuming the role",
+     "Right. The session's permissions are the overlap of the role's policy and the session policy, so each customer gets less."
+    ],
+    [
+     "Add a bucket policy statement per customer that lists the customer's temporary session ARN",
+     "Session ARNs are created at run time and change each time, so a bucket policy cannot name them in advance."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-4-14",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A company has 60 projects. Engineers should access only resources tagged with their own project, and a new project must not need any new policy. Which model fits?",
+   "o": [
+    [
+     "RBAC with one role and one managed policy per project, created when the project starts",
+     "It works, but each new project needs a new policy and role, which the company wants to avoid."
+    ],
+    [
+     "ABAC, comparing the project tag on the principal and the resource",
+     "Right. One policy with a tag comparison works for every project, now and later."
+    ],
+    [
+     "A permissions boundary for each project that names the project's resource ARNs",
+     "Each project would need its own boundary, and a boundary only caps permissions. It does not grant any."
+    ],
+    [
+     "A resource policy on every resource that lists the engineers allowed to use it",
+     "Every new resource and every new engineer would need an edit to a policy, which does not scale."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-4-15",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "The security team wants to find IAM roles and access keys that have permissions or access they have not used in the last 90 days, so they can tighten them. Which feature should they use?",
+   "o": [
+    [
+     "IAM Access Analyzer external access findings",
+     "These show resources shared outside the zone of trust, not unused permissions."
+    ],
+    [
+     "IAM Access Analyzer unused access findings",
+     "Right. It reports unused roles, access keys and permissions, so they can be removed."
+    ],
+    [
+     "The IAM credential report only",
+     "It lists credential status, but does not show unused permissions inside policies."
+    ],
+    [
+     "AWS Config rule for root MFA",
+     "It checks one setting about the root user and not unused permissions."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-4-16",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Which TWO capabilities does IAM Access Analyzer provide? (Choose two.)",
+   "o": [
+    [
+     "Finding resources shared with principals outside the organization",
+     "Right. External access analysis reports unintended sharing through resource policies."
+    ],
+    [
+     "Blocking API calls in real time when a user's activity looks risky or unusual",
+     "It reports findings and creates policies. It does not sit in the request path to block calls."
+    ],
+    [
+     "Patching operating systems on instances",
+     "Patching belongs to Systems Manager, and the analyzer has no such feature."
+    ],
+    [
+     "Scanning container images for known software vulnerabilities",
+     "Vulnerability scanning is Amazon Inspector's job, and the analyzer has no such feature."
+    ],
+    [
+     "Generating a least-privilege policy from the CloudTrail activity of a role",
+     "Right. Policy generation looks at actual API usage and proposes a policy that covers it."
+    ]
+   ],
+   "a": [
+    0,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "ss-4-17",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A custom web application has thousands of end users with roles like manager and viewer. Rules depend on the document, the user's department and the time of day. The developers want one central place to define and audit these rules, without hard-coding them. Which service fits?",
+   "o": [
+    [
+     "Amazon Verified Permissions, using Cedar policies",
+     "Right. It lets applications ask a central policy store whether a user may take an action on a resource."
+    ],
+    [
+     "IAM identity policies, one written for each end user of the app",
+     "End users of an app are not IAM identities, and thousands of policies would not scale."
+    ],
+    [
+     "An SCP on the production account that lists the allowed actions for each department",
+     "SCPs limit AWS API permissions for accounts, not what end users can do inside an app."
+    ],
+    [
+     "S3 bucket policies",
+     "These control access to bucket data and cannot express an application's business rules."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-4-18",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A trust policy for a role in account 111122223333 lists the principal arn:aws:iam::444455556666:root. Who can assume the role?",
+   "o": [
+    [
+     "Every principal in account 444455556666, because the trust policy alone is enough to grant access",
+     "Across accounts, both sides must allow it, so principals without their own sts:AssumeRole permission are refused."
+    ],
+    [
+     "Only the root user of account 444455556666, because the principal is written as root",
+     "The root element names the entire account and not just its root user."
+    ],
+    [
+     "Only principals in 444455556666 that the role's permissions policy names",
+     "A permissions policy has no principal field. Who may assume is set by the trust policy and the caller's own policies."
+    ],
+    [
+     "Any principal in account 444455556666 whose own policies allow sts:AssumeRole on this role",
+     "Right. The trust policy opens the door to the whole other account, and that account's own policies decide which principals walk through."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-4-19",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "An IAM user in account A has no identity policy attached. A bucket policy in account A names that user's ARN and allows s3:GetObject. Assume no SCP applies. Can the user read objects?",
+   "o": [
+    [
+     "No, an identity policy must always allow the action first, and the bucket policy only adds to it",
+     "That rule applies to cross-account requests. Inside one account a single allow is enough."
+    ],
+    [
+     "No, the bucket policy must name the account root, because users cannot be named as principals",
+     "A bucket policy can name individual IAM users and roles by ARN."
+    ],
+    [
+     "Yes: inside one account, a resource policy that names the user is enough on its own",
+     "Right. In the same account, either an identity policy or a resource policy that names the principal can allow the action."
+    ],
+    [
+     "Yes, but only if the user also has a permissions boundary that allows s3:GetObject",
+     "A boundary is not needed for this request. Boundaries cap identity-based grants, and no boundary requirement exists here."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-5-01",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Policy says no one may read or write a bucket over plain HTTP. Which bucket policy statement enforces this?",
+   "o": [
+    [
+     "Allow all principals when aws:SecureTransport is true, and remove other statements",
+     "An allow does not block anything. Other grants, such as identity policies, would still let HTTP requests through."
+    ],
+    [
+     "Deny all principals when aws:SecureTransport is true, except for the application role",
+     "This blocks the HTTPS requests and leaves HTTP open, which is the opposite of what is needed."
+    ],
+    [
+     "Deny all principals when aws:SecureTransport is false",
+     "Right. Plain HTTP requests have SecureTransport false, so the explicit deny blocks them and leaves HTTPS alone."
+    ],
+    [
+     "Deny all principals when s3:TlsVersion is lower than 1.2",
+     "A plain HTTP request has no TLS version, so the condition does not match and the request is not denied."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-5-02",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A load balancer still accepts TLS 1.0 and 1.1 from old clients. A new rule requires TLS 1.2 or higher with strong ciphers. What is the simplest fix?",
+   "o": [
+    [
+     "An AWS WAF rule on the load balancer that blocks requests that used old TLS versions",
+     "WAF sees requests only after the TLS handshake is done, and it does not control the protocol versions."
+    ],
+    [
+     "A TLS 1.2 or 1.3 security policy on the HTTPS listener",
+     "Right. The listener's security policy sets the allowed protocol versions and ciphers."
+    ],
+    [
+     "A listener rule that redirects HTTP to HTTPS and drops clients that cannot use it",
+     "A redirect moves plain HTTP traffic to HTTPS. It does not set which TLS versions the HTTPS listener accepts."
+    ],
+    [
+     "A network ACL on the load balancer's subnets that denies the TLS 1.0 and 1.1 handshakes",
+     "Network ACLs match addresses and ports. They cannot tell which TLS version a connection is using."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-5-03",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Instances in private subnets must read from S3 without using the Internet or a NAT gateway, and the bucket must refuse requests from anywhere else. Which design fits?",
+   "o": [
+    [
+     "A gateway VPC endpoint for S3, plus a bucket policy that denies requests unless aws:SourceVpce matches",
+     "Right. Traffic stays on the AWS network, and the bucket accepts only requests that arrive through that endpoint."
+    ],
+    [
+     "An interface endpoint for S3 plus a bucket policy that denies requests unless aws:SourceIp is in the VPC's CIDR range",
+     "Source IP conditions do not work for traffic through endpoints, because the requests carry private addresses that S3 does not use in aws:SourceIp."
+    ],
+    [
+     "A NAT gateway plus a bucket policy that allows only the NAT gateway's Elastic IP",
+     "This sends traffic out through the NAT and the Internet path, which the design must avoid."
+    ],
+    [
+     "A gateway endpoint with an endpoint policy that allows only this bucket, and no bucket policy change",
+     "The endpoint policy limits what the VPC can reach, but the bucket would still accept requests from anywhere else."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-04",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A company offers a service running behind a Network Load Balancer to customers in many other AWS accounts. Their VPCs have overlapping IP ranges, and traffic must not cross the public Internet. What should the company use?",
+   "o": [
+    [
+     "VPC peering between all customer VPCs",
+     "Peering cannot join VPCs whose address ranges overlap, and it opens broad connectivity."
+    ],
+    [
+     "A public Application Load Balancer with security groups that allow only the customers' own address ranges",
+     "Traffic crosses the public Internet, which the requirement forbids."
+    ],
+    [
+     "A Site-to-Site VPN from each customer",
+     "This is heavy to set up for each customer and still joins whole networks rather than offering one service."
+    ],
+    [
+     "AWS PrivateLink with a VPC endpoint service, and consumers create interface endpoints",
+     "Right. PrivateLink exposes only the one service privately, and works even when address ranges overlap."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-5-05",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A regulation says the organization must have exclusive control of single-tenant hardware security modules that hold its keys inside AWS, and the applications must keep using KMS APIs and S3 SSE-KMS. What should it use?",
+   "o": [
+    [
+     "AWS CloudHSM used directly through PKCS#11, with the application doing its own encryption",
+     "This gives control of the HSMs, but the applications would lose KMS and S3 SSE-KMS integration."
+    ],
+    [
+     "A KMS customer managed key with imported key material",
+     "The key is still held in AWS-managed multi-tenant HSMs, so control is not exclusive."
+    ],
+    [
+     "A KMS external key store with a key manager that the unit runs outside AWS",
+     "The keys would sit outside AWS, but the requirement says the HSMs must be inside AWS."
+    ],
+    [
+     "A KMS custom key store backed by a CloudHSM cluster",
+     "Right. The key material stays in HSMs that only the customer controls, and KMS features still work on top of it."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-5-06",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A financial firm must keep records so that nobody, including the account's root user, can delete or shorten retention for seven years. Which S3 setting meets this?",
+   "o": [
+    [
+     "Object Lock in governance mode",
+     "Users with the bypass permission can still remove or change protection in governance mode."
+    ],
+    [
+     "Object Lock with only a legal hold, set on every object when it is first written",
+     "A legal hold has no end date and can be removed by anyone with permission, so it does not guarantee seven years."
+    ],
+    [
+     "Object Lock in compliance mode with a seven-year retention period",
+     "Right. In compliance mode no one, including root, can overwrite, delete or shorten retention until it ends."
+    ],
+    [
+     "Versioning with MFA delete off",
+     "Versioning keeps old versions but privileged users can delete them permanently."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-5-07",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A company wants backups that survive ransomware even if an attacker takes over the production account's administrator credentials. Which design is strongest?",
+   "o": [
+    [
+     "Keep backups in the same account and trust IAM to keep administrators out",
+     "If the attacker has admin there, they can often remove the backups."
+    ],
+    [
+     "AWS Backup with copies into a separate account's vault that has Vault Lock in compliance mode",
+     "Right. A separate account and a locked vault mean even a stolen admin in production cannot delete the copies."
+    ],
+    [
+     "Use only manual EBS snapshots by the same administrators",
+     "Same people, same account, and no lock. They can be deleted by a compromised admin."
+    ],
+    [
+     "Replicate the S3 bucket to another bucket in the same account",
+     "A single account is still one place for an attacker to destroy everything."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-5-08",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A legal team says that AWS must never see the plaintext of certain files, even briefly, even when AWS services handle the storage. Which approach meets this?",
+   "o": [
+    [
+     "Client-side encryption using a library such as the AWS Encryption SDK before upload",
+     "Right. Data is encrypted before it leaves the client, so AWS only receives ciphertext."
+    ],
+    [
+     "SSE-S3 on the bucket",
+     "S3 receives plaintext and encrypts it on its side."
+    ],
+    [
+     "SSE-KMS with a customer managed key that only the legal team's administrators can manage",
+     "S3 still receives plaintext and uses the key to encrypt it."
+    ],
+    [
+     "SSE-C, where the customer sends its own key with each request so that S3 never stores that key",
+     "S3 receives the plaintext and your key to do the encryption, then discards the key."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-09",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A bucket uses Object Lock in compliance mode with 365-day retention. A lifecycle rule expires objects after 180 days. What happens at 180 days to a locked object version?",
+   "o": [
+    [
+     "The locked version stays until retention ends. Lifecycle cannot permanently remove it earlier",
+     "Right. Retention protection wins over lifecycle expiration, so protected versions are not removed."
+    ],
+    [
+     "The version is permanently deleted because lifecycle rules override the retention period set by Object Lock",
+     "Lifecycle cannot bypass compliance mode retention."
+    ],
+    [
+     "The bucket's Object Lock setting is turned off",
+     "Lifecycle rules do not change Object Lock configuration."
+    ],
+    [
+     "The version is moved to a different Region",
+     "Lifecycle rules do not move objects between Regions."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-10",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Only signed code from the release pipeline may run in the company's Lambda functions, and unsigned packages must be rejected at deployment. What should the team use?",
+   "o": [
+    [
+     "An SCP that denies lambda:UpdateFunctionCode unless the caller is the pipeline role",
+     "This limits who deploys, but a bad package from the pipeline role would still be accepted."
+    ],
+    [
+     "Amazon Inspector Lambda code scanning with findings that must be reviewed before release",
+     "Scanning finds known weaknesses. It does not prove who built the package or reject unsigned ones."
+    ],
+    [
+     "S3 Object Lock on the bucket that stores the deployment packages",
+     "Object Lock protects stored objects from change, but it does not check a signature at deployment."
+    ],
+    [
+     "A Lambda code signing configuration with AWS Signer profiles",
+     "Right. Code signing checks each package's signature when it is deployed and can reject unsigned or untrusted code."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-5-11",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A web app connects to an RDS database. Today the password sits in a configuration file and is changed once a year by hand. The company wants regular automatic changes with no redeploy. What is the best design?",
+   "o": [
+    [
+     "A Systems Manager SecureString parameter that a maintenance window changes every month by script",
+     "Parameter Store has no built-in rotation, and the script would have to change the database as well and keep both in step."
+    ],
+    [
+     "An encrypted S3 object that a scheduled Lambda function replaces each month",
+     "This is a home-made rotation with no link to the database, and the app must still be built to read it."
+    ],
+    [
+     "Secrets Manager with managed rotation, and the app reads the secret at run time",
+     "Right. Rotation updates both the secret and the database, and the app always fetches the current value."
+    ],
+    [
+     "The same file, encrypted with a KMS data key that is rotated every year",
+     "Encrypting the file protects it at rest. The password inside never changes."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-5-12",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A role in account A must decrypt data with a customer managed KMS key in account B. The key policy in B allows account A's root. The role still gets AccessDenied. What is missing?",
+   "o": [
+    [
+     "A grant that makes the role the key owner in account B",
+     "Grants are one way to delegate, but not the missing piece here, and a role cannot become key owner."
+    ],
+    [
+     "An identity policy on the role in A that allows kms:Decrypt on the key's ARN",
+     "Right. The key policy delegates to account A, but A must still grant the permission to the role."
+    ],
+    [
+     "A key policy in account A for the key that lives in account B",
+     "A key has one key policy, in the account that owns it. Account A cannot have a policy for it."
+    ],
+    [
+     "A VPC endpoint policy for KMS in account B",
+     "Endpoint policies limit calls through an endpoint. They grant nothing, and the error is a missing permission in A."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-5-13",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A company runs in two Regions with disaster recovery. Data encrypted in Region 1 must be decryptable in Region 2 even during a Region 1 outage, without re-encrypting it and using the same key ID. Which approach does this?",
+   "o": [
+    [
+     "Two separate keys with the same alias in each Region",
+     "Different keys have different material, so ciphertext cannot be decrypted by the other one."
+    ],
+    [
+     "A multi-Region KMS key with a replica in Region 2",
+     "Right. Replicas share the key ID and key material, so ciphertext from one Region can be decrypted in another."
+    ],
+    [
+     "A single-Region key used by calls from the other Region",
+     "The key lives only in Region 1. Region 2 would have to call Region 1's KMS endpoint, and those calls fail during a Region 1 outage."
+    ],
+    [
+     "A KMS key in Region 1 with a grant for the service role in Region 2",
+     "A grant adds permissions, but the key still lives only in Region 1, so Region 2 would still depend on Region 1."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-5-14",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A team imports its own key material into a KMS key. Which statement is true?",
+   "o": [
+    [
+     "Deleted or expired material must be re-imported, exactly as before, before old data decrypts",
+     "Right. KMS needs that exact material to decrypt, so re-importing it restores access."
+    ],
+    [
+     "AWS keeps a backup of imported material and can restore it after a support request",
+     "KMS does not keep a copy you can recover, so you must keep your own."
+    ],
+    [
+     "Automatic rotation is available for imported material, and KMS creates new material each year",
+     "Automatic rotation is not supported. Imported symmetric keys support only on-demand rotation with material you import."
+    ],
+    [
+     "Different material can be re-imported to the same key, and old data then decrypts with it",
+     "Re-importing deleted or expired material must use the original material. New material can only be added as a separate version for on-demand rotation, and old ciphertext still needs the old material."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-5-15",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Application logs in CloudWatch Logs sometimes contain customers' e-mail addresses and card numbers. People who read the logs should not see those values. What should the team apply?",
+   "o": [
+    [
+     "A subscription filter that sends the logs to a Lambda function that rewrites each line",
+     "A subscription filter forwards a copy of events. The stored log lines stay unchanged."
+    ],
+    [
+     "Amazon Macie sensitive data discovery with automatic redaction of log lines",
+     "Macie scans S3 and reports findings. It does not redact log lines in CloudWatch."
+    ],
+    [
+     "A KMS key on the log group, with kms:Decrypt denied to the analysts",
+     "Analysts could then read nothing at all, rather than the logs with sensitive values masked."
+    ],
+    [
+     "A CloudWatch Logs data protection policy with managed data identifiers",
+     "Right. It finds the sensitive values and masks them when the logs are viewed."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-5-16",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Internal services use host names that cannot be resolved from the Internet. They need TLS certificates from a private hierarchy, with automatic renewal on integrated services. Which option fits?",
+   "o": [
+    [
+     "ACM public certificates validated with DNS records for the internal host names",
+     "Public certificates need names that can be validated publicly, and internal names usually cannot be."
+    ],
+    [
+     "Certificates from the company's old on-premises CA, copied by hand to each load balancer",
+     "They would work, but renewal and deployment stay manual, so expiry outages are likely."
+    ],
+    [
+     "AWS Private CA, with certificates delivered through ACM",
+     "Right. Private CA issues private certificates, and ACM renews and installs them on integrated services."
+    ],
+    [
+     "A self-signed certificate on each service, renewed by a cron job on the host",
+     "Clients would have no shared trust in them, and every host would need its own renewal script."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-5-17",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "Which TWO statements about deleting a KMS customer managed key are true? (Choose two.)",
+   "o": [
+    [
+     "Disabling a key permanently deletes its key material",
+     "Disabling is reversible and does not delete key material."
+    ],
+    [
+     "AWS Support can restore the key and its material after the waiting period ends",
+     "Deleted keys and data encrypted under them cannot be recovered."
+    ],
+    [
+     "The key is removed immediately if the account administrator asks",
+     "KMS does not allow immediate deletion of a customer managed key."
+    ],
+    [
+     "The key goes through a waiting period of 7 to 30 days before it is deleted",
+     "Right. KMS enforces a waiting period so a mistake can be caught."
+    ],
+    [
+     "While pending deletion the key cannot be used, and deletion can be cancelled",
+     "Right. This gives time to notice impact, and the deletion can be canceled before it ends."
+    ]
+   ],
+   "a": [
+    3,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "ss-6-01",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "The company wants to be certain that no account in the Workloads OU can stop CloudTrail or delete a trail, even by an account administrator. Which control is best?",
+   "o": [
+    [
+     "An IAM policy that each account's administrators attach to themselves, with a deny on those API calls",
+     "Administrators can remove or change policies they control."
+    ],
+    [
+     "An AWS Config rule that notices a stopped trail",
+     "Config detects after the fact. It does not prevent it."
+    ],
+    [
+     "An SCP attached to the OU that denies cloudtrail:StopLogging and cloudtrail:DeleteTrail",
+     "Right. An SCP deny applies to all principals in member accounts, including administrators."
+    ],
+    [
+     "A GuardDuty finding for CloudTrail disabled",
+     "GuardDuty reports it after it happens and does not block the action."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-6-02",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "An administrator in the organization's management account runs an action that an SCP on the organization root denies, and the action succeeds. Why?",
+   "o": [
+    [
+     "SCPs only apply to the root user of each account, and not to IAM users or roles",
+     "They apply to all IAM users and roles in member accounts."
+    ],
+    [
+     "SCPs do not apply to principals in the management account",
+     "Right. SCPs affect member accounts only. That is why the management account should not run workloads."
+    ],
+    [
+     "SCPs take effect only after 24 hours",
+     "They take effect right away."
+    ],
+    [
+     "An explicit allow in an SCP overrides any deny",
+     "Explicit deny always wins, and SCPs never grant."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-6-03",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "A company has 120 member accounts, each with its own root user and MFA device. It wants to remove root credentials from the members and still be able to do rare root-only tasks. What should it use?",
+   "o": [
+    [
+     "Centralized root access management, using short-term root sessions",
+     "Right. It lets you delete member root credentials and perform root-only tasks with temporary, scoped sessions."
+    ],
+    [
+     "A shared vault that holds each member account's root password and MFA device for the security team",
+     "Root credentials would still exist in all 120 accounts, and the vault becomes a very valuable target."
+    ],
+    [
+     "Root access keys kept in Secrets Manager and rotated every 30 days",
+     "Root access keys should not exist at all, and rotation does not make them safe."
+    ],
+    [
+     "An SCP that denies every action by the root user in the member accounts",
+     "This blocks the rare root-only tasks too, and the root credentials would still exist."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-04",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "The security team wants GuardDuty, Security Hub and Macie administered from a dedicated security account, not from the management account. What should they do?",
+   "o": [
+    [
+     "Invite each member account by e-mail from the management account for each service",
+     "Manual invitations do not scale and miss new accounts."
+    ],
+    [
+     "Enable each service from the management account and share the findings with RAM",
+     "The management account would still be the administrator, and RAM does not share these services' findings."
+    ],
+    [
+     "Enable each service only in the security account",
+     "Without delegation, members are not covered by the service."
+    ],
+    [
+     "Register the security account as the delegated administrator for each service",
+     "Right. Delegated administration lets that account manage the services for all member accounts."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-6-05",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "The organization wants to block use of all Regions except two, in every account, using a managed control instead of writing policy by hand. Which choice fits?",
+   "o": [
+    [
+     "A Control Tower detective control",
+     "Detective controls report noncompliance but do not block actions."
+    ],
+    [
+     "An AWS Config rule that deletes resources in other Regions",
+     "This acts after resources exist and is destructive."
+    ],
+    [
+     "An SCP written by hand that denies every Region except the two",
+     "This could work, but the question asks for a managed control instead of hand-written policy."
+    ],
+    [
+     "The Control Tower Region deny control, a preventive control",
+     "Right. Region deny is a preventive control implemented with SCPs, managed for you."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-6-06",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "The company wants a baseline for the organization, for example that EBS snapshots cannot be shared publicly, enforced by the EC2 service itself so it keeps holding when new API actions or features are added, with no IAM or SCP statement that has to name each action. Which policy type does this?",
+   "o": [
+    [
+     "A service control policy",
+     "SCPs limit API permissions. They do not set a service configuration baseline."
+    ],
+    [
+     "A permissions boundary",
+     "Boundaries cap one user or role at a time and are not an organization baseline."
+    ],
+    [
+     "A declarative policy",
+     "Right. Declarative policies set the desired state for a service's configuration and are enforced regardless of API calls or later policy changes."
+    ],
+    [
+     "A tag policy",
+     "Tag policies standardize tags and not service configuration."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-6-07",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A company must make sure every account in the organization, including future ones, gets the same WAF rules on its public load balancers and the same security group baseline. Which service does this?",
+   "o": [
+    [
+     "Service control policies",
+     "SCPs restrict API permissions. They do not create WAF rules or security groups."
+    ],
+    [
+     "AWS Firewall Manager with policies set up by a delegated administrator",
+     "Right. Firewall Manager applies WAF and security group policies to existing and new accounts and resources, with optional automatic remediation."
+    ],
+    [
+     "AWS Config rules without remediation",
+     "They only report. Nothing is applied to resources."
+    ],
+    [
+     "Manual configuration by each account owner, checked by a spreadsheet every quarter",
+     "Manual work leads to drift and misses new accounts."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-6-08",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A pipeline deploys CloudFormation templates. The team wants to reject, before deployment, any template that creates an unencrypted S3 bucket. What fits?",
+   "o": [
+    [
+     "CloudFormation Guard rules evaluated against the template in the pipeline",
+     "Right. Guard checks templates against policy-as-code rules before anything is created."
+    ],
+    [
+     "An AWS Config rule that runs after the bucket exists and reports the unencrypted bucket",
+     "It detects after deployment, so the unencrypted bucket would already exist."
+    ],
+    [
+     "An Amazon Inspector scan of the template repository, run after every merge to main",
+     "Inspector scans compute resources and not CloudFormation templates for such rules."
+    ],
+    [
+     "A Security Hub standard that checks S3 settings across accounts",
+     "It evaluates resources after they are deployed, so the unencrypted bucket would already exist."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-09",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A network team owns a transit gateway. Every account in the organization must be able to attach VPCs to it, without copying the gateway or creating separate connections. What should the team use?",
+   "o": [
+    [
+     "AWS RAM, sharing the transit gateway with the organization",
+     "Right. RAM shares the one gateway with the organization's accounts so they can attach to it."
+    ],
+    [
+     "A Service Catalog portfolio that lets each account launch its own transit gateway product",
+     "Each account would create its own gateway, not use the shared one."
+    ],
+    [
+     "CloudFormation StackSets that create a transit gateway in every member account",
+     "This makes many separate gateways, which is the opposite of sharing one."
+    ],
+    [
+     "A resource policy on each VPC that lets the transit gateway attach to it",
+     "VPCs have no such resource policy. Sharing is done through RAM."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-6-10",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "Compliance requires that S3 buckets without default encryption be found and fixed automatically across accounts. Which setup does that?",
+   "o": [
+    [
+     "An Amazon Inspector scan of S3 with findings routed to an EventBridge rule",
+     "Inspector looks for software vulnerabilities, and it does not evaluate bucket encryption settings."
+    ],
+    [
+     "A Security Hub standard enabled in every account, with a weekly e-mail digest",
+     "This reports the problem but fixes nothing, and weekly e-mails are slow."
+    ],
+    [
+     "An SCP that denies s3:PutBucketEncryption in all member accounts",
+     "This would stop people from turning encryption on, which is the opposite of the goal."
+    ],
+    [
+     "A Config rule for bucket encryption with an automatic remediation action",
+     "Right. The rule finds noncompliant buckets, and the remediation runs a fix, such as turning encryption on."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "ss-6-11",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "An auditor wants evidence from the company's own AWS resources, collected automatically, mapped to the controls of a framework, and assembled into a report. Which service does this?",
+   "o": [
+    [
+     "AWS Config conformance packs, which report whether resource settings follow the rules",
+     "They are one source of compliance data but do not map evidence to a framework's controls or build the report."
+    ],
+    [
+     "AWS Security Hub with a compliance standard turned on",
+     "It shows pass and fail checks for the standard's controls and does not collect evidence for an audit report."
+    ],
+    [
+     "AWS Audit Manager",
+     "Right. It collects evidence from your resources, maps it to framework controls and helps build the assessment report."
+    ],
+    [
+     "CloudTrail Lake with a saved query for each control",
+     "This returns events when someone writes the query. It does not organize evidence by control."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-6-12",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "An auditor asks for AWS's own SOC 2 report, which describes how AWS runs its data centers and services. Where does the company get it?",
+   "o": [
+    [
+     "AWS Audit Manager, using its SOC 2 framework",
+     "Audit Manager gathers evidence about the company's own resources. It does not provide AWS's report."
+    ],
+    [
+     "AWS Artifact",
+     "Right. Artifact is the portal for AWS's compliance reports and agreements."
+    ],
+    [
+     "AWS Security Hub, with the AWS Foundational Security Best Practices standard enabled",
+     "This checks the company's own accounts against a standard and has no AWS audit reports."
+    ],
+    [
+     "An AWS Config conformance pack for SOC 2 operational best practices",
+     "It checks the company's own resource settings, not how AWS operates its facilities."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-6-13",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "A team wants a structured review of one workload's design and operation against AWS security best practices, answering questions on identity, detection and incident response, and ending with a list of improvements. Which tool fits?",
+   "o": [
+    [
+     "The Security Hub CIS standard, with its score reviewed each quarter",
+     "It scores account settings against a benchmark. It does not ask design and operation questions."
+    ],
+    [
+     "The AWS Well-Architected Tool, Security Pillar",
+     "Right. It guides the team through questions and produces a list of risks and improvements."
+    ],
+    [
+     "Trusted Advisor security checks, run from the console each month",
+     "It reports specific resource checks and does not review practices such as incident response."
+    ],
+    [
+     "Config conformance packs that cover the Security Pillar controls",
+     "They check resource settings automatically but do not review design and process questions."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "ss-5-18",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A team runs a Spark cluster on Amazon EMR that processes sensitive records. Policy says data moving between the cluster nodes, and between the nodes and S3, must be encrypted. What should they use?",
+   "o": [
+    [
+     "A security group that allows traffic only between the cluster nodes",
+     "This filters who can connect. The data between them still travels without encryption."
+    ],
+    [
+     "An S3 gateway endpoint with an endpoint policy for the cluster's subnet",
+     "This keeps S3 traffic off the Internet, but does not encrypt the data moving between nodes."
+    ],
+    [
+     "An EMR security configuration with in-transit encryption turned on",
+     "Right. It sets TLS for data moving between nodes and to S3 when the cluster is launched."
+    ],
+    [
+     "EBS encryption on every node's volumes",
+     "This protects data at rest on the disks, not data on the network."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "ss-6-14",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A company wants the same IAM baseline role and logging settings deployed to every current and future account in an OU, from one template, with no action by account owners. What should it use?",
+   "o": [
+    [
+     "CloudFormation StackSets with service-managed permissions and automatic deployment",
+     "Right. Service-managed StackSets deploy to the OU's accounts and add the stack to new accounts automatically."
+    ],
+    [
+     "A StackSet with self-managed permissions and an admin role created by hand in each new account",
+     "It works, but each new account needs manual role setup before it gets the stack."
+    ],
+    [
+     "AWS Service Catalog products shared to the OU for account owners to launch themselves",
+     "This relies on each owner to launch the product, and some will not."
+    ],
+    [
+     "One large stack in the management account that lists every member account's ID",
+     "A stack deploys to one account and Region. It cannot create resources inside other accounts."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "ss-p-01",
+   "t": "pbq",
+   "kind": "logsel",
+   "d": "2.0",
+   "obj": "2.2",
+   "dom": "2.0",
+   "title": "Read the log of a stolen access key",
+   "short": "CloudTrail key theft",
+   "scenario": "GuardDuty flagged the access key of the CI user ci-uploader. You work in the unit's own AWS account, and the account owner approved a review of tonight's CloudTrail events in writing. Mark every event that belongs to the attack, then choose the first containment step.",
+   "ticket": "Finding GD-6104: ci-uploader key used from an unknown address. Review events from 01:00 to 05:20. Read-only review: do not change anything yet.",
+   "lines": [
+    {
+     "text": "01:02:11 ConsoleLogin user=asmith MFA=yes src=10.8.4.20 result=Success",
+     "bad": 0,
+     "why": "A staff member signs in with MFA from the unit network. This is routine."
+    },
+    {
+     "text": "01:15:40 PutObject bucket=unit-build-artifacts user=ci-uploader src=10.8.9.5 agent=aws-cli",
+     "bad": 0,
+     "why": "The CI user uploads a build file from the build server's internal address. This is what the key is for."
+    },
+    {
+     "text": "02:41:03 GetCallerIdentity user=ci-uploader key=AKIA...Z4 src=203.0.113.77 agent=curl",
+     "bad": 1,
+     "why": "The same key now comes from an outside address with a different tool. Attackers often start by asking who a key belongs to."
+    },
+    {
+     "text": "02:41:50 ListBuckets user=ci-uploader key=AKIA...Z4 src=203.0.113.77",
+     "bad": 1,
+     "why": "A build user has no reason to list every bucket. This is the attacker mapping what data exists."
+    },
+    {
+     "text": "02:44:30 GetObject bucket=unit-finance-reports key=2026/q3-payroll.xlsx user=ci-uploader src=203.0.113.77 bytes=48211904",
+     "bad": 1,
+     "why": "The key reads sensitive finance data from the outside address. This is the data theft."
+    },
+    {
+     "text": "02:45:02 PutBucketPolicy bucket=unit-finance-reports principal=* by ci-uploader src=203.0.113.77",
+     "bad": 1,
+     "why": "A policy for everyone makes the bucket readable on the Internet, which can expose more than the attacker took."
+    },
+    {
+     "text": "02:47:19 StopLogging trail=acct-trail by ci-uploader src=203.0.113.77 errorCode=AccessDenied",
+     "bad": 1,
+     "why": "Trying to stop the trail is an attempt to hide the activity. It failed, but it still belongs to the attack."
+    },
+    {
+     "text": "03:05:44 CreateAccessKey user=admin-backup by ci-uploader src=203.0.113.77",
+     "bad": 1,
+     "why": "A new key on an admin user gives the attacker a second way back in, even after ci-uploader is fixed."
+    },
+    {
+     "text": "03:30:00 AssumeRole role=nightly-backup by backup.amazonaws.com",
+     "bad": 0,
+     "why": "The scheduled backup service assumes its own role at its usual time. This is routine."
+    },
+    {
+     "text": "04:00:05 DescribeInstances user=monitoring-role src=10.8.2.11",
+     "bad": 0,
+     "why": "The monitoring role lists instances from an internal address on its normal schedule."
+    },
+    {
+     "text": "05:12:09 ConsoleLogin user=bjones MFA=yes src=10.8.4.31 result=Success",
+     "bad": 0,
+     "why": "A staff member signs in with MFA from the unit network at the start of the day. This is routine."
+    }
+   ],
+   "ask": {
+    "label": "What is the best first containment step?",
+    "opts": [
+     "Deactivate the ci-uploader key and the new admin-backup key, and keep both for evidence",
+     "Delete the unit-finance-reports bucket so nothing is exposed",
+     "Delete the ci-uploader user so the key no longer exists",
+     "Create a fresh ci-uploader key and delete the old one, which closes the incident"
+    ],
+    "a": 0,
+    "why": "Deactivating stops the attacker at once and keeps the keys and their history for the investigation. The second key was created by the attacker and must be dealt with too. Deleting the bucket or the user destroys evidence. Swapping in a fresh key and deleting the old one removes the key's history and leaves the attacker's admin-backup key working."
+   }
+  },
+  {
+   "id": "ss-p-02",
+   "t": "pbq",
+   "kind": "rules",
+   "d": "2.0",
+   "obj": "2.2",
+   "dom": "2.0",
+   "title": "Contain a compromised EC2 instance",
+   "short": "Isolate and keep evidence",
+   "scenario": "GuardDuty reports that a production web server, i-0abc1234def567890, is contacting a known malicious address. The unit's security officer approved containment in writing. Build the response plan in a sensible order. Some ideas do not belong. Add the steps in the order they should happen.",
+   "ticket": "Incident INC-4410: contain instance in the unit's own account 111122223333. Keep every piece of evidence. Do not touch other accounts.",
+   "rules": [
+    {
+     "id": "a",
+     "text": "Turn on termination protection and tag the instance as under investigation",
+     "need": 1,
+     "why": "Protection stops a well-meaning script or teammate from ending the instance, and the tag tells others to leave it alone."
+    },
+    {
+     "id": "b",
+     "text": "Replace its security groups with a deny-all group and add network ACL deny rules",
+     "need": 1,
+     "why": "This blocks new connections and spread while the instance keeps running. A security group change does not cut existing tracked connections, so also add deny rules in the subnet's network ACL to break them at once."
+    },
+    {
+     "id": "c",
+     "text": "Snapshot the EBS volumes and capture memory while it is still running",
+     "need": 1,
+     "why": "Disk and memory are the core evidence. Take them right after isolation, before any cleanup, stop or rebuild, so they show what the attacker did."
+    },
+    {
+     "id": "d",
+     "text": "Revoke the active sessions of the instance's IAM role",
+     "need": 1,
+     "why": "Credentials already stolen from the instance keep working until they expire. Revoking blocks them."
+    },
+    {
+     "id": "e",
+     "text": "Share the snapshots to the forensic account and investigate the copies there",
+     "need": 1,
+     "why": "Analyzing copies in a separate, locked-down account keeps production safe and the evidence clean."
+    },
+    {
+     "id": "f",
+     "text": "Rebuild from a known-good image and fix the root cause",
+     "need": 1,
+     "why": "Recovery comes last. Rebuilding earlier would destroy evidence you still need, and fixing only symptoms invites a repeat."
+    },
+    {
+     "id": "g",
+     "text": "Terminate the instance right away to stop the attack",
+     "need": 0,
+     "why": "Terminating deletes memory and may delete the volumes, which destroys the evidence."
+    },
+    {
+     "id": "h",
+     "text": "Stop and start the instance to clear the malware",
+     "need": 0,
+     "why": "A stop wipes memory and does not remove the cause. The attacker's access may remain."
+    },
+    {
+     "id": "i",
+     "text": "Delete the CloudTrail trail so the attacker cannot read it",
+     "need": 0,
+     "why": "The trail is the audit record you need. Deleting it helps the attacker and breaks the investigation."
+    }
+   ],
+   "before": [
+    {
+     "a": "a",
+     "b": "f",
+     "why": "Protection and the tag stay on until the very end, so nothing ends the instance before the evidence is saved."
+    },
+    {
+     "a": "b",
+     "b": "c",
+     "why": "Isolating first stops the attacker. The instance keeps running, so memory is still there to capture."
+    },
+    {
+     "a": "c",
+     "b": "e",
+     "why": "You need the snapshots before you can share them to the forensic account."
+    }
+   ],
+   "last": {
+    "id": "f",
+    "why": "Rebuild only after the evidence is saved and the cause is known. Otherwise you lose proof and may repeat the mistake."
+   }
+  },
+  {
+   "id": "ss-p-03",
+   "t": "pbq",
+   "kind": "term",
+   "d": "4.0",
+   "obj": "4.2",
+   "dom": "4.0",
+   "title": "Explain an Access Denied despite admin rights",
+   "short": "Policy evaluation with the CLI",
+   "scenario": "A developer says the role dev-deploy has AdministratorAccess but gets an error when launching an instance in eu-west-1. You work in the unit's own AWS organization, account 111122223333 is a delegated administrator for Organizations policies, and the account owner approved a read-only review in writing. Use the AWS CLI to find which control blocks the call, and report it. Do not change any policy.",
+   "ticket": "CHG-3318: read-only review of why dev-deploy cannot run ec2:RunInstances in eu-west-1. Account 111122223333 is a delegated administrator for Organizations policies, so security-review can read them. Report the cause; changes to organization policies need a separate approval.",
+   "host": "cloudshell",
+   "intro": "AWS CloudShell, signed in as security-review (read-only on IAM and, because this account is a delegated administrator for Organizations policies, read-only on Organizations). Your folder holds error.txt with the developer's error and c.json with a Region context entry for the simulator, and the variable R holds the ARN of dev-deploy. Type a command.",
+   "suggest": [
+    "aws sts get-caller-identity",
+    "cat error.txt"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "aws sts get-caller-identity"
+     ],
+     "out": "{\n    \"UserId\": \"AROAEXAMPLE1234:review\",\n    \"Account\": \"111122223333\",\n    \"Arn\": \"arn:aws:sts::111122223333:assumed-role/security-review/review\"\n}"
+    },
+    {
+     "run": [
+      "whoami"
+     ],
+     "out": "cloudshell-user"
+    },
+    {
+     "run": [
+      "ls"
+     ],
+     "out": "c.json\nerror.txt"
+    },
+    {
+     "run": [
+      "cat c.json"
+     ],
+     "out": "[\n    {\"ContextKeyName\": \"aws:RequestedRegion\", \"ContextKeyValues\": [\"eu-west-1\"], \"ContextKeyType\": \"string\"}\n]"
+    },
+    {
+     "run": [
+      "cat error.txt"
+     ],
+     "out": "An error occurred (UnauthorizedOperation) when calling the RunInstances operation: You are not authorized to perform this operation. User: arn:aws:sts::111122223333:assumed-role/dev-deploy/dev1 is not authorized to perform: ec2:RunInstances on resource: arn:aws:ec2:eu-west-1:111122223333:instance/* with an explicit deny in a service control policy",
+     "fx": "err:scp"
+    },
+    {
+     "run": [
+      "aws iam list-attached-role-policies --role-name dev-deploy"
+     ],
+     "out": "{\n    \"AttachedPolicies\": [\n        {\n            \"PolicyName\": \"AdministratorAccess\",\n            \"PolicyArn\": \"arn:aws:iam::aws:policy/AdministratorAccess\"\n        }\n    ]\n}",
+     "fx": "iam:admin"
+    },
+    {
+     "run": [
+      "aws iam get-role --role-name dev-deploy"
+     ],
+     "out": "{\n    \"Role\": {\n        \"RoleName\": \"dev-deploy\",\n        \"Arn\": \"arn:aws:iam::111122223333:role/dev-deploy\",\n        \"MaxSessionDuration\": 3600\n    }\n}",
+     "fx": "iam:noboundary"
+    },
+    {
+     "run": [
+      "aws iam simulate-principal-policy --policy-source-arn $R --action-names ec2:RunInstances",
+      "aws iam simulate-principal-policy --policy-source-arn $R --action-names ec2:RunInstances --context-entries file://c.json"
+     ],
+     "out": "{\n    \"EvaluationResults\": [\n        {\n            \"EvalActionName\": \"ec2:RunInstances\",\n            \"EvalDecision\": \"explicitDeny\",\n            \"OrganizationsDecisionDetail\": {\n                \"AllowedByOrganizations\": false\n            }\n        }\n    ]\n}",
+     "fx": "sim:org"
+    },
+    {
+     "run": [
+      "aws organizations list-parents --child-id 111122223333"
+     ],
+     "out": "{\n    \"Parents\": [\n        {\n            \"Id\": \"ou-ab12-dev00001\",\n            \"Type\": \"ORGANIZATIONAL_UNIT\"\n        }\n    ]\n}",
+     "fx": "org:ou"
+    },
+    {
+     "run": [
+      "aws organizations list-policies-for-target --target-id ou-ab12-dev00001 --filter SERVICE_CONTROL_POLICY"
+     ],
+     "out": "{\n    \"Policies\": [\n        {\"Id\": \"p-FullAWSAccess\", \"Name\": \"FullAWSAccess\"},\n        {\"Id\": \"p-9xk2dem0\", \"Name\": \"deny-unapproved-regions\"}\n    ]\n}",
+     "fx": "scp:list"
+    },
+    {
+     "run": [
+      "aws organizations describe-policy --policy-id p-9xk2dem0"
+     ],
+     "out": "{\n    \"Policy\": {\n        \"Content\": \"{\\\"Statement\\\":[{\\\"Effect\\\":\\\"Deny\\\",\\\"Action\\\":\\\"ec2:*\\\",\\\"Resource\\\":\\\"*\\\",\\\"Condition\\\":{\\\"StringNotEquals\\\":{\\\"aws:RequestedRegion\\\":[\\\"us-east-1\\\",\\\"us-west-2\\\"]}}}]}\"\n    }\n}",
+     "fx": "scp:read"
+    },
+    {
+     "run": [
+      "aws organizations detach-policy --policy-id p-9xk2dem0 --target-id ou-ab12-dev00001"
+     ],
+     "out": "Not run: removing a guardrail from the OU is an organization change that needs its own approval. This review is read-only. Report the cause instead.",
+     "fx": "trap:detach"
+    },
+    {
+     "run": [
+      "aws iam create-access-key --user-name dev-deploy",
+      "aws iam create-user --user-name dev-temp"
+     ],
+     "out": "Not run: making a new user or key to get around a block hides the real cause and breaks the rules of the review.",
+     "fx": "trap:newkey"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Confirmed the role already has broad permissions in its own identity policy",
+     "has": "iam:admin",
+     "why": "AdministratorAccess in the identity policy shows that the role is allowed to launch instances. So the block must come from somewhere above or around it."
+    },
+    {
+     "t": "Checked that no permissions boundary caps the role",
+     "has": "iam:noboundary",
+     "why": "A permissions boundary would show in the role details. There is none, so a boundary is ruled out."
+    },
+    {
+     "t": "Showed that the organization, not the role's own policies, blocks the call",
+     "has": "sim:org",
+     "why": "AllowedByOrganizations is false. That points to an SCP. Note that an SCP never grants anything, it only limits."
+    },
+    {
+     "t": "Found the policy on the OU that denies the action outside approved Regions",
+     "has": "scp:read",
+     "why": "The SCP denies ec2 actions when aws:RequestedRegion is not us-east-1 or us-west-2. eu-west-1 is outside that list, and an explicit deny always wins."
+    },
+    {
+     "t": "Did not remove the guardrail yourself",
+     "lacks": "trap:detach",
+     "why": "Detaching an SCP changes the protection for every account in the OU. It needs its own approval and does not belong to a read-only review."
+    },
+    {
+     "t": "Did not work around the block with a new user or key",
+     "lacks": "trap:newkey",
+     "why": "Creating a new identity to escape a control hides the problem and may break the policy it enforces."
+    }
+   ]
+  },
+  {
+   "id": "ss-p-04",
+   "t": "pbq",
+   "kind": "diagram",
+   "d": "1.0",
+   "obj": "1.2",
+   "dom": "1.0",
+   "title": "Place the parts of a central logging design",
+   "short": "Org-wide log archive",
+   "scenario": "The unit runs many AWS accounts in one organization. Auditors want API logs from every account to be kept where member-account administrators cannot change them, and the security team wants one place to see findings and scope an incident. Place each part in the right spot. Three parts in the tray do not belong.",
+   "ticket": "Design review LOG-12 (written approval on file). The management account stays nearly empty. Log files must be tamper-resistant and encrypted.",
+   "top": "AWS Organization",
+   "slots": [
+    {
+     "label": "Spot A",
+     "zone": "Management account",
+     "hint": "limits what member accounts can ever do, even their administrators, such as stopping the trail"
+    },
+    {
+     "label": "Spot B",
+     "zone": "Organization",
+     "hint": "one trail that records API calls in every member account"
+    },
+    {
+     "label": "Spot C",
+     "zone": "Log archive account",
+     "hint": "holds the log files so they cannot be changed or deleted before retention ends"
+    },
+    {
+     "label": "Spot D",
+     "zone": "Log archive account",
+     "hint": "encrypts the logs with a key whose policy lets CloudTrail use it"
+    },
+    {
+     "label": "Spot E",
+     "zone": "Security account",
+     "hint": "delegated administrator view of findings from all accounts"
+    },
+    {
+     "label": "Spot F",
+     "zone": "Security account",
+     "hint": "builds a graph of activity to show the scope of an incident"
+    }
+   ],
+   "devs": [
+    {
+     "id": "scp",
+     "name": "SCP denying StopLogging",
+     "slot": 0,
+     "why": "An SCP deny applies to every principal in member accounts. It prevents anyone there from stopping or deleting the trail."
+    },
+    {
+     "id": "otrail",
+     "name": "Organization trail",
+     "slot": 1,
+     "why": "One organization trail logs every account, including new ones, so you do not rely on each account's own setup."
+    },
+    {
+     "id": "s3ol",
+     "name": "S3 bucket with Object Lock",
+     "slot": 2,
+     "why": "A bucket in a separate account with Object Lock keeps the logs write-once. Member administrators cannot reach or delete them."
+    },
+    {
+     "id": "kms",
+     "name": "Customer managed KMS key",
+     "slot": 3,
+     "why": "A customer managed key lets you control who can decrypt the logs, with a key policy that allows CloudTrail to use it."
+    },
+    {
+     "id": "sechub",
+     "name": "Security Hub (delegated admin)",
+     "slot": 4,
+     "why": "Security Hub in the security account gathers findings from all accounts into one view."
+    },
+    {
+     "id": "detect",
+     "name": "Amazon Detective",
+     "slot": 5,
+     "why": "Detective links CloudTrail and network activity so analysts can scope an incident across accounts."
+    },
+    {
+     "id": "rootk",
+     "name": "Root user access keys",
+     "slot": -1,
+     "why": "Root keys should not exist. They give unlimited, long-lived access and are the opposite of tamper protection."
+    },
+    {
+     "id": "pubbk",
+     "name": "Public bucket with website hosting",
+     "slot": -1,
+     "why": "A public bucket exposes sensitive logs to the Internet and does not stop tampering."
+    },
+    {
+     "id": "acct",
+     "name": "Per-account trail in its own bucket",
+     "slot": -1,
+     "why": "An administrator of that account owns both the trail and the bucket, so they could stop the trail or delete the logs."
+    }
+   ]
+  },
+  {
+   "id": "ss-p-05",
+   "t": "pbq",
+   "kind": "diagram",
+   "d": "3.0",
+   "obj": "3.1",
+   "dom": "3.0",
+   "title": "Place the parts of a protected edge for a static site",
+   "short": "CloudFront, WAF and OAC",
+   "scenario": "The unit hosts a public information site from an S3 bucket encrypted with SSE-KMS. Visitors must only reach the files through CloudFront. The site also needs request filtering and extra DDoS help. Place each part in the right spot. Three parts in the tray do not belong.",
+   "ticket": "Design review EDGE-5 (written approval on file). The bucket must never be public, and the design must work with SSE-KMS.",
+   "top": "Internet",
+   "slots": [
+    {
+     "label": "Spot A",
+     "zone": "AWS edge",
+     "hint": "caches files near visitors and is the only door to the content"
+    },
+    {
+     "label": "Spot B",
+     "zone": "AWS edge",
+     "hint": "inspects each request for SQL injection and too many requests from one client"
+    },
+    {
+     "label": "Spot C",
+     "zone": "AWS edge",
+     "hint": "adds DDoS response team help and cost protection"
+    },
+    {
+     "label": "Spot D",
+     "zone": "Origin access",
+     "hint": "signs requests so the bucket accepts only this distribution, including SSE-KMS objects"
+    },
+    {
+     "label": "Spot E",
+     "zone": "Origin",
+     "hint": "stores the files with Block Public Access on"
+    }
+   ],
+   "devs": [
+    {
+     "id": "cf",
+     "name": "CloudFront distribution",
+     "slot": 0,
+     "why": "CloudFront caches content at the edge and becomes the single public entry point, so the bucket does not need to be public."
+    },
+    {
+     "id": "waf",
+     "name": "AWS WAF web ACL",
+     "slot": 1,
+     "why": "A web ACL attached to the distribution can block injection patterns and apply rate-based rules."
+    },
+    {
+     "id": "shadv",
+     "name": "Shield Advanced",
+     "slot": 2,
+     "why": "Shield Advanced adds the response team and protection against scaling charges from an attack on the distribution."
+    },
+    {
+     "id": "oac",
+     "name": "Origin access control",
+     "slot": 3,
+     "why": "OAC signs requests from the distribution, works with SSE-KMS, and lets the bucket policy name that one distribution. With SSE-KMS the key policy also needs a statement for cloudfront.amazonaws.com with AWS:SourceArn set to the distribution."
+    },
+    {
+     "id": "s3b",
+     "name": "Private S3 bucket",
+     "slot": 4,
+     "why": "The bucket stays private with Block Public Access on. Only the signed requests from CloudFront can read it."
+    },
+    {
+     "id": "oai",
+     "name": "Origin access identity (legacy)",
+     "slot": -1,
+     "why": "OAI is the older method and does not support SSE-KMS encrypted objects, so reads would fail."
+    },
+    {
+     "id": "nacl",
+     "name": "Network ACL allow-list of visitors",
+     "slot": -1,
+     "why": "S3 and CloudFront are not in your subnets, so a network ACL cannot filter them, and visitor addresses change."
+    },
+    {
+     "id": "webep",
+     "name": "Public S3 website endpoint",
+     "slot": -1,
+     "why": "A public website endpoint opens the bucket to everyone and bypasses CloudFront and WAF."
+    }
+   ]
+  }
+ ]
+}

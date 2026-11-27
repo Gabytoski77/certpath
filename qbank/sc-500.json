@@ -1,0 +1,2547 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "Cloud and AI Security Engineer",
+ "ver": "cur",
+ "exam": "SC-500",
+ "title": "Cloud and AI Security Engineer (SC-500) practice exam",
+ "rev": "2026-11-27",
+ "format": {
+  "n": 50,
+  "min": 100,
+  "pbq": 4,
+  "half": 25
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Manage identity, access, and governance",
+   "w": 24,
+   "obj": 3
+  },
+  {
+   "n": "2.0",
+   "name": "Secure storage, databases, and networking",
+   "w": 29,
+   "obj": 3
+  },
+  {
+   "n": "3.0",
+   "name": "Secure compute",
+   "w": 24,
+   "obj": 3
+  },
+  {
+   "n": "4.0",
+   "name": "Manage and monitor security posture",
+   "w": 23,
+   "obj": 3
+  }
+ ],
+ "note": "Original questions written for MyNextCert from Microsoft's public SC-500 study guide (skills measured as read on 2026-11-27; https://learn.microsoft.com/credentials/certifications/resources/study-guides/sc-500, checked 2026-11-27). Not real exam questions. The 50 items and 100 minutes are a stand-in (Microsoft says about 40-60 questions; labs may add time). Practice in your own free account or sandbox, never in a work tenant or with a government card.",
+ "q": [
+  {
+   "id": "s5-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A cloud admin needs the Security Administrator role about twice a month. The team lead wants the role to do nothing until it is needed, to last 4 hours per use, and to require MFA and a written reason each time. What should you configure?",
+   "o": [
+    [
+     "An eligible role assignment in PIM, with a 4-hour maximum activation and MFA plus justification required",
+     "Right. Eligible means the admin holds no active rights until they activate. The activation settings enforce the time limit, MFA and a reason."
+    ],
+    [
+     "An active assignment that expires in 4 hours, re-created by hand by another admin each time",
+     "This is slow and error-prone. PIM already gives you timed, approved activation without someone re-creating assignments."
+    ],
+    [
+     "An active permanent assignment, plus a Conditional Access policy that requires MFA at every sign-in to the portal",
+     "An active assignment is usable at all times with no activation step, so there is no 4-hour window and no reason is recorded."
+    ],
+    [
+     "A custom Microsoft Entra role with fewer permissions, assigned permanently as active",
+     "Fewer permissions help, but the role is still always on. It does not add activation, a time limit or a justification."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "The security team wants to see which sign-ins a new Conditional Access policy would block for unmanaged devices before it affects any real user. Which approach gives results from real sign-ins without enforcing anything?",
+   "o": [
+    [
+     "Run the What If tool once and treat its answer as a tenant-wide impact estimate for all users",
+     "What If evaluates one chosen sign-in scenario. It does not measure how real traffic across the tenant would be affected."
+    ],
+    [
+     "Create the policy in report-only mode, then review the report-only results in the sign-in logs and insights workbook",
+     "Right. Report-only evaluates the policy against live sign-ins and records what it would have done, but never blocks or prompts."
+    ],
+    [
+     "Enable security defaults first and compare sign-in counts",
+     "Security defaults are a separate baseline. They do not simulate your custom policy and cannot be combined with Conditional Access policies."
+    ],
+    [
+     "Turn the policy On for a pilot group and watch the help desk queue",
+     "The policy is enforced, so pilot users really are blocked. That is a rollout, not a safe preview."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-1-03",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Admins currently sign in to the Azure portal with a password and SMS codes. Leadership wants only the strongest sign-in methods accepted when any admin opens Azure management tools. What should you do?",
+   "o": [
+    [
+     "Add a Conditional Access policy for admins on Azure management that requires the Multifactor authentication grant control",
+     "Any MFA method counts, including SMS, so the weak method is still accepted."
+    ],
+    [
+     "Enable self-service password reset with security questions",
+     "SSPR helps users recover passwords. It does nothing to limit sign-in methods for admins."
+    ],
+    [
+     "Require the phishing-resistant authentication strength for admin roles in Conditional Access",
+     "Right. An authentication strength limits which methods satisfy MFA. The phishing-resistant strength accepts passkeys (FIDO2), Windows Hello for Business and certificate-based sign-in only."
+    ],
+    [
+     "Set each admin's legacy per-user MFA state to Enforced and keep SMS as an allowed method",
+     "Per-user MFA turns MFA on but does not restrict which methods are allowed, it bypasses Conditional Access targeting, and it applies to every sign-in instead of only to Azure management."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-1-04",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Eight Azure VMs run the same nightly job that reads one storage container. The VMs are rebuilt every week. Which identity design needs the least rework and stores no secret?",
+   "o": [
+    [
+     "A system-assigned identity on each VM, with the eight identities added to one Entra group that holds the role",
+     "Groups cut the number of role assignments, but a rebuilt VM gets a new system-assigned identity, so each one must be added to the group again."
+    ],
+    [
+     "A system-assigned managed identity on each VM, with eight role assignments redone after every rebuild",
+     "This avoids secrets, but a system-assigned identity is deleted with its VM, so you redo the role assignments each week."
+    ],
+    [
+     "A service principal whose certificate is stored in Key Vault and fetched by each VM at startup",
+     "This is still a credential to rotate, and each VM needs some way to authenticate to the vault in the first place."
+    ],
+    [
+     "One user-assigned managed identity attached to all eight VMs, with one role assignment",
+     "Right. A user-assigned identity is its own resource, so it survives rebuilds and can be shared. The role is assigned once."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-1-05",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A user consented to an unverified multitenant app that requested Mail.ReadWrite. You must cut off the app's existing access to mailboxes in your tenant without deleting any user. Which action does that?",
+   "o": [
+    [
+     "Revoke the grants on the enterprise application and disable its sign-in",
+     "Right. The enterprise application (service principal) is the object in your tenant. Revoking grants and disabling sign-in stops the app from using the consent users gave."
+    ],
+    [
+     "Exclude the user from the Conditional Access MFA policy until the review is done",
+     "This weakens the user's protection and does not touch the app's grant."
+    ],
+    [
+     "Remove the Microsoft 365 license from the affected user and ask them to sign out of every device",
+     "This disables the user's services but leaves the grant in place, and it harms the user instead of the app."
+    ],
+    [
+     "Delete the app registration from your tenant",
+     "The registration lives in the publisher's tenant, not yours. Your tenant only holds the enterprise application."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-1-06",
+   "d": "1.0",
+   "obj": "1.1",
+   "t": "ms",
+   "q": "Users can currently consent to any app that asks for access to their mail. A user just approved an unverified app that requested Mail.ReadWrite. Which TWO changes best reduce this risk going forward?",
+   "o": [
+    [
+     "Let users register their own applications and grant them access to their own data",
+     "This widens who can create apps. It does not control what permissions users grant to other apps."
+    ],
+    [
+     "Turn on the admin consent workflow, so users send a request to reviewers instead of consenting",
+     "Right. Users who need an app send a request to designated reviewers instead of being blocked with no path or approving it themselves."
+    ],
+    [
+     "Limit user consent to verified publishers and low-impact permissions",
+     "Right. User consent is then only possible for vetted apps asking for low-risk permissions. Everything else needs an admin."
+    ],
+    [
+     "Require MFA each time a user consents to an app, with a number-matching prompt",
+     "MFA proves who the user is. It does not judge whether the app or its permissions are safe."
+    ],
+    [
+     "Enable self-service password reset for all users, with registration required",
+     "SSPR addresses forgotten passwords, not app consent."
+    ]
+   ],
+   "a": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "s5-1-07",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A vault uses access policies. A pipeline's managed identity must read one secret only, and the team wants the grant managed like other Azure role assignments. What should you do?",
+   "o": [
+    [
+     "Assign Contributor on the vault to the identity, then remove the other access policies",
+     "Contributor manages the vault resource and does not grant data access under RBAC. On a vault that still uses access policies it can even let the holder add policies for themselves."
+    ],
+    [
+     "Switch the vault to Azure RBAC and assign Key Vault Secrets User on that secret",
+     "Right. With RBAC the data-plane roles can be scoped as narrowly as a single secret and are audited like any other role assignment."
+    ],
+    [
+     "Assign the Reader role on the vault to the identity",
+     "Reader is a management-plane role. It does not allow reading secret values."
+    ],
+    [
+     "Add an access policy with Get permission and scope it to that one secret in the access policy blade",
+     "Access policies apply to the whole vault. They cannot be scoped to one secret."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-1-08",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Auditors require that once a key is deleted, nobody, including a subscription Owner, can permanently remove it until the 90-day retention ends. Soft delete is already on with 90 days. What closes the gap?",
+   "o": [
+    [
+     "Add a CanNotDelete lock on the resource group",
+     "Locks apply to Azure resources through the management plane. Deleting or purging a key is a data-plane action the lock does not cover."
+    ],
+    [
+     "Enable Defender for Key Vault and alert on purge operations",
+     "Defender detects unusual access and alerts. It does not prevent a purge."
+    ],
+    [
+     "Remove the purge permission from every access policy",
+     "Anyone who can edit policies or change the permission model can restore it, so this is not a guarantee."
+    ],
+    [
+     "Turn on purge protection for the vault",
+     "Right. Purge protection blocks permanent deletion of soft-deleted items until the retention period ends. Once on, it cannot be turned off."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-1-09",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Engineers connect to a vault from a hub VNet and from the unit's network over a site-to-site VPN. The vault must have no internet exposure. What should you configure?",
+   "o": [
+    [
+     "Select the option that lets trusted Microsoft services bypass the firewall for the vault's traffic",
+     "That exception is for specific Azure services. It does not give your VNet or on-premises network private access."
+    ],
+    [
+     "Add the unit's public IP range to the vault firewall",
+     "Traffic still goes to the vault's public endpoint, so the vault remains reachable from the internet side."
+    ],
+    [
+     "Turn off public access, then add a private endpoint and link the privatelink.vaultcore.azure.net zone",
+     "Right. A private endpoint gives the vault a private IP that is reachable across the VPN. The private DNS zone makes the vault name resolve to that address."
+    ],
+    [
+     "A Microsoft.KeyVault service endpoint on the subnet plus a firewall rule that allows that subnet and the VPN",
+     "Service endpoints work only from the enabled subnet and do not extend to on-premises users coming through a VPN."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-1-10",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "The security team wants to find plaintext SSH private keys and access tokens saved on VM disks across many subscriptions, with no agents installed, and to see which internet-exposed VMs have a path to them. Which should you enable?",
+   "o": [
+    [
+     "Foundational CSPM, the free tier, on its own",
+     "The free tier gives secure score and recommendations, not secrets scanning with attack paths."
+    ],
+    [
+     "Defender for Key Vault on every vault in the subscriptions that hold the keys",
+     "This watches access to vaults. It does not look at secrets saved on VM disks."
+    ],
+    [
+     "Defender CSPM with agentless machine scanning for secrets turned on across the subscriptions in scope",
+     "Right. Defender CSPM scans machine disks without agents for secrets and feeds findings into attack path analysis."
+    ],
+    [
+     "An Azure Policy that audits Key Vault firewall rules on all subscriptions",
+     "Policy checks vault settings, not files on VM disks."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-1-11",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A payments team keeps its signing keys in a vault. The SOC wants an alert if a stolen credential is used against it. Which activity is Defender for Key Vault designed to alert on?",
+   "o": [
+    [
+     "A vault that is deployed with purge protection turned off and with no firewall rules configured",
+     "That is a configuration finding that policy and posture recommendations report."
+    ],
+    [
+     "A key that has no rotation policy defined and a creation date older than a year",
+     "This is also a posture or policy check, not suspicious activity."
+    ],
+    [
+     "A key that is close to its expiry date, with no event subscription on the vault",
+     "Expiry tracking is done with Key Vault events and Azure Policy, not with threat detection."
+    ],
+    [
+     "Suspicious access, such as requests from anonymizing networks or unusual operation volume",
+     "Right. Defender for Key Vault analyzes vault operations and raises alerts on suspicious access patterns such as anonymizing networks and unusual volume."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-1-12",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A key that protects customer-managed encryption must rotate automatically every 90 days. Data encrypted under earlier versions must stay readable. What should you configure?",
+   "o": [
+    [
+     "A rotation policy that creates a new key version every 90 days",
+     "Right. Rotation adds a new version of the same key. Older versions remain, so data encrypted with them can still be decrypted."
+    ],
+    [
+     "Set an expiration date on the key and rely on Key Vault to renew it automatically once it expires",
+     "An expiry date only stops the key from being used. Nothing renews it."
+    ],
+    [
+     "Export the key each quarter, change it offline and re-import it",
+     "Keys created as non-exportable cannot be exported, and manual handling defeats the purpose of a vault."
+    ],
+    [
+     "Create a new key with a different name each quarter and delete the old one",
+     "Deleting the old key makes data encrypted with it unreadable."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-1-13",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "The security office wants any attempt to create a storage account that allows public blob access to be stopped at deployment. Existing accounts should only be reported as non-compliant, not changed. Which policy effect fits?",
+   "o": [
+    [
+     "Modify, with a rule that sets the property to false",
+     "Modify rewrites the property during the request, so the account is created with public access turned off instead of being stopped. Its remediation can also change existing accounts."
+    ],
+    [
+     "Deny",
+     "Right. Deny rejects a non-compliant request before the resource is created. Existing resources are only flagged in compliance results."
+    ],
+    [
+     "DeployIfNotExists",
+     "This deploys a related resource after the fact. It does not block the request."
+    ],
+    [
+     "Audit",
+     "Audit only logs a warning. The non-compliant account is still created."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-1-14",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A DeployIfNotExists policy that turns on diagnostic settings was assigned yesterday. New resources are configured, but older ones still show non-compliant. What is needed to fix the older ones?",
+   "o": [
+    [
+     "Change the effect to Deny",
+     "Deny blocks new requests and cannot configure resources that already exist."
+    ],
+    [
+     "Create a remediation task that uses the assignment's managed identity",
+     "Right. DeployIfNotExists does not change existing resources on its own. A remediation task deploys to them, using the assignment's identity, which needs the roles the deployment requires."
+    ],
+    [
+     "Nothing, because the policy rewrites existing resources during the next 24-hour compliance scan",
+     "The scan only updates compliance state. It does not deploy to old resources."
+    ],
+    [
+     "Re-assign the policy with enforcement mode set to Do not enforce",
+     "Do not enforce stops the effect from being applied, so nothing is deployed to old or new resources."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-1-15",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A ReadOnly lock was added to a resource group. Now a web app that retrieves a storage connection through a list-keys call starts failing. Why, and what is the fix?",
+   "o": [
+    [
+     "Locks only affect portal actions, so retry the call with the CLI or an SDK client",
+     "Locks apply to the Azure Resource Manager API, whichever tool you use."
+    ],
+    [
+     "A ReadOnly lock only blocks deleting resources, so the failure must have some other cause",
+     "That describes CanNotDelete. ReadOnly blocks modifying actions too."
+    ],
+    [
+     "ReadOnly also blocks POST actions such as listing keys, so switch the group to a CanNotDelete lock",
+     "Right. Listing storage keys is a POST operation, which a ReadOnly lock blocks. CanNotDelete prevents deletion and still allows normal use."
+    ],
+    [
+     "Owners are exempt from locks, so give the app the Owner role",
+     "Locks apply to everyone including Owners, and giving an app Owner is far too broad."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-1-16",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Ransomware actors with backup admin rights could disable soft delete and remove recovery points. The team wants a second person from another team to approve such critical operations on the Recovery Services vault. What should you use?",
+   "o": [
+    [
+     "Geo-redundant storage for the vault, with a second backup policy that copies data to another region",
+     "Redundancy protects against datacenter loss. It does not stop an authorized admin from deleting data."
+    ],
+    [
+     "A longer backup retention period, plus daily reports sent to the backup admins",
+     "Longer retention does not stop someone with rights from stopping protection and deleting data."
+    ],
+    [
+     "A CanNotDelete lock on the vault and on its resource group",
+     "A lock protects the vault resource, not the backup items inside it."
+    ],
+    [
+     "Multi-user authorization with a Resource Guard owned by the security team in another subscription",
+     "Right. Protected operations on the vault then need approval through the Resource Guard, which the backup admins do not control."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-1-17",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A team stores Bicep templates in a Git repository. Security wants misconfigurations, such as a storage account that allows public access, flagged in pull requests before merge. Which option fits?",
+   "o": [
+    [
+     "Microsoft Security DevOps scanning of the Bicep files in the pipeline, linked to DevOps security in Defender for Cloud",
+     "Right. IaC scanning checks templates at pull-request time, so the fix happens before anything is deployed."
+    ],
+    [
+     "An Azure Policy with the Audit effect, assigned at the subscription that receives the deployed templates",
+     "Audit reports only after resources exist in Azure. It cannot comment on a pull request."
+    ],
+    [
+     "Defender for Storage on the production account, with malware scanning enabled",
+     "This detects threats on a deployed account. It does not review template code."
+    ],
+    [
+     "A ReadOnly lock on the production resource group",
+     "A lock does not check templates. It would also block legitimate deployments."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-1-18",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A contractor must be able to restart virtual machines in one resource group and do nothing else. The built-in Virtual Machine Contributor role also lets them create and delete VMs. What should you do?",
+   "o": [
+    [
+     "Assign Virtual Machine Contributor and add an Azure Policy that denies VM deletion",
+     "Policy governs resources for everyone, not one user. It would block deletion for all and still allow creation."
+    ],
+    [
+     "Assign Owner on the resource group for the length of the project",
+     "Owner is far broader than a restart and also lets the holder grant access to others."
+    ],
+    [
+     "A custom role with only the restart action, assigned at the resource group",
+     "Right. A custom role lists exactly the actions needed, such as Microsoft.Compute/virtualMachines/restart/action, and is assigned at the narrowest scope that works."
+    ],
+    [
+     "Assign Contributor at the subscription and remove the delete action in a PIM role setting",
+     "PIM settings control activation, not which actions a role holds, and a subscription scope is wider than needed."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A service SAS was handed to a vendor and must be cancelled today, well before its 7-day expiry, without rotating account keys that other apps use. Which design would have allowed that?",
+   "o": [
+    [
+     "An ad hoc service SAS with every permission, no stored policy and a fixed seven-day expiry date",
+     "Its terms live inside the token itself, so it cannot be revoked early without rotating the signing key."
+    ],
+    [
+     "An account SAS signed with key 1",
+     "Revoking it means regenerating key 1, which breaks every other app that uses that key."
+    ],
+    [
+     "Shared key authorization, with the full account key given to the vendor for the week",
+     "Handing out the account key gives full access, and the only way to cancel it is to rotate the key."
+    ],
+    [
+     "A service SAS tied to a stored access policy on the container, which you can edit or delete",
+     "Right. A stored access policy holds the SAS's expiry and permissions on the server side. Changing or removing it invalidates every SAS that points to it."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "An Azure Function in the same region as a firewalled storage account needs blob access. The team added the function's outbound IP addresses to the storage firewall, but requests are still denied. What fixes this?",
+   "o": [
+    [
+     "Add a wider IP range that covers the whole Azure region, then test again from the function",
+     "IP rules still do not match same-region Azure traffic, and a huge range would be unsafe anyway."
+    ],
+    [
+     "Integrate the function with a VNet and allow that subnet on the storage account, or use a private endpoint",
+     "Right. IP rules do not apply to traffic that comes from Azure services in the same region as the storage account, so the request needs a VNet rule or a private endpoint."
+    ],
+    [
+     "Wait up to an hour for the firewall change to propagate across the region",
+     "The cause is how same-region traffic is evaluated, not delay."
+    ],
+    [
+     "Set the firewall default action back to Allow",
+     "This removes the control you were trying to keep."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Users upload documents to a blob container. The team wants each uploaded file scanned for malware and the verdict made available so an automated step can quarantine bad files. What should they enable?",
+   "o": [
+    [
+     "Defender for Storage malware scanning on upload, then use the scan result to start automation",
+     "Right. Malware scanning checks blobs as they land and reports the result, which automation can use to move or delete the file."
+    ],
+    [
+     "Blob versioning on the account",
+     "Versioning keeps earlier copies and says nothing about whether a file is malicious."
+    ],
+    [
+     "Defender for Servers on the machine that uploads the files, with agentless scanning",
+     "That protects the uploader's VM, not the blobs after they reach storage."
+    ],
+    [
+     "A lifecycle management rule on the container that moves blobs to cool after one day",
+     "Lifecycle rules move or delete blobs by age or tier. They do not inspect content."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-2-04",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A records container must hold documents for seven years. During that time nobody, including the account owner, may modify or delete them, and nobody may shorten the retention. What should you configure?",
+   "o": [
+    [
+     "A CanNotDelete resource lock on the storage account and each container",
+     "Locks cover management-plane actions. Blob delete and overwrite are data-plane operations the lock does not stop."
+    ],
+    [
+     "Blob soft delete with the longest retention and blob versioning enabled",
+     "Soft delete and versioning let you recover earlier data, but they do not stop edits, and the retention is shorter than seven years."
+    ],
+    [
+     "A time-based retention policy on the container, locked after testing",
+     "Right. A locked time-based retention policy makes blobs write-once-read-many and cannot be shortened or removed. The period can only be extended."
+    ],
+    [
+     "A legal hold alone",
+     "A legal hold has no time limit and can be cleared by anyone with the right permission. It does not enforce a fixed seven years."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-2-05",
+   "d": "2.0",
+   "obj": "2.1",
+   "t": "ms",
+   "q": "Security wants a storage account to refuse anonymous reads and also refuse any request signed with the account keys, so every request is tied to an Entra identity. Which TWO settings do this?",
+   "o": [
+    [
+     "Disable shared key access, so account-key and service SAS requests fail",
+     "Right. Requests authorized with the account key, and account or service SAS signed by it, are rejected. Entra ID with RBAC and user delegation SAS still work."
+    ],
+    [
+     "Require secure transfer (HTTPS only) on the account, with TLS 1.2 minimum",
+     "This forces encryption in transit. It does not change who may authenticate."
+    ],
+    [
+     "Require a user delegation SAS for all clients of the account",
+     "No account setting forces this. Shared key requests keep working until shared key access is disabled."
+    ],
+    [
+     "Disallow anonymous access to blobs on the account",
+     "Right. With anonymous access disallowed, no container can be set to public, so unauthenticated reads fail."
+    ],
+    [
+     "Enable blob soft delete with a 14-day retention period",
+     "Soft delete helps recover deleted data. It does not control authentication."
+    ]
+   ],
+   "a": [
+    0,
+    3
+   ]
+  },
+  {
+   "id": "s5-2-06",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Policy says nobody may sign in to the Azure SQL logical server with a SQL username and password. Which setting enforces that?",
+   "o": [
+    [
+     "Enable transparent data encryption with a customer-managed key",
+     "TDE encrypts the database files at rest. It does not change how users authenticate."
+    ],
+    [
+     "Turn on Microsoft Entra-only authentication for the server",
+     "Right. Entra-only authentication disables SQL authentication, including SQL logins, for the whole server."
+    ],
+    [
+     "Add a Microsoft Entra admin to the server and remove the SQL admin from every database role",
+     "Entra sign-in becomes possible, but SQL authentication stays available, so SQL logins can still be used."
+    ],
+    [
+     "Set a stronger password policy for SQL logins, with 14 characters minimum",
+     "Stronger passwords still allow SQL logins, which the policy forbids."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-2-07",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A column holds national ID numbers. Database administrators and cloud admins must not be able to read the plaintext, even with the highest database rights. Only the application should see it. Which feature fits?",
+   "o": [
+    [
+     "Transparent data encryption, using a customer-managed key kept in Key Vault",
+     "TDE protects files on disk. Anyone who can query the table still reads the data in the clear."
+    ],
+    [
+     "Dynamic data masking on the national ID column, with an UNMASK grant for the app",
+     "Masking only hides values in query results from users without UNMASK. Privileged users can still see them, and the stored data is not encrypted."
+    ],
+    [
+     "Row-level security",
+     "This filters which rows a user can read. It does not hide a column from users who can read the row."
+    ],
+    [
+     "Always Encrypted, with column keys held only by the app",
+     "Right. Data is encrypted and decrypted on the client side, so the database engine and its admins only ever see ciphertext."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-2-08",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "The SOC wants Azure SQL audit logs in the same Log Analytics workspace used by Microsoft Sentinel, and wants databases created later on the same server to be covered automatically. What should you do?",
+   "o": [
+    [
+     "Server-level auditing with the Log Analytics workspace as a destination, so new databases are covered",
+     "Right. Server-level auditing applies to every existing and new database on the server, and Log Analytics is a supported destination."
+    ],
+    [
+     "Enable transparent data encryption on the server and send its logs to the workspace",
+     "TDE has no audit trail of user activity."
+    ],
+    [
+     "Turn on the vulnerability assessment for the server with recurring scans",
+     "That scans for misconfigurations. It does not record who did what."
+    ],
+    [
+     "Auditing enabled on each existing database one at a time, sent to the workspace",
+     "New databases created later would not be covered until someone enables it for each."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-2-09",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "An admin selects the option Allow Azure services and resources to access this server so an App Service can connect to Azure SQL. What does this actually permit?",
+   "o": [
+    [
+     "Only resources in the same subscription as the server, plus any VMs in its resource group",
+     "The rule does not check subscription or tenant."
+    ],
+    [
+     "Nothing until a private endpoint or VNet rule has also been created for the server",
+     "The rule takes effect on its own and has no dependency on private endpoints."
+    ],
+    [
+     "Any Azure resource, even another customer's, if it can authenticate",
+     "Right. It adds a firewall rule for the special 0.0.0.0 range. It is broad, so a private endpoint or VNet rule is a tighter choice."
+    ],
+    [
+     "Only resources inside the virtual network where the server's private endpoint sits",
+     "It is not tied to a virtual network at all."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-2-10",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A subscription runs Azure SQL Database, an Azure Database for PostgreSQL flexible server and a Cosmos DB account. The team wants threat detection such as SQL injection and brute-force alerts on all of them. What should they enable?",
+   "o": [
+    [
+     "The Defender for Databases plans in Defender for Cloud, including Cosmos DB",
+     "Right. Defender for Databases gives threat detection and, for SQL, vulnerability assessment across these database services."
+    ],
+    [
+     "Defender for Storage on the backing accounts, plus malware scanning on the backups",
+     "That covers storage accounts, not database engines."
+    ],
+    [
+     "Server auditing on each database service, with logs kept for a year in storage",
+     "Auditing records events. It does not analyze them for attacks."
+    ],
+    [
+     "Defender CSPM alone, which finds posture risks and attack paths across the subscription",
+     "CSPM finds posture risks and attack paths. Threat detection on database activity comes from the database protection plans."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-2-11",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A subnet NSG has Allow TCP 443 from Internet at priority 400. The NSG on a VM's network interface has Deny TCP 443 from any at priority 100. An internet client connects to the VM on 443. What happens?",
+   "o": [
+    [
+     "Allowed, because the subnet NSG is checked first and an allow there wins over everything",
+     "Passing the subnet NSG is not enough. The NIC NSG is also evaluated and denies it."
+    ],
+    [
+     "It is blocked only if the two NSGs share the same priority number",
+     "Priority numbers are compared inside one NSG. They are not compared across two."
+    ],
+    [
+     "Allowed, because the NIC NSG is ignored whenever a subnet NSG already exists in the same VNet",
+     "Both NSGs apply when both are present."
+    ],
+    [
+     "Blocked, because the subnet NSG and then the NIC NSG must each allow inbound traffic",
+     "Right. Priorities compare only within one NSG. The NIC NSG's deny matches, so the packet is dropped even though the subnet NSG allowed it."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-2-14",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A central security team must deny inbound RDP from the internet across all VNets in 40 subscriptions. App owners must not be able to override it with their own NSG rules. What should the team use?",
+   "o": [
+    [
+     "A user-defined route on every subnet that sends RDP traffic to a black hole",
+     "Routes do not filter by port or source."
+    ],
+    [
+     "A deny rule in each application team's own NSG on every subnet",
+     "Owners can change their own NSGs, so the rule can be removed or outranked."
+    ],
+    [
+     "An Azure Policy with the Audit effect",
+     "Audit reports problems after the fact and blocks nothing."
+    ],
+    [
+     "AVNM security admin rules in a network group that covers those VNets",
+     "Right. Security admin rules are evaluated before NSG rules and a deny cannot be undone by an NSG allow."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-2-15",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "An Azure Firewall policy has a network rule that allows TCP 443 to any destination, and an application rule that denies a social media FQDN category. Users still reach the blocked site over HTTPS. Why?",
+   "o": [
+    [
+     "FQDN filtering needs Azure Firewall Premium, which this policy does not use",
+     "Standard supports FQDN application rules. Premium adds TLS inspection, IDPS and URL filtering."
+    ],
+    [
+     "A network rule match ends processing, so application rules never get evaluated",
+     "Right. Rule order is DNAT, then network, then application rules. A network rule match ends processing."
+    ],
+    [
+     "Application rules can only allow traffic, never deny it",
+     "Application rules support both allow and deny actions."
+    ],
+    [
+     "The NSG on the AzureFirewallSubnet overrides the Azure Firewall policy for outbound flows",
+     "Firewall policy is what decides these flows, and an NSG cannot override it here."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-2-16",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Outbound web traffic must be decrypted and inspected, with signature-based intrusion detection, before leaving a hub network. Which choice meets this?",
+   "o": [
+    [
+     "Azure Firewall Premium with TLS inspection and IDPS turned on",
+     "Right. TLS inspection and IDPS are Premium features. The firewall needs an intermediate certificate to re-sign decrypted sessions."
+    ],
+    [
+     "A web application firewall policy in Prevention mode on Application Gateway",
+     "WAF protects inbound web apps. It does not inspect outbound traffic from your VNets."
+    ],
+    [
+     "Azure Firewall Standard with threat intelligence in Alert and deny mode plus FQDN application rules",
+     "Threat intelligence filters known bad addresses and domains. It cannot decrypt TLS or run IDPS signatures."
+    ],
+    [
+     "An NSG rule that uses an FQDN tag",
+     "NSGs filter by address and port and cannot decrypt or inspect content."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-2-17",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A private endpoint was created for a storage account's blob service, and public access was turned off. VMs in the VNet still get a public IP when they resolve the account name, and connections fail. What is missing?",
+   "o": [
+    [
+     "An outbound NSG rule that allows the Storage service tag on TCP 443 from the whole app subnet",
+     "The problem is name resolution to the wrong address, not a blocked port."
+    ],
+    [
+     "A second private endpoint for the file service",
+     "The file service has its own sub-resource. It does not change how the blob name resolves."
+    ],
+    [
+     "A private DNS zone named privatelink.blob.core.windows.net, linked to the VNet, with the endpoint's record",
+     "Right. Without the zone, the public name still resolves to the public address. The linked zone returns the private IP instead."
+    ],
+    [
+     "A service endpoint for Microsoft.Storage on the subnet, with the storage firewall set to allow it",
+     "A service endpoint is a different feature. It does not fix DNS for a private endpoint."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-2-19",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A software team runs an internal service behind a Standard Load Balancer in its VNet. Customers in other tenants must consume it privately without being peered into the team's network. What should the team publish?",
+   "o": [
+    [
+     "A service endpoint policy on each customer's subnets that lists the service",
+     "Service endpoint policies limit which storage accounts a subnet may reach. They do not publish your own service."
+    ],
+    [
+     "A Private Link service on the Standard Load Balancer",
+     "Right. Private Link service exposes just that service. Each consumer connects through a private endpoint in their own VNet."
+    ],
+    [
+     "VNet peering between the team's VNet and every customer's VNet, with a restrictive NSG on top",
+     "Peering exposes whole networks to each other, which is far more than one service."
+    ],
+    [
+     "A public load balancer protected by a strict NSG and an allow list",
+     "The service becomes internet-reachable, which the team wants to avoid."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-2-20",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Remote engineers use a point-to-site VPN to the hub. The team wants them to sign in with their work identity so that MFA and Conditional Access apply. Which setup does this?",
+   "o": [
+    [
+     "A site-to-site tunnel with a pre-shared key",
+     "That connects whole networks, not individual users."
+    ],
+    [
+     "SSTP with a RADIUS server that checks each engineer's password",
+     "RADIUS does not give Entra sign-in with Conditional Access in this design."
+    ],
+    [
+     "IKEv2 with certificate authentication installed on every engineer's laptop",
+     "Certificates do not involve Entra sign-in, so MFA and Conditional Access do not apply."
+    ],
+    [
+     "OpenVPN with Microsoft Entra authentication configured on the gateway",
+     "Right. Entra authentication for point-to-site VPN uses the OpenVPN protocol, which lets Conditional Access evaluate each connection."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-2-21",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "The unit wants to retire its legacy VPN for access to a few on-premises file servers. It wants per-application access gated by Conditional Access, with no inbound firewall holes. Which solution fits?",
+   "o": [
+    [
+     "Entra Private Access and an on-premises connector",
+     "Right. Entra Private Access brokers access to private apps through Global Secure Access. The connector only calls out, so no inbound rule is needed."
+    ],
+    [
+     "Azure Bastion with a jump host in the on-premises datacenter",
+     "Bastion gives browser-based RDP and SSH to Azure VMs. It does not publish on-premises file servers."
+    ],
+    [
+     "Microsoft Entra Domain Services with LDAPS exposed to the internet",
+     "This provides managed domain services for older apps. It does not provide remote access."
+    ],
+    [
+     "Application Gateway with WAF in front of the file servers' SMB shares",
+     "This is a layer 7 load balancer for web apps. It does not give per-user private network access."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-2-22",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Branch offices connect through Virtual WAN. Internet-bound and branch-to-branch traffic must be inspected by Azure Firewall. What should you do?",
+   "o": [
+    [
+     "Make the hub a secured hub with Azure Firewall and routing intent",
+     "Right. A secured virtual hub contains Azure Firewall. Routing intent policies steer private and internet traffic to it."
+    ],
+    [
+     "Deploy Azure Firewall in a single spoke VNet and trust that default routes will send traffic to it",
+     "Without routing that sends traffic to it, the firewall inspects nothing."
+    ],
+    [
+     "Peer a spoke VNet to each branch and add NSGs plus route tables on the spokes",
+     "Branches are not VNets, and NSGs do not provide centralized inspection."
+    ],
+    [
+     "Turn on DDoS protection for the hub",
+     "DDoS protection absorbs volumetric attacks. It does not inspect branch traffic."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-2-23",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "RDP (TCP 3389) to a VM works from a client in the virtual network, although no one added an RDP allow rule to the NSG on its network interface. A second NSG is attached to the subnet. Which Network Watcher view lists the rules from both NSGs, including default rules, so you can see which rule allows the traffic?",
+   "o": [
+    [
+     "Effective security rules for the network interface",
+     "Right. Effective security rules combine every NSG rule that applies to the interface, from the subnet and the NIC, including default rules. Inbound traffic must be allowed by both NSGs, and a default rule such as AllowVnetInBound may be the one allowing it."
+    ],
+    [
+     "NSG flow logs for the subnet NSG",
+     "Flow logs record traffic that already happened. They do not show the merged rule set."
+    ],
+    [
+     "Next hop from the VM to the client address",
+     "Next hop shows the route a packet takes. It says nothing about which rules allow it."
+    ],
+    [
+     "Connection monitor between the client and the VM",
+     "Connection monitor tests reachability over time, but it does not list the rules that apply."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-2-24",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A container is set to the Container access level, which allows anonymous reads. The storage account setting Allow Blob anonymous access is turned off. What happens to an anonymous request for a blob in that container?",
+   "o": [
+    [
+     "It is allowed, because the container setting overrides the account setting for that container",
+     "The account setting is the higher control. The container level cannot re-enable what the account disallows."
+    ],
+    [
+     "It is denied, because the account-level setting blocks anonymous access whatever the container says",
+     "Right. With anonymous access disallowed on the account, anonymous requests fail even if a container is set to allow them."
+    ],
+    [
+     "It is allowed for listing blobs but not for downloading them",
+     "The account setting is not split by operation. Anonymous requests are refused."
+    ],
+    [
+     "It is allowed until the account's shared keys are rotated",
+     "Key rotation has no bearing on anonymous access."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Fifty agent identities were created from one agent identity blueprint, and more will be created next month. Security wants one Conditional Access policy that automatically covers every current and future agent from that blueprint. What should the policy target?",
+   "o": [
+    [
+     "All users, with a filter on the agents' display names",
+     "Policies scoped to users do not apply to agent identities."
+    ],
+    [
+     "Each agent identity, one by one",
+     "New agent identities would not be covered until someone adds them."
+    ],
+    [
+     "The agent identity blueprint",
+     "Right. A policy that targets a blueprint applies to every agent identity created from it, including ones created later."
+    ],
+    [
+     "Only the agent's user account",
+     "That account is a separate object. A policy on it does not cover the agent identity's own token requests."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A Copilot Studio agent reads a signed-in user's mail by using the on-behalf-of flow. Conditional Access must apply to this access. Whose policies are evaluated for the agent's token request?",
+   "o": [
+    [
+     "None, because Conditional Access does not evaluate agent token requests at all",
+     "Agent token requests are evaluated. The main limit is for resources not protected by Entra, such as ones that use API keys."
+    ],
+    [
+     "Only the agent identity's, because the agent identity is what the app registers",
+     "The agent identity is the subject only when it acts with its own credentials, with no user present."
+    ],
+    [
+     "Only the blueprint's",
+     "The blueprint creates agent identities. It does not request tokens to do the agent's work."
+    ],
+    [
+     "The signed-in user's, because in the on-behalf-of flow the user is the subject of the token",
+     "Right. In the on-behalf-of flow the user is the subject of the token. Policies assigned to that user are evaluated, and a policy that targets only the agent identity does not cover this access."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Before rolling out Microsoft 365 Copilot, the team suspects that many SharePoint sites have overly broad sharing. They want a weekly view of oversharing and a way to start fixes, such as labeling, from the same place. Which tool fits?",
+   "o": [
+    [
+     "A Conditional Access policy that requires MFA and a compliant device for every Microsoft 365 Copilot user",
+     "This protects sign-in. It does not find or fix overshared files."
+    ],
+    [
+     "Purview DSPM data risk assessments, plus auto-labeling policies to apply sensitivity labels",
+     "Right. The default oversharing assessment finds overshared SharePoint content and offers fixes such as DLP, restricted content discovery, auto-labeling and retention. Only custom item-level assessments can also notify site owners."
+    ],
+    [
+     "Defender for Storage on the SharePoint content database that holds each site",
+     "SharePoint Online content is not an Azure storage account you can enable that plan on."
+    ],
+    [
+     "Defender CSPM attack path analysis",
+     "This maps exposed cloud resources. It does not scan SharePoint sharing links."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-3-04",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A company routes all model calls from several apps through Azure API Management in front of Microsoft Foundry. One chatty app keeps using up the shared token quota. Which gateway policy limits each caller's token usage?",
+   "o": [
+    [
+     "llm-content-safety with a custom blocklist",
+     "This sends prompts to Azure AI Content Safety for harmful content checks. It does not limit usage."
+    ],
+    [
+     "llm-semantic-cache-store with a 60-second duration",
+     "This caches responses to cut calls and cost. It does not cap a caller's tokens."
+    ],
+    [
+     "llm-emit-token-metric with a Subscription ID dimension",
+     "This sends token usage metrics, split by that dimension, to Application Insights. It reports usage and does not enforce a limit."
+    ],
+    [
+     "llm-token-limit with counter-key set to the subscription ID",
+     "Right. llm-token-limit enforces a tokens-per-minute rate or a token quota per counter key, so one consumer cannot drain the rest."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-3-05",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Defender for AI Services raised a jailbreak alert on a Foundry model deployment. Analysts see the alert but the prompt text is masked. What should an admin turn on to show suspicious prompt snippets as alert evidence?",
+   "o": [
+    [
+     "User prompt evidence in the AI services plan settings, keeping sensitive data in the snippets redacted",
+     "Right. With user prompt evidence off, prompts are still analyzed but their content is masked in alerts. Turning it on adds the suspicious snippets."
+    ],
+    [
+     "Data security for AI interactions, which lets Purview store and analyze the prompts and responses",
+     "That is a separate paid Purview integration. It does not control what appears in Defender alerts."
+    ],
+    [
+     "Defender for Key Vault",
+     "That plan covers vault access, not AI prompts."
+    ],
+    [
+     "A Conditional Access policy for the AI service that requires a compliant device",
+     "This governs who signs in. It does not change alert content."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-3-06",
+   "d": "3.0",
+   "obj": "3.1",
+   "t": "ms",
+   "q": "A team is setting up Prompt Shields in Foundry guardrails for an agent. Which TWO statements are correct?",
+   "o": [
+    [
+     "Prompt Shields check that answers are grounded in sources",
+     "They detect attempts to manipulate the model. They do not judge accuracy or grounding."
+    ],
+    [
+     "Raising the harm-category blocking levels also raises Prompt Shields sensitivity",
+     "Core-harm blocking levels do not change Prompt Shields sensitivity. Configure it separately."
+    ],
+    [
+     "Document attack detection is off by default and must be enabled",
+     "Right. Document attacks, such as hidden instructions in a file, are scanned only after you turn the control on."
+    ],
+    [
+     "Prompt Shields run only against model output, never against what the user types",
+     "User prompt attacks are checked at the user input point."
+    ],
+    [
+     "User prompt attack detection is on by default at the user input intervention point",
+     "Right. Foundry guardrails turn on detection of user prompt attacks by default."
+    ]
+   ],
+   "a": [
+    2,
+    4
+   ]
+  },
+  {
+   "id": "s5-3-07",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Admins want RDP closed by default on Azure VMs and opened only for an approved IP for a limited time. Which plan must be enabled to configure just-in-time VM access, and what does JIT change?",
+   "o": [
+    [
+     "Defender CSPM; JIT closes the port permanently",
+     "CSPM does not provide JIT, and JIT opens ports temporarily on approval."
+    ],
+    [
+     "Defender for Servers Plan 2; JIT adds time-limited allow rules for the approved port and source",
+     "Right. JIT is a Plan 2 feature. After approval it inserts temporary allow rules, then removes them when the time ends."
+    ],
+    [
+     "Defender for Servers Plan 1; JIT edits the firewall inside each virtual machine and leaves the NSG alone",
+     "JIT is not in Plan 1, and it changes network rules rather than the guest firewall."
+    ],
+    [
+     "Foundational CSPM, which is free; JIT blocks all inbound traffic",
+     "The free tier has no JIT, and JIT does not block everything. It controls named management ports."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-3-08",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Auditors want RDP and SSH sessions to Azure VMs recorded for review. Admins already connect through Azure Bastion. Which Bastion choice supports this?",
+   "o": [
+    [
+     "The Standard SKU with diagnostic settings that log each connection",
+     "Diagnostics log connection events. They do not record the sessions."
+    ],
+    [
+     "The Developer SKU, which suits single-VM connections in test environments",
+     "This lightweight option is for simple one-VM connections and does not record sessions."
+    ],
+    [
+     "The Premium SKU, with session recording turned on",
+     "Right. Session recording is a Premium SKU feature, so connections can be reviewed later."
+    ],
+    [
+     "The Basic SKU",
+     "Basic provides browser access but no session recording."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-3-09",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A policy needs temp disks and disk caches on a VM encrypted at rest, with the encrypted data flowing to Storage, without installing an extension or using in-guest encryption. What should you enable?",
+   "o": [
+    [
+     "Azure Disk Encryption with a key encryption key in Key Vault",
+     "This uses an in-guest extension with BitLocker or DM-Crypt, which the requirement rules out."
+    ],
+    [
+     "Encryption at host on the VM",
+     "Right. Encryption at host encrypts data on the VM host, including temp disks and caches, and in flow to Storage, with no guest agent."
+    ],
+    [
+     "Secure boot",
+     "Secure boot checks boot components. It does not encrypt data."
+    ],
+    [
+     "Server-side encryption with platform-managed keys alone",
+     "This covers managed disks at rest but not temp disks and caches on the host."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-3-10",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A Windows Server VM must prove its boot integrity with hardware-backed measurements and report attestation results to Defender for Cloud. Which VM setting do you choose at creation?",
+   "o": [
+    [
+     "An Azure Machine Configuration policy",
+     "Machine configuration checks settings inside the OS. It does not give a hardware-rooted boot check."
+    ],
+    [
+     "Standard security type with BitLocker inside the guest",
+     "BitLocker protects data. It does not provide measured boot or attestation."
+    ],
+    [
+     "A Generation 1 VM with an endpoint protection extension and BitLocker installed",
+     "Trusted launch requires Generation 2, and an extension does not add measured boot."
+    ],
+    [
+     "Trusted launch security type, with secure boot, vTPM and integrity monitoring on",
+     "Right. Trusted launch provides secure boot, vTPM and boot integrity monitoring, and Defender for Cloud can report on the attestation."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-3-12",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A team wants vulnerabilities in images stored in Azure Container Registry reported, plus runtime threat alerts for pods in AKS. Which statement matches how Defender for Containers delivers this?",
+   "o": [
+    [
+     "Image scanning is agentless; runtime protection uses the Defender sensor on the AKS nodes",
+     "Right. Image assessment needs no in-cluster component. Runtime detection depends on the sensor deployed as a DaemonSet."
+    ],
+    [
+     "Both come from Defender for App Service",
+     "That plan protects App Service web apps, not clusters or registries."
+    ],
+    [
+     "Both need an agent that is baked into every container image before it is pushed to the registry",
+     "Images are scanned from the registry and no agent goes into them."
+    ],
+    [
+     "Runtime alerts come from the Azure Policy add-on, which watches pod behavior",
+     "The add-on enforces rules at admission. It does not detect attacks at runtime."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-3-13",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "An AKS cluster must authenticate admins with Microsoft Entra ID, decide Kubernetes permissions with Azure RBAC, and have no shared local accounts. What should you configure?",
+   "o": [
+    [
+     "Entra integration with Azure RBAC for Kubernetes authorization, and disable local accounts on the cluster",
+     "Right. Admins sign in with Entra identities. Azure role assignments control Kubernetes access, and the shared local admin credential is turned off."
+    ],
+    [
+     "Entra integration, but Kubernetes RBAC with local accounts left enabled for break-glass use",
+     "Local accounts are shared credentials that bypass Entra, so the no-shared-accounts requirement fails."
+    ],
+    [
+     "Per-admin client certificates in kubeconfig files issued from the cluster CA",
+     "Certificates are not Entra identities, so MFA and Conditional Access do not apply and revoking one is hard."
+    ],
+    [
+     "Share the cluster-admin kubeconfig through Key Vault",
+     "This keeps a shared credential that is not tied to any person."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-3-14",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A container registry must be reachable only from inside the virtual network. Pipelines must pull and push without a shared admin password. Which design meets this?",
+   "o": [
+    [
+     "A Premium registry with a private endpoint and public access off, but with the admin user still enabled",
+     "The network side is right, but the admin user is a shared password the pipelines would use."
+    ],
+    [
+     "A Premium registry with a private endpoint, public access off and anonymous pull enabled for build agents",
+     "Anonymous pull lets anyone who can reach the registry read images, which breaks the private requirement."
+    ],
+    [
+     "A Premium registry with a private endpoint, public access off, the admin user disabled and pipeline managed identities",
+     "Right. Private endpoints need the Premium tier. Managed identities with narrow roles replace the shared admin account."
+    ],
+    [
+     "A Premium registry with a private endpoint, public access off and long-lived repository tokens",
+     "Long-lived tokens are stored secrets that must be rotated. Managed identities avoid them."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-3-15",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "An HTTP-triggered Azure Function should be callable only from inside the corporate network and only by callers that present a valid token from the tenant's identity provider. Which pair of controls fits?",
+   "o": [
+    [
+     "The function-level API key shared with each caller, plus an IP restriction for the corporate range",
+     "A shared key does not identify callers and travels in requests. The IP restriction helps but does not prove who is calling."
+    ],
+    [
+     "A private endpoint for inbound access, with anonymous access left enabled on the function app",
+     "The network is closed, but any caller on that network can call the function without a token."
+    ],
+    [
+     "Built-in authentication with Entra ID, with the app left on its public endpoint",
+     "Tokens are required, but the endpoint stays reachable from the internet."
+    ],
+    [
+     "A private endpoint plus built-in authentication with Microsoft Entra ID",
+     "Right. The private endpoint removes internet exposure. Built-in authentication then requires a valid Entra token on every request."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-3-16",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A public web app sits behind Application Gateway. The team needs protection from SQL injection and cross-site scripting using managed rules. They want to watch what would be blocked before enforcing. What should they configure?",
+   "o": [
+    [
+     "WAF in Prevention mode from day one with the OWASP rule set",
+     "Prevention from day one blocks before the team has seen what would be blocked. Detection mode is what logs matches without blocking."
+    ],
+    [
+     "WAF with the OWASP-based rule set, in Detection mode first and then in Prevention mode",
+     "Right. Detection mode logs matches without blocking. After tuning, Prevention mode blocks them."
+    ],
+    [
+     "Azure Firewall Standard with network rules that allow only TCP 80 and 443 to the web servers",
+     "Network rules filter by address and port. They do not read HTTP content for attack patterns."
+    ],
+    [
+     "Azure Firewall Premium IDPS in Alert mode in front of Application Gateway",
+     "IDPS signatures run on the firewall and do not apply the WAF's managed request rules for injection and scripting."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-3-17",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "An App Service back end must accept calls only from Azure API Management and store no shared key. Which design fits?",
+   "o": [
+    [
+     "API Management calls the back end with its managed identity, and the back end validates that token",
+     "Right. The gateway proves its identity with a token, so there is no stored key, and the back end rejects other callers."
+    ],
+    [
+     "An access restriction that allows only the API Management public IP address",
+     "An IP rule only limits where calls come from. It does not prove which caller they are, and anyone who can send from that address passes."
+    ],
+    [
+     "API Management forwards the client's own subscription key to the back end, which checks it for each call",
+     "The key identifies a client of the API. It does not prove that the caller is the gateway."
+    ],
+    [
+     "A static header value that the back end checks, stored in an API Management named value",
+     "A fixed header is still a shared secret that anyone who learns it can replay."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-3-18",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A unit has 120 on-premises Windows servers it wants covered by Defender for Servers. Which is the recommended way to connect them so Defender for Cloud can protect them?",
+   "o": [
+    [
+     "Peer the on-premises network to an Azure virtual network in a subscription where Defender for Cloud is enabled",
+     "Peering moves traffic. It does not register machines with Defender for Cloud."
+    ],
+    [
+     "Onboard them as Azure Arc-enabled servers, then enable the plan on that subscription",
+     "Right. Azure Arc is the recommended way to bring non-Azure machines in, so they appear as resources that Defender for Servers can cover."
+    ],
+    [
+     "Install only Azure Monitor Agent on each server and nothing else",
+     "Collecting logs does not make a server a protected resource. The machines still have to be connected to Azure."
+    ],
+    [
+     "Create a connector for on-premises servers in Environment settings, as for an AWS account",
+     "Connectors exist for AWS and GCP. On-premises machines connect through Azure Arc instead."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-3-19",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A container app must read a database connection string held in Key Vault without keeping the value in its own configuration. What should you configure?",
+   "o": [
+    [
+     "A managed identity with Key Vault Reader, and a secret that references the vault",
+     "Key Vault Reader reads only metadata about the vault and its secrets. It cannot read secret values, so the reference would fail."
+    ],
+    [
+     "A Dapr secret store component that uses a client secret stored in the app",
+     "The component still needs a stored client secret, which is the problem to avoid."
+    ],
+    [
+     "A managed identity with Key Vault Secrets User, and a secret that references the vault",
+     "Right. The identity reads the secret at run time, so no value is stored in the app, and the role limits it to reading secrets."
+    ],
+    [
+     "The Owner role on the vault for the app's managed identity",
+     "This is far more than reading one secret needs, and Owner is a management-plane role."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-3-20",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Security leaders want one place in Defender for Cloud to see internet-exposed AI resources used for grounding, the number of prompts scanned and AI threat alerts. What should they open?",
+   "o": [
+    [
+     "The regulatory compliance dashboard, with a new standard added for AI services",
+     "That dashboard reports against compliance standards. It does not summarize prompts scanned or exposed grounding resources."
+    ],
+    [
+     "The Data and AI security dashboard with its per-resource protection status",
+     "Right. The dashboard brings data and AI resources, their exposure, prompts scanned and AI threat alerts into one view."
+    ],
+    [
+     "The secure score page, filtered to the AI services resource type",
+     "Secure score summarizes recommendations. It has no view of prompts scanned or AI alerts."
+    ],
+    [
+     "The coverage workbook, which lists every prompt that a model has received",
+     "The coverage workbook shows which plans are on. It is not a log of prompts."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A subscription must be assessed against NIST SP 800-53 in the Defender for Cloud regulatory compliance dashboard, beyond the default benchmark. What should you do?",
+   "o": [
+    [
+     "Create a custom Azure Policy initiative and wait for the dashboard to import it automatically",
+     "Defender for Cloud assesses the standards you add to its policy. It does not import arbitrary policies by itself."
+    ],
+    [
+     "Turn on Defender for Storage only",
+     "That plan detects storage threats and does not add a compliance standard."
+    ],
+    [
+     "Rely on the free foundational tier, which already covers every standard you add later",
+     "The free tier covers the default Microsoft cloud security benchmark, not other standards."
+    ],
+    [
+     "Turn on NIST SP 800-53 in the scope's security policies, with an eligible Defender plan enabled",
+     "Right. Standards beyond the default benchmark are added to the security policy for the scope, and assessing them needs a Defender plan other than Defender for Servers Plan 1 or Defender for APIs Plan 1."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Security leaders ask which internet-exposed VMs have a route through an attached identity to a storage account holding sensitive data, ranked by risk. What gives this view?",
+   "o": [
+    [
+     "Azure Policy compliance results for the VM and storage resources",
+     "Policy states say which resources break a rule, not how an attacker could move between them."
+    ],
+    [
+     "The free secure score alone, filtered by resource type",
+     "The score summarizes recommendations. It does not draw paths between resources."
+    ],
+    [
+     "Defender CSPM attack path analysis",
+     "Right. Defender CSPM builds a graph of your resources and shows exploitable paths from exposed entry points to critical targets."
+    ],
+    [
+     "Defender for Storage alerts on suspicious activity against the sensitive account",
+     "These alerts flag suspicious activity on accounts. They do not map paths from exposed VMs."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-4-03",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "The unit runs workloads in an AWS account and wants posture recommendations and compliance results for it in Defender for Cloud. What is the correct first step?",
+   "o": [
+    [
+     "Peer the AWS VPC with an Azure virtual network in a subscription where Defender is enabled",
+     "Peering moves traffic. It does not connect an account to Defender for Cloud."
+    ],
+    [
+     "Create an AWS connector in Environment settings, then run its generated template in AWS",
+     "Right. The connector setup creates the access Defender for Cloud needs inside the AWS account, scoped to the plans you select."
+    ],
+    [
+     "Assign an Azure Policy to the AWS account",
+     "Azure Policy governs Azure resources, so it has no scope in AWS."
+    ],
+    [
+     "Give Defender for Cloud an AWS root user access key stored in a Key Vault secret",
+     "Root keys give unlimited control and should not be shared. The connector uses a limited role."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-4-04",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "The security team wants to find internet-facing assets nobody has recorded, such as forgotten subdomains and old test sites, starting only from the company's known domains and IP blocks. Which service does this?",
+   "o": [
+    [
+     "Defender EASM with discovery seeds",
+     "Right. Defender EASM starts from seeds you know and explores connections to uncover related internet-facing assets from the outside."
+    ],
+    [
+     "Network Watcher flow logs with traffic analytics across subscriptions",
+     "These record traffic through NSGs you already manage."
+    ],
+    [
+     "Defender CSPM attack paths, run against connected subscriptions only",
+     "These work on resources already connected to Defender for Cloud. They do not discover unknown external assets."
+    ],
+    [
+     "Azure Resource Graph queries across your tenant's subscriptions",
+     "Resource Graph lists resources in your Azure subscriptions. It cannot see assets outside them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-4-05",
+   "d": "4.0",
+   "obj": "4.1",
+   "t": "ms",
+   "q": "Which TWO sources can supply Microsoft Defender Vulnerability Management findings for Azure VMs under Defender for Servers?",
+   "o": [
+    [
+     "Defender for Storage malware scanning on the account that holds VM backups",
+     "This scans blobs in storage accounts, not VMs."
+    ],
+    [
+     "Agentless scanning of the VM disk snapshots in the subscription",
+     "Right. Agentless scanning analyzes snapshots out of band, which helps where an agent cannot be installed."
+    ],
+    [
+     "Azure Monitor Agent syslog collection from the VM into a workspace",
+     "This collects log data. It does not assess vulnerabilities."
+    ],
+    [
+     "The Defender for Endpoint sensor on the VM",
+     "Right. Agent-based scanning uses the sensor on the VM."
+    ],
+    [
+     "Network Watcher packet capture on the VM's network interface",
+     "This records network traffic and does not inventory software or vulnerabilities."
+    ]
+   ],
+   "a": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "s5-4-06",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Tier-1 analysts must triage Microsoft Sentinel incidents by assigning them, changing status and adding comments. They must not edit analytics rules or data connectors. Which Azure role at the workspace fits?",
+   "o": [
+    [
+     "Microsoft Sentinel Reader",
+     "Reader can view data and incidents but cannot change them."
+    ],
+    [
+     "Microsoft Sentinel Responder",
+     "Right. Responder can manage incidents but cannot create or edit rules and connectors."
+    ],
+    [
+     "Microsoft Sentinel Automation Contributor",
+     "This role lets automation rules run playbooks. It is not a general analyst role."
+    ],
+    [
+     "Microsoft Sentinel Contributor",
+     "Contributor can also create and edit rules and connectors, which is more than needed."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-4-07",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "The SOC wants incidents from one analytics rule to be tagged, assigned to a group and passed to a playbook that posts to Teams. Which piece directly runs the tagging and assignment, in a set order, without a Logic App?",
+   "o": [
+    [
+     "The playbook alone, started by hand by an analyst for every new incident",
+     "A playbook is a Logic App workflow. The tagging and assignment would need to be built inside it, and it still needs an automation rule or manual run to start."
+    ],
+    [
+     "An analytics rule with alert grouping turned on and the severity set to high",
+     "Grouping controls how alerts combine into incidents. It does not assign or tag incidents."
+    ],
+    [
+     "An automation rule triggered when an incident is created",
+     "Right. Automation rules apply conditions and actions such as assign, tag, change severity and run a playbook, in a defined order."
+    ],
+    [
+     "A watchlist that maps each analytics rule to an owner group",
+     "Watchlists enrich queries with reference data. They do not act on incidents."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-4-08",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "An automation rule was set to run a playbook, but the run fails with a permissions error from Microsoft Sentinel. What is the fix?",
+   "o": [
+    [
+     "Give every on-call analyst the Microsoft Sentinel Playbook Operator role on the whole workspace",
+     "That role lets a person run a playbook manually. It does not let automation rules run it."
+    ],
+    [
+     "Disable the analytics rule and recreate it",
+     "The rule is not the problem. The service's rights on the playbook's resource group are."
+    ],
+    [
+     "Assign Reader on the workspace to the Logic App and enable its managed identity",
+     "Reader does not let the service start workflows."
+    ],
+    [
+     "Grant Sentinel the Automation Contributor role on the resource group that holds the playbook",
+     "Right. Sentinel runs playbooks on incidents using its own service account, which needs this role on the playbook's resource group."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-4-09",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Firewall appliances forward their logs over TCP 514 in a standard key-value format. The team wants them in the CommonSecurityLog table in Sentinel. Which design is correct?",
+   "o": [
+    [
+     "A Linux forwarder running Azure Monitor Agent, with a DCR from the CEF via AMA connector assigned to it",
+     "Right. The appliance cannot run an agent, so it sends to a forwarder. The DCR tells Azure Monitor Agent what to collect and where to send it."
+    ],
+    [
+     "Stream the appliance logs to Defender for Cloud",
+     "Defender for Cloud does not ingest CEF into Sentinel tables."
+    ],
+    [
+     "Assign the data collection rule to the firewall appliance so it forwards events itself",
+     "A DCR is assigned to a machine that runs Azure Monitor Agent, not to a network appliance."
+    ],
+    [
+     "Install the legacy Log Analytics agent on the forwarder and point it at the workspace",
+     "The legacy agent has been retired. New collection uses Azure Monitor Agent and DCRs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-4-10",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "The unit has thousands of Windows workstations that cannot each run an agent. The team wants their security events in Sentinel. Which approach fits?",
+   "o": [
+    [
+     "Install the retired Log Analytics agent on a representative sample of the workstations",
+     "Retired agent, and a few machines cannot represent thousands."
+    ],
+    [
+     "Enable Defender for Servers on the workstations",
+     "That plan protects servers, not event collection from many workstations."
+    ],
+    [
+     "Configure the Syslog connector on each workstation and point it at the workspace",
+     "Windows machines do not send Windows security events as syslog by default, and this still needs per-machine setup."
+    ],
+    [
+     "Forward events with WEF to a collector that runs Azure Monitor Agent plus a data collection rule",
+     "Right. WEF gathers events on a collector, and one agent there sends them with a DCR, so workstations need no agent."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-4-11",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "An internal app writes JSON logs. The team wants them queryable with KQL in their own schema, with a personal-data field removed before storage. What should they set up?",
+   "o": [
+    [
+     "Ingest everything first and remove the personal field later with a workbook or a saved query",
+     "Workbooks only display data. The sensitive field would already be stored."
+    ],
+    [
+     "Send the logs to Defender for Cloud and query them there with a custom workbook",
+     "Defender for Cloud is not a log store for custom app data."
+    ],
+    [
+     "A custom table with a DCR transformation that removes or masks the field before ingestion",
+     "Right. A DCR transformation shapes data in flight, so the removed field is never stored."
+    ],
+    [
+     "Add columns to the built-in Syslog table",
+     "Built-in tables have fixed schemas. Custom data belongs in a custom table."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-4-12",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Compliance needs two years of Sentinel log data, but only the latest 90 days must be quickly queryable for analytics rules. What setting fits?",
+   "o": [
+    [
+     "Set the analytics rule lookback to 730 days so older data stays queryable",
+     "Lookback controls what a rule queries. It does not keep data."
+    ],
+    [
+     "Interactive retention of 90 days, total retention of 730 days",
+     "Right. Data stays interactive for 90 days, then is kept in cheaper long-term retention until the total period ends."
+    ],
+    [
+     "Set a daily cap on the workspace",
+     "A cap limits ingestion to control cost and can cause data loss."
+    ],
+    [
+     "Delete data after 90 days and export a copy by hand to a storage account each month",
+     "Manual export is error-prone and is not what the retention settings are for."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-4-13",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "An analyst has the Security Copilot contributor role, and the Microsoft Sentinel plugin is on. Prompts return no Sentinel incidents. What is the most likely fix?",
+   "o": [
+    [
+     "Assign Microsoft Sentinel Reader on the workspace to the analyst",
+     "Right. Copilot roles give access to the platform only. Each plugin's data still depends on the user's role in that service."
+    ],
+    [
+     "Disable the plugin, re-enable it for the whole tenant, then ask the analyst to sign in again",
+     "The plugin is working. The user lacks permission to the data behind it."
+    ],
+    [
+     "Purchase more security compute units",
+     "Capacity affects performance and usage, not whether a user may see data."
+    ],
+    [
+     "Make the analyst a Security Copilot owner so the plugin can read Sentinel",
+     "Owner adds platform administration, not access to Sentinel data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "s5-4-14",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "An engineer will set up Security Copilot for a tenant that is not on a bundled license. Which access is needed to provision security compute unit capacity and attach it to the workspace?",
+   "o": [
+    [
+     "Security Copilot contributor, plus Billing Reader on the subscription and the capacity group",
+     "That role covers using the platform, not provisioning Azure capacity."
+    ],
+    [
+     "Azure Contributor or Owner on the capacity resource group, plus Security Administrator in the tenant",
+     "Right. Both an Azure role for the capacity resource and a tenant role for onboarding are required."
+    ],
+    [
+     "Global Reader in the tenant, plus Reader on the subscription",
+     "Read access cannot create or attach capacity."
+    ],
+    [
+     "Microsoft Sentinel Reader on one workspace plus Security Reader in the tenant and Reader on the subscription",
+     "This gives read access to incidents and has no bearing on provisioning capacity."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-4-15",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "An analyst enables the Microsoft Defender XDR plugin in Security Copilot but has no Defender XDR permissions. What does Copilot return for Defender questions?",
+   "o": [
+    [
+     "Only incident summaries, because the plugin shares those with every Copilot user",
+     "Nothing is shared by default. Results depend on the user's own permissions."
+    ],
+    [
+     "Everything in the tenant, because the plugin runs under a service identity",
+     "It does not use a broad service identity for the user's data."
+    ],
+    [
+     "Whatever the Security Copilot owner can see in Defender XDR",
+     "Access is checked for the person asking, not the workspace owner."
+    ],
+    [
+     "Only what that analyst is already allowed to see",
+     "Right. Copilot uses on-behalf-of authentication, so it cannot return more than the user's own roles allow."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-4-16",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "An admin is setting up the Microsoft Threat Intelligence briefing agent in Security Copilot. Which statement is accurate?",
+   "o": [
+    [
+     "It runs only on a schedule",
+     "It runs on a schedule and can also be started manually."
+    ],
+    [
+     "It needs no extra roles or licenses because it is a Microsoft-built agent that reads Microsoft data",
+     "Microsoft agents still need the roles for the data they read."
+    ],
+    [
+     "It runs under an identity chosen at setup, with roles for the data it reads",
+     "Right. At setup you choose a new agent identity (recommended) or an existing user account. That identity needs Security Copilot Contributor and the permissions for the data the agent reads. The Microsoft Threat Intelligence plugin is required and Defender EASM is optional."
+    ],
+    [
+     "It runs with no identity of its own and acts through the setup admin's personal account for every action",
+     "Setup assigns the agent an identity: a new agent identity or an existing user account you pick."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "s5-4-17",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "The unit also runs workloads in a Google Cloud project. Security wants posture recommendations for it in Defender for Cloud without storing a long-lived key. What should the team do?",
+   "o": [
+    [
+     "Create a GCP service account key and paste the JSON key into a Key Vault secret for Defender to read",
+     "A downloaded service account key is a long-lived credential, which the requirement rules out."
+    ],
+    [
+     "Create a GCP connector in Environment settings and run the generated script in GCP, which sets up workload identity federation",
+     "Right. The script creates a workload identity pool and a scoped service account. Defender exchanges short-lived Entra tokens, so no long-lived key is stored."
+    ],
+    [
+     "Assign Azure Policy to the GCP project so Defender can read its resources",
+     "Azure Policy governs Azure resources and has no scope in Google Cloud."
+    ],
+    [
+     "Peer the Google VPC with an Azure virtual network where Defender is enabled",
+     "Peering carries traffic. It does not connect a GCP project to Defender for Cloud."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "s5-4-18",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "An investigator must search the audit log from the Defender portal to see who isolated a device and who assigned an incident. The investigator must not be able to turn audit logging on or off. Which Exchange Online role should you assign?",
+   "o": [
+    [
+     "The Audit Logs role",
+     "Audit Logs also allows turning auditing on or off."
+    ],
+    [
+     "The Global Administrator role, since only that role can open the audit log",
+     "Global Administrator is far too broad. The Defender audit page lists narrower roles that are enough to search."
+    ],
+    [
+     "Log Analytics Reader on the Sentinel workspace",
+     "The audit log is not stored in the Sentinel workspace, so this role does not grant a search of it."
+    ],
+    [
+     "The View-Only Audit Logs role",
+     "Right. The Defender audit prerequisites name View-Only Audit Logs or Audit Logs in Exchange Online. View-Only is enough to search and cannot change audit settings."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "s5-p-01",
+   "t": "pbq",
+   "kind": "logsel",
+   "d": "1.0",
+   "obj": "1.1",
+   "dom": "1.0",
+   "title": "Read the Microsoft Entra sign-in and audit log",
+   "short": "Entra log review",
+   "scenario": "The tenant owner asked you to review an exported Microsoft Entra sign-in and audit log for the unit's training tenant after a user reported many approval prompts on her phone overnight. You are authorized to read this export only. Mark every line that belongs to the attack, then say which change would best limit it.",
+   "ticket": "Ticket SEC-3114: possible account takeover of user mpatel. Written approval from the tenant owner is attached. Export covers 02:00 to 11:30. All names and addresses are made up.",
+   "lines": [
+    {
+     "text": "02:41:05 SignIn user=mpatel app=Azure portal ip=203.0.113.77 location=outside US result=password OK, MFA push sent, no response (timed out)",
+     "bad": 1,
+     "why": "The password was already known to someone abroad. A push that nobody answers is the first sign of an MFA fatigue attempt."
+    },
+    {
+     "text": "02:41:48 SignIn user=mpatel app=Azure portal ip=203.0.113.77 location=outside US result=password OK, MFA push sent, user denied",
+     "bad": 1,
+     "why": "The same address tries again and the real user says no. Repeated prompts from one foreign address are the pattern of a push bombing attack."
+    },
+    {
+     "text": "02:43:30 SignIn SUCCESS user=mpatel app=Azure portal ip=203.0.113.77 location=outside US MFA=satisfied method=voice call",
+     "bad": 1,
+     "why": "The attacker switched to a voice call and the tired user approved it. Allowing phone call approval is the gap."
+    },
+    {
+     "text": "02:49:12 AUDIT user=mpatel action=Consent to application app=MailBackup Pro (unverified publisher) scopes=Mail.ReadWrite, offline_access ip=203.0.113.77",
+     "bad": 1,
+     "why": "Right after getting in, the attacker approved an unverified app that can read and write all mail and keep a refresh token. That gives access even after a password reset."
+    },
+    {
+     "text": "02:55:03 AUDIT user=mpatel action=Register security info method=phone number added ip=203.0.113.77",
+     "bad": 1,
+     "why": "A new phone number gives the attacker their own way to pass MFA later. This is persistence."
+    },
+    {
+     "text": "08:02:10 SignIn SUCCESS user=mpatel app=Outlook ip=10.4.2.20 (unit office) MFA=satisfied method=Authenticator push with number match",
+     "bad": 0,
+     "why": "The real user signs in from the office and passes MFA with number matching. Nothing unusual here."
+    },
+    {
+     "text": "09:15:00 SignIn SUCCESS workload=id-backup-job (managed identity) app=Azure Key Vault ip=10.4.8.5 (Azure subnet) result=success",
+     "bad": 0,
+     "why": "A managed identity reading a vault from an Azure subnet is routine workload traffic with no stored secret."
+    },
+    {
+     "text": "10:20:33 AUDIT user=entra-admin action=Add Conditional Access policy name=Require MFA for admins state=report-only ip=10.4.2.15 ticket=CHG-2207",
+     "bad": 0,
+     "why": "An approved change by an admin from the office, in report-only mode so nothing is enforced yet. It is tied to a change ticket."
+    },
+    {
+     "text": "11:01:12 SignIn FAIL user=jkim app=Teams ip=10.4.2.31 (unit office) result=wrong password, then SUCCESS 20 seconds later",
+     "bad": 0,
+     "why": "One typo from the unit's own network followed by a good sign-in is ordinary."
+    }
+   ],
+   "ask": {
+    "label": "Which change would best limit this kind of attack?",
+    "opts": [
+     "Require phishing-resistant strength and limit user consent to verified publishers",
+     "Turn on number matching for Authenticator push and keep voice call as a fallback",
+     "Block sign-ins from outside the US with a named-location Conditional Access policy",
+     "Force a password reset and MFA re-registration after each incident"
+    ],
+    "a": 0,
+    "why": "The attacker beat push MFA with a weaker fallback and then used a consent grant for lasting access. A phishing-resistant strength closes the first gap, and restricted consent closes the second. Number matching with a voice fallback leaves the weak method open, a location block does nothing for a consent grant or an attacker who changes location, and a reset after the fact does not stop the next attempt or remove the granted app."
+   }
+  },
+  {
+   "id": "s5-p-02",
+   "t": "pbq",
+   "kind": "term",
+   "d": "1.0",
+   "obj": "1.2",
+   "dom": "1.0",
+   "title": "Lock down a Key Vault from Cloud Shell",
+   "short": "Key Vault lockdown (az CLI)",
+   "scenario": "You are in Azure Cloud Shell (bash) for a sandbox subscription your team lead gave you written permission to use. The training vault kv-unit42-dev still uses legacy access policies, has no purge protection and accepts connections from any network. Fix it so the app's managed identity can read secrets and nothing else. Do not touch other resources.",
+   "ticket": "Task SEC-3120: vault kv-unit42-dev only. Switch it to Azure RBAC, turn on purge protection, set the firewall default action to Deny, and give the app identity read access to secrets. The shell already has $VAULT_ID (this vault) and $APP_ID (the app's managed identity). Another team owns kv-prod-shared.",
+   "host": "cloudshell",
+   "intro": "Azure Cloud Shell (bash). Azure CLI is signed in. $VAULT_ID and $APP_ID are already set. Type a command.",
+   "suggest": [
+    "az account show",
+    "az keyvault show --name kv-unit42-dev",
+    "az keyvault update --name kv-unit42-dev --enable-rbac-authorization true"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "whoami"
+     ],
+     "out": "unit-user"
+    },
+    {
+     "run": [
+      "az account show",
+      "az account show -o table"
+     ],
+     "out": "Name              CloudName    State    IsDefault\nSandbox-Unit42    AzureCloud   Enabled  True",
+     "fx": "acct:show"
+    },
+    {
+     "run": [
+      "echo $APP_ID"
+     ],
+     "out": "3f1c2d4e-0000-4000-8000-000000000042"
+    },
+    {
+     "run": [
+      "echo $VAULT_ID"
+     ],
+     "out": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-unit42-dev/providers/Microsoft.KeyVault/vaults/kv-unit42-dev"
+    },
+    {
+     "run": [
+      "az keyvault list -o table",
+      "az keyvault list"
+     ],
+     "out": "Name            ResourceGroup   Location\nkv-unit42-dev   rg-unit42-dev   eastus\nkv-prod-shared  rg-prod-ops     eastus"
+    },
+    {
+     "run": [
+      "az keyvault show --name kv-unit42-dev",
+      "az keyvault show -n kv-unit42-dev"
+     ],
+     "out": "Settings as found when the ticket was opened:\n  enableRbacAuthorization : false (access policies in use)\n  enablePurgeProtection   : null\n  enableSoftDelete        : true\n  networkAcls.defaultAction: Allow"
+    },
+    {
+     "run": [
+      "az keyvault update --name kv-unit42-dev --enable-rbac-authorization true",
+      "az keyvault update -n kv-unit42-dev --enable-rbac-authorization true"
+     ],
+     "out": "{\n  \"name\": \"kv-unit42-dev\",\n  \"properties\": {\"enableRbacAuthorization\": true}\n}",
+     "fx": "kv:rbac"
+    },
+    {
+     "run": [
+      "az keyvault update --name kv-unit42-dev --enable-purge-protection true",
+      "az keyvault update -n kv-unit42-dev --enable-purge-protection true"
+     ],
+     "out": "{\n  \"name\": \"kv-unit42-dev\",\n  \"properties\": {\"enablePurgeProtection\": true}\n}\nPurge protection cannot be turned off again.",
+     "fx": "kv:purge"
+    },
+    {
+     "run": [
+      "az keyvault update --name kv-unit42-dev --default-action Deny",
+      "az keyvault update -n kv-unit42-dev --default-action Deny"
+     ],
+     "out": "{\n  \"name\": \"kv-unit42-dev\",\n  \"properties\": {\"networkAcls\": {\"defaultAction\": \"Deny\", \"bypass\": \"AzureServices\"}}\n}",
+     "fx": "kv:fw"
+    },
+    {
+     "run": [
+      "az role assignment list --scope $VAULT_ID -o table",
+      "az role assignment list --scope $VAULT_ID"
+     ],
+     "out": "(no role assignments on this vault yet)",
+     "alt": {
+      "if": "role:secretsuser",
+      "out": "Principal        Role                      Scope\nid-unit42-app    Key Vault Secrets User    kv-unit42-dev"
+     }
+    },
+    {
+     "run": [
+      "az role assignment create --assignee $APP_ID --role \"Key Vault Secrets User\" --scope $VAULT_ID",
+      "az role assignment create --assignee $APP_ID --scope $VAULT_ID --role \"Key Vault Secrets User\"",
+      "az role assignment create --role \"Key Vault Secrets User\" --assignee $APP_ID --scope $VAULT_ID",
+      "az role assignment create --role \"Key Vault Secrets User\" --scope $VAULT_ID --assignee $APP_ID",
+      "az role assignment create --scope $VAULT_ID --assignee $APP_ID --role \"Key Vault Secrets User\"",
+      "az role assignment create --scope $VAULT_ID --role \"Key Vault Secrets User\" --assignee $APP_ID"
+     ],
+     "out": "{\n  \"roleDefinitionName\": \"Key Vault Secrets User\",\n  \"scope\": \"kv-unit42-dev\"\n}",
+     "fx": "role:secretsuser"
+    },
+    {
+     "run": [
+      "az role assignment create --assignee $APP_ID --role \"Key Vault Administrator\" --scope $VAULT_ID",
+      "az role assignment create --assignee $APP_ID --scope $VAULT_ID --role \"Key Vault Administrator\"",
+      "az role assignment create --role \"Key Vault Administrator\" --assignee $APP_ID --scope $VAULT_ID",
+      "az role assignment create --role \"Key Vault Administrator\" --scope $VAULT_ID --assignee $APP_ID",
+      "az role assignment create --scope $VAULT_ID --assignee $APP_ID --role \"Key Vault Administrator\"",
+      "az role assignment create --scope $VAULT_ID --role \"Key Vault Administrator\" --assignee $APP_ID",
+      "az role assignment create --assignee $APP_ID --role \"Owner\" --scope $VAULT_ID",
+      "az role assignment create --assignee $APP_ID --scope $VAULT_ID --role \"Owner\"",
+      "az role assignment create --role \"Owner\" --assignee $APP_ID --scope $VAULT_ID",
+      "az role assignment create --role \"Owner\" --scope $VAULT_ID --assignee $APP_ID"
+     ],
+     "out": "Not run: this role gives the app far more than reading secrets. Use the narrowest data role.",
+     "fx": "trap:role"
+    },
+    {
+     "run": [
+      "az role assignment create --assignee $APP_ID --role \"Contributor\" --scope $VAULT_ID",
+      "az role assignment create --assignee $APP_ID --scope $VAULT_ID --role \"Contributor\"",
+      "az role assignment create --role \"Contributor\" --assignee $APP_ID --scope $VAULT_ID",
+      "az role assignment create --role \"Contributor\" --scope $VAULT_ID --assignee $APP_ID",
+      "az role assignment create --scope $VAULT_ID --assignee $APP_ID --role \"Contributor\"",
+      "az role assignment create --scope $VAULT_ID --role \"Contributor\" --assignee $APP_ID"
+     ],
+     "out": "Not run: Contributor is a management role for a different job. The app only needs to read secrets.",
+     "fx": "trap:role"
+    },
+    {
+     "run": [
+      "az keyvault set-policy --name kv-unit42-dev --object-id $APP_ID --secret-permissions get list set delete purge",
+      "az keyvault set-policy --name kv-unit42-dev --object-id $APP_ID --secret-permissions all"
+     ],
+     "out": "Not run: access policies are the legacy model and these permissions are far too broad. Use Azure RBAC with a read-only secrets role.",
+     "fx": "trap:policy"
+    },
+    {
+     "run": [
+      "az keyvault delete --name kv-unit42-dev",
+      "az keyvault delete -n kv-unit42-dev",
+      "az keyvault purge --name kv-unit42-dev",
+      "az keyvault purge -n kv-unit42-dev"
+     ],
+     "out": "Not run: deleting or purging the vault destroys the secrets and the evidence. The task was to harden it.",
+     "fx": "trap:delete"
+    },
+    {
+     "run": [
+      "az keyvault update --name kv-prod-shared --default-action Deny",
+      "az keyvault update -n kv-prod-shared --default-action Deny"
+     ],
+     "out": "Not run: kv-prod-shared belongs to another team and is outside your approval.",
+     "fx": "trap:other"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Checked which subscription you are in before changing anything",
+     "has": "acct:show",
+     "why": "The name Sandbox-Unit42 confirms you are in the subscription you were approved to use. Check first, then change."
+    },
+    {
+     "t": "Switched the vault to the Azure RBAC permission model",
+     "has": "kv:rbac",
+     "why": "RBAC is the recommended model. It lets you give narrow data roles, scope them as tightly as one secret, and audit them like other role assignments."
+    },
+    {
+     "t": "Turned on purge protection",
+     "has": "kv:purge",
+     "why": "Purge protection stops anyone, even an Owner, from permanently deleting soft-deleted items until the retention period ends. It also cannot be turned off again."
+    },
+    {
+     "t": "Set the firewall default action to Deny",
+     "has": "kv:fw",
+     "why": "With the default action set to Deny, only listed networks and the trusted-services exception can reach the vault. Public traffic from anywhere no longer can."
+    },
+    {
+     "t": "Gave the app identity the Key Vault Secrets User role",
+     "has": "role:secretsuser",
+     "why": "This role lets the identity read secret values and nothing else, which is least privilege for an app that only reads."
+    },
+    {
+     "t": "Did not give the app a broad role or access policy",
+     "lacks": [
+      "trap:role",
+      "trap:policy"
+     ],
+     "why": "Administrator, Owner or Contributor, or an access policy that allows delete and purge, gives the app far more than it needs and would make a stolen identity much more dangerous."
+    },
+    {
+     "t": "Did not delete or purge the vault or touch kv-prod-shared",
+     "lacks": [
+      "trap:delete",
+      "trap:other"
+     ],
+     "why": "Deleting the vault undoes the task, and changing another team's vault is outside the written approval."
+    }
+   ]
+  },
+  {
+   "id": "s5-p-03",
+   "t": "pbq",
+   "kind": "rules",
+   "d": "3.0",
+   "obj": "3.2",
+   "dom": "3.0",
+   "title": "Replace open RDP with Bastion and JIT",
+   "short": "Bastion and JIT order",
+   "scenario": "A test Windows VM in the unit's Azure subscription has a public IP and an NSG rule that allows RDP from anywhere. You have written approval to move admin access to Azure Bastion and just-in-time access. Add the steps in a safe order. Some ideas do not belong. Add only the steps that belong, in the order they should happen.",
+   "ticket": "Change CHG-4402: VM vm-test01 in the unit's own subscription. Admin access must never be lost during the change. JIT is for any non-Bastion path.",
+   "rules": [
+    {
+     "id": "a",
+     "text": "Enable Defender for Servers Plan 2 on the subscription",
+     "need": 1,
+     "why": "Just-in-time VM access is a Plan 2 feature, so the plan has to be on before JIT can be configured."
+    },
+    {
+     "id": "b",
+     "text": "Deploy Azure Bastion in the AzureBastionSubnet of the VNet",
+     "need": 1,
+     "why": "Bastion gives browser-based RDP and SSH over TLS without exposing the VM's own management ports."
+    },
+    {
+     "id": "c",
+     "text": "Test an admin session to the VM through Bastion",
+     "need": 1,
+     "why": "Prove the new path works before taking the old one away, so you cannot lock yourself out."
+    },
+    {
+     "id": "d",
+     "text": "Enable JIT access for the VM for the management ports, with a short maximum request time",
+     "need": 1,
+     "why": "JIT adds deny rules for the management ports and opens them only for an approved source and time. Existing allow rules on those ports still win, so the broad allow must also go (step e)."
+    },
+    {
+     "id": "e",
+     "text": "Remove the VM's public IP and the broad RDP allow rule",
+     "need": 1,
+     "why": "Once Bastion works, the public exposure serves no purpose and removing it shrinks the attack surface. Then reconnect through Bastion to confirm."
+    },
+    {
+     "id": "x",
+     "text": "Add an NSG rule that allows TCP 3389 only from the AzureBastionSubnet range, at a higher priority than the JIT deny rule",
+     "need": 1,
+     "why": "Bastion connects over the VM's private IP. Once the broad allow is gone, JIT's deny rule would block it, so this narrow allow must outrank the deny. If you add it before JIT, JIT keeps it above its deny. If you add it after, give it a lower priority number than the deny."
+    },
+    {
+     "id": "f",
+     "text": "Open RDP from any address in the NSG at priority 100 so admins are never blocked",
+     "need": 0,
+     "why": "This keeps the exposure you are trying to remove, and a priority 100 allow would also outrank later deny rules."
+    },
+    {
+     "id": "g",
+     "text": "Put the local administrator password in the ticket so the team can find it",
+     "need": 0,
+     "why": "Passwords in tickets are readable by many people and break accountability. Use a vault or Entra sign-in."
+    },
+    {
+     "id": "h",
+     "text": "Turn off Defender for Servers on the subscription to save cost",
+     "need": 0,
+     "why": "This removes the very plan that JIT depends on."
+    }
+   ],
+   "before": [
+    {
+     "a": "a",
+     "b": "d",
+     "why": "JIT needs Defender for Servers Plan 2 first, so the plan comes before the JIT setup."
+    },
+    {
+     "a": "b",
+     "b": "c",
+     "why": "Bastion has to exist before you can test a session through it."
+    },
+    {
+     "a": "c",
+     "b": "e",
+     "why": "Do not remove the old path until the new one is proven."
+    },
+    {
+     "a": "c",
+     "b": "d",
+     "why": "Prove the Bastion path works before you start locking down the management ports."
+    },
+    {
+     "a": "x",
+     "b": "e",
+     "why": "Keep Bastion working before the broad allow is removed, so admin access is never lost."
+    }
+   ],
+   "last": {
+    "id": "e",
+    "why": "Removing the public IP and the allow rule is the one step that cannot be taken back easily, so it comes last, after everything else works."
+   }
+  },
+  {
+   "id": "s5-p-04",
+   "t": "pbq",
+   "kind": "diagram",
+   "d": "2.0",
+   "obj": "2.3",
+   "dom": "2.0",
+   "title": "Place the parts of a hub-and-spoke network",
+   "short": "Hub-spoke security",
+   "scenario": "The unit is building a small hub-and-spoke network in its own subscription. A spoke VNet runs the app VMs and a database. Place each part in the right spot. Three parts in the tray do not belong.",
+   "ticket": "Design review NET-12. Rules: all outbound traffic from the spoke is inspected centrally, admins reach VMs without public IPs, the database has no public path, and only the web tier may reach the app tier.",
+   "top": "Hub-and-spoke VNets",
+   "slots": [
+    {
+     "label": "Spot A",
+     "zone": "Hub VNet",
+     "hint": "central filter for outbound and east-west traffic"
+    },
+    {
+     "label": "Spot B",
+     "zone": "Hub VNet",
+     "hint": "admin RDP and SSH over TLS, no public IP on VMs"
+    },
+    {
+     "label": "Spot C",
+     "zone": "Spoke subnet",
+     "hint": "sends 0.0.0.0/0 to the filter's private IP"
+    },
+    {
+     "label": "Spot D",
+     "zone": "Spoke subnet",
+     "hint": "port rules that follow VM tiers as they scale"
+    },
+    {
+     "label": "Spot E",
+     "zone": "Spoke data subnet",
+     "hint": "private IP in the VNet for the PaaS database"
+    }
+   ],
+   "devs": [
+    {
+     "id": "fw",
+     "name": "Azure Firewall",
+     "slot": 0,
+     "why": "Azure Firewall in the hub inspects and filters traffic from the spokes, with rules by FQDN, address and port."
+    },
+    {
+     "id": "bas",
+     "name": "Azure Bastion",
+     "slot": 1,
+     "why": "Bastion in its own subnet gives admins RDP and SSH through the browser, so VMs need no public IP."
+    },
+    {
+     "id": "udr",
+     "name": "User-defined route to firewall",
+     "slot": 2,
+     "why": "A route table on the spoke subnet sends the default route to the firewall's private IP, so traffic cannot skip inspection."
+    },
+    {
+     "id": "asg",
+     "name": "NSG using ASGs",
+     "slot": 3,
+     "why": "An NSG with application security groups allows web to app and denies the rest, and it follows VMs as they scale."
+    },
+    {
+     "id": "pe",
+     "name": "Private endpoint for the database",
+     "slot": 4,
+     "why": "A private endpoint gives the database a private IP inside the VNet, so it needs no public path."
+    },
+    {
+     "id": "pip",
+     "name": "Public IP on each app VM",
+     "slot": -1,
+     "why": "Public IPs expose each VM to the internet. Bastion removes the need for them."
+    },
+    {
+     "id": "any",
+     "name": "NSG rule: allow any, priority 100",
+     "slot": -1,
+     "why": "A broad allow at a high priority defeats the tier rules and the firewall."
+    },
+    {
+     "id": "key",
+     "name": "Storage key in the app config",
+     "slot": -1,
+     "why": "A stored key is a secret that can leak. Use a managed identity with a role instead."
+    }
+   ]
+  },
+  {
+   "id": "s5-p-05",
+   "t": "pbq",
+   "kind": "rules",
+   "d": "4.0",
+   "obj": "4.2",
+   "dom": "4.0",
+   "title": "Bring Linux logins into Sentinel and respond",
+   "short": "Sentinel collection order",
+   "scenario": "The SOC wants SSH failures from a Linux forwarder in the unit's own Azure subscription to raise incidents in Microsoft Sentinel, with a Teams notice sent automatically. You have written approval from the workspace owner. Add the steps in a sensible order. Some ideas do not belong. Add only the steps that belong, in order.",
+   "ticket": "Request SOC-88: new Syslog source. Use the existing resource group. Keep the playbook's rights as narrow as possible.",
+   "rules": [
+    {
+     "id": "a",
+     "text": "Create a Log Analytics workspace and onboard Microsoft Sentinel to it",
+     "need": 1,
+     "why": "Everything else needs a workspace with Sentinel turned on."
+    },
+    {
+     "id": "b",
+     "text": "Install the Syslog via AMA solution from the content hub",
+     "need": 1,
+     "why": "The content hub solution brings in the data connector, so you can set up collection with Azure Monitor Agent."
+    },
+    {
+     "id": "c",
+     "text": "Create a data collection rule for the facilities and levels you need, and assign it to the forwarder",
+     "need": 1,
+     "why": "The DCR tells Azure Monitor Agent what to collect and where to send it. Collecting only what you need also controls cost."
+    },
+    {
+     "id": "d",
+     "text": "Query the Syslog table to confirm events are arriving",
+     "need": 1,
+     "why": "Check that data really lands before building detections on it."
+    },
+    {
+     "id": "e",
+     "text": "Create a scheduled analytics rule that raises an incident after repeated SSH failures",
+     "need": 1,
+     "why": "The analytics rule turns raw events into an incident that analysts and automation can act on."
+    },
+    {
+     "id": "f",
+     "text": "Create an automation rule that runs the Teams playbook when that incident is created",
+     "need": 1,
+     "why": "The automation rule links the incident to the playbook. The Sentinel service also needs the Automation Contributor role on the playbook's resource group."
+    },
+    {
+     "id": "g",
+     "text": "Install the retired Log Analytics agent (MMA) because it is simpler",
+     "need": 0,
+     "why": "The legacy agent has been retired. Azure Monitor Agent with a DCR is the supported way."
+    },
+    {
+     "id": "h",
+     "text": "Give the playbook's identity Owner on the whole subscription",
+     "need": 0,
+     "why": "Owner at subscription scope is far more than a Teams message needs. Grant only what the playbook uses."
+    },
+    {
+     "id": "i",
+     "text": "Collect every facility at every severity from every system just in case",
+     "need": 0,
+     "why": "Collecting everything raises ingestion cost and drowns real signals. Collect what a detection needs."
+    },
+    {
+     "id": "j",
+     "text": "Create the Teams Logic Apps playbook with an incident trigger and a narrowly scoped managed identity",
+     "need": 1,
+     "why": "The playbook has to exist before an automation rule can run it, and a narrow identity keeps its rights small."
+    }
+   ],
+   "before": [
+    {
+     "a": "a",
+     "b": "b",
+     "why": "The workspace with Sentinel must exist before you can install a solution into it."
+    },
+    {
+     "a": "b",
+     "b": "c",
+     "why": "The connector from the solution is where you create the data collection rule."
+    },
+    {
+     "a": "c",
+     "b": "d",
+     "why": "There is nothing to verify until collection is configured."
+    },
+    {
+     "a": "d",
+     "b": "e",
+     "why": "Confirm data first, then write a detection that depends on it."
+    },
+    {
+     "a": "e",
+     "b": "f",
+     "why": "The automation rule fires on incidents the analytics rule creates, so the rule comes first."
+    },
+    {
+     "a": "j",
+     "b": "f",
+     "why": "The automation rule needs an existing playbook to run."
+    }
+   ]
+  }
+ ]
+}

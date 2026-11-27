@@ -239,3 +239,24 @@ def test_check_site_rejects_a_part_without_a_why():
     bad = json.loads(json.dumps(Q["s7-p-07"]))
     bad["ask"]["obj"] = "3.1"                             # objective from the wrong domain
     assert check_site.check_new_pbq(bad, dset)
+
+
+@pytest.mark.parametrize("device", ["iphone13", "small320"])
+def test_phone_tap_on_terminal_or_dropdown_does_not_zoom(site, device):
+    """v2.93: iPhone Safari zooms into any text box or dropdown under 16 px. On phones both must be 16 px or more,
+    the terminal line must stay inside the exam, and a long command must scroll inside the box, not the page."""
+    w, p, _ = start(site, ["s7-p-11", "s7-p-07"], device)
+    size = lambda sel: p.evaluate("s=>parseFloat(getComputedStyle(document.querySelector(s)).fontSize)", sel)  # noqa: E731
+    assert size(".px-term input") >= 16
+    p.fill(".px-term input", "grep -i failed /var/log/auth.log " + "-e x " * 40)
+    no_sideways_scroll(p)
+    box = p.locator(".px-term input").bounding_box()
+    assert box["x"] >= 0 and box["x"] + box["width"] <= p.viewport_size["width"] + 1, box
+    p.click("#mx-next")
+    p.wait_for_selector("#px-ask")
+    assert size("#px-ask") >= 16
+
+
+def test_desktop_terminal_keeps_its_compact_size(site):
+    w, p, _ = start(site, ["s7-p-11"])
+    assert p.evaluate("parseFloat(getComputedStyle(document.querySelector('.px-term input')).fontSize)") == 13
