@@ -1,0 +1,2373 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "CCST Networking",
+ "ver": "cur",
+ "exam": "100-150",
+ "title": "CCST Networking (100-150) practice exam",
+ "rev": "2026-11-26",
+ "format": {
+  "n": 45,
+  "min": 50,
+  "pbq": 4,
+  "half": 22
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Standards and Concepts",
+   "w": 17,
+   "obj": 5
+  },
+  {
+   "n": "2.0",
+   "name": "Addressing and Subnet Formats",
+   "w": 17,
+   "obj": 3
+  },
+  {
+   "n": "3.0",
+   "name": "Endpoints and Media Types",
+   "w": 17,
+   "obj": 4
+  },
+  {
+   "n": "4.0",
+   "name": "Infrastructure",
+   "w": 17,
+   "obj": 5
+  },
+  {
+   "n": "5.0",
+   "name": "Diagnosing Problems",
+   "w": 16,
+   "obj": 5
+  },
+  {
+   "n": "6.0",
+   "name": "Security",
+   "w": 16,
+   "obj": 3
+  }
+ ],
+ "note": "Original questions written for MyNextCert from Cisco's public 100-150 CCST Networking exam objectives (checked 2026-11-26). Not real exam questions. Cisco doesn't publish the number of items or the topic weights, so this is a 45-item stand-in that fits the real 50 minutes, with an even split across the six domains and 4 hands-on items.",
+ "q": [
+  {
+   "id": "cn-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A switch receives an Ethernet frame on one port and must decide where to send it. Which address does it read, and at which OSI layer?",
+   "o": [
+    [
+     "The destination IP address, at Layer 3",
+     "A router reads the IP address to route packets. A basic switch does not look at it to forward a frame."
+    ],
+    [
+     "The destination port number, at Layer 4",
+     "Port numbers belong to TCP and UDP. A plain switch ignores them."
+    ],
+    [
+     "The destination MAC address, at Layer 2 of the OSI model",
+     "Right. Switches forward frames using the MAC address in the frame header, and the frame is the Layer 2 data unit."
+    ],
+    [
+     "The source MAC address only, at Layer 1",
+     "Layer 1 carries bits, not addresses. The switch learns the source MAC but forwards by the destination."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A PC sends a web request. Which list shows the data units from the one built first to the one sent on the wire?",
+   "o": [
+    [
+     "Data, then segment, then packet, then frame",
+     "Right. Each layer wraps the one above: TCP adds a header to make a segment, IP makes a packet, and Ethernet makes a frame."
+    ],
+    [
+     "Frame, then packet, then segment, then data",
+     "This is the order the receiver unwraps the data, not the order the sender builds it."
+    ],
+    [
+     "Packet, then segment, then frame, then data",
+     "The segment is made by TCP before IP wraps it into a packet."
+    ],
+    [
+     "Data, then frame, then segment, then packet",
+     "The frame is the last wrapper added, because it needs the next-hop MAC address."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-1-03",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A link is rated at 1 Gbps. A file copy over it runs at about 300 Mbps. What does the 300 Mbps figure describe?",
+   "o": [
+    [
+     "Bandwidth, the highest rate the link can carry",
+     "Bandwidth is the 1 Gbps rating, the ceiling. The copy rate is what actually happened."
+    ],
+    [
+     "Latency, the time one packet takes to arrive",
+     "Latency is measured in milliseconds, not Mbps."
+    ],
+    [
+     "Jitter, the change in delay between packets",
+     "Jitter is also a time measure, so it is not a data rate."
+    ],
+    [
+     "Throughput, the real rate you get in practice",
+     "Right. Throughput is the real rate you get. Overhead, errors, congestion and slow devices keep it below the rated bandwidth."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-1-04",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "You want the real speed between a PC and a server in the same building, without involving the internet. Which method fits best?",
+   "o": [
+    [
+     "Open an internet speed-test website on the PC",
+     "That test measures your path to an outside test server, not the path to your own server."
+    ],
+    [
+     "Run iperf with the PC and server as its two ends",
+     "Right. iperf makes traffic between two hosts you choose and reports the throughput between them."
+    ],
+    [
+     "Ping the server and read the reply time",
+     "Ping reports delay in milliseconds. It does not measure how much data per second can flow."
+    ],
+    [
+     "Run tracert to the server and count the hops",
+     "Tracert lists the routers on the path. It says nothing about speed."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-1-05",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "One organization owns the cabling that joins six buildings on a single campus. What type of network is this?",
+   "o": [
+    [
+     "A personal area network (PAN)",
+     "A PAN is a few devices around one person, like a phone and a headset."
+    ],
+    [
+     "A campus area network (CAN)",
+     "Right. A CAN links several buildings of one organization in a small area such as a base or a college."
+    ],
+    [
+     "A wide area network (WAN)",
+     "A WAN spans long distances, usually over a provider's links, such as city to city."
+    ],
+    [
+     "A wireless LAN (WLAN)",
+     "A WLAN is a LAN that uses Wi-Fi. The question says the buildings are joined by owned cabling."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-1-06",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "In a star topology, every device connects to one central switch. What happens if that switch loses power?",
+   "o": [
+    [
+     "Only the device nearest the switch is affected",
+     "Distance does not matter. Each cable ends at the same switch."
+    ],
+    [
+     "The devices form a ring and keep talking",
+     "A star has no ring path. Devices do not link to each other directly."
+    ],
+    [
+     "Traffic reroutes through the closest neighbor PC",
+     "End devices do not forward traffic for others in a star."
+    ],
+    [
+     "Every device loses its path to the others",
+     "Right. The switch is the single center, so with it down no one can talk through it."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-1-07",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "A unit stops running its own mail servers. A vendor hosts, patches and runs the email, and users sign in with a browser. Which service model is this?",
+   "o": [
+    [
+     "Software as a Service, or SaaS, model",
+     "Right. In SaaS the vendor runs everything and you only use the finished application."
+    ],
+    [
+     "Infrastructure as a Service (IaaS)",
+     "In IaaS you rent servers and storage but install and patch the software yourself."
+    ],
+    [
+     "Platform as a Service (PaaS)",
+     "PaaS gives developers a place to run their own code. Here the customer only uses the app."
+    ],
+    [
+     "A private cloud on the unit's own hardware",
+     "The vendor, not the unit, runs the service, so this is not a private cloud."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-1-08",
+   "d": "1.0",
+   "obj": "1.4",
+   "q": "A unit keeps its records on its own servers and rents a public cloud to host its public website for busy periods. What is this mix called?",
+   "o": [
+    [
+     "A community cloud",
+     "A community cloud is shared by several groups with the same needs. It is not a mix of private and public."
+    ],
+    [
+     "Only a public cloud",
+     "The records stay on the unit's own servers, so some of the setup is not public."
+    ],
+    [
+     "A hybrid cloud of both kinds",
+     "Right. A hybrid cloud combines private or on-premises resources with a public cloud."
+    ],
+    [
+     "Only a private cloud",
+     "Part of the load runs on a rented public cloud, so it is not purely private."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-1-09",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "Which application would most likely choose UDP over TCP?",
+   "o": [
+    [
+     "A file transfer needing every byte in order",
+     "This needs TCP, which resends lost data and keeps the order."
+    ],
+    [
+     "A secure web login, where errors must be corrected",
+     "HTTPS runs over TCP so that nothing is lost or reordered."
+    ],
+    [
+     "An email attachment, where nothing may be missing",
+     "Mail protocols use TCP for reliable delivery."
+    ],
+    [
+     "A live voice call, where late data is useless",
+     "Right. UDP is connectionless and has low delay. A late voice packet is useless, so resending it would not help."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-1-10",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "Logs from a switch and a server disagree by several minutes, which makes an incident timeline hard to build. Which protocol keeps device clocks in step to prevent this?",
+   "o": [
+    [
+     "DNS",
+     "DNS turns names into IP addresses. It does not set clocks."
+    ],
+    [
+     "NTP",
+     "Right. The Network Time Protocol syncs clocks to a time source. Matching times make logs far easier to read."
+    ],
+    [
+     "DHCP",
+     "DHCP hands out IP settings. Clock sync is not its job."
+    ],
+    [
+     "ICMP",
+     "ICMP carries error and test messages such as ping. It does not sync time."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-1-11",
+   "d": "1.0",
+   "obj": "1.5",
+   "q": "Which TWO protocols encrypt the data they carry? (Choose two.)",
+   "o": [
+    [
+     "HTTPS",
+     "Right. HTTPS wraps web traffic in TLS encryption."
+    ],
+    [
+     "FTP",
+     "FTP sends data and passwords in clear text."
+    ],
+    [
+     "SFTP",
+     "Right. SFTP carries file transfers inside an encrypted SSH session."
+    ],
+    [
+     "TFTP",
+     "TFTP has no login or encryption."
+    ],
+    [
+     "HTTP",
+     "HTTP sends web data in clear text."
+    ]
+   ],
+   "t": "ms",
+   "a": [
+    0,
+    2
+   ]
+  },
+  {
+   "id": "cn-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which of these addresses can NOT be routed on the public internet because it is private?",
+   "o": [
+    [
+     "172.32.1.1",
+     "This is just outside the 172.16 to 172.31 private range, so it is a public address."
+    ],
+    [
+     "192.169.1.1",
+     "The private block is 192.168.0.0/16. 192.169 is a public address."
+    ],
+    [
+     "172.20.4.9",
+     "Right. The private range 172.16.0.0 to 172.31.255.255 includes 172.20.4.9. Internet routers drop private addresses."
+    ],
+    [
+     "11.0.0.1",
+     "Only 10.0.0.0/8 is private in the 10 range. 11.0.0.1 is public."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A home router lets six devices with private addresses share one public address, telling them apart by port number. What is this called?",
+   "o": [
+    [
+     "NAT overload, also called PAT",
+     "Right. Many inside addresses share one outside address, and the router tracks each flow by its port number."
+    ],
+    [
+     "Static NAT with one fixed address",
+     "Static NAT maps one inside address to one fixed outside address, with no sharing."
+    ],
+    [
+     "DHCP relay for address requests",
+     "A relay passes DHCP requests to a server. It does not change addresses."
+    ],
+    [
+     "Reverse DNS lookups",
+     "Reverse DNS finds a name for an address. It does not translate packets."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "An address of 150.20.3.4 falls in which default classful range?",
+   "o": [
+    [
+     "Class B, first octet 128 to 191",
+     "Right. The first octet 150 sits in the Class B range of 128 to 191."
+    ],
+    [
+     "Class A, first octet 1 to 126",
+     "Class A ends at 126, so 150 is out of it."
+    ],
+    [
+     "Class C, first octet 192 to 223",
+     "192 to 223 begins above 150."
+    ],
+    [
+     "Class D, 224 to 239",
+     "Class D is multicast and starts at 224."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-2-04",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "How many usable host addresses does the 192.168.10.0/26 subnet have?",
+   "o": [
+    [
+     "64",
+     "64 is the total, but two of them are reserved, so only 62 can be given to hosts."
+    ],
+    [
+     "30",
+     "30 hosts is the answer for a /27, which has 5 host bits."
+    ],
+    [
+     "62",
+     "Right. A /26 leaves 6 host bits, so 2 to the 6th is 64 addresses. Take away the network and broadcast addresses to get 62."
+    ],
+    [
+     "126",
+     "126 hosts is the answer for a /25, which has 7 host bits."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-2-05",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Which slash notation matches the subnet mask 255.255.255.240?",
+   "o": [
+    [
+     "/27, leaving 5 host bits",
+     "/27 is 255.255.255.224."
+    ],
+    [
+     "/28, leaving 4 host bits",
+     "Right. The last octet 240 is 11110000, so 4 extra bits are added to 24, giving 28."
+    ],
+    [
+     "/29, leaving 3 host bits",
+     "/29 is 255.255.255.248."
+    ],
+    [
+     "/26, leaving 6 host bits",
+     "/26 is 255.255.255.192."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-2-06",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A host has the address 10.1.1.200/25. What is the broadcast address of its subnet?",
+   "o": [
+    [
+     "10.1.1.127, end of the lower block",
+     "This is the broadcast of the lower block, 10.1.1.0 to 10.1.1.127."
+    ],
+    [
+     "10.1.1.191, end of a /26 block",
+     "This would be the end of a /26 block, not a /25."
+    ],
+    [
+     "10.1.1.200, the host itself",
+     "This is the host's own address, not the last address of the subnet."
+    ],
+    [
+     "10.1.1.255, the last address",
+     "Right. With /25 the blocks are 128 big. 200 falls in the block 10.1.1.128 to 10.1.1.255, and the last address is the broadcast."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-2-07",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Two PCs use a /26 mask. PC1 is 192.168.5.70 and PC2 is 192.168.5.130. Which statement is true?",
+   "o": [
+    [
+     "They share one subnet and talk directly through a switch",
+     "They would share a subnet only if both fell in the same 64-address block."
+    ],
+    [
+     "They share one broadcast domain because the first three octets match",
+     "Matching octets are not enough. The mask decides where the network ends."
+    ],
+    [
+     "They are in different subnets and need a router to talk",
+     "Right. A /26 splits the last octet into blocks of 64. .70 is in 64 to 127 and .130 is in 128 to 191."
+    ],
+    [
+     "They cannot talk at all, even through a router",
+     "A router can pass traffic between two different subnets."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-2-08",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Which is a correct short form of 2001:0db8:0000:0000:0000:0000:0000:0001?",
+   "o": [
+    [
+     "2001:db8::1",
+     "Right. Drop leading zeros in each group and replace one run of all-zero groups with a double colon."
+    ],
+    [
+     "2001:db8::1::",
+     "A double colon may appear only once, and it is not used at the end here."
+    ],
+    [
+     "2001::db8::1",
+     "Two double colons would make the address ambiguous, so this is not allowed."
+    ],
+    [
+     "2001:db8:0:1",
+     "This has only four groups, so it is not a full 128-bit address."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-2-09",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "An interface shows an IPv6 address that starts with fe80. What kind of address is this?",
+   "o": [
+    [
+     "Global unicast, routed on the internet",
+     "Global addresses start with 2 or 3 today, not fe80."
+    ],
+    [
+     "Multicast, sent to a group of hosts",
+     "Multicast addresses start with ff."
+    ],
+    [
+     "Loopback, used to test the host itself",
+     "The IPv6 loopback address is ::1."
+    ],
+    [
+     "Link-local, for the local link only",
+     "Right. Addresses in fe80::/10 are for the local link and are not routed beyond it. Devices create one on every IPv6 interface."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-2-10",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "In the address 2001:db8:acad:1::5/64, what does the 64 mean?",
+   "o": [
+    [
+     "The subnet holds only 64 hosts in total",
+     "A /64 holds a huge number of hosts, since 64 host bits remain."
+    ],
+    [
+     "The leading 64 bits name the network",
+     "Right. The prefix length counts the leading bits that identify the network. The remaining 64 bits identify the host."
+    ],
+    [
+     "The address may cross at most 64 routers",
+     "That would be a hop limit, not a prefix length."
+    ],
+    [
+     "The router has 64 subnets",
+     "The prefix length says nothing about how many subnets there are."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-2-11",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "IPv6 has no broadcast. How does a host reach all other nodes on the local link?",
+   "o": [
+    [
+     "It sends to ::1",
+     "::1 is the loopback address, which only reaches the host itself."
+    ],
+    [
+     "It sends to ff02::1",
+     "Right. ff02::1 is the all-nodes link-local multicast group, which does the job broadcast did in IPv4."
+    ],
+    [
+     "It sends to 255.255.255.255",
+     "This is an IPv4 broadcast address, not an IPv6 one."
+    ],
+    [
+     "It sends to fe80::/10",
+     "This is a prefix for link-local unicast addresses, not a group address."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which cable is not affected by electrical interference and suits long runs between buildings?",
+   "o": [
+    [
+     "Unshielded twisted pair, Cat 6",
+     "UTP can pick up noise and is limited to about 100 meters."
+    ],
+    [
+     "Coaxial cable",
+     "Coax is shielded, but it is copper and still carries electrical signals."
+    ],
+    [
+     "RJ-11 telephone cable",
+     "RJ-11 is a connector used for phone lines, not a long-distance data cable."
+    ],
+    [
+     "Fiber-optic cable",
+     "Right. Fiber carries light, so electrical noise cannot reach it, and it travels far."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Which connector is on the end of a standard Ethernet twisted-pair patch cable?",
+   "o": [
+    [
+     "RJ-45",
+     "Right. RJ-45 has 8 pins and fits Ethernet ports on PCs, switches and routers."
+    ],
+    [
+     "RJ-11",
+     "RJ-11 is smaller, with 4 or 6 pins, and is used for telephone lines."
+    ],
+    [
+     "F-type",
+     "F-type is the threaded connector on cable-TV coax."
+    ],
+    [
+     "LC",
+     "LC is a small fiber connector, not used on copper cable."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-3-03",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "Which wireless band is the most crowded and is hurt by microwave ovens and Bluetooth devices?",
+   "o": [
+    [
+     "5 GHz",
+     "5 GHz has more channels and fewer competing devices."
+    ],
+    [
+     "6 GHz",
+     "6 GHz is newer and has the most room, so it is quiet."
+    ],
+    [
+     "2.4 GHz",
+     "Right. This band has few channels and is shared by many unlicensed devices, so interference is common."
+    ],
+    [
+     "Cellular licensed spectrum",
+     "Cellular carriers own their frequencies, so ovens and Bluetooth do not share them."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-3-04",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A Cat 6 run keeps showing errors. It was laid right beside a bundle of power cables and a fluorescent light ballast. What is the most likely cause?",
+   "o": [
+    [
+     "A fiber connector that is dirty",
+     "This is a copper cable, so fiber connectors are not involved."
+    ],
+    [
+     "Too many devices on the 2.4 GHz band",
+     "The problem is on a wired cable, so Wi-Fi bands do not matter."
+    ],
+    [
+     "A cellular tower that is too far away",
+     "Cellular signals are not carried on this cable."
+    ],
+    [
+     "Electrical noise on the copper cable",
+     "Right. Power cables and ballasts give off electrical noise that copper twisted pair can pick up."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-3-05",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "What is one advantage of cellular networks over home Wi-Fi?",
+   "o": [
+    [
+     "It runs on unlicensed bands any device may share",
+     "Unlicensed bands are what Wi-Fi uses, and many devices share them."
+    ],
+    [
+     "The carrier controls the licensed spectrum it uses",
+     "Right. Licensed spectrum is controlled by the carrier, so other users cannot use it at will."
+    ],
+    [
+     "It needs no carrier, plan or subscription of any kind",
+     "Cellular service runs through a carrier and normally needs a plan."
+    ],
+    [
+     "Its signal never weakens with distance or walls",
+     "Signal strength still falls with distance and some walls."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-3-06",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A badge reader, a smart thermostat and an IP camera all join the network. What group of endpoints do they belong to?",
+   "o": [
+    [
+     "Servers",
+     "Servers share resources with many clients. These are small single-purpose devices."
+    ],
+    [
+     "Network infrastructure devices",
+     "Infrastructure means switches, routers and similar gear that moves traffic."
+    ],
+    [
+     "Internet of Things devices",
+     "Right. IoT devices are everyday objects with a network connection and little computing power."
+    ],
+    [
+     "Mobile computing devices",
+     "Mobile devices are phones and tablets. These devices are fixed in place."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-3-07",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Which endpoint is normally powered through a PoE switch port and carries voice calls?",
+   "o": [
+    [
+     "An IP phone on the desk",
+     "Right. IP phones usually draw power from the Ethernet cable and send voice as network traffic."
+    ],
+    [
+     "A rack server",
+     "Servers use their own power supplies and need far more power than PoE gives."
+    ],
+    [
+     "A desktop computer",
+     "Desktops plug into a wall outlet."
+    ],
+    [
+     "A laser printer",
+     "Printers also use wall power and are not voice devices."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-3-08",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "On a Windows PC, which command shows the IP address, mask, default gateway and DNS servers together?",
+   "o": [
+    [
+     "ipconfig /all",
+     "Right. The /all switch gives the full detail for each adapter, including DNS and DHCP details."
+    ],
+    [
+     "ping -t",
+     "Ping tests reachability over and over. It does not list adapter settings."
+    ],
+    [
+     "tracert",
+     "Tracert lists the routers on a path to a destination."
+    ],
+    [
+     "ipconfig /flushdns",
+     "This clears the cache of stored DNS answers and shows no settings."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-3-09",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "Which command shows the IP addresses on the interfaces of a modern Linux computer?",
+   "o": [
+    [
+     "ipconfig",
+     "This is the Windows command, so it does not exist on most Linux systems."
+    ],
+    [
+     "nslookup",
+     "Nslookup asks a DNS server for the address of a name."
+    ],
+    [
+     "ip addr",
+     "Right. The ip command is the current tool and ip addr lists addresses on every interface."
+    ],
+    [
+     "traceroute",
+     "Traceroute shows the path to a destination, not the local addresses."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-3-10",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "A phone sees the network named CG-Guest but will not join. Which settings must match the router's setup?",
+   "o": [
+    [
+     "The DNS server and the subnet mask",
+     "These are IP settings handed out after the phone has joined."
+    ],
+    [
+     "The security type and the passphrase",
+     "Right. The client must offer the same authentication method and the correct key as the access point."
+    ],
+    [
+     "The router's serial number and brand",
+     "The phone never uses these to join the network."
+    ],
+    [
+     "The default gateway and the NTP server",
+     "These matter after connecting. They do not decide whether the phone can join."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "On a Cisco Catalyst access port, a solid amber LED usually means:",
+   "o": [
+    [
+     "The port is forwarding traffic normally",
+     "Normal operation is solid or blinking green."
+    ],
+    [
+     "No cable is plugged in at all",
+     "An unused port is usually dark with no light."
+    ],
+    [
+     "The port is carrying heavy traffic",
+     "Heavy traffic makes a green light blink faster, not turn amber."
+    ],
+    [
+     "Up but not forwarding, often blocked by spanning tree",
+     "Right. Solid amber usually means the port is up but not forwarding, often because spanning tree has blocked it."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A technician sees the link light of a switch port is solid green. What does this tell them?",
+   "o": [
+    [
+     "The link has failed",
+     "A failed link shows no light or an amber one."
+    ],
+    [
+     "The port is transferring data heavily",
+     "Activity shows as blinking, not as a steady light."
+    ],
+    [
+     "A link is up, but nothing is moving now",
+     "Right. Green means the device on the other end is connected. Blinking green would show activity."
+    ],
+    [
+     "The port has been turned off by the administrator",
+     "A shut-down port stays dark."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-4-03",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A diagram tells you to prepare a new router for first-time setup from a laptop with no network yet. Which cable do you attach?",
+   "o": [
+    [
+     "A console cable to the router's console port",
+     "Right. The console port gives local command-line access without any IP network."
+    ],
+    [
+     "An Ethernet cable from the laptop to a WAN port",
+     "The router has no address configured yet, so you cannot reach it over the network."
+    ],
+    [
+     "A fiber patch cable to an SFP slot",
+     "The laptop has no fiber port, and fiber is not used for first setup."
+    ],
+    [
+     "A power cable to the laptop's USB port",
+     "Power cables feed the router. They do not give a setup connection."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-4-04",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A rack diagram shows two core switches, each plugged into a different power feed. Why?",
+   "o": [
+    [
+     "To double the speed of both switches",
+     "Two power feeds do not change the speed of the switches."
+    ],
+    [
+     "To let the switches share one IP address",
+     "Power has nothing to do with IP addressing."
+    ],
+    [
+     "To save cable by using shorter patch cords",
+     "Two feeds usually need more cable, not less, and cable length is a separate topic."
+    ],
+    [
+     "One failure still leaves one switch running",
+     "Right. Separate feeds give redundancy, so the other switch stays on if one circuit trips."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-4-05",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "An engineer needs command-line access to a switch even though the network is down. Which port is for this?",
+   "o": [
+    [
+     "A GigabitEthernet port",
+     "Ethernet ports need a working network and an IP address to manage the switch."
+    ],
+    [
+     "The console port",
+     "Right. The console port is a direct local management connection and needs no IP network."
+    ],
+    [
+     "An SFP slot",
+     "An SFP slot holds a transceiver for network links, not for management."
+    ],
+    [
+     "A PoE port",
+     "PoE ports power devices such as phones and access points."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-4-06",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Which port type holds a small removable module so the same switch can use fiber or copper links?",
+   "o": [
+    [
+     "A fixed RJ-45 port",
+     "A fixed RJ-45 port is copper only."
+    ],
+    [
+     "An SFP port",
+     "Right. SFP is a hot-swappable transceiver slot, and the module decides the cable type."
+    ],
+    [
+     "A console port",
+     "The console port is used for management, not for module swapping."
+    ],
+    [
+     "A USB port",
+     "A USB port is used for storage or console access, not for fiber modules."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-4-07",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A ceiling access point has no power outlet nearby. Which switch feature lets it get power over the same Ethernet cable?",
+   "o": [
+    [
+     "Spanning tree protocol (STP)",
+     "Spanning tree prevents loops. It does not supply power."
+    ],
+    [
+     "VLAN trunking (802.1Q tags)",
+     "Trunking carries many VLANs on one link and has nothing to do with power."
+    ],
+    [
+     "Port mirroring to a sensor",
+     "Mirroring copies traffic to another port for analysis."
+    ],
+    [
+     "Power over Ethernet (PoE) on the port",
+     "Right. PoE sends power and data together over twisted pair, so no outlet is needed at the device."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-4-08",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "A PC at 192.168.1.20/24 sends a packet to 10.5.5.5. Where does the PC send it first?",
+   "o": [
+    [
+     "To its default gateway",
+     "Right. 10.5.5.5 is outside the local subnet, so the PC hands the packet to the router that is its gateway."
+    ],
+    [
+     "Straight to 10.5.5.5",
+     "A host only sends directly to addresses in its own subnet."
+    ],
+    [
+     "To its DNS server",
+     "DNS turns names into addresses. It does not forward packets."
+    ],
+    [
+     "To every device by broadcast",
+     "Broadcasts stay in the local network and are not used to reach a remote one."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-4-09",
+   "d": "4.0",
+   "obj": "4.4",
+   "q": "What does a Layer 3 switch do that a Layer 2 switch cannot?",
+   "o": [
+    [
+     "Forward frames by MAC address",
+     "Both switch types do this."
+    ],
+    [
+     "Provide power over Ethernet",
+     "PoE is a separate feature found on either kind."
+    ],
+    [
+     "Route between IP subnets",
+     "Right. A Layer 3 switch can read IP addresses and route between VLANs. A Layer 2 switch only forwards by MAC address."
+    ],
+    [
+     "Learn MAC addresses",
+     "Both switch types build a MAC address table."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-4-10",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "A switch receives a frame whose destination MAC address is not in its MAC address table. What does it do?",
+   "o": [
+    [
+     "Drops the frame",
+     "A switch does not drop unknown unicast frames. It floods them."
+    ],
+    [
+     "Sends it back out the port it came in on",
+     "A switch never forwards a frame back to its source port."
+    ],
+    [
+     "Sends it to the default gateway only",
+     "Switches do not use gateways to forward frames."
+    ],
+    [
+     "Floods it out of all other ports",
+     "Right. With an unknown destination the switch sends the frame everywhere else until the right device answers."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-4-11",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "What does creating separate VLANs on one switch do?",
+   "o": [
+    [
+     "It joins all ports into one larger broadcast domain",
+     "This is the reverse of what VLANs do."
+    ],
+    [
+     "It makes separate broadcast domains",
+     "Right. Devices in different VLANs cannot reach each other at Layer 2 and need a router to talk."
+    ],
+    [
+     "It raises the speed of every port",
+     "VLANs do not change port speed."
+    ],
+    [
+     "It encrypts all traffic between ports",
+     "VLANs separate traffic. They do not encrypt it."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-4-12",
+   "d": "4.0",
+   "obj": "4.5",
+   "q": "A switch port allows only devices whose MAC addresses are on an approved list. What is a weakness of this MAC filtering?",
+   "o": [
+    [
+     "It blocks every approved device as well",
+     "Approved devices are the ones it allows."
+    ],
+    [
+     "It only works with fiber-optic cabling",
+     "MAC filtering works on any port type."
+    ],
+    [
+     "An attacker can spoof an approved MAC",
+     "Right. An attacker who sees an approved address on the network can set their own device to the same one."
+    ],
+    [
+     "Switches do not support MAC filtering",
+     "Many switches and access points support it."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-5-01",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "You think a bad patch cable is why a user has no link. What is the next best troubleshooting step?",
+   "o": [
+    [
+     "Test it by swapping in a known good patch cable",
+     "Right. A theory is only a guess until it is tested. A quick swap proves or rules out the cable."
+    ],
+    [
+     "Close the ticket and note the cable as the cause",
+     "Closing before testing records a guess as a fact."
+    ],
+    [
+     "Escalate to the network engineer straight away",
+     "Escalate if the tests fail. A simple swap comes first."
+    ],
+    [
+     "Replace the user's switch for a fresh start",
+     "This is costly and needless before the simple test is done."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-5-02",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Three tickets arrive. A user's mouse is sticky, 80 people on one floor have no network, and a printer is low on toner. Which is first?",
+   "o": [
+    [
+     "The outage that blocks the whole floor",
+     "Right. Prioritize by how many people are hit and how badly work is blocked. The outage stops 80 people."
+    ],
+    [
+     "The sticky mouse, because it is quickest",
+     "A fast fix does not outrank an outage that stops many people."
+    ],
+    [
+     "The printer, because it arrived first",
+     "Arrival order matters less than impact."
+    ],
+    [
+     "Whichever the loudest caller reports",
+     "Volume of complaint is not the same as impact."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-5-03",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "What is the main purpose of a packet analyzer such as Wireshark?",
+   "o": [
+    [
+     "To block malicious traffic at the network edge",
+     "That is a firewall's job, and Wireshark only observes."
+    ],
+    [
+     "To hand out IP addresses to new devices",
+     "That is done by a DHCP server."
+    ],
+    [
+     "To capture traffic and inspect each packet",
+     "Right. It records packets crossing an interface so you can see addresses, protocols and errors."
+    ],
+    [
+     "To store passwords for network devices",
+     "That is a password manager's job, not an analyzer's."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-5-04",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "You captured traffic in Wireshark and a colleague wants to open it later on another PC. What should you do?",
+   "o": [
+    [
+     "Take a screenshot of the packet list",
+     "A screenshot loses the packet data and cannot be re-filtered."
+    ],
+    [
+     "Save it as a .pcap or .pcapng file",
+     "Right. These formats keep every packet, so any copy of Wireshark can reopen them."
+    ],
+    [
+     "Print the capture to a text note",
+     "A printout cannot be reloaded or searched in Wireshark."
+    ],
+    [
+     "Leave Wireshark open and share the screen",
+     "The capture is lost when the program closes unless it is saved."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-5-05",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "A ping to a server times out, yet users load its web page without trouble. What is the most likely reason?",
+   "o": [
+    [
+     "The server has no IP address",
+     "If it had no address, the web page could not load either."
+    ],
+    [
+     "The web page is cached on the user's PC",
+     "A cached copy would not explain a live page loading from the server."
+    ],
+    [
+     "DNS is returning the wrong address",
+     "A wrong address would stop the web page loading as well."
+    ],
+    [
+     "A firewall is blocking ICMP echo",
+     "Right. Firewalls often drop ping while still allowing web ports, so a timeout does not prove the host is down."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-5-06",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "In a traceroute, hop 4 shows * * * but hops 5 to 8 answer normally and the destination is reached. What does this suggest?",
+   "o": [
+    [
+     "The destination host is switched off",
+     "The destination answered, so it is up."
+    ],
+    [
+     "The link is broken at hop 4 so nothing passes",
+     "If the path were broken, no later hop could answer."
+    ],
+    [
+     "Hop 4 ignores probes but passes traffic",
+     "Right. The path works because later hops respond. Many devices are set to ignore these probes."
+    ],
+    [
+     "The local PC has lost its default gateway",
+     "The first hops answered, so the PC reaches its gateway."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-5-07",
+   "d": "5.0",
+   "obj": "5.3",
+   "q": "ping 8.8.8.8 works, but ping www.example.com says it could not find the host. What is the most likely problem?",
+   "o": [
+    [
+     "DNS name resolution is failing",
+     "Right. Reaching an address by number proves the network works, so only the step that turns names into addresses is failing."
+    ],
+    [
+     "The default gateway address is wrong",
+     "A wrong gateway would also stop the ping by number."
+    ],
+    [
+     "The network cable is unplugged",
+     "With the cable out, the ping by number would fail too."
+    ],
+    [
+     "The subnet mask is too short",
+     "A wrong mask could break remote access to the address, so ping by number would likely fail."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-5-08",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "An engineer must log in to a branch switch over a remote link, and policy says passwords may not cross the network in clear text. Which access method should the engineer use?",
+   "o": [
+    [
+     "Telnet",
+     "Telnet sends everything, including passwords, as clear text."
+    ],
+    [
+     "TFTP",
+     "TFTP is for file transfers and has no login or encryption."
+    ],
+    [
+     "HTTP",
+     "HTTP is for unencrypted web pages, not a device command line."
+    ],
+    [
+     "SSH",
+     "Right. Secure Shell encrypts the whole session, including the password."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-5-09",
+   "d": "5.0",
+   "obj": "5.4",
+   "q": "A branch uses Cisco Meraki access points and switches. How do administrators normally manage them?",
+   "o": [
+    [
+     "By plugging a console cable into every device",
+     "A console cable is not needed for normal management."
+    ],
+    [
+     "Through the cloud dashboard in a web browser",
+     "Right. Meraki devices call home to the cloud, so one dashboard configures and monitors them."
+    ],
+    [
+     "By sending files with TFTP to each device",
+     "Meraki settings are not pushed by hand-copied files."
+    ],
+    [
+     "By telnetting to each one from the data center",
+     "Telnet is not the normal way, and it is not secure."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-5-10",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "Which Cisco command shows a short table of each interface's IP address and its up or down status?",
+   "o": [
+    [
+     "show version",
+     "This shows the software version, uptime and hardware, not interface status."
+    ],
+    [
+     "show ip interface brief",
+     "Right. This command lists every interface with its address, status and protocol on one screen."
+    ],
+    [
+     "show cdp neighbors detail",
+     "This lists detail about directly connected Cisco devices."
+    ],
+    [
+     "show mac address-table",
+     "This lists learned MAC addresses and the ports they were seen on."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-5-11",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "A Cisco prompt reads Router#. Which mode is that?",
+   "o": [
+    [
+     "User EXEC mode",
+     "User EXEC mode shows the > prompt and only allows limited commands."
+    ],
+    [
+     "Global configuration mode",
+     "Global configuration shows (config)# after the name."
+    ],
+    [
+     "Interface configuration mode",
+     "Interface mode shows (config-if)# after the name."
+    ],
+    [
+     "Privileged EXEC mode",
+     "Right. The # sign marks privileged EXEC mode, where you can run all show commands and enter configuration mode."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-5-12",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "Which command lists directly connected Cisco devices, with their model and the ports that link to them?",
+   "o": [
+    [
+     "show cdp neighbors",
+     "Right. Cisco Discovery Protocol lets neighbors announce themselves, and this command lists what was heard."
+    ],
+    [
+     "show ip route",
+     "This shows the routing table."
+    ],
+    [
+     "show inventory",
+     "This lists the parts of the device itself, such as its modules and serial numbers."
+    ],
+    [
+     "show interface status",
+     "This lists the status of local ports, not the devices connected to them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-5-13",
+   "d": "5.0",
+   "obj": "5.5",
+   "q": "In show ip route, a line starts with S* and reads 0.0.0.0/0 via 192.168.1.1. What is it?",
+   "o": [
+    [
+     "A route learned through OSPF from a neighbor",
+     "OSPF routes begin with O."
+    ],
+    [
+     "A network directly connected to the router",
+     "Connected networks begin with C."
+    ],
+    [
+     "A static default route via 192.168.1.1",
+     "Right. S means static and * marks the candidate default. 0.0.0.0/0 matches every address not matched by a more specific route."
+    ],
+    [
+     "A route to one host at 192.168.1.1",
+     "A single host would use a /32 mask, not 0.0.0.0/0."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-6-01",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "A firewall list is read top to bottom. Rule 1 permits TCP 443 to host 10.1.1.5. Rule 2 denies all IP traffic. Which traffic to 10.1.1.5 gets through?",
+   "o": [
+    [
+     "All traffic, because the permit is first",
+     "The permit matches only TCP 443, so other traffic reaches rule 2."
+    ],
+    [
+     "Only ping, because ICMP is the default",
+     "The list has no ICMP permit, so ping is denied."
+    ],
+    [
+     "Nothing, because the deny overrides rule 1",
+     "Rules are read in order, and a deny that comes later cannot cancel a match above it."
+    ],
+    [
+     "Only HTTPS traffic, on TCP port 443",
+     "Right. The first matching rule wins. Port 443 matches rule 1. Everything else falls to the deny."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-6-02",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "Which approach makes the safest default for a firewall rule set?",
+   "o": [
+    [
+     "Permit everything, then deny known bad traffic",
+     "You can only block the threats you know about, so new ones get in."
+    ],
+    [
+     "Deny everything, then permit only what is needed",
+     "Right. A default deny means anything not listed is blocked, so mistakes fail safe."
+    ],
+    [
+     "Permit all outbound and inbound traffic from trusted users",
+     "A user is not a firewall setting, and broad permits hide risks."
+    ],
+    [
+     "Turn the firewall off during testing",
+     "A firewall that is off protects nothing."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-6-03",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "A user on the inside starts a web session. The firewall lets the return traffic back in without a separate rule. What feature does this?",
+   "o": [
+    [
+     "Static NAT, which maps one fixed address",
+     "NAT changes addresses, but it is not what permits return traffic."
+    ],
+    [
+     "MAC filtering on the switch port",
+     "MAC filtering allows devices, not connection replies."
+    ],
+    [
+     "Stateful inspection of open connections",
+     "Right. A stateful firewall keeps a table of connections started from inside and allows the matching replies."
+    ],
+    [
+     "Port mirroring to a sensor",
+     "Mirroring copies traffic for analysis and does not allow or block it."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-6-04",
+   "d": "6.0",
+   "obj": "6.1",
+   "q": "An administrator wants to stop plain, unencrypted web browsing yet keep secure browsing. Which TCP port should the firewall block?",
+   "o": [
+    [
+     "Port 80",
+     "Right. HTTP uses TCP 80 and sends data in clear text. HTTPS uses 443."
+    ],
+    [
+     "Port 443",
+     "This is HTTPS, the secure web traffic to be kept."
+    ],
+    [
+     "Port 22",
+     "This is SSH for remote command lines."
+    ],
+    [
+     "Port 53",
+     "This is DNS, which most browsing needs to look up names."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-6-05",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "An attacker changes payroll amounts while a file is on its way to the finance system. Which part of the CIA triad is broken?",
+   "o": [
+    [
+     "Integrity of the data",
+     "Right. Integrity means data stays correct and unaltered. Changing the amounts breaks it."
+    ],
+    [
+     "Confidentiality",
+     "Confidentiality is about keeping data from being read by the wrong people."
+    ],
+    [
+     "Availability",
+     "Availability is about the data and systems being there when needed."
+    ],
+    [
+     "Accountability",
+     "This is a related idea about tracing actions, but it is not one of the three CIA parts."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-6-06",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "A user signs in with a password and then types a code from an authenticator app. Why is this stronger than a password alone?",
+   "o": [
+    [
+     "It uses two passwords, so guessing is slower",
+     "Two passwords are still the same factor, and both can be stolen together."
+    ],
+    [
+     "It encrypts the password on the keyboard",
+     "MFA adds another proof. It does not encrypt typing."
+    ],
+    [
+     "Two different kinds of proof, not just a password",
+     "Right. Multifactor authentication combines something you know with something you have."
+    ],
+    [
+     "It removes the need for the account to be authorized",
+     "Authorization still decides what the user may do once signed in."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-6-07",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "After a bad change broke a router, an auditor wants to see which admin ran which commands, and when. Which AAA function supplies this record?",
+   "o": [
+    [
+     "Authentication",
+     "Authentication proves who the user is."
+    ],
+    [
+     "Accounting",
+     "Right. Accounting keeps a record of actions and usage for auditing and billing."
+    ],
+    [
+     "Authorization",
+     "Authorization decides what the user is allowed to do."
+    ],
+    [
+     "Availability",
+     "Availability belongs to the CIA triad, not to AAA."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-6-08",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "An email claims your mailbox is full and asks you to sign in through a link. The link's domain is misspelled. What should you do?",
+   "o": [
+    [
+     "Click the link, but do not type a password",
+     "Just opening a bad link can still load malware or leak details."
+    ],
+    [
+     "Reply and ask the sender to confirm",
+     "Replying tells the attacker the address is live and may lead to more attacks."
+    ],
+    [
+     "Forward it to coworkers as a warning",
+     "Forwarding spreads the risk. Report it to security instead."
+    ],
+    [
+     "Do not click it, report it as phishing",
+     "Right. A fake sign-in page steals passwords. Reporting helps the security team warn others."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-6-09",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "What role does Active Directory commonly play on a network?",
+   "o": [
+    [
+     "It assigns IP addresses to devices",
+     "That is the job of a DHCP server."
+    ],
+    [
+     "It filters traffic between networks",
+     "That is the job of a firewall."
+    ],
+    [
+     "An identity store of user accounts and groups",
+     "Right. Computers ask the directory to check who a user is and which groups they belong to."
+    ],
+    [
+     "It translates private addresses to public ones",
+     "That is the job of NAT on a router."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "cn-6-10",
+   "d": "6.0",
+   "obj": "6.2",
+   "q": "Which TWO of these are types of malware? (Choose two.)",
+   "o": [
+    [
+     "Ransomware",
+     "Right. Ransomware locks files and demands payment."
+    ],
+    [
+     "Phishing",
+     "Phishing is a trick to steal information, usually by message, not a program."
+    ],
+    [
+     "Spyware",
+     "Right. Spyware is software that secretly watches what a user does."
+    ],
+    [
+     "Spam",
+     "Spam is unwanted bulk mail, which may carry malware but is not a program itself."
+    ],
+    [
+     "A denial-of-service attack",
+     "DoS is an attack that overwhelms a service. It is not a type of software."
+    ]
+   ],
+   "t": "ms",
+   "a": [
+    0,
+    2
+   ]
+  },
+  {
+   "id": "cn-6-11",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "Which wireless security setting is the strongest choice for a new home router, if all devices support it?",
+   "o": [
+    [
+     "WPA3",
+     "Right. WPA3 is the newest standard and resists password-guessing attacks better than the older ones."
+    ],
+    [
+     "WPA2",
+     "WPA2 is still acceptable, but WPA3 is stronger."
+    ],
+    [
+     "WEP",
+     "WEP is broken and can be cracked in minutes."
+    ],
+    [
+     "Open, with no password",
+     "An open network offers no protection."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "cn-6-12",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "A small office has twenty employees and no authentication server. Which wireless security setup fits best?",
+   "o": [
+    [
+     "WPA2 Enterprise, so each person signs in",
+     "Enterprise gives each person a sign-in, but it needs a RADIUS or similar authentication server, which this office does not have."
+    ],
+    [
+     "Neither, because small offices need no security",
+     "Any network that carries business data needs protection."
+    ],
+    [
+     "Open mode with MAC filtering only",
+     "Open mode sends data unencrypted, and MAC addresses can be spoofed."
+    ],
+    [
+     "WPA2 Personal, which uses one shared passphrase",
+     "Right. Personal mode needs only a pre-shared key. Enterprise needs a RADIUS server for individual sign-ins."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "cn-6-13",
+   "d": "6.0",
+   "obj": "6.3",
+   "q": "When setting up a new home router, which step should come first, apart from choosing WPA3 or WPA2?",
+   "o": [
+    [
+     "Turn on remote administration from the internet",
+     "This opens the router's admin page to the world and adds risk."
+    ],
+    [
+     "Change the default administrator password",
+     "Right. Default logins are public, so anyone on the network could take over the router."
+    ],
+    [
+     "Leave the default network name and password",
+     "Default settings are well known and easy to guess."
+    ],
+    [
+     "Disable the router's firewall for speed",
+     "The firewall protects the home network, so keep it on."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "cn-p-01",
+   "t": "pbq",
+   "kind": "term",
+   "d": "5.0",
+   "obj": "5.3",
+   "dom": "5.0 · 3.0",
+   "title": "Find why one PC cannot open the intranet by name",
+   "short": "Windows ping and nslookup",
+   "scenario": "A user at PC-214 cannot open any website by name, and the unit's intranet page, intranet.unit.example, fails too. Pages typed in by IP address still open. The unit's real DNS server is 192.168.20.2 and the intranet server is 10.40.0.15. You are authorized to run read-only checks on this one PC. Work out where the problem is. Do not change settings.",
+   "ticket": "TCK-4410: PC-214 cannot reach the intranet by name. Gather facts first and report the cause in the ticket.",
+   "host": "PC-214",
+   "intro": "PC-214 (Windows 11). Command Prompt, not elevated. Type a command.",
+   "suggest": [
+    "ipconfig",
+    "ping 127.0.0.1",
+    "hostname"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "ipconfig"
+     ],
+     "out": "Windows IP Configuration\n\nEthernet adapter Ethernet:\n\n   IPv4 Address. . . . . . . . . . . : 192.168.20.45\n   Subnet Mask . . . . . . . . . . . : 255.255.255.0\n   Default Gateway . . . . . . . . . : 192.168.20.1",
+     "fx": "read:ip"
+    },
+    {
+     "run": [
+      "ipconfig /all",
+      "ipconfig/all"
+     ],
+     "out": "Windows IP Configuration\n\n   Host Name . . . . . . . . . . . . : PC-214\n\nEthernet adapter Ethernet:\n\n   Description . . . . . . . . . . . : Intel(R) Ethernet Connection\n   DHCP Enabled. . . . . . . . . . . : No\n   IPv4 Address. . . . . . . . . . . : 192.168.20.45(Preferred)\n   Subnet Mask . . . . . . . . . . . : 255.255.255.0\n   Default Gateway . . . . . . . . . : 192.168.20.1\n   DNS Servers . . . . . . . . . . . : 192.168.20.9",
+     "fx": "read:ipcfg"
+    },
+    {
+     "run": [
+      "ping 127.0.0.1"
+     ],
+     "out": "Pinging 127.0.0.1 with 32 bytes of data:\nReply from 127.0.0.1: bytes=32 time<1ms TTL=128\nReply from 127.0.0.1: bytes=32 time<1ms TTL=128\n\nPing statistics for 127.0.0.1:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)"
+    },
+    {
+     "run": [
+      "ping 192.168.20.1",
+      "ping 192.168.20.1"
+     ],
+     "out": "Pinging 192.168.20.1 with 32 bytes of data:\nReply from 192.168.20.1: bytes=32 time=1ms TTL=64\nReply from 192.168.20.1: bytes=32 time=1ms TTL=64\n\nPing statistics for 192.168.20.1:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)",
+     "fx": "ping:gw"
+    },
+    {
+     "run": [
+      "ping 10.40.0.15"
+     ],
+     "out": "Pinging 10.40.0.15 with 32 bytes of data:\nReply from 10.40.0.15: bytes=32 time=4ms TTL=62\nReply from 10.40.0.15: bytes=32 time=3ms TTL=62\n\nPing statistics for 10.40.0.15:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)",
+     "fx": "ping:server"
+    },
+    {
+     "run": [
+      "ping 192.168.20.2"
+     ],
+     "out": "Pinging 192.168.20.2 with 32 bytes of data:\nReply from 192.168.20.2: bytes=32 time=1ms TTL=128\nReply from 192.168.20.2: bytes=32 time=1ms TTL=128\n\nPing statistics for 192.168.20.2:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)"
+    },
+    {
+     "run": [
+      "ping 192.168.20.9"
+     ],
+     "out": "Pinging 192.168.20.9 with 32 bytes of data:\nReply from 192.168.20.45: Destination host unreachable.\nReply from 192.168.20.45: Destination host unreachable.\n\nPing statistics for 192.168.20.9:\n    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss)"
+    },
+    {
+     "run": [
+      "ping intranet.unit.example"
+     ],
+     "out": "Ping request could not find host intranet.unit.example. Please check the name and try again.",
+     "fx": "fail:name"
+    },
+    {
+     "run": [
+      "nslookup intranet.unit.example"
+     ],
+     "out": "Server:  UnKnown\nAddress:  192.168.20.9\n\nDNS request timed out.\n    timeout was 2 seconds.\n*** Request to UnKnown timed out",
+     "fx": "ns:default"
+    },
+    {
+     "run": [
+      "nslookup intranet.unit.example 192.168.20.2"
+     ],
+     "out": "Server:  dns1.unit.example\nAddress:  192.168.20.2\n\nName:    intranet.unit.example\nAddress:  10.40.0.15",
+     "fx": "ns:good"
+    },
+    {
+     "run": [
+      "tracert 10.40.0.15"
+     ],
+     "out": "Tracing route to 10.40.0.15 over a maximum of 30 hops\n\n  1    <1 ms    <1 ms    <1 ms  192.168.20.1\n  2     2 ms     2 ms     2 ms  10.0.0.2\n  3     3 ms     3 ms     3 ms  10.40.0.15\n\nTrace complete."
+    },
+    {
+     "run": [
+      "ipconfig /flushdns"
+     ],
+     "out": "Windows IP Configuration\n\nSuccessfully flushed the DNS Resolver Cache."
+    },
+    {
+     "run": [
+      "ipconfig /release"
+     ],
+     "out": "[lab] The PC dropped its address while the user was working. Stop and tell your lead. Checks should not cut the user off.",
+     "fx": "trap:release"
+    },
+    {
+     "run": [
+      "hostname"
+     ],
+     "out": "PC-214"
+    },
+    {
+     "run": [
+      "whoami"
+     ],
+     "out": "unit\\student01"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Read the full adapter settings with ipconfig /all",
+     "has": "read:ipcfg",
+     "why": "The full listing shows the DNS server the PC uses, 192.168.20.9. That is not the unit's real DNS server, 192.168.20.2. A plain ipconfig does not show DNS at all."
+    },
+    {
+     "t": "Pinged the default gateway",
+     "has": "ping:gw",
+     "why": "A reply from the gateway shows the cable, the address and the mask are fine, so the local link works."
+    },
+    {
+     "t": "Pinged the intranet server by its IP address",
+     "has": "ping:server",
+     "why": "A reply by number proves the path to the server works. Only the name step is failing."
+    },
+    {
+     "t": "Ran nslookup for the intranet name",
+     "has": "ns:default",
+     "why": "The lookup timed out because the PC asks 192.168.20.9, which does not answer. That points at the DNS setting, not the network."
+    },
+    {
+     "t": "Asked the real DNS server directly with nslookup",
+     "has": "ns:good",
+     "why": "When the question goes to 192.168.20.2, the name resolves to 10.40.0.15. That shows the DNS data is good and the PC points at the wrong server."
+    },
+    {
+     "t": "Did not release the PC's address while the user is on it",
+     "lacks": "trap:release",
+     "why": "ipconfig /release drops the address and cuts the user off. A diagnostic check should not break what still works."
+    }
+   ]
+  },
+  {
+   "id": "cn-p-02",
+   "t": "pbq",
+   "kind": "diagram",
+   "d": "4.0",
+   "obj": "4.2",
+   "dom": "4.0 · 3.0",
+   "title": "Cable up the new office closet",
+   "short": "Small office diagram",
+   "scenario": "You are setting up a small office from an engineer's diagram. The internet hand-off box is already on the wall and has an Ethernet copper (RJ-45) port. The diagram needs a path from that box to the router, then a switch, then the devices the office uses. Place each device in its spot. Three devices in the tray do not belong in this design.",
+   "ticket": "Work order WO-212: new closet. Ceiling access point has no power outlet. The file server needs a wired gigabit link.",
+   "top": "ISP hand-off box",
+   "slots": [
+    {
+     "label": "Spot A",
+     "zone": "Edge",
+     "hint": "the hand-off box cable plugs into its WAN port; it is the LAN's default gateway"
+    },
+    {
+     "label": "Spot B",
+     "zone": "Access",
+     "hint": "the router's LAN port plugs in here; it has PoE ports"
+    },
+    {
+     "label": "Spot C",
+     "zone": "Ceiling",
+     "hint": "gets data and power on one cable from the switch"
+    },
+    {
+     "label": "Spot D",
+     "zone": "Closet floor",
+     "hint": "wired to a gigabit switch port with a patch cable"
+    }
+   ],
+   "devs": [
+    {
+     "id": "rtr",
+     "name": "Router",
+     "slot": 0,
+     "why": "The hand-off box connects to the router's WAN port, and the router sends traffic between the office LAN and the internet. Its address is what the PCs use as their default gateway."
+    },
+    {
+     "id": "sw",
+     "name": "PoE switch",
+     "slot": 1,
+     "why": "The switch joins all the wired devices, and its PoE ports can also power devices that have no outlet, such as the access point."
+    },
+    {
+     "id": "ap",
+     "name": "Access point",
+     "slot": 2,
+     "why": "With PoE the access point needs just one Ethernet cable from the switch. That gives the office Wi-Fi without an outlet in the ceiling."
+    },
+    {
+     "id": "srv",
+     "name": "File server",
+     "slot": 3,
+     "why": "A server is wired to a switch port so that it gets a steady, fast link and keeps one address."
+    },
+    {
+     "id": "hub",
+     "name": "Hub",
+     "slot": -1,
+     "why": "A hub repeats every signal to all ports, with no MAC table and no PoE. It is old gear and a switch replaces it."
+    },
+    {
+     "id": "conv",
+     "name": "Fiber media converter",
+     "slot": -1,
+     "why": "A converter changes fiber to copper. The hand-off here is already an Ethernet copper cable, so none is needed."
+    },
+    {
+     "id": "mdm",
+     "name": "Dial-up modem",
+     "slot": -1,
+     "why": "A dial-up modem uses a phone line and an RJ-11 connector and is far too slow. It has no role in this design."
+    }
+   ]
+  },
+  {
+   "id": "cn-p-03",
+   "t": "pbq",
+   "kind": "rules",
+   "d": "5.0",
+   "obj": "5.1",
+   "dom": "5.0",
+   "title": "Put the troubleshooting steps in order",
+   "short": "Troubleshooting method",
+   "scenario": "A user in the front office says the shared printer stopped working this morning. You are the help desk technician. Build the response in a sensible order. Some ideas do not belong. Add the steps in the order they should happen.",
+   "ticket": "TCK-5021: front-office printer not printing. Other users have not been asked yet.",
+   "rules": [
+    {
+     "id": "a",
+     "text": "Ask what changed, when it began and who else is affected",
+     "need": 1,
+     "why": "Gathering facts first tells you whether this is one user or the whole office, and what changed. Everything after it depends on this."
+    },
+    {
+     "id": "b",
+     "text": "Form a theory, such as the printer is offline or its cable is loose",
+     "need": 1,
+     "why": "From the facts you pick the most likely cause. A theory gives your next test a target instead of random clicking."
+    },
+    {
+     "id": "c",
+     "text": "Test the theory by checking the printer screen and pinging its address",
+     "need": 1,
+     "why": "A test shows if the theory is right. If it is not, you go back and form another one."
+    },
+    {
+     "id": "d",
+     "text": "Fix it, for example by reseating the cable or turning the printer back online",
+     "need": 1,
+     "why": "You act once a tested theory points at a cause. A small, simple fix is tried first."
+    },
+    {
+     "id": "e",
+     "text": "Have the user print a page and check the other users can print",
+     "need": 1,
+     "why": "Verifying proves the whole problem is solved for everyone, not just that you stopped working on it."
+    },
+    {
+     "id": "f",
+     "text": "Record the cause, the fix and the result in the ticket",
+     "need": 1,
+     "why": "Notes let the next technician solve the same fault faster and show the work that was done."
+    },
+    {
+     "id": "g",
+     "text": "Replace the printer at once to be safe",
+     "need": 0,
+     "why": "Replacing before any test costs money and may not fix a loose cable or an offline setting."
+    },
+    {
+     "id": "h",
+     "text": "Close the ticket before the user has tried printing",
+     "need": 0,
+     "why": "Closing without confirmation can leave the user still blocked and the record wrong."
+    }
+   ],
+   "before": [
+    {
+     "a": "a",
+     "b": "b",
+     "why": "You need the facts before you can guess a cause."
+    },
+    {
+     "a": "b",
+     "b": "c",
+     "why": "There must be a theory before you can test it."
+    },
+    {
+     "a": "c",
+     "b": "d",
+     "why": "Test first, so you only fix what is really wrong."
+    },
+    {
+     "a": "d",
+     "b": "e",
+     "why": "Verify after the fix, since there is nothing to verify before it."
+    }
+   ],
+   "last": {
+    "id": "f",
+    "why": "Documenting comes last because the ticket must show the cause, the fix and the confirmed result."
+   }
+  },
+  {
+   "id": "cn-p-04",
+   "t": "pbq",
+   "kind": "logsel",
+   "d": "6.0",
+   "obj": "6.1",
+   "dom": "6.0 · 5.0",
+   "title": "Find the probing in the firewall log",
+   "short": "Firewall log",
+   "scenario": "The unit's firewall protects a public web server at 203.0.113.10. The security monitor flagged a burst of denied connections. Mark every line that belongs to the suspicious activity, then say what the log shows.",
+   "ticket": "Alert 3307: many DENY entries in a few seconds. Read the log only. No changes are asked.",
+   "lines": [
+    {
+     "text": "10:14:02 ALLOW tcp 203.0.113.50:51022 -> 93.184.216.34:443 rule=permit-web-out",
+     "bad": 0,
+     "why": "An inside PC browsing the web over HTTPS, which the policy permits. Nothing unusual."
+    },
+    {
+     "text": "10:14:07 DENY  tcp 198.51.100.77:40001 -> 203.0.113.10:21 flags=SYN rule=default-deny-in",
+     "bad": 1,
+     "why": "An outside host tried an FTP port on the public server and was denied. It is the first probe of a series."
+    },
+    {
+     "text": "10:14:07 DENY  tcp 198.51.100.77:40002 -> 203.0.113.10:22 flags=SYN rule=default-deny-in",
+     "bad": 1,
+     "why": "The same outside host, in the same second as the FTP probe, now tries SSH. A new port every try is the sign of a scan."
+    },
+    {
+     "text": "10:14:08 ALLOW udp 203.0.113.30:123 -> 129.6.15.28:123 rule=permit-ntp-out",
+     "bad": 0,
+     "why": "An inside device asking a public time server for the time. NTP on UDP 123 is expected and permitted."
+    },
+    {
+     "text": "10:14:08 DENY  tcp 198.51.100.77:40003 -> 203.0.113.10:23 flags=SYN rule=default-deny-in",
+     "bad": 1,
+     "why": "Telnet is the third port in a row from the same address. It is another probe."
+    },
+    {
+     "text": "10:14:09 ALLOW tcp 192.0.2.80:55310 -> 203.0.113.10:443 flags=SYN rule=permit-web-in",
+     "bad": 0,
+     "why": "A different outside host reaching the public web server on 443, which the rule allows. This is an ordinary visitor."
+    },
+    {
+     "text": "10:14:09 DENY  tcp 198.51.100.77:40004 -> 203.0.113.10:3389 flags=SYN rule=default-deny-in",
+     "bad": 1,
+     "why": "Remote Desktop is a favorite target. The same source is still stepping through ports."
+    },
+    {
+     "text": "10:14:10 ALLOW icmp 203.0.113.50 -> 203.0.113.1 echo-request rule=permit-icmp-lan",
+     "bad": 0,
+     "why": "A PC pinging its own gateway, which is normal and allowed."
+    },
+    {
+     "text": "10:14:10 DENY  tcp 198.51.100.77:40005 -> 203.0.113.10:445 flags=SYN rule=default-deny-in",
+     "bad": 1,
+     "why": "File sharing on 445 is another common probe. Five ports in about three seconds from one source ends the doubt."
+    }
+   ],
+   "ask": {
+    "label": "What does this log show?",
+    "opts": [
+     "A denial-of-service flood against one web port",
+     "Users on the inside breaking the web policy",
+     "One outside host probing many ports on the server, and the default deny blocking them",
+     "Normal web traffic that the firewall blocked by mistake"
+    ],
+    "a": 2,
+    "why": "One source tries a different port each time, and the default-deny rule blocks every one of them. That is a port scan: a search for open doors, with the firewall doing its job.",
+    "d": "6.0",
+    "obj": "6.1"
+   }
+  },
+  {
+   "id": "cn-p-05",
+   "t": "pbq",
+   "kind": "term",
+   "d": "5.0",
+   "obj": "5.5",
+   "dom": "5.0 · 4.0",
+   "title": "Find why Desk 12 has no link on the switch",
+   "short": "Cisco show commands",
+   "scenario": "The PC at Desk 12 shows no network link. It plugs into port Fa0/5 on switch SW-A. You are connected on the console and are authorized to run show commands only. Find out what state the port is in and what the evidence says, then leave any change to the engineer.",
+   "ticket": "TCK-6102: Desk 12 no link. Show commands only. The engineer approves any change.",
+   "host": "SW-A",
+   "intro": "SW-A (Cisco Catalyst, console). Type a command. Show commands only.",
+   "suggest": [
+    "show ip interface brief",
+    "show ?",
+    "show version"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "enable",
+      "en"
+     ],
+     "out": "(now in privileged EXEC mode, prompt SW-A#)"
+    },
+    {
+     "run": [
+      "show ip interface brief",
+      "show ip int brief",
+      "sh ip int br",
+      "show ip int br",
+      "sh ip interface brief"
+     ],
+     "out": "Interface              IP-Address      OK? Method Status                Protocol\nVlan1                  192.168.1.2     YES manual up                    up\nFastEthernet0/1        unassigned      YES unset  up                    up\nFastEthernet0/2        unassigned      YES unset  up                    up\nFastEthernet0/3        unassigned      YES unset  down                  down\nFastEthernet0/4        unassigned      YES unset  up                    up\nFastEthernet0/5        unassigned      YES unset  administratively down down\nGigabitEthernet0/1     unassigned      YES unset  down                  down",
+     "fx": "show:brief"
+    },
+    {
+     "run": [
+      "show interfaces status",
+      "show interface status",
+      "sh int status",
+      "sh interfaces status"
+     ],
+     "out": "Port      Name               Status       Vlan       Duplex  Speed Type\nFa0/1     Uplink-to-RTR      connected    trunk      a-full  a-100 10/100BaseTX\nFa0/2     Desk10-PC          connected    10         a-full  a-100 10/100BaseTX\nFa0/3     Desk11-PC          notconnect   10         auto    auto  10/100BaseTX\nFa0/4     Desk13-Phone       connected    10         a-full  a-100 10/100BaseTX\nFa0/5     Desk12-PC          disabled     10         auto    auto  10/100BaseTX\nGi0/1     Spare              notconnect   1          auto    auto  Not Present",
+     "fx": "show:status"
+    },
+    {
+     "run": [
+      "show mac address-table",
+      "show mac-address-table",
+      "sh mac address-table",
+      "sh mac add"
+     ],
+     "out": "          Mac Address Table\n-------------------------------------------\n\nVlan    Mac Address       Type        Ports\n----    -----------       --------    -----\n  10    0050.7966.6801    DYNAMIC     Fa0/2\n  10    0050.7966.6803    DYNAMIC     Fa0/4\n   1    00d0.ba12.0001    DYNAMIC     Fa0/1\nTotal Mac Addresses for this criterion: 3",
+     "fx": "show:mac"
+    },
+    {
+     "run": [
+      "show interface fa0/5",
+      "show interfaces fa0/5",
+      "show interface fastethernet0/5",
+      "sh int fa0/5",
+      "show interfaces fastethernet0/5"
+     ],
+     "out": "FastEthernet0/5 is administratively down, line protocol is down (disabled)\n  Hardware is Fast Ethernet, address is 0011.2233.4405 (bia 0011.2233.4405)\n  Description: Desk12-PC\n  MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec,\n  Auto-duplex, Auto-speed, media type is 10/100BaseTX\n  Last input never, output never, output hang never\n     0 packets input, 0 bytes, 0 no buffer\n     0 packets output, 0 bytes, 0 underruns",
+     "fx": "show:int5"
+    },
+    {
+     "run": [
+      "show running-config interface fa0/5",
+      "show run int fa0/5",
+      "show run interface fa0/5",
+      "show running-config interface fastethernet0/5"
+     ],
+     "out": "Building configuration...\n\nCurrent configuration : 112 bytes\n!\ninterface FastEthernet0/5\n description Desk12-PC\n switchport access vlan 10\n switchport mode access\n shutdown\nend",
+     "fx": "show:cfg"
+    },
+    {
+     "run": [
+      "show version",
+      "sh ver"
+     ],
+     "out": "Cisco IOS Software, C2960 Software, Version 15.0(2)SE11\nSW-A uptime is 41 weeks, 2 days\nSystem image file is \"flash:c2960-lanbasek9-mz.150-2.SE11.bin\"\ncisco WS-C2960-24TT-L (PowerPC405) processor\n24 FastEthernet interfaces"
+    },
+    {
+     "run": [
+      "show ?",
+      "sh ?"
+     ],
+     "out": "cdp         CDP information\ninterfaces  Interface status and configuration\nip          IP information\nmac         MAC configuration\nrunning-config  Current operating configuration\nversion     System hardware and software status"
+    },
+    {
+     "run": [
+      "show cdp neighbors",
+      "sh cdp neighbors",
+      "sh cdp nei"
+     ],
+     "out": "Capability Codes: R - Router, S - Switch, I - IGMP\n\nDevice ID    Local Intrfce   Holdtme   Capability   Platform    Port ID\nRTR-1        Fas 0/1         150       R            ISR4321     Gig 0/0/1"
+    },
+    {
+     "run": [
+      "configure terminal",
+      "conf t",
+      "config t"
+     ],
+     "out": "[lab] You changed or restarted a live switch. Only the engineer does that. Stop and report it.",
+     "fx": "trap:config"
+    },
+    {
+     "run": [
+      "reload"
+     ],
+     "out": "[lab] You changed or restarted a live switch. Only the engineer does that. Stop and report it.",
+     "fx": "trap:config"
+    },
+    {
+     "run": [
+      "erase startup-config",
+      "write erase"
+     ],
+     "out": "[lab] You changed or restarted a live switch. Only the engineer does that. Stop and report it.",
+     "fx": "trap:config"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Listed the interfaces with show ip interface brief",
+     "has": "show:brief",
+     "why": "One short table shows every port's status. Fa0/5 reads administratively down, which means someone turned it off in the configuration. It is not a cable fault."
+    },
+    {
+     "t": "Checked the port names and states with show interfaces status",
+     "has": "show:status",
+     "why": "The Name column ties Fa0/5 to Desk12-PC, and its state is disabled. Fa0/3 shows notconnect, which would mean an unplugged cable. That is a different problem."
+    },
+    {
+     "t": "Checked the MAC table for the port",
+     "has": "show:mac",
+     "why": "No MAC address was learned on Fa0/5, so the switch has heard nothing from Desk 12. A port that is shut down learns nothing."
+    },
+    {
+     "t": "Read the detail for interface Fa0/5",
+     "has": "show:int5",
+     "why": "The detail repeats that the port is administratively down and shows no packets in or out. That proves the switch itself is blocking the link."
+    },
+    {
+     "t": "Saw the shutdown line in the port's configuration",
+     "has": "show:cfg",
+     "why": "The configuration lists the command shutdown under Fa0/5. That is the exact setting the engineer must remove, and you only needed to read it."
+    },
+    {
+     "t": "Did not enter configuration mode or restart the switch",
+     "lacks": "trap:config",
+     "why": "You were allowed to read only. Changing or reloading a live switch can drop every user, and the engineer approves fixes."
+    }
+   ]
+  }
+ ]
+}
