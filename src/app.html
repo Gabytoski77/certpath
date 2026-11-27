@@ -2578,7 +2578,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.93</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.94</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -6281,12 +6281,12 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.94",d:"2026-11-27",t:"Three new Cisco practice exams for the CCNP core tests: Security (SCOR 350-701), Enterprise (ENCOR 350-401) and Cybersecurity (CBRCOR 350-201)."},
   {v:"2.93",d:"2026-11-27",t:"Four new cloud practice exams: AZ-104, SC-500, AWS Solutions Architect (SAA-C03) and AWS Security Specialty (SCS-C03). Phones no longer zoom in when you tap a practice terminal."},
   {v:"2.92",d:"2026-11-27",t:"On laptop screens, the \u201cWhich certs to take\u201d text no longer covers the MyNextCert name. In Light mode, the globe keeps its map when the network is spotty."},
   {v:"2.91",d:"2026-11-27",t:"A new MyNextCert logo: a badge with an open side and an arrow pushing through it, for moving on to your next cert. New app and tab icons too."},
   {v:"2.90",d:"2026-11-26",t:"Four new practice exams: Azure Fundamentals (AZ-900), Cloud Practitioner (CLF-C02), Linux Essentials (010-200) and Security Essentials (020-100)."},
   {v:"2.89",d:"2026-11-26",t:"Two new Cisco practice exams: CCST Cybersecurity (100-160) and CCST Networking (100-150), each with hands-on questions."},
-  {v:"2.88",d:"2026-11-26",t:"New hands-on practice questions in all the CompTIA exams: read logs, put rules in order, use a small terminal and fill in network diagrams."},
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -10047,6 +10047,8 @@ GUIDES["CCNA"]={
 
 GUIDES["CCNP Security"]={
   id:"ccnps",
+  mock:{v20:"qbank/350-701.json"},
+  mockText:"100 items in 2 hours, with 4 hands-on items (terminal, logs, ordering, diagram), flags and a review screen. Cisco doesn't publish the real item count, and on the real exam you can't go back to a question once you answer it. Practice the same way: answer each one and keep moving.",
   lead:"Professional-level Cisco security, for engineers who build and run security on Cisco networks. You pass two exams: the SCOR core exam and one concentration of your choice. SCOR moved to version 2.0 on August 27, 2026, adding cloud-delivered security, AI risks and Splunk.",
   checked:"2026-11-10",
   planHours:200,
@@ -13380,6 +13382,8 @@ GUIDES["CCST IT Support"]={
 };
 GUIDES["CCNP Enterprise"]={
   id:"ccnpe",
+  mock:{v12:"qbank/350-401.json"},
+  mockText:"100 items in 2 hours, with 4 hands-on items (terminal, logs, ordering, diagram), flags and a review screen. Cisco doesn't publish the real item count, and on the real exam you can't go back to a question once you answer it. Practice the same way: answer each one and keep moving.",
   lead:"Cisco's professional-level networking cert, for engineers who build and run campus and enterprise networks. You pass two exams: the ENCOR core exam and one concentration of your choice. ENCOR moved to version 1.2 on March 19, 2026: wireless moved out to the new CCNP Wireless, and AI joined automation.",
   checked:"2026-11-14",
   planHours:200,
@@ -13591,6 +13595,8 @@ GUIDES["CCNP Enterprise"]={
 };
 GUIDES["CCNP Cybersecurity"]={
   id:"ccnpcbr",
+  mock:{v12:"qbank/350-201.json"},
+  mockText:"100 items in 2 hours, with 4 hands-on items (terminal, logs, ordering, diagram), flags and a review screen. Cisco doesn't publish the real item count, and on the real exam you can't go back to a question once you answer it. Practice the same way: answer each one and keep moving.",
   lead:"Cisco's professional-level SOC cert, called CyberOps Professional until February 2026. It proves you can run security operations: work playbooks, hunt with SIEM and threat intel, investigate endpoints and malware, and automate the response with SOAR, scripts and APIs. You pass the CBRCOR core exam and one concentration.",
   checked:"2026-11-14",
   planHours:200,
