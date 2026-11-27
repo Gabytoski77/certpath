@@ -1,0 +1,2612 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "Azure Administrator",
+ "ver": "cur",
+ "exam": "AZ-104",
+ "title": "Azure Administrator (AZ-104) practice exam",
+ "rev": "2026-11-27",
+ "format": {
+  "n": 50,
+  "min": 100,
+  "pbq": 4,
+  "half": 25
+ },
+ "domains": [
+  {
+   "n": "1.0",
+   "name": "Manage Azure identities and governance",
+   "w": 24,
+   "obj": 3
+  },
+  {
+   "n": "2.0",
+   "name": "Implement and manage storage",
+   "w": 19,
+   "obj": 3
+  },
+  {
+   "n": "3.0",
+   "name": "Deploy and manage Azure compute resources",
+   "w": 24,
+   "obj": 4
+  },
+  {
+   "n": "4.0",
+   "name": "Implement and manage virtual networking",
+   "w": 19,
+   "obj": 3
+  },
+  {
+   "n": "5.0",
+   "name": "Monitor and maintain Azure resources",
+   "w": 14,
+   "obj": 2
+  }
+ ],
+ "note": "Original questions written for MyNextCert from Microsoft's public AZ-104 study guide (skills measured as of April 17, 2026; https://learn.microsoft.com/credentials/certifications/resources/study-guides/az-104, checked 2026-11-27). Not real exam questions. The 50 items and 100 minutes are a stand-in: Microsoft says the exam has 40-60 questions in 100 minutes, and some may be case studies or labs. Practice in your own free account or a sandbox, never with work tenants or a government card.",
+ "q": [
+  {
+   "id": "a4-1-01",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Your unit syncs its on-premises Active Directory to Microsoft Entra ID. You turn on self-service password reset (SSPR) for synced users, but a password changed in the cloud still does not work when users sign in to office PCs. What is missing?",
+   "o": [
+    [
+     "A second Microsoft Entra tenant for the on-premises users",
+     "A second tenant adds nothing. Writeback is a setting on the sync connection, not a tenant layout."
+    ],
+    [
+     "A conditional access policy that blocks the Azure portal",
+     "Blocking the portal does not affect where a reset password is stored."
+    ],
+    [
+     "Password writeback, which needs Entra ID P1 or P2",
+     "Right. SSPR changes only reach on-premises accounts when writeback is on, and writeback is a paid-tier feature."
+    ],
+    [
+     "A larger user license quota on the Azure subscription",
+     "Azure subscriptions do not hold user license quotas. Entra licenses are assigned to users."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-1-02",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A contractor from a partner organization needs to open one internal web app. The partner uses its own Microsoft Entra tenant. Which approach lets the contractor sign in with partner credentials and keeps the account limited?",
+   "o": [
+    [
+     "Invite the contractor as an external user (B2B guest)",
+     "Right. A guest account represents the person in your tenant while the partner's tenant checks the sign-in."
+    ],
+    [
+     "Create a member user and share the password by email",
+     "Shared passwords break accountability and give a full member account, not a limited guest."
+    ],
+    [
+     "Create a service principal and give it to the contractor",
+     "A service principal is an identity for apps, not a person."
+    ],
+    [
+     "Add the contractor's email to a distribution list",
+     "A mail list sends mail. It does not grant sign-in or app access."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-1-03",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "All new users whose department attribute is Finance must land in one group automatically, and that group must assign a license. Which group setup fits?",
+   "o": [
+    [
+     "An assigned security group that an admin updates monthly",
+     "Assigned membership is manual, so new Finance users wait for someone to add them."
+    ],
+    [
+     "A dynamic device group using the device owner attribute",
+     "Device rules sort devices, not users, so license assignment would not follow Finance staff."
+    ],
+    [
+     "A distribution group tied to the Finance mailbox",
+     "Distribution groups are for mail and cannot assign Entra licenses."
+    ],
+    [
+     "A dynamic user group with a rule on user.department",
+     "Right. A dynamic group re-evaluates its rule and adds or removes users itself. Group-based licensing then follows the membership."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-1-04",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "You assign a Microsoft 365 license to a new user in Microsoft Entra ID and get an error saying the license cannot be assigned. The user has no other problems. What do you set first?",
+   "o": [
+    [
+     "The user's manager attribute",
+     "The manager field is for org charts and has no effect on license assignment."
+    ],
+    [
+     "The user's usage location",
+     "Right. Many services are not sold in every country, so Entra requires a usage location before it assigns a license."
+    ],
+    [
+     "A custom domain on the user's sign-in name",
+     "The sign-in domain does not decide whether a license can be assigned."
+    ],
+    [
+     "The user's authentication phone number",
+     "That number is for MFA and SSPR. Licensing does not use it."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-1-05",
+   "t": "ms",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "Which TWO of these need Microsoft Entra ID P1 or P2 licensing, not just the Free tier?",
+   "o": [
+    [
+     "Dynamic membership rules for groups",
+     "Right. Rule-based dynamic groups need a paid Entra ID P1 or P2 license."
+    ],
+    [
+     "Password writeback for SSPR to on-premises accounts",
+     "Right. Writeback to on-premises is a paid feature."
+    ],
+    [
+     "Creating cloud-only users in the admin center",
+     "Creating cloud users works in the Free tier."
+    ],
+    [
+     "Inviting a guest user with the basic B2B invite",
+     "Basic guest invitations work in the Free tier."
+    ],
+    [
+     "Assigning a user to an assigned security group",
+     "Manual group membership works in the Free tier."
+    ]
+   ],
+   "a": [
+    0,
+    1
+   ]
+  },
+  {
+   "id": "a4-1-06",
+   "d": "1.0",
+   "obj": "1.1",
+   "q": "A user was deleted from Microsoft Entra ID by mistake an hour ago. The helpdesk needs to bring the same account back with its object ID and group memberships. What is the best step?",
+   "o": [
+    [
+     "Create a new user with the same name and sign-in",
+     "A new account gets a new object ID, so it does not carry the old group and role links."
+    ],
+    [
+     "Restore the user from the Deleted users list",
+     "Right. Deleted users stay in a recoverable state for 30 days. Restoring brings back the same object."
+    ],
+    [
+     "Open a Microsoft support case to recover the tenant",
+     "Self-service restore exists, so support is not needed for a user deleted an hour ago."
+    ],
+    [
+     "Re-run Microsoft Entra Connect with a full password sync",
+     "Sync tools do not undelete cloud accounts, and the object here may be cloud-only."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-1-07",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A user holds Reader at the subscription and Contributor on the resource group rg-app. The user tries two things: deleting a VM in rg-app and deleting a VM in rg-data. What happens?",
+   "o": [
+    [
+     "Both deletes work, because the higher scope wins",
+     "Scopes do not override each other. Rights are the sum of all assignments that apply."
+    ],
+    [
+     "Both deletes are denied, because Reader is the lowest role",
+     "A lower role does not cancel a higher one. Allowed actions are combined."
+    ],
+    [
+     "The rg-app delete is denied, because Reader applies first",
+     "There is no order of roles. Contributor on the group allows the delete."
+    ],
+    [
+     "The rg-app delete works and the rg-data delete is denied",
+     "Right. Role assignments add together. Contributor on rg-app lets the user change resources there, while Reader elsewhere is read-only."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-1-08",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A security lead must be able to grant and remove access to resources in one subscription but must not be able to create or change the resources themselves. Which built-in role fits best?",
+   "o": [
+    [
+     "User Access Administrator",
+     "Right. This role manages role assignments only and has no rights to change the resources."
+    ],
+    [
+     "Contributor on the subscription",
+     "Contributor can change resources but cannot manage role assignments."
+    ],
+    [
+     "Owner on the subscription",
+     "Owner can do both, which is more than the lead needs."
+    ],
+    [
+     "Reader on the subscription",
+     "Reader can only view, so it cannot grant access."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-1-09",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "Help-desk staff may start, restart and deallocate VMs in one subscription, and view them, but nothing else. No built-in role matches this exactly. What should you do?",
+   "o": [
+    [
+     "Assign Virtual Machine Contributor at the subscription",
+     "That role also lets users create, resize and delete VMs, which is more than asked."
+    ],
+    [
+     "Give Virtual Machine Contributor on each VM only",
+     "At VM scope it still lets staff resize, reconfigure and delete those VMs, which is more than asked."
+    ],
+    [
+     "Create a custom role with only the needed VM actions",
+     "Right. A custom role lets you list exact actions and gives true least privilege."
+    ],
+    [
+     "Assign Contributor on every VM and add a resource lock",
+     "A lock does not limit which actions a Contributor can run on other resources."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-1-10",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "An auditor asks which roles a user has on a resource group, including roles inherited from higher scopes. Where do you look?",
+   "o": [
+    [
+     "The Activity log of the group, filtered to that user's name today",
+     "The log shows actions taken, not which roles the user holds."
+    ],
+    [
+     "The Tags page of the group and its parent subscription",
+     "Tags are labels and say nothing about access."
+    ],
+    [
+     "The Properties page of the subscription only",
+     "That page does not list inherited or per-group role assignments."
+    ],
+    [
+     "IAM, then Role assignments, Scope column",
+     "Right. The Scope column shows whether an assignment is set here or inherited from the subscription or a management group."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-1-11",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A web app running on an Azure VM must read secrets from Azure Key Vault without any password or key stored on the VM. Which design is best?",
+   "o": [
+    [
+     "Keep a service account password in an app setting",
+     "That is still a stored secret that can leak and needs rotating."
+    ],
+    [
+     "Give the VM a managed identity and a Key Vault secrets role",
+     "Right. A managed identity gets tokens from Azure on its own. Nothing secret is kept on the VM."
+    ],
+    [
+     "Use a service principal with a certificate kept on the VM",
+     "The certificate is still a credential stored on the VM that can leak and must be renewed."
+    ],
+    [
+     "Give the developers the Key Vault Administrator role",
+     "That gives people broad rights. It does not give the app a secret-free way to sign in."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-1-12",
+   "d": "1.0",
+   "obj": "1.2",
+   "q": "A Global Administrator in Microsoft Entra ID signs in to the Azure portal and sees no subscriptions, and cannot assign roles on them. The admin was never given any Azure role, and no one else holds an Azure role that could help. What can the admin do on their own to get access?",
+   "o": [
+    [
+     "Entra roles already give Owner on every subscription",
+     "Entra roles and Azure roles are separate systems. Global Administrator is not an Azure role."
+    ],
+    [
+     "Assign the admin Owner on the subscription from the portal",
+     "Without any Azure role the admin cannot open the subscription's access settings. Elevation has to come first."
+    ],
+    [
+     "Turn on elevate access for that admin",
+     "Right. Elevation adds User Access Administrator at the root scope. The admin can then grant themselves access, and should switch it off afterward."
+    ],
+    [
+     "Reassign the Global Administrator role in Entra ID",
+     "The admin already holds that Entra role. The missing piece is Azure RBAC, which is separate."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-1-13",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A policy must stop anyone creating a storage account that allows HTTP traffic. Existing accounts should only be flagged as noncompliant. Which effect do you use in the definition?",
+   "o": [
+    [
+     "Deny",
+     "Right. Deny blocks a create or update that breaks the rule. Resources that already exist are marked noncompliant."
+    ],
+    [
+     "Audit",
+     "Audit only records a warning, so noncompliant accounts could still be created."
+    ],
+    [
+     "Disabled",
+     "Disabled turns the rule off, so nothing is checked."
+    ],
+    [
+     "AuditIfNotExists",
+     "This checks for a related resource that should exist. It does not block anything."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-1-14",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Your team wants to see which resources a new Deny policy would block, without blocking anyone yet. What do you do?",
+   "o": [
+    [
+     "Set the assignment's mode to Do not enforce",
+     "Right. The policy is still evaluated and results appear in compliance, but nothing is denied."
+    ],
+    [
+     "Assign the policy at one resource, then move it",
+     "Scope changes do not make a Deny effect stop denying."
+    ],
+    [
+     "Create a ReadOnly lock on the subscription",
+     "A lock blocks changes by itself and tells you nothing about policy results."
+    ],
+    [
+     "Delete the assignment after a few hours",
+     "With no assignment there is no evaluation and no report to read."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-1-15",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A user with the Owner role tries to delete a virtual machine in a resource group that has a CanNotDelete lock. What happens?",
+   "o": [
+    [
+     "The delete works, because Owner bypasses locks",
+     "No role bypasses a lock. It is checked before the action is allowed."
+    ],
+    [
+     "The delete works but a copy is kept for 14 days",
+     "Locks do not keep copies. They block the action."
+    ],
+    [
+     "The delete fails until the lock is removed",
+     "Right. Locks apply to every user, including Owners. The lock must be removed first, which needs lock permissions."
+    ],
+    [
+     "Only the VM's disks are deleted",
+     "The whole delete request is blocked, not a part of it."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-1-16",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A company has 12 subscriptions and wants one policy to apply to all of them, now and for new ones added later. Where do you assign it?",
+   "o": [
+    [
+     "On every subscription separately, repeated for new ones",
+     "This works today but misses a new subscription until someone repeats the step."
+    ],
+    [
+     "On a management group that contains the subscriptions",
+     "Right. Policy assigned at a management group is inherited by every subscription under it, including future ones."
+    ],
+    [
+     "On a resource group in the first subscription",
+     "That only covers one group in one subscription."
+    ],
+    [
+     "On a tag shared by the subscriptions",
+     "Tags are not a scope for policy assignment."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-1-17",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "Finance sets a monthly budget of $500 on a subscription with an alert at 100 percent. Spending then passes $500. What happens by default?",
+   "o": [
+    [
+     "All VMs in the subscription are deallocated",
+     "Budgets do not stop resources by themselves."
+    ],
+    [
+     "New deployments are blocked until next month",
+     "Budgets do not block deployments. A policy or lock would be needed."
+    ],
+    [
+     "The subscription is disabled until a manager approves",
+     "Passing a budget does not disable a subscription."
+    ],
+    [
+     "Alert emails go out and the resources keep running",
+     "Right. A budget only notifies. To stop spending you need an action group that runs automation."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-2-01",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "You give a partner a SAS for a blob container for 90 days. You may need to cancel that access early without changing the account keys that other apps use. How should you create the SAS?",
+   "o": [
+    [
+     "Sign an ad hoc SAS with the account key and a long expiry",
+     "An ad hoc SAS can only be cancelled by rotating the signing key, which breaks other apps."
+    ],
+    [
+     "Give the partner a guest account with Storage Blob Data Owner",
+     "That is far more than read access, and it is not a SAS."
+    ],
+    [
+     "Tie it to a stored access policy on the container",
+     "Right. Deleting or editing the policy ends every SAS that uses it, with no key rotation needed."
+    ],
+    [
+     "Create an account SAS for blob read with a 90-day expiry",
+     "That is still an ad hoc SAS signed by a key. It cannot be cancelled alone without rotating the key."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-2-02",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "A storage account firewall is set to Selected networks. A VM in subnet snet-app cannot reach blobs, and the VM has no public IP. What fixes this with the smallest change?",
+   "o": [
+    [
+     "Add a virtual network rule for snet-app",
+     "Right. A virtual network rule (with the Microsoft.Storage service endpoint on the subnet) admits that subnet's traffic, while the firewall stays closed to everyone else."
+    ],
+    [
+     "Allow 0.0.0.0/0 in the storage firewall",
+     "That opens the account to the whole Internet and defeats the firewall."
+    ],
+    [
+     "Add the subnet's address range as an IP rule in the firewall",
+     "IP rules accept public addresses only. A subnet needs a virtual network rule."
+    ],
+    [
+     "Give the VM a public IP and allow that single address",
+     "This adds exposure. A virtual network rule keeps traffic private."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-2-03",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Staff on domain-joined PCs must open an Azure Files share over SMB, and each request must be checked against the user's directory account instead of a shared secret. Which setup do you use?",
+   "o": [
+    [
+     "Give each user a SAS token for the share",
+     "A SAS is a bearer token. It is not checked against a directory account."
+    ],
+    [
+     "Mount the share with the account key from a login script",
+     "The key is one shared secret with full control and cannot show who did what."
+    ],
+    [
+     "Assign Storage Blob Data Reader to each user on the account",
+     "That role covers blob data. It does not give SMB access to a file share."
+    ],
+    [
+     "Use identity-based access with a share-level role",
+     "Right. With AD DS, Entra Domain Services or Entra Kerberos, users sign in with their identity and share roles control access."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-2-04",
+   "t": "ms",
+   "d": "2.0",
+   "obj": "2.1",
+   "q": "Which TWO changes reduce the risk of leaked storage account keys?",
+   "o": [
+    [
+     "Put the key in the app's config file in source control",
+     "This is how keys leak."
+    ],
+    [
+     "Disable shared key authorization on the account",
+     "Right. Requests must then use Entra ID or a user delegation SAS, so the keys stop working."
+    ],
+    [
+     "Rotate the keys once at creation and never again",
+     "Keys need regular rotation, not one rotation."
+    ],
+    [
+     "Let apps use a managed identity with Azure RBAC",
+     "Right. Tokens come from Entra ID, so no key sits in the app."
+    ],
+    [
+     "Enable anonymous access so no key is needed",
+     "Anonymous access exposes data to anyone."
+    ]
+   ],
+   "a": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "a4-2-05",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A storage account must survive the loss of one datacenter inside a region and also a full regional outage, and apps must be able to read from the secondary region before any failover. Which redundancy is right?",
+   "o": [
+    [
+     "Zone-redundant storage (ZRS) in one region",
+     "ZRS copes with a zone loss but keeps all copies in one region."
+    ],
+    [
+     "Read-access geo-zone-redundant storage (RA-GZRS)",
+     "Right. GZRS keeps copies in three zones in the primary region plus a copy in the paired region. The RA option allows reads from the secondary."
+    ],
+    [
+     "Geo-redundant storage (GRS) with a paired region",
+     "GRS keeps three copies in one datacenter at the primary, and the secondary cannot be read until failover."
+    ],
+    [
+     "Locally redundant storage (LRS) in one datacenter",
+     "LRS keeps three copies inside a single datacenter and covers neither failure."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-2-06",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "You set up object replication from a blob container in account A to a container in account B. What must be on before the policy can be created?",
+   "o": [
+    [
+     "Soft delete for file shares turned on for both accounts",
+     "File share soft delete is for Azure Files and has no link to blob replication."
+    ],
+    [
+     "Versioning on both accounts, change feed on the source",
+     "Right. Replication reads the change feed to find new blobs, and versioning is needed on both sides."
+    ],
+    [
+     "Archive tier as the default on the destination",
+     "Archive is an offline tier and is not required for replication."
+    ],
+    [
+     "A static website on the source account",
+     "Static websites are unrelated to replication."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-2-07",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "Policy requires that the unit's security team holds the keys that encrypt a storage account. The keys live in Azure Key Vault. What do you configure?",
+   "o": [
+    [
+     "Infrastructure encryption, with the keys kept by the security team",
+     "Infrastructure encryption adds a second layer with Microsoft-managed keys. It does not give the unit control of the keys."
+    ],
+    [
+     "Microsoft-managed keys with a storage firewall rule",
+     "Microsoft holds the keys with Microsoft-managed keys. A firewall rule does not change who holds them."
+    ],
+    [
+     "Customer-managed keys in Key Vault, after converting the account to LRS",
+     "Customer-managed keys work with every redundancy type, so no conversion is needed."
+    ],
+    [
+     "Customer-managed keys in Key Vault, reached through the account's managed identity",
+     "Right. The storage account uses its managed identity to wrap and unwrap its account encryption key with your key in the vault."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-2-08",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "You need to upload a folder and all its subfolders to a blob container using a SAS URL with AzCopy. Which command is correct?",
+   "o": [
+    [
+     "azcopy copy \"C:\\data\" \"https://stunit42.blob.core.windows.net/files?<SAS>\" --recursive",
+     "Right. The copy command with --recursive includes subfolders, and the SAS in the URL supplies access."
+    ],
+    [
+     "azcopy upload \"C:\\data\" \"https://stunit42.blob.core.windows.net/files?<SAS>\"",
+     "AzCopy has no upload command. The verb is copy."
+    ],
+    [
+     "azcopy copy \"C:\\data\" \"https://stunit42.blob.core.windows.net/files?<SAS>\"",
+     "Without --recursive a folder with subfolders is not copied."
+    ],
+    [
+     "azcopy remove \"C:\\data\" \"https://stunit42.blob.core.windows.net/files?<SAS>\" --recursive",
+     "Remove deletes blobs and does not take a local path as a source."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-2-09",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Log archives are read about once a month, never sooner than 30 days after upload. When someone does need one it must open in milliseconds with no wait. Which tier is the best fit?",
+   "o": [
+    [
+     "Hot",
+     "Hot has the highest storage price, which is wasted on data read about once a month."
+    ],
+    [
+     "Archive",
+     "Archive is offline. A blob must be rehydrated, which takes hours."
+    ],
+    [
+     "Cool",
+     "Right. Cool costs less than Hot to store, still gives immediate reads, and suits data kept 30 days or more."
+    ],
+    [
+     "Premium block blob",
+     "Premium is for low-latency, high-transaction work and costs the most."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-2-10",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A container holds log blobs. They must move to Cool when they have not been read for 30 days, no matter when they were written, and be deleted 365 days after their last modification. Nothing is configured yet. What do you set up?",
+   "o": [
+    [
+     "A lifecycle rule on days since last modification for both actions",
+     "Modification time ignores reads. A blob read yesterday but written long ago would still be moved."
+    ],
+    [
+     "A blob inventory rule that reports blobs not read in 30 days",
+     "Inventory only lists blobs in a report. It does not move or delete them."
+    ],
+    [
+     "A Cool default tier on the account with blob versioning",
+     "The default tier applies to new blobs only, and versioning keeps older copies. Neither moves idle blobs."
+    ],
+    [
+     "A lifecycle rule on last access time, with access tracking enabled",
+     "Right. Last-access rules need access time tracking on, and then one rule can tier on reads and delete on modification age."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-2-11",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "A technician deleted a whole blob container today. The account has container soft delete turned on with a 7-day retention. What is the best recovery step?",
+   "o": [
+    [
+     "Create a new container with the same name again",
+     "A new empty container does not bring back the old blobs."
+    ],
+    [
+     "Restore it from the deleted containers list",
+     "Right. Soft delete keeps the deleted container and its blobs for the retention period. A restore brings them back."
+    ],
+    [
+     "Rehydrate the container from the Archive tier",
+     "Rehydration applies to archived blobs, not deleted containers."
+    ],
+    [
+     "Open a support case to request a backup",
+     "Soft delete gives self-service restore, so support is not needed."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-2-12",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "An admin deleted an entire Azure Files share. The account has soft delete for file shares on, with default settings. What is the correct way to recover?",
+   "o": [
+    [
+     "Restore a share snapshot taken last week",
+     "Snapshots live inside the share and are removed with it, so they cannot restore a deleted share."
+    ],
+    [
+     "Recreate the share and copy the data from the cool tier",
+     "Files shares have no cool-tier copy of deleted data."
+    ],
+    [
+     "Undelete the share from the deleted shares list during the retention period",
+     "Right. A soft-deleted share can be restored with its data until the retention period ends."
+    ],
+    [
+     "Run an AzCopy sync from the deleted share",
+     "A deleted share cannot be used as an AzCopy source."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-2-13",
+   "t": "ms",
+   "d": "2.0",
+   "obj": "2.3",
+   "q": "Which TWO statements about the blob Archive tier are true?",
+   "o": [
+    [
+     "The blob is offline until rehydrated to an online tier",
+     "Right. You cannot read an archived blob until it is rehydrated."
+    ],
+    [
+     "It can be set as the default access tier of the account",
+     "The account default can be Hot, Cool or Cold, but never Archive."
+    ],
+    [
+     "Rehydration can take hours with standard priority",
+     "Right. Standard priority rehydration can take up to about 15 hours."
+    ],
+    [
+     "It has the highest storage cost per GB",
+     "Archive has the lowest storage cost."
+    ],
+    [
+     "Data is readable with no delay if a SAS is used",
+     "A SAS does not change that the blob is offline."
+    ]
+   ],
+   "a": [
+    0,
+    2
+   ]
+  },
+  {
+   "id": "a4-3-01",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A Bicep file has a parameter for the storage SKU. Only Standard_LRS and Standard_GRS may be accepted. Which syntax enforces this?",
+   "o": [
+    [
+     "@allowed(['Standard_LRS', 'Standard_GRS']) above the param line",
+     "Right. The allowed decorator limits the values accepted, and the deployment fails on any other value."
+    ],
+    [
+     "allowedValues: ['Standard_LRS','Standard_GRS'] inside the param",
+     "That property name belongs to ARM JSON, not to Bicep syntax."
+    ],
+    [
+     "@secure() above the param line",
+     "Secure hides a value in logs and does not limit choices."
+    ],
+    [
+     "@minLength(2) above the param line",
+     "Min length checks string size, not which values are valid."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-3-02",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "A team deploys an ARM template to a resource group. They want the deployment to also remove any resources in the group that the template does not list. Which option do they use?",
+   "o": [
+    [
+     "Complete deployment mode",
+     "Right. Complete mode makes the group match the template and deletes anything not in it. Use it with care."
+    ],
+    [
+     "Incremental deployment mode",
+     "Incremental adds or updates resources and leaves the rest alone."
+    ],
+    [
+     "A Validate-only run",
+     "Validate checks the template and changes nothing."
+    ],
+    [
+     "A what-if run",
+     "What-if previews changes and does not apply them."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-3-03",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "You have an existing ARM template in JSON (main.json) and the team wants to maintain it as Bicep. Which command converts that JSON file to a Bicep file?",
+   "o": [
+    [
+     "az bicep build --file main.json",
+     "Build compiles Bicep into ARM JSON, the opposite direction."
+    ],
+    [
+     "az deployment group create --template-file main.json",
+     "This deploys the template and does not convert it."
+    ],
+    [
+     "az bicep decompile --file main.json",
+     "Right. Decompile converts ARM JSON to a Bicep file, which you then review and tidy."
+    ],
+    [
+     "az group export --name rg-app --export-format bicep",
+     "Export builds a new template from the resources deployed in the group. It can write Bicep with --export-format, but it doesn't convert your main.json."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-3-04",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "In a Bicep file, a web app uses stg.properties.primaryEndpoints.blob, where stg is the symbolic name of a storage account in the same file. What does this do for deployment order?",
+   "o": [
+    [
+     "Nothing, because Bicep deploys all resources at once",
+     "Bicep orders by dependency, and a reference creates one."
+    ],
+    [
+     "It creates an implicit dependency, so the storage account deploys first",
+     "Right. Bicep sees the reference and adds the dependency itself. dependsOn is not needed here."
+    ],
+    [
+     "It fails, because dependsOn must always be written",
+     "Explicit dependsOn is only needed when no reference exists."
+    ],
+    [
+     "The web app deploys first and retries until the storage exists",
+     "Resource Manager does not retry in that way. It sequences using the dependency."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-3-05",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A line-of-business app runs on two VMs in one availability set. The unit now needs a 99.99 percent SLA and the app must survive the loss of one datacenter. What do you do?",
+   "o": [
+    [
+     "Add a third VM to the availability set",
+     "More VMs in a set still sit in one datacenter, so a datacenter loss takes them all."
+    ],
+    [
+     "Edit each VM to switch it from the set to separate zones",
+     "VMs in an availability set cannot be switched to zones in place. They must be re-created as zonal VMs."
+    ],
+    [
+     "Switch the OS disks to zone-redundant disks",
+     "ZRS disks protect the data, but the VM still runs in one place and the SLA is unchanged."
+    ],
+    [
+     "Re-create both VMs in two zones from disk snapshots",
+     "Right. A zone is chosen at creation, and VMs spread across zones carry the 99.99 percent SLA."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-3-06",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A VM in West Europe must be moved to North Europe, with the same configuration, using a guided Azure tool. What do you use?",
+   "o": [
+    [
+     "Change the Location field on the VM's properties page",
+     "The location of an existing VM cannot be edited."
+    ],
+    [
+     "Move to another resource group with Move resources",
+     "That changes the group or subscription, not the region."
+    ],
+    [
+     "Azure Resource Mover",
+     "Right. Resource Mover moves resources between regions, handling dependencies such as the network."
+    ],
+    [
+     "Resize the VM to a size sold in North Europe",
+     "Size has no effect on region."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-3-07",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "You try to resize a running VM and the list shows only a few sizes. You need a larger size that is not listed. What should you do?",
+   "o": [
+    [
+     "Stop and deallocate the VM, then resize it to the larger size",
+     "Right. A running VM can only change to sizes on its current hardware cluster. Deallocating lets it move to another cluster."
+    ],
+    [
+     "Delete the VM's disks first, then re-create it",
+     "Deleting disks destroys data and is not needed to resize."
+    ],
+    [
+     "Change the VM's resource group",
+     "The group has no effect on available sizes."
+    ],
+    [
+     "Apply a CanNotDelete lock to the VM",
+     "A lock does not change which sizes are offered."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-3-08",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A security policy says VM data must be encrypted before it leaves the physical server, including the temporary disk and caches, with no agent or extension inside the guest OS. What do you enable?",
+   "o": [
+    [
+     "Azure Disk Encryption",
+     "This uses BitLocker or dm-crypt through a VM extension inside the guest."
+    ],
+    [
+     "A ReadOnly lock on the VM's disks",
+     "Locks do not encrypt data."
+    ],
+    [
+     "Storage firewall rules on the disk account",
+     "Firewalls control network access, not encryption."
+    ],
+    [
+     "Encryption at host",
+     "Right. The host encrypts disks, temp disks and caches itself. Nothing is installed in the VM."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-3-09",
+   "d": "3.0",
+   "obj": "3.2",
+   "q": "A virtual machine scale set has an autoscale rule that adds one instance when average CPU stays above 70 percent for 10 minutes. After a busy week it still runs 10 instances all night. What is missing?",
+   "o": [
+    [
+     "A larger maximum instance count",
+     "The maximum only raises the ceiling and does not remove instances."
+    ],
+    [
+     "A scale-in rule for when CPU stays low",
+     "Right. Autoscale only does what rules say. Without a scale-in rule the count never goes down."
+    ],
+    [
+     "A second scale-out rule at 90 percent CPU",
+     "More scale-out rules add instances faster and do not shrink the set."
+    ],
+    [
+     "A lower minimum instance count of 1",
+     "The minimum is only a floor. Without a scale-in rule the count never drops toward it."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-3-10",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A registry must support geo-replication to two regions and private endpoints. Which Azure Container Registry SKU do you pick?",
+   "o": [
+    [
+     "Basic",
+     "Basic has neither geo-replication nor private endpoints."
+    ],
+    [
+     "Premium",
+     "Right. Geo-replication and private endpoints are available only in the Premium SKU."
+    ],
+    [
+     "Standard",
+     "Standard adds storage and throughput over Basic but still lacks both features."
+    ],
+    [
+     "Standard with a private link add-on",
+     "No such add-on exists. Private endpoints and geo-replication are Premium only."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-3-11",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A one-time batch job in a container should run to completion and then stop, without Azure restarting it. How do you set an Azure Container Instances group?",
+   "o": [
+    [
+     "Set the restart policy to Always",
+     "Always restarts the container each time it exits, so the job would loop."
+    ],
+    [
+     "Add a public IP address to the group",
+     "A public IP has no effect on restarts."
+    ],
+    [
+     "Run it as a container app with a minimum of one replica",
+     "A container app with one replica keeps running, so it would not stop after the job."
+    ],
+    [
+     "Set the restart policy to Never",
+     "Right. With Never, the group runs once and then stays stopped, so billing stops."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-3-12",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "A containerized API must scale on HTTP traffic and fall to zero replicas when idle, with no cluster to manage. Which service fits?",
+   "o": [
+    [
+     "Azure Container Apps",
+     "Right. Container Apps scale on HTTP load and events, and a scale rule with a minimum of zero replicas lets them go to zero."
+    ],
+    [
+     "Azure Container Instances",
+     "Container Instances does not autoscale on traffic."
+    ],
+    [
+     "Azure Container Registry",
+     "A registry stores images. It does not run them."
+    ],
+    [
+     "Azure App Service on a Basic plan",
+     "A Basic plan cannot autoscale and always keeps an instance running, so it cannot fall to zero."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-3-13",
+   "d": "3.0",
+   "obj": "3.3",
+   "q": "Two containers in one Azure Container Instances container group are a web server and a log sidecar. Which statement about them is true?",
+   "o": [
+    [
+     "Each has its own public IP address",
+     "A group has one IP address shared by its containers."
+    ],
+    [
+     "They can be placed on different hosts to improve uptime",
+     "A group runs on a single host."
+    ],
+    [
+     "They share one lifecycle, IP address and localhost",
+     "Right. A group is like a pod. Its containers are scheduled and stopped together and share the network."
+    ],
+    [
+     "Each container can be stopped alone while the other keeps running",
+     "Restart and stop work on the whole group."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-3-14",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "A web app needs a staging slot for testing and also autoscale. Which App Service plan tier is the lowest that supports both?",
+   "o": [
+    [
+     "Free (F1) shared compute",
+     "Free has neither slots nor autoscale."
+    ],
+    [
+     "Basic (B1) with manual scaling",
+     "Basic can scale manually but has no slots and no autoscale."
+    ],
+    [
+     "Shared (D1) tier",
+     "Shared plans do not support slots or autoscale."
+    ],
+    [
+     "Standard (S1)",
+     "Right. Standard (S1) is the first tier with deployment slots and autoscale."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-3-15",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "Before a slot swap, the staging slot uses a test database connection string. Production must keep its own string after the swap. What do you do?",
+   "o": [
+    [
+     "Hard code both strings in the app code and redeploy",
+     "That ties code to environments and is hard to change."
+    ],
+    [
+     "Make the string a deployment slot setting",
+     "Right. Slot settings stay with the slot during a swap, while other settings move with the app."
+    ],
+    [
+     "Delete the string from production before swapping",
+     "Production would then break after the swap."
+    ],
+    [
+     "Swap the slots twice, once before and once after testing",
+     "A second swap puts the code back and fixes nothing."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-3-16",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "You want the root domain unit-example.org (no www) to point to an App Service. DNS is hosted at another provider. Which records do you add there?",
+   "o": [
+    [
+     "A CNAME record for the root name to the app's hostname",
+     "A CNAME is not allowed at the root of a zone."
+    ],
+    [
+     "An MX record to the app's hostname",
+     "MX records are for mail."
+    ],
+    [
+     "An A record to the app's IP plus a TXT record",
+     "Right. A root name cannot be a CNAME. The A record points at the app and the TXT proves you own the name."
+    ],
+    [
+     "An NS record that points to the App Service plan",
+     "NS delegates a zone to name servers, which an App Service does not run."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-3-17",
+   "t": "ms",
+   "d": "3.0",
+   "obj": "3.4",
+   "q": "A web app must only accept encrypted connections and reject old protocols. Which TWO App Service settings do this?",
+   "o": [
+    [
+     "Turn on HTTPS Only",
+     "Right. HTTP requests are redirected to HTTPS."
+    ],
+    [
+     "Enable client certificates (incoming)",
+     "Client certificates add mutual authentication. They do not force HTTPS or set a minimum TLS version."
+    ],
+    [
+     "Set FTPS state to FTPS only",
+     "This secures FTP deployments only. It does not force browser traffic onto HTTPS."
+    ],
+    [
+     "Set the minimum inbound TLS version to 1.2",
+     "Right. Older TLS versions are then refused."
+    ],
+    [
+     "Enable HTTP 2.0 support",
+     "HTTP/2 is a protocol version for speed. It does not block plain HTTP or old TLS."
+    ]
+   ],
+   "a": [
+    0,
+    3
+   ]
+  },
+  {
+   "id": "a4-4-01",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A peering from vnet-hub (10.0.0.0/16) to vnet-lab (10.0.128.0/17) fails to create. What is the cause?",
+   "o": [
+    [
+     "The address spaces overlap",
+     "Right. 10.0.128.0/17 sits inside 10.0.0.0/16. Peered networks need address spaces that do not overlap."
+    ],
+    [
+     "The VNets are in different subscriptions",
+     "Peering works across subscriptions when the right permissions exist."
+    ],
+    [
+     "The hub has no gateway",
+     "A gateway is optional for peering."
+    ],
+    [
+     "The peering was created in only one direction",
+     "A one-way peering shows as Initiated. It does not block creation, and overlap is still an error."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-4-02",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "Spoke A and spoke B are each peered to the hub, but the VMs in spoke A cannot reach the VMs in spoke B. The hub has a firewall at 10.0.1.4. What do you add?",
+   "o": [
+    [
+     "A route table in each spoke sending the other spoke's range to the firewall",
+     "Right. Peering is not transitive. Each spoke needs a route with next hop virtual appliance to the firewall, and the peerings must allow forwarded traffic."
+    ],
+    [
+     "Add one more peering from spoke A to the same hub network",
+     "Another peering to the same hub changes nothing and Azure disallows a duplicate."
+    ],
+    [
+     "A second hub network peered to both spokes",
+     "Peering is not transitive through any hub. Routes toward a firewall are still needed."
+    ],
+    [
+     "An NSG rule allowing the Internet tag",
+     "The Internet tag does not describe the other spoke. The issue is routing."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-4-03",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "All outbound Internet traffic from subnet snet-app must go through a firewall at 10.0.1.4. Which route do you create and attach to the subnet?",
+   "o": [
+    [
+     "0.0.0.0/0 with next hop type Internet and address 10.0.1.4",
+     "Internet is a type with no address. It sends traffic straight out and skips the firewall."
+    ],
+    [
+     "10.0.1.4/32 with next hop type Virtual appliance and address 0.0.0.0",
+     "This covers only traffic to the firewall's own address and uses a bad next hop."
+    ],
+    [
+     "0.0.0.0/0, next hop virtual appliance 10.0.1.4",
+     "Right. A default route to the firewall's private IP forces traffic through it. The route table is then linked to the subnet."
+    ],
+    [
+     "0.0.0.0/0 with next hop type Virtual network gateway",
+     "That sends traffic to a gateway, which is not the firewall."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-4-04",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "You create a Standard SKU public IP, attach it to a VM's network interface, and no NSG is assigned. Inbound connections to the VM fail. Why?",
+   "o": [
+    [
+     "Standard public IPs only work when used with load balancers",
+     "They can be used on network interfaces too."
+    ],
+    [
+     "Standard IPs are closed to inbound until an NSG allows it",
+     "Right. Standard SKU is secure by default. You must add an NSG that allows the traffic."
+    ],
+    [
+     "Public IPs need a custom DNS name label before they accept traffic",
+     "A DNS label is optional and has no effect on whether traffic is accepted."
+    ],
+    [
+     "Standard SKU public IPs can only be created with IPv6 addresses",
+     "Standard supports both IPv4 and IPv6."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-4-05",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A VM cannot reach a server on-premises. You want to see where Azure sends the VM's packet next. Which Network Watcher tool do you use?",
+   "o": [
+    [
+     "IP flow verify",
+     "It tests whether an NSG rule allows a packet and does not show routing."
+    ],
+    [
+     "Packet capture",
+     "It records traffic on the VM. It does not show the route choice."
+    ],
+    [
+     "NSG flow logs",
+     "They log past flows and do not test one packet's route."
+    ],
+    [
+     "Next hop",
+     "Right. Next hop shows the route type and next hop address chosen for a destination, which exposes a wrong route."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-4-06",
+   "d": "4.0",
+   "obj": "4.1",
+   "q": "A new subnet is created as 10.0.5.0/28. How many IP addresses can you assign to VMs in it?",
+   "o": [
+    [
+     "16",
+     "That ignores the 5 addresses Azure keeps for itself."
+    ],
+    [
+     "14",
+     "14 is the usual answer for a plain /28, but Azure reserves 5, not 2."
+    ],
+    [
+     "11",
+     "Right. A /28 has 16 addresses. Azure reserves 5 in every subnet, which leaves 11."
+    ],
+    [
+     "9",
+     "Azure reserves 5 addresses, not 7."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-4-07",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "An NSG has rule A, priority 200, allow TCP 443 from Internet, and rule B, priority 100, deny TCP 443 from Internet. A client on the Internet connects to a VM on port 443. What is the result?",
+   "o": [
+    [
+     "The connection is denied",
+     "Right. The rule with the lowest number is checked first. Rule B matches and processing stops."
+    ],
+    [
+     "The connection is allowed, since the higher number is newer",
+     "Priority number decides, not age or order of creation."
+    ],
+    [
+     "The connection is allowed, since an allow always beats a deny",
+     "Allow does not beat deny. The first match by priority wins."
+    ],
+    [
+     "The NSG logs it and lets it pass",
+     "NSGs do not log-and-pass. They allow or deny."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-4-08",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "An admin at home tries RDP to the VM's public IP over the Internet. The subnet's NSG allows TCP 3389 from that address, but the NIC's NSG has only the default rules. What happens?",
+   "o": [
+    [
+     "It is denied, because RDP over the Internet needs Azure Bastion",
+     "Bastion is optional. An NSG allow can permit RDP from the Internet, but here the NIC NSG has no allow."
+    ],
+    [
+     "It is allowed, because the NIC NSG is ignored if empty",
+     "A NIC NSG with only defaults still denies inbound Internet traffic."
+    ],
+    [
+     "It is allowed, because the NIC NSG's AllowVnetInBound rule matches",
+     "Internet traffic does not match the VirtualNetwork tag, so the NIC NSG's DenyAllInbound blocks it."
+    ],
+    [
+     "It is denied, because both NSGs must allow it",
+     "Right. For inbound traffic the subnet NSG is checked first and then the NIC NSG. Both need an allow."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-4-09",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Admins need to reach private VMs by RDP and SSH from the Azure portal without public IPs or opening inbound ports to the Internet. Which service and subnet setup is right?",
+   "o": [
+    [
+     "Azure Bastion in a subnet named BastionSubnet",
+     "The subnet must have the exact name AzureBastionSubnet."
+    ],
+    [
+     "Azure Bastion in a subnet named AzureBastionSubnet",
+     "Right. Bastion needs a subnet with that exact name, at least /26. Admins connect over TLS from the portal."
+    ],
+    [
+     "A public load balancer with a NAT rule on port 3389",
+     "This exposes RDP to the Internet, which is what the team wants to avoid."
+    ],
+    [
+     "A VPN gateway placed in the VM's own subnet",
+     "A gateway needs its own GatewaySubnet and does not give portal access."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-4-10",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "A storage account must be reachable only through private IP addresses, including from on-premises over a VPN. Public network access is to be turned off. What do you create?",
+   "o": [
+    [
+     "A service endpoint on the subnet",
+     "Service endpoints still use the public address and are not reachable from on-premises."
+    ],
+    [
+     "A private endpoint with a privatelink DNS zone",
+     "Right. A private endpoint gives the account a private IP in your network, and DNS makes the name resolve to it."
+    ],
+    [
+     "A public IP on the storage account",
+     "Storage accounts do not take public IPs, and this would be the opposite goal."
+    ],
+    [
+     "An application security group on the account",
+     "ASGs group VM NICs and do not apply to storage accounts."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-4-11",
+   "d": "4.0",
+   "obj": "4.2",
+   "q": "Ten web VMs and four app VMs sit in the same subnet. The NSG must allow port 8080 from the web VMs to the app VMs, even when VMs are added or their IPs change. What is the cleanest approach?",
+   "o": [
+    [
+     "List every web VM IP address in the rule by hand",
+     "This breaks each time a VM is added or its address changes."
+    ],
+    [
+     "Use the VirtualNetwork service tag as the source",
+     "That tag includes every address in the network, not only the web VMs."
+    ],
+    [
+     "Move each tier into a new region",
+     "Regions do not help here and add cost and latency."
+    ],
+    [
+     "Put each tier in an application security group and use them in the rule",
+     "Right. ASGs let rules follow the VMs, not their addresses."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-4-12",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "VMs in two peered virtual networks must reach each other by name, and each new VM's name should be added to DNS without admin work. What do you set up?",
+   "o": [
+    [
+     "A linked private DNS zone with auto-registration",
+     "Right. Linked networks resolve the zone, and auto-registration creates records for new VMs."
+    ],
+    [
+     "A public DNS zone with A records added by hand later",
+     "Public zones are visible on the Internet and need manual updates."
+    ],
+    [
+     "A hosts file on each VM",
+     "This does not scale and drifts from reality."
+    ],
+    [
+     "A CNAME to the load balancer's public IP",
+     "A CNAME points to a name and does not register VMs."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-4-13",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "Every VM behind a Standard internal load balancer shows as unhealthy. The probe checks TCP port 80. The VMs' NSG allows the application subnet on port 80 at priority 200 and denies all other inbound traffic at priority 4000. What is the likely fix?",
+   "o": [
+    [
+     "Change the load balancer from internal to public",
+     "The type does not change where probes come from."
+    ],
+    [
+     "Delete the health probe",
+     "A load balancing rule requires a health probe, so deleting it does not fix the blocked probe traffic."
+    ],
+    [
+     "Allow the AzureLoadBalancer tag on port 80 in the NSG",
+     "Right. Probes come from 168.63.129.16 (the AzureLoadBalancer tag). The custom deny at 4000 overrides the default allow at 65001, so add an allow for that tag above 4000."
+    ],
+    [
+     "Add a second NIC to each VM",
+     "Extra NICs do not solve a blocked probe."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-4-14",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "A web app behind a public Azure Load Balancer needs each client to keep reaching the same backend VM. Which setting does this?",
+   "o": [
+    [
+     "Idle timeout raised to 30 minutes on the rule",
+     "Timeout controls how long idle flows stay open and does not pin clients."
+    ],
+    [
+     "Floating IP enabled",
+     "Floating IP is for some clustering designs and does not give affinity."
+    ],
+    [
+     "A larger backend pool",
+     "More VMs do not make routing sticky."
+    ],
+    [
+     "Session persistence set to Client IP",
+     "Right. Client IP persistence sends requests from the same source address to the same VM."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-5-01",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A VM runs a nightly batch job that pushes CPU close to 90 percent every night, which is normal. Operations wants an email only when CPU is unusually high compared with this VM's own pattern. What do you create?",
+   "o": [
+    [
+     "A metric alert with a static 85 percent threshold and an email action group",
+     "A fixed number would fire every night during the normal batch peak."
+    ],
+    [
+     "A metric alert with a dynamic threshold and an email action group",
+     "Right. Dynamic thresholds learn the VM's normal pattern and alert on unusual values. The action group sends the email."
+    ],
+    [
+     "A log search alert that counts Heartbeat records",
+     "Heartbeat shows that the agent is alive. It says nothing about CPU level."
+    ],
+    [
+     "An alert processing rule that suppresses CPU alerts after midnight",
+     "A processing rule only changes what happens to alerts that fire. It does not judge what is unusual."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-5-02",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "Every Sunday from 01:00 to 03:00 the team patches servers and does not want alert emails during that time. Alert rules should stay active. What do you use?",
+   "o": [
+    [
+     "Delete all the alert rules now and recreate them on Monday",
+     "This is manual, error-prone and loses alert history for the rules."
+    ],
+    [
+     "Change the alert rules' evaluation frequency to 24 hours",
+     "A slower check does not give a quiet window. Alerts would fire at other times."
+    ],
+    [
+     "An alert processing rule with a schedule that suppresses notifications",
+     "Right. Processing rules change what happens to fired alerts, such as suppression in a window."
+    ],
+    [
+     "Create a second set of rules with a higher threshold",
+     "That adds work and still sends alerts during the window."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-5-03",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "In a Log Analytics workspace you need the number of heartbeat records per computer over the last hour. Which KQL query is right?",
+   "o": [
+    [
+     "Heartbeat | where TimeGenerated > ago(1h) | summarize count() by Computer",
+     "Right. KQL starts with a table and pipes it through filters and summaries."
+    ],
+    [
+     "Heartbeat | where TimeGenerated < ago(1h) | summarize count() by Computer",
+     "This is valid KQL but counts records older than one hour, not the last hour."
+    ],
+    [
+     "Heartbeat | where TimeGenerated > ago(1h) | summarize count() by Resource",
+     "Heartbeat groups by Computer. Resource is a column of other tables, so this does not give counts per computer."
+    ],
+    [
+     "Heartbeat | count by Computer in last 1h",
+     "Count has no by or in clause. Use summarize and where."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-5-04",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "A storage account's blob read and write requests must be kept for 180 days for review. Platform metrics are already shown in the portal. What must you configure?",
+   "o": [
+    [
+     "A diagnostic setting sending resource logs to Log Analytics",
+     "Right. Resource logs are off until a diagnostic setting sends them somewhere. The workspace keeps them for the chosen period."
+    ],
+    [
+     "Nothing, because resource logs are collected on by default",
+     "Resource logs are not collected until a diagnostic setting exists."
+    ],
+    [
+     "Increase the metrics retention to 180 days",
+     "Platform metrics are kept for 93 days and are not request logs."
+    ],
+    [
+     "Create a resource lock on the account",
+     "Locks do not record requests."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-5-05",
+   "d": "5.0",
+   "obj": "5.1",
+   "q": "VM insights is enabled but the dependency map and performance charts for a VM stay empty. The VM runs and is reachable. What is the most likely cause?",
+   "o": [
+    [
+     "The VM needs a public IP address to send data to the workspace",
+     "Monitoring does not need a public IP."
+    ],
+    [
+     "The VM must be in an availability set",
+     "Availability sets are unrelated to monitoring."
+    ],
+    [
+     "No Azure Monitor Agent, or no data collection rule linked",
+     "Right. VM insights needs the agent and a rule telling it what to collect and where to send it."
+    ],
+    [
+     "The workspace must be in a different subscription",
+     "Region and workspace rules matter, but subscription separation is not required."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-5-07",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A unit wants to back up Azure virtual machines and Azure Files shares with Azure Backup. Which vault type do you create?",
+   "o": [
+    [
+     "A Backup vault",
+     "Backup vaults cover newer workloads such as blobs and disks, not VMs."
+    ],
+    [
+     "A Recovery Services vault",
+     "Right. Recovery Services vaults protect VMs and Azure Files, along with other workloads."
+    ],
+    [
+     "An Azure Site Recovery vault",
+     "Site Recovery uses a Recovery Services vault too. It is not a separate vault type and does not back up VMs by itself."
+    ],
+    [
+     "A Backup vault with soft delete turned on",
+     "Soft delete does not change what a Backup vault can protect. It still cannot hold VM backups."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-5-08",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A VM was damaged by a bad update. You want to restore it from the nightly backup but keep the damaged VM until you compare the two. Which restore option do you choose?",
+   "o": [
+    [
+     "Replace existing",
+     "This overwrites the existing VM's disks, which destroys the damaged state."
+    ],
+    [
+     "Delete the VM and the vault",
+     "This destroys both the VM and the backups."
+    ],
+    [
+     "Stop protection and delete backup data",
+     "This removes the very recovery points you need."
+    ],
+    [
+     "Create new virtual machine",
+     "Right. This builds a new VM from the restore point and leaves the original untouched for comparison."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-5-09",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "Auditors require monthly VM backups kept for 7 years, and nightly backups kept for 30 days. How do you set this up?",
+   "o": [
+    [
+     "Set the daily backup retention to 84 months",
+     "That keeps every daily backup for 7 years and costs far more than needed."
+    ],
+    [
+     "Take manual snapshots each month and email them to the auditors",
+     "Snapshots are not an auditable backup and live with the disk."
+    ],
+    [
+     "Use one backup policy with daily retention of 30 days and monthly retention of 84 months",
+     "Right. One policy can combine short-term and long-term retention rules."
+    ],
+    [
+     "Use geo-redundant storage instead of retention rules",
+     "Redundancy protects against loss of a region. It does not set how long backups are kept."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-5-10",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "A line-of-business VM must be running in a second Azure region within an hour of a regional outage, with a few minutes of data loss at most. The auditors also want monthly copies kept for one year. What do you use?",
+   "o": [
+    [
+     "Azure Site Recovery for failover and Azure Backup for the yearly copies",
+     "Right. Site Recovery gives the low recovery time and data loss. Backup gives long-term retention. Each does a different job."
+    ],
+    [
+     "Azure Backup alone, with a geo-redundant vault and cross-region restore",
+     "Restoring from a vault takes longer, and backups run hours apart, so recovery time and data loss would be too high."
+    ],
+    [
+     "Azure Site Recovery alone, keeping its recovery points for one year",
+     "Site Recovery keeps recovery points for 15 days at most (3 days for unmanaged disks). It is not a long-term retention tool."
+    ],
+    [
+     "Zone-redundant VMs with a geo-redundant storage account",
+     "Zones cover a datacenter loss in one region. They do not start the VM in a second region."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-5-11",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "After a failover to the secondary region using Site Recovery, the unit wants to replicate the VM back toward the original region. What step do they take?",
+   "o": [
+    [
+     "Run another test failover in an isolated network",
+     "A test failover checks the plan in an isolated network. It does not reverse replication."
+    ],
+    [
+     "Delete the recovery plan and start over",
+     "Deleting the plan removes the plan and does not start reverse replication."
+    ],
+    [
+     "Stop the replicated VM and commit the failover",
+     "A commit finalizes the failover and does not reverse replication."
+    ],
+    [
+     "Re-protect the failed-over VM",
+     "Right. Re-protect reverses replication, so changes made in the secondary flow back for a later failback."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-5-12",
+   "d": "5.0",
+   "obj": "5.2",
+   "q": "The security lead wants a report that shows backup job status and storage use for several vaults, and alerts for failed backups. What do you configure?",
+   "o": [
+    [
+     "A budget alert on the vaults at 80 percent of monthly spend",
+     "Budgets watch spending and do not report backup jobs."
+    ],
+    [
+     "Vault diagnostics to Log Analytics, then reports",
+     "Right. Backup reports are built on data sent to Log Analytics, and built-in alerts cover failures."
+    ],
+    [
+     "A resource lock on each vault to block deletes and changes",
+     "Locks stop deletes and report nothing."
+    ],
+    [
+     "A tag called Backup on each VM and on every vault",
+     "Tags are labels. They do not produce reports."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-1-18",
+   "d": "1.0",
+   "obj": "1.3",
+   "q": "A resource group is tagged CostCenter=Unit42, but VMs created in it have no tag, so the cost report by tag misses them. New resources should take the group's tag automatically. What do you use?",
+   "o": [
+    [
+     "Nothing, since tags on a group are copied to its resources automatically",
+     "Tags on a group are not inherited by default, which is why the report is missing them."
+    ],
+    [
+     "A CanNotDelete lock on the resource group",
+     "Locks block deletes. They do not add tags."
+    ],
+    [
+     "A Deny policy that requires the tag on every resource",
+     "Deny would block creation of untagged resources instead of adding the tag for the user."
+    ],
+    [
+     "An Azure Policy with the Modify effect that copies the tag from the resource group",
+     "Right. Modify can add or change tags at create time, so new resources get the group's value."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "a4-2-14",
+   "d": "2.0",
+   "obj": "2.2",
+   "q": "A new storage account is created with default settings and no extra options. How is its data at rest protected?",
+   "o": [
+    [
+     "It stays unencrypted until an admin turns encryption on",
+     "Encryption at rest cannot be left off. It is on from the start."
+    ],
+    [
+     "It is encrypted automatically with Microsoft-managed keys",
+     "Right. Storage encryption at rest is always on and uses Microsoft-managed keys unless you choose your own."
+    ],
+    [
+     "Only blobs are encrypted. File shares and queues are not",
+     "Encryption applies to all storage services in the account."
+    ],
+    [
+     "It is encrypted only after a Key Vault is attached",
+     "Key Vault is needed only for customer-managed keys. The default does not use it."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "a4-3-18",
+   "d": "3.0",
+   "obj": "3.1",
+   "q": "Before deploying a Bicep file to a production resource group, the team lead wants to see which resources would be created, changed or deleted, without changing anything. What do you run?",
+   "o": [
+    [
+     "az deployment group what-if with the Bicep file",
+     "Right. What-if compares the file with the group and lists the changes it would make, without applying them."
+    ],
+    [
+     "az deployment group validate with the Bicep file",
+     "Validate checks that the template can be deployed. It does not list the changes."
+    ],
+    [
+     "az group export for the resource group",
+     "Export writes the current state to a template. It does not preview a new deployment."
+    ],
+    [
+     "az deployment group create in Complete mode",
+     "This applies the changes, and Complete mode can delete resources."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "a4-4-15",
+   "d": "4.0",
+   "obj": "4.3",
+   "q": "You create a public Azure DNS zone for unit-example.org and add the records, but lookups from the Internet still fail. The domain is registered with another company. What is missing?",
+   "o": [
+    [
+     "A virtual network link on the zone",
+     "Links apply to private DNS zones, not public ones."
+    ],
+    [
+     "An A record for the zone's name at the registrar",
+     "Records in the Azure zone do nothing until the domain is delegated to it."
+    ],
+    [
+     "Set the domain's name servers at the registrar to the four Azure DNS name servers",
+     "Right. The registrar must delegate the domain to Azure DNS, or no resolver asks the zone."
+    ],
+    [
+     "Auto-registration turned on for the zone",
+     "Auto-registration is a private zone feature for VM records."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "a4-p-01",
+   "t": "pbq",
+   "kind": "term",
+   "d": "4.0",
+   "obj": "4.2",
+   "dom": "4.0",
+   "title": "Find why SSH to a VM is blocked",
+   "short": "Effective NSG rules",
+   "scenario": "Admins on the 10.2.0.0/24 subnet cannot open SSH to web01 in the sandbox group rg-lab. You are in Azure Cloud Shell (bash) with written permission to troubleshoot and make one narrow change in this sandbox. Find out which rule blocks the traffic, then fix it without weakening the network for anyone else.",
+   "ticket": "Ticket NET-118 (approved by the sandbox owner): allow SSH from 10.2.0.0/24 only. The deny-ssh-baseline rule belongs to the security team and must stay. Scope: group rg-lab only.",
+   "host": "cloudshell",
+   "intro": "Azure Cloud Shell (bash). Azure CLI is signed in and rg-lab is the default group. Type a command, or help to list them.",
+   "suggest": [
+    "az account show",
+    "az network nsg rule list --nsg-name nsg1 --resource-group rg-lab -o table",
+    "az network nic list-effective-nsg --name web01-nic --resource-group rg-lab"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "whoami"
+     ],
+     "out": "unit-user"
+    },
+    {
+     "run": [
+      "az account show",
+      "az account show -o table"
+     ],
+     "out": "EnvironmentName  IsDefault  Name            State\nAzureCloud       True       Sandbox-Unit42  Enabled",
+     "fx": "acct:show"
+    },
+    {
+     "run": [
+      "az vm list-ip-addresses -g rg-lab -o table",
+      "az vm list-ip-addresses --resource-group rg-lab -o table"
+     ],
+     "out": "VirtualMachine    PrivateIPAddresses\nweb01             10.1.1.4"
+    },
+    {
+     "run": [
+      "az network nic list-effective-nsg --name web01-nic --resource-group rg-lab",
+      "az network nic list-effective-nsg --resource-group rg-lab --name web01-nic",
+      "az network nic list-effective-nsg -n web01-nic -g rg-lab"
+     ],
+     "out": "NSG: nsg1 (applied to subnet snet-web)\nPriority  Name                Access  Dir  Source         Port\n200       deny-ssh-baseline   Deny    In   *              22\n300       allow-ssh-admin     Allow   In   10.2.0.0/24   22\n65000     AllowVnetInBound    Allow   In   VirtualNetwork *\n65001     AllowAzureLoadBalancerInBound Allow In AzureLoadBalancer *\n65500     DenyAllInBound      Deny    In   *              *",
+     "alt": {
+      "if": "fix:prio",
+      "out": "NSG: nsg1 (applied to subnet snet-web)\nPriority  Name                Access  Dir  Source         Port\n150       allow-ssh-admin     Allow   In   10.2.0.0/24   22\n200       deny-ssh-baseline   Deny    In   *              22\n65000     AllowVnetInBound    Allow   In   VirtualNetwork *\n65001     AllowAzureLoadBalancerInBound Allow In AzureLoadBalancer *\n65500     DenyAllInBound      Deny    In   *              *"
+     },
+     "fx": "eff:read"
+    },
+    {
+     "run": [
+      "az network nsg rule list --nsg-name nsg1 --resource-group rg-lab -o table",
+      "az network nsg rule list --resource-group rg-lab -o table --nsg-name nsg1",
+      "az network nsg rule list -o table --nsg-name nsg1 --resource-group rg-lab",
+      "az network nsg rule list -o table --resource-group rg-lab --nsg-name nsg1",
+      "az network nsg rule list --resource-group rg-lab --nsg-name nsg1 -o table",
+      "az network nsg rule list --nsg-name nsg1 -o table --resource-group rg-lab",
+      "az network nsg rule list --nsg-name nsg1 --resource-group rg-lab"
+     ],
+     "out": "Name                Priority  Access  Direction  Source         DestPort\ndeny-ssh-baseline   200       Deny    Inbound    *              22\nallow-ssh-admin     300       Allow   Inbound    10.2.0.0/24   22",
+     "alt": {
+      "if": "fix:prio",
+      "out": "Name                Priority  Access  Direction  Source         DestPort\nallow-ssh-admin     150       Allow   Inbound    10.2.0.0/24   22\ndeny-ssh-baseline   200       Deny    Inbound    *              22"
+     },
+     "fx": "rules:read"
+    },
+    {
+     "run": [
+      "az network watcher test-ip-flow --vm web01 --direction Inbound --protocol TCP --local 10.1.1.4:22 --remote 10.2.0.5:5000",
+      "az network watcher test-ip-flow --direction Inbound --protocol TCP --local 10.1.1.4:22 --remote 10.2.0.5:5000 --vm web01",
+      "az network watcher test-ip-flow --protocol TCP --local 10.1.1.4:22 --remote 10.2.0.5:5000 --vm web01 --direction Inbound",
+      "az network watcher test-ip-flow --local 10.1.1.4:22 --remote 10.2.0.5:5000 --vm web01 --direction Inbound --protocol TCP",
+      "az network watcher test-ip-flow --remote 10.2.0.5:5000 --vm web01 --direction Inbound --protocol TCP --local 10.1.1.4:22",
+      "az network watcher test-ip-flow --remote 10.2.0.5:5000 --local 10.1.1.4:22 --protocol TCP --direction Inbound --vm web01",
+      "az network watcher test-ip-flow --local 10.1.1.4:22 --protocol TCP --direction Inbound --vm web01 --remote 10.2.0.5:5000",
+      "az network watcher test-ip-flow --protocol TCP --direction Inbound --vm web01 --remote 10.2.0.5:5000 --local 10.1.1.4:22",
+      "az network watcher test-ip-flow --direction Inbound --vm web01 --remote 10.2.0.5:5000 --local 10.1.1.4:22 --protocol TCP",
+      "az network watcher test-ip-flow --vm web01 --remote 10.2.0.5:5000 --local 10.1.1.4:22 --protocol TCP --direction Inbound"
+     ],
+     "out": "Access: Deny\nRuleName: securityRules/deny-ssh-baseline",
+     "alt": {
+      "if": "fix:prio",
+      "out": "Access: Allow\nRuleName: securityRules/allow-ssh-admin"
+     },
+     "fx": "flow:test"
+    },
+    {
+     "run": [
+      "az network nsg rule update --nsg-name nsg1 --resource-group rg-lab --name allow-ssh-admin --priority 150",
+      "az network nsg rule update --resource-group rg-lab --name allow-ssh-admin --priority 150 --nsg-name nsg1",
+      "az network nsg rule update --name allow-ssh-admin --priority 150 --nsg-name nsg1 --resource-group rg-lab",
+      "az network nsg rule update --priority 150 --nsg-name nsg1 --resource-group rg-lab --name allow-ssh-admin",
+      "az network nsg rule update --priority 150 --name allow-ssh-admin --resource-group rg-lab --nsg-name nsg1",
+      "az network nsg rule update --name allow-ssh-admin --resource-group rg-lab --nsg-name nsg1 --priority 150",
+      "az network nsg rule update --resource-group rg-lab --nsg-name nsg1 --priority 150 --name allow-ssh-admin",
+      "az network nsg rule update --nsg-name nsg1 --priority 150 --name allow-ssh-admin --resource-group rg-lab",
+      "az network nsg rule update -g rg-lab --nsg-name nsg1 -n allow-ssh-admin --priority 150"
+     ],
+     "out": "{\n  \"name\": \"allow-ssh-admin\",\n  \"priority\": 150,\n  \"access\": \"Allow\",\n  \"sourceAddressPrefix\": \"10.2.0.0/24\",\n  \"destinationPortRange\": \"22\"\n}",
+     "fx": "fix:prio"
+    },
+    {
+     "run": [
+      "az network nsg rule update --nsg-name nsg1 --resource-group rg-lab --name allow-ssh-admin --priority 400",
+      "az network nsg rule update --resource-group rg-lab --name allow-ssh-admin --priority 400 --nsg-name nsg1",
+      "az network nsg rule update --name allow-ssh-admin --priority 400 --nsg-name nsg1 --resource-group rg-lab",
+      "az network nsg rule update --priority 400 --nsg-name nsg1 --resource-group rg-lab --name allow-ssh-admin",
+      "az network nsg rule update --priority 400 --name allow-ssh-admin --resource-group rg-lab --nsg-name nsg1",
+      "az network nsg rule update --name allow-ssh-admin --resource-group rg-lab --nsg-name nsg1 --priority 400",
+      "az network nsg rule update --resource-group rg-lab --nsg-name nsg1 --priority 400 --name allow-ssh-admin",
+      "az network nsg rule update --nsg-name nsg1 --priority 400 --name allow-ssh-admin --resource-group rg-lab"
+     ],
+     "out": "{\n  \"name\": \"allow-ssh-admin\",\n  \"priority\": 400\n}",
+     "fx": "fix:worse"
+    },
+    {
+     "run": [
+      "az network nsg rule create --nsg-name nsg1 -n o1 --priority 100 --source-address-prefixes * --destination-port-ranges 22",
+      "az network nsg rule create -n o1 --priority 100 --source-address-prefixes * --destination-port-ranges 22 --nsg-name nsg1",
+      "az network nsg rule create --priority 100 --source-address-prefixes * --destination-port-ranges 22 --nsg-name nsg1 -n o1",
+      "az network nsg rule create --source-address-prefixes * --destination-port-ranges 22 --nsg-name nsg1 -n o1 --priority 100",
+      "az network nsg rule create --destination-port-ranges 22 --nsg-name nsg1 -n o1 --priority 100 --source-address-prefixes *",
+      "az network nsg rule create --destination-port-ranges 22 --source-address-prefixes * --priority 100 -n o1 --nsg-name nsg1",
+      "az network nsg rule create --source-address-prefixes * --priority 100 -n o1 --nsg-name nsg1 --destination-port-ranges 22",
+      "az network nsg rule create --priority 100 -n o1 --nsg-name nsg1 --destination-port-ranges 22 --source-address-prefixes *",
+      "az network nsg rule create -n o1 --nsg-name nsg1 --destination-port-ranges 22 --source-address-prefixes * --priority 100",
+      "az network nsg rule create --nsg-name nsg1 --destination-port-ranges 22 --source-address-prefixes * --priority 100 -n o1"
+     ],
+     "out": "{\n  \"name\": \"o1\",\n  \"priority\": 100,\n  \"sourceAddressPrefix\": \"*\",\n  \"destinationPortRange\": \"22\"\n}",
+     "fx": "trap:open"
+    },
+    {
+     "run": [
+      "az network nsg rule delete --nsg-name nsg1 --resource-group rg-lab --name deny-ssh-baseline",
+      "az network nsg rule delete --resource-group rg-lab --name deny-ssh-baseline --nsg-name nsg1",
+      "az network nsg rule delete --name deny-ssh-baseline --nsg-name nsg1 --resource-group rg-lab",
+      "az network nsg rule delete --name deny-ssh-baseline --resource-group rg-lab --nsg-name nsg1",
+      "az network nsg rule delete --resource-group rg-lab --nsg-name nsg1 --name deny-ssh-baseline",
+      "az network nsg rule delete --nsg-name nsg1 --name deny-ssh-baseline --resource-group rg-lab",
+      "az network nsg rule delete -g rg-lab --nsg-name nsg1 -n deny-ssh-baseline"
+     ],
+     "out": "Rule deny-ssh-baseline deleted.",
+     "fx": "trap:delrule"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Checked which subscription you are in before making the fix",
+     "why": "Confirming Sandbox-Unit42 first shows you are inside the approved scope.",
+     "after": "fix:prio",
+     "of": "acct:show"
+    },
+    {
+     "t": "Looked at the effective rules or tested the flow",
+     "has": [
+      "eff:read",
+      "flow:test",
+      "rules:read"
+     ],
+     "why": "Effective security rules and IP flow verify show which rule decides, in order of priority. Guessing wastes time."
+    },
+    {
+     "t": "Moved the allow rule above the deny rule (lower priority number)",
+     "has": "fix:prio",
+     "why": "The lowest number is checked first. At 150 the narrow allow for 10.2.0.0/24 matches before the deny at 200, so only that range gets in."
+    },
+    {
+     "t": "Re-tested the flow after the change",
+     "after": "flow:test",
+     "of": "fix:prio",
+     "why": "A test after the change proves it works. IP flow verify now reports Allow by allow-ssh-admin."
+    },
+    {
+     "t": "Did not open SSH to every source",
+     "lacks": "trap:open",
+     "why": "An allow from any source (*) at priority 100 would be checked before the deny at 200 and let in every network that can reach the VNet. The ticket asked for 10.2.0.0/24 only."
+    },
+    {
+     "t": "Did not delete the security team's baseline rule",
+     "lacks": "trap:delrule",
+     "why": "The baseline deny protects every other VM in the subnet and belongs to another team. Reordering is enough."
+    },
+    {
+     "t": "Did not make the allow rule weaker by raising its number",
+     "lacks": "fix:worse",
+     "why": "Priority 400 sits even further behind the deny at 200, so the block would stay."
+    }
+   ]
+  },
+  {
+   "id": "a4-p-02",
+   "t": "pbq",
+   "kind": "logsel",
+   "d": "5.0",
+   "obj": "5.1",
+   "dom": "5.0",
+   "title": "Read an Azure Activity log export",
+   "short": "Azure Activity log",
+   "scenario": "The subscription owner asked you to review last night's Azure Activity log export for the unit's sandbox subscription. You are authorized to read this export only. Mark every line that belongs to a possible account takeover, then say which alert would have told you at once.",
+   "ticket": "Ticket SEC-3310: odd changes reported at 02:30. Written approval from the subscription owner is attached. Export covers 01:00 to 08:30.",
+   "lines": [
+    {
+     "text": "01:00:03 Microsoft.Compute/virtualMachines/start/action vm-batch01 caller=runbook-nightly (managed identity) status=Succeeded ip=10.4.2.30",
+     "bad": 0,
+     "why": "A scheduled automation job starting a batch VM at its usual time. This is routine."
+    },
+    {
+     "text": "01:30:41 Microsoft.Compute/virtualMachines/extensions/write caller=runbook-nightly (managed identity) vm=web01 ip=10.4.2.30 status=Succeeded",
+     "bad": 0,
+     "why": "A scheduled automation job updating a VM extension at its usual hour. Routine."
+    },
+    {
+     "text": "02:14:31 Microsoft.Authorization/roleAssignments/write caller=admin2@unit.example ip=203.0.113.77 (outside US) role=Owner scope=subscription principal=ext-partner#EXT# (guest) status=Succeeded",
+     "bad": 1,
+     "why": "An admin account used from an unknown address gives a guest the Owner role on the whole subscription. That is the start of a takeover."
+    },
+    {
+     "text": "02:16:05 Microsoft.Network/networkSecurityGroups/securityRules/write caller=admin2@unit.example ip=203.0.113.77 nsg=nsg-web rule=allow-rdp-any source=* port=3389 priority=100 status=Succeeded",
+     "bad": 1,
+     "why": "The same caller opens RDP to the whole Internet at the top priority. This gives the attacker a way in to the VMs."
+    },
+    {
+     "text": "02:18:40 microsoft.insights/diagnosticSettings/delete caller=admin2@unit.example ip=203.0.113.77 resource=stunit42data setting=send-to-workspace status=Succeeded",
+     "bad": 1,
+     "why": "Turning off log collection hides later actions. Attackers often do this early."
+    },
+    {
+     "text": "02:19:12 Microsoft.Storage/storageAccounts/write caller=admin2@unit.example ip=203.0.113.77 resource=stunit42data change=allowBlobPublicAccess=true status=Succeeded",
+     "bad": 1,
+     "why": "This lets containers be made public, a common step before exposing data. It comes from the same unusual caller and address."
+    },
+    {
+     "text": "02:21:50 Microsoft.Network/networkSecurityGroups/securityRules/write caller=svc-deploy@unit.example ip=198.51.100.9 (outside US) nsg=nsg-db rule=allow-sql-any source=* port=1433 priority=110 status=Succeeded",
+     "bad": 1,
+     "why": "A different identity, also from an unknown outside address, opens SQL to the whole Internet. The caller changes but the pattern is the same attack."
+    },
+    {
+     "text": "03:00:15 microsoft.insights/autoscalesettings/scaleup/action vmss-web 2 to 3 caller=Microsoft.Insights/autoscaleSettings status=Succeeded",
+     "bad": 0,
+     "why": "Autoscale reacting to load. It is the expected system caller."
+    },
+    {
+     "text": "05:40:12 Microsoft.Authorization/roleAssignments/write caller=admin2@unit.example ip=10.4.2.11 (unit office) role=Reader scope=rg-app principal=audit-team (group) status=Succeeded",
+     "bad": 0,
+     "why": "The same admin account, but from the office and giving a read-only role to an internal group. The account name alone does not make a line bad."
+    },
+    {
+     "text": "06:00:10 Microsoft.Resources/tags/write rg-app caller=ops-lead@unit.example ip=10.4.2.11 tag=CostCenter=Unit42 status=Succeeded",
+     "bad": 0,
+     "why": "A known operator tagging a group from the office. This is normal housekeeping."
+    },
+    {
+     "text": "06:15:22 Microsoft.Authorization/policyAssignments/write caller=ops-lead@unit.example ip=10.4.2.11 scope=rg-app policy=require-tag status=Succeeded",
+     "bad": 0,
+     "why": "A known operator assigning a tagging policy from the office. This is normal governance work."
+    },
+    {
+     "text": "08:02:17 Microsoft.Compute/virtualMachines/restart/action web01 caller=helpdesk1@unit.example ip=10.4.2.20 status=Succeeded",
+     "bad": 0,
+     "why": "A help-desk restart from the office hours after the event. It is not part of the attack."
+    }
+   ],
+   "ask": {
+    "label": "Which feature would have notified the owner as soon as the first bad change was made?",
+    "opts": [
+     "An Activity log alert on role assignment writes",
+     "A metric alert on VM CPU over 85 percent",
+     "A budget alert at 80 percent of spend",
+     "A VM insights chart of disk throughput"
+    ],
+    "a": 0,
+    "why": "The Activity log records control-plane changes such as role assignments. An Activity log alert on that operation, tied to an action group, notifies the moment it is written. Metric alerts, budgets and performance charts do not see role changes."
+   }
+  },
+  {
+   "id": "a4-p-03",
+   "t": "pbq",
+   "kind": "rules",
+   "d": "5.0",
+   "obj": "5.2",
+   "dom": "5.0",
+   "title": "Restore a damaged VM from Azure Backup",
+   "short": "VM restore order",
+   "scenario": "A bad update left vm-app01 unusable. The VM is protected by Azure Backup in a Recovery Services vault. Build the restore plan in a sensible order. Some ideas do not belong. Add the steps in the order they should happen.",
+   "ticket": "Change CHG-4402 (approved): restore vm-app01 from last night's recovery point. Keep the damaged VM until the owner signs off.",
+   "rules": [
+    {
+     "id": "a",
+     "text": "Open the vault, find vm-app01 under Backup items and pick last night's recovery point",
+     "need": 1,
+     "why": "You need to know which recovery point is good before anything is changed."
+    },
+    {
+     "id": "b",
+     "text": "Choose Create new virtual machine and restore into a new resource group",
+     "need": 1,
+     "why": "A new VM leaves the damaged one untouched for comparison, and a separate group avoids name clashes."
+    },
+    {
+     "id": "c",
+     "text": "Watch Backup jobs until the restore job shows Completed",
+     "need": 1,
+     "why": "The restored VM is not ready until the job ends. Check for failures here."
+    },
+    {
+     "id": "d",
+     "text": "Start the restored VM and test the app and its data",
+     "need": 1,
+     "why": "Testing proves the restore is good before any user is moved to it."
+    },
+    {
+     "id": "e",
+     "text": "Point the app's DNS name or load balancer to the restored VM",
+     "need": 1,
+     "why": "Only after the tests pass should users be sent to the new VM."
+    },
+    {
+     "id": "f",
+     "text": "Record the result in the change ticket and keep the old VM until the owner signs off",
+     "need": 1,
+     "why": "A written result closes the change. Keeping the old VM leaves a way back."
+    },
+    {
+     "id": "g",
+     "text": "Delete the damaged VM before starting the restore",
+     "need": 0,
+     "why": "Deleting first removes your comparison copy and your fallback if the restore fails."
+    },
+    {
+     "id": "h",
+     "text": "Stop protection and delete backup data to free up space",
+     "need": 0,
+     "why": "This removes the recovery points you are about to use."
+    },
+    {
+     "id": "i",
+     "text": "Choose Replace existing without checking the recovery point date",
+     "need": 0,
+     "why": "Replace overwrites the current disks. Doing it without checking the point risks restoring the wrong data."
+    },
+    {
+     "id": "j",
+     "text": "Restore disks only and attach them to the damaged VM before testing",
+     "need": 0,
+     "why": "This changes the damaged VM before you know the restore is good, and it loses your comparison copy."
+    }
+   ],
+   "before": [
+    {
+     "a": "a",
+     "b": "b",
+     "why": "Pick the recovery point first. The restore options apply to that point."
+    },
+    {
+     "a": "b",
+     "b": "c",
+     "why": "The restore job must be started with its settings before you can watch it."
+    },
+    {
+     "a": "c",
+     "b": "d",
+     "why": "Test only after the job has finished and the VM exists."
+    },
+    {
+     "a": "d",
+     "b": "e",
+     "why": "Move users only after the restored VM passes testing."
+    }
+   ],
+   "last": {
+    "id": "f",
+    "why": "The ticket is closed last, once the restored VM is in use and the result is known."
+   }
+  },
+  {
+   "id": "a4-p-04",
+   "t": "pbq",
+   "kind": "diagram",
+   "d": "4.0",
+   "obj": "4.1",
+   "dom": "4.0",
+   "title": "Build a hub-and-spoke network",
+   "short": "Hub and spoke",
+   "scenario": "The unit is building a hub-and-spoke network in a sandbox subscription. Place each part in the right spot. Three parts in the tray do not belong in this design.",
+   "ticket": "Design note NET-22 (approved). Rules: spokes talk to each other only through a central firewall, spokes reach the Internet through the same firewall, and admins reach VMs from the portal with no public IPs.",
+   "top": "Azure subscription (sandbox)",
+   "slots": [
+    {
+     "label": "Spot A",
+     "zone": "Shared network",
+     "hint": "holds the firewall and shared services; spokes connect to it"
+    },
+    {
+     "label": "Spot B",
+     "zone": "Link",
+     "hint": "connects hub and spoke networks; needs non-overlapping address spaces"
+    },
+    {
+     "label": "Spot C",
+     "zone": "Inspection",
+     "hint": "central place where traffic is filtered and logged"
+    },
+    {
+     "label": "Spot D",
+     "zone": "Routing",
+     "hint": "steers traffic from the spoke subnets toward the central inspection point"
+    },
+    {
+     "label": "Spot E",
+     "zone": "Admin access",
+     "hint": "secure admin access to VMs from the portal, with no public IPs"
+    }
+   ],
+   "devs": [
+    {
+     "id": "hub",
+     "name": "Hub virtual network",
+     "slot": 0,
+     "why": "The hub holds shared services such as the firewall and Bastion, and each spoke connects to it."
+    },
+    {
+     "id": "peer",
+     "name": "Virtual network peering",
+     "slot": 1,
+     "why": "Peering links the hub and each spoke privately over the Microsoft backbone. Address spaces must not overlap."
+    },
+    {
+     "id": "fw",
+     "name": "Azure Firewall",
+     "slot": 2,
+     "why": "A firewall in the hub is the central point for filtering and logging traffic between spokes and to the Internet."
+    },
+    {
+     "id": "udr",
+     "name": "User-defined route to the firewall",
+     "slot": 3,
+     "why": "A route table on the spoke subnets sends 0.0.0.0/0 to the firewall, because peering alone is not transitive."
+    },
+    {
+     "id": "bas",
+     "name": "Azure Bastion",
+     "slot": 4,
+     "why": "Bastion gives portal RDP and SSH over TLS with no public IPs. It lives in a subnet named AzureBastionSubnet."
+    },
+    {
+     "id": "vpn",
+     "name": "VPN gateway to a branch office",
+     "slot": -1,
+     "why": "The design has no branch office. A gateway is not needed for spoke-to-spoke or Internet traffic."
+    },
+    {
+     "id": "plb",
+     "name": "Public load balancer",
+     "slot": -1,
+     "why": "A public load balancer exposes services to the Internet. It does not filter or link networks."
+    },
+    {
+     "id": "asg",
+     "name": "Application security group",
+     "slot": -1,
+     "why": "ASGs group NICs for NSG rules. They do not link networks or route traffic."
+    },
+    {
+     "id": "rgw",
+     "name": "Peering with Use remote gateways",
+     "slot": -1,
+     "why": "That setting needs a VPN or ExpressRoute gateway in the hub. This design has none, and it does not inspect traffic."
+    }
+   ]
+  },
+  {
+   "id": "a4-p-05",
+   "t": "pbq",
+   "kind": "term",
+   "d": "2.0",
+   "obj": "2.1",
+   "dom": "2.0",
+   "title": "Give a partner revocable blob access",
+   "short": "SAS and stored policy",
+   "scenario": "A partner must read files in the blob container reports on the sandbox storage account stunit42data. You are in Azure Cloud Shell (bash) with written permission to do this in the sandbox. Give the partner access that you can end on the day the contract does, without touching the account keys the finance app uses. Then end the access, as if the contract had just finished.",
+   "ticket": "Task STG-58 (approved by the sandbox owner): read-only, expires 2026-12-31, container reports only. Do not rotate account keys (the finance app uses them) and do not make the container public.",
+   "host": "cloudshell",
+   "intro": "Azure Cloud Shell (bash). Azure CLI is signed in and the storage account stunit42data is preset as the default. Type a command, or help to list them.",
+   "suggest": [
+    "az account show",
+    "az storage container list",
+    "az storage container policy list --container-name reports"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "whoami"
+     ],
+     "out": "unit-user"
+    },
+    {
+     "run": [
+      "az account show",
+      "az account show -o table"
+     ],
+     "out": "Name              CloudName    State    IsDefault\nSandbox-Unit42    AzureCloud   Enabled  True",
+     "fx": "acct:show"
+    },
+    {
+     "run": [
+      "az storage container list",
+      "az storage container list -o table"
+     ],
+     "out": "Name      PublicAccess\nreports   None\narchive   None"
+    },
+    {
+     "run": [
+      "az storage container policy create --container-name reports --name partner-read --permissions r --expiry 2026-12-31",
+      "az storage container policy create --name partner-read --permissions r --expiry 2026-12-31 --container-name reports",
+      "az storage container policy create --permissions r --expiry 2026-12-31 --container-name reports --name partner-read",
+      "az storage container policy create --expiry 2026-12-31 --container-name reports --name partner-read --permissions r",
+      "az storage container policy create --expiry 2026-12-31 --permissions r --name partner-read --container-name reports",
+      "az storage container policy create --permissions r --name partner-read --container-name reports --expiry 2026-12-31",
+      "az storage container policy create --name partner-read --container-name reports --expiry 2026-12-31 --permissions r",
+      "az storage container policy create --container-name reports --expiry 2026-12-31 --permissions r --name partner-read",
+      "az storage container policy create -n partner-read --container-name reports --permissions r --expiry 2026-12-31"
+     ],
+     "out": "{\n  \"name\": \"partner-read\",\n  \"permission\": \"r\",\n  \"expiry\": \"2026-12-31T00:00:00+00:00\"\n}",
+     "fx": "pol:create"
+    },
+    {
+     "run": [
+      "az storage container policy list --container-name reports",
+      "az storage container policy list --container-name reports -o table"
+     ],
+     "out": "{}",
+     "alt": {
+      "if": "pol:create",
+      "out": "{\n  \"partner-read\": {\"permission\": \"r\", \"expiry\": \"2026-12-31T00:00:00+00:00\"}\n}"
+     }
+    },
+    {
+     "run": [
+      "az storage container generate-sas --name reports --policy-name partner-read",
+      "az storage container generate-sas --policy-name partner-read --name reports"
+     ],
+     "out": "sv=2024-11-04&sr=c&si=partner-read&sig=REDACTED",
+     "fx": "sas:policy"
+    },
+    {
+     "run": [
+      "az storage container generate-sas --name reports --permissions r --expiry 2026-12-31",
+      "az storage container generate-sas --permissions r --expiry 2026-12-31 --name reports",
+      "az storage container generate-sas --expiry 2026-12-31 --name reports --permissions r",
+      "az storage container generate-sas --expiry 2026-12-31 --permissions r --name reports",
+      "az storage container generate-sas --permissions r --name reports --expiry 2026-12-31",
+      "az storage container generate-sas --name reports --expiry 2026-12-31 --permissions r"
+     ],
+     "out": "se=2026-12-31T00%3A00%3A00Z&sp=r&sr=c&sig=REDACTED",
+     "fx": "sas:adhoc"
+    },
+    {
+     "run": [
+      "az storage container policy delete --container-name reports --name partner-read",
+      "az storage container policy delete --name partner-read --container-name reports"
+     ],
+     "out": "{\n  \"deleted\": true\n}",
+     "fx": "pol:delete"
+    },
+    {
+     "run": [
+      "az storage account keys renew --account-name stunit42data -g rg-data --key key1",
+      "az storage account keys renew -g rg-data --key key1 --account-name stunit42data",
+      "az storage account keys renew --key key1 --account-name stunit42data -g rg-data",
+      "az storage account keys renew --key key1 -g rg-data --account-name stunit42data",
+      "az storage account keys renew -g rg-data --account-name stunit42data --key key1",
+      "az storage account keys renew --account-name stunit42data --key key1 -g rg-data"
+     ],
+     "out": "key1 regenerated. Apps that use the old key1 now get 403 errors.",
+     "fx": "trap:rotate"
+    },
+    {
+     "run": [
+      "az storage container set-permission --name reports --public-access blob",
+      "az storage container set-permission --public-access blob --name reports"
+     ],
+     "out": "{\n  \"publicAccess\": \"blob\"\n}",
+     "fx": "trap:public"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Checked which subscription you are in before creating the policy",
+     "why": "Sandbox-Unit42 confirms you are inside the approved scope.",
+     "after": "pol:create",
+     "of": "acct:show"
+    },
+    {
+     "t": "Created a stored access policy on the container",
+     "has": "pol:create",
+     "why": "A stored access policy holds the permissions and expiry on the container. SAS tokens that point to it can be changed or ended in one step."
+    },
+    {
+     "t": "Made the SAS from that policy",
+     "has": "sas:policy",
+     "why": "The token carries only the policy name. Rights and expiry come from the policy."
+    },
+    {
+     "t": "Did not issue an ad hoc SAS",
+     "lacks": "sas:adhoc",
+     "why": "An ad hoc SAS carries its own rights and can only be cancelled by rotating the signing key, which would break the finance app."
+    },
+    {
+     "t": "Ended the access by deleting the policy after issuing the SAS",
+     "after": "pol:delete",
+     "of": "sas:policy",
+     "why": "Once the policy is gone, the partner's token stops working at once and no key changes."
+    },
+    {
+     "t": "Did not rotate the account keys",
+     "lacks": "trap:rotate",
+     "why": "Rotating key1 would end the partner's access but also break the finance app, which the ticket forbids."
+    },
+    {
+     "t": "Did not make the container public",
+     "lacks": "trap:public",
+     "why": "Public access removes all control and exposes the data to the whole Internet."
+    }
+   ]
+  }
+ ]
+}

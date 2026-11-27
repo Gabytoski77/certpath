@@ -2578,7 +2578,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.92</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.93</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -6281,12 +6281,12 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.93",d:"2026-11-27",t:"Four new cloud practice exams: AZ-104, SC-500, AWS Solutions Architect (SAA-C03) and AWS Security Specialty (SCS-C03). Phones no longer zoom in when you tap a practice terminal."},
   {v:"2.92",d:"2026-11-27",t:"On laptop screens, the \u201cWhich certs to take\u201d text no longer covers the MyNextCert name. In Light mode, the globe keeps its map when the network is spotty."},
   {v:"2.91",d:"2026-11-27",t:"A new MyNextCert logo: a badge with an open side and an arrow pushing through it, for moving on to your next cert. New app and tab icons too."},
   {v:"2.90",d:"2026-11-26",t:"Four new practice exams: Azure Fundamentals (AZ-900), Cloud Practitioner (CLF-C02), Linux Essentials (010-200) and Security Essentials (020-100)."},
   {v:"2.89",d:"2026-11-26",t:"Two new Cisco practice exams: CCST Cybersecurity (100-160) and CCST Networking (100-150), each with hands-on questions."},
   {v:"2.88",d:"2026-11-26",t:"New hands-on practice questions in all the CompTIA exams: read logs, put rules in order, use a small terminal and fill in network diagrams."},
-  {v:"2.87",d:"2026-11-26",t:"On phones, a Jump to button in the corner of every guide. Smoother zoom into the globe. Link to any guide section, and share a practice set with a friend by link."},
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -11199,6 +11199,8 @@ GUIDES["Cloud Practitioner"]={
 
 GUIDES["Solutions Architect Associate"]={
   id:"saa",
+  mock:{c03:"qbank/saa-c03.json"},
+  mockText:"65 items in 130 minutes, like the real exam, with flags and a review screen. The real SAA-C03 is all multiple choice and multiple response; the 3 hands-on items here (drawn from terminal, logs, ordering and diagram labs) are extra practice.",
   lead:"AWS's most popular cert. It proves you can design systems on AWS that are secure, keep running when parts fail, perform well and don't waste money, following the Well-Architected Framework. Expect long scenarios where two answers would work and you pick the one that best fits what's asked: lowest cost, least effort or highest availability.",
   checked:"2026-11-11",
   planHours:80,
@@ -11410,6 +11412,8 @@ GUIDES["Solutions Architect Associate"]={
 
 GUIDES["Security Specialty"]={
   id:"scs",
+  mock:{c03:"qbank/scs-c03.json"},
+  mockText:"65 items in 170 minutes, like the real exam, with 4 hands-on items, flags and a review screen. The real SCS-C03 mixes multiple choice and multiple response with ordering and matching items; the hands-on items here practice those skills.",
   lead:"AWS's security deep dive. It proves you can detect threats, respond to incidents, lock down networks and compute, design IAM at scale, protect data with encryption and secrets, and govern many accounts at once. AWS recommends years of hands-on AWS security work, so it fits best after Solutions Architect Associate and some real cloud time.",
   checked:"2026-11-11",
   planHours:100,
@@ -11824,6 +11828,8 @@ GUIDES["Azure Fundamentals"]={
 
 GUIDES["Azure Administrator"]={
   id:"az104",
+  mock:{cur:"qbank/az-104.json"},
+  mockText:"50 items in 100 minutes, with 4 hands-on items (terminal, logs, ordering, diagram), flags and a review screen. Microsoft says 40 to 60 questions in 100 minutes, and some exams add case studies or labs, so this is a stand-in in the middle of that range.",
   lead:"Microsoft's hands-on Azure cert. It proves you can run an Azure environment day to day: users and access, governance, storage, virtual machines and apps, networking, monitoring and backup. It's a common requirement in Azure job posts, and the base for Microsoft's security and architect certs.",
   checked:"2026-11-11",
   planHours:90,
@@ -12035,6 +12041,8 @@ GUIDES["Azure Administrator"]={
 
 GUIDES["Cloud and AI Security Engineer"]={
   id:"sc500",
+  mock:{cur:"qbank/sc-500.json"},
+  mockText:"50 items in 100 minutes, with 4 hands-on items (logs, terminal, ordering, diagram), flags and a review screen. Microsoft says about 40 to 60 questions, and labs can add time, so this is a stand-in in the middle of that range.",
   lead:"Microsoft's Azure security cert, exam SC-500. It proves you can lock down identity, data, networks and compute in Azure and hybrid clouds, secure AI apps and agents, and run security posture and monitoring with Defender for Cloud and Microsoft Sentinel. It replaced Azure Security Engineer (AZ-500), which retired on Aug 31, 2026.",
   checked:"2026-11-11",
   planHours:100,

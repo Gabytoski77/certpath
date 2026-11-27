@@ -250,6 +250,9 @@
     ".px-dev[aria-pressed=true]{border-color:var(--v-accent);background:color-mix(in srgb,var(--v-accent) 16%,transparent)}.px-dev.ghost{position:fixed;z-index:200;pointer-events:none;opacity:.9;box-shadow:0 8px 24px rgba(0,0,0,.35)}" +
     ".px :focus-visible{outline:2px solid var(--v-accent);outline-offset:2px}" +
     "@media (max-width:640px){.px-cols{grid-template-columns:1fr}.px-dg{grid-template-columns:1fr}}" +
+    /* iPhone Safari zooms into any text box or dropdown under 16 px when you tap it, and the terminal line ends up off screen.
+       16 px on touch screens stops the zoom without turning pinch-zoom off; long commands still scroll sideways inside the box. */
+    "@media (pointer:coarse),(max-width:640px){.px-term input,.px-pick select{font-size:16px}}" +
     "@media (prefers-reduced-motion:no-preference){.px-slot,.px-rc,.px-dev,.px-ln{transition:background .2s,border-color .2s,box-shadow .2s}}";
   function addCss() {
     if (document.getElementById("pbqx-css")) return;
