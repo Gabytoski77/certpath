@@ -40,8 +40,9 @@ footer a{color:inherit}
 @media (prefers-reduced-motion:reduce){.go,.go span{transition:none}}
 """
 
-MARK = ('<svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M80 38A34 34 0 1 0 80 86" fill="none" stroke="currentColor" '
-        'stroke-width="16" stroke-linecap="round"/><circle cx="97" cy="25" r="9" fill="none" stroke="currentColor" stroke-width="6"/></svg>')
+MARK = ('<svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" '
+        'stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" '
+        'stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 
 h = "'sha256-%s'" % base64.b64encode(hashlib.sha256(CSS.encode("utf8")).digest()).decode()
 csp = ("default-src 'none'; style-src 'self' %s; font-src 'self'; img-src 'self'; manifest-src 'none'; "
