@@ -1,6 +1,6 @@
 /* MyNextCert service worker: makes the site installable and usable offline.
    Change VERSION whenever you upload a new index.html so phones pick it up quickly. */
-var VERSION = "certpath-v98";
+var VERSION = "certpath-v99";
 /* everything the app needs lives on this site (no outside servers). The page, icons and fonts are cached on install;
    three.js, Lenis and the 3D map file (world.js) are saved the first time they're used. Lite mode never loads them,
    so it never downloads them either. */
