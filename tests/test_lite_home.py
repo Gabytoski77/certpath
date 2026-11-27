@@ -120,3 +120,35 @@ def test_balanced_globe_is_set_to_hold_still():
     assert "AUTO=(reduced||GFX.tier>=1)?0:0.085" in src, "only High may turn the globe by itself"
     assert "if(t>=1) AUTO=0;" in src, "stepping down to Balanced must stop the spin"
     assert "GFX.tier===1&&fps<40?2" in src
+
+
+def _lite_blocked(browser, base_url, blocked):
+    """Lite home on a big sharp screen (it wants the biggest globe picture), with some picture files blocked,
+    like a work network that blocks them or a laptop offline with only some sizes saved."""
+    ctx = browser.new_context(viewport={"width": 1600, "height": 900}, device_scale_factor=2)
+    ctx.add_init_script("try{localStorage.setItem('cgcp.lite','on')}catch(e){}")
+    ctx.route("**/img/globe/*.webp", lambda r: r.abort() if blocked(r.request.url) else r.continue_())
+    p = ctx.new_page()
+    p.set_default_navigation_timeout(60000)
+    p.goto(base_url)
+    p.wait_for_timeout(4000)
+    return ctx, p
+
+
+def test_lite_globe_uses_another_size_when_its_picture_is_blocked(browser, base_url):
+    """v2.92: the size this screen wants fails, a smaller one loads: show that one, not a grid with no map."""
+    ctx, p = _lite_blocked(browser, base_url, lambda u: not u.endswith("-1000.webp"))
+    try:
+        assert p.evaluate("!document.querySelector('#gstill')"), "fell back to the drawn globe"
+        src = p.evaluate("(document.querySelector('#gpic img')||{}).getAttribute&&document.querySelector('#gpic img').getAttribute('src')")
+        assert src and src.endswith("-1000.webp"), src
+    finally:
+        ctx.close()
+
+
+def test_lite_globe_is_drawn_when_no_picture_loads(browser, base_url):
+    ctx, p = _lite_blocked(browser, base_url, lambda u: True)
+    try:
+        assert p.evaluate("!!document.querySelector('#gstill') && !document.querySelector('#gpic')")
+    finally:
+        ctx.close()

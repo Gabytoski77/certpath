@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-rdbAf2NS4YopPwN4do6ME/3aYKCa6DvRgkOSlXuyZQY=' 'sha256-MiqjbLVpTE7Rqp4MFjQB8bZU2inPpEBGtLRHiVRaUmw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-V9qj8wGyFHkXVhw4e0I/hf9XPb+wZCVT1x1nbVun1GA=' 'sha256-MiqjbLVpTE7Rqp4MFjQB8bZU2inPpEBGtLRHiVRaUmw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -3517,7 +3517,7 @@ var GFX=(function(){
 })();
 if(GFX.tier>=1) document.documentElement.classList.add("gfx-bal");
 if(GFX.tier>=2) document.documentElement.classList.add("gfx-light");
-var still={cv:null,ctx:null,R:0,R0:0,lon:-40,lat:22,rings:null,on:false,mode:"",pic:null,img:null,views:null,shown:-1,tok:0};   /* the still globe (see stillInit) */
+var still={cv:null,ctx:null,R:0,R0:0,lon:-40,lat:22,rings:null,on:false,mode:"",pic:null,img:null,views:null,shown:-1,tok:0,bad:{}};   /* the still globe (see stillInit) */
 /* Lite, and Graphics set to Light, are the same still version (v2.58): a picture of the globe, no animations */
 if(LITE.on||GFX.tier>=2){
   reduced=true;document.documentElement.classList.add("lite");
@@ -4003,15 +4003,21 @@ function stillDrawn(){
   if(worldGeo) stillGeo(worldGeo);else loadWorld();
   resize();if(frontIdx>=0) stillFace(frontIdx);
 }
-/* the smallest saved size that covers the globe at this screen's pixel density */
+/* the smallest saved size that covers the globe at this screen's pixel density.
+   v2.92: a size that failed to load is skipped, so a blocked or offline network falls back to any size this browser
+   already saved (a new screen size used to ask only for the missing one, fail, and show a grid with no map).
+   null = no size left to try. */
 function stillSrc(i){
-  var j=still.views, s=j.sizes||[1000], need=2*j.span*Math.max(still.R,still.R0)*Math.min(window.devicePixelRatio||1,2), pick=s[s.length-1];
+  var j=still.views, id=VENDORS[i].id, s=(j.sizes||[1000]).filter(function(n){return !still.bad[id+"-"+n];}),
+      need=2*j.span*Math.max(still.R,still.R0)*Math.min(window.devicePixelRatio||1,2), pick=s[s.length-1];
+  if(!s.length) return null;
   for(var k=0;k<s.length;k++) if(s[k]>=need*.9){pick=s[k];break;}
-  return "img/globe/"+VENDORS[i].id+"-"+pick+".webp";
+  return "img/globe/"+id+"-"+pick+".webp";
 }
 function stillPic(i){
   var j=still.views;if(!j||!j.views[VENDORS[i].id]) return;   /* no picture for this vendor: keep the last one */
   var src=stillSrc(i), tok=++still.tok;
+  if(!src){stillDrawn();return;}
   if(still.shown===i&&still.img.getAttribute("src")===src){stillPlace();return;}
   var pre=new Image();pre.decoding="async";pre.src=src;
   var ready=pre.decode?pre.decode():new Promise(function(res,rej){pre.onload=res;pre.onerror=rej;});
@@ -4024,7 +4030,9 @@ function stillPic(i){
     if(old&&old!==pre) old.style.visibility="hidden";   /* v2.85: the new picture is already decoded, so hide the old one in the same step: never two globes (it showed through the new one's clear edges) */
     stillPlace();
     if(old&&old!==pre) requestAnimationFrame(function(){requestAnimationFrame(function(){if(old.parentNode) old.parentNode.removeChild(old);});});},
-    function(){if(tok===still.tok) stillDrawn();});
+    function(){if(tok!==still.tok) return;
+      still.bad[src.replace(/^img\/globe\/|\.webp$/g,"")]=1;   /* v2.92: try another saved size before drawing the globe */
+      stillPic(i);});
 }
 /* put the picture and the badge tap targets where the layout's globe is */
 function stillPlace(){
@@ -4040,7 +4048,7 @@ function stillPlace(){
     el.style.setProperty("--mt",(L.mt*Rr).toFixed(0)+"px");el.style.opacity="1";
     el.classList.remove("off");el.classList.toggle("front",!!L.front);
   });
-  if(still.img.getAttribute("src")!==stillSrc(still.shown)) stillPic(still.shown);   /* the window grew: swap in the bigger picture */
+  var want=stillSrc(still.shown);if(want&&still.img.getAttribute("src")!==want) stillPic(still.shown);   /* the window grew: swap in the bigger picture */
 }
 /* fetch the other vendors' pictures once someone starts browsing vendors (hovering or focusing the vendor badges,
    or the arrow keys), or after 12 s, so switching is instant without making the first visit heavier. Skipped with Data Saver. */
@@ -4048,7 +4056,7 @@ function stillPreload(){
   var cn=navigator.connection;if(cn&&cn.saveData) return;
   var done=false, t=0, go=function(){
     if(done||!still.views) return;done=true;clearTimeout(t);
-    VENDORS.forEach(function(v,i){if(i===frontIdx||!still.views.views[v.id]) return;var im=new Image();im.decoding="async";try{im.fetchPriority="low";}catch(e){}im.src=stillSrc(i);});
+    VENDORS.forEach(function(v,i){if(i===frontIdx||!still.views.views[v.id]) return;var im=new Image();im.decoding="async";try{im.fetchPriority="low";}catch(e){}var u=stillSrc(i);if(u) im.src=u;});
   };
   roDots.addEventListener("pointerenter",go,{once:true});roDots.addEventListener("focusin",go,{once:true});
   document.addEventListener("keydown",function k(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){document.removeEventListener("keydown",k);go();}});
