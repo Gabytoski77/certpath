@@ -4182,8 +4182,10 @@ function placeStart(){
   if(!(r.bottom>bandTop&&r.top<bandBot&&r.right>wl&&r.left<wr)) return;
   var hh=head.getBoundingClientRect().height;
   st.classList.add("split");r=st.getBoundingClientRect();
-  /* only split when both halves then clear the wordmark */
-  if(r.top<bandBot-pad||bandTop-hh<midEl.getBoundingClientRect().top-4){st.classList.remove("split");st.classList.add("over");return;}
+  /* v2.92: lift the promise above the wordmark whenever it fits there, even if the card below still touches the bottom
+     of the word (laptop sizes with an exam countdown card): the card stays where it was either way, and a promise left
+     in place on its dark backing covered the "My" of the logo. Only when it can't fit above does it keep the backing. */
+  if(bandTop-hh<midEl.getBoundingClientRect().top-4){st.classList.remove("split");st.classList.add("over");return;}
   st.style.setProperty("--st-lift",Math.round(r.bottom-bandTop)+"px");
 }
 function watchReadout(){

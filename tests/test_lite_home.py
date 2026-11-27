@@ -152,3 +152,19 @@ def test_lite_globe_is_drawn_when_no_picture_loads(browser, base_url):
         assert p.evaluate("!!document.querySelector('#gstill') && !document.querySelector('#gpic')")
     finally:
         ctx.close()
+
+
+@pytest.mark.parametrize("w,h", [(1280, 720), (1280, 620)])
+def test_promise_moves_above_the_wordmark_with_an_exam_card(site, w, h):
+    """v2.92: on laptop sizes with the taller exam countdown card, "Which certs to take..." used to stay in place on a
+    dark backing over the "My" of the wordmark. It now lifts above the word whenever it fits there."""
+    s = site(lite=True, viewport={"width": w, "height": h}, wait=500)
+    p = s.page
+    p.evaluate("localStorage.setItem('cgcp.exam', %r)" % EXAM)
+    p.reload()
+    p.wait_for_timeout(3000)
+    cls = p.eval_on_selector("#start", "e => e.className")
+    assert "over" not in cls.split() and "split" in cls.split(), cls
+    head, card = p.evaluate("""[document.querySelector('#start .st-head'), document.querySelector('#start .st-card')]
+      .map(e => { const r = e.getBoundingClientRect(); return [r.top, r.bottom]; })""")
+    assert head[1] < card[0] - 100, f"promise {head} still sits on the wordmark just above the card {card}"

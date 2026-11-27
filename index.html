@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-V9qj8wGyFHkXVhw4e0I/hf9XPb+wZCVT1x1nbVun1GA=' 'sha256-MiqjbLVpTE7Rqp4MFjQB8bZU2inPpEBGtLRHiVRaUmw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-JpiFK8cSl8xxrhQ3YY9sFTuU+D2FxEbbzoSwjN8S16E=' 'sha256-MiqjbLVpTE7Rqp4MFjQB8bZU2inPpEBGtLRHiVRaUmw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -4217,8 +4217,10 @@ function placeStart(){
   if(!(r.bottom>bandTop&&r.top<bandBot&&r.right>wl&&r.left<wr)) return;
   var hh=head.getBoundingClientRect().height;
   st.classList.add("split");r=st.getBoundingClientRect();
-  /* only split when both halves then clear the wordmark */
-  if(r.top<bandBot-pad||bandTop-hh<midEl.getBoundingClientRect().top-4){st.classList.remove("split");st.classList.add("over");return;}
+  /* v2.92: lift the promise above the wordmark whenever it fits there, even if the card below still touches the bottom
+     of the word (laptop sizes with an exam countdown card): the card stays where it was either way, and a promise left
+     in place on its dark backing covered the "My" of the logo. Only when it can't fit above does it keep the backing. */
+  if(bandTop-hh<midEl.getBoundingClientRect().top-4){st.classList.remove("split");st.classList.add("over");return;}
   st.style.setProperty("--st-lift",Math.round(r.bottom-bandTop)+"px");
 }
 function watchReadout(){
