@@ -755,6 +755,34 @@ def check_bump(version):
         ok(f"index.html changed and sw.js VERSION was bumped ({old_version} -> {version})")
 
 
+WHATS_NEW_MAX = 8   # tests/test_whats_new.py allows 1 to 8 entries
+
+
+def check_whats_new():
+    """The What's new list: at most WHATS_NEW_MAX entries, newest first, top entry = the visible version label.
+    Runs here (seconds) so a forgotten trim fails before the 20-minute browser tests do (PR #82)."""
+    with open("index.html", encoding="utf-8") as f:
+        html = f.read()
+    m = re.search(r"\bvar WHATS_NEW\s*=\s*\[(.*?)\n\];", html, re.S)
+    if not m:
+        fail("WHATS_NEW list not found in index.html")
+        return
+    rows = re.findall(r'\{v:"(\d+)\.(\d+)",d:"(\d{4}-\d\d-\d\d)"', m.group(1))
+    if not 1 <= len(rows) <= WHATS_NEW_MAX:
+        fail(f"WHATS_NEW has {len(rows)} entries; keep the newest {WHATS_NEW_MAX} (delete the oldest line)")
+        return
+    vers = [(int(a), int(b)) for a, b, _ in rows]
+    dates = [d for _, _, d in rows]
+    if vers != sorted(vers, reverse=True) or dates != sorted(dates, reverse=True):
+        fail("WHATS_NEW is not newest first (versions and dates must go down)")
+        return
+    label = re.search(r"<span>v\.(\d+)\.(\d+)</span>", html)
+    if label and (int(label.group(1)), int(label.group(2))) != vers[0]:
+        fail(f"WHATS_NEW top entry is v{vers[0][0]}.{vers[0][1]} but the version label is v.{label.group(1)}.{label.group(2)}: add a line for this version")
+        return
+    ok(f"WHATS_NEW: {len(rows)} entries, newest first, top matches the version label")
+
+
 def main():
     check_index()
     check_404()
@@ -762,6 +790,7 @@ def main():
     check_guide_dates()
     check_guide_files()
     check_share_preview()
+    check_whats_new()
     check_qbanks()
     version = check_sw()
     check_bump(version)
