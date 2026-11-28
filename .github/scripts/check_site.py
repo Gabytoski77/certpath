@@ -961,8 +961,6 @@ def main():
     return 0
 
 
-if __name__ == "__main__":
-    sys.exit(main())
 
 
 # ---- the Pentest Lab ("pentestlab", vendor/pentestlab.js): same limits as the engine, plus the made-up-data and legal-lab rules ----
@@ -1054,3 +1052,7 @@ def check_pentestlab(q, dset, why, text):
         out.append(f"pentestlab data must not contain exploit or payload code (found {m.group(0)!r}); canned text only")
     out.extend(x.replace("socsim", "pentestlab") for x in check_socsim_data(q))
     return out
+
+
+if __name__ == "__main__":
+    sys.exit(main())
