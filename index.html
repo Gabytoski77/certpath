@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-zlYXTNqcYWeqJL8xCoMQSkD+Q84KYc/P4kvP2GLFDI4=' 'sha256-MiqjbLVpTE7Rqp4MFjQB8bZU2inPpEBGtLRHiVRaUmw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-Qdgib/FXa1AWmTQNLA6TaG/dHkz/HUY+6OqmdLJhF9U=' 'sha256-MiqjbLVpTE7Rqp4MFjQB8bZU2inPpEBGtLRHiVRaUmw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -2672,7 +2672,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.98</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.99</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="top-ret" id="top-ret" data-rv="1"></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
@@ -6398,6 +6398,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.99",d:"2026-11-28",t:"Groundwork for a timed SOC Simulator practice exam: an alert queue, a log search, an analyst terminal and a case report. The first simulator exam is coming soon."},
   {v:"2.98",d:"2026-11-28",t:"Two full practice exams in a row at 85% or better now unlock \u201cReady to book\u201d: CG COOL funding, then booking your exam. The new logo draws itself as the app opens."},
   {v:"2.97",d:"2026-11-27",t:"The home card now shows your last practice exam score and the next objective to study, and Continue takes you right there. A banner warns you 90 days before an exam you may need retires."},
   {v:"2.96",d:"2026-11-27",t:"Easier navigation on phones and laptops: a home button in guides, a Jump to button that gets out of your way, clearer practice exam names in search, and hints for the bottom bar and vendor row."},
@@ -6405,7 +6406,6 @@ var WHATS_NEW=[
   {v:"2.94",d:"2026-11-27",t:"Three new Cisco practice exams for the CCNP core tests: Security (SCOR 350-701), Enterprise (ENCOR 350-401) and Cybersecurity (CBRCOR 350-201)."},
   {v:"2.93",d:"2026-11-27",t:"Four new cloud practice exams: AZ-104, SC-500, AWS Solutions Architect (SAA-C03) and AWS Security Specialty (SCS-C03). Phones no longer zoom in when you tap a practice terminal."},
   {v:"2.92",d:"2026-11-27",t:"On laptop screens, the \u201cWhich certs to take\u201d text no longer covers the MyNextCert name. In Light mode, the globe keeps its map when the network is spotty."},
-  {v:"2.91",d:"2026-11-27",t:"A new MyNextCert logo: a badge with an open side and an arrow pushing through it, for moving on to your next cert. New app and tab icons too."},
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -7138,8 +7138,16 @@ function gQuizEnd(){
    Banks load on demand, are validated before use, and the service worker keeps them for offline use. Nothing leaves the device. */
 var MX_BANKS={}, mxRun=null, mxTick=0, mxRes=null, MX_PATH=/^qbank\/[a-z0-9-]{3,40}\.json$/;
 /* new PBQ types (logsel, rules, term, diagram): their engine (vendor/pbq-engine.js) downloads only when a bank that has them opens */
-var PBQX_KINDS=["logsel","rules","term","diagram"], pbqxP=null;
+var PBQX_KINDS=["logsel","rules","term","diagram","socsim"], pbqxP=null, socP=null;
 function pbqxNew(q){return q&&q.t==="pbq"&&PBQX_KINDS.indexOf(q.kind)>=0;}
+/* the SOC Simulator ("socsim", vendor/socsim.js) is its own engine with the same interface, loaded only for banks that hold one */
+function pbqxE(q){return q.kind==="socsim"?window.SOCSIM:window.PBQX;}
+function pbqxReady(q){var e=pbqxE(q);return !!(e&&e.v===1);}
+function socLoad(){
+  if(window.SOCSIM&&window.SOCSIM.v===1) return Promise.resolve(true);
+  if(!socP) socP=new Promise(function(res){var s=document.createElement("script");s.src="vendor/socsim.js";s.onload=function(){res(!!(window.SOCSIM&&window.SOCSIM.v===1));};s.onerror=function(){socP=null;res(false);};document.head.appendChild(s);});
+  return socP;
+}
 function pbqxLoad(){
   if(window.PBQX&&window.PBQX.v===1) return Promise.resolve(true);
   if(!pbqxP) pbqxP=new Promise(function(res){var s=document.createElement("script");s.src="vendor/pbq-engine.js";s.onload=function(){res(!!(window.PBQX&&window.PBQX.v===1));};s.onerror=function(){pbqxP=null;res(false);};document.head.appendChild(s);});
@@ -7175,7 +7183,7 @@ function mxValidBank(b,want){
           if(!q.rows.every(function(r){return typeof r.req==="string"&&Array.isArray(r.a)&&r.a.length===q.cols.length&&r.a.every(function(v,ci){return v>=0&&v<q.opts[ci].length;});})) return;}
         else if(q.kind==="match"){if(!Array.isArray(q.choices)||!Array.isArray(q.items)||!q.items.length) return;
           if(!q.items.every(function(it){return it.a>=0&&it.a<q.choices.length&&(typeof it.log==="string"||typeof it.text==="string");})) return;}
-        else if(pbqxNew(q)){if(!(window.PBQX&&window.PBQX.v===1&&window.PBQX.valid(q,ds))) return;}
+        else if(pbqxNew(q)){if(!(pbqxReady(q)&&pbqxE(q).valid(q,ds))) return;}
         else return;
       } else {
         if(typeof q.q!=="string"||!Array.isArray(q.o)||q.o.length<2||q.o.length>6) return;
@@ -7195,7 +7203,10 @@ async function mxLoad(G,ver){
   if(MX_BANKS[bk.path]) return MX_BANKS[bk.path];
   var res=await fetch(bk.path,{credentials:"same-origin"});if(!res.ok) throw new Error("http "+res.status);
   var raw=await res.json();
-  if(raw&&Array.isArray(raw.q)&&raw.q.some(pbqxNew)) await pbqxLoad();   /* if it can't load, those questions are left out */
+  if(raw&&Array.isArray(raw.q)){   /* if an engine can't load, its questions are left out */
+    if(raw.q.some(function(x){return pbqxNew(x)&&x.kind!=="socsim";})) await pbqxLoad();
+    if(raw.q.some(function(x){return x&&x.kind==="socsim"&&pbqxNew(x);})) await socLoad();
+  }
   var b=mxValidBank(raw,ver);if(!b) throw new Error("bad bank");
   MX_BANKS[bk.path]=b;return b;
 }
@@ -7290,7 +7301,7 @@ function mxAlloc(n,doms){   /* split n questions across domains by weight (large
 }
 function mxItem(q){   /* run item: question id + the order things are shown in */
   var it={id:q.id};
-  if(pbqxNew(q)){var nw=window.PBQX.newItem(q);it.ro=nw.ro;it.pick=nw.pick;}
+  if(pbqxNew(q)){var nw=pbqxE(q).newItem(q);it.ro=nw.ro;it.pick=nw.pick;}
   else if(q.t==="pbq"){if(q.kind==="table"){it.ro=gShuf(q.rows.length);it.co=q.opts.map(function(o){return gShuf(o.length);});it.pick=q.rows.map(function(){return q.cols.map(function(){return -1;});});}
     else{it.ro=gShuf(q.items.length);it.co=[gShuf(q.choices.length)];it.pick=q.items.map(function(){return -1;});}}
   else{it.ord=gShuf(q.o.length);it.pick=q.t==="ms"?[]:null;}
@@ -7340,7 +7351,7 @@ function mxQ(run,G,it){
 }
 function mxItemOk(q,it){
   if(!q) return false;
-  if(pbqxNew(q)) return !!(window.PBQX&&window.PBQX.ok(q,it));
+  if(pbqxNew(q)) return pbqxReady(q)&&!!pbqxE(q).ok(q,it);
   if(q.t==="pbq"){var n=q.kind==="table"?q.rows.length:q.items.length;return Array.isArray(it.ro)&&it.ro.length===n&&Array.isArray(it.co)&&Array.isArray(it.pick)&&it.pick.length===n&&
     (q.kind!=="table"||it.pick.every(function(r){return Array.isArray(r)&&r.length===q.cols.length;}));}
   if(!Array.isArray(it.ord)||it.ord.length!==q.o.length) return false;
@@ -7360,14 +7371,14 @@ function mxCertName(G){var n="";Object.keys(GUIDES).forEach(function(k){if(GUIDE
 /* ---- scoring ---- */
 function mxAnswered(q,it){
   if(!q) return 0;
-  if(pbqxNew(q)) return window.PBQX.answered(q,it);
+  if(pbqxNew(q)) return pbqxE(q).answered(q,it);
   if(q.t==="pbq"){var all=0,any=0,tot=0;it.pick.forEach(function(r){(Array.isArray(r)?r:[r]).forEach(function(v){tot++;if(v>=0){any++;}});});return any===0?0:any===tot?2:1;}
   if(q.t==="ms") return it.pick.length===q.a.length?2:it.pick.length?1:0;
   return it.pick!=null?2:0;
 }
 function mxScore(q,it){
   if(!q) return 0;
-  if(pbqxNew(q)) return window.PBQX.score(q,it);
+  if(pbqxNew(q)) return pbqxE(q).score(q,it);
   if(q.t==="pbq"){var ok=0,tot=0;
     if(q.kind==="table") q.rows.forEach(function(r,ri){r.a.forEach(function(v,ci){tot++;if(it.pick[ri]&&it.pick[ri][ci]===v) ok++;});});
     else q.items.forEach(function(x,ii){tot++;if(it.pick[ii]===x.a) ok++;});
@@ -7475,7 +7486,7 @@ function mxShowQ(focus,dir){
         return '<button type="button" class="g-qo" role="'+(ms?'checkbox':'radio')+'" aria-checked="'+on+'" data-j="'+j+'"><span class="g-ql">'+"ABCDEF"[m]+'</span><span class="g-qt">'+gEsc(q.o[j][0])+'</span><span class="g-qm" aria-hidden="true"></span></button>';}).join("")+'</div>';
   }
   body.innerHTML=h+'</div>';
-  if(pbqxNew(q)) window.PBQX.render(q,it,mxEl("mx-px"),{say:function(t){mxEl("mx-live").textContent=t;},save:function(){mxSave();mxProg();}});
+  if(pbqxNew(q)) pbqxE(q).render(q,it,mxEl("mx-px"),{say:function(t){mxEl("mx-live").textContent=t;},save:function(){mxSave();mxProg();}});
   body.scrollTop=0;
   if(dir!=null) mxIn(body.firstChild,dir*16,dir?0:8);
   mxEl("mx-prev").disabled=mxRun.i===0;
@@ -7519,7 +7530,7 @@ function mxSubmit(auto){
     s+=v;by[k]=by[k]||[0,0];by[k][0]+=v;by[k][1]++;
     var qid=run.src==="bank"?run.ver+":"+q.id:q.id;
     if(pbqxNew(q)){   /* each part counts as a slice of ONE question, in its own domain (a part with no domain uses the question's) */
-      var ps=window.PBQX.parts(q,it), dm={}, ord=[];
+      var ps=pbqxE(q).parts(q,it), dm={}, ord=[];
       ps.forEach(function(x){var kk=wsKey(G,x.d||q.d,q.v||run.ver);if(!dm[kk]){dm[kk]=[0,0];ord.push(kk);}dm[kk][1]++;if(x.ok) dm[kk][0]++;});
       ord.forEach(function(kk,n){list.push({k:kk,ok:dm[kk][0]/dm[kk][1],w:dm[kk][1]/ps.length,id:n===0?qid:null,idok:v});});
     } else list.push({k:k,ok:v,id:qid});
@@ -7574,7 +7585,7 @@ function mxRevItem(G,run,q,it,k,v){
   var cls=v>=.999?'ok':v>0?'part':'no', L=wsLabel(G,wsKey(G,q.d,q.v||run.ver),run.ver);
   var h='<li class="'+cls+(it.f?' flag':'')+'" data-miss="'+(v<.999?1:0)+'" data-flag="'+(it.f?1:0)+'"><details><summary><span class="mx-n">'+(k+1)+'</span><span class="mx-st" aria-hidden="true">'+(v>=.999?'✓':v>0?'½':'✕')+'</span><span class="mx-sq">'+gEsc(q.t==="pbq"?q.title:q.q)+'</span><span class="vh">'+(v>=.999?'Correct':v>0?'Partly correct':'Wrong')+'</span></summary><div class="mx-ex"><p class="mx-meta"><span class="g-qd">'+gEsc(L.num+" "+L.name)+'</span>'+(q.obj?'<span class="mx-obj">Objective '+gEsc(q.obj)+'</span>':'')+'</p>';
   if(q.t==="pbq"){
-    if(pbqxNew(q)) h+=window.PBQX.review(q,it);
+    if(pbqxNew(q)) h+=pbqxE(q).review(q,it);
     else if(q.kind==="table") h+='<ul class="mx-pbr">'+q.rows.map(function(r,ri){var mine=it.pick[ri]||[], ok=r.a.every(function(x,ci){return mine[ci]===x;});
       return '<li class="'+(ok?'ok':'no')+'"><b>'+gEsc(r.req)+'</b><span>Answer: '+r.a.map(function(x,ci){return gEsc(q.opts[ci][x]);}).join(" · ")+(ok?'':' &middot; <em>You: '+mine.map(function(x,ci){return x>=0?gEsc(q.opts[ci][x]):"blank";}).join(" · ")+'</em>')+'</span><span>'+gEsc(r.why||"")+'</span></li>';}).join("")+'</ul>';
     else h+='<ul class="mx-pbr">'+q.items.map(function(x,ii){var mine=it.pick[ii], ok=mine===x.a;

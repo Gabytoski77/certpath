@@ -1,6 +1,6 @@
 /* MyNextCert service worker: makes the site installable and usable offline.
    Change VERSION whenever you upload a new index.html so phones pick it up quickly. */
-var VERSION = "certpath-v109";
+var VERSION = "certpath-v110";
 /* everything the app needs lives on this site (no outside servers). The page, icons and fonts are cached on install;
    three.js, Lenis and the 3D map file (world.js) are saved the first time they're used. Lite mode never loads them,
    so it never downloads them either. */
@@ -18,7 +18,7 @@ self.addEventListener("install", function (e) {
 self.addEventListener("activate", function (e) {
   e.waitUntil(caches.keys().then(function (keys) {
     var old = keys.filter(function (k) { return k !== VERSION; });
-    /* practice exam question banks (qbank/), the practice-exam PBQ engine (vendor/pbq-engine.js, v2.84: saved the first time a bank that needs it opens, never in SHELL), the still globe pictures (img/globe/) and the guides (guides/, v2.83) are
+    /* practice exam question banks (qbank/), the practice-exam PBQ engines (vendor/pbq-engine.js and vendor/socsim.js, v2.84: saved the first time a bank that needs it opens, never in SHELL), the still globe pictures (img/globe/) and the guides (guides/, v2.83) are
        saved the first time they're used; carry them into the new cache so they still work offline right after an update
        (v2.48, v2.58). Banks and pictures refresh in the background when online. A guide's address ends in ?h=<hash of the
        file>, so the test below looks at the path only (the ?h= part is ignored), and the guide is carried over under its
@@ -28,7 +28,7 @@ self.addEventListener("activate", function (e) {
       return Promise.all(old.map(function (k) {
         return caches.open(k).then(function (c) {
           return c.keys().then(function (reqs) {
-            return Promise.all(reqs.filter(function (r) { return /\/(qbank\/[a-z0-9-]+\.json|vendor\/pbq-engine\.js|img\/globe\/[a-z0-9-]+\.(webp|json)|guides\/[a-z0-9_]+\.json)$/.test(new URL(r.url).pathname); }).map(function (r) {
+            return Promise.all(reqs.filter(function (r) { return /\/(qbank\/[a-z0-9-]+\.json|vendor\/(?:pbq-engine|socsim)\.js|img\/globe\/[a-z0-9-]+\.(webp|json)|guides\/[a-z0-9_]+\.json)$/.test(new URL(r.url).pathname); }).map(function (r) {
               var path = new URL(r.url).pathname;
               if (/\/guides\//.test(path)) {
                 if (carried[path]) return null;
