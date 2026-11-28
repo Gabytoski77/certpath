@@ -438,7 +438,7 @@ def alloc(n, domains):
     return out
 
 
-NEW_PBQ_KINDS = ("logsel", "rules", "term", "diagram")
+NEW_PBQ_KINDS = ("logsel", "rules", "term", "diagram", "socsim")
 
 
 def obj_prefix(d):
@@ -543,6 +543,159 @@ def check_new_pbq(q, dset):
             if not text(d.get("name"), 40) or not re.fullmatch(r"[a-z0-9]{1,6}", str(d.get("id"))):
                 out.append(f"device {d.get('id')!r} needs an id and a name")
             why(d, f"device {d.get('id')!r}")
+    elif k == "socsim":
+        out.extend(check_socsim(q, dset, why, text))
+    return out
+
+
+# ---- the SOC Simulator ("socsim", vendor/socsim.js): same limits as the engine, plus the made-up-data rules ----
+SS_SEV = ("low", "medium", "high", "critical")
+SS_ACT = ("iso", "pwd", "blk", "purge", "mon", "none")
+SS_IOCK = ("ip", "domain", "hash", "file")
+SS_DOC_NETS = ("192.0.2.", "198.51.100.", "203.0.113.")
+SS_REAL_TLDS = {"com", "net", "org", "io", "ru", "cn", "info", "biz", "xyz", "top", "cc", "tk", "ml", "ga", "cf", "gq", "su", "ws", "pw", "us", "uk", "de", "fr", "br", "in", "gov", "mil", "edu", "co", "me", "ly", "onion", "pro", "site", "online", "club", "shop"}
+
+
+def _ss_secs(t):
+    m = re.fullmatch(r"(\d\d):(\d\d):(\d\d)", str(t))
+    return int(m[1]) * 3600 + int(m[2]) * 60 + int(m[3]) if m and int(m[1]) < 24 and int(m[2]) < 60 and int(m[3]) < 60 else -1
+
+
+def _ss_private(ip):
+    a = [int(x) for x in ip.split(".")]
+    return a[0] == 10 or (a[0] == 172 and 16 <= a[1] <= 31) or (a[0] == 192 and a[1] == 168) or a[0] in (127, 0) or (a[0] == 169 and a[1] == 254)
+
+
+def check_socsim_data(q):
+    """Made-up data only: public IPs from the three documentation ranges, domains under .example/.test, no real indicators."""
+    out = []
+    blob = json.dumps(q, ensure_ascii=False)
+    for ip in sorted(set(re.findall(r"(?<![\d.])(?:\d{1,3}(?:\[\.\]|\.)){3}\d{1,3}(?![\d])", blob))):
+        ip = ip.replace("[.]", ".")
+        if all(0 <= int(o) <= 255 for o in ip.split(".")) and not ip.startswith(SS_DOC_NETS) and not _ss_private(ip):
+            out.append(f"socsim uses the public address {ip}; use only 192.0.2.x, 198.51.100.x or 203.0.113.x (or a private 10.x/172.16.x/192.168.x one)")
+    for w in sorted(set(re.findall(r"(?<![\w.-])[a-z0-9][a-z0-9-]*(?:(?:\[\.\]|\.)[a-z0-9-]+)+(?![\w-])", blob.lower()))):
+        tld = w.replace("[.]", ".").rsplit(".", 1)[-1]
+        if tld in SS_REAL_TLDS:
+            out.append(f"socsim uses the domain {w!r}; use only names under .example or .test")
+    return out
+
+
+def check_socsim(q, dset, why, text):
+    out = []
+    ints = lambda x, lo, hi: isinstance(x, int) and not isinstance(x, bool) and lo <= x <= hi  # noqa: E731
+    if not ints(q.get("minutes"), 1, 45):
+        out.append("socsim needs 'minutes' (the scenario countdown) from 1 to 45")
+    if not re.fullmatch(r"\d{4}-\d\d-\d\d", str(q.get("day", ""))) or _ss_secs(q.get("now")) < 0:
+        out.append("socsim needs 'day' (YYYY-MM-DD) and 'now' (HH:MM:SS)")
+    alerts = q.get("alerts") or []
+    ids = {}
+    if not 1 <= len(alerts) <= 12:
+        out.append("socsim needs 1-12 alerts")
+    for a in alerts:
+        aid = a.get("id")
+        lab = f"alert {aid!r}"
+        if not re.fullmatch(r"[a-z0-9]{1,6}", str(aid)) or aid in ids:
+            out.append(f"{lab} needs a unique id (a-z, 0-9, up to 6)")
+        if not text(a.get("name"), 120) or a.get("sev") not in SS_SEV or _ss_secs(a.get("t")) < 0 or not text(a.get("host"), 60) or not text(a.get("desc"), 600):
+            out.append(f"{lab} needs a name, sev (low/medium/high/critical), t (HH:MM:SS), host and desc")
+        if "at" in a and not ints(a["at"], 0, 2700):
+            out.append(f"{lab} 'at' must be seconds from 0 to 2700")
+        if "after" in a and a["after"] not in ids:
+            out.append(f"{lab} 'after' must name an alert listed before it")
+        ids[aid] = a
+        an = a.get("ans") or {}
+        if an.get("tp") not in (0, 1):
+            out.append(f"{lab} needs ans.tp = 0 or 1")
+            continue
+        if not text(an.get("why"), 700):
+            out.append(f"{lab} ans has no 'why'")
+        why(an.get("cls") or {}, f"{lab} cls")
+        why(an.get("esc") or {}, f"{lab} esc")
+        if "v" in (an.get("esc") or {}) and an["esc"]["v"] not in (0, 1):
+            out.append(f"{lab} esc.v must be 0 or 1")
+        if an["tp"]:
+            for part in ("sev", "tech", "host", "act"):
+                if not an.get(part):
+                    out.append(f"{lab} is a true positive, so ans.{part} is needed")
+            if not an.get("iocs"):
+                out.append(f"{lab} is a true positive, so it needs at least one ioc")
+        if an.get("sev"):
+            why(an["sev"], f"{lab} sev")
+            if an["sev"].get("v") not in SS_SEV:
+                out.append(f"{lab} sev.v is not a severity")
+        if an.get("tech"):
+            why(an["tech"], f"{lab} tech")
+            if not re.fullmatch(r"T\d{4}(\.\d{3})?", str(an["tech"].get("v"))):
+                out.append(f"{lab} tech.v is not an ATT&CK id")
+        if an.get("act"):
+            why(an["act"], f"{lab} act")
+            if an["act"].get("v") not in SS_ACT:
+                out.append(f"{lab} act.v is not one of {', '.join(SS_ACT)}")
+        if an.get("host"):
+            why(an["host"], f"{lab} host")
+            hv = an["host"].get("v")
+            if not (text(hv, 120) or (isinstance(hv, list) and 1 <= len(hv) <= 4 and all(text(x, 120) for x in hv))):
+                out.append(f"{lab} host.v needs text or a short list of text")
+        for c in an.get("iocs") or []:
+            why(c, f"{lab} ioc {str(c.get('v'))[:20]!r}")
+            if c.get("k") not in SS_IOCK or not text(c.get("v"), 200) or c.get("need", 1) not in (0, 1):
+                out.append(f"{lab} has an ioc with a bad k (ip/domain/hash/file), v or need")
+        if len(an.get("iocs") or []) > 8:
+            out.append(f"{lab} has more than 8 iocs")
+    if not any(not a.get("at") and not a.get("after") for a in alerts):
+        out.append("socsim needs at least one alert that is in the queue from the start")
+    if not any((a.get("ans") or {}).get("tp") == 1 for a in alerts) or not any((a.get("ans") or {}).get("tp") == 0 for a in alerts):
+        out.append("socsim needs at least one true positive and one false positive alert")
+    ev = q.get("events") or []
+    if not 3 <= len(ev) <= 400:
+        out.append("socsim needs 3-400 events")
+    facts = set()
+    for i, e in enumerate(ev):
+        f = e.get("f")
+        if _ss_secs(e.get("t")) < 0 or not re.fullmatch(r"[a-z0-9_]{1,16}", str(e.get("i"))) or not re.fullmatch(r"[a-z0-9_:]{1,24}", str(e.get("st"))) or not text(e.get("raw"), 320) or not isinstance(f, dict):
+            out.append(f"event {i + 1} needs t (HH:MM:SS), i (index), st (sourcetype), raw and f (fields)")
+            continue
+        if len(f) > 12 or not all(re.fullmatch(r"[a-z_][a-z0-9_]{0,23}", k) and k not in ("index", "sourcetype") and isinstance(v, str) and len(v) <= 120 for k, v in f.items()):
+            out.append(f"event {i + 1} has too many fields, or a bad field name or value (names are lowercase, values are text)")
+        fx = e.get("fx", [])
+        facts.update([fx] if isinstance(fx, str) else fx)
+    for t in q.get("ti") or []:
+        if not text(t.get("ind"), 200) or t.get("v") not in ("malicious", "suspicious", "benign") or not text(t.get("note"), 300):
+            out.append("a ti entry needs ind, v (malicious/suspicious/benign) and note")
+        facts.add("ti:" + str(t.get("ind", "")).lower().strip().rstrip("."))
+        fx = t.get("fx", [])
+        facts.update([fx] if isinstance(fx, str) else fx)
+    if len(q.get("ti") or []) > 30:
+        out.append("more than 30 ti entries")
+    facts.update(["dec:b64", "dec:url", "dec:defang", "dec:refang"])
+    cmds = q.get("cmds") or []
+    if len(cmds) > 30:
+        out.append("more than 30 commands")
+    for c in cmds:
+        if not c.get("run") or len(c["run"]) > 8 or not all(text(r, 120) for r in c["run"]) or not isinstance(c.get("out"), str) or len(c.get("out", "")) > 1500:
+            out.append(f"command {str((c.get('run') or ['?'])[0])!r} needs 'run' lines (up to 120 characters each) and 'out'")
+        fx = c.get("fx", [])
+        facts.update([fx] if isinstance(fx, str) else fx)
+    for sq in q.get("suggestq") or []:
+        if not text(sq, 200) or "|" in sq and not re.search(r"\|\s*(stats count|table|sort|head)\b", sq):
+            out.append(f"suggested search {str(sq)[:30]!r} uses a command the simulator doesn't have")
+    as_list = lambda v: v if isinstance(v, list) else [v]  # noqa: E731
+    if len(q.get("checks") or []) > 8:
+        out.append("more than 8 checks")
+    for c in q.get("checks") or []:
+        lab = f"check {str(c.get('t'))[:30]!r}"
+        if not text(c.get("t"), 200):
+            out.append("every check needs a 't' (what the learner has to do)")
+        why(c, lab)
+        kinds = [x for x in ("has", "lacks", "after") if x in c]
+        if len(kinds) != 1:
+            out.append(f"{lab} needs exactly one of has / lacks / after")
+            continue
+        for f in as_list(c["has"] if "has" in c else c["lacks"] if "lacks" in c else c["after"]) + (as_list(c.get("of", [])) if "after" in c else []):
+            if f not in facts:
+                out.append(f"{lab} uses '{f}', which nothing in the scenario produces")
+    out.extend(check_socsim_data(q))
     return out
 
 
