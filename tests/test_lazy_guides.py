@@ -63,6 +63,7 @@ def test_core_features_work_before_any_guide_is_fetched(site, feature):
         if feature == "readiness":      # with a countdown set, the home screen shows the countdown card instead of Continue
             _exam(w, 20)
         p.evaluate("localStorage.setItem('cgcp.last', JSON.stringify({k:'g',g:'Security+',t:Date.now()}))")
+        p.evaluate("localStorage.setItem('cgcp.resume', JSON.stringify({n:'Security+',p:10,s:null,o:{id:'0-0',t:'First objective'},all:false,t:Date.now()}))")
         p.reload()
         p.wait_for_timeout(2500)
     urls = _track(w)
@@ -77,7 +78,7 @@ def test_core_features_work_before_any_guide_is_fetched(site, feature):
     elif feature == "continue":
         card = p.locator(".st-card[data-st='guide']")
         card.wait_for()
-        assert "Security+" in card.inner_text() and "Objectives" in card.inner_text()
+        assert "Security+" in card.inner_text() and "Next:" in card.inner_text()
     else:
         open_search(p, "security+")
         assert "Security+" in p.inner_text("#srch")
