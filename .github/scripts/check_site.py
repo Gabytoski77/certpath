@@ -768,6 +768,10 @@ def check_whats_new():
         fail("WHATS_NEW list not found in index.html")
         return
     rows = re.findall(r'\{v:"(\d+)\.(\d+)",d:"(\d{4}-\d\d-\d\d)"', m.group(1))
+    long = [t for t in re.findall(r',t:"((?:[^"\\]|\\.)*)"', m.group(1)) if len(re.sub(r"\\u[0-9a-fA-F]{4}", "x", t)) >= 200]
+    if long:
+        fail(f"WHATS_NEW line is 200+ characters (tests/test_whats_new.py limit): {long[0][:60]}...")
+        return
     if not 1 <= len(rows) <= WHATS_NEW_MAX:
         fail(f"WHATS_NEW has {len(rows)} entries; keep the newest {WHATS_NEW_MAX} (delete the oldest line)")
         return
