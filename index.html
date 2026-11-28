@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-UcN0IyEfz7tfg9FKP/3OwD7OSGxRS/aePtVjeVwVhvg=' 'sha256-MiqjbLVpTE7Rqp4MFjQB8bZU2inPpEBGtLRHiVRaUmw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-XhMA95p+Eqt1yjvDlEOzG+xZMzKjmn1ma3UwaiOKPN4=' 'sha256-MiqjbLVpTE7Rqp4MFjQB8bZU2inPpEBGtLRHiVRaUmw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -298,7 +298,9 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
   padding-left:max(16px,var(--sal));padding-right:max(16px,var(--sar))}
 .p-frame{border:1px solid var(--v-line);border-radius:6px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0) 30%),rgba(20,25,32,.55)}
 .p-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--v-line)}
-.p-mark{flex:none;width:11px;height:16px;border:1.5px solid var(--v-accent);border-radius:1px}
+.p-mark{flex:none;display:grid;place-items:center;width:34px;height:34px;margin:-6px 0;color:var(--v-accent);border-radius:8px}
+.p-mark svg{width:22px;height:22px}
+@media (hover:hover) and (pointer:fine){.p-mark:hover{color:var(--v-fg)}}
 .p-back{display:inline-flex;align-items:center;gap:8px;padding:8px 0;font:600 10.5px/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--v-fg);transition:color .4s var(--ez)}
 .p-back .ar{display:inline-block;transition:transform .3s var(--ez)}
 @media (hover:hover) and (pointer:fine){.p-back:hover{color:var(--v-accent)}}
@@ -454,6 +456,8 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .sh-handle{width:36px;height:4px;border-radius:999px;background:rgba(255,255,255,.22);transition:background .3s var(--ez),transform .3s var(--ez)}
 @media (hover:hover) and (pointer:fine){.sh-grab:hover .sh-handle{background:rgba(255,255,255,.5);transform:scaleX(1.33)}}
 .sh-peek{display:flex;align-items:center;gap:12px;font:600 10px/1 var(--f-ui);letter-spacing:.18em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.sh-hint{margin-top:-5px;font:500 9.5px/1 var(--f-ui);letter-spacing:.03em;color:var(--ink-2);white-space:nowrap;max-width:calc(100vw - 16px);overflow:hidden;text-overflow:ellipsis}
+#sheet.is-open .sh-hint{display:none}
 .sh-peek em{font-style:normal;font-weight:500;color:var(--ink-3);letter-spacing:.12em}
 .sh-mk{width:13px;height:13px;color:var(--powder)}
 .sh-up{display:inline-block;color:var(--ink-3);animation:nudge 2.6s var(--ez) infinite;transition:transform .5s var(--ez)}
@@ -1596,6 +1600,9 @@ button.ptt-c:active{opacity:.7;transition-duration:.1s}
   .ro-blurb{display:none}
   .ro-dots{display:flex;gap:2px;margin:2px -12px 4px;padding:4px 12px;max-width:calc(100vw - 24px);overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;justify-content:flex-start}
   .ro-dots::-webkit-scrollbar{display:none}
+  .ro-dots.fl{-webkit-mask-image:linear-gradient(90deg,transparent,#000 30px);mask-image:linear-gradient(90deg,transparent,#000 30px)}
+  .ro-dots.fr{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 30px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 30px),transparent)}
+  .ro-dots.fl.fr{-webkit-mask-image:linear-gradient(90deg,transparent,#000 30px,#000 calc(100% - 30px),transparent);mask-image:linear-gradient(90deg,transparent,#000 30px,#000 calc(100% - 30px),transparent)}
   .crest{flex:none;width:50px;height:54px;scroll-snap-align:center}
   .cr-n{font-size:7.5px;max-width:36px}
   .cr-c{font-size:6.5px}
@@ -1769,6 +1776,7 @@ html.kbd .touch-only{display:none}
 .g-facts dd{margin:10px 0 0;display:flex;flex-direction:column;gap:4px}
 .g-facts b{font:600 22px/1 var(--f-disp);letter-spacing:-.03em;color:var(--v-fg);white-space:nowrap}
 .g-facts small{font:500 10.5px/1.2 var(--f-mono);color:var(--v-muted)}
+.g-facts b.fl{font-size:15px;letter-spacing:-.02em;white-space:normal;overflow-wrap:anywhere;line-height:1.1}
 
 .g-nav{position:sticky;top:var(--sat);z-index:6;display:flex;align-items:center;gap:18px;margin:0 -28px;padding:10px 28px;border-bottom:1px solid var(--v-line);
   background:rgba(18,22,29,.94);transition:background .4s var(--ez),box-shadow .4s var(--ez)}
@@ -1813,6 +1821,9 @@ html.kbd .touch-only{display:none}
   .gj-list{position:absolute;right:0;bottom:56px;width:min(250px,calc(100vw - 28px));box-sizing:border-box;padding:6px;border-radius:16px;border:1px solid var(--v-line);
     background:#0f1319;box-shadow:0 22px 44px -16px rgba(0,0,0,.95);transform-origin:100% 100%}
   .gj-list[hidden]{display:none}
+  .g-jump{transition:transform .25s var(--ez),opacity .25s var(--ez),visibility 0s}
+  .g-jump.gj-away{transform:translateY(calc(100% + var(--sab) + 24px));opacity:0;visibility:hidden;transition:transform .25s var(--ez),opacity .25s var(--ez),visibility 0s .25s}
+  @media (prefers-reduced-motion:reduce){.g-jump,.g-jump.gj-away{transition:none;transform:none}}
   .gj-list .lab{margin:0;padding:9px 12px 6px;color:var(--v-accent)}
   .gj-list button{display:flex;align-items:center;gap:12px;width:100%;min-height:44px;padding:0 12px;border-radius:10px;font:500 15px/1.2 var(--f-ui);color:#c9cfd7;text-align:left}
   .gj-list button span{font:500 11px var(--f-mono);color:var(--v-muted)}
@@ -2166,7 +2177,7 @@ html.kbd .touch-only{display:none}
   .g-facts div:nth-child(odd){border-left:0;padding-left:0}
   .g-facts div:nth-child(n+3){border-top:1px solid var(--v-line)}
   .g-facts div:nth-child(5){border-left:0}
-  .g-facts b{font-size:20px}
+  .g-facts b:not(.fl){font-size:20px}
   .g-dh{grid-template-columns:34px minmax(0,1fr) 44px 18px;gap:10px}
   .g-dw{display:none}
   .g-dt{font-size:16px}
@@ -2245,6 +2256,9 @@ html.kbd .touch-only{display:none}
   .ro-blurb{font-size:11.5px;line-height:1.5;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
   .ro-dots{display:flex;gap:2px;margin:0 -6px;padding:3px 6px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;justify-content:flex-start}
   .ro-dots::-webkit-scrollbar{display:none}
+  .ro-dots.fl{-webkit-mask-image:linear-gradient(90deg,transparent,#000 30px);mask-image:linear-gradient(90deg,transparent,#000 30px)}
+  .ro-dots.fr{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 30px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 30px),transparent)}
+  .ro-dots.fl.fr{-webkit-mask-image:linear-gradient(90deg,transparent,#000 30px,#000 calc(100% - 30px),transparent);mask-image:linear-gradient(90deg,transparent,#000 30px,#000 calc(100% - 30px),transparent)}
   .crest{flex:none;width:48px;height:52px;scroll-snap-align:center}
   .cr-n{font-size:7.5px;max-width:36px}
   .cr-c{font-size:6.5px}
@@ -2613,7 +2627,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.95</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.96</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2714,6 +2728,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div class="sh-grab" id="sh-grab" role="button" tabindex="0" aria-expanded="false" aria-controls="sh-scroll" aria-label="Paths, 8140, Funding: open the sheet">
     <span class="sh-handle"></span>
     <span class="sh-peek"><svg class="mk sh-mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg>Paths &middot; 8140 &middot; Funding<span class="sh-up" aria-hidden="true">&uarr;</span></span>
+    <span class="sh-hint" id="sh-hint" aria-hidden="true"></span>
   </div>
   <div class="sh-scroll" id="sh-scroll">
     <div class="sh-in">
@@ -3625,6 +3640,11 @@ VENDORS.forEach(function(v,i){
   b.addEventListener("click",function(){if(state==="idle"){clearTimeout(crestHoverT);dive(i);}});
   roDots.appendChild(b);
 });
+/* v2.96: a soft fade on the side(s) of the phone vendor row that still have badges off-screen; it goes away at the end of the row */
+function roFade(){var d=roDots,sl=d.scrollLeft,m=d.scrollWidth-d.clientWidth;
+  d.classList.toggle("fl",m>2&&sl>2);d.classList.toggle("fr",m>2&&sl<m-2);}
+roDots.addEventListener("scroll",roFade,{passive:true});addEventListener("resize",roFade);addEventListener("load",roFade);setTimeout(roFade,600);
+roFade();
 function setFront(i){
   if(i===frontIdx) return;
   var first=frontIdx<0;frontIdx=i;
@@ -4569,13 +4589,14 @@ function openPanel(i,certName){
   current=i;
   panel.innerHTML=
    '<div class="p-inner"><div class="p-frame">'+
-    '<header class="p-top"><span class="p-mark" aria-hidden="true"></span><button type="button" class="p-back" id="p-back"><span class="ar">&larr;</span><span class="pb-l">Globe</span></button>'+
+    '<header class="p-top"><button type="button" class="p-mark" id="p-mark" aria-label="MyNextCert home"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="p-back" id="p-back"><span class="ar">&larr;</span><span class="pb-l">Globe</span></button>'+
     
     '<div class="p-arrows"><button type="button" class="p-arr p-srch p-exp" id="p-exp" aria-label="Paths, 8140, Funding: go to the Explore sheet"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg><span class="ps-l">Paths &middot; 8140 &middot; Funding</span></button><button type="button" class="p-arr p-srch" id="p-srch" aria-label="Search certifications"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="ps-l">Search</span></button><button type="button" class="p-arr" id="p-prev" aria-label="Previous vendor">&larr;</button><button type="button" class="p-arr" id="p-next" aria-label="Next vendor">&rarr;</button></div></header>'+
     '<div class="p-body" id="p-body"></div></div>'+
     '<p class="p-foot">Not an official U.S. Coast Guard or DoD site &middot; Not affiliated with or endorsed by the Coast Guard, any cert vendor or any school &middot; Names are trademarks of their owners &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span></p>'+
    '</div>';
   panel.querySelector("#p-back").addEventListener("click",function(){if(guideName) closeGuide();else back();});
+  panel.querySelector("#p-mark").addEventListener("click",function(){if(guideName) closeGuide();else back();});
   panel.querySelector("#p-srch").addEventListener("click",function(){srchShow(this);});
   panel.querySelector("#p-exp").addEventListener("click",function(){goExplore();});
   panel.querySelector("#p-prev").addEventListener("click",function(){switchVendor(-1);});
@@ -4867,6 +4888,8 @@ function setSort(hard){
 }
 
 /* ---------- explore sheet (pull up from the bottom) ---------- */
+var SH_HINT=(matchMedia("(pointer:coarse)").matches?"Swipe up":"Click")+": career paths, 8140 roles, CG funding";
+(function(){var h=document.getElementById("sh-hint"),g=document.getElementById("sh-grab");if(h) h.textContent=" "+SH_HINT;if(g) g.setAttribute("aria-label","Paths, 8140, Funding. "+SH_HINT+". Opens the sheet");})();
 var sheet=$("#sheet"), veil=$("#veil"), grab=$("#sh-grab"), shScroll=$("#sh-scroll");
 /* keyboard: while the sheet is closed its content is out of the Tab order; while it is open, the home behind it is */
 shScroll.inert=true;
@@ -5521,7 +5544,7 @@ function shState(p){
     var lost=!open&&shScroll.contains(document.activeElement);
     if(!srchOpen) restoreInert();
     if(lost) try{grab.focus({preventScroll:true});}catch(e){}
-    grab.setAttribute("aria-label",open?"Paths, 8140, Funding: close the sheet":"Paths, 8140, Funding: open the sheet");
+    grab.setAttribute("aria-label",open?"Paths, 8140, Funding: close the sheet":"Paths, 8140, Funding. "+SH_HINT+". Opens the sheet");
     if(!open&&typeof stRender==="function") stRender();
   }
 }
@@ -6316,6 +6339,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.96",d:"2026-11-27",t:"Easier navigation on phones and laptops: a home button in guides, a Jump to button that gets out of your way, clearer practice exam names in search, and hints for the bottom bar and vendor row."},
   {v:"2.95",d:"2026-11-27",t:"Full practice exams for LPIC-1 (101-500 and 102-500) and LPIC-2 (201-450 and 202-450)."},
   {v:"2.94",d:"2026-11-27",t:"Three new Cisco practice exams for the CCNP core tests: Security (SCOR 350-701), Enterprise (ENCOR 350-401) and Cybersecurity (CBRCOR 350-201)."},
   {v:"2.93",d:"2026-11-27",t:"Four new cloud practice exams: AZ-104, SC-500, AWS Solutions Architect (SAA-C03) and AWS Security Specialty (SCS-C03). Phones no longer zoom in when you tap a practice terminal."},
@@ -6676,7 +6700,7 @@ function renderGuide(i,name){
      (Object.keys(G.versions).length>1?'<div class="seg g-vseg" role="group" aria-label="'+gEsc(G.verLabel||"Exam version")+'">'+Object.keys(G.versions).map(function(k){var V=G.versions[k];return '<button type="button" data-ver="'+k+'" aria-pressed="'+(k===gVer)+'">'+V.label+' &middot; '+V.code+'</button>';}).join("")+'<span class="seg-ind" aria-hidden="true"></span></div>':'<p class="g-vone">'+gEsc(G.versions[gVer].label)+' &middot; '+gEsc(G.versions[gVer].code)+'</p>')+
      '<p class="g-vstat" id="g-vstat"></p><p class="g-vnote" id="g-vnote"></p></aside></div>';
   h+='<p class="g-chk pr"><b>Facts last checked: <time datetime="'+gEsc(G.checked)+'">'+gEsc(fmtChecked(G.checked))+'</time></b><span>Exam versions, prices and retirement dates are checked monthly against the vendor&rsquo;s official pages.</span></p>';
-  h+='<dl class="g-facts pr">'+q8Facts(name,G.facts).map(function(f){return '<div><dt>'+gEsc(f[0])+'</dt><dd><b>'+gEsc(f[1])+'</b><small>'+gEsc(f[2])+'</small></dd></div>';}).join("")+'</dl>';
+  h+='<dl class="g-facts pr">'+q8Facts(name,G.facts).map(function(f){return '<div><dt>'+gEsc(f[0])+'</dt><dd><b'+(String(f[1]).length>8?' class="fl"':'')+'>'+gEsc(f[1])+'</b><small>'+gEsc(f[2])+'</small></dd></div>';}).join("")+'</dl>';
   /* section number rolls from the previous number to its own as the heading comes in (gFx) */
   function head(k,id,title,sub){var reel='<span class="g-dig" aria-hidden="true"><span class="g-reel" style="--d:'+(k-1)+'">'+'0123456789'.split("").map(function(n){return "<span>"+n+"</span>";}).join("")+'</span></span>';
     return '<header class="g-sh" data-k="'+k+'"><p class="lab"><span class="g-num"><span aria-hidden="true">(0'+reel+')</span><span class="vh">('+pad2(k)+')</span></span> '+gEsc(G_SECS[k-1][1])+'<button type="button" class="g-slink" data-slink="'+G_SECS[k-1][0]+'" aria-label="Link to '+gEsc(G_SECS[k-1][1])+': copy a link that opens this section"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6.6 9.4a2.6 2.6 0 0 0 3.7 0l2.3-2.3a2.6 2.6 0 0 0-3.7-3.7l-.9.9M9.4 6.6a2.6 2.6 0 0 0-3.7 0L3.4 8.9a2.6 2.6 0 0 0 3.7 3.7l.9-.9"/></svg><span>Link</span></button></p><h3>'+title+'</h3>'+(sub?'<p class="g-sub">'+sub+'</p>':'')+'</header>';}
@@ -6830,6 +6854,18 @@ function gJumpSync(){
   n.textContent=pad2(k+1);btn.setAttribute("aria-label","Jump to "+pad2(k+1)+", "+G_SECS[k][1]+": pick a section");
   list.querySelectorAll("[data-sec]").forEach(function(b){if(b.dataset.sec===gNavCur) b.setAttribute("aria-current","true");else b.removeAttribute("aria-current");});
 }
+/* v2.96: the button slides away while you read downward (it covered the "Facts last checked" line and other text) and comes back on any scroll up or near the end */
+(function(){var last=0;
+  panel.addEventListener("scroll",function(){
+    var j=document.getElementById("g-jump");if(!j) return;
+    var y=panel.scrollTop, dy=y-last, end=panel.scrollHeight-y-panel.clientHeight<160, list=document.getElementById("gj-list");
+    if(list&&!list.hidden){last=y;return;}
+    if(gNavLock&&performance.now()<gNavLock.until){last=y;return;}   /* the page is gliding to a section the reader just picked: keep the button */
+    if(dy>6&&y>120&&!end) j.classList.add("gj-away");
+    else if(dy<-6||end||y<=120) j.classList.remove("gj-away");
+    if(Math.abs(dy)>6) last=y;
+  },{passive:true});
+})();
 /* a tap anywhere else closes the list */
 document.addEventListener("pointerdown",function(e){var l=document.getElementById("gj-list");if(l&&!l.hidden&&!(e.target.closest&&e.target.closest("#g-jump"))) gJumpOpen(false,true);},true);
 /* ---------- scroll chapter breaks + title parallax (guide pages) ----------
@@ -8231,8 +8267,9 @@ var SIDX=[];
   SIDX.push({kind:"page",key:"p:compare",page:"compare",name:"Compare certs",sub:"Explore · two certs side by side",fields:[[snorm("compare certs"),95],[snorm("compare versus vs side by side difference which is better which cert harder cheaper"),60]]});
   SIDX.push({kind:"page",key:"p:exam",page:"exam",name:"Exam countdown",sub:"Explore · test date, countdown, day-by-day plan",fields:[[snorm("exam countdown"),95],[snorm("exam date test date countdown study plan schedule calendar day by day days left when is my exam"),60]]});
   SIDX.push({kind:"page",key:"p:out",page:"out",name:"Getting out",sub:"Explore · SkillBridge in your last 180 days",fields:[[snorm("getting out"),95],[snorm("skillbridge skill bridge separation separating transition tap leaving civilian job internship employer last 180 days ets eoe retire retirement"),60]]});
-  Object.keys(GUIDES).forEach(function(n){var G=GUIDES[n];mxBankList(G).forEach(function(b){
-    SIDX.push({kind:"page",key:"p:mx:"+G.id+":"+b.ver,mxg:n,name:q8Short(n)+" practice exam",sub:"Full timed exam · "+b.code+" · weak-spot drills",fields:[[snorm(q8Short(n)+" practice exam"),95],[snorm(q8Short(n)+" "+b.code+" mock exam timed test practice test full exam weak spots drill"),70]]});});});
+  Object.keys(GUIDES).forEach(function(n){var G=GUIDES[n], bl=mxBankList(G), two=bl.length>1, old=function(b){return /retir/i.test(G.versions[b.ver].status||"");}, anyOld=bl.some(old);bl.forEach(function(b){
+    var tag=two?" · "+b.label+(anyOld?(old(b)?" (older)":" (new)"):""):"";
+    SIDX.push({kind:"page",key:"p:mx:"+G.id+":"+b.ver,mxg:n,name:q8Short(n)+" practice exam"+tag,sub:"Full timed exam · "+b.code+" · weak-spot drills",fields:[[snorm(q8Short(n)+" practice exam"),95],[snorm(q8Short(n)+" "+b.code+" mock exam timed test practice test full exam weak spots drill"),70]]});});});
   SIDX.push({kind:"page",key:"p:print",print:true,name:"Printable path sheet",sub:"For instructors and leadership · certs by path, DoD 8140, CG COOL",fields:[[snorm("printable path sheet"),95],[snorm("print printable printout pdf save as pdf handout hand out one pager brief briefing instructor instructors leadership command chief master chief counseling sheet paper"),60]]});
   SIDX.push({kind:"page",key:"p:settings",page:"settings",name:"Settings",sub:"Explore · Lite mode, back up and restore your progress",fields:[[snorm("settings"),95],[snorm("install app add to home screen desktop app lite mode light mode slow lag laggy battery data saver 3d globe off backup back up restore export import transfer move progress new phone new device save my progress"),60]]});
   SIDX.push({kind:"page",key:"p:colleges",col:true,name:"Colleges",sub:"Degrees · "+COLLEGES.length+" schools, what you pay after TA",fields:[[snorm("colleges"),95],[snorm("college colleges university universities school schools degree degrees bachelor bachelors associate online tuition assistance ta wgu"),58]]});
