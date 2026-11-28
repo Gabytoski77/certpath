@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-8IXNMKmhLwOFFR49bHjcmzGnVDKEgGfZASAUG7iIGI4=' 'sha256-MiqjbLVpTE7Rqp4MFjQB8bZU2inPpEBGtLRHiVRaUmw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VGxzUNlIPjzHAfFDLE1kae+fNad17fF7m45eFWAgoZY=' 'sha256-zlYXTNqcYWeqJL8xCoMQSkD+Q84KYc/P4kvP2GLFDI4=' 'sha256-MiqjbLVpTE7Rqp4MFjQB8bZU2inPpEBGtLRHiVRaUmw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>MyNextCert: IT certification paths, study guides and DoD 8140 for Coast Guard IT</title>
 <meta name="description" content="MyNextCert: certifications, career paths, DoD 8140 work roles and CG COOL funding for Coast Guard IT. Free study guides, quizzes and PBQs. Not an official U.S. Coast Guard site.">
@@ -80,6 +80,16 @@ body{position:fixed;inset:0;width:100%}
   animation:spFail .5s ease 7s forwards;cursor:default}
 #splash.out{pointer-events:none}
 #sp-cv{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* v2.98: the Hex Break mark draws itself above the word while the app loads (no extra wait: it rides the same timeline) */
+.sp-mark{position:absolute;left:0;top:0;width:64px;height:64px;color:#e8eef5;opacity:0;pointer-events:none;will-change:transform,opacity}
+.sp-mark path{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.sp-hex{stroke-width:9;stroke-dasharray:1;stroke-dashoffset:1}
+.sp-chev{stroke-width:11;opacity:0;transform:translateX(-26px);transform-box:fill-box}
+#splash.go .sp-hex{animation:spHex .7s cubic-bezier(.65,0,.35,1) forwards}
+#splash.go .sp-chev{animation:spChev .55s cubic-bezier(.16,1,.3,1) .5s forwards}
+#splash.still .sp-hex{stroke-dashoffset:0}#splash.still .sp-chev{opacity:1;transform:none}
+@keyframes spHex{to{stroke-dashoffset:0}}
+@keyframes spChev{to{opacity:1;transform:none}}
 .sp-meta{position:absolute;left:0;top:0;width:0;height:0;opacity:0;pointer-events:none;font-family:"CP Mono","IBM Plex Mono",ui-monospace,Menlo,monospace}
 .sp-top{position:absolute;left:0;bottom:14px;margin:0;display:flex;justify-content:space-between;gap:20px;width:100%;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8d97a5;white-space:nowrap}
 .sp-top span:first-child{color:#c9d0d9}
@@ -762,6 +772,27 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .pv a{color:var(--powder,#bcd6ea)}
 .pv-lead{color:var(--ink);font-size:15px;margin-top:10px !important}
 .pv-fine{margin-top:18px !important;font:400 10.5px/1.5 var(--f-mono);color:#7f8996}
+/* v2.98: "Ready to book" dialog: the Hex Break mark glows in the cert's vendor color (still in Lite / reduced motion) */
+.rb .pv-in{text-align:center}
+.rb-mark{position:relative;width:96px;height:96px;margin:6px auto 14px;color:var(--rb-c,#bcd6ea)}
+.rb-mark::before{content:"";position:absolute;inset:-28px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--rb-c,#bcd6ea) 55%,transparent),transparent);opacity:.55}
+.rb-mark svg{position:relative;width:100%;height:100%;display:block}
+.rb.go .rb-mark::before{animation:rbGlow 1.4s cubic-bezier(.16,1,.3,1) 2 alternate}
+.rb.go .rb-mark svg{animation:rbPop .7s cubic-bezier(.16,1,.3,1)}
+@keyframes rbGlow{from{opacity:0;transform:scale(.6)}to{opacity:.9;transform:scale(1.08)}}
+@keyframes rbPop{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:none}}
+html.lite .rb .rb-mark::before,html.lite .rb .rb-mark svg{animation:none}
+@media (prefers-reduced-motion:reduce){.rb .rb-mark::before,.rb .rb-mark svg{animation:none}}
+.rb h2{font-size:28px}
+.rb-steps{list-style:none;padding:0 !important;margin:18px 0 6px !important;display:grid;gap:10px;text-align:left}
+.rb-steps li{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:12px;margin:0}
+.rb-steps .lab{margin:0;font:600 10px/1.3 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#9aa6b4}
+.rb .g-btn{--v-fg:var(--rb-c,#bcd6ea);justify-content:center;text-decoration:none;width:100%;box-sizing:border-box}
+.rb .g-btn.ghost{background:transparent;color:var(--ink);border:1px solid rgba(255,255,255,.2)}
+.rb-keep{margin-top:16px;background:none;border:0;color:var(--ink-2);font:500 13px/1 var(--f-ui);padding:10px 14px;border-radius:999px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.rb-keep:focus-visible,.rb .g-btn:focus-visible{outline:2px solid var(--powder,#bcd6ea);outline-offset:3px}
+.rb-tag{font:600 9px/1 var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:#9be7b4;border:1px solid rgba(155,231,180,.5);border-radius:999px;padding:4px 7px;align-self:center;white-space:nowrap}
+.p-eyebrow .rb-tag{margin-left:8px;vertical-align:1px}
 .pv-x{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:var(--ink);font:400 22px/1 var(--f-ui);cursor:pointer}
 .pv-x:hover{background:rgba(255,255,255,.1)}
 @media (max-width:720px){.pv-in{padding:18px 18px 22px;font-size:13.5px}.pv h2{font-size:26px}}
@@ -2624,6 +2655,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
 <body>
 <div id="splash" aria-hidden="true">
   <canvas id="sp-cv"></canvas>
+  <svg class="sp-mark" id="sp-mark" viewBox="0 0 120 120"><path class="sp-hex" pathLength="1" d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82"/><path class="sp-chev" d="M66 38L96 60 66 82"/></svg>
   <div class="sp-meta" id="sp-meta">
     <div class="sp-bot"><span class="sp-bar"><i id="sp-fill"></i></span><span class="sp-n" id="sp-n">000</span></div>
   </div>
@@ -2640,8 +2672,8 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.97</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
-    <div class="top-ret" id="top-ret"></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.98</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="top-ret" id="top-ret" data-rv="1"></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2700,6 +2732,18 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
     <h3>Questions</h3>
     <p>Email <a href="mailto:security@mynextcert.com">security@mynextcert.com</a>.</p>
     <p class="pv-fine">Not an official U.S. Coast Guard or DoD site. Updated Nov 15, 2026. &copy; 2026 Gabriel Rodriguez</p>
+  </div>
+</dialog>
+<dialog id="rbook" class="pv rb" aria-labelledby="rb-h" aria-describedby="rb-lead">
+  <div class="pv-in">
+    <div class="rb-mark" aria-hidden="true"><svg viewBox="0 0 120 120"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M66 38L96 60 66 82" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <h2 id="rb-h">You&rsquo;re ready for <span id="rb-name">this exam</span>!</h2>
+    <p class="pv-lead" id="rb-lead">Two full practice exams in a row at 85% or better. Here&rsquo;s how to book the real one.</p>
+    <ol class="rb-steps">
+      <li><p class="lab">Step 1</p><button type="button" class="g-btn" id="rb-cool"><span class="g-btn-l">Request CG COOL funding &rarr;</span></button></li>
+      <li><p class="lab">Step 2</p><a class="g-btn ghost" id="rb-book" href="https://www.pearsonvue.com/" target="_blank" rel="noopener noreferrer"><span class="g-btn-l">Book your exam with Pearson VUE<span class="vh"> (opens in a new tab)</span></span></a></li>
+    </ol>
+    <button type="button" class="rb-keep" id="rb-keep">Keep studying</button>
   </div>
 </dialog>
 <dialog id="wnew" class="pv" aria-labelledby="wn-h">
@@ -4855,7 +4899,7 @@ function buildCerts(v){
     return '<li class="cert" data-d="'+c[2]+'" data-k="'+k+'">'+
       '<button type="button" class="c-row" aria-expanded="false" aria-controls="'+id+'">'+
         '<span class="c-rank">00</span>'+
-        '<span class="c-main"><span class="c-name">'+c[0]+'</span><span class="c-level">'+c[1]+'</span>'+(GUIDES[c[0]]?'<span class="c-guide">Guide</span>':'')+'</span>'+
+        '<span class="c-main"><span class="c-name">'+c[0]+'</span><span class="c-level">'+c[1]+'</span>'+(GUIDES[c[0]]?'<span class="c-guide">Guide</span>'+(rbIs(GUIDES[c[0]].id)?'<span class="rb-tag">Ready to book</span>':''):'')+'</span>'+
         '<span class="c-meta-m">'+
           '<span class="c-diff" role="img" aria-label="Difficulty '+c[2]+' of 5">'+bars+'</span>'+
           '<span class="c-hrs">'+c[3]+'</span>'+
@@ -6354,6 +6398,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.98",d:"2026-11-28",t:"Two full practice exams in a row at 85% or better now unlock \u201cReady to book\u201d: CG COOL funding, then booking your exam. The new logo draws itself as the app opens."},
   {v:"2.97",d:"2026-11-27",t:"The home card now shows your last practice exam score and the next objective to study, and Continue takes you right there. A banner warns you 90 days before an exam you may need retires."},
   {v:"2.96",d:"2026-11-27",t:"Easier navigation on phones and laptops: a home button in guides, a Jump to button that gets out of your way, clearer practice exam names in search, and hints for the bottom bar and vendor row."},
   {v:"2.95",d:"2026-11-27",t:"Full practice exams for LPIC-1 (101-500 and 102-500) and LPIC-2 (201-450 and 202-450)."},
@@ -6361,7 +6406,6 @@ var WHATS_NEW=[
   {v:"2.93",d:"2026-11-27",t:"Four new cloud practice exams: AZ-104, SC-500, AWS Solutions Architect (SAA-C03) and AWS Security Specialty (SCS-C03). Phones no longer zoom in when you tap a practice terminal."},
   {v:"2.92",d:"2026-11-27",t:"On laptop screens, the \u201cWhich certs to take\u201d text no longer covers the MyNextCert name. In Light mode, the globe keeps its map when the network is spotty."},
   {v:"2.91",d:"2026-11-27",t:"A new MyNextCert logo: a badge with an open side and an arrow pushing through it, for moving on to your next cert. New app and tab icons too."},
-  {v:"2.90",d:"2026-11-26",t:"Four new practice exams: Azure Fundamentals (AZ-900), Cloud Practitioner (CLF-C02), Linux Essentials (010-200) and Security Essentials (020-100)."},
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -6708,7 +6752,7 @@ function renderGuide(i,name){
   var pub=(VENDORS.filter(function(x){return x.id!=="colleges"&&x.certs.some(function(cc){return cc[0]===name;});})[0]||v).name;
   var h='';
   h+='<nav class="g-nav pr" aria-label="Guide sections"><button type="button" class="g-nav-back" id="g-nav-back" aria-label="Back to '+gEsc(v.name)+'"><span class="ar" aria-hidden="true">&larr;</span><span class="gb-full">'+gEsc(v.name)+'</span><span class="gb-short" aria-hidden="true">'+gEsc(v.short)+'</span></button><span class="g-nav-lab" aria-hidden="true">Jump to</span><div class="g-nav-in" id="g-nav">'+G_SECS.map(function(s,k){return '<button type="button" data-sec="'+s[0]+'"'+(k?'':' aria-current="true"')+'><span>'+pad2(k+1)+'</span>'+s[1]+'</button>';}).join("")+'<span class="g-nav-ind" aria-hidden="true"></span></div></nav>';
-  h+='<div class="p-hero g-hero"><div class="p-hero-main"><p class="p-eyebrow pr"><span>'+gEsc(v.name)+'</span> / '+gEsc(c[1])+' &nbsp;&middot;&nbsp; Cert guide</p>'+
+  h+='<div class="p-hero g-hero"><div class="p-hero-main"><p class="p-eyebrow pr"><span>'+gEsc(v.name)+'</span> / '+gEsc(c[1])+' &nbsp;&middot;&nbsp; Cert guide'+(rbIs(G.id)?'<span class="rb-tag">Ready to book</span>':'')+'</p>'+
      '<h2 id="p-title"'+((G.title||name).length>26?' class="long"':'')+' aria-label="'+gEsc(G.title||name)+'"><span aria-hidden="true">'+splitTitle((G.title||name)+".")+'</span></h2>'+
      '<p class="g-lead pr">'+gEsc(G.lead)+'</p></div>'+
      '<aside class="p-aside pr g-ver"><p class="lab">'+gEsc(G.verLabel||"Exam version")+'</p>'+
@@ -7489,6 +7533,7 @@ function mxSubmit(auto){
   gSet("cgcp.mx.run",null);
   mxRes={run:run,rec:rec,auto:!!auto};
   mxResults();
+  if(run.kind==="full") rbCheck(G,run.cert);
   var sec=panel.querySelector("#mxp");if(sec&&guideName===run.cert) mxGuide(G);
 }
 function mxVerdict(rec,kind){
@@ -9949,6 +9994,40 @@ function rsApply(name){
     if(ck){scrollPanelTo(ck.closest(".g-o"),-gNavH()-20);ck.focus({preventScroll:true});}
   }catch(err){}
 }
+/* v2.98: "Ready to book". When the two most recent FULL timed practice exams for a cert are both 85% or better, a
+   one-time celebration shows the next steps: CG COOL funding, then booking with Pearson VUE. "cgcp.ready" lists the
+   guide ids that earned it, so it shows once per cert; a "Ready to book" tag stays on the cert card and guide header,
+   even if a later score drops. Booking pages are Pearson VUE's own pages per vendor (checked 2026-11-28).
+   TODO(PR 3): point Step 2 at the exam-day guide once it ships. */
+var RB_KEY="cgcp.ready";
+var RB_BOOK={comptia:"https://www.pearsonvue.com/us/en/comptia",isc2:"https://home.pearsonvue.com/isc2",cisco:"https://home.pearsonvue.com/cisco",
+  lpi:"https://www.pearsonvue.com/us/en/lpi.html",aws:"https://home.pearsonvue.com/aws",azure:"https://home.pearsonvue.com/microsoft"};
+function rbList(){var d=gGet(RB_KEY);return Array.isArray(d)?d.filter(function(x){return typeof x==="string"&&x.length<40;}):[];}
+function rbIs(id){return rbList().indexOf(id)>=0;}
+function rbEarned(G){var f=mxHist(G).filter(function(r){return r.k==="full";}).slice(0,2);return f.length===2&&f.every(function(r){return r.s/r.n>=.85;});}
+function rbCheck(G,name){try{
+  if(rbIs(G.id)||!rbEarned(G)) return;
+  var l=rbList();l.push(G.id);gSet(RB_KEY,l.slice(-60));
+  setTimeout(function(){rbShow(name);},reduced?0:1200);   /* let the score count up first */
+}catch(err){}}
+var rbBack=null;
+function rbShow(name){
+  var d=document.getElementById("rbook");if(!d||!d.showModal||d.open) return;
+  var f=findCert(name), v=VENDORS[f.v];
+  document.getElementById("rb-name").textContent=name;
+  d.style.setProperty("--rb-c",v.beacon||"#bcd6ea");
+  document.getElementById("rb-book").href=RB_BOOK[v.id]||"https://www.pearsonvue.com/";
+  rbBack=document.activeElement;d.classList.remove("go");
+  try{d.showModal();}catch(err){return;}
+  if(!reduced) requestAnimationFrame(function(){d.classList.add("go");});
+  document.getElementById("rb-cool").focus();
+}
+(function(){
+  var d=document.getElementById("rbook");if(!d) return;
+  d.addEventListener("close",function(){d.classList.remove("go");var b=rbBack;rbBack=null;if(b&&b.isConnected&&b.focus) b.focus({preventScroll:true});});
+  document.getElementById("rb-keep").addEventListener("click",function(){d.close();});
+  document.getElementById("rb-cool").addEventListener("click",function(){rbBack=null;d.close();var m=mxEl("mx");if(m&&m.open) mxClose();goFund("cool");});
+})();
 function stGuide(R){
   var f=findCert(R.n);
   var sc=R.s!=null?"Last exam "+R.s+"%":"", nx=R.all?"Take a practice exam":"Next: "+R.o.t;
@@ -10055,7 +10134,7 @@ runSplash();
 
 /* ---------- launch screen: MyNextCert rises in, then flies into its place behind the globe ---------- */
 function runSplash(){
-  var el=$("#splash"), cv=$("#sp-cv"), meta=$("#sp-meta"), fill=$("#sp-fill"), num=$("#sp-n");
+  var el=$("#splash"), cv=$("#sp-cv"), meta=$("#sp-meta"), fill=$("#sp-fill"), num=$("#sp-n"), mark=$("#sp-mark"), MK=64;
   var ttEls=[$("#tt"),$("#tt-front")];
   if(!el){splashCover=false;startHome();lateWorld();return;}
   if(tt) tt.skipIntro();
@@ -10104,6 +10183,7 @@ function runSplash(){
     fill.style.transform="scaleX("+eio(prog).toFixed(4)+")";
     num.textContent=String(Math.round(eio(prog)*100)).padStart(3,"0");
     meta.style.opacity=phase==="wait"?"0":String(cl(el_/250)*(1-cl(ex/.22)));
+    if(mark){mark.style.transform="translate("+(P.cx-MK/2).toFixed(1)+"px,"+(top-MK-48).toFixed(1)+"px)";mark.style.opacity=meta.style.opacity;}
     if(phase==="exit"){
       bgLayer.style.opacity=String(1-eio(cl((ex-.1)/.7)));
       if(ex>.6&&!ttShown){ttShown=true;ttEls.forEach(function(c){if(c){c.style.transition="opacity .5s cubic-bezier(.16,1,.3,1)";c.style.opacity="";}});}
@@ -10133,7 +10213,11 @@ function runSplash(){
   function skip(){if(phase==="reveal"||phase==="wait"){if(phase==="wait"){t0=performance.now()-HOLD;phase="reveal";}beginExit(performance.now());}}
   el.addEventListener("pointerdown",skip);
   document.addEventListener("keydown",function k(e){document.removeEventListener("keydown",k);skip();});
+  /* v2.98: the launch screen plays on the first load of a visit only; a reload in the same tab goes straight home */
+  var seen=null;try{seen=sessionStorage.getItem("cgcp.splash");sessionStorage.setItem("cgcp.splash","1");}catch(err){}
+  if(seen){startHome();ttEls.forEach(function(c){if(c) c.style.opacity="";});finish();return;}
   if(reduced){
+    if(mark){el.classList.add("still");mark.style.transform="translate("+(vw/2-MK/2).toFixed(1)+"px,"+(vh*.47-MK/2).toFixed(1)+"px)";mark.style.opacity="1";}
     startHome();ttEls.forEach(function(c){if(c) c.style.opacity="";});
     anim(el,[{opacity:1},{opacity:0}],{duration:300,delay:250,fill:"forwards"});setTimeout(finish,600);return;
   }
@@ -10146,6 +10230,7 @@ function runSplash(){
     if(done) return;
     if(tt){tt.fontReady();placeReadout();}
     splashBusy=true;
+    el.classList.add("go");
     requestAnimationFrame(function(now){if(done) return;if(phase==="wait"){t0=now;phase="reveal";}draw(now);});
   });
 }
