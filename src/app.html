@@ -165,6 +165,19 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .st-card .n{font:700 17px/1.15 var(--f-disp);letter-spacing:-.02em;color:#fff;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .st-card .s{grid-column:1;font:400 12px/1.35 var(--f-ui);color:#b9c3ce}
 .st-card .go{grid-column:2;grid-row:2/span 2;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#e8f1f8;color:#0b121a;font:600 14px/1 var(--f-disp);transition:transform .25s var(--ez)}
+.st-ret{display:flex;flex-direction:column;gap:6px;width:100%;max-width:340px;margin:0 0 10px}
+.st-ret[hidden]{display:none}
+/* absolute so the top bar keeps its height: a taller bar shrank the globe (and its picture size) on work laptops */
+.top{position:relative}
+.top-ret{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(480px,calc(100% - 520px));display:flex;justify-content:center;pointer-events:none}
+.top-ret .st-ret{max-width:480px;margin:0}
+.top-ret .st-rt{background:rgba(20,18,12,.88);pointer-events:auto}
+.st-rt{display:flex;align-items:center;gap:4px;border-radius:12px;background:rgba(255,196,87,.1);border:1px solid rgba(255,196,87,.42)}
+.st-rt a{flex:1;min-width:0;padding:8px 4px 8px 12px;font:400 12px/1.35 var(--f-ui);color:#f3e6c8;text-decoration:none}
+.st-rt a b{font-weight:700;color:#fff}
+.st-rt a:focus-visible,.st-rt button:focus-visible{outline:2px solid var(--powder);outline-offset:2px}
+.st-rt button{flex:none;width:36px;height:36px;display:grid;place-items:center;border-radius:10px;font:500 18px/1 var(--f-ui);color:#f3e6c8}
+@media (hover:hover) and (pointer:fine){.st-rt a:hover{text-decoration:underline}.st-rt button:hover{color:#fff}}
 .st-card .bar{grid-column:1/-1;height:3px;margin-top:5px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
 .st-card .bar i{display:block;height:100%;width:100%;border-radius:inherit;background:var(--c);transform-origin:0 50%;transform:scaleX(var(--p,0))}
 @media (hover:hover) and (pointer:fine){.st-card:hover{border-color:rgba(188,214,234,.6);background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.045))}.st-card:hover .go{transform:translateX(3px)}}
@@ -2592,7 +2605,8 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.96</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.97</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="top-ret" id="top-ret"></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -2607,6 +2621,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
       <button type="button" class="st-cool" id="st-cool"><i aria-hidden="true"></i>The Coast Guard can pay for your certs. <b>See how <span aria-hidden="true">&rarr;</span></b></button>
       </div>
       <div class="st-act" id="st-act"><button type="button" class="st-main" id="st-path">Build my path <small>1 min</small><span class="ar" aria-hidden="true">&rarr;</span></button></div>
+      <div class="st-ret" id="st-ret" role="region" aria-label="Exams retiring soon" hidden></div>
       <div class="st-links" id="st-links"><button type="button" data-st="vendors">Browse vendors</button><button type="button" data-st="search">Search a cert</button></div>
       <p class="st-disc">Not an official U.S. Coast Guard site &middot; <span class="nw">&copy; 2026 Gabriel Rodriguez</span> &middot; <a class="pv-link" href="#privacy">Privacy</a> &middot; <button type="button" class="pv-link wn-btn">What&rsquo;s new<i class="wn-dot" aria-hidden="true"></i><span class="vh wn-vh"></span></button><span class="inst-w" hidden> &middot; <button type="button" class="pv-link inst-btn">Install app</button></span></p>
     </div></div>
@@ -6304,6 +6319,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.97",d:"2026-11-27",t:"The home card now shows your last practice exam score and the next objective to study, and Continue takes you right there. A banner warns you 90 days before an exam you may need retires."},
   {v:"2.96",d:"2026-11-27",t:"Easier navigation on phones and laptops: a home button in guides, a Jump to button that gets out of your way, clearer practice exam names in search, and hints for the bottom bar and vendor row."},
   {v:"2.95",d:"2026-11-27",t:"Full practice exams for LPIC-1 (101-500 and 102-500) and LPIC-2 (201-450 and 202-450)."},
   {v:"2.94",d:"2026-11-27",t:"Three new Cisco practice exams for the CCNP core tests: Security (SCOR 350-701), Enterprise (ENCOR 350-401) and Cybersecurity (CBRCOR 350-201)."},
@@ -6311,7 +6327,6 @@ var WHATS_NEW=[
   {v:"2.92",d:"2026-11-27",t:"On laptop screens, the \u201cWhich certs to take\u201d text no longer covers the MyNextCert name. In Light mode, the globe keeps its map when the network is spotty."},
   {v:"2.91",d:"2026-11-27",t:"A new MyNextCert logo: a badge with an open side and an arrow pushing through it, for moving on to your next cert. New app and tab icons too."},
   {v:"2.90",d:"2026-11-26",t:"Four new practice exams: Azure Fundamentals (AZ-900), Cloud Practitioner (CLF-C02), Linux Essentials (010-200) and Security Essentials (020-100)."},
-  {v:"2.89",d:"2026-11-26",t:"Two new Cisco practice exams: CCST Cybersecurity (100-160) and CCST Networking (100-150), each with hands-on questions."},
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -14759,7 +14774,7 @@ function renderGuide(i,name){
     return;
   }
   var G=GUIDES[name], v=VENDORS[i], body=panel.querySelector("#p-body");
-  guideName=name;panel.classList.add("in-guide");gSet("cgcp.last",{k:"g",g:name,t:Date.now()});
+  guideName=name;panel.classList.add("in-guide");gSet("cgcp.last",{k:"g",g:name,t:Date.now()});rsSave(G,name);
   if(flex){flex.destroy();flex=null;}
   if(gIO){gIO.disconnect();gIO=null;}
   setBackLabel(v.name);
@@ -14824,15 +14839,15 @@ function renderGuide(i,name){
   body.innerHTML='<div class="g" id="guide">'+h+'</div>';
 
   // wire
-  var vseg=body.querySelector(".g-vseg");if(vseg) vseg.addEventListener("click",function(e){var b=e.target.closest("[data-ver]");if(!b||b.dataset.ver===gVer) return;gVer=b.dataset.ver;gSet("cgcp."+G.id+".ver",gVer);gSyncSeg(this,"ver",gVer);gVersion(G,true);});
+  var vseg=body.querySelector(".g-vseg");if(vseg) vseg.addEventListener("click",function(e){var b=e.target.closest("[data-ver]");if(!b||b.dataset.ver===gVer) return;gVer=b.dataset.ver;gSet("cgcp."+G.id+".ver",gVer);rsSave(G,guideName);gSyncSeg(this,"ver",gVer);gVersion(G,true);});
   body.querySelector("#g-hseg").addEventListener("click",function(e){var b=e.target.closest("[data-h]");if(!b) return;gHpw=+b.dataset.h;gSet("cgcp."+G.id+".hpw",gHpw);gSyncSeg(this,"h",String(gHpw));gPlan(G,true);});
   body.querySelector("#g-nav-back").addEventListener("click",function(){closeGuide();});
   body.querySelector("#g-nav").addEventListener("click",function(e){var b=e.target.closest("[data-sec]");if(!b) return;gNavGo(b.dataset.sec);});
   gJumpMount();
-  body.querySelector("#g-reset").addEventListener("click",function(){gSet(gDoneKey(G),[]);gObjectives(G,false);toast("Progress cleared");});
+  body.querySelector("#g-reset").addEventListener("click",function(){gSet(gDoneKey(G),[]);rsSave(G,guideName);gObjectives(G,false);toast("Progress cleared");});
   body.querySelector("#g-doms").addEventListener("click",function(e){
     var cb=e.target.closest(".g-ck");
-    if(cb){var id=cb.dataset.id,done=gDone(G),k=done.indexOf(id);if(k>=0) done.splice(k,1);else done.push(id);gSet(gDoneKey(G),done);
+    if(cb){var id=cb.dataset.id,done=gDone(G),k=done.indexOf(id);if(k>=0) done.splice(k,1);else done.push(id);gSet(gDoneKey(G),done);rsSave(G,guideName);
       cb.setAttribute("aria-checked",String(k<0));cb.closest(".g-o").classList.toggle("done",k<0);gProgress(G);return;}
     var hd=e.target.closest(".g-dh");if(hd){var d=hd.closest(".g-dom"),op=!d.classList.contains("open");d.classList.toggle("open",op);hd.setAttribute("aria-expanded",String(op));d.querySelector(".g-dd").inert=!op;}
   });
@@ -14850,7 +14865,7 @@ function renderGuide(i,name){
     else{var en=sByName(t.dataset.gocert);if(en) openCertFrom(en);}
   });
   gVersion(G,false);gPlan(G,false);gQuizStart(G,false);gPbq(G,0,false);gRoad(G);mxGuideWire(G);
-  requestAnimationFrame(function(){body.querySelectorAll(".seg").forEach(function(s){gPlaceSeg(s);});gNavSet("obj",true);gFx();});
+  requestAnimationFrame(function(){body.querySelectorAll(".seg").forEach(function(s){gPlaceSeg(s);});gNavSet("obj",true);gFx();rsApply(name);});
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){if(guideName===name){body.querySelectorAll(".seg").forEach(gPlaceSeg);gNavSet(gNavCur,true);}});
   // reveal sections as they scroll in
   var secs=body.querySelectorAll(".g-sec");
@@ -15547,7 +15562,7 @@ function mxSubmit(auto){
   wsRecord(G,list);
   Object.keys(by).forEach(function(k){by[k][0]=Math.round(by[k][0]*100)/100;});
   var rec={t:Date.now(),k:run.kind,x:run.src==="bank"?G.versions[run.ver].code:"quiz",n:run.items.length,s:Math.round(s*100)/100,by:by,u:run.used,d:run.dur,ids:ids.slice(0,200)};
-  var h=mxHist(G);h.unshift(rec);gSet("cgcp.mx."+G.id,h.slice(0,12));
+  var h=mxHist(G);h.unshift(rec);gSet("cgcp.mx."+G.id,h.slice(0,12));rsSave(G,run.cert);
   gSet("cgcp.mx.run",null);
   mxRes={run:run,rec:rec,auto:!!auto};
   mxResults();
@@ -17983,19 +17998,42 @@ function stLast(){
   if(d.k==="p"&&mpLoad()) return {k:"p"};
   return null;
 }
-function stGuide(name){
-  var G=GUIDES[name], ver=gGet("cgcp."+G.id+".ver");
-  if(typeof ver!=="string"||!Object.prototype.hasOwnProperty.call(G.versions,ver)) ver=Object.keys(G.versions)[0];
-  var total=0, ids={};G.versions[ver].domains.forEach(function(d){total+=d.obj.length;});
-  var d=gGet("cgcp."+G.id+"."+ver+".done"), n=0;
-  if(Array.isArray(d)) d.forEach(function(x){if(typeof x==="string"&&x.length<12&&!ids[x]){ids[x]=1;n++;}});
-  var pct=total?Math.min(100,Math.round(n/total*100)):0, best=gBest(G), f=findCert(name);
-  var sub=(pct?"Objectives "+pct+"%":"Objectives not started")+(best!=null?" · Quiz best "+best+"/"+gQN(G):"");
-  return {name:name,sub:sub,p:pct/100,c:VENDORS[f.v].beacon};
+/* v2.97: one small record, "cgcp.resume", written when a guide opens, an objective is ticked or a practice exam ends.
+   The home card reads only this record, so it never needs a guide's data (guides load on demand). Bad data = no card. */
+var RS_KEY="cgcp.resume", rsGo=null;
+function rsOwn(o,k){return Object.prototype.hasOwnProperty.call(o,k);}
+function rsSave(G,name){try{
+  var ver=gGet("cgcp."+G.id+".ver");if(typeof ver!=="string"||!rsOwn(G.versions,ver)) ver=Object.keys(G.versions)[0];
+  var d=gGet("cgcp."+G.id+"."+ver+".done"), done=Array.isArray(d)?d:[], total=0, n=0, next=null;
+  G.versions[ver].domains.forEach(function(dm,k){dm.obj.forEach(function(o,j){total++;if(done.indexOf(k+"-"+j)>=0) n++;else if(!next) next={id:k+"-"+j,t:String(o[0]).slice(0,140)};});});
+  var h=mxHist(G), s=null;if(h.length){s=Math.round(h[0].s/h[0].n*100);if(!(s>0&&s<=100)) s=null;}
+  gSet(RS_KEY,{n:name,p:total?Math.round(n/total*100):0,s:s,o:next,all:!next&&total>0,t:Date.now()});
+}catch(err){}}
+function rsLoad(){
+  var d=gGet(RS_KEY);if(!d||typeof d!=="object"||Array.isArray(d)||typeof d.n!=="string"||!rsOwn(GUIDES,d.n)||typeof d.t!=="number") return null;
+  var o=null;if(d.o&&typeof d.o==="object"&&typeof d.o.id==="string"&&/^\d{1,2}-\d{1,3}$/.test(d.o.id)&&typeof d.o.t==="string"&&d.o.t) o={id:d.o.id,t:d.o.t.slice(0,140)};
+  if(d.all!==true&&!o) return null;
+  return {n:d.n,p:typeof d.p==="number"&&isFinite(d.p)?Math.max(0,Math.min(100,d.p)):0,s:typeof d.s==="number"&&d.s>0&&d.s<=100?Math.round(d.s):null,o:d.all===true?null:o,all:d.all===true};
+}
+/* after the guide from the home card opens: scroll to the objective, or to the practice exams */
+function rsApply(name){
+  var g=rsGo;if(!g||g.n!==name) return;rsGo=null;
+  try{
+    if(g.go==="exam"){var x=panel.querySelector("#mxp");if(x){scrollPanelTo(x,-gNavH()-20);var fb=x.querySelector("button");if(fb) fb.focus({preventScroll:true});}return;}
+    var m=/^(\d+)-(\d+)$/.exec(g.go), dom=m&&panel.querySelectorAll(".g-dom")[+m[1]];if(!dom) return;
+    if(!dom.classList.contains("open")){dom.classList.add("open");dom.querySelector(".g-dh").setAttribute("aria-expanded","true");dom.querySelector(".g-dd").inert=false;}
+    var ck=dom.querySelector('.g-ck[data-id="'+g.go+'"]');
+    if(ck){scrollPanelTo(ck.closest(".g-o"),-gNavH()-20);ck.focus({preventScroll:true});}
+  }catch(err){}
+}
+function stGuide(R){
+  var f=findCert(R.n);
+  var sc=R.s!=null?"Last exam "+R.s+"%":"", nx=R.all?"Take a practice exam":"Next: "+R.o.t;
+  return {name:R.n,sub:(sc?sc+" \u00b7 ":"")+nx,go:R.all?"exam":R.o.id,p:R.p/100,c:VENDORS[f.v].beacon,all:R.all};
 }
 function stRender(){
   if(!stEl) return;
-  var L=null;try{L=stLast();}catch(err){L=null;}
+  var L=null, RSR=null;try{L=stLast();}catch(err){L=null;}
   var h, links='';
   var EX=null, exMs=0;try{EX=exLoad();if(EX) exMs=exTarget(EX)-new Date();}catch(err){EX=null;}
   var mini=document.getElementById("ex-mini"), miniL=document.getElementById("ex-mini-l");
@@ -18007,9 +18045,9 @@ function stRender(){
     h='<button type="button" class="st-card" data-st="exam" style="--c:'+gEsc(VENDORS[findCert(EX.c).v].beacon)+';--p:'+(EP.n?(dn/EP.n):0).toFixed(3)+'" aria-label="'+gEsc("Exam countdown. "+EX.c+" "+when+". "+sub2)+'">'+
       '<span class="k">Exam countdown</span><span class="n">'+gEsc(EX.c.split(" · ")[0]+" "+when)+'</span><span class="s">'+gEsc(sub2)+'</span><span class="go" aria-hidden="true">&rarr;</span><span class="bar" aria-hidden="true"><i></i></span></button>';
     links='<button type="button" data-st="path">My path</button>';
-  }else if(L&&L.k==="g"){
-    var g=stGuide(L.g);
-    h='<button type="button" class="st-card" data-st="guide" data-g="'+gEsc(g.name)+'" style="--c:'+gEsc(g.c)+';--p:'+g.p.toFixed(3)+'" aria-label="'+gEsc("Continue the "+g.name+" guide. "+g.sub)+'">'+
+  }else if(L&&L.k==="g"&&(RSR=rsLoad())){
+    var g=stGuide(RSR);
+    h='<button type="button" class="st-card" data-st="guide" data-g="'+gEsc(g.name)+'" data-go="'+gEsc(g.go)+'" style="--c:'+gEsc(g.c)+';--p:'+g.p.toFixed(3)+'" aria-label="'+gEsc((g.all?"Take a practice exam. ":"Continue. ")+g.name+" guide. "+g.sub)+'">'+
       '<span class="k">Pick up where you left off</span><span class="n">'+gEsc(g.name)+'</span><span class="s">'+gEsc(g.sub)+'</span><span class="go" aria-hidden="true">&rarr;</span><span class="bar" aria-hidden="true"><i></i></span></button>';
     links='<button type="button" data-st="path">My path</button>';
   }else if(L&&L.k==="p"){
@@ -18034,12 +18072,44 @@ if(stEl){
     if(k==="path") goPage("mine");
     else if(k==="exam") goPage("exam");
     else if(k==="saved"){mpWantSaved=true;if(shView==="mine") mpEnter();goPage("mine");}
-    else if(k==="guide"){var n=b.dataset.g;if(GUIDES[n]) dive(findCert(n).v,n);}
+    else if(k==="guide"){var n=b.dataset.g;if(GUIDES[n]){rsGo={n:n,go:b.dataset.go||""};dive(findCert(n).v,n);}}
     else if(k==="vendors") dive(frontIdx<0?0:frontIdx);
     else if(k==="search") srchShow(b);
   });
   stRender();
 }
+
+/* v2.97: retiring-soon banner. One list; shows 0 to 90 days before the date, hides itself after. Closed per cert + version.
+   Dates were checked against the vendor's page on the "checked" day. Set showRetiringBanner to false to turn it off site-wide. */
+var SITE_CONFIG={showRetiringBanner:true};
+var RETIRING=[
+  {id:"CySA+",ver:"V3 (CS0-003)",on:"2026-12-22",src:"https://www.comptia.org/en-us/certifications/cybersecurity-analyst/v3/",checked:"2026-11-27"},
+  {id:"Security+",ver:"V7 (SY0-701)",on:"2027-06-11",src:"https://www.comptia.org/en-us/certifications/security/",checked:"2026-11-27"}
+];
+function rtClosed(){var d=gGet("cgcp.retclosed");return Array.isArray(d)?d.filter(function(x){return typeof x==="string";}):[];}
+function rtRender(){
+  var el=document.getElementById("st-ret");if(!el) return;
+  var now=new Date(), today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate()), html="", n=0;
+  if(SITE_CONFIG.showRetiringBanner){
+    var closed=rtClosed();
+    RETIRING.map(function(r){var p=/^(\d{4})-(\d\d)-(\d\d)$/.exec(r.on);return {r:r,days:p?Math.round((Date.UTC(+p[1],p[2]-1,+p[3])-today)/864e5):NaN};})
+      .filter(function(x){return x.days>=0&&x.days<=90&&closed.indexOf(x.r.id+"|"+x.r.ver)<0;})
+      .sort(function(a,b){return a.days-b.days;}).forEach(function(x){
+        n++;var w=x.days===0?"today":x.days===1?"tomorrow":"in "+x.days+" days";
+        html+='<div class="st-rt"><a href="'+gEsc(x.r.src)+'" target="_blank" rel="noopener noreferrer"><b>'+gEsc(x.r.id+" "+x.r.ver)+'</b> retires '+gEsc(w)+' ('+gEsc(x.r.on)+'). Official page<span class="vh"> (opens in a new tab)</span></a>'+
+          '<button type="button" data-rt="'+gEsc(x.r.id+"|"+x.r.ver)+'" aria-label="'+gEsc("Close the "+x.r.id+" "+x.r.ver+" retirement notice")+'">&times;</button></div>';});
+  }
+  el.innerHTML=html;el.hidden=!n;
+}
+rtRender();
+(function(){var el=document.getElementById("st-ret");if(el) el.addEventListener("click",function(e){var b=e.target.closest("[data-rt]");if(!b) return;
+  var c=rtClosed();if(c.indexOf(b.dataset.rt)<0) c.push(b.dataset.rt);gSet("cgcp.retclosed",c.slice(-50));rtRender();var f=el.querySelector("a");if(f) f.focus();else{var m=document.querySelector("#st-act button");if(m) m.focus();}});})();
+/* v2.97: on wide screens the banner sits in the top bar, so it never pushes the exam/resume card up over the
+   MyNextCert wordmark on short laptop screens (1280x620). Phones and narrow windows keep it on the home card stack. */
+(function(){var el=document.getElementById("st-ret"),top=document.getElementById("top-ret"),act=document.getElementById("st-act");
+  if(!el||!top||!act||!window.matchMedia) return;var mq=matchMedia("(min-width:1000px)");
+  function place(){if(mq.matches){if(el.parentNode!==top) top.appendChild(el);}else if(el.previousElementSibling!==act) act.parentNode.insertBefore(el,act.nextSibling);}
+  place();if(mq.addEventListener) mq.addEventListener("change",place);else if(mq.addListener) mq.addListener(place);})();
 
 function startHome(lead){
   if(homeStarted) return;homeStarted=true;
