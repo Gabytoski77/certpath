@@ -438,7 +438,7 @@ def alloc(n, domains):
     return out
 
 
-NEW_PBQ_KINDS = ("logsel", "rules", "term", "diagram", "socsim")
+NEW_PBQ_KINDS = ("logsel", "rules", "term", "diagram", "socsim", "pentestlab")
 
 
 def obj_prefix(d):
@@ -545,6 +545,8 @@ def check_new_pbq(q, dset):
             why(d, f"device {d.get('id')!r}")
     elif k == "socsim":
         out.extend(check_socsim(q, dset, why, text))
+    elif k == "pentestlab":
+        out.extend(check_pentestlab(q, dset, why, text))
     return out
 
 
@@ -961,3 +963,94 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+# ---- the Pentest Lab ("pentestlab", vendor/pentestlab.js): same limits as the engine, plus the made-up-data and legal-lab rules ----
+PL_FX = re.compile(r"[a-z0-9-]{1,12}(:[A-Za-z0-9._/ \\-]{1,40}){0,3}")
+PL_BAD = re.compile(r"msfvenom|shellcode|\\x[0-9a-f]{2}\\x[0-9a-f]{2}|/bin/(ba)?sh -i|nc -e|bash -i|powershell -enc|<script", re.I)
+
+
+def check_pentestlab(q, dset, why, text):
+    out = []
+    ints = lambda x, lo, hi: isinstance(x, int) and not isinstance(x, bool) and lo <= x <= hi  # noqa: E731
+    if not ints(q.get("minutes"), 1, 45):
+        out.append("pentestlab needs 'minutes' (the engagement countdown) from 1 to 45")
+    b = q.get("brief") or {}
+    if not text(b.get("client"), 80) or not text(b.get("note"), 400) or not text(b.get("oosWhy"), 500) or not 1 <= len(b.get("rules") or []) <= 8:
+        out.append("pentestlab needs brief.client, brief.rules (1-8), brief.note and brief.oosWhy")
+    if not re.search(r"legal|lab|written permission|authori[sz]", str(b.get("note", "")), re.I):
+        out.append("brief.note must say these skills are for legal labs / written permission only")
+    hosts = q.get("hosts") or []
+    if not 2 <= len(hosts) <= 6:
+        out.append("pentestlab needs 2-6 hosts")
+    if not any(h.get("scope") == "in" for h in hosts) or not any(h.get("scope") == "out" for h in hosts):
+        out.append("pentestlab needs at least one in-scope and one out-of-scope host")
+    for h in hosts:
+        lab = f"host {h.get('ip')!r}"
+        if h.get("os") not in ("linux", "windows") or not text(h.get("name"), 30) or len(h.get("ports") or []) > 30:
+            out.append(f"{lab} needs os linux/windows, a name and up to 30 ports")
+        if h.get("scope") == "out" and not text(h.get("why"), 400):
+            out.append(f"{lab} is out of scope and needs a 'why'")
+        if len(h.get("web") or []) > 12:
+            out.append(f"{lab} has more than 12 pages")
+    ips = [h.get("ip") for h in hosts]
+    for ip in ips:
+        if not re.fullmatch(r"10\.10\.\d{1,3}\.\d{1,3}|192\.0\.2\.\d{1,3}|198\.51\.100\.\d{1,3}|203\.0\.113\.\d{1,3}", str(ip)):
+            out.append(f"pentestlab host {ip!r} must be a lab address: 10.10.x.x or 192.0.2.x / 198.51.100.x / 203.0.113.x")
+    if len(set(ips)) != len(ips):
+        out.append("pentestlab hosts need unique addresses")
+    if not re.fullmatch(r"10\.10\.\d{1,3}\.\d{1,3}", str((q.get("attacker") or {}).get("ip", ""))):
+        out.append("pentestlab needs attacker.ip as a 10.10.x.x address")
+    loot = q.get("loot") or []
+    flags = [l for l in loot if l.get("k") == "flag"]
+    if not flags or len(loot) > 30:
+        out.append("pentestlab needs 1-30 loot items, with at least one flag")
+    for l in loot:
+        if not PL_FX.fullmatch(str(l.get("fx", ""))) or l.get("k") not in ("flag", "cred", "hash", "note"):
+            out.append(f"loot item {str(l.get('l'))[:30]!r} needs a fact (fx) and a kind")
+        if l.get("k") == "flag":
+            why(l, f"flag {str(l.get('l'))[:30]!r}")
+            if not re.fullmatch(r"THM\{[A-Za-z0-9_ -]{4,40}\}", str(l.get("v", ""))):
+                out.append(f"flag {str(l.get('l'))[:30]!r} must look like THM{{made_up_text}}")
+    msf = q.get("msf")
+    if msf is not None:
+        if not 1 <= len(msf.get("mods") or []) <= 8:
+            out.append("msf needs 1-8 modules")
+        for m in msf.get("mods") or []:
+            if m.get("host") not in ips or m.get("pay") not in (msf.get("payloads") or []) or not str(m.get("name", "")).startswith(("exploit/lab/", "auxiliary/lab/")):
+                out.append(f"msf module {m.get('id')!r} needs a lab host, a listed payload and a made-up name under exploit/lab/ or auxiliary/lab/")
+    ad = q.get("ad")
+    if ad is not None:
+        if not 1 <= len(ad.get("edges") or []) <= 12:
+            out.append("ad needs 1-12 attack-path edges")
+        if "next" in ad:
+            why(ad["next"], "ad.next")
+        if not re.search(r"\.(example|test|local|lab)$", str(ad.get("domain", ""))):
+            out.append("ad.domain must end in .example, .test, .local or .lab")
+    titles, rems = q.get("titles") or [], q.get("rems") or []
+    eids = [e.get("id") for e in q.get("evid") or []]
+    if not 2 <= len(titles) <= 16 or not 2 <= len(rems) <= 16 or not 2 <= len(eids) <= 40 or len(set(eids)) != len(eids):
+        out.append("pentestlab needs 2-16 titles, 2-16 remediations and 2-40 unique evidence lines")
+    fs = q.get("findings") or []
+    if not 1 <= len(fs) <= 8:
+        out.append("pentestlab needs 1-8 findings")
+    tg = set()
+    for h in hosts:
+        tg.add(h.get("ip"))
+        tg.update("http://%s%s" % (h.get("ip"), w.get("path")) for w in h.get("web") or [])
+    for f in fs:
+        lab = f"finding {str(f.get('title'))[:30]!r}"
+        why(f, lab)
+        if f.get("title") not in titles or f.get("rem") not in rems or f.get("sev") not in SS_SEV or f.get("host") not in tg or not f.get("ev") or any(e not in eids for e in f["ev"]):
+            out.append(f"{lab} must use a listed title, remediation, severity, host/URL and evidence ids")
+    for c in q.get("checks") or []:
+        why(c, f"check {str(c.get('t'))[:30]!r}")
+    for e in q.get("evid") or []:
+        if e.get("fx") is not None and not PL_FX.fullmatch(str(e["fx"])):
+            out.append(f"evidence {e.get('id')!r} has a bad fact name")
+    blob = json.dumps(q, ensure_ascii=False)
+    m = PL_BAD.search(blob)
+    if m:
+        out.append(f"pentestlab data must not contain exploit or payload code (found {m.group(0)!r}); canned text only")
+    out.extend(x.replace("socsim", "pentestlab") for x in check_socsim_data(q))
+    return out
