@@ -2637,7 +2637,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.99</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.100</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="top-ret" id="top-ret" data-rv="1"></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
@@ -6363,6 +6363,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.100",d:"2026-11-28",t:"New SAL1 practice exam: 20 questions plus 5 timed SOC Simulator scenarios, scored like the real exam (pass at 750 of 1000). It is shorter than the real one."},
   {v:"2.99",d:"2026-11-28",t:"Groundwork for a timed SOC Simulator practice exam: an alert queue, a log search, an analyst terminal and a case report. The first simulator exam is coming soon."},
   {v:"2.98",d:"2026-11-28",t:"Two full practice exams in a row at 85% or better now unlock \u201cReady to book\u201d: CG COOL funding, then booking your exam. The new logo draws itself as the app opens."},
   {v:"2.97",d:"2026-11-27",t:"The home card now shows your last practice exam score and the next objective to study, and Continue takes you right there. A banner warns you 90 days before an exam you may need retires."},
@@ -6370,7 +6371,6 @@ var WHATS_NEW=[
   {v:"2.95",d:"2026-11-27",t:"Full practice exams for LPIC-1 (101-500 and 102-500) and LPIC-2 (201-450 and 202-450)."},
   {v:"2.94",d:"2026-11-27",t:"Three new Cisco practice exams for the CCNP core tests: Security (SCOR 350-701), Enterprise (ENCOR 350-401) and Cybersecurity (CBRCOR 350-201)."},
   {v:"2.93",d:"2026-11-27",t:"Four new cloud practice exams: AZ-104, SC-500, AWS Solutions Architect (SAA-C03) and AWS Security Specialty (SCS-C03). Phones no longer zoom in when you tap a practice terminal."},
-  {v:"2.92",d:"2026-11-27",t:"On laptop screens, the \u201cWhich certs to take\u201d text no longer covers the MyNextCert name. In Light mode, the globe keeps its map when the network is spotty."},
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -8840,6 +8840,8 @@ GUIDES["SAL1 · Security Analyst L1"]={
   checked:"2026-11-10",
   planHours:80,
   laneOnly:["Cyber"],
+  mock:{cur:"qbank/sal1.json"},
+  mockText:"25 items in 2 hours: 20 multiple-choice questions (200 points) and 5 timed SOC Simulator scenarios (800 points), scored out of 1,000 with a pass mark of 750, like the real exam. It is shorter than the real exam: real SAL1 is 80 multiple-choice questions plus 2 two-hour SOC Simulator scenarios. Every attempt draws different questions and scenarios, so retakes differ.",
   objSub:"Five topic areas from TryHackMe's SAL1 training content. Tick objectives as you study them; progress saves on this device.",
   planSub:"Set how many hours a week you can give it. The plan splits about 80 hours across the five areas (the SOC Level 1 path alone is about 65 hours of labs), then saves the last stretch for SOC Simulator practice.",
   pbqSub:"Hands-on practice in the style of the SOC Simulator, the part of the exam worth 800 of 1,000 points.",
@@ -15600,10 +15602,11 @@ function mxReview(quiet){
 }
 function mxSubmit(auto){
   if(!mxRun||mxRun.done) return;
-  var G=mxG(), run=mxRun, by={}, s=0, list=[], ids=[];
+  var G=mxG(), run=mxRun, by={}, s=0, list=[], ids=[], wsum=0, wtot=0, PT=mxPts(G,run);
   run.items.forEach(function(it){
     var q=mxQ(run,G,it);if(!q) return;
     var v=mxScore(q,it), k=wsKey(G,q.d,q.v||run.ver);
+    if(PT){var wt=q.t==="pbq"?PT.pb:PT.mc;wsum+=wt*v;wtot+=wt;}
     s+=v;by[k]=by[k]||[0,0];by[k][0]+=v;by[k][1]++;
     var qid=run.src==="bank"?run.ver+":"+q.id:q.id;
     if(pbqxNew(q)){   /* each part counts as a slice of ONE question, in its own domain (a part with no domain uses the question's) */
@@ -15617,6 +15620,7 @@ function mxSubmit(auto){
   wsRecord(G,list);
   Object.keys(by).forEach(function(k){by[k][0]=Math.round(by[k][0]*100)/100;});
   var rec={t:Date.now(),k:run.kind,x:run.src==="bank"?G.versions[run.ver].code:"quiz",n:run.items.length,s:Math.round(s*100)/100,by:by,u:run.used,d:run.dur,ids:ids.slice(0,200)};
+  if(PT&&wtot){rec.s=Math.round(wsum/wtot*run.items.length*100)/100;rec.pts=Math.round(wsum/wtot*PT.top);rec.pass=PT.pass;rec.top=PT.top;}   /* weighted exams (SAL1): points out of the real total */
   var h=mxHist(G);h.unshift(rec);gSet("cgcp.mx."+G.id,h.slice(0,12));rsSave(G,run.cert);
   gSet("cgcp.mx.run",null);
   mxRes={run:run,rec:rec,auto:!!auto};
@@ -15624,8 +15628,18 @@ function mxSubmit(auto){
   if(run.kind==="full") rbCheck(G,run.cert);
   var sec=panel.querySelector("#mxp");if(sec&&guideName===run.cert) mxGuide(G);
 }
+/* weighted exams: a bank's format.pts {mcq,pbq,pass} = points for all multiple-choice, all hands-on, and the pass mark; each item is worth its share (SAL1: 200 + 800, pass 750 of 1000) */
+function mxPts(G,run){
+  if(run.src!=="bank") return null;
+  var B=MX_BANKS[(mxBankList(G).filter(function(x){return x.ver===run.ver;})[0]||{}).path], P=B&&B.format&&B.format.pts;
+  if(!P||!(P.mcq>0&&P.pbq>0&&P.pass>0&&P.pass<P.mcq+P.pbq)) return null;
+  var np=0,nm=0;run.items.forEach(function(it){var q=B.byId[it.id];if(q) q.t==="pbq"?np++:nm++;});
+  if(!np||!nm) return null;
+  return {mc:P.mcq/nm,pb:P.pbq/np,top:P.mcq+P.pbq,pass:P.pass};
+}
 function mxVerdict(rec,kind){
   var p=rec.s/rec.n, lows=Object.keys(rec.by).filter(function(k){return rec.by[k][0]/rec.by[k][1]<.7;});
+  if(rec.pts!=null) return rec.pts>=rec.pass?(p>=.85&&!lows.length?"Above the pass mark with room to spare. Do it once more on a different day to be sure.":"You reached the pass mark of "+rec.pass+". Raise every domain above 70% so one bad scenario can't sink you."):"Below the pass mark of "+rec.pass+" ("+rec.pts+" points). Review the misses and the scenario write-ups, then try again.";
   if(kind!=="full"&&kind!=="half") return p>=.85?"Strong run. Keep it up with a full-length exam.":p>=.7?"Good. Review the misses below and run it again.":"Study the domains in red, then try again.";
   if(p>=.85&&!lows.length) return "In the ready range: 85% or better with no domain under 70%. Do it once more on a different day to be sure.";
   if(p>=.75) return "Close. Get every domain above 70% and the total to 85% before you book.";
@@ -15641,9 +15655,9 @@ function mxResults(){
   var keys=Object.keys(rec.by).sort();
   var missed=run.items.filter(function(it){var q=mxQ(run,G,it);return q&&mxScore(q,it)<.999;});
   var h='<div class="mx-res"><div class="g-qend"><div class="g-qscore" style="--p:'+pct+'"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle class="v" cx="60" cy="60" r="52"/></svg><b>'+Math.round(pct*100)+'<small>%</small></b></div>'+
-    '<div class="g-qsum"><p class="lab">'+(R.auto?'Time\'s up &middot; ':'')+gEsc(MX_KINDS[run.kind])+' &middot; '+(Math.round(rec.s*10)/10)+' of '+rec.n+' &middot; '+mxFmt(rec.u)+' used</p><p class="g-qmsg">'+gEsc(mxVerdict(rec,run.kind))+'</p>'+
+    '<div class="g-qsum"><p class="lab">'+(R.auto?'Time\'s up &middot; ':'')+gEsc(MX_KINDS[run.kind])+' &middot; '+(rec.pts!=null?rec.pts+' of '+rec.top+' points (pass '+rec.pass+')':(Math.round(rec.s*10)/10)+' of '+rec.n)+' &middot; '+mxFmt(rec.u)+' used</p><p class="g-qmsg">'+gEsc(mxVerdict(rec,run.kind))+'</p>'+
     '<ul class="g-qdom">'+keys.map(function(k){var x=rec.by[k], a=x[0]/x[1], L=wsLabel(G,k,run.ver);return '<li class="'+(a>=.7?'ok':'no')+'"><span>'+gEsc(L.num+" "+L.name)+'</span><i><b style="width:'+(a*100)+'%"></b></i><em>'+Math.round(a*100)+'%</em></li>';}).join("")+'</ul>'+
-    (run.kind==="full"||run.kind==="half"?'<p class="mx-note">'+(mxPassFail(G)?'The real exam is pass/fail with no score, and CompTIA doesn\'t publish the cut line':'CompTIA doesn\'t publish how raw scores turn into its 100&ndash;900 scale')+', so this shows a percent. Aim for 85% or better on two different runs.</p>':'')+
+    (rec.pts!=null?'<p class="mx-note">Scored like the real exam: multiple choice is worth 200 points and the SOC Simulator scenarios 800. This practice exam is shorter than the real one, so treat the score as a guide.</p>':run.kind==="full"||run.kind==="half"?'<p class="mx-note">'+(mxPassFail(G)?'The real exam is pass/fail with no score, and CompTIA doesn\'t publish the cut line':'CompTIA doesn\'t publish how raw scores turn into its 100&ndash;900 scale')+', so this shows a percent. Aim for 85% or better on two different runs.</p>':'')+
     '</div></div>'+
     '<div class="mx-sub">'+(missed.length?'<button type="button" class="g-btn" data-mxa="missed"><span class="g-btn-l">Retry the '+missed.length+' I missed &rarr;</span></button>':'')+
     '<button type="button" class="g-btn ghost" data-mxa="close"><span class="g-btn-l">Done</span></button></div>'+

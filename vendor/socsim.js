@@ -26,7 +26,7 @@
     ["T1053.005", "Scheduled Task"], ["T1547.001", "Registry Run Keys / Startup Folder"], ["T1136.001", "Create Account: Local Account"], ["T1078", "Valid Accounts"],
     ["T1110.001", "Brute Force: Password Guessing"], ["T1110.003", "Brute Force: Password Spraying"], ["T1003.001", "OS Credential Dumping: LSASS Memory"],
     ["T1087", "Account Discovery"], ["T1018", "Remote System Discovery"], ["T1046", "Network Service Discovery"], ["T1021.001", "Remote Services: RDP"], ["T1021.002", "Remote Services: SMB/Admin Shares"],
-    ["T1569.002", "System Services: Service Execution"], ["T1071.001", "Application Layer Protocol: Web"], ["T1219", "Remote Access Software"], ["T1041", "Exfiltration Over C2 Channel"],
+    ["T1569.002", "System Services: Service Execution"], ["T1543.003", "Create or Modify System Process: Windows Service"], ["T1505.003", "Server Software Component: Web Shell"], ["T1071.001", "Application Layer Protocol: Web"], ["T1219", "Remote Access Software"], ["T1041", "Exfiltration Over C2 Channel"],
     ["T1048", "Exfiltration Over Alternative Protocol"], ["T1567", "Exfiltration Over Web Service"], ["T1070.004", "Indicator Removal: File Deletion"], ["T1562.001", "Impair Defenses: Disable or Modify Tools"],
     ["T1486", "Data Encrypted for Impact"], ["T1490", "Inhibit System Recovery"]
   ];
