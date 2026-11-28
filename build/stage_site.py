@@ -50,7 +50,7 @@ def main():
     if missing:
         sys.exit("FAIL: sw.js SHELL lists files that are not deployed: " + ", ".join(missing))
     # the practice-exam PBQ engine is loaded by the page on demand (not in SHELL), so make sure it is really deployed
-    for eng in ("pbq-engine.js", "socsim.js"):
+    for eng in ("pbq-engine.js", "socsim.js", "pentestlab.js"):
         if not (OUT / "vendor" / eng).is_file():
             sys.exit("FAIL: vendor/%s is not in the staged site" % eng)
     n = sum(1 for p in OUT.rglob("*") if p.is_file())

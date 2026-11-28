@@ -2637,7 +2637,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.100</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.101</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="top-ret" id="top-ret" data-rv="1"></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
@@ -6363,6 +6363,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.101",d:"2026-11-28",t:"Groundwork for a Pentest Lab practice question: a simulated hacking lab with a terminal, web view and findings report. Legal-lab practice only. No lab exam yet."},
   {v:"2.100",d:"2026-11-28",t:"New SAL1 practice exam: 20 questions plus 5 timed SOC Simulator scenarios, scored like the real exam (pass at 750 of 1000). It is shorter than the real one."},
   {v:"2.99",d:"2026-11-28",t:"Groundwork for a timed SOC Simulator practice exam: an alert queue, a log search, an analyst terminal and a case report. The first simulator exam is coming soon."},
   {v:"2.98",d:"2026-11-28",t:"Two full practice exams in a row at 85% or better now unlock \u201cReady to book\u201d: CG COOL funding, then booking your exam. The new logo draws itself as the app opens."},
@@ -6370,7 +6371,6 @@ var WHATS_NEW=[
   {v:"2.96",d:"2026-11-27",t:"Easier navigation on phones and laptops: a home button in guides, a Jump to button that gets out of your way, clearer practice exam names in search, and hints for the bottom bar and vendor row."},
   {v:"2.95",d:"2026-11-27",t:"Full practice exams for LPIC-1 (101-500 and 102-500) and LPIC-2 (201-450 and 202-450)."},
   {v:"2.94",d:"2026-11-27",t:"Three new Cisco practice exams for the CCNP core tests: Security (SCOR 350-701), Enterprise (ENCOR 350-401) and Cybersecurity (CBRCOR 350-201)."},
-  {v:"2.93",d:"2026-11-27",t:"Four new cloud practice exams: AZ-104, SC-500, AWS Solutions Architect (SAA-C03) and AWS Security Specialty (SCS-C03). Phones no longer zoom in when you tap a practice terminal."},
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -15217,10 +15217,16 @@ function gQuizEnd(){
    Banks load on demand, are validated before use, and the service worker keeps them for offline use. Nothing leaves the device. */
 var MX_BANKS={}, mxRun=null, mxTick=0, mxRes=null, MX_PATH=/^qbank\/[a-z0-9-]{3,40}\.json$/;
 /* new PBQ types (logsel, rules, term, diagram): their engine (vendor/pbq-engine.js) downloads only when a bank that has them opens */
-var PBQX_KINDS=["logsel","rules","term","diagram","socsim"], pbqxP=null, socP=null;
+var PBQX_KINDS=["logsel","rules","term","diagram","socsim","pentestlab"], pbqxP=null, socP=null, ptlP=null;
 function pbqxNew(q){return q&&q.t==="pbq"&&PBQX_KINDS.indexOf(q.kind)>=0;}
 /* the SOC Simulator ("socsim", vendor/socsim.js) is its own engine with the same interface, loaded only for banks that hold one */
-function pbqxE(q){return q.kind==="socsim"?window.SOCSIM:window.PBQX;}
+function pbqxE(q){return q.kind==="socsim"?window.SOCSIM:q.kind==="pentestlab"?window.PENTESTLAB:window.PBQX;}
+/* the Pentest Lab ("pentestlab", vendor/pentestlab.js) is a third engine with the same interface, loaded only for banks that hold one */
+function ptlLoad(){
+  if(window.PENTESTLAB&&window.PENTESTLAB.v===1) return Promise.resolve(true);
+  if(!ptlP) ptlP=new Promise(function(res){var s=document.createElement("script");s.src="vendor/pentestlab.js";s.onload=function(){res(!!(window.PENTESTLAB&&window.PENTESTLAB.v===1));};s.onerror=function(){ptlP=null;res(false);};document.head.appendChild(s);});
+  return ptlP;
+}
 function pbqxReady(q){var e=pbqxE(q);return !!(e&&e.v===1);}
 function socLoad(){
   if(window.SOCSIM&&window.SOCSIM.v===1) return Promise.resolve(true);
@@ -15283,8 +15289,9 @@ async function mxLoad(G,ver){
   var res=await fetch(bk.path,{credentials:"same-origin"});if(!res.ok) throw new Error("http "+res.status);
   var raw=await res.json();
   if(raw&&Array.isArray(raw.q)){   /* if an engine can't load, its questions are left out */
-    if(raw.q.some(function(x){return pbqxNew(x)&&x.kind!=="socsim";})) await pbqxLoad();
+    if(raw.q.some(function(x){return pbqxNew(x)&&x.kind!=="socsim"&&x.kind!=="pentestlab";})) await pbqxLoad();
     if(raw.q.some(function(x){return x&&x.kind==="socsim"&&pbqxNew(x);})) await socLoad();
+    if(raw.q.some(function(x){return x&&x.kind==="pentestlab"&&pbqxNew(x);})) await ptlLoad();
   }
   var b=mxValidBank(raw,ver);if(!b) throw new Error("bad bank");
   MX_BANKS[bk.path]=b;return b;
