@@ -160,3 +160,18 @@ def test_switch_defaults_on_and_off_renders_nothing():
     body = src[src.index("function rtRender(){"):src.index("rtRender();\n(function(){")]
     # with the switch false, html stays "" and n stays 0: the element is emptied and hidden
     assert 'html="", n=0' in body and "if(SITE_CONFIG.showRetiringBanner){" in body and "el.innerHTML=html;el.hidden=!n;" in body
+
+
+@pytest.mark.parametrize("w,h,in_top", [(1280, 620, True), (1440, 900, True), (390, 664, False)])
+def test_banner_sits_in_top_bar_on_wide_screens(site, w, h, in_top):
+    """PR #82 CI: at 1280x620 the banner on the home card stack pushed the exam card up over the MyNextCert wordmark.
+    Wide screens now show it in the top bar; phones keep it on the card stack, under the main button."""
+    p = site(lite=True, viewport={"width": w, "height": h}, wait=500).page
+    p.clock.install(time="2026-12-01T12:00:00")
+    p.reload()
+    p.wait_for_timeout(2000)
+    assert p.locator(RT).count() == 1
+    assert p.evaluate("!!document.querySelector('#top-ret #st-ret')") == in_top
+    if in_top:
+        b = p.evaluate("document.querySelector('#st-ret').getBoundingClientRect().bottom")
+        assert b < 100, f"banner should sit in the top bar, bottom at {b}"

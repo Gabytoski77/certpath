@@ -167,6 +167,9 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .st-card .go{grid-column:2;grid-row:2/span 2;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#e8f1f8;color:#0b121a;font:600 14px/1 var(--f-disp);transition:transform .25s var(--ez)}
 .st-ret{display:flex;flex-direction:column;gap:6px;width:100%;max-width:340px;margin:0 0 10px}
 .st-ret[hidden]{display:none}
+.top-ret{flex:0 1 480px;min-width:0;display:flex;justify-content:center;pointer-events:none}
+.top-ret .st-ret{max-width:480px;margin:0}
+.top-ret .st-rt{background:rgba(20,18,12,.88);pointer-events:auto}
 .st-rt{display:flex;align-items:center;gap:4px;border-radius:12px;background:rgba(255,196,87,.1);border:1px solid rgba(255,196,87,.42)}
 .st-rt a{flex:1;min-width:0;padding:8px 4px 8px 12px;font:400 12px/1.35 var(--f-ui);color:#f3e6c8;text-decoration:none}
 .st-rt a b{font-weight:700;color:#fff}
@@ -2601,6 +2604,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
 
   <header class="top ui">
     <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.97</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="top-ret" id="top-ret"></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -6321,7 +6325,6 @@ var WHATS_NEW=[
   {v:"2.92",d:"2026-11-27",t:"On laptop screens, the \u201cWhich certs to take\u201d text no longer covers the MyNextCert name. In Light mode, the globe keeps its map when the network is spotty."},
   {v:"2.91",d:"2026-11-27",t:"A new MyNextCert logo: a badge with an open side and an arrow pushing through it, for moving on to your next cert. New app and tab icons too."},
   {v:"2.90",d:"2026-11-26",t:"Four new practice exams: Azure Fundamentals (AZ-900), Cloud Practitioner (CLF-C02), Linux Essentials (010-200) and Security Essentials (020-100)."},
-  {v:"2.89",d:"2026-11-26",t:"Two new Cisco practice exams: CCST Cybersecurity (100-160) and CCST Networking (100-150), each with hands-on questions."},
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -18099,6 +18102,12 @@ function rtRender(){
 rtRender();
 (function(){var el=document.getElementById("st-ret");if(el) el.addEventListener("click",function(e){var b=e.target.closest("[data-rt]");if(!b) return;
   var c=rtClosed();if(c.indexOf(b.dataset.rt)<0) c.push(b.dataset.rt);gSet("cgcp.retclosed",c.slice(-50));rtRender();var f=el.querySelector("a");if(f) f.focus();else{var m=document.querySelector("#st-act button");if(m) m.focus();}});})();
+/* v2.97: on wide screens the banner sits in the top bar, so it never pushes the exam/resume card up over the
+   MyNextCert wordmark on short laptop screens (1280x620). Phones and narrow windows keep it on the home card stack. */
+(function(){var el=document.getElementById("st-ret"),top=document.getElementById("top-ret"),act=document.getElementById("st-act");
+  if(!el||!top||!act||!window.matchMedia) return;var mq=matchMedia("(min-width:1000px)");
+  function place(){if(mq.matches){if(el.parentNode!==top) top.appendChild(el);}else if(el.previousElementSibling!==act) act.parentNode.insertBefore(el,act.nextSibling);}
+  place();if(mq.addEventListener) mq.addEventListener("change",place);else if(mq.addListener) mq.addListener(place);})();
 
 function startHome(lead){
   if(homeStarted) return;homeStarted=true;
