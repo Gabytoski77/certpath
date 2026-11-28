@@ -1,0 +1,4663 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "LPIC-2",
+ "ver": "e202",
+ "exam": "202-450",
+ "title": "LPIC-2 Exam 202 (202-450) practice exam",
+ "rev": "2026-11-27",
+ "format": {
+  "n": 60,
+  "min": 90,
+  "pbq": 3,
+  "half": 30
+ },
+ "domains": [
+  {
+   "n": "207",
+   "name": "Domain Name Server",
+   "w": 13,
+   "obj": 3
+  },
+  {
+   "n": "208",
+   "name": "HTTP Services",
+   "w": 18,
+   "obj": 4
+  },
+  {
+   "n": "209",
+   "name": "File Sharing",
+   "w": 13,
+   "obj": 2
+  },
+  {
+   "n": "210",
+   "name": "Network Client Management",
+   "w": 18,
+   "obj": 4
+  },
+  {
+   "n": "211",
+   "name": "E-Mail Services",
+   "w": 14,
+   "obj": 3
+  },
+  {
+   "n": "212",
+   "name": "System Security",
+   "w": 24,
+   "obj": 5
+  }
+ ],
+ "note": "Original questions written for MyNextCert from LPI's public LPIC-2 Exam 202 (202-450) objectives, version 4.5 only (https://www.lpi.org/our-certifications/exam-201-202-objectives/, checked 2026-11-27). Not real exam questions. The real exam has 60 questions in 90 minutes; this bank has a larger pool and 6 hands-on items, and draws an exam by the official topic weights. Practice only on your own lab machines or VMs, never on systems you do not have written permission to change or test.",
+ "q": [
+  {
+   "id": "l2-207-01",
+   "d": "207",
+   "obj": "207.1",
+   "q": "You edited /etc/bind/named.conf.local on a Debian BIND 9 server and want to find syntax mistakes BEFORE you reload anything. Which command does that?",
+   "o": [
+    [
+     "named-checkzone example.com /etc/bind/named.conf.local",
+     "named-checkzone tests a zone data file, not the main configuration. Pointed at a config file it only reports nonsense."
+    ],
+    [
+     "rndc reconfig",
+     "This tells the RUNNING server to load the new config. It does not check anything first, so an error can break the live server."
+    ],
+    [
+     "rndc status",
+     "It shows version, number of zones and boot time of the running server. It never reads the config files you edited."
+    ],
+    [
+     "named-checkconf",
+     "Right. named-checkconf reads named.conf and every file it includes, and prints the line of any syntax error. It does not touch the running server."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-207-02",
+   "d": "207",
+   "obj": "207.1",
+   "q": "You added a new zone block to named.conf. You want named to start serving ONLY the new zone, without re-reading the zones it already serves. Which command fits best?",
+   "o": [
+    [
+     "rndc flush",
+     "flush empties the resolver cache. It does not read named.conf at all."
+    ],
+    [
+     "rndc reconfig",
+     "Right. reconfig re-reads named.conf and loads zones that are new, but it does not reload zones that are already loaded. It is the light-touch way to add a zone."
+    ],
+    [
+     "rndc retransfer example.com",
+     "This forces a secondary to pull a fresh copy of one zone from its primary. It does not add a zone that is missing from the config."
+    ],
+    [
+     "rndc reload",
+     "reload re-reads the config AND every zone file, which the question rules out."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-207-03",
+   "d": "207",
+   "obj": "207.1",
+   "q": "ns2 must be a secondary (slave) for example.com. The primary is 192.0.2.10. Which zone block on ns2 is correct for BIND 9?",
+   "o": [
+    [
+     "zone \"example.com\" { type secondary; primaries { 192.0.2.10; }; file \"db.example.com\"; };",
+     "Right. type secondary (older name: slave) plus the primaries list (older name: masters) makes ns2 pull the zone by AXFR/IXFR and save it to the file."
+    ],
+    [
+     "zone \"example.com\" { type forward; forwarders { 192.0.2.10; }; };",
+     "A forward zone sends QUERIES to another resolver. It never copies zone data, so ns2 would not be authoritative for the zone."
+    ],
+    [
+     "zone \"example.com\" { type hint; file \"db.example.com\"; };",
+     "type hint is only for the root zone (\".\"). It loads the list of root servers."
+    ],
+    [
+     "zone \"example.com\" { type primary; allow-transfer { 192.0.2.10; }; file \"db.example.com\"; };",
+     "This makes ns2 a second primary. allow-transfer controls who may copy the zone FROM ns2; it does not make ns2 copy from 192.0.2.10."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-207-04",
+   "d": "207",
+   "obj": "207.1",
+   "q": "A caching resolver on 10.1.0.53 must answer recursive queries only for the internal range 10.1.0.0/16, so outsiders cannot use it in DNS amplification attacks. Which option in the options block does this?",
+   "o": [
+    [
+     "allow-transfer { 10.1.0.0/16; }; (inside options)",
+     "allow-transfer decides who may download a whole zone with AXFR. It has no effect on recursion."
+    ],
+    [
+     "allow-update { 10.1.0.0/16; }; (inside the zone)",
+     "allow-update lets listed hosts change a zone with dynamic DNS updates. It is a risky setting and not a recursion control."
+    ],
+    [
+     "allow-recursion { 10.1.0.0/16; };",
+     "Right. allow-recursion limits who may ask the server to look up names on their behalf. Outsiders still get answers for zones the server is authoritative for."
+    ],
+    [
+     "listen-on { 10.1.0.53; };",
+     "listen-on picks the server's own addresses to bind to. It does not filter which CLIENTS may use recursion."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-207-05",
+   "d": "207",
+   "obj": "207.1",
+   "q": "You run dig @192.0.2.53 www.example.com. The header shows \"flags: qr rd ra\" and there is no \"aa\" flag. What does the missing aa flag tell you?",
+   "o": [
+    [
+     "The zone's serial number is too low, so the answer is out of date",
+     "The serial number is inside the SOA record. It never appears as a flag in the header."
+    ],
+    [
+     "It is not authoritative: the answer came from the cache or another server",
+     "Right. aa means Authoritative Answer. It is set only when the server answers from a zone it owns. Cached or recursed answers do not carry it."
+    ],
+    [
+     "Recursion is switched off on that server, so it only answers from its own zones",
+     "ra (recursion available) IS present in the flags, so recursion is on. The aa flag is about who owns the data."
+    ],
+    [
+     "The reply was truncated and the client must retry over TCP because it did not fit in one UDP packet",
+     "Truncation sets the tc flag. A missing aa flag has nothing to do with message size."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-207-06",
+   "d": "207",
+   "obj": "207.1",
+   "q": "A small office wants ONE light program that gives its clients DNS forwarding with a local cache, reads /etc/hosts for local names and can also hand out DHCP leases. Which software matches?",
+   "o": [
+    [
+     "PowerDNS",
+     "PowerDNS is a full authoritative server (often with database back ends) plus a separate recursor. It has no DHCP server."
+    ],
+    [
+     "djbdns",
+     "djbdns is a set of separate tools (tinydns for authoritative data, dnscache for caching). It does not include DHCP."
+    ],
+    [
+     "dnsmasq",
+     "Right. dnsmasq is a small DNS forwarder/cache with a built-in DHCP server. It is common on routers and small networks."
+    ],
+    [
+     "BIND 9",
+     "BIND is the reference DNS server for both authoritative and recursive use. DHCP is a separate program (ISC dhcpd)."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-207-07",
+   "d": "207",
+   "obj": "207.1",
+   "q": "Only the file db.example.com changed on the primary. You raised the serial and want only that zone reloaded. Which command does it?",
+   "o": [
+    [
+     "rndc reconfig example.com",
+     "reconfig takes no zone name. It only re-reads named.conf and loads new zones."
+    ],
+    [
+     "rndc flushname example.com",
+     "flushname removes cached records for that name. It does not read any zone file."
+    ],
+    [
+     "rndc freeze example.com",
+     "freeze stops dynamic updates so you can edit a dynamic zone by hand. It does not load the changed file."
+    ],
+    [
+     "rndc reload example.com",
+     "Right. reload with a zone name re-reads just that zone's file, and the server then sends NOTIFY to its secondaries."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-207-08",
+   "d": "207",
+   "obj": "207.2",
+   "q": "You edited db.example.com on the primary and added a host, but the secondary DNS server still returns old data an hour later. The file has no syntax errors and named reloaded fine. What did you most likely forget?",
+   "o": [
+    [
+     "To increase the serial number in the SOA record",
+     "Right. Secondaries compare the serial number from the primary with their own copy. Only a higher serial makes them transfer the zone."
+    ],
+    [
+     "To restart the secondary's named service after every change",
+     "A restart is not needed. The secondary pulls data by itself when the primary's serial is higher."
+    ],
+    [
+     "To set the SOA refresh value to 0",
+     "A refresh of 0 would cause constant polling or invalid timing. It does not force a transfer, and the serial is what is compared."
+    ],
+    [
+     "To end every host name in the zone file with a dot",
+     "A trailing dot matters only for fully qualified names. Missing dots cause wrong names, not an unchanged zone."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-207-09",
+   "d": "207",
+   "obj": "207.2",
+   "q": "You must create the reverse zone for the network 192.0.2.0/24. What is the correct zone name in named.conf?",
+   "o": [
+    [
+     "192.0.2.in-addr.arpa",
+     "The octets must be reversed. This name would belong to the network 2.0.192.0/24."
+    ],
+    [
+     "2.0.192.in-addr.arpa",
+     "Right. Reverse zones list the network octets in reverse order and end in in-addr.arpa. The three network octets 192.0.2 become 2.0.192."
+    ],
+    [
+     "0.2.192.in-addr.arpa",
+     "This name is wrongly ordered and has an extra octet. It would be for the network 192.2.0.0/24."
+    ],
+    [
+     "arpa.in-addr.2.0.192",
+     "The parts of the name are in the wrong order. Reverse names always end in in-addr.arpa."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-207-10",
+   "d": "207",
+   "obj": "207.2",
+   "q": "In the reverse zone 2.0.192.in-addr.arpa, which line correctly maps 192.0.2.25 to mail.example.com?",
+   "o": [
+    [
+     "25 IN PTR mail.example.com.",
+     "Right. Inside the reverse zone only the last octet is needed. The target is a fully qualified name, so it ends with a dot."
+    ],
+    [
+     "25 IN PTR mail.example.com",
+     "Without the final dot, named adds the zone name, and the target becomes mail.example.com.2.0.192.in-addr.arpa."
+    ],
+    [
+     "mail IN PTR 192.0.2.25.",
+     "A PTR record is written the other way round: the address label is on the left, the host name on the right."
+    ],
+    [
+     "25.2.0.192 IN PTR mail.example.com.",
+     "The zone name is added to the left side, giving 25.2.0.192.2.0.192.in-addr.arpa, which is not the intended name."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-207-11",
+   "d": "207",
+   "obj": "207.2",
+   "q": "named-checkzone reports: \"www.example.com: CNAME and other data\". What is wrong in the zone file?",
+   "o": [
+    [
+     "The CNAME target name is missing its final dot in the file",
+     "A missing dot makes the target a wrong name, but named-checkzone would not call it \"other data\"."
+    ],
+    [
+     "The SOA serial number is older than the one on the secondary server",
+     "named-checkzone does not compare serials with other servers. It only reads the one file."
+    ],
+    [
+     "The zone has no NS records at the top (apex) of the zone file",
+     "A missing NS gives a different message (\"no NS records\"). This message names a conflict at one specific name."
+    ],
+    [
+     "www has a CNAME plus another record type, such as an A or MX record",
+     "Right. A CNAME says \"this name is an alias for another name\", so no other data may exist at that same name."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-207-12",
+   "d": "207",
+   "obj": "207.2",
+   "q": "Which MX record, placed in the zone file for example.com, is valid AND points mail to the host mail.example.com?",
+   "o": [
+    [
+     "@ IN MX mail.example.com.",
+     "The preference number is missing, so the file will not load."
+    ],
+    [
+     "@ IN MX 10 192.0.2.25",
+     "An MX target must be a host name, not an IP address. named would read 192.0.2.25 as a relative name inside the zone."
+    ],
+    [
+     "@ IN MX 10 mail.example.com.",
+     "Right. An MX record needs a preference number and a fully qualified host name ending in a dot."
+    ],
+    [
+     "@ IN MX 10 mail.example.com",
+     "It loads, but with no final dot the target becomes mail.example.com.example.com., which does not exist."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-207-13",
+   "d": "207",
+   "obj": "207.2",
+   "q": "In the example.com zone you must delegate dev.example.com to its own name server ns1.dev.example.com at 192.0.2.60. What goes in the PARENT zone file?",
+   "o": [
+    [
+     "Only an NS record for dev, because the child zone's own file holds the A record",
+     "Resolvers could not find ns1.dev without already knowing where dev lives. That loop is why glue is needed in the parent."
+    ],
+    [
+     "Only an A record for ns1.dev, because glue alone is enough to delegate",
+     "An A record alone does not delegate anything. Without the NS record, the parent keeps answering for dev itself."
+    ],
+    [
+     "A CNAME for dev pointing to ns1.dev.example.com",
+     "A CNAME makes dev an alias for a host. It does not delegate a zone and would block other records at that name."
+    ],
+    [
+     "An NS record for dev to ns1.dev.example.com, plus an A (glue) record for ns1.dev",
+     "Right. The NS record hands the sub-zone to the child server. The glue A record is needed because the name server's own name lies inside the zone being delegated."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-207-14",
+   "d": "207",
+   "obj": "207.2",
+   "q": "Which dig command asks the server 192.0.2.53 for the reverse (PTR) name of 192.0.2.25?",
+   "o": [
+    [
+     "dig @192.0.2.53 192.0.2.25 PTR",
+     "This asks for a PTR at the literal name 192.0.2.25, which is not in the reverse tree, so there is no answer."
+    ],
+    [
+     "dig -t PTR 192.0.2.25 @192.0.2.53 +trace",
+     "+trace walks from the root servers and ignores the @server. It also still uses the wrong literal name."
+    ],
+    [
+     "dig @192.0.2.53 -x 192.0.2.25",
+     "Right. -x builds the in-addr.arpa name for you and asks for the PTR record. @ chooses the server to ask."
+    ],
+    [
+     "dig @192.0.2.53 25.2.0.192 PTR",
+     "The octets are in the right reverse order, but the name lacks the in-addr.arpa suffix, so it is not a reverse name."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-207-15",
+   "d": "207",
+   "obj": "207.3",
+   "q": "You must reduce the damage if someone finds a bug in BIND and takes over the named process. Which TWO named start options help? (Choose two.)",
+   "o": [
+    [
+     "-c /etc/bind/named.conf",
+     "-c just names the configuration file to read. It does not limit the process."
+    ],
+    [
+     "-g",
+     "-g keeps named in the foreground and sends logs to the terminal. It is for debugging and adds no protection."
+    ],
+    [
+     "-4",
+     "-4 makes named use IPv4 only. It changes the network sockets, not what a hijacked process may do."
+    ],
+    [
+     "-t /var/lib/named",
+     "Right. -t puts named in a chroot jail. A hijacked process then sees only that folder, not the whole disk."
+    ],
+    [
+     "-u bind",
+     "Right. -u makes named drop root rights after it binds port 53 and run as the unprivileged user \"bind\"."
+    ]
+   ],
+   "a": [
+    3,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "l2-207-16",
+   "d": "207",
+   "obj": "207.3",
+   "q": "A secondary ns2 (192.0.2.12) logs: \"zone example.com/IN: refused AXFR from 192.0.2.11\" ... on the PRIMARY the log says \"client 192.0.2.12#41234: zone transfer 'example.com/AXFR/IN' denied\". The primary's zone has \"allow-transfer { key xfer-key; };\" and defines key \"xfer-key\" with hmac-sha256. What must ns2 add?",
+   "o": [
+    [
+     "The same key \"xfer-key\" block, plus a server 192.0.2.11 { keys xfer-key; }; statement so its requests are TSIG-signed",
+     "Right. The primary only accepts transfers signed with the shared key. ns2 needs the same key secret and a server statement that tells named to sign requests to that address."
+    ],
+    [
+     "A DS record for example.com published in the parent zone",
+     "DS records link a signed zone to its parent for DNSSEC. They have nothing to do with who may request a transfer."
+    ],
+    [
+     "An allow-transfer { 192.0.2.11; }; line in the zone block on ns2",
+     "allow-transfer on ns2 controls who may copy the zone FROM ns2. The denial is on the primary and needs a signed request."
+    ],
+    [
+     "The key secret as a TXT record in the example.com zone file",
+     "Publishing a secret in a zone file would give it to the world. TSIG keys stay in named.conf (or a key file) on both servers."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-207-17",
+   "d": "207",
+   "obj": "207.3",
+   "q": "One BIND server must answer example.com with 10.0.0.5 for internal clients and with 203.0.113.5 for everyone else. How do you build this?",
+   "o": [
+    [
+     "Two zone \"example.com\" statements in the main options block",
+     "A zone name may appear only once per view. Without views, named refuses to load the duplicate."
+    ],
+    [
+     "Two view blocks with match-clients, each with its own example.com zone",
+     "Right. Views let one server show different data to different clients. The first view whose match-clients fits the client is used, so list the internal one first."
+    ],
+    [
+     "One zone file with two A records for www, one for each of the two networks",
+     "That is round robin: every client sees both addresses. It cannot choose by who is asking."
+    ],
+    [
+     "allow-query { 10.0.0.0/8; }; inside the single example.com zone block",
+     "allow-query only lets or blocks clients. It cannot return different data."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-207-18",
+   "d": "207",
+   "obj": "207.3",
+   "q": "example.com is DNSSEC-signed. To build the chain of trust, which record must the .com registry publish in the PARENT zone?",
+   "o": [
+    [
+     "An RRSIG record for the whole zone",
+     "RRSIG records are signatures and live inside the child zone next to the data they sign."
+    ],
+    [
+     "A DNSKEY record for example.com",
+     "DNSKEY is the public key. It is published in the signed child zone, and the parent only holds its hash (DS)."
+    ],
+    [
+     "A DS record",
+     "Right. A DS (delegation signer) record holds a hash of the child's key-signing key. Resolvers use it to trust the child's DNSKEY."
+    ],
+    [
+     "A TLSA record",
+     "TLSA is for DANE and ties a TLS certificate to a service name. It does not link zones together."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-207-19",
+   "d": "207",
+   "obj": "207.3",
+   "q": "A mail admin wants clients to check a mail server's TLS certificate against information published in DNS, not only against public CAs. Which record type does DANE use for this?",
+   "o": [
+    [
+     "TLSA",
+     "Right. A TLSA record stores a certificate (or hash of it) for a given port and host name. It is only safe when the zone is DNSSEC-signed."
+    ],
+    [
+     "SRV",
+     "SRV tells clients which host and port offer a service. It carries no certificate data."
+    ],
+    [
+     "CAA",
+     "CAA says which certificate authorities may issue certificates for a domain. It does not let a client check a certificate directly."
+    ],
+    [
+     "SSHFP",
+     "SSHFP holds fingerprints of SSH host keys, not TLS certificates."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-208-01",
+   "d": "208",
+   "obj": "208.1",
+   "q": "In Apache 2.4 you must let only the network 10.5.0.0/16 open /var/www/admin. Which directive inside the Directory block does this?",
+   "o": [
+    [
+     "Allow from 10.5.0.0/16",
+     "This is Apache 2.2 syntax. It only works if mod_access_compat is loaded, and it needs Order lines too."
+    ],
+    [
+     "Require ip 10.5.0.0/16",
+     "Right. Require is the Apache 2.4 way (mod_authz_core). Clients outside the range get 403."
+    ],
+    [
+     "Require host 10.5.0.0/16",
+     "Require host expects a host or domain NAME such as .example.com, not a network range."
+    ],
+    [
+     "Require local 10.5.0.0/16",
+     "Require local takes no argument; it means only the server's own addresses."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-208-02",
+   "d": "208",
+   "obj": "208.1",
+   "q": "A .htaccess file in /var/www/html/app contains Redirect rules, but Apache ignores them completely and logs no error. Which setting is the usual cause?",
+   "o": [
+    [
+     "Options -Indexes set in the main config for the whole site",
+     "That only turns off folder listings. It does not stop .htaccess files from being read."
+    ],
+    [
+     "KeepAlive Off set in the main config for every virtual host",
+     "KeepAlive controls reuse of TCP connections. It has no link to .htaccess."
+    ],
+    [
+     "DirectoryIndex is missing for that folder in the vhost",
+     "DirectoryIndex picks the default page. Without it you may see a listing or 403, but .htaccess is still read."
+    ],
+    [
+     "AllowOverride None for that directory in the main config",
+     "Right. AllowOverride says which directives a .htaccess file may use. With None, Apache does not even look for the file."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-208-03",
+   "d": "208",
+   "obj": "208.1",
+   "q": "Apache serves two name-based virtual hosts on 192.0.2.10:80. A request arrives with the Host header \"unknown.example.net\", which matches no ServerName or ServerAlias. Which site answers?",
+   "o": [
+    [
+     "The main server config that sits outside every VirtualHost block",
+     "Once a VirtualHost exists for an address and port, the main config no longer answers requests for it."
+    ],
+    [
+     "The virtual host with the longest ServerName",
+     "Length plays no role. Apache matches by exact name or alias, and then falls back to the first block."
+    ],
+    [
+     "The first virtual host defined for 192.0.2.10:80",
+     "Right. The first matching VirtualHost block acts as the default for that address and port when nothing else matches."
+    ],
+    [
+     "None; Apache returns 400 Bad Request",
+     "A Host header with an unknown name is still valid HTTP. Apache simply serves the default (first) host."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-208-04",
+   "d": "208",
+   "obj": "208.1",
+   "q": "Which line permanently redirects every request for /old to https://www.example.com/new using mod_alias?",
+   "o": [
+    [
+     "Alias /old https://www.example.com/new with status 301",
+     "Alias maps a URL to a path on the local disk. A full URL as the target is not a valid file path."
+    ],
+    [
+     "ErrorDocument 301 https://www.example.com/new for /old",
+     "ErrorDocument sets the page shown for an error code. It does not send redirects for a path."
+    ],
+    [
+     "DirectoryIndex https://www.example.com/new",
+     "DirectoryIndex lists default file names for a folder, nothing about redirecting."
+    ],
+    [
+     "Redirect permanent /old https://www.example.com/new",
+     "Right. Redirect with \"permanent\" sends HTTP 301, which tells browsers and search engines the move is lasting."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-208-05",
+   "d": "208",
+   "obj": "208.1",
+   "q": "/etc/apache2/.htpasswd already holds the user alice. You must add the user bob without losing alice. Which command is right?",
+   "o": [
+    [
+     "htpasswd /etc/apache2/.htpasswd bob",
+     "Right. Without -c, htpasswd adds the user (or updates a password) in the existing file."
+    ],
+    [
+     "htpasswd -c /etc/apache2/.htpasswd bob",
+     "-c CREATES the file, so it overwrites it. alice would be gone."
+    ],
+    [
+     "htpasswd -D /etc/apache2/.htpasswd bob",
+     "-D deletes a user from the file."
+    ],
+    [
+     "htdigest /etc/apache2/.htpasswd realm bob",
+     "htdigest builds a different file format for Digest authentication, not for the Basic .htpasswd file."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-208-06",
+   "d": "208",
+   "obj": "208.1",
+   "q": "A protected folder has AuthType Basic, AuthName \"Staff\" and AuthUserFile set correctly, but visitors get in without any password prompt. Which line is missing?",
+   "o": [
+    [
+     "AuthGroupFile /dev/null",
+     "That only tells Apache there is no group file. It never forces a login."
+    ],
+    [
+     "Require valid-user",
+     "Right. The Auth* lines only describe HOW to authenticate. Require is what makes Apache demand and check a login."
+    ],
+    [
+     "Satisfy all",
+     "Satisfy was a 2.2 directive. In 2.4 it does not replace a Require line."
+    ],
+    [
+     "LimitRequestBody 0",
+     "It controls the maximum size of the request body and has no link to authentication."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-208-07",
+   "d": "208",
+   "obj": "208.1",
+   "q": "In the \"combined\" access log format, which two extra fields are recorded compared to the \"common\" format?",
+   "o": [
+    [
+     "The server's response time and the vhost name",
+     "Those need custom fields such as %D or %v. Neither belongs to the combined format."
+    ],
+    [
+     "The Referer and the User-Agent",
+     "Right. combined = common + \"%{Referer}i\" + \"%{User-agent}i\". They help to see where visitors came from and what browser they used."
+    ],
+    [
+     "The SSL protocol and cipher suite",
+     "Those need %{SSL_PROTOCOL}x style fields in a custom format, they are not in combined."
+    ],
+    [
+     "The authenticated user and the request size",
+     "Both of these are already in the common format (the user and the bytes sent)."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-208-08",
+   "d": "208",
+   "obj": "208.1",
+   "q": "An Apache server on mpm_prefork starts so many child processes under load that it runs out of memory and swaps. Which directive sets the maximum number of simultaneous requests the server will handle?",
+   "o": [
+    [
+     "KeepAliveTimeout 5",
+     "It sets how long an idle persistent connection stays open. It does not cap workers."
+    ],
+    [
+     "LimitRequestBody 1048576",
+     "It limits the size of one request body (for uploads), not the number of requests."
+    ],
+    [
+     "ListenBacklog 1024",
+     "It sets the length of the queue of pending connections in the kernel and does not limit running workers."
+    ],
+    [
+     "MaxRequestWorkers",
+     "Right. In Apache 2.4 it caps simultaneous requests (older name: MaxClients). Lower it so the processes fit in RAM."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-208-09",
+   "d": "208",
+   "obj": "208.1",
+   "q": "Apache uses the event MPM (threaded). You must run PHP pages safely. Which setup is the usual choice?",
+   "o": [
+    [
+     "mod_php loaded into every thread of the event MPM server",
+     "mod_php needs the non-threaded prefork MPM in practice, because common PHP builds are not thread-safe."
+    ],
+    [
+     "mod_perl with a PHP handler set through SetHandler perl-script, which then loads php",
+     "mod_perl embeds the Perl interpreter. It cannot run PHP code."
+    ],
+    [
+     "php-fpm behind mod_proxy_fcgi, using a SetHandler for .php files",
+     "Right. PHP runs in separate FPM processes and Apache passes requests over FastCGI. This works with threaded MPMs."
+    ],
+    [
+     "Plain CGI where each .php page begins with a #!/bin/sh line, so Apache runs it as a shell script",
+     "CGI can run scripts but PHP files need the PHP interpreter, and CGI is slow. It is not the usual setup."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-208-10",
+   "d": "208",
+   "obj": "208.1",
+   "q": "Before applying changes to the Apache config on a live production-like lab server, which command checks the syntax without stopping the service?",
+   "o": [
+    [
+     "apachectl configtest",
+     "Right. configtest (same as apachectl -t) parses the config and prints \"Syntax OK\" or the first error. The running server is untouched."
+    ],
+    [
+     "apachectl graceful-stop",
+     "It stops the server after current requests end. That would take the site down."
+    ],
+    [
+     "apachectl status",
+     "It shows the mod_status page (if enabled) with activity. It does not parse the config files."
+    ],
+    [
+     "apachectl -S -k restart",
+     "-S lists vhost settings, but -k restart would restart the server with the new config even if it has errors."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-208-11",
+   "d": "208",
+   "obj": "208.2",
+   "q": "Which single openssl command creates a new RSA private key AND a certificate signing request (CSR) without prompting for a key passphrase?",
+   "o": [
+    [
+     "openssl genpkey -algorithm RSA -out www.key -pkeyopt rsa_keygen_bits:2048",
+     "This makes only the private key. You would still need openssl req to create the CSR."
+    ],
+    [
+     "openssl x509 -req -in www.csr -signkey www.key -out www.crt",
+     "x509 -req turns an existing CSR into a certificate. It needs the CSR first."
+    ],
+    [
+     "openssl s_client -connect www.example.com:443 -showcerts",
+     "s_client tests a remote TLS server. It does not create keys or requests."
+    ],
+    [
+     "openssl req -new -newkey rsa:2048 -nodes -keyout www.key -out www.csr",
+     "Right. req -new builds the CSR, -newkey makes the key at the same time, -nodes leaves the key unencrypted."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-208-12",
+   "d": "208",
+   "obj": "208.2",
+   "q": "A lab site uses a certificate made with \"openssl req -x509 -nodes -days 365 -newkey rsa:2048\". Browsers say \"Not secure\", and \"openssl s_client -connect lab1:443\" ends with \"verify error:num=18:self-signed certificate\". What does this error mean, and what is the real fix for users outside the lab?",
+   "o": [
+    [
+     "The certificate is its own issuer and no trusted CA signed it; install a certificate from a trusted CA (or import your lab CA into the clients)",
+     "Right. Error 18 means the chain ends in a certificate that signed itself and is not in the client's trust store. A trusted CA, or a lab CA that clients trust, solves that."
+    ],
+    [
+     "The intermediate certificate is missing; add it with SSLCertificateChainFile",
+     "A missing intermediate gives a different error (num=20 or 21, unable to get local issuer certificate). Here the server's own certificate is the root."
+    ],
+    [
+     "The key is too short; regenerate it with rsa:4096",
+     "Key length is not the problem. A 4096-bit self-signed certificate gives the same error 18."
+    ],
+    [
+     "The certificate has expired; renew it for another 365 days",
+     "An expired certificate gives error 10 (certificate has expired). A new self-signed one would still be untrusted."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-208-13",
+   "d": "208",
+   "obj": "208.2",
+   "q": "Your HTTPS site works on desktop browsers, but some phones and Java programs say \"unable to verify the first certificate\". openssl s_client shows only one certificate in the chain sent by the server. What is wrong?",
+   "o": [
+    [
+     "The private key file does not match the server certificate file",
+     "A key mismatch would stop Apache from starting with SSL, for every client."
+    ],
+    [
+     "SNI is switched off on the server, so the wrong site is shown",
+     "A missing SNI gives the wrong certificate for the name, not a missing chain."
+    ],
+    [
+     "The intermediate CA certificate is not sent by the server",
+     "Right. Desktop browsers may fetch or cache the intermediate, but many clients do not. Add the intermediate to the certificate file (Apache 2.4.8+) or to SSLCertificateChainFile."
+    ],
+    [
+     "The certificate is a wildcard certificate, which some clients reject",
+     "Major clients accept wildcard certificates. They have no link to missing chain certificates."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-208-14",
+   "d": "208",
+   "obj": "208.2",
+   "q": "Which Apache line allows only TLS 1.2 and TLS 1.3?",
+   "o": [
+    [
+     "SSLCipherSuite TLSv1.2:TLSv1.3",
+     "SSLCipherSuite selects ciphers by name, not protocol versions. TLS version names are not cipher names."
+    ],
+    [
+     "SSLProtocol -all +TLSv1.2 +TLSv1.3",
+     "Right. -all first removes every protocol, then each + adds one back. This leaves only the two modern versions."
+    ],
+    [
+     "SSLProtocol all -SSLv3 -SSLv2 -TLSv1",
+     "This still allows TLS 1.1, which is outdated. Only 1.2 and 1.3 should stay."
+    ],
+    [
+     "SSLEngine optional TLSv1.2 TLSv1.3",
+     "SSLEngine takes on, off or optional. It switches SSL on or off for the vhost."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-208-15",
+   "d": "208",
+   "obj": "208.2",
+   "q": "You host three HTTPS sites with three different certificates on ONE IP address and port 443, using name-based virtual hosts. Which TLS feature makes that possible?",
+   "o": [
+    [
+     "HSTS (HTTP Strict Transport Security)",
+     "HSTS is a header that tells browsers to use HTTPS only. It does not help pick a certificate."
+    ],
+    [
+     "SNI (Server Name Indication)",
+     "Right. The client sends the host name in the TLS handshake before the certificate is chosen, so Apache can pick the right one."
+    ],
+    [
+     "OCSP stapling of the certificate status",
+     "Stapling attaches a fresh revocation answer to the handshake. It does not choose between certificates."
+    ],
+    [
+     "ALPN (Application-Layer Protocol Negotiation)",
+     "ALPN picks the application protocol, such as h2 or http/1.1, not the certificate."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-208-16",
+   "d": "208",
+   "obj": "208.2",
+   "q": "You want to see exactly which certificates your own lab server sends for the name www.example.test, including the chain. Which command does that?",
+   "o": [
+    [
+     "openssl verify -CAfile ca.pem www.example.test:443",
+     "verify checks a certificate FILE against a CA file. It does not connect to a server."
+    ],
+    [
+     "openssl x509 -in https://192.0.2.10:443 -noout -text -servername www.example.test",
+     "x509 reads local files, not URLs."
+    ],
+    [
+     "openssl s_client -connect 192.0.2.10:443 -servername www.example.test -showcerts",
+     "Right. s_client opens a TLS session, -servername sends SNI, and -showcerts prints each certificate in the chain."
+    ],
+    [
+     "openssl req -in 192.0.2.10:443 -noout -text -servername www.example.test",
+     "req works with certificate signing requests in files, not live servers."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-208-17",
+   "d": "208",
+   "obj": "208.2",
+   "q": "Browsers keep starting at http://shop.example.test, so every first visit costs a redirect. The port 80 virtual host already has \"Redirect permanent / https://shop.example.test/\". \"curl -sI https://shop.example.test | grep -i strict\" prints nothing. Which change makes returning browsers go straight to HTTPS?",
+   "o": [
+    [
+     "Add Header always set Strict-Transport-Security \"max-age=31536000\" to the port 443 virtual host (mod_headers enabled)",
+     "Right. Browsers accept HSTS only from an HTTPS response. They then remember to use HTTPS for that host for max-age seconds."
+    ],
+    [
+     "Add the same Strict-Transport-Security header to the port 80 virtual host only",
+     "Browsers ignore HSTS sent over plain HTTP, so it would never be stored."
+    ],
+    [
+     "Change the port 80 line to \"Redirect temp / https://shop.example.test/\"",
+     "A temporary redirect (302) is followed once and never remembered by the browser."
+    ],
+    [
+     "Add SSLRequireSSL to the port 80 virtual host",
+     "SSLRequireSSL rejects non-SSL requests on a vhost that has SSL on. It does not teach browsers anything."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-208-18",
+   "d": "208",
+   "obj": "208.2",
+   "q": "Which TWO Apache directives must point to files (the key is stored in a separate file) for a basic HTTPS virtual host to start? (Choose two.)",
+   "o": [
+    [
+     "SSLPassPhraseDialog",
+     "It sets how Apache asks for a key passphrase at start-up. It is not a file path to a certificate or key."
+    ],
+    [
+     "SSLCertificateKeyFile",
+     "Right. It points to the private key that matches the certificate. Keep that file readable by root only."
+    ],
+    [
+     "SSLCertificateFile",
+     "Right. It points to the server certificate (and, in 2.4.8 and later, may hold the intermediate chain too)."
+    ],
+    [
+     "SSLCACertificateFile",
+     "It lists CAs used to check CLIENT certificates, only needed with client certificate authentication."
+    ],
+    [
+     "SSLSessionCache",
+     "It sets where TLS session data is cached. It improves speed but is not required for a vhost to start."
+    ]
+   ],
+   "a": [
+    1,
+    2
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "l2-208-19",
+   "d": "208",
+   "obj": "208.3",
+   "q": "In squid.conf you have: \"acl lan src 10.0.0.0/8\", \"http_access deny all\", \"http_access allow lan\" (in this order). Staff on 10.0.0.0/8 all get TCP_DENIED. Why?",
+   "o": [
+    [
+     "ACLs have to be defined below the http_access lines that use them, and this one is above",
+     "ACLs must be defined BEFORE any http_access line that uses them, so their place is correct here."
+    ],
+    [
+     "src ACLs only work with IPv6 addresses, so the IPv4 range never matches",
+     "src works with IPv4 and IPv6 networks."
+    ],
+    [
+     "Squid needs http_port 80 instead of the default 3128 before allow rules work",
+     "The port setting is separate. Squid uses 3128 by default and still processes http_access."
+    ],
+    [
+     "http_access lines run top to bottom and the first match wins, so deny all fires first",
+     "Right. The \"allow lan\" line is never reached. Put specific allow rules before the final deny all."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-208-20",
+   "d": "208",
+   "obj": "208.3",
+   "q": "You keep a list of banned domains in /etc/squid/blocked.txt, one per line (for example \".badsite.test\"). Which pair of lines blocks them for everyone?",
+   "o": [
+    [
+     "acl blocked srcdomain \"/etc/squid/blocked.txt\" and http_access deny blocked, placed above the allow rules for the LAN",
+     "srcdomain matches the SOURCE (client) name, not the site that the client wants to reach."
+    ],
+    [
+     "acl blocked dstdomain \"/etc/squid/blocked.txt\" and http_access deny blocked, placed above the allow rule",
+     "Right. dstdomain matches the destination site name, and the quoted file name loads the list. Deny must come first because the first match wins."
+    ],
+    [
+     "acl blocked dst \"/etc/squid/blocked.txt\" and http_access deny blocked, placed above the allow rules for the LAN",
+     "dst matches destination IP addresses. A list of domain names does not fit it."
+    ],
+    [
+     "acl blocked url_regex /etc/squid/blocked.txt and http_access allow blocked, placed above the allow rule",
+     "Allow would permit the listed sites instead of blocking them, and url_regex would read the file name as a pattern."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-208-21",
+   "d": "208",
+   "obj": "208.3",
+   "q": "Squid must make users log in before browsing, using an htpasswd-style file. Which ACL type makes http_access demand a login?",
+   "o": [
+    [
+     "ident (user name lookup)",
+     "ident asks the client's ident daemon for a user name, which is old and easy to fake. It is not a password login."
+    ],
+    [
+     "srcdomain (client name)",
+     "srcdomain matches the client's DNS name. No user name or password is involved."
+    ],
+    [
+     "time (hours of the day)",
+     "A time ACL matches hours and days. It cannot ask for credentials."
+    ],
+    [
+     "proxy_auth",
+     "Right. \"acl users proxy_auth REQUIRED\" with \"http_access allow users\" makes Squid ask for credentials set up by auth_param."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-208-22",
+   "d": "208",
+   "obj": "208.3",
+   "q": "In squid.conf the line is \"cache_dir ufs /var/spool/squid 10000 16 256\". What does 10000 mean?",
+   "o": [
+    [
+     "The cache holds at most 10000 objects before old ones are removed",
+     "Squid limits the disk size in megabytes, not the number of objects."
+    ],
+    [
+     "Cached pages expire after 10000 seconds unless refresh_pattern says otherwise",
+     "Expiry depends on refresh_pattern rules and not on cache_dir."
+    ],
+    [
+     "The cache may use up to 10000 megabytes (about 10 GB) of disk",
+     "Right. The numbers after the path are: size in MB, number of first-level directories (16) and second-level directories per first-level one (256)."
+    ],
+    [
+     "Squid listens on TCP port 10000 for cache requests",
+     "The listening port comes from http_port (default 3128)."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-208-23",
+   "d": "208",
+   "obj": "208.3",
+   "q": "You changed squid.conf and want Squid to re-read it without dropping the users' connections. Which command?",
+   "o": [
+    [
+     "squid -k reconfigure",
+     "Right. It sends the running Squid a signal to re-read its config. Existing connections finish normally."
+    ],
+    [
+     "squid -k shutdown now",
+     "It starts a shutdown (after a short wait for clients). The proxy would go away."
+    ],
+    [
+     "squid -k parse -f squid.conf",
+     "parse only checks the syntax of squid.conf. The running Squid does not use the result."
+    ],
+    [
+     "squid -k rotate",
+     "It rotates the log files. Config is not re-read as part of it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-208-24",
+   "d": "208",
+   "obj": "208.4",
+   "q": "Nginx must forward every request for / to an application listening on 127.0.0.1:8080. Which directive inside the location block does this?",
+   "o": [
+    [
+     "fastcgi_pass 127.0.0.1:8080;",
+     "fastcgi_pass speaks the FastCGI protocol, used for PHP-FPM. A plain HTTP app would not understand it."
+    ],
+    [
+     "upstream app { server 127.0.0.1:8080; }",
+     "upstream defines a named group of servers in the http block. By itself it routes nothing."
+    ],
+    [
+     "root http://127.0.0.1:8080;",
+     "root sets a folder on disk to serve files from. It is not a network address."
+    ],
+    [
+     "proxy_pass http://127.0.0.1:8080;",
+     "Right. proxy_pass hands the request to a backend over HTTP and returns its answer. This is a reverse proxy."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-208-25",
+   "d": "208",
+   "obj": "208.4",
+   "q": "Behind an nginx reverse proxy, the application's access log shows every visitor as 127.0.0.1. What do you add to the location block so the app can see the real client address?",
+   "o": [
+    [
+     "proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;",
+     "Right. This adds the client address to a header that the app can read. The app must also be set to trust that header from the proxy."
+    ],
+    [
+     "proxy_bind $remote_addr; # use the client's address to reach the backend",
+     "proxy_bind sets the local address nginx uses to connect to the backend. It does not tell the app about the client."
+    ],
+    [
+     "real_ip_header X-Forwarded-For; set_real_ip_from 127.0.0.1;",
+     "That directive handles addresses nginx RECEIVES from a front proxy. It does not add anything toward the backend."
+    ],
+    [
+     "proxy_redirect http://127.0.0.1:8080/ /;",
+     "proxy_redirect rewrites Location headers in backend replies, which is unrelated to client addresses."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-208-26",
+   "d": "208",
+   "obj": "208.4",
+   "q": "Two server blocks listen on port 80. Neither has a server_name that matches the Host header of an incoming request. Which block answers?",
+   "o": [
+    [
+     "The block with the shortest server_name, because nginx prefers short names",
+     "Name length is not part of the selection."
+    ],
+    [
+     "The block marked \"listen 80 default_server\", or the first one if none is marked",
+     "Right. Nginx picks by server_name first, then falls back to the default server for that listen address and port."
+    ],
+    [
+     "The block that was read last from the conf.d folder, as the last one replaces the others",
+     "Order of reading matters only when no default_server is set, and then the FIRST one wins, not the last."
+    ],
+    [
+     "None, because without a match nginx closes the connection",
+     "Nginx always has a default server for a port. It only closes the connection if you use \"return 444\" in that block."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-208-27",
+   "d": "208",
+   "obj": "208.4",
+   "q": "After you edit an nginx site file, which sequence safely applies it without breaking active connections?",
+   "o": [
+    [
+     "nginx -s stop, then nginx",
+     "stop ends the server at once and drops active connections."
+    ],
+    [
+     "nginx -V, then nginx -s quit",
+     "-V only prints the version and build options. quit would shut the server down after requests end."
+    ],
+    [
+     "nginx -t, then nginx -s reload",
+     "Right. -t checks syntax. -s reload starts new workers with the new config and lets old workers finish their requests."
+    ],
+    [
+     "systemctl mask nginx, then systemctl start nginx",
+     "Masking blocks the service from starting at all."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-208-28",
+   "d": "208",
+   "obj": "208.4",
+   "q": "Nginx has this block: location /img/ { alias /srv/pics/; }. A visitor requests /img/cat.png. Which file does nginx serve?",
+   "o": [
+    [
+     "/srv/pics/img/cat.png",
+     "That would happen with root /srv/pics;, which APPENDS the whole URI to the folder."
+    ],
+    [
+     "/img/cat.png",
+     "Without a root or alias nginx would use the default root. Here the alias is set, so the relative path is not used."
+    ],
+    [
+     "/srv/pics/",
+     "The file name is kept. Only the location prefix is swapped."
+    ],
+    [
+     "/srv/pics/cat.png",
+     "Right. alias REPLACES the matched part of the URI (/img/) with the alias path, so only cat.png is added."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-209-01",
+   "d": "209",
+   "obj": "209.1",
+   "q": "You edited /etc/samba/smb.conf. Which command checks the file for mistakes and shows the settings Samba will actually use?",
+   "o": [
+    [
+     "smbstatus",
+     "smbstatus lists current connections and locked files. It does not read the config for errors."
+    ],
+    [
+     "testparm",
+     "Right. testparm parses smb.conf, reports errors and prints the effective configuration after defaults are filled in."
+    ],
+    [
+     "smbclient -L localhost",
+     "This lists the shares a running server offers. It cannot tell you why the config is wrong."
+    ],
+    [
+     "net ads info",
+     "It shows details about the Active Directory domain. It does not check smb.conf syntax."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-209-02",
+   "d": "209",
+   "obj": "209.1",
+   "q": "The Linux group \"staff\" must be able to connect to and write in the share [projects]. Everyone else must not be able to connect to it. Which settings do that?",
+   "o": [
+    [
+     "read list = @staff  and  browseable = no",
+     "browseable = no only hides the share name in lists. Anyone who knows the name can still connect."
+    ],
+    [
+     "hosts allow = @staff  and  writable = yes",
+     "hosts allow takes host names or networks, not groups."
+    ],
+    [
+     "valid users = @staff  and  read only = no",
+     "Right. valid users limits who may connect (the @ means a Linux group). read only = no allows writing for those users."
+    ],
+    [
+     "admin users = @staff  and  guest ok = yes",
+     "admin users gives those users root-level rights on the share, which is too much, and guest ok opens it to everybody."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-209-03",
+   "d": "209",
+   "obj": "209.1",
+   "q": "Samba is a standalone file server using the tdbsam backend. A Linux account alice already exists. Which command lets alice connect to shares from Windows?",
+   "o": [
+    [
+     "smbpasswd -a alice",
+     "Right. -a adds the existing Unix user to Samba's own password database and sets an SMB password."
+    ],
+    [
+     "passwd alice (the Linux password)",
+     "This sets the Linux password. Samba (tdbsam) keeps separate password hashes and will not use it."
+    ],
+    [
+     "pdbedit -L -u alice",
+     "-L only LISTS the users that are already in the Samba database."
+    ],
+    [
+     "useradd -m -s /bin/bash alice",
+     "The account exists already, and useradd would not create a Samba entry anyway."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-209-04",
+   "d": "209",
+   "obj": "209.1",
+   "q": "A Samba server with \"security = ADS\" and a correct realm and workgroup must become a member of the domain EXAMPLE.COM. Which command joins it (with the right permissions)?",
+   "o": [
+    [
+     "kinit Administrator@EXAMPLE.COM",
+     "kinit only fetches a Kerberos ticket. It does not create a computer account."
+    ],
+    [
+     "winbindd -D",
+     "This starts the winbind daemon. It cannot join a domain by itself."
+    ],
+    [
+     "wbinfo -u",
+     "wbinfo -u lists domain users and only works AFTER the server has joined."
+    ],
+    [
+     "net ads join -U Administrator",
+     "Right. net ads join creates the computer account in Active Directory and stores the machine secret on the server."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-209-05",
+   "d": "209",
+   "obj": "209.1",
+   "q": "A Samba domain member suddenly rejects all domain logins. You suspect the machine's secret with the domain controller is broken. Which command checks the trust?",
+   "o": [
+    [
+     "wbinfo -u",
+     "-u lists domain users. It can work from cache and does not prove that the machine trust is valid."
+    ],
+    [
+     "testparm",
+     "testparm checks smb.conf, not the connection to the domain."
+    ],
+    [
+     "wbinfo -t",
+     "Right. -t checks the trust secret between this server and the domain. A failure means you may need to rejoin the domain."
+    ],
+    [
+     "smbstatus -b",
+     "smbstatus -b lists connected users with brief output. It does not test the trust."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-209-06",
+   "d": "209",
+   "obj": "209.1",
+   "q": "A Linux client mounts //fs1/data in /etc/fstab with the CIFS type. The user name and password are in the fstab line, and anyone can read that file. What is the better practice?",
+   "o": [
+    [
+     "Use credentials=/root/.smbcred in the options, with that file at mode 600",
+     "Right. The credentials file keeps the secret out of the world-readable fstab and only root can read it."
+    ],
+    [
+     "Replace the password with the NFS option \"sec=sys\" so no secret is needed",
+     "sec=sys is an NFS option. CIFS mounts do not use it."
+    ],
+    [
+     "Add the option \"guest\" and give everybody write rights on the share",
+     "That removes security instead of protecting the password."
+    ],
+    [
+     "Put the password in the options, but add \"noauto\"",
+     "noauto only stops mounting at boot. The password would still be readable."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-209-07",
+   "d": "209",
+   "obj": "209.1",
+   "q": "From a Linux workstation you want to see which shares the file server fs1 offers, signed in as the user alice. Which command do you use?",
+   "o": [
+    [
+     "showmount -e fs1 as user alice",
+     "showmount -e lists NFS exports, not Samba shares."
+    ],
+    [
+     "smbclient -L //fs1 -U alice",
+     "Right. -L lists the shares of a server, and -U sets the user name to log in with."
+    ],
+    [
+     "nmblookup -A fs1 -U alice",
+     "This asks for the NetBIOS name table of an address. It does not list shares."
+    ],
+    [
+     "smbstatus -S",
+     "-S lists shares in use on the LOCAL Samba server, not shares on a remote one."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-209-08",
+   "d": "209",
+   "obj": "209.1",
+   "q": "Windows users sign in as \"jsmith\", but the matching Linux account is \"john.smith\". Which smb.conf setting maps one name to the other?",
+   "o": [
+    [
+     "force user = john.smith in the share",
+     "force user makes EVERY connection to a share run as that one account, which would merge all users."
+    ],
+    [
+     "username map = /etc/samba/smbusers",
+     "Right. The map file has lines such as \"john.smith = jsmith\". Samba applies it at login time."
+    ],
+    [
+     "valid users = jsmith john.smith",
+     "valid users filters who may connect. It does not change the Linux account in use."
+    ],
+    [
+     "map to guest = Bad User in [global]",
+     "This turns unknown users into guest. It does not rename a valid user."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-209-09",
+   "d": "209",
+   "obj": "209.1",
+   "q": "In smb.conf, the [printers] section contains \"printable = yes\" and \"path = /var/spool/samba\". What does printable = yes do?",
+   "o": [
+    [
+     "It lets clients browse and delete other people's print jobs",
+     "Job control is set with other options and printable does not give it."
+    ],
+    [
+     "It makes the share read-only, so printing works only for the print admin",
+     "Printing needs writing to the spool path; printable does not make anything read-only."
+    ],
+    [
+     "It publishes the printer in Active Directory so clients can find it",
+     "Publishing to AD uses \"published\" settings and tools, not this flag."
+    ],
+    [
+     "It marks the share as a printer share that accepts spooled print jobs",
+     "Right. printable (or print ok) is what makes the section accept spooled print jobs. The path is the spool folder."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-209-10",
+   "d": "209",
+   "obj": "209.1",
+   "q": "Which situation requires \"samba-tool domain provision\"?",
+   "o": [
+    [
+     "You want Samba itself to act as an AD domain controller for a new domain",
+     "Right. provision builds the directory database, DNS and Kerberos setup for a new Samba AD domain."
+    ],
+    [
+     "You want a Samba server to join an existing Windows domain as a member",
+     "A member joins with net ads join. Provision would create a second domain instead."
+    ],
+    [
+     "You want a standalone file server with a few local users",
+     "Standalone servers need only smb.conf and smbpasswd."
+    ],
+    [
+     "You want to share a printer with Windows clients through CUPS",
+     "Printer shares need a [printers] section and CUPS, not a domain."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-209-11",
+   "d": "209",
+   "obj": "209.1",
+   "q": "Share [data] has \"read only = no\" and alice is allowed to connect, but Windows says she cannot save files. On the server, the folder is owned by root with mode 755. What is the cause?",
+   "o": [
+    [
+     "The share needs \"guest ok = yes\" before any normal user is allowed to write into it",
+     "Guest access would open the share to everyone and would not give write rights on the disk."
+    ],
+    [
+     "Samba ignores Linux file permissions whenever the share is set to read only = no",
+     "It does not ignore them. Samba checks the file system rights for every action."
+    ],
+    [
+     "Samba obeys Linux permissions, and alice has no write right on the folder",
+     "Right. Samba acts as the Linux user. Both the share settings and the Unix permissions must allow writing; the stricter one wins."
+    ],
+    [
+     "The server must also run nmbd before writes to the share can work",
+     "nmbd handles NetBIOS name service. It has no part in write permission."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-209-12",
+   "d": "209",
+   "obj": "209.1",
+   "q": "Which TWO statements about Samba 4 as a domain MEMBER server (security = ADS) are true? (Choose two.)",
+   "o": [
+    [
+     "Winbind maps domain users and groups to Linux accounts so file permissions can use them",
+     "Right. winbindd resolves domain names to UIDs and GIDs through the idmap settings."
+    ],
+    [
+     "Kerberos is used for authentication, so the server's clock must be close to the domain controller's time",
+     "Right. Kerberos tickets fail when the time difference is too large (5 minutes by default)."
+    ],
+    [
+     "The member server stores all domain accounts in its own tdbsam",
+     "Accounts stay on the domain controller. The member server only maps them."
+    ],
+    [
+     "Domain users must also be added with smbpasswd -a on the member server",
+     "The password is checked by the domain controller, so smbpasswd -a is not needed."
+    ],
+    [
+     "The server must be the first domain controller",
+     "A member server is not a controller. It joins an existing domain."
+    ]
+   ],
+   "a": [
+    0,
+    1
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "l2-209-13",
+   "d": "209",
+   "obj": "209.2",
+   "q": "You edited /etc/exports on the NFS server. Which command re-exports everything without restarting the NFS services?",
+   "o": [
+    [
+     "exportfs -v",
+     "-v only lists the current exports with options. It changes nothing."
+    ],
+    [
+     "exportfs -ra",
+     "Right. -r re-reads /etc/exports and -a applies all entries, adding new ones and removing deleted ones."
+    ],
+    [
+     "showmount -a",
+     "It shows which clients have mounted shares, a status view only."
+    ],
+    [
+     "mount -a",
+     "mount -a mounts the entries of /etc/fstab. It does not read /etc/exports."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-209-14",
+   "d": "209",
+   "obj": "209.2",
+   "q": "A client's root user creates a file on a mounted NFS export. On the server the file belongs to \"nobody\". Which export option causes this?",
+   "o": [
+    [
+     "no_subtree_check",
+     "It turns off a check of whether a file is inside the exported subtree. It does not change owners."
+    ],
+    [
+     "sync",
+     "sync makes the server write changes to disk before replying. It does not map users."
+    ],
+    [
+     "insecure",
+     "insecure allows clients to connect from ports above 1023, which has nothing to do with user mapping."
+    ],
+    [
+     "root_squash",
+     "Right. root_squash (the default) maps requests from client root to the anonymous user, so a client root cannot act as server root."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-209-15",
+   "d": "209",
+   "obj": "209.2",
+   "q": "A power cut hits the NFS server. Some files that clients had saved are damaged. Which export option setting gives the safest behavior against that kind of loss?",
+   "o": [
+    [
+     "async",
+     "async replies before the data is on disk and is faster, but a crash can lose data that clients thought was saved."
+    ],
+    [
+     "ro",
+     "ro would make the export read-only. Nothing could be saved at all."
+    ],
+    [
+     "sync",
+     "Right. With sync the server replies \"done\" only after data is committed to stable storage."
+    ],
+    [
+     "all_squash",
+     "all_squash maps every user to the anonymous account. It does not change how data is written."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-209-16",
+   "d": "209",
+   "obj": "209.2",
+   "q": "From a client, which command lists the exports offered by the server nfs1?",
+   "o": [
+    [
+     "showmount -e nfs1",
+     "Right. -e prints the server's export list and the hosts that may use each export."
+    ],
+    [
+     "exportfs -v -a nfs1",
+     "exportfs works only on the LOCAL server and takes no host name."
+    ],
+    [
+     "nfsstat -c -o nfs",
+     "It prints client-side NFS statistics such as call counts. It does not list exports."
+    ],
+    [
+     "rpcinfo -s nfs1 | grep nfs",
+     "It lists registered RPC services but does not show which directories are exported."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-209-17",
+   "d": "209",
+   "obj": "209.2",
+   "q": "A database server writes to an NFS mount. If the NFS server is briefly unreachable, writes must wait and continue instead of failing silently. Which mount option fits?",
+   "o": [
+    [
+     "hard",
+     "Right. With hard, the client keeps retrying until the server answers, so applications never see a false success or lost write."
+    ],
+    [
+     "soft",
+     "soft gives up after the retries and returns an error, which can leave programs with partly written data."
+    ],
+    [
+     "ro",
+     "ro makes the mount read-only and the database cannot write."
+    ],
+    [
+     "nolock",
+     "nolock turns off file locking, which is risky for databases and has no effect on retries."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-209-18",
+   "d": "209",
+   "obj": "209.2",
+   "q": "On a server that still uses TCP Wrappers for rpcbind, a client's address appears in neither /etc/hosts.allow nor /etc/hosts.deny. What happens?",
+   "o": [
+    [
+     "Access is denied",
+     "Denial happens only when an entry in hosts.deny matches. Typical hardening adds \"rpcbind: ALL\" to hosts.deny."
+    ],
+    [
+     "Access is allowed",
+     "Right. The files are checked in order, hosts.allow first and then hosts.deny. With no match in either, access is granted."
+    ],
+    [
+     "Access is allowed only for root",
+     "TCP Wrappers do not look at user names for this service."
+    ],
+    [
+     "Access depends on the order of the lines in /etc/exports",
+     "/etc/exports is a separate control, and the wrappers do not read it."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-209-19",
+   "d": "209",
+   "obj": "209.2",
+   "q": "Your firewall blocks everything except what you open. Clients use only NFSv4 to mount your server. Which is the minimum you must open?",
+   "o": [
+    [
+     "TCP and UDP port 111 only",
+     "Port 111 is the portmapper used by NFSv3. NFSv4 clients talk straight to 2049."
+    ],
+    [
+     "TCP ports 137 to 139",
+     "These are NetBIOS ports used by older SMB file sharing, not NFS."
+    ],
+    [
+     "TCP port 2049",
+     "Right. NFSv4 works over a single well-known TCP port, 2049, and needs no rpcbind or mountd ports."
+    ],
+    [
+     "TCP port 445",
+     "Port 445 is SMB over TCP, which is Samba's port."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-209-20",
+   "d": "209",
+   "obj": "209.2",
+   "q": "This line is in /etc/exports: \"/srv/data 192.168.1.0/24 (rw,sync)\", with a space before the bracket. What does it do?",
+   "o": [
+    [
+     "It exports the folder only to 192.168.1.0/24 with rw and sync, as the line was meant to",
+     "Only if there is NO space between the host and the bracket."
+    ],
+    [
+     "It is rejected, and exportfs prints a syntax error about the space before the bracket",
+     "exportfs only prints a warning ('No host name given ... suggest *(...)') and still exports. It does not reject the line, which is why this typo is dangerous."
+    ],
+    [
+     "It exports the folder read-only to everybody and read-write to nobody",
+     "The brackets with rw apply to the world entry, so it is read-write."
+    ],
+    [
+     "It exports to EVERY host with rw, and 192.168.1.0/24 only gets the defaults",
+     "Right. The space ends the host entry. The options in brackets then apply to the world. A very common and dangerous typo."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-210-01",
+   "d": "210",
+   "obj": "210.1",
+   "q": "A network printer with the MAC address 00:11:22:33:44:55 must always get 10.0.5.20 from the ISC DHCP server, while the dynamic range stays for other devices. What do you add to dhcpd.conf?",
+   "o": [
+    [
+     "host printer1 { hardware ethernet 00:11:22:33:44:55; fixed-address 10.0.5.20; }",
+     "Right. A host block ties a client hardware address to a fixed address. Keep that address outside the dynamic range."
+    ],
+    [
+     "A second range statement \"range 10.0.5.20 10.0.5.20;\" for the printer's address",
+     "That gives the single address to the NEXT client that asks, not to one specific printer."
+    ],
+    [
+     "option routers 10.0.5.20; inside the subnet block",
+     "option routers hands out a default gateway address. It does not reserve an address for a device."
+    ],
+    [
+     "default-lease-time 0; in the subnet block",
+     "A lease time of 0 does not create reservations. Reservations come only from host declarations."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-210-02",
+   "d": "210",
+   "obj": "210.1",
+   "q": "The DHCP server sits on VLAN 10. Clients on VLAN 20 get no lease, and a packet capture on the server shows no DISCOVER packets from VLAN 20. The router does not forward broadcasts. What is the standard fix?",
+   "o": [
+    [
+     "Raise max-lease-time on the DHCP server so that clients keep their addresses longer",
+     "Lease time has no effect when the requests never arrive."
+    ],
+    [
+     "Add the line authoritative; to dhcpd.conf so the server answers requests from other networks",
+     "authoritative only makes the server send NAKs for wrong addresses. It does not help requests cross a router."
+    ],
+    [
+     "Install radvd on the VLAN 20 gateway so that clients get their addresses from router advertisements",
+     "radvd sends IPv6 router advertisements. It does not relay IPv4 DHCP."
+    ],
+    [
+     "Run dhcrelay on VLAN 20's gateway, pointing at the server, and add a VLAN 20 subnet block on the server",
+     "Right. The relay turns the broadcast into a unicast to the server. The server needs the subnet block to know which addresses to hand out."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-210-03",
+   "d": "210",
+   "obj": "210.1",
+   "q": "You changed dhcpd.conf and want to check the syntax without starting the service. Which command?",
+   "o": [
+    [
+     "dhcpd -T -lf /var/lib/dhcp/dhcpd.leases",
+     "-T (capital) tests the LEASE database file, not the config."
+    ],
+    [
+     "dhcpd -t -cf /etc/dhcp/dhcpd.conf",
+     "Right. -t tests the configuration file and exits. -cf names the file to test."
+    ],
+    [
+     "dhcpd -q -cf /etc/dhcp/dhcpd.conf",
+     "-q only keeps start-up quiet. It still starts the daemon."
+    ],
+    [
+     "dhclient -v",
+     "dhclient is the CLIENT program. It would ask for an address, not test the server's config."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-210-04",
+   "d": "210",
+   "obj": "210.1",
+   "q": "IPv6 clients on a network must learn their default gateway and prefix. Which mechanism provides the default gateway for IPv6?",
+   "o": [
+    [
+     "A DHCPv6 option named \"routers\" in dhcpd6.conf for each subnet",
+     "DHCPv6 has no default gateway option. That info comes from Router Advertisements."
+    ],
+    [
+     "A DHCPv4 relay agent running on the router's LAN port",
+     "DHCPv4 deals with IPv4. IPv6 uses other tools."
+    ],
+    [
+     "Router Advertisements (for example from radvd)",
+     "Right. The router announces itself, and clients build their gateway from it. DHCPv6 cannot hand out a gateway."
+    ],
+    [
+     "A static route written in /etc/hosts",
+     "/etc/hosts maps names to addresses. It cannot define routes."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-210-05",
+   "d": "210",
+   "obj": "210.2",
+   "q": "A PAM stack has the line \"auth required pam_unix.so\". If this module fails, what happens?",
+   "o": [
+    [
+     "PAM stops running the stack at once and returns failure to the calling program straight away",
+     "That is \"requisite\". required keeps running the other modules in the stack."
+    ],
+    [
+     "PAM ignores the failure if a later module in the stack succeeds",
+     "A later success does not cancel a failed required module."
+    ],
+    [
+     "The module is skipped as if it were not listed in the stack, and the rest decides",
+     "That is how an \"optional\" module behaves when it is not the only one."
+    ],
+    [
+     "It is recorded, the other modules still run, and the final result is failure",
+     "Right. required lets PAM continue with other modules so an attacker cannot tell which one failed, but the overall result is a fail."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-210-06",
+   "d": "210",
+   "obj": "210.2",
+   "q": "In /etc/pam.d/sshd the first auth line is \"auth sufficient pam_unix.so\" and later lines are \"auth required pam_deny.so\". pam_unix succeeds and no earlier required module failed. What happens next?",
+   "o": [
+    [
+     "PAM stops processing the auth stack and returns success",
+     "Right. A sufficient module that succeeds (and nothing required has failed) ends the stack with success, so pam_deny is never reached."
+    ],
+    [
+     "PAM goes on to pam_deny, which then fails the login for everyone",
+     "The stack ends early on success, so pam_deny never runs."
+    ],
+    [
+     "PAM asks for the password a second time",
+     "PAM does not repeat modules. Each one runs at most once per request."
+    ],
+    [
+     "PAM falls back to the account stack and ignores auth",
+     "The auth stack result comes first, and then account and session stacks run."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-210-07",
+   "d": "210",
+   "obj": "210.2",
+   "q": "You must lock a user account for 10 minutes after 5 failed logins. Which PAM module (on a current RHEL-type system) provides this?",
+   "o": [
+    [
+     "pam_limits",
+     "pam_limits sets resource limits such as open files or processes from limits.conf."
+    ],
+    [
+     "pam_faillock",
+     "Right. faillock counts failed attempts per user and locks the account for unlock_time seconds. It replaced pam_tally2."
+    ],
+    [
+     "pam_wheel",
+     "pam_wheel restricts who may use su, based on group."
+    ],
+    [
+     "pam_securetty",
+     "It restricts root logins to terminals listed in /etc/securetty, which is old and not about failure counts."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-210-08",
+   "d": "210",
+   "obj": "210.2",
+   "q": "Only members of the group \"wheel\" should be able to use su to become root. Which line in /etc/pam.d/su does that?",
+   "o": [
+    [
+     "account required pam_nologin.so file=/etc/nologin",
+     "pam_nologin blocks everybody except root when /etc/nologin exists. It is not group based."
+    ],
+    [
+     "session required pam_limits.so conf=/etc/security/limits.conf",
+     "It applies resource limits when a session starts, not group checks."
+    ],
+    [
+     "auth required pam_wheel.so use_uid",
+     "Right. pam_wheel makes su check for membership of wheel. use_uid uses the real user ID of the caller."
+    ],
+    [
+     "auth sufficient pam_rootok.so",
+     "pam_rootok lets root through without a password. It opens su for root only and is not a group filter."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-210-09",
+   "d": "210",
+   "obj": "210.2",
+   "q": "/etc/nsswitch.conf contains \"passwd: files sss\". A user logs in who is not listed in /etc/passwd. Where does the system look next?",
+   "o": [
+    [
+     "DNS, as the NSS name service",
+     "DNS is used by the hosts database, not passwd, unless configured."
+    ],
+    [
+     "/etc/shadow",
+     "shadow holds password hashes for users already in passwd. It does not list new accounts."
+    ],
+    [
+     "The login fails at once because only one source is allowed",
+     "A line can list many sources and they are tried in order."
+    ],
+    [
+     "SSSD, which can query LDAP or another remote directory",
+     "Right. Sources are tried left to right. files is local, and sss means System Security Services Daemon."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-210-10",
+   "d": "210",
+   "obj": "210.2",
+   "q": "One entry in /etc/shadow is: alice:$6$x...:19800:0:90:7:14::. What does the number 90 mean?",
+   "o": [
+    [
+     "The password must be changed at least every 90 days",
+     "Right. Fields are name, hash, last change, minimum age, maximum age (90), warning days, inactive days, expiry."
+    ],
+    [
+     "The account is locked for 90 days",
+     "Locking uses an exclamation mark in the hash field or a set expiry date."
+    ],
+    [
+     "The user gets a warning 90 days before the password expires",
+     "The warning period is the next field (7)."
+    ],
+    [
+     "The password was last changed 90 days ago",
+     "The last-change field is 19800, a count of days since 1 January 1970."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-210-11",
+   "d": "210",
+   "obj": "210.2",
+   "q": "In /etc/shadow, the hash field of the user bob begins with \"!\" (for example !$6$abc...). What does this mean?",
+   "o": [
+    [
+     "bob has no password at all, so anyone can log in as bob without typing anything",
+     "An empty hash field means no password. The mark in front of a hash does the opposite."
+    ],
+    [
+     "bob's account has expired and cannot log in by any method until an admin extends it",
+     "Expiry is a separate field (number of days since 1970) and does not use the hash field."
+    ],
+    [
+     "Password logins for bob are locked, but key-based SSH may still work",
+     "Right. An exclamation mark in front of the hash disables password authentication (usermod -L does this). The account itself is not deleted."
+    ],
+    [
+     "bob's password hash uses the SHA-512 algorithm for storage",
+     "Algorithm is shown by the $6$ prefix. The exclamation mark in front is the lock."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-210-12",
+   "d": "210",
+   "obj": "210.2",
+   "q": "After you edit /etc/sssd/sssd.conf, the sssd service will not start. The log says the file permissions check failed. What do you do?",
+   "o": [
+    [
+     "chmod 777 /etc/sssd/sssd.conf so every service can read it",
+     "A world-writable config is exactly what sssd refuses."
+    ],
+    [
+     "chmod 600 /etc/sssd/sssd.conf, and make sure it is owned by root",
+     "Right. sssd refuses a config file that others can read, because it may hold bind passwords."
+    ],
+    [
+     "Move the file to /etc/ldap/ldap.conf, where the LDAP tools look",
+     "ldap.conf is read by the OpenLDAP client tools. sssd would find no config at all."
+    ],
+    [
+     "Add \"selinux = off\" in the [sssd] section of the same file",
+     "SELinux is not an sssd.conf setting."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-210-13",
+   "d": "210",
+   "obj": "210.3",
+   "q": "In \"ldapsearch -x -H ldap://ldap.example.com -b dc=example,dc=com (uid=alice)\", what does -x do?",
+   "o": [
+    [
+     "It uses StartTLS before sending the query to the server",
+     "StartTLS is switched on with -Z or -ZZ."
+    ],
+    [
+     "It makes the output leave out attributes that have no value",
+     "-x has no effect on output."
+    ],
+    [
+     "It sets the search base to the root of the server's tree",
+     "The base is set with -b, as seen in the command."
+    ],
+    [
+     "It uses simple authentication (or anonymous) instead of SASL",
+     "Right. With -x, ldapsearch binds with a DN and password, or without credentials when no -D is given."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-210-14",
+   "d": "210",
+   "obj": "210.3",
+   "q": "Which command changes the password of the LDAP entry uid=alice,ou=People,dc=example,dc=com, asking for a new password to enter?",
+   "o": [
+    [
+     "ldapadd -x -D \"cn=admin,dc=example,dc=com\" -W -S \"uid=alice,ou=People,dc=example,dc=com\" -f alice.ldif",
+     "ldapadd adds entries from LDIF. It has no -S option."
+    ],
+    [
+     "ldappasswd -x -D \"cn=admin,dc=example,dc=com\" -W -S \"uid=alice,ou=People,dc=example,dc=com\"",
+     "Right. ldappasswd uses the LDAP password modify operation. -S prompts for the new password."
+    ],
+    [
+     "ldapwhoami -x -D \"cn=admin,dc=example,dc=com\" -W -S \"uid=alice,ou=People,dc=example,dc=com\" -v",
+     "ldapwhoami reports who you are bound as and has no -S option. It changes nothing."
+    ],
+    [
+     "passwd alice (the Linux password)",
+     "passwd changes the local /etc/shadow password and does not touch the LDAP directory."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-210-15",
+   "d": "210",
+   "obj": "210.3",
+   "q": "In an LDIF file for ldapmodify, one entry gets two changes: replace the mail attribute and then add a telephoneNumber. What separates the two changes?",
+   "o": [
+    [
+     "A blank line between the two changes of the entry",
+     "A blank line ends the whole entry and starts a new one with a new dn."
+    ],
+    [
+     "A line starting with # and a space, as a comment",
+     "That is a comment line and does not end any change."
+    ],
+    [
+     "A line containing only a hyphen (-)",
+     "Right. Inside one entry, a single \"-\" ends one change so the next change can follow."
+    ],
+    [
+     "A line with \"---\" and a dn",
+     "A new dn would start a different entry. The separator is just one hyphen."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-210-16",
+   "d": "210",
+   "obj": "210.3",
+   "q": "Which LDAP filter returns entries of class posixAccount whose uid is alice OR bob?",
+   "o": [
+    [
+     "(&(objectClass=posixAccount)(|(uid=alice)(uid=bob)))",
+     "Right. & means AND, | means OR. Operators come first in prefix notation, with each test in its own brackets."
+    ],
+    [
+     "(objectClass=posixAccount)&(uid=alice|bob)",
+     "This is not valid LDAP syntax. Operators must be inside the brackets and written first."
+    ],
+    [
+     "(&(objectClass=posixAccount)(&(uid=alice)(uid=bob))(uid=*))",
+     "An entry cannot have uid equal to both values at once, so nothing would match."
+    ],
+    [
+     "(|(objectClass=posixAccount)(uid=alice)(uid=bob)(uid=*))",
+     "This matches EVERY posixAccount, plus alice and bob, because OR is at the top."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-210-17",
+   "d": "210",
+   "obj": "210.3",
+   "q": "Which command deletes the entry uid=bob,ou=People,dc=example,dc=com from the directory, after you have bound as the admin DN?",
+   "o": [
+    [
+     "ldapdelete -x -D \"cn=admin,dc=example,dc=com\" -W \"uid=bob,ou=People,dc=example,dc=com\"",
+     "Right. ldapdelete takes the DN of each entry to remove. Without -r it refuses to delete an entry that has children."
+    ],
+    [
+     "ldapsearch -x -D \"cn=admin,dc=example,dc=com\" -W -b \"uid=bob,ou=People,dc=example,dc=com\" --delete",
+     "ldapsearch only reads. It has no delete option."
+    ],
+    [
+     "slapcat -b \"uid=bob,ou=People,dc=example,dc=com\" -d",
+     "slapcat dumps the database to LDIF and does not remove entries."
+    ],
+    [
+     "ldapmodify -x -D \"cn=admin,dc=example,dc=com\" -W \"uid=bob,ou=People,dc=example,dc=com\"",
+     "ldapmodify needs LDIF input, usually with \"changetype: delete\". Giving only the DN is not enough."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-210-18",
+   "d": "210",
+   "obj": "210.4",
+   "q": "A modern OpenLDAP slapd stores its configuration under /etc/ldap/slapd.d (cn=config). What is the supported way to change an access rule while slapd runs?",
+   "o": [
+    [
+     "Edit the .ldif files in slapd.d with a text editor and then restart slapd",
+     "Hand edits break the checksum in each file, and slapd may refuse to read them."
+    ],
+    [
+     "Run slapindex on the database and then restart slapd to apply the new rule",
+     "slapindex rebuilds indexes only. It does not change access rules."
+    ],
+    [
+     "ldapmodify -Y EXTERNAL -H ldapi:/// with an LDIF change to cn=config",
+     "Right. The ldapi socket with EXTERNAL authentication lets the local root user edit the live configuration."
+    ],
+    [
+     "Copy the rule into /etc/ldap/ldap.conf and restart slapd",
+     "ldap.conf configures LDAP CLIENTS, not the server."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-210-19",
+   "d": "210",
+   "obj": "210.4",
+   "q": "In the DN uid=alice,ou=People,dc=example,dc=com, which part is the RDN (relative distinguished name) of the entry?",
+   "o": [
+    [
+     "ou=People",
+     "This is the parent entry (an organizational unit that holds users)."
+    ],
+    [
+     "uid=alice",
+     "Right. The RDN is the leftmost part. It identifies the entry among its siblings under the parent."
+    ],
+    [
+     "dc=example,dc=com",
+     "It is the base of the directory tree (the suffix), not part of the RDN."
+    ],
+    [
+     "uid=alice,ou=People",
+     "This is the DN minus the suffix. The RDN is only the leftmost component."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-210-20",
+   "d": "210",
+   "obj": "210.4",
+   "q": "Adding an entry with objectClass inetOrgPerson fails with \"object class 'inetOrgPerson' requires attribute 'sn'\". What is wrong?",
+   "o": [
+    [
+     "The attribute sn is MAY, and the server dislikes empty values for every attribute",
+     "The message says \"requires\", so sn is MUST. It is not a rule about empty values."
+    ],
+    [
+     "slapd must be restarted before it loads the installed schema, which has not happened",
+     "Schemas that are already installed are used at once. The error comes from the entry itself."
+    ],
+    [
+     "The base DN of the directory does not exist on this server yet",
+     "A missing parent gives a different error (\"no such object\")."
+    ],
+    [
+     "The entry lacks an attribute that the object class marks as MUST",
+     "Right. The schema lists required (MUST) and optional (MAY) attributes. inetOrgPerson, through person, requires sn and cn."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-210-21",
+   "d": "210",
+   "obj": "210.4",
+   "q": "Which object class supplies the attributes uidNumber and homeDirectory that Linux needs for a user account stored in LDAP?",
+   "o": [
+    [
+     "inetOrgPerson",
+     "It holds personal data such as mail and displayName. It has no uidNumber."
+    ],
+    [
+     "posixAccount",
+     "Right. posixAccount (from the nis schema) carries uid, uidNumber, gidNumber and homeDirectory for Unix accounts."
+    ],
+    [
+     "organizationalUnit",
+     "It creates a container like ou=People. It does not describe a user."
+    ],
+    [
+     "posixGroup",
+     "posixGroup describes groups with gidNumber and memberUid. It has no homeDirectory."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-210-22",
+   "d": "210",
+   "obj": "210.4",
+   "q": "You want an offline backup of an OpenLDAP database to a text file, directly from the database files. Which tool?",
+   "o": [
+    [
+     "slapcat",
+     "Right. slapcat reads the database back end directly and writes LDIF, even when slapd is not running."
+    ],
+    [
+     "slapadd",
+     "slapadd does the reverse: it loads LDIF INTO the database."
+    ],
+    [
+     "slapindex",
+     "slapindex rebuilds the indexes of a database. It writes no LDIF."
+    ],
+    [
+     "ldappasswd",
+     "ldappasswd changes one password over the network. It does not dump anything."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-210-23",
+   "d": "210",
+   "obj": "210.4",
+   "q": "You ran \"slapadd -l data.ldif\" as root on a stopped server. Now slapd (running as the user openldap) cannot open the database. What fixes it?",
+   "o": [
+    [
+     "Rebuild the schema with slapcat and load it again",
+     "slapcat only exports data. The permission problem remains."
+    ],
+    [
+     "Set olcReadOnly: TRUE on the database in cn=config",
+     "A read-only database still needs the daemon to be able to open the files."
+    ],
+    [
+     "Add -u root to the slapd start options so it can open the files",
+     "Running the daemon as root defeats the purpose of a limited user and is not the fix."
+    ],
+    [
+     "chown -R openldap:openldap on the database directory",
+     "Right. slapadd as root creates files owned by root. The daemon user needs to own them."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-210-24",
+   "d": "210",
+   "obj": "210.4",
+   "q": "You added \"olcDbIndex: mail eq\" to a database that already holds many entries. Searches on mail are still slow. Which step builds the new index for the existing entries?",
+   "o": [
+    [
+     "Run ldapsearch with the new mail filter to warm the index",
+     "ldapsearch only reads the directory. It does not build an index for entries that already exist."
+    ],
+    [
+     "Run ldapsearch with -z 0 to trigger indexing",
+     "-z limits the number of entries returned and does not index anything."
+    ],
+    [
+     "Stop slapd, run slapindex, then start slapd again",
+     "Right. A new index only covers entries added or changed AFTER the setting. slapindex rebuilds it for the current data."
+    ],
+    [
+     "Restart the client with sss_cache -E",
+     "sss_cache clears the SSSD client cache and does not touch the server index."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-210-25",
+   "d": "210",
+   "obj": "210.4",
+   "q": "An access rule reads: \"olcAccess: {0}to attrs=userPassword by self write by anonymous auth by * none\". What does it do?",
+   "o": [
+    [
+     "Everyone can read every user's password hash, but only the owner may change it, and nobody else may",
+     "\"by * none\" refuses all other access, including reading."
+    ],
+    [
+     "Anonymous users may write any password, while all other users have no access at all to the entry",
+     "anonymous gets auth only, which is a login check and not a write."
+    ],
+    [
+     "It applies to every attribute of every entry in the directory, not only passwords",
+     "The \"to attrs=userPassword\" part limits the rule to that single attribute."
+    ],
+    [
+     "Users change their own password, anonymous clients can only log in, nobody else can read it",
+     "Right. self write allows own password changes. anonymous auth allows only authentication, and * none refuses everything else."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-210-26",
+   "d": "210",
+   "obj": "210.4",
+   "q": "The first access rule of a database is \"to * by * read\", and the second is \"to attrs=userPassword by * none\". Users can still read password hashes. Why?",
+   "o": [
+    [
+     "olcAccess rules are all checked, and the most permissive one wins, so the broad rule just grants more",
+     "OpenLDAP uses the FIRST rule that matches the target, not a vote."
+    ],
+    [
+     "The first matching \"to\" clause wins, so the broad rule hides the specific one",
+     "Right. Order matters. Put specific rules first and the general rule last."
+    ],
+    [
+     "by * none cannot be used for the userPassword attribute at all, so the server skips it",
+     "It is a normal rule. The problem is that it comes second."
+    ],
+    [
+     "Rules are checked from the highest to the lowest number in braces",
+     "The lowest number ({0}) is checked first."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-210-27",
+   "d": "210",
+   "obj": "210.4",
+   "q": "An LDIF file has a long description attribute that must continue on the next line. How is the continuation written?",
+   "o": [
+    [
+     "The first line ends with a backslash",
+     "LDIF does not use a backslash for continuation."
+    ],
+    [
+     "The next line starts with a plus sign",
+     "A plus sign is used in a multi-part RDN, not for continuation."
+    ],
+    [
+     "The next line starts with a single space",
+     "Right. In LDIF a line that begins with one space continues the previous line, and that space is not part of the value."
+    ],
+    [
+     "A blank line is placed between the two parts",
+     "A blank line ends the whole entry."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-211-01",
+   "d": "211",
+   "obj": "211.1",
+   "q": "You want a short list of only the Postfix settings that differ from the built-in defaults, to read in a ticket. Which command prints it?",
+   "o": [
+    [
+     "postconf -n",
+     "Right. -n shows only parameters that were changed in main.cf. It is a fast way to review a Postfix setup."
+    ],
+    [
+     "postconf -d",
+     "-d prints the DEFAULT values, the opposite of what you want."
+    ],
+    [
+     "postfix check",
+     "check tests directory and file permissions. It prints nothing about your settings."
+    ],
+    [
+     "postqueue -p",
+     "-p prints the mail queue, not the configuration."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-211-02",
+   "d": "211",
+   "obj": "211.1",
+   "q": "You edited /etc/aliases to forward the name \"helpdesk\" to three people. Postfix still sends mail to the old address. Which command updates the lookup table used by Postfix?",
+   "o": [
+    [
+     "postmap /etc/aliases",
+     "postmap is for ordinary lookup tables. Aliases use postalias, which newaliases runs for you."
+    ],
+    [
+     "postconf -e alias_maps=",
+     "It would change the setting that names the table, not rebuild the data."
+    ],
+    [
+     "newaliases",
+     "Right. It rebuilds the indexed aliases database (aliases.db) from the text file."
+    ],
+    [
+     "postsuper -r ALL",
+     "postsuper -r puts queued mail back in the queue. It does not touch aliases."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-211-03",
+   "d": "211",
+   "obj": "211.1",
+   "q": "Mail to a partner has been waiting in the Postfix queue since the partner's server was down. It is back up now. Which command asks Postfix to try delivering every queued message right away?",
+   "o": [
+    [
+     "postqueue -f",
+     "Right. -f flushes the queue, so Postfix retries all deferred mail at once."
+    ],
+    [
+     "postqueue -p",
+     "-p only prints the queue contents."
+    ],
+    [
+     "postsuper -d ALL",
+     "-d ALL DELETES all queued mail. The messages would be lost."
+    ],
+    [
+     "postcat -q ABC123",
+     "postcat prints the content of one queued message and does not deliver it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-211-04",
+   "d": "211",
+   "obj": "211.1",
+   "q": "A spam source relays mail through your Postfix server to outside recipients without logging in. The server is in a lab and you check main.cf. Which setting is the most likely cause?",
+   "o": [
+    [
+     "mydestination = $myhostname",
+     "This only lists domains that are delivered locally. It does not open relaying."
+    ],
+    [
+     "smtpd_tls_security_level = may",
+     "It makes TLS optional on the SMTP server. It has no effect on who can relay."
+    ],
+    [
+     "message_size_limit = 0",
+     "A value of 0 means no size limit. That is a different risk and not open relaying."
+    ],
+    [
+     "mynetworks = 0.0.0.0/0",
+     "Right. It tells Postfix that every address on the Internet is \"local\", so it relays mail for them."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-211-05",
+   "d": "211",
+   "obj": "211.1",
+   "q": "Which main.cf setting makes Postfix offer STARTTLS to clients that connect to its SMTP server, while still accepting clients that do not use encryption?",
+   "o": [
+    [
+     "smtpd_tls_security_level = encrypt",
+     "encrypt requires TLS from every client. Plain connections would be refused."
+    ],
+    [
+     "smtpd_tls_security_level = may",
+     "Right. may means opportunistic TLS for incoming connections. Clients that do not ask for TLS can still send mail."
+    ],
+    [
+     "smtp_tls_security_level = may",
+     "The setting without the \"d\" applies when Postfix is the CLIENT, sending mail out."
+    ],
+    [
+     "smtpd_use_tls = no",
+     "This turns TLS off on the SMTP server. It is the opposite of what is wanted."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-211-06",
+   "d": "211",
+   "obj": "211.1",
+   "q": "In a lab, you test your own Postfix server by hand with telnet to port 25. After you type the message headers and body, how do you tell SMTP the message is finished?",
+   "o": [
+    [
+     "Press Ctrl+D to close the input and finish the message",
+     "Ctrl+D closes the input to telnet but does not complete the SMTP transaction."
+    ],
+    [
+     "Type QUIT before the body",
+     "QUIT ends the session, so the body would never be sent."
+    ],
+    [
+     "Send a line that contains only a single period",
+     "Right. A line with just \".\" ends the DATA part. The server then queues the message."
+    ],
+    [
+     "Send two blank lines after the body of the message to finish",
+     "A blank line separates headers from the body. Two blank lines do not end the DATA."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-211-07",
+   "d": "211",
+   "obj": "211.1",
+   "q": "/var/log/mail.log shows: \"to=<joe@example.net>, relay=mx.example.net[198.51.100.9]:25, status=deferred (connect to mx.example.net[198.51.100.9]:25: Connection timed out)\". What does it mean?",
+   "o": [
+    [
+     "Delivery failed for now. Postfix keeps the message and tries again later",
+     "Right. deferred is a temporary failure, such as a timeout or a busy remote server. Postfix retries until the queue lifetime ends."
+    ],
+    [
+     "Delivery is complete and the remote server accepted the mail",
+     "That would be status=sent."
+    ],
+    [
+     "The remote server said the user does not exist, and the sender got a bounce",
+     "An unknown user gives a permanent 5xx and status=bounced."
+    ],
+    [
+     "Postfix rejected the mail because of a policy rule",
+     "A rejection on your side would show \"reject\" in the log and the SMTP error to the sender."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-211-08",
+   "d": "211",
+   "obj": "211.1",
+   "q": "sendmail is the mail server on an older host. You need to change its configuration. What is the usual workflow?",
+   "o": [
+    [
+     "Edit /etc/postfix/main.cf, then run postfix reload to apply the change",
+     "Those are Postfix files and commands."
+    ],
+    [
+     "Edit sendmail.mc, run m4 to build sendmail.cf, then restart sendmail",
+     "Right. sendmail.cf is hard to edit, so admins edit the short macro file and generate the real config from it."
+    ],
+    [
+     "Edit /etc/exim4/exim4.conf, then run exim -bt to rebuild it",
+     "Those belong to Exim, a different mail server."
+    ],
+    [
+     "Edit sendmail.cf by hand and then run newaliases to apply it",
+     "You can edit sendmail.cf, but it is not the usual way, and newaliases only rebuilds the aliases database."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-211-09",
+   "d": "211",
+   "obj": "211.1",
+   "q": "You added a line to /etc/postfix/virtual to map sales@example.com to two mailboxes, and virtual_alias_maps points to hash:/etc/postfix/virtual. Mail is still not redirected. What is missing?",
+   "o": [
+    [
+     "newaliases to rebuild the aliases database",
+     "That rebuilds /etc/aliases and not the virtual table."
+    ],
+    [
+     "postsuper -r ALL",
+     "It requeues messages and does not change lookup tables."
+    ],
+    [
+     "A new MX record for example.com in the DNS zone",
+     "An MX record controls where outside servers send mail. The mapping happens inside Postfix after the mail has arrived."
+    ],
+    [
+     "postmap /etc/postfix/virtual to build the indexed .db file (then reload)",
+     "Right. A hash: table is read from the .db file, so the text file must be converted after each edit."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-211-10",
+   "d": "211",
+   "obj": "211.2",
+   "q": "A Sieve script uses fileinto \"Lists\" and the mail server refuses to compile it with \"unknown command fileinto\". What do you add at the top?",
+   "o": [
+    [
+     "include \"fileinto\" :personal;",
+     "include loads another script, not an extension."
+    ],
+    [
+     "use fileinto from sieve;",
+     "This is not Sieve syntax."
+    ],
+    [
+     "import [\"fileinto\"]; (loads it)",
+     "Sieve has no import command."
+    ],
+    [
+     "require [\"fileinto\"];",
+     "Right. Sieve extensions must be declared with require before use. fileinto is an extension, not part of the base language."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-211-11",
+   "d": "211",
+   "obj": "211.2",
+   "q": "Which Sieve rule moves mail from the sender list@example.org into the folder Lists? (The fileinto extension is already required.)",
+   "o": [
+    [
+     "if header \"from\" == \"list@example.org\" { fileinto \"Lists\"; }",
+     "Sieve has no == operator. Tests use match types such as :is and :contains."
+    ],
+    [
+     "if address :is \"from\" \"list@example.org\" { fileinto \"Lists\"; }",
+     "Right. address :is tests the address part of a header for an exact match."
+    ],
+    [
+     "if size :is \"from\" \"list@example.org\" { fileinto \"Lists\"; stop; }",
+     "size tests message length and not sender."
+    ],
+    [
+     "fileinto \"Lists\" where from = \"list@example.org\" and size > 1;",
+     "Sieve has no where clause. Conditions use if."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-211-12",
+   "d": "211",
+   "obj": "211.2",
+   "q": "A user wants all messages larger than 10 MB to be refused silently, with no bounce message to the sender. Which Sieve is right?",
+   "o": [
+    [
+     "if size :larger 10M { reject \"too big\"; }",
+     ":larger is not a Sieve test, and reject sends a bounce."
+    ],
+    [
+     "if size :under 10M { discard; }",
+     ":under matches SMALL messages, so normal mail would be thrown away."
+    ],
+    [
+     "if size :over 10M { discard; }",
+     "Right. size :over compares the message size. discard drops the message without telling the sender."
+    ],
+    [
+     "if header :over \"size\" \"10M\" { stop; }",
+     "header tests text of a header and has no :over match type. stop ends processing but does not delete."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-211-13",
+   "d": "211",
+   "obj": "211.2",
+   "q": "In a procmail recipe file, which line starts a new recipe?",
+   "o": [
+    [
+     ":0",
+     "Right. Every recipe begins with :0 (optionally followed by flags and a lock file name), then the condition lines starting with * and the action line."
+    ],
+    [
+     "* ^Subject:.*invoice",
+     "This is a condition line. It follows the :0 line."
+    ],
+    [
+     "INCLUDERC=/etc/procmailrc",
+     "This variable assignment includes another file."
+    ],
+    [
+     "| /usr/bin/spamassassin",
+     "A line starting with | is an ACTION that pipes the message to a program. It is also part of an existing recipe."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-211-14",
+   "d": "211",
+   "obj": "211.2",
+   "q": "Users should upload and edit their Sieve scripts from their mail client without shell access. Which protocol and default port does this?",
+   "o": [
+    [
+     "ManageSieve on TCP 4190",
+     "Right. ManageSieve is a protocol made to manage Sieve scripts remotely. Dovecot's Pigeonhole plugin provides it."
+    ],
+    [
+     "IMAP on TCP 993",
+     "IMAPS delivers mail to clients. Scripts are not uploaded through it."
+    ],
+    [
+     "SMTP submission on TCP 587",
+     "Submission is for sending mail, not for filter scripts."
+    ],
+    [
+     "POP3 on TCP 110",
+     "POP3 downloads mail. It has no script commands."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-211-15",
+   "d": "211",
+   "obj": "211.3",
+   "q": "Which Dovecot command prints only the settings that differ from the defaults, so you can review a mailbox server's configuration?",
+   "o": [
+    [
+     "doveadm who",
+     "It lists logged-in users and connections, and not the configuration."
+    ],
+    [
+     "doveconf -n",
+     "Right. -n prints only the settings that differ from the built-in defaults, which keeps the output short."
+    ],
+    [
+     "dovecot --build-options",
+     "This prints how the binary was built, not the live settings."
+    ],
+    [
+     "doveadm reload",
+     "It tells the running Dovecot to re-read its configuration. It prints nothing about it."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-211-16",
+   "d": "211",
+   "obj": "211.3",
+   "q": "The Dovecot service must offer only IMAP and no POP3. Which setting in dovecot.conf does that?",
+   "o": [
+    [
+     "mail_plugins = imap",
+     "mail_plugins loads extra code into mail processing. It is not the switch for protocols."
+    ],
+    [
+     "disable_plaintext_auth = yes",
+     "It forbids passwords on unencrypted connections for all protocols. POP3 stays enabled."
+    ],
+    [
+     "login_trusted_networks = 0.0.0.0/0",
+     "It lists networks that may pass client IP info to Dovecot. It does not stop protocols."
+    ],
+    [
+     "protocols = imap",
+     "Right. The protocols setting lists which mail protocols Dovecot starts listeners for."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-211-17",
+   "d": "211",
+   "obj": "211.3",
+   "q": "Which Dovecot line correctly points to the server certificate file for TLS (Dovecot 2.x)?",
+   "o": [
+    [
+     "ssl_cert = /etc/dovecot/certs/mail.pem",
+     "Without the < Dovecot reads the path text as a certificate and fails to start TLS."
+    ],
+    [
+     "ssl_cert_file = /etc/dovecot/certs/mail.pem",
+     "That is not a Dovecot 2.x setting name."
+    ],
+    [
+     "ssl_cert = </etc/dovecot/certs/mail.pem",
+     "Right. The leading < tells Dovecot to read the VALUE from the named file. Without it, Dovecot treats the text as the certificate itself."
+    ],
+    [
+     "ssl_ca = </etc/dovecot/certs/mail.pem",
+     "ssl_ca names trusted CA certificates for checking client certificates, not the server's own."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-211-18",
+   "d": "211",
+   "obj": "211.3",
+   "q": "A phone app is set to \"IMAP, port 993, STARTTLS\" and fails with \"connection closed\". The Dovecot log shows \"imap-login: Disconnected: Aborted login (no auth attempts)\", and doveconf shows an inet_listener imaps with port = 993 and ssl = yes. What is wrong?",
+   "o": [
+    [
+     "Port 993 expects TLS from the very first byte, so the app must use SSL/TLS (implicit), or use port 143 with STARTTLS",
+     "Right. The imaps listener speaks TLS at once, so a client that starts in plain text and sends STARTTLS is dropped."
+    ],
+    [
+     "Dovecot must set ssl = no on port 993 so that STARTTLS can work",
+     "Turning TLS off would not fix a mismatch and would put passwords in clear text."
+    ],
+    [
+     "The app must use port 995 for IMAP over TLS",
+     "995 is POP3 over TLS. IMAP over TLS uses 993."
+    ],
+    [
+     "The imap-login service must listen on port 587 for STARTTLS",
+     "587 is the mail submission port. STARTTLS for IMAP uses port 143."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-211-19",
+   "d": "211",
+   "obj": "211.3",
+   "q": "You want Dovecot to refuse password logins until the connection is protected by TLS. Which setting does it?",
+   "o": [
+    [
+     "auth_verbose = yes",
+     "It only writes more details about authentication to the log."
+    ],
+    [
+     "disable_plaintext_auth = yes",
+     "Right. With TLS not active, Dovecot will not accept plain passwords, so clients must use STARTTLS or implicit TLS first."
+    ],
+    [
+     "ssl = no",
+     "It turns TLS off, which makes things worse."
+    ],
+    [
+     "mail_location = maildir:~/Maildir",
+     "It tells Dovecot where mail is stored and has nothing to do with login rules."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-212-01",
+   "d": "212",
+   "obj": "212.1",
+   "q": "A Linux gateway between two lab networks does not pass packets between its two interfaces. Which sysctl setting turns on IPv4 routing and is made permanent in /etc/sysctl.conf (or a file in /etc/sysctl.d)?",
+   "o": [
+    [
+     "net.ipv4.conf.all.rp_filter = 1",
+     "rp_filter checks that replies would leave by the same interface. It is anti-spoofing and does not enable routing."
+    ],
+    [
+     "net.ipv4.icmp_echo_ignore_all = 1",
+     "It makes the host ignore ping requests, which has nothing to do with forwarding."
+    ],
+    [
+     "net.ipv4.ip_forward = 1",
+     "Right. This allows the kernel to forward packets that are not addressed to the machine itself."
+    ],
+    [
+     "net.ipv6.conf.all.disable_ipv6 = 1",
+     "It switches IPv6 off. IPv4 forwarding stays off."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-212-02",
+   "d": "212",
+   "obj": "212.1",
+   "q": "Your router connects a private LAN to the Internet through eth0 (the public side). Which rule gives the LAN access using the router's public address?",
+   "o": [
+    [
+     "iptables -t nat -A PREROUTING -o eth0 -j MASQUERADE",
+     "-o (output interface) is not allowed in PREROUTING, because the route is not chosen yet."
+    ],
+    [
+     "iptables -A FORWARD -o eth0 -j MASQUERADE",
+     "MASQUERADE works only in the nat table, so this rule is rejected."
+    ],
+    [
+     "iptables -t nat -A INPUT -i eth0 -j SNAT",
+     "The nat table has no INPUT chain in the usual setup, and SNAT needs a --to-source address."
+    ],
+    [
+     "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE",
+     "Right. NAT for outgoing traffic is done in the nat table POSTROUTING chain. MASQUERADE uses the address of the outgoing interface."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-212-03",
+   "d": "212",
+   "obj": "212.1",
+   "q": "You must send traffic arriving on the router's eth0, TCP port 8080, to the internal web server 192.168.1.20 port 80. Which nat rule does the address change?",
+   "o": [
+    [
+     "iptables -t nat -A POSTROUTING -i eth0 -p tcp --dport 8080 -j DNAT --to-destination 192.168.1.20:80",
+     "DNAT cannot be used in POSTROUTING, and -i is not allowed there either."
+    ],
+    [
+     "iptables -A INPUT -i eth0 -p tcp --dport 8080 -j REDIRECT --to-ports 80",
+     "REDIRECT sends traffic to a port on the router itself, not to another host, and it belongs in the nat table."
+    ],
+    [
+     "iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 8080 -j DNAT --to-destination 192.168.1.20:80",
+     "Right. DNAT rewrites the destination before routing. You also need a FORWARD rule that allows the traffic."
+    ],
+    [
+     "iptables -t nat -A OUTPUT -p tcp --dport 8080 -j MASQUERADE --to-ports 80",
+     "The OUTPUT chain handles packets made by the router itself, and MASQUERADE would not change the destination."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-212-04",
+   "d": "212",
+   "obj": "212.1",
+   "q": "The FORWARD chain policy is DROP. LAN clients send requests out through the router, but replies never come back. Which rule is missing?",
+   "o": [
+    [
+     "iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT",
+     "The INPUT chain is only for packets addressed to the router itself. Replies to LAN clients travel through FORWARD."
+    ],
+    [
+     "iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT",
+     "Right. It accepts packets that belong to connections the router already allowed, which includes the replies."
+    ],
+    [
+     "iptables -t nat -A POSTROUTING -m conntrack --ctstate ESTABLISHED -j ACCEPT",
+     "The nat table only sees the first packet of a connection, and it is for address rewriting, not for filtering."
+    ],
+    [
+     "iptables -P FORWARD ACCEPT, which allows all forwarded traffic",
+     "It would fix the problem, but it removes all filtering. The question asks for the missing rule, not for opening everything."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-212-05",
+   "d": "212",
+   "obj": "212.1",
+   "q": "A server's INPUT chain begins with \"-A INPUT -j DROP\" and a later rule \"-A INPUT -p tcp --dport 22 -j ACCEPT\". SSH is blocked. Which command puts the allow rule where it will work?",
+   "o": [
+    [
+     "iptables -A INPUT -p tcp --dport 22 -j ACCEPT # as the last rule",
+     "-A appends at the END, after the DROP rule, so it is never reached."
+    ],
+    [
+     "iptables -D INPUT -p tcp --dport 22 -j ACCEPT # remove it",
+     "-D deletes the rule."
+    ],
+    [
+     "iptables -Z INPUT",
+     "-Z resets packet counters. It does not change order."
+    ],
+    [
+     "iptables -I INPUT 1 -p tcp --dport 22 -j ACCEPT",
+     "Right. -I INPUT 1 inserts the rule at position 1, before the DROP rule. Rules are checked in order and the first match wins."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-212-06",
+   "d": "212",
+   "obj": "212.1",
+   "q": "You have a working set of IPv4 rules. Which command writes them out in a format that iptables-restore can load again after a reboot?",
+   "o": [
+    [
+     "iptables-save",
+     "Right. It prints all tables and chains in restore format. Redirect the output into the file that your distribution loads at boot."
+    ],
+    [
+     "iptables -L -n -v",
+     "This is a human-friendly listing. It cannot be loaded back with iptables-restore."
+    ],
+    [
+     "iptables-restore",
+     "It reads rules from input and loads them. It does not write anything out."
+    ],
+    [
+     "iptables -Z",
+     "It zeroes counters and nothing is saved."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-212-07",
+   "d": "212",
+   "obj": "212.1",
+   "q": "The IPv4 firewall on a dual-stack server blocks port 23. A scan from another host still finds port 23 open over IPv6. What is the reason?",
+   "o": [
+    [
+     "The scan used UDP, which iptables does not cover on either IP version",
+     "iptables handles TCP and UDP alike."
+    ],
+    [
+     "iptables rules apply only to IPv4, so ip6tables needs its own rules",
+     "Right. The two stacks have separate rule sets. Many admins forget the IPv6 side."
+    ],
+    [
+     "The kernel ignores rules for ports below 1024",
+     "Port numbers do not make rules optional."
+    ],
+    [
+     "ip_forward must be set to 2 for IPv6",
+     "It is a different setting (net.ipv6.conf.all.forwarding), and values other than 0 or 1 are not used for this."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-212-08",
+   "d": "212",
+   "obj": "212.2",
+   "q": "vsftpd should refuse logins by the user \"anonymous\" and \"ftp\". Which setting in vsftpd.conf does that?",
+   "o": [
+    [
+     "anonymous_enable=NO",
+     "Right. With this, only real local users (if local_enable=YES) can log in."
+    ],
+    [
+     "local_enable=NO (local users)",
+     "This would stop local accounts, the normal users, and not anonymous logins."
+    ],
+    [
+     "no_anon_password=NO for anonymous",
+     "It controls whether anonymous users are asked for a password, not whether they may log in."
+    ],
+    [
+     "ftpd_banner=Closed (greeting)",
+     "The banner only changes the greeting text."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-212-09",
+   "d": "212",
+   "obj": "212.2",
+   "q": "vsftpd is set with chroot_local_user=YES. Users log in and get \"500 OOPS: vsftpd: refusing to run with writable root inside chroot()\". What is the clean fix?",
+   "o": [
+    [
+     "Set chroot_local_user=NO for all users, so nobody is kept in a jail",
+     "It removes the jail for everyone, which is less secure than the problem."
+    ],
+    [
+     "Run vsftpd as root using the setting run_as_root=YES to skip the check",
+     "There is no such setting, and running as root would make things worse."
+    ],
+    [
+     "Make the user's root folder read-only and put uploads in a writable subfolder",
+     "Right. vsftpd refuses a writable chroot root because of a security risk. The safest option is a read-only root with a writable subfolder."
+    ],
+    [
+     "Enable passive mode with pasv_enable=YES so the check is skipped",
+     "Passive mode controls data connections. It does not change the chroot check."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-212-10",
+   "d": "212",
+   "obj": "212.2",
+   "q": "FTP users on the Internet log in through your firewall, but a directory listing hangs. Port 21 is open. They use passive mode. Which firewall change is also needed?",
+   "o": [
+    [
+     "Allow TCP port 20 from the server to the client, because that is how passive mode connects",
+     "Port 20 is the source port of the server in ACTIVE mode, not passive."
+    ],
+    [
+     "Allow UDP port 21 for the data connection from the server back to the client",
+     "FTP control uses TCP."
+    ],
+    [
+     "Allow TCP port 22 for the file listing",
+     "Port 22 is SSH. SFTP uses it, not FTP."
+    ],
+    [
+     "Allow the passive port range set by pasv_min_port and pasv_max_port",
+     "Right. In passive mode the CLIENT opens the data connection to a port chosen by the server from that range."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-212-11",
+   "d": "212",
+   "obj": "212.2",
+   "q": "Anonymous uploads fail, even though anon_upload_enable=YES is set. Which other setting is required in vsftpd.conf?",
+   "o": [
+    [
+     "anon_world_readable_only=NO",
+     "It affects who may download. It does not allow uploads."
+    ],
+    [
+     "local_umask=000",
+     "It sets permissions on files uploaded by LOCAL users, not by anonymous users."
+    ],
+    [
+     "listen_ipv6=YES",
+     "It makes vsftpd listen on IPv6 and has no effect on uploads."
+    ],
+    [
+     "write_enable=YES",
+     "Right. vsftpd allows any change to the file system only if write_enable is on. anon_upload_enable alone is not enough."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-212-12",
+   "d": "212",
+   "obj": "212.2",
+   "q": "With Pure-FTPd virtual users, you add a user with \"pure-pw useradd bob -u ftpuser -d /srv/ftp/bob\". The user still cannot log in. Which step is missing?",
+   "o": [
+    [
+     "pure-pw show bob",
+     "show only displays the user's details."
+    ],
+    [
+     "pure-pw mkdb",
+     "Right. Pure-FTPd reads a compiled database. mkdb builds it from the password file after every change."
+    ],
+    [
+     "vsftpd -t",
+     "vsftpd is a different program from Pure-FTPd."
+    ],
+    [
+     "proftpd --configtest",
+     "ProFTPd is another FTP server, so this checks a different config."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-212-13",
+   "d": "212",
+   "obj": "212.3",
+   "q": "A scan says root can still log in over SSH. sshd_config has \"PermitRootLogin no\" on line 33, but \"sshd -T | grep permitrootlogin\" prints \"permitrootlogin yes\". Line 12 is \"Include /etc/ssh/sshd_config.d/*.conf\", and that folder holds 50-cloud.conf with \"PermitRootLogin yes\". Why does root still get in?",
+   "o": [
+    [
+     "The last value wins, so line 33 applies and the scan result is wrong",
+     "sshd -T prints the values sshd really uses. For this keyword the first value wins, not the last."
+    ],
+    [
+     "PermitRootLogin only counts when UsePAM is set to no",
+     "The two settings are independent. UsePAM does not switch PermitRootLogin on or off."
+    ],
+    [
+     "sshd uses the FIRST value it reads for a keyword, and the included file is read before line 33, so remove or edit the drop-in",
+     "Right. For most keywords the first value wins. The Include at line 12 pulls in 50-cloud.conf before line 33, so its yes is used."
+    ],
+    [
+     "A global PermitRootLogin is ignored unless it is repeated in a Match block",
+     "Global settings work without a Match block. The problem is the order of the files."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-212-14",
+   "d": "212",
+   "obj": "212.3",
+   "q": "You are logged in over SSH to a remote lab server and need to change sshd_config. Which method keeps you from locking yourself out?",
+   "o": [
+    [
+     "Run sshd -t, reload sshd, keep your session open and test a new login in a second window",
+     "Right. A reload does not drop existing sessions, and the open session lets you undo a mistake."
+    ],
+    [
+     "Edit the file, restart sshd and then log out to check that the change works",
+     "If the new config is wrong, you cannot log in again and have no session to fix it."
+    ],
+    [
+     "Edit the file and reboot the server so that you know the config is applied",
+     "A reboot drops your session and takes the server offline."
+    ],
+    [
+     "Change the port, close port 22 in the firewall first, and then test the new port",
+     "Closing the old port first removes your way back if the new one fails."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-212-15",
+   "d": "212",
+   "obj": "212.3",
+   "q": "Alice ran \"cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys\" on her laptop. She then tries to log in to server1 with her key and is still asked for a password. Which step is missing?",
+   "o": [
+    [
+     "The public key must be added to ~/.ssh/authorized_keys on server1 (ssh-copy-id alice@server1 does this)",
+     "Right. The server reads authorized_keys in the home folder of the account you log in as ON THE SERVER. Adding the key on the laptop changes nothing there."
+    ],
+    [
+     "The private key must be copied to ~/.ssh on server1",
+     "A private key must never leave the machine it was made on. The server needs only the public half."
+    ],
+    [
+     "ssh-add must be run on server1 to load the key",
+     "ssh-add feeds keys to an agent on the machine where you run it. It does not install keys on a server."
+    ],
+    [
+     "The key must be added to known_hosts on the laptop",
+     "known_hosts stores SERVER host keys so you can spot a changed server. It does not hold your login key."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-212-16",
+   "d": "212",
+   "obj": "212.3",
+   "q": "Key login does not work. /var/log/auth.log says: \"Authentication refused: bad ownership or modes for directory /home/alice\". What is the cause?",
+   "o": [
+    [
+     "The public key file is too short to be accepted as a valid key, so the server skips the file",
+     "A short key would show a different error, such as an invalid key format."
+    ],
+    [
+     "PasswordAuthentication is enabled, which blocks key logins for every user on the server",
+     "Enabling passwords does not cause this message."
+    ],
+    [
+     "The home folder is writable by group or others, so StrictModes refuses the keys",
+     "Right. With StrictModes yes, sshd checks that the home, .ssh and authorized_keys cannot be changed by others. Fix with chmod go-w."
+    ],
+    [
+     "The client is using the wrong port to reach the server",
+     "A wrong port would give \"connection refused\" before any key check."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-212-17",
+   "d": "212",
+   "obj": "212.3",
+   "q": "Only members of the Linux group \"sshusers\" may log in over SSH. Which sshd_config line does that?",
+   "o": [
+    [
+     "DenyGroups sshusers",
+     "It would block exactly the people you want to allow."
+    ],
+    [
+     "AllowGroups sshusers",
+     "Right. When AllowGroups is set, only users in a listed group are allowed. Everyone else is refused."
+    ],
+    [
+     "AllowUsers @sshusers",
+     "AllowUsers takes user names (with optional host patterns). It does not accept a leading @ for groups."
+    ],
+    [
+     "PermitUserEnvironment sshusers",
+     "It controls whether users may set environment variables through ssh, and takes yes or no."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-212-18",
+   "d": "212",
+   "obj": "212.3",
+   "q": "Every admin now logs in with keys. Which sshd_config setting removes password guessing as an attack path, once you have tested that key login works?",
+   "o": [
+    [
+     "PubkeyAuthentication no",
+     "It would turn keys off, the opposite of the plan."
+    ],
+    [
+     "MaxAuthTries 100 attempts",
+     "It allows more tries per connection, which helps the attacker."
+    ],
+    [
+     "LoginGraceTime 0 seconds",
+     "It removes the time limit for logging in and invites trouble."
+    ],
+    [
+     "PasswordAuthentication no",
+     "Right. The server then accepts only keys (and other non-password methods). Brute-force password attempts cannot succeed."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-212-19",
+   "d": "212",
+   "obj": "212.3",
+   "q": "You run \"eval $(ssh-agent)\" and then \"ssh-add ~/.ssh/id_ed25519\" and type the key's passphrase once. What is the benefit?",
+   "o": [
+    [
+     "The private key is copied to every server you connect to, so it is always available there",
+     "Keys never leave your machine. Only a signature is sent."
+    ],
+    [
+     "The passphrase is stored in clear text in ~/.ssh/config for later use",
+     "The agent does not write the passphrase to disk."
+    ],
+    [
+     "The key becomes usable by every user who is logged in on the machine",
+     "The agent is reachable only through your own socket."
+    ],
+    [
+     "Later SSH logins use the unlocked key held by the agent, with no passphrase prompt",
+     "Right. The agent keeps the unlocked key in memory for this login session only."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-212-20",
+   "d": "212",
+   "obj": "212.3",
+   "q": "From your laptop you must reach the internal web server intranet.example.com:80 through the bastion host b1, so that http://localhost:8080 shows the intranet page. Which command?",
+   "o": [
+    [
+     "ssh -R 8080:intranet.example.com:80 alice@b1",
+     "-R opens a port on the REMOTE side (b1) and forwards it back to you."
+    ],
+    [
+     "ssh -L 8080:intranet.example.com:80 alice@b1",
+     "Right. -L opens a local port and forwards it through b1 to the target host and port."
+    ],
+    [
+     "ssh -D 8080 alice@b1",
+     "-D builds a SOCKS proxy on localhost:8080. A browser would need proxy settings, and no fixed target is used."
+    ],
+    [
+     "ssh -X alice@b1",
+     "-X forwards graphical X11 programs and does not tunnel ports."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-212-21",
+   "d": "212",
+   "obj": "212.3",
+   "q": "You want password login for the user \"backup\" only, from the internal network, while the global setting stays PasswordAuthentication no. What do you use?",
+   "o": [
+    [
+     "A Match User backup Address 10.0.0.0/8 block at the END of sshd_config with PasswordAuthentication yes",
+     "Right. A Match block overrides settings for the conditions that follow, and it applies until the next Match line or the end of the file."
+    ],
+    [
+     "A PasswordAuthentication yes line placed before the global one at the top of the file",
+     "For global lines sshd uses the FIRST value it finds, so this would enable passwords for every user, not only backup. Only a Match block limits the change to one user."
+    ],
+    [
+     "Two sshd services that listen on the same port with different settings",
+     "Two daemons cannot share a port, and it would not solve the problem."
+    ],
+    [
+     "AllowUsers backup in the global part of sshd_config, which also turns passwords on",
+     "AllowUsers only decides who may log in. It does not turn passwords on."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-212-22",
+   "d": "212",
+   "obj": "212.3",
+   "q": "After a server was rebuilt, ssh shows \"WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED\". You checked with the server's owner that the rebuild is real. What should you do?",
+   "o": [
+    [
+     "Set StrictHostKeyChecking no in the global ssh config for all hosts",
+     "It turns off an important protection against man-in-the-middle attacks for every host."
+    ],
+    [
+     "Delete the whole ~/.ssh directory so that all stored keys are removed",
+     "That would also remove your private keys."
+    ],
+    [
+     "Run ssh-keygen -R server1, then connect again and check the new fingerprint",
+     "Right. Removing the stale entry is safe only after you have confirmed that the change is legitimate."
+    ],
+    [
+     "Ignore the warning because the connection is encrypted anyway, so nothing can go wrong",
+     "Encryption does not help if you talk to a different machine."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-212-23",
+   "d": "212",
+   "obj": "212.4",
+   "q": "You have written permission to scan your own lab server 192.0.2.10. Which command checks ALL 65535 TCP ports for open services?",
+   "o": [
+    [
+     "nmap -sn -v 192.0.2.10",
+     "-sn is a ping scan that finds live hosts and skips port scanning."
+    ],
+    [
+     "nmap -p- 192.0.2.10",
+     "Right. -p- means every port from 1 to 65535. By default nmap does a TCP scan (SYN scan when run as root)."
+    ],
+    [
+     "nmap -F 192.0.2.10",
+     "-F is a fast scan of only the most common 100 ports."
+    ],
+    [
+     "nmap -sU -v 192.0.2.10",
+     "-sU scans UDP, and only the top 1000 UDP ports by default."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-212-24",
+   "d": "212",
+   "obj": "212.4",
+   "q": "A web app will not start and logs \"bind: Address already in use\" for port 8080. Which command, run as root on the server, shows which program is already listening on that port?",
+   "o": [
+    [
+     "ss -tn | grep :8080",
+     "Without -l it lists connections that already exist, not listening sockets, and without -p it never names the program."
+    ],
+    [
+     "ss -s | grep 8080",
+     "-s prints only summary counts of sockets. No ports appear in it."
+    ],
+    [
+     "netstat -rn | grep 8080",
+     "-r shows the routing table. A port number does not appear in it."
+    ],
+    [
+     "ss -tlnp | grep :8080",
+     "Right. t = TCP, l = listening only, n = numbers, p = process. As root it shows the program name and PID that holds the port."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-212-25",
+   "d": "212",
+   "obj": "212.4",
+   "q": "In a fail2ban jail, \"maxretry = 5\", \"findtime = 10m\" and \"bantime = 1h\". When is an IP address banned?",
+   "o": [
+    [
+     "After 5 failures within 10 minutes, and then it stays banned for 1 hour",
+     "Right. findtime is the window in which the failures must happen, and bantime is how long the ban lasts."
+    ],
+    [
+     "After 5 failures in total, no matter how long ago, and the ban lasts 10 minutes",
+     "Failures must fall in the findtime window, and 10 minutes is not the ban time."
+    ],
+    [
+     "After 10 failures within 5 minutes, and the ban then lasts for 1 hour in total",
+     "The numbers are swapped. maxretry is 5 and findtime is 10 minutes."
+    ],
+    [
+     "After 5 failures within 1 hour, and then it stays banned for 10 minutes",
+     "The values for findtime and bantime are swapped."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-212-26",
+   "d": "212",
+   "obj": "212.4",
+   "q": "A user typed a wrong password too often and fail2ban banned the IP 192.0.2.7 in the sshd jail. How do you remove just that ban?",
+   "o": [
+    [
+     "iptables -F to clear the firewall",
+     "It flushes ALL firewall rules, including every other protection."
+    ],
+    [
+     "fail2ban-client stop, then start it again",
+     "It stops the whole service, which removes every ban and the protection."
+    ],
+    [
+     "fail2ban-client set sshd unbanip 192.0.2.7",
+     "Right. It removes the ban for one address in one jail and leaves other bans in place."
+    ],
+    [
+     "fail2ban-client reload --unban-all-sshd",
+     "This is not a valid fail2ban command."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-212-27",
+   "d": "212",
+   "obj": "212.4",
+   "q": "With written permission, you test your own lab mail server mx1 from another lab host. You only need to know whether TCP port 25 accepts a connection, without sending any mail. Which command does that?",
+   "o": [
+    [
+     "nc -l mx1 25",
+     "-l makes nc LISTEN on a port instead of connecting. It would not test mx1 at all."
+    ],
+    [
+     "nc -zv mx1 25",
+     "Right. -z checks the port without sending data and -v reports the result. A success line such as 'Connection to mx1 25 port [tcp/smtp] succeeded!' means the port is reachable."
+    ],
+    [
+     "traceroute -p 25 mx1",
+     "traceroute -p sets the destination port of its probe packets to map the route. It does not report whether a service accepts a connection."
+    ],
+    [
+     "ping -p 25 mx1",
+     "-p gives a byte pattern to fill the ICMP packet. It does not choose a TCP port, and ping cannot test one."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-212-28",
+   "d": "212",
+   "obj": "212.4",
+   "q": "The lab server's auth log shows hundreds of failed SSH logins from one address. Which tool reads logs like this and bans the address automatically with a firewall rule?",
+   "o": [
+    [
+     "Snort",
+     "Snort is a network IDS. It matches packets against rules and raises alerts. It does not read the auth log and does not ban by itself."
+    ],
+    [
+     "OpenVAS",
+     "OpenVAS is a vulnerability scanner that tests hosts for known weaknesses. It does not watch logs or block addresses."
+    ],
+    [
+     "fail2ban",
+     "Right. fail2ban watches log files with filters and adds a temporary firewall rule for addresses that fail too often."
+    ],
+    [
+     "nmap",
+     "nmap scans hosts and ports. It does not read logs and it blocks nothing."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-212-29",
+   "d": "212",
+   "obj": "212.4",
+   "q": "A Snort rule starts with: alert tcp any any -> 10.0.0.5 22. What does the header say?",
+   "o": [
+    [
+     "Raise an alert for TCP from any address and port to port 22 on 10.0.0.5",
+     "Right. The header has action, protocol, source address and port, direction, destination address and port."
+    ],
+    [
+     "Block all TCP traffic sent from 10.0.0.5 port 22 to every other address",
+     "-> means traffic goes TO the right-hand side. alert does not block."
+    ],
+    [
+     "Log all UDP traffic that is sent to 10.0.0.5 on port 22, and ignore TCP",
+     "The protocol is tcp, and the action is alert."
+    ],
+    [
+     "Allow SSH from any host and skip other rules",
+     "Snort has \"pass\" for allowing. alert makes an alert."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-212-30",
+   "d": "212",
+   "obj": "212.4",
+   "q": "A security team wants a tool that tests hosts it is allowed to scan for known vulnerabilities (missing patches, weak settings) using a feed of checks. Which tool fits?",
+   "o": [
+    [
+     "Snort (network IDS)",
+     "Snort watches traffic for attack signatures. It does not scan hosts for missing patches."
+    ],
+    [
+     "AIDE",
+     "AIDE checks file integrity on one host."
+    ],
+    [
+     "Suricata (network IDS)",
+     "Suricata is a network IDS/IPS like Snort. It watches traffic and does not run vulnerability checks."
+    ],
+    [
+     "OpenVAS (Greenbone)",
+     "Right. OpenVAS is an open-source vulnerability scanner. Only scan systems that you own or have written approval to test."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-212-31",
+   "d": "212",
+   "obj": "212.5",
+   "q": "Two lab hosts use a simple point-to-point OpenVPN tunnel with a static key (legacy static-key mode). Host A has \"ifconfig 10.8.0.1 10.8.0.2\" (local, remote). What must host B have?",
+   "o": [
+    [
+     "ifconfig 10.8.0.1 10.8.0.2",
+     "The same line on both sides would give both hosts the same tunnel address."
+    ],
+    [
+     "ifconfig 10.8.0.2 10.8.0.1",
+     "Right. The first address is the local tunnel end and the second is the remote end, so each side lists them the other way round."
+    ],
+    [
+     "server 10.8.0.0 255.255.255.0",
+     "server is for the TLS server mode with many clients, not a static key tunnel."
+    ],
+    [
+     "push \"ifconfig 10.8.0.2 10.8.0.1\"",
+     "push sends options to clients in server mode. It does not work in a static-key setup."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-212-32",
+   "d": "212",
+   "obj": "212.5",
+   "q": "In a client's OpenVPN config, which directive tells it to act as a client and accept options pushed by the server?",
+   "o": [
+    [
+     "server 10.8.0.0 255.255.255.0",
+     "This belongs in the server config and defines the VPN address pool."
+    ],
+    [
+     "tls-server",
+     "It makes the instance act as the TLS server side. A client must not use it."
+    ],
+    [
+     "dev-node tun0",
+     "dev-node names a specific device node and does not make the instance a client."
+    ],
+    [
+     "client",
+     "Right. It is shorthand for pull and tls-client. The client then takes routes and addresses from the server."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-212-33",
+   "d": "212",
+   "obj": "212.5",
+   "q": "A site-to-site tunnel between two offices comes up and the tunnel IPs ping each other, but hosts behind each router cannot reach hosts behind the other. Which two things are most likely missing?",
+   "o": [
+    [
+     "Routes for the remote LAN through the tunnel, and IP forwarding on both gateways",
+     "Right. The tunnel itself works. Packets for the other LAN need a route to the tunnel, and each gateway must forward packets between its LAN and the tunnel."
+    ],
+    [
+     "A new CA certificate and a fresh Diffie-Hellman file, generated again on both gateways",
+     "Certificates would stop the tunnel from coming up, but it is already up."
+    ],
+    [
+     "A bigger MTU on the tun device of each gateway so that LAN frames fit into the tunnel",
+     "MTU problems cause hangs on large packets and not total failure of routing."
+    ],
+    [
+     "A second tunnel that uses the tap device for the other direction",
+     "tap is for bridging Ethernet and is not a fix for missing routes."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-212-34",
+   "d": "212",
+   "obj": "212.5",
+   "q": "You must make a remote site part of the SAME Ethernet broadcast domain (so non-IP protocols and DHCP broadcasts cross the tunnel). Which OpenVPN device type do you use?",
+   "o": [
+    [
+     "dev tun",
+     "tun works at layer 3 and carries only IP packets, so it cannot bridge a broadcast domain."
+    ],
+    [
+     "dev eth0",
+     "eth0 is a physical network card, not a VPN device type. OpenVPN uses tun or tap."
+    ],
+    [
+     "dev tap",
+     "Right. tap works at layer 2 and carries whole Ethernet frames, so it can be bridged to a LAN."
+    ],
+    [
+     "dev ppp0",
+     "OpenVPN uses tun and tap devices, not ppp interfaces."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-212-35",
+   "d": "212",
+   "obj": "212.5",
+   "q": "Unless you change it, which port and protocol does OpenVPN use by default?",
+   "o": [
+    [
+     "UDP 1194",
+     "Right. The official default for OpenVPN is port 1194, and UDP is the default protocol (TCP can be chosen)."
+    ],
+    [
+     "TCP 443",
+     "443 is often chosen to pass strict firewalls, but it is not the default."
+    ],
+    [
+     "UDP 500",
+     "Port 500 belongs to IKE, used by IPsec VPNs."
+    ],
+    [
+     "TCP 1723",
+     "Port 1723 belongs to PPTP."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-p-01",
+   "t": "pbq",
+   "kind": "term",
+   "d": "207",
+   "obj": "207.2",
+   "dom": "207",
+   "title": "The secondary DNS server does not see the new record",
+   "short": "BIND serial and reload",
+   "scenario": "A teammate added the host app to the zone example.test on the primary name server ns1 and reloaded it, but the secondary ns2 (192.0.2.12) still says the name does not exist. Find out why, fix it on ns1 only, and make ns2 pick up the change. Do not restart the name server.",
+   "ticket": "DNS-3102: app.example.test works from ns1 but gives NXDOMAIN from ns2 since 09:10. The zone file passes a syntax check. You can log in to ns1 only; ns2 belongs to another team.",
+   "host": "ns1",
+   "intro": "ns1 (Ubuntu 24.04, BIND 9 primary for example.test, secondary ns2 at 192.0.2.12). You are an admin with sudo on ns1. Type help to see the commands.",
+   "suggest": [
+    "hostname",
+    "cat /etc/bind/db.example.test",
+    "rndc zonestatus example.test"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "hostname"
+     ],
+     "out": "ns1"
+    },
+    {
+     "run": [
+      "cat /etc/bind/db.example.test",
+      "less /etc/bind/db.example.test",
+      "more /etc/bind/db.example.test"
+     ],
+     "out": "$TTL 3600\n@   IN SOA ns1.example.test. hostmaster.example.test. (\n        2026112601 ; serial\n        3600       ; refresh\n        900        ; retry\n        604800     ; expire\n        300 )      ; negative cache TTL\n    IN NS  ns1.example.test.\n    IN NS  ns2.example.test.\nns1 IN A   192.0.2.11\nns2 IN A   192.0.2.12\nwww IN A   192.0.2.30\napp IN A   192.0.2.40",
+     "fx": "read:zonefile",
+     "alt": {
+      "if": "fix:bump",
+      "out": "$TTL 3600\n@   IN SOA ns1.example.test. hostmaster.example.test. (\n        2026112701 ; serial\n        3600       ; refresh\n        900        ; retry\n        604800     ; expire\n        300 )      ; negative cache TTL\n    IN NS  ns1.example.test.\n    IN NS  ns2.example.test.\nns1 IN A   192.0.2.11\nns2 IN A   192.0.2.12\nwww IN A   192.0.2.30\napp IN A   192.0.2.40"
+     }
+    },
+    {
+     "run": [
+      "named-checkzone example.test /etc/bind/db.example.test"
+     ],
+     "out": "zone example.test/IN: loaded serial 2026112601\nOK",
+     "fx": "read:check",
+     "alt": {
+      "if": "fix:bump",
+      "out": "zone example.test/IN: loaded serial 2026112701\nOK"
+     }
+    },
+    {
+     "run": [
+      "rndc zonestatus example.test"
+     ],
+     "out": "name: example.test\ntype: primary\nfiles: /etc/bind/db.example.test\nserial: 2026112601\nnodes: 6\nlast loaded: Fri, 27 Nov 2026 09:08:14 GMT\nsecure: no\ndynamic: no\nreconfigurable via modzone: no",
+     "fx": "read:zstatus",
+     "alt": {
+      "if": "fix:reload",
+      "out": "name: example.test\ntype: primary\nfiles: /etc/bind/db.example.test\nserial: 2026112701\nnodes: 6\nlast loaded: Fri, 27 Nov 2026 09:21:40 GMT\nsecure: no\ndynamic: no\nreconfigurable via modzone: no"
+     }
+    },
+    {
+     "run": [
+      "dig @127.0.0.1 example.test SOA +short",
+      "dig @localhost example.test SOA +short",
+      "dig +short @127.0.0.1 example.test SOA",
+      "dig +short SOA example.test @127.0.0.1",
+      "dig @192.0.2.11 example.test SOA +short"
+     ],
+     "out": "ns1.example.test. hostmaster.example.test. 2026112601 3600 900 604800 300",
+     "fx": "read:serial1",
+     "alt": {
+      "if": "fix:reload",
+      "out": "ns1.example.test. hostmaster.example.test. 2026112701 3600 900 604800 300"
+     }
+    },
+    {
+     "run": [
+      "dig @192.0.2.12 example.test SOA +short",
+      "dig +short @192.0.2.12 example.test SOA",
+      "dig +short SOA example.test @192.0.2.12",
+      "dig @192.0.2.12 +short example.test SOA"
+     ],
+     "out": "ns1.example.test. hostmaster.example.test. 2026112601 3600 900 604800 300",
+     "fx": "read:serial2",
+     "alt": {
+      "if": "fix:reload",
+      "out": "ns1.example.test. hostmaster.example.test. 2026112701 3600 900 604800 300"
+     }
+    },
+    {
+     "run": [
+      "dig @192.0.2.12 app.example.test A",
+      "dig @192.0.2.12 app.example.test"
+     ],
+     "out": "; <<>> DiG 9.18.28-0ubuntu0.24.04.1-Ubuntu <<>> @192.0.2.12 app.example.test A\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 41377\n;; flags: qr aa rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; QUESTION SECTION:\n;app.example.test.\t\tIN\tA\n\n;; AUTHORITY SECTION:\nexample.test.\t\t300\tIN\tSOA\tns1.example.test. hostmaster.example.test. 2026112601 3600 900 604800 300",
+     "fx": "read:app2",
+     "alt": {
+      "if": "fix:reload",
+      "out": "; <<>> DiG 9.18.28-0ubuntu0.24.04.1-Ubuntu <<>> @192.0.2.12 app.example.test A\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 22094\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 1\n\n;; QUESTION SECTION:\n;app.example.test.\t\tIN\tA\n\n;; ANSWER SECTION:\napp.example.test.\t3600\tIN\tA\t192.0.2.40"
+     }
+    },
+    {
+     "run": [
+      "dig @192.0.2.12 app.example.test A +short",
+      "dig @192.0.2.12 app.example.test +short",
+      "dig +short @192.0.2.12 app.example.test",
+      "dig +short app.example.test @192.0.2.12"
+     ],
+     "out": "(no answer)",
+     "fx": "read:app2",
+     "alt": {
+      "if": "fix:reload",
+      "out": "192.0.2.40"
+     }
+    },
+    {
+     "run": [
+      "dig @127.0.0.1 app.example.test A +short",
+      "dig @localhost app.example.test +short",
+      "dig +short @127.0.0.1 app.example.test"
+     ],
+     "out": "192.0.2.40",
+     "fx": "read:app1"
+    },
+    {
+     "run": [
+      "sed -i 's/2026112601/2026112701/' /etc/bind/db.example.test",
+      "sed -i 's/2026112601/2026112701/g' /etc/bind/db.example.test",
+      "sed -i 's/2026112601/2026112602/' /etc/bind/db.example.test",
+      "sed -i 's/2026112601/2026112602/g' /etc/bind/db.example.test"
+     ],
+     "out": "",
+     "fx": "fix:bump"
+    },
+    {
+     "run": [
+      "rndc reload example.test"
+     ],
+     "out": "zone reload queued",
+     "fx": "fix:reload"
+    },
+    {
+     "run": [
+      "rndc reload"
+     ],
+     "out": "server reload successful",
+     "fx": "fix:reload"
+    },
+    {
+     "run": [
+      "rndc retransfer example.test"
+     ],
+     "out": "rndc: 'retransfer' failed: not found",
+     "fx": "try:retransfer"
+    },
+    {
+     "run": [
+      "systemctl restart named",
+      "systemctl restart named.service",
+      "systemctl restart bind9",
+      "systemctl restart bind9.service",
+      "service named restart"
+     ],
+     "out": "",
+     "fx": "bad:restart"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Ask ns2 what it knows (its SOA serial or the app record)",
+     "has": [
+      "read:serial2",
+      "read:app2"
+     ],
+     "why": "Start from the symptom. dig @192.0.2.12 shows that ns2 gives NXDOMAIN for app and still holds serial 2026112601. A secondary only answers from the copy it has transferred."
+    },
+    {
+     "t": "Look at the serial on the primary (dig, zone file or zonestatus)",
+     "has": [
+      "read:serial1",
+      "read:zonefile",
+      "read:zstatus"
+     ],
+     "why": "ns1 has the same serial, 2026112601, as before the edit. A secondary compares serials: if the primary's number is not higher, it does not transfer the zone, even though the file has a new record."
+    },
+    {
+     "t": "Check the zone file syntax with named-checkzone",
+     "has": "read:check",
+     "why": "named-checkzone prints OK, so the file is fine. That rules out a broken zone and points at the serial number."
+    },
+    {
+     "t": "Raise the serial number in the zone file",
+     "has": "fix:bump",
+     "why": "The serial in the SOA record is the version number of the zone. A common style is YYYYMMDDnn, so 2026112701 (or 2026112602) is higher than 2026112601 and tells secondaries that something changed."
+    },
+    {
+     "t": "Reload the zone after raising the serial",
+     "after": "fix:reload",
+     "of": "fix:bump",
+     "why": "rndc reload example.test makes ns1 read the file again. ns1 then sends a NOTIFY message to ns2, and ns2 asks for the new zone. A reload before the edit would not help, because the file would still hold the old serial."
+    },
+    {
+     "t": "Check ns2 again after the reload",
+     "after": [
+      "read:serial2",
+      "read:app2"
+     ],
+     "of": "fix:reload",
+     "why": "Always prove the fix from the other side. ns2 now shows serial 2026112701 and answers 192.0.2.40 for app. If it does not, give the transfer a few seconds and ask again."
+    },
+    {
+     "t": "Did not restart the name server",
+     "lacks": "bad:restart",
+     "why": "A restart is not needed. It also empties the cache of a server that may be answering clients, and it hides what really changed. rndc reload does the job without a restart."
+    }
+   ]
+  },
+  {
+   "id": "l2-p-02",
+   "t": "pbq",
+   "kind": "term",
+   "d": "209",
+   "obj": "209.1",
+   "dom": "209",
+   "title": "Windows user can open the Samba share but cannot save",
+   "short": "Samba read only share",
+   "scenario": "On your lab file server fs1, the user alice (member of the Linux group staff) can open the share projects from Windows, but every save fails with 'access denied'. Find the cause, fix it with the smallest change, and make Samba use the change without cutting off other users. Do not open the folder to everyone.",
+   "ticket": "SMB-210: share \\\\fs1\\projects is read only for staff since the weekend rebuild. fs1 is a standalone Samba 4 server (tdbsam) in the lab.",
+   "host": "fs1",
+   "intro": "fs1 (Ubuntu 24.04, standalone Samba 4 server). You are an admin with sudo. Type help to see the commands.",
+   "suggest": [
+    "hostname",
+    "testparm -s",
+    "id alice"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "hostname"
+     ],
+     "out": "fs1"
+    },
+    {
+     "run": [
+      "testparm -s",
+      "testparm",
+      "testparm -s /etc/samba/smb.conf"
+     ],
+     "out": "Load smb config files from /etc/samba/smb.conf\nLoaded services file OK.\nServer role: ROLE_STANDALONE\n\n[global]\n\tmap to guest = Bad User\n\tsecurity = USER\n\tserver role = standalone server\n\tworkgroup = LAB\n\n[projects]\n\tcomment = Project files\n\tpath = /srv/projects\n\tread only = Yes\n\tvalid users = @staff",
+     "fx": "read:testparm",
+     "alt": {
+      "if": "fix:rw",
+      "out": "Load smb config files from /etc/samba/smb.conf\nLoaded services file OK.\nServer role: ROLE_STANDALONE\n\n[global]\n\tmap to guest = Bad User\n\tsecurity = USER\n\tserver role = standalone server\n\tworkgroup = LAB\n\n[projects]\n\tcomment = Project files\n\tpath = /srv/projects\n\tread only = No\n\tvalid users = @staff"
+     }
+    },
+    {
+     "run": [
+      "grep -A5 '\\[projects\\]' /etc/samba/smb.conf",
+      "grep -A5 [projects] /etc/samba/smb.conf",
+      "grep -A6 '\\[projects\\]' /etc/samba/smb.conf",
+      "grep -A6 [projects] /etc/samba/smb.conf",
+      "grep -A 5 '\\[projects\\]' /etc/samba/smb.conf"
+     ],
+     "out": "[projects]\n\tcomment = Project files\n\tpath = /srv/projects\n\tread only = yes\n\tvalid users = @staff\n\tbrowseable = yes",
+     "fx": "read:conf",
+     "alt": {
+      "if": "fix:rw",
+      "out": "[projects]\n\tcomment = Project files\n\tpath = /srv/projects\n\tread only = no\n\tvalid users = @staff\n\tbrowseable = yes"
+     }
+    },
+    {
+     "run": [
+      "ls -ld /srv/projects",
+      "ls -l -d /srv/projects"
+     ],
+     "out": "drwxrwx--- 3 root staff 4096 Nov 20 10:12 /srv/projects",
+     "fx": "read:perms"
+    },
+    {
+     "run": [
+      "id alice"
+     ],
+     "out": "uid=1001(alice) gid=1001(alice) groups=1001(alice),1002(staff)",
+     "fx": "read:id"
+    },
+    {
+     "run": [
+      "groups alice"
+     ],
+     "out": "alice : alice staff",
+     "fx": "read:id"
+    },
+    {
+     "run": [
+      "ls /srv/projects",
+      "ls -l /srv/projects"
+     ],
+     "out": "docs  plans  README.txt"
+    },
+    {
+     "run": [
+      "smbstatus",
+      "smbstatus -b"
+     ],
+     "out": "Samba version 4.19.5-Ubuntu\nPID     Username     Group        Machine                                   Protocol Version  Encryption           Signing\n----------------------------------------------------------------------------------------------------------------------------------------\n2410    alice        alice        10.20.5.31 (ipv4:10.20.5.31:50312)        SMB3_11           -                    partial(AES-128-CMAC)"
+    },
+    {
+     "run": [
+      "sed -i 's/read only = yes/read only = no/' /etc/samba/smb.conf",
+      "sed -i 's/read only = yes/read only = no/g' /etc/samba/smb.conf",
+      "sed -i '/read only/s/yes/no/' /etc/samba/smb.conf"
+     ],
+     "out": "",
+     "fx": "fix:rw"
+    },
+    {
+     "run": [
+      "smbcontrol all reload-config",
+      "smbcontrol smbd reload-config",
+      "systemctl reload smbd",
+      "systemctl reload smbd.service"
+     ],
+     "out": "",
+     "fx": "fix:reload"
+    },
+    {
+     "run": [
+      "systemctl restart smbd",
+      "systemctl restart smbd.service",
+      "systemctl restart samba"
+     ],
+     "out": "",
+     "fx": "bad:restart"
+    },
+    {
+     "run": [
+      "chmod -R 777 /srv/projects",
+      "chmod 777 /srv/projects",
+      "chmod -R o+rwx /srv/projects",
+      "chmod o+w /srv/projects"
+     ],
+     "out": "",
+     "fx": "bad:chmod"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Look at how the projects share is set up in Samba",
+     "has": [
+      "read:testparm",
+      "read:conf"
+     ],
+     "why": "testparm shows the settings Samba really uses after defaults are added. The share has 'read only = Yes', which means nobody can write, whatever the Linux permissions say."
+    },
+    {
+     "t": "Check the Linux side: the folder permissions or alice's groups",
+     "has": [
+      "read:perms",
+      "read:id"
+     ],
+     "why": "Samba acts as the Linux user, so both layers must allow writing. Here staff owns the folder with rwx and alice is in staff, so the Linux side is fine and the cause is the share setting."
+    },
+    {
+     "t": "Change the share so staff can write",
+     "has": "fix:rw",
+     "why": "Setting 'read only = no' in the [projects] section allows writing for the users the share lets in. 'valid users = @staff' still limits who may connect."
+    },
+    {
+     "t": "Make Samba use the change without a restart",
+     "after": "fix:reload",
+     "of": "fix:rw",
+     "why": "smbcontrol all reload-config (or systemctl reload smbd) re-reads smb.conf while users stay connected. The reload must come after the edit, or it re-reads the old file."
+    },
+    {
+     "t": "Show the live setting now says read only = No",
+     "after": [
+      "read:testparm",
+      "read:conf"
+     ],
+     "of": "fix:rw",
+     "why": "Look again after the change. testparm now prints 'read only = No', so the share accepts writes."
+    },
+    {
+     "t": "Did not open the folder to everyone with chmod",
+     "lacks": "bad:chmod",
+     "why": "The Linux permissions were already right. chmod 777 would let every local user change the project files and fixes nothing, because the share was read only."
+    },
+    {
+     "t": "Did not restart smbd",
+     "lacks": "bad:restart",
+     "why": "A restart drops every open file and connection. A reload applies the new setting and leaves other users working."
+    }
+   ]
+  },
+  {
+   "id": "l2-p-03",
+   "t": "pbq",
+   "kind": "term",
+   "d": "212",
+   "obj": "212.3",
+   "dom": "212",
+   "title": "Turn off root and password logins without locking yourself out",
+   "short": "Harden sshd safely",
+   "scenario": "Change request CR-88 asks you to harden SSH on the lab server labsrv: no direct root login and no password logins. Your own account alice already logs in with a key. Make the changes in the safe order, test the file before you apply it, and prove that key login still works. You have written approval for this change on this server only.",
+   "ticket": "CR-88: sshd hardening on labsrv (lab). Approved by the system owner. Keep your admin session working. Do not lock any account or stop the service.",
+   "host": "labsrv",
+   "intro": "labsrv (Ubuntu 24.04). You are alice with sudo, logged in over SSH. Type help to see the commands.",
+   "suggest": [
+    "ls -l /home/alice/.ssh/authorized_keys",
+    "grep PermitRootLogin /etc/ssh/sshd_config",
+    "sshd -t"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "whoami"
+     ],
+     "out": "alice"
+    },
+    {
+     "run": [
+      "hostname"
+     ],
+     "out": "labsrv"
+    },
+    {
+     "run": [
+      "ls -l /home/alice/.ssh/authorized_keys"
+     ],
+     "out": "-rw------- 1 alice alice 103 Nov 12 09:30 /home/alice/.ssh/authorized_keys",
+     "fx": "read:keys"
+    },
+    {
+     "run": [
+      "ls -la /home/alice/.ssh",
+      "ls -l /home/alice/.ssh"
+     ],
+     "out": "total 16\ndrwx------ 2 alice alice 4096 Nov 12 09:30 .\ndrwxr-x--- 5 alice alice 4096 Nov 25 14:02 ..\n-rw------- 1 alice alice  103 Nov 12 09:30 authorized_keys\n-rw-r--r-- 1 alice alice  142 Nov 12 09:31 known_hosts",
+     "fx": "read:keys"
+    },
+    {
+     "run": [
+      "ssh-keygen -lf /home/alice/.ssh/authorized_keys"
+     ],
+     "out": "256 SHA256:Vb3m0l2Zr8n1dQxK4aTq9uYcPjH7sEoW5f6LhD2gXyA alice@lab-laptop (ED25519)",
+     "fx": "read:keys"
+    },
+    {
+     "run": [
+      "grep PermitRootLogin /etc/ssh/sshd_config",
+      "grep ^PermitRootLogin /etc/ssh/sshd_config",
+      "grep -i permitrootlogin /etc/ssh/sshd_config"
+     ],
+     "out": "PermitRootLogin yes",
+     "fx": "read:cfg",
+     "alt": {
+      "if": "fix:root",
+      "out": "PermitRootLogin no"
+     }
+    },
+    {
+     "run": [
+      "grep PasswordAuthentication /etc/ssh/sshd_config",
+      "grep ^PasswordAuthentication /etc/ssh/sshd_config",
+      "grep -i passwordauthentication /etc/ssh/sshd_config"
+     ],
+     "out": "PasswordAuthentication yes",
+     "fx": "read:cfg",
+     "alt": {
+      "if": "fix:pw",
+      "out": "PasswordAuthentication no"
+     }
+    },
+    {
+     "run": [
+      "grep PubkeyAuthentication /etc/ssh/sshd_config",
+      "grep ^PubkeyAuthentication /etc/ssh/sshd_config"
+     ],
+     "out": "PubkeyAuthentication yes",
+     "fx": "read:cfg"
+    },
+    {
+     "run": [
+      "sshd -t",
+      "sshd -t -f /etc/ssh/sshd_config"
+     ],
+     "out": "",
+     "fx": "test:sshd"
+    },
+    {
+     "run": [
+      "sed -i 's/^PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config",
+      "sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config",
+      "sed -i 's/^PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config"
+     ],
+     "out": "",
+     "fx": "fix:root"
+    },
+    {
+     "run": [
+      "sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config",
+      "sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config",
+      "sed -i 's/^PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config"
+     ],
+     "out": "",
+     "fx": "fix:pw"
+    },
+    {
+     "run": [
+      "systemctl reload ssh",
+      "systemctl reload ssh.service",
+      "systemctl reload sshd",
+      "systemctl reload sshd.service",
+      "systemctl restart ssh",
+      "systemctl restart sshd"
+     ],
+     "out": "",
+     "fx": "fix:reload"
+    },
+    {
+     "run": [
+      "ssh alice@localhost hostname",
+      "ssh alice@127.0.0.1 hostname"
+     ],
+     "out": "labsrv",
+     "fx": "verify:key"
+    },
+    {
+     "run": [
+      "ssh root@localhost",
+      "ssh root@127.0.0.1"
+     ],
+     "out": "root@localhost's password: ",
+     "fx": "verify:root",
+     "alt": {
+      "if": "fix:root",
+      "out": "root@localhost: Permission denied (publickey)."
+     }
+    },
+    {
+     "run": [
+      "ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no alice@localhost",
+      "ssh -o PubkeyAuthentication=no alice@localhost"
+     ],
+     "out": "alice@localhost's password: ",
+     "fx": "verify:pw",
+     "alt": {
+      "if": "fix:pw",
+      "out": "alice@localhost: Permission denied (publickey)."
+     }
+    },
+    {
+     "run": [
+      "systemctl stop ssh",
+      "systemctl stop sshd",
+      "systemctl stop ssh.service"
+     ],
+     "out": "",
+     "fx": "bad:stop"
+    },
+    {
+     "run": [
+      "sed -i 's/PubkeyAuthentication yes/PubkeyAuthentication no/' /etc/ssh/sshd_config",
+      "rm -rf /home/alice/.ssh"
+     ],
+     "out": "",
+     "fx": "bad:nokeys"
+    },
+    {
+     "run": [
+      "passwd -l alice",
+      "usermod -L alice"
+     ],
+     "out": "",
+     "fx": "bad:lock"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Confirm alice's key is in place before passwords are turned off",
+     "has": "read:keys",
+     "why": "Do this first. With the key installed (and the .ssh folder and file private to alice), you will still be able to log in after password logins are refused. Without it, you lock yourself out."
+    },
+    {
+     "t": "Stop direct root logins",
+     "has": "fix:root",
+     "why": "PermitRootLogin no stops anyone logging in as root over SSH. Admins log in as themselves and use sudo, so the log shows who did what."
+    },
+    {
+     "t": "Turn off password logins",
+     "has": "fix:pw",
+     "why": "PasswordAuthentication no removes password guessing as an attack path. Only do it after you know key login works for you."
+    },
+    {
+     "t": "Test the config file with sshd -t after both edits",
+     "why": "Test AFTER the edits and BEFORE the reload. sshd -t reads the file and prints any error, so a typo cannot lock you out. Also look in /etc/ssh/sshd_config.d/*.conf: drop-in files are read first, and for most keywords the first value wins, so a drop-in can override your edit.",
+     "after": "test:sshd",
+     "of": [
+      "fix:root",
+      "fix:pw"
+     ]
+    },
+    {
+     "t": "Reload sshd only after the test passed",
+     "after": "fix:reload",
+     "of": "test:sshd",
+     "why": "A reload (or restart) makes sshd use the new file. Your current session stays open, which is your way back if the change is wrong."
+    },
+    {
+     "t": "Show that key login for alice still works",
+     "after": "verify:key",
+     "of": "fix:reload",
+     "why": "Open a new connection with your key after the change. This is the proof that the change did not lock you out."
+    },
+    {
+     "t": "Show that root and password logins are now refused",
+     "after": [
+      "verify:root",
+      "verify:pw"
+     ],
+     "of": "fix:reload",
+     "why": "A refused attempt ('Permission denied (publickey)') proves the new rules are active."
+    },
+    {
+     "t": "Did not stop sshd, lock an account or turn off keys",
+     "lacks": [
+      "bad:stop",
+      "bad:nokeys",
+      "bad:lock"
+     ],
+     "why": "Stopping sshd, locking alice or turning off public keys would cut the way in for the very person doing the change. The ticket asked for a safer SSH, not a closed one."
+    }
+   ]
+  },
+  {
+   "id": "l2-p-04",
+   "t": "pbq",
+   "kind": "logsel",
+   "d": "211",
+   "obj": "211.1",
+   "dom": "211",
+   "title": "Read the Postfix log: why is mail to the partner waiting?",
+   "short": "Postfix mail.log",
+   "scenario": "Users say mail to the partner company is slow and some of it has not arrived. Read these lines from /var/log/mail.log on mx1. Mark every line that shows a delivery attempt that did NOT succeed (temporary or permanent), then say what explains most of them.",
+   "ticket": "MAIL-540: messages to partner.example are delayed since 08:30. Mail to other companies is fine.",
+   "lines": [
+    {
+     "text": "Nov 27 08:41:02 mx1 postfix/smtpd[3150]: connect from workstation12.example.test[10.1.5.12]",
+     "bad": 0,
+     "why": "A client connected to the SMTP server. This is the start of a normal submission and is not a failure."
+    },
+    {
+     "text": "Nov 27 08:41:03 mx1 postfix/smtpd[3150]: 7F3D2A1B09: client=workstation12.example.test[10.1.5.12], sasl_method=PLAIN, sasl_username=alice",
+     "bad": 0,
+     "why": "Alice logged in with SMTP authentication (sasl_username=alice) and Postfix accepted the message into the queue. Our server is doing its job here."
+    },
+    {
+     "text": "Nov 27 08:41:03 mx1 postfix/qmgr[1050]: 7F3D2A1B09: from=<alice@example.test>, size=2411, nrcpt=1 (queue active)",
+     "bad": 0,
+     "why": "The queue manager picked up the message. 'queue active' means Postfix is working on delivering it."
+    },
+    {
+     "text": "Nov 27 08:41:33 mx1 postfix/smtp[3201]: 7F3D2A1B09: to=<tom@partner.example>, relay=mx.partner.example[198.51.100.9]:25, delay=30, delays=0.1/0.02/30/0, dsn=4.4.1, status=deferred (connect to mx.partner.example[198.51.100.9]:25: Connection timed out)",
+     "bad": 1,
+     "why": "status=deferred with 'Connection timed out' means Postfix could not reach the partner's mail server on port 25. dsn=4.4.1 is a temporary (4.x.x) problem, so Postfix keeps the message and tries again later."
+    },
+    {
+     "text": "Nov 27 08:42:10 mx1 postfix/smtp[3204]: 4C9E1D5F20: to=<amy@example.net>, relay=mx.example.net[198.51.100.20]:25, delay=1.2, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 8B13E)",
+     "bad": 0,
+     "why": "status=sent and dsn=2.0.0 mean the other server accepted the mail. Mail to example.net works, so our own sending is fine."
+    },
+    {
+     "text": "Nov 27 08:43:15 mx1 postfix/smtp[3207]: 6B7C8D9E0F: to=<kim@partner2.example>, relay=mx2.partner2.example[198.51.100.40]:25, dsn=4.7.1, status=deferred (host mx2.partner2.example[198.51.100.40] said: 451 4.7.1 Greylisted, please try again in 300 seconds)",
+     "bad": 1,
+     "why": "A 451 greylisting reply is a temporary refusal: the partner asks the sender to retry later. The mail was NOT delivered on this attempt, so mark it, but note that it is a different cause from the timeouts and usually clears by itself."
+    },
+    {
+     "text": "Nov 27 08:44:20 mx1 postfix/smtp[3209]: 5E6F7A8B9C: to=<joe@partner.example>, relay=mx.partner.example[198.51.100.9]:25, delay=30, delays=0.1/0.02/30/0, dsn=4.4.1, status=deferred (connect to mx.partner.example[198.51.100.9]:25: Connection timed out)",
+     "bad": 1,
+     "why": "Same host, same timeout, different message. When many messages to one domain show the same deferred error, the cause is the path to that server, not the individual messages."
+    },
+    {
+     "text": "Nov 27 08:45:01 mx1 postfix/smtpd[3150]: disconnect from workstation12.example.test[10.1.5.12] ehlo=2 starttls=1 auth=1 mail=1 rcpt=1 data=1 quit=1 commands=8",
+     "bad": 0,
+     "why": "A clean end of the client session. Every step (STARTTLS, auth, mail, rcpt, data) worked, so the problem is not between the client and our server."
+    },
+    {
+     "text": "Nov 27 08:51:44 mx1 postfix/smtp[3230]: 9A1B2C3D4E: to=<sue@partner.example>, relay=mx.partner.example[198.51.100.9]:25, delay=1230, delays=1200/0.1/30/0, dsn=4.4.1, status=deferred (connect to mx.partner.example[198.51.100.9]:25: Connection timed out)",
+     "bad": 1,
+     "why": "A third deferral to the same server. delay=1230 seconds shows this message has been waiting for about 20 minutes."
+    },
+    {
+     "text": "Nov 27 08:49:30 mx1 postfix/smtp[3220]: 1A2B3C4D5E: to=<old@partner.example>, relay=mx.partner.example[198.51.100.9]:25, dsn=5.1.1, status=bounced (host mx.partner.example[198.51.100.9] said: 550 5.1.1 <old@partner.example>: Recipient address rejected: User unknown)",
+     "bad": 1,
+     "why": "status=bounced with a 550 (5.x.x) is a PERMANENT failure: the address does not exist. It was not delivered, so mark it. It also shows that mx.partner.example answered here, which fits a single wrong address and not a dead server."
+    },
+    {
+     "text": "Nov 27 08:52:09 mx1 postfix/smtp[3236]: 3D4E5F6A7B: to=<ben@example.org>, relay=mx.example.org[203.0.113.25]:25, delay=0.8, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 22C70)",
+     "bad": 0,
+     "why": "Delivered. More proof that outgoing mail to other places works."
+    },
+    {
+     "text": "Nov 27 08:52:10 mx1 postfix/qmgr[1050]: 3D4E5F6A7B: removed",
+     "bad": 0,
+     "why": "After a successful delivery the queue manager removes the message from the queue. This is the normal end of a message."
+    }
+   ],
+   "ask": {
+    "label": "What explains most of the failed attempts in this log?",
+    "opts": [
+     "Postfix often cannot connect to mx.partner.example on port 25 (timeouts), so it holds the mail and retries later",
+     "Alice's SMTP login to mx1 fails, so the messages never enter the queue and are lost",
+     "The recipients tom, joe and sue do not exist at partner.example, so every message bounces back",
+     "The partner greylists every sender and asks for a retry after five minutes on each message",
+     "mx1 is an open relay and the partner's server refuses its connections for that reason"
+    ],
+    "a": 0,
+    "why": "Most failing lines are status=deferred with 'Connection timed out' to mx.partner.example, while mail to other domains is status=sent. The greylisting (451) and the unknown user (550) are one-off lines with their own causes: a temporary retry request and a single wrong address. A login failure would show an authentication error, and the SASL line shows Alice logged in."
+   }
+  },
+  {
+   "id": "l2-p-05",
+   "t": "pbq",
+   "kind": "rules",
+   "d": "212",
+   "obj": "212.1",
+   "dom": "212",
+   "title": "Turn a Linux box into a NAT router for a lab LAN",
+   "short": "iptables NAT router",
+   "scenario": "A Linux machine has eth0 (public side) and eth1 (lab LAN 192.168.10.0/24). The FORWARD chain policy is already DROP. Build the steps that let the LAN reach the Internet through the router and survive a reboot. Put the needed steps in order and leave out the wrong ones.",
+   "ticket": "Lab router LR-1. Interfaces: eth0 = Internet side, eth1 = LAN side. Rules are saved with iptables-save into /etc/iptables/rules.v4 (iptables-persistent).",
+   "rules": [
+    {
+     "id": "fwd",
+     "text": "echo \"net.ipv4.ip_forward=1\" > /etc/sysctl.d/99-forward.conf && sysctl --system",
+     "need": 1,
+     "why": "Without IP forwarding the kernel drops packets that are not for the router itself. Writing the setting to a sysctl file AND loading it turns the machine into a router now and after every reboot. (Appending to /etc/sysctl.conf and running sysctl -p does the same.)"
+    },
+    {
+     "id": "fwlan",
+     "text": "iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT",
+     "need": 1,
+     "why": "This lets packets from the LAN go out to the Internet. With the FORWARD policy on DROP, nothing passes without an accept rule."
+    },
+    {
+     "id": "est",
+     "text": "iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT",
+     "need": 1,
+     "why": "This lets the replies come back in. Without it, the LAN can send but the answers are dropped by the DROP policy."
+    },
+    {
+     "id": "masq",
+     "text": "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE",
+     "need": 1,
+     "why": "NAT rewrites the private source addresses to the router's public address as packets leave through eth0. POSTROUTING in the nat table is the right place."
+    },
+    {
+     "id": "save",
+     "text": "iptables-save > /etc/iptables/rules.v4",
+     "need": 1,
+     "why": "Rules in memory are lost at reboot. Saving them last makes sure the file holds the finished set."
+    },
+    {
+     "id": "wrong",
+     "text": "iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE",
+     "need": 0,
+     "why": "This masquerades traffic leaving toward the LAN side (eth1), not toward the Internet. It does nothing for LAN clients going out."
+    },
+    {
+     "id": "open",
+     "text": "iptables -P FORWARD ACCEPT",
+     "need": 0,
+     "why": "This opens the FORWARD chain for all traffic in every direction, including Internet traffic into the LAN. It removes the protection the DROP policy gives."
+    },
+    {
+     "id": "inbnd",
+     "text": "iptables -A FORWARD -i eth0 -o eth1 -j ACCEPT",
+     "need": 0,
+     "why": "This accepts ALL traffic from the Internet into the LAN. Replies are already allowed by the ESTABLISHED,RELATED rule, so this is not needed and it is dangerous."
+    },
+    {
+     "id": "pre",
+     "text": "iptables -t nat -A PREROUTING -i eth1 -j MASQUERADE",
+     "need": 0,
+     "why": "MASQUERADE is only valid in POSTROUTING. PREROUTING is where destination NAT (DNAT) happens, so this rule is rejected."
+    }
+   ],
+   "last": {
+    "id": "save",
+    "why": "Save only after every rule is in place. Saving earlier would store an incomplete set, and the router would come back from a reboot without NAT."
+   }
+  },
+  {
+   "id": "l2-p-06",
+   "t": "pbq",
+   "kind": "diagram",
+   "d": "211",
+   "obj": "211.3",
+   "dom": "211",
+   "title": "Follow one incoming e-mail from the Internet to a phone",
+   "short": "Mail path",
+   "scenario": "A partner sends a message to alice@example.test. Place each part of the mail system in the order the message passes through it, from the sending server to Alice's phone app, which keeps her mail in sync with the server (IMAP).",
+   "top": "Sender's server on the Internet",
+   "slots": [
+    {
+     "label": "Step 1",
+     "zone": "Receives mail from outside"
+    },
+    {
+     "label": "Step 2",
+     "zone": "Holds the message until it is handled"
+    },
+    {
+     "label": "Step 3",
+     "zone": "Hands the message to the mail store"
+    },
+    {
+     "label": "Step 4",
+     "zone": "Where the message is stored"
+    },
+    {
+     "label": "Step 5",
+     "zone": "Lets the phone read the mailbox"
+    }
+   ],
+   "devs": [
+    {
+     "id": "smtpd",
+     "name": "Postfix SMTP server (TCP 25)",
+     "slot": 0,
+     "why": "Other mail servers deliver to your domain by SMTP on port 25. Postfix accepts the message, checks the rules (relay, recipient) and queues it."
+    },
+    {
+     "id": "queue",
+     "name": "Postfix mail queue",
+     "slot": 1,
+     "why": "Accepted messages wait in the queue until the queue manager can deliver them to the next step."
+    },
+    {
+     "id": "lmtp",
+     "name": "Dovecot LMTP delivery with Sieve",
+     "slot": 2,
+     "why": "Postfix hands the message to Dovecot over LMTP. Dovecot runs the user's Sieve script (for example fileinto) as it delivers."
+    },
+    {
+     "id": "store",
+     "name": "Maildir mailbox of alice",
+     "slot": 3,
+     "why": "The message ends up as a file in Alice's Maildir (or mailbox) on the server."
+    },
+    {
+     "id": "imap",
+     "name": "Dovecot IMAP over TLS (TCP 993)",
+     "slot": 4,
+     "why": "Alice's phone logs in to Dovecot with IMAP over TLS and reads the mailbox. The phone never talks to Postfix to read mail."
+    },
+    {
+     "id": "sub",
+     "name": "Postfix submission (TCP 587)",
+     "slot": -1,
+     "why": "Submission is the door that Alice's phone uses to SEND mail, after logging in. It is not used for the incoming message."
+    },
+    {
+     "id": "msieve",
+     "name": "ManageSieve service (TCP 4190)",
+     "slot": -1,
+     "why": "ManageSieve lets users upload and edit their Sieve scripts. The script runs during delivery, but ManageSieve itself carries no mail."
+    },
+    {
+     "id": "axfr",
+     "name": "BIND zone transfer (AXFR)",
+     "slot": -1,
+     "why": "AXFR copies DNS zones between name servers. It plays no part in delivering a message."
+    },
+    {
+     "id": "smtpc",
+     "name": "Postfix outbound SMTP client",
+     "slot": -1,
+     "why": "The smtp client sends mail OUT to other servers. This message is coming IN, so the first step is the smtpd server that listens on port 25."
+    }
+   ]
+  }
+ ]
+}

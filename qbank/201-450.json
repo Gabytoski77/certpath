@@ -1,0 +1,4229 @@
+{
+ "app": "MyNextCert",
+ "kind": "qbank",
+ "v": 1,
+ "cert": "LPIC-2",
+ "ver": "e201",
+ "exam": "201-450",
+ "title": "LPIC-2 Exam 201 (201-450) practice exam",
+ "rev": "2026-11-27",
+ "format": {
+  "n": 60,
+  "min": 90,
+  "pbq": 3,
+  "half": 30
+ },
+ "domains": [
+  {
+   "n": "200",
+   "name": "Capacity Planning",
+   "w": 13,
+   "obj": 2
+  },
+  {
+   "n": "201",
+   "name": "Linux Kernel",
+   "w": 15,
+   "obj": 3
+  },
+  {
+   "n": "202",
+   "name": "System Startup",
+   "w": 15,
+   "obj": 3
+  },
+  {
+   "n": "203",
+   "name": "Filesystem and Devices",
+   "w": 15,
+   "obj": 3
+  },
+  {
+   "n": "204",
+   "name": "Advanced Storage Device Administration",
+   "w": 13,
+   "obj": 3
+  },
+  {
+   "n": "205",
+   "name": "Networking Configuration",
+   "w": 19,
+   "obj": 3
+  },
+  {
+   "n": "206",
+   "name": "System Maintenance",
+   "w": 10,
+   "obj": 3
+  }
+ ],
+ "note": "Original questions written for MyNextCert from LPI's public LPIC-2 Exam 201 objectives, version 4.5 (checked 2026-11-27). Not real exam questions. LPI's real exam has 60 questions in 90 minutes and no hands-on items; the lab-style items here are extra practice. Practice on your own lab machines (WSL, a VM or a cloud sandbox), never on production systems you don't manage, and scan or capture only networks you are authorized to test.",
+ "q": [
+  {
+   "id": "l2-200-01",
+   "d": "200",
+   "obj": "200.1",
+   "q": "A server feels slow. `vmstat 5` shows r=1, b=9, si=0, so=0, bi=48000, bo=1200, us=4, sy=3, id=20, wa=73. What is the main bottleneck?",
+   "o": [
+    [
+     "The CPU, because the run queue is saturated",
+     "r=1 means almost nothing is waiting for a CPU, and us+sy is only 7%."
+    ],
+    [
+     "The network, because vmstat reports 73% wait",
+     "The wa column is time waiting on block I/O (disks). vmstat does not measure network traffic."
+    ],
+    [
+     "Storage: the CPUs mostly wait on disk reads",
+     "Right. Only 7% of CPU time is user plus system work, while 73% is I/O wait (wa) and 9 processes are blocked (b) on I/O. Large bi (blocks in) says the waiting is for reads."
+    ],
+    [
+     "Memory, because the system is swapping heavily",
+     "si and so are both 0, so nothing is moving to or from swap."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-200-02",
+   "d": "200",
+   "obj": "200.1",
+   "q": "On a database host, `iostat -x 5` shows sda at %util 3 and sdb at %util 99 with await near 180 ms. The database files are on sdb. What does this show?",
+   "o": [
+    [
+     "sda is failing, because its utilization is so low",
+     "Low utilization only means sda has little work to do. It says nothing about the health of the disk."
+    ],
+    [
+     "The CPU is too slow to submit requests to sdb",
+     "await is time spent at the storage device and its queue, not CPU time. CPU time would show in %iowait vs us/sy."
+    ],
+    [
+     "99% utilization is normal and needs no action",
+     "On a single disk, a value near 100 together with a long await is the classic sign of saturation."
+    ],
+    [
+     "sdb is saturated, so its requests queue up",
+     "Right. %util near 100 on a single disk means it is always busy, and a large await is the average time a request spends queued plus serviced. The fix is faster storage or spreading the load."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-200-03",
+   "d": "200",
+   "obj": "200.1",
+   "q": "A 4-core server reports a load average of 14, yet `top` shows the CPUs 80% idle. Many processes are in state D. What explains this?",
+   "o": [
+    [
+     "The CPUs are overloaded, and top is reading the wrong values",
+     "top is accurate here. Idle CPU and high load together are not a contradiction."
+    ],
+    [
+     "Load includes tasks stuck in uninterruptible I/O sleep",
+     "Right. On Linux the load average includes tasks in state D (uninterruptible sleep) as well as runnable ones. High load with idle CPUs points to an I/O problem."
+    ],
+    [
+     "Zombie processes are consuming the run queue",
+     "Zombies have already exited and use no CPU. They do not add to the load average."
+    ],
+    [
+     "Too many users are logged in, and each one adds 1.0 to the load",
+     "Logged-in users do not add load. Only running or uninterruptible tasks do."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-200-04",
+   "d": "200",
+   "obj": "200.1",
+   "q": "`free -m` on a file server shows: free 180, buff/cache 6200, available 6600, swap used 0. A junior admin says the server is out of memory. What is the right reading?",
+   "o": [
+    [
+     "Healthy: the kernel caches in spare RAM and gives it back",
+     "Right. The available column estimates what applications can still get, including reclaimable cache. A small free value alone is normal on a busy Linux system."
+    ],
+    [
+     "A leak is eating RAM, so the app should be restarted nightly",
+     "Nothing here shows a leak. Cache that grows to fill free RAM is by design."
+    ],
+    [
+     "Run echo 3 > /proc/sys/vm/drop_caches on a schedule to restore free memory",
+     "Dropping caches throws away useful data and slows reads. It is not routine care."
+    ],
+    [
+     "Swap is full and the box is about to crash",
+     "Swap used is 0, so the system is not under memory pressure."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-200-05",
+   "d": "200",
+   "obj": "200.1",
+   "q": "On a web server, `vmstat 5` shows so (swap out) at about 2000 KB/s for several minutes, free memory near zero, and wa rising. What is happening?",
+   "o": [
+    [
+     "The network card is dropping packets and retrying",
+     "Packet loss does not cause swap-out or lower free memory."
+    ],
+    [
+     "RAM is exhausted, so pages are pushed out to swap",
+     "Right. Sustained swap-out (so) with almost no free memory means the working set no longer fits in RAM. Disk wait rises because swap lives on disk."
+    ],
+    [
+     "The CPU is the bottleneck, because it cannot keep up",
+     "The signs point to memory and storage, not the run queue or user CPU time."
+    ],
+    [
+     "A normal amount of swap use for a healthy server",
+     "A little swap in use can be fine, but constant swapping out is a sign of memory pressure."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-200-06",
+   "d": "200",
+   "obj": "200.1",
+   "q": "Disk writes on a server are heavy, and you must find WHICH process is causing them right now. Which command do you use?",
+   "o": [
+    [
+     "iostat -x 5, which shows each process's write rate",
+     "iostat reports per device, not per process, so it can't name the process."
+    ],
+    [
+     "vmstat 5, which breaks bo down by process",
+     "vmstat gives system-wide totals. It has no per-process view."
+    ],
+    [
+     "iotop -o, which shows only processes doing I/O now",
+     "Right. iotop shows read and write rates per process (it needs root). The -o option hides idle processes so the heavy writer is easy to spot."
+    ],
+    [
+     "uptime, which shows the processes that raise the load",
+     "uptime only prints load averages and does not list processes."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-200-07",
+   "d": "200",
+   "obj": "200.1",
+   "q": "Last night at 02:10 users reported a slowdown, and the sysstat service has been collecting data all week. How do you see CPU use from that time?",
+   "o": [
+    [
+     "sar -u -s 02:00:00 -e 02:30:00 over the saved data",
+     "Right. sar can read history that the sysstat collector saved (for example under /var/log/sa or /var/log/sysstat), so it can replay past periods."
+    ],
+    [
+     "vmstat 1, which prints the earlier samples first",
+     "vmstat only prints samples from now onward. It cannot go back in time."
+    ],
+    [
+     "top, because it keeps the past 24 hours in its display",
+     "top shows only the live state. Nothing is kept once the screen updates."
+    ],
+    [
+     "w, which lists load averages from the previous night",
+     "w shows who is logged in plus the current 1, 5 and 15-minute load, not history."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-200-08",
+   "d": "200",
+   "obj": "200.1",
+   "q": "`ss -tan` on an application server shows about 3,000 sockets in CLOSE_WAIT toward port 8080 on the same host's app. What does this most likely mean?",
+   "o": [
+    [
+     "Clients are still finishing the three-way handshake",
+     "That would show as SYN_RECV, not CLOSE_WAIT."
+    ],
+    [
+     "The firewall is dropping the final ACK packets",
+     "Dropped packets would show up in other states, such as FIN_WAIT or retransmits. CLOSE_WAIT is held by the local app."
+    ],
+    [
+     "TIME_WAIT sockets are cleaning up as designed",
+     "TIME_WAIT is a different state and appears on the side that closed first. It is harmless and short."
+    ],
+    [
+     "The app never closed its side: a socket leak",
+     "Right. CLOSE_WAIT means the peer has sent FIN and the local application has not yet called close(). A big pile of them usually means the program forgets to close sockets."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-200-09",
+   "d": "200",
+   "obj": "200.1",
+   "q": "`df -h` says /var is 100% full, but `du -sh /var` adds up to 12 GB on a 50 GB volume. Yesterday someone deleted a huge log that a service still holds open. What do you run to confirm it?",
+   "o": [
+    [
+     "fsck -f /dev/mapper/vg-var on the mounted filesystem",
+     "Running fsck on a mounted filesystem is risky, and the filesystem is not corrupt."
+    ],
+    [
+     "lsof +L1, then restart the service holding the file",
+     "Right. A deleted file keeps using disk space until the last process closes it. lsof +L1 lists open files with a link count of 0, and restarting the owner frees the space."
+    ],
+    [
+     "du -a /var again as a normal user",
+     "A normal user sees less than root, so the gap would only grow. The deleted file has no path for du."
+    ],
+    [
+     "tune2fs -m 0 on the volume to release reserved blocks",
+     "Reserved blocks are a few percent at most and would not explain 38 GB of missing space."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-200-10",
+   "d": "200",
+   "obj": "200.1",
+   "q": "A manager asks which client machines use the most bandwidth on the office gateway right now. Which tool answers best from the command line?",
+   "o": [
+    [
+     "swapon --show, which lists traffic by interface",
+     "swapon --show lists swap areas, which has nothing to do with network use."
+    ],
+    [
+     "uptime, which prints bytes sent per client",
+     "uptime reports system run time and load averages only."
+    ],
+    [
+     "iptraf-ng, showing live traffic per host and port",
+     "Right. iptraf-ng is an interactive monitor that counts packets and bytes by connection, host and port. It is a good fit for finding top talkers."
+    ],
+    [
+     "pstree, which draws every connection as a tree",
+     "pstree shows the process hierarchy, not network traffic."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-200-11",
+   "d": "200",
+   "obj": "200.1",
+   "q": "An 8-core server is slow for one job. `top` shows one process at 100% CPU and the summary line shows only about 13% total CPU use. What is the best conclusion?",
+   "o": [
+    [
+     "One single-threaded process is maxing out one core",
+     "Right. 100% in top means one full core. With 8 cores that is 12.5% of the machine. The job needs a faster core or a way to run in parallel."
+    ],
+    [
+     "top reports the wrong value, so it can be ignored",
+     "top is right: it counts 100% per core, so one core can show up as 100%."
+    ],
+    [
+     "All 8 cores are overloaded, so add more cores",
+     "Only one core is busy. Other cores are idle, so more would not help."
+    ],
+    [
+     "The server has plenty of CPU, so the slowness must come from RAM",
+     "The data points to a saturated core. Nothing in it indicates a RAM shortage."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-200-12",
+   "d": "200",
+   "obj": "200.1",
+   "q": "On a Linux firewall/router, `dmesg` shows 'nf_conntrack: table full, dropping packet' during peak hours, and new connections fail while CPU use stays low. What fixes the cause?",
+   "o": [
+    [
+     "Add a larger swap file to the router",
+     "Swap is not used by the kernel's tracking table and the CPU is not short of memory."
+    ],
+    [
+     "Turn off net.ipv4.ip_forward to cut the load",
+     "Disabling forwarding would stop the box routing at all."
+    ],
+    [
+     "Lower the interface MTU to 1200 bytes",
+     "MTU affects packet size and has no effect on the connection table limit."
+    ],
+    [
+     "Raise nf_conntrack_max to track more flows",
+     "Right. The connection tracking table has a fixed size. When it fills, new flows are dropped. Raising the limit costs some memory."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-200-13",
+   "d": "200",
+   "obj": "200.1",
+   "q": "You run `vmstat 5` and the first line shows much higher numbers than every later line. Why?",
+   "o": [
+    [
+     "The first line is the peak value seen in the last hour",
+     "vmstat does not track peaks over an hour. It averages from boot."
+    ],
+    [
+     "The first line covers the previous 5 seconds, so it is the most accurate",
+     "It covers the whole time since boot, not only 5 seconds."
+    ],
+    [
+     "The first line averages everything since boot",
+     "Right. vmstat prints averages since the last boot as its first sample. Read the following lines for current behavior."
+    ],
+    [
+     "It is an error that appears when -a is not given",
+     "No option is needed. The first line is always the since-boot summary."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-200-14",
+   "d": "200",
+   "obj": "200.1",
+   "q": "`uptime` prints a load average of 8.10, 3.20, 1.05 on a 4-core server. What does this tell you?",
+   "o": [
+    [
+     "Load is climbing: the last minute is much busier",
+     "Right. The three values are the 1, 5 and 15-minute averages in that order. A 1-minute figure well above the others means a recent spike."
+    ],
+    [
+     "The server is in steady state, as the three numbers are alike",
+     "The numbers differ by a factor of eight, so the load is not steady."
+    ],
+    [
+     "The values are 15, 5 and 1 minutes, so the load is easing",
+     "The order is 1, 5, 15 minutes, so this reading is reversed."
+    ],
+    [
+     "Load is falling, because the last value is the lowest",
+     "The last value is the 15-minute average, the oldest, so a smaller number there shows an earlier calm."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-200-15",
+   "d": "200",
+   "obj": "200.2",
+   "q": "A database volume is 62% full. The monitoring graph shows steady growth of 4 percentage points per week, and the alert threshold is 90%. About when will it cross the threshold?",
+   "o": [
+    [
+     "In about 14 weeks",
+     "That uses 2 points per week, which does not match the graph."
+    ],
+    [
+     "In about 10 weeks",
+     "After 10 weeks the volume would be at 102%, which is impossible. It would be full well before that."
+    ],
+    [
+     "In about 5 weeks",
+     "After 5 weeks the volume would be at 82%, still under the threshold."
+    ],
+    [
+     "In about 7 weeks",
+     "Right. From 62% to 90% is 28 points, and 28 / 4 = 7 weeks. This is a simple straight-line forecast from a graph of the trend."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-200-16",
+   "d": "200",
+   "obj": "200.2",
+   "q": "A server has 16 GB of RAM. A service uses 6 GB now and, because of a known leak, grows by 0.5 GB per day. About how many days until it uses all the RAM if nothing changes?",
+   "o": [
+    [
+     "12 days",
+     "12 days of growth only adds 6 GB, so usage would be 12 GB."
+    ],
+    [
+     "20 days",
+     "Right. The remaining 10 GB divided by 0.5 GB per day is 20 days. In practice you would act sooner, because the system slows down well before memory is gone."
+    ],
+    [
+     "32 days",
+     "That divides the 16 GB total by 0.5, but 6 GB is already used."
+    ],
+    [
+     "8 days",
+     "8 days of growth adds only 4 GB, so usage would be 10 GB."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-200-17",
+   "d": "200",
+   "obj": "200.2",
+   "q": "A web server's response time stays flat until 400 requests per second, then climbs sharply. Peak traffic today is 350 requests per second and grows 10% each month. When must you add capacity?",
+   "o": [
+    [
+     "Never, as response time is currently flat",
+     "A flat curve today does not mean safe. The point of capacity planning is to forecast when the knee is reached."
+    ],
+    [
+     "In about a year, because growth of 10% is small",
+     "Compounded, 10% per month passes the break point in two months, not a year."
+    ],
+    [
+     "Within about one month, because 385 is already past the limit",
+     "385 is still below the 400 requests per second break point."
+    ],
+    [
+     "Within about two months, at roughly 424 requests/s",
+     "Right. 350 becomes about 385 next month and about 424 in two months. The break point (400) is crossed in month two, so plan before then."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-200-18",
+   "d": "200",
+   "obj": "200.2",
+   "q": "Why do admins record baseline metrics (CPU, memory, I/O, traffic) while the system is healthy?",
+   "o": [
+    [
+     "It makes alerts unnecessary because problems fix themselves",
+     "Baselines help set alert levels. They do not remove the need for alerts."
+    ],
+    [
+     "So later numbers can be compared with normal",
+     "Right. A number like 70% CPU is only high or low relative to normal. A baseline lets you spot real changes and forecast growth."
+    ],
+    [
+     "It lets the kernel skip its own checks during peaks",
+     "The kernel does not use admin baselines. They are for people and monitoring tools."
+    ],
+    [
+     "It is required before sar or vmstat can be started",
+     "These tools run without any stored baseline."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-200-19",
+   "d": "200",
+   "obj": "200.2",
+   "q": "A team wants a classic tool that polls SNMP counters on routers every 5 minutes and draws daily, weekly and yearly traffic graphs on a web page. Which tool fits?",
+   "o": [
+    [
+     "tcpdump",
+     "tcpdump captures individual packets. It does not graph SNMP counters over time."
+    ],
+    [
+     "Nagios",
+     "Nagios checks the state of hosts and services and alerts on problems. Graphing is not its main job."
+    ],
+    [
+     "MRTG",
+     "Right. MRTG (Multi Router Traffic Grapher) reads SNMP counters on a schedule and builds graphs of interface traffic over time. Cacti is a similar, more flexible tool."
+    ],
+    [
+     "lsof",
+     "lsof lists open files and sockets on a host. It does not poll devices or draw graphs."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-201-01",
+   "d": "201",
+   "obj": "201.1",
+   "q": "A modern x86 kernel is too large for the old zImage limit. Which image type is used for such kernels, and why?",
+   "o": [
+    [
+     "bzImage, which loads high so it can be larger",
+     "Right. zImage is limited to about 512 KB because it loads into low memory. bzImage is also compressed, but it is loaded high, so today's kernels use it."
+    ],
+    [
+     "zImage with the xz option, which lifts the size limit",
+     "Choosing a compression method does not change the load address or the zImage size limit."
+    ],
+    [
+     "initrd, which holds the kernel code in a larger file",
+     "The initial RAM disk holds early drivers and scripts. It is not the kernel image."
+    ],
+    [
+     "vmlinux, which is stored compressed in /boot",
+     "vmlinux is the uncompressed ELF kernel in the build tree. It is not the usual boot image."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-201-02",
+   "d": "201",
+   "obj": "201.1",
+   "q": "You need the official text that explains kernel boot parameters and the kernel's own build options. Where does it ship with the source?",
+   "o": [
+    [
+     "Documentation/ in the kernel source tree",
+     "Right. Each kernel source tree carries its own Documentation/, matched to that version, including the list of boot parameters."
+    ],
+    [
+     "In /proc/sys/kernel/, as a text file per setting",
+     "That directory holds tunable values, not the explanatory documents."
+    ],
+    [
+     "In /boot/grub/, next to the boot menu",
+     "/boot/grub holds boot loader files, not kernel documentation."
+    ],
+    [
+     "In /lib/modules/<version>/, in the modules.dep file",
+     "modules.dep lists module dependencies for modprobe. It has no documentation."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-201-03",
+   "d": "201",
+   "obj": "201.1",
+   "q": "Inside a freshly built kernel source tree, which file is the uncompressed kernel in ELF format, used for debugging, as opposed to the compressed boot image?",
+   "o": [
+    [
+     "bzImage",
+     "bzImage is the compressed, bootable image rather than the raw ELF file."
+    ],
+    [
+     "modules.dep",
+     "modules.dep maps modules to dependencies. It is not part of the kernel image."
+    ],
+    [
+     "System.map",
+     "System.map is a table of kernel symbol addresses, not the kernel itself."
+    ],
+    [
+     "vmlinux",
+     "Right. The build produces vmlinux (uncompressed ELF). The bootable, self-extracting compressed image is arch/x86/boot/bzImage."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-201-04",
+   "d": "201",
+   "obj": "201.1",
+   "q": "You downloaded linux-6.6.30.tar.xz from kernel.org. Which command unpacks it into the current directory?",
+   "o": [
+    [
+     "tar -xzf linux-6.6.30.tar.xz",
+     "The z option means gzip, and xz data fails with a format error."
+    ],
+    [
+     "tar -xjvf linux-6.6.30.tar.xz",
+     "The j option means bzip2, which does not match xz data."
+    ],
+    [
+     "tar -xJf linux-6.6.30.tar.xz",
+     "Right. The capital J option tells tar to use xz. Kernel releases ship as .tar.xz because xz compresses them well."
+    ],
+    [
+     "gunzip linux-6.6.30.tar.xz",
+     "gunzip handles gzip files and refuses the .xz suffix."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-201-05",
+   "d": "201",
+   "obj": "201.1",
+   "q": "In a kernel .config, the line `CONFIG_BTRFS_FS=m` appears. What does the m mean?",
+   "o": [
+    [
+     "Btrfs is disabled and will not be built",
+     "A disabled option is shown as n or as a '# CONFIG_... is not set' comment."
+    ],
+    [
+     "Btrfs is built as a loadable module",
+     "Right. A y builds the feature into the kernel image. An m builds a separate .ko file that modprobe loads when needed. An n leaves it out."
+    ],
+    [
+     "Btrfs is built only for a minimal kernel",
+     "There is no such meaning. The letters are y, m and n."
+    ],
+    [
+     "Btrfs is built into the kernel image and always loaded",
+     "That is what y means. An m is a module."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-201-06",
+   "d": "201",
+   "obj": "201.2",
+   "q": "You copied the old kernel's .config into a new kernel source tree of a newer version. Which make target asks only about the NEW options?",
+   "o": [
+    [
+     "make defconfig",
+     "defconfig replaces your settings with the architecture's defaults."
+    ],
+    [
+     "make modules_install",
+     "That installs built modules into /lib/modules. It does not touch the configuration."
+    ],
+    [
+     "make oldconfig",
+     "Right. oldconfig reads the existing .config and prompts only for symbols that did not exist before. Everything else keeps its old answer."
+    ],
+    [
+     "make mrproper",
+     "mrproper cleans the tree and deletes .config, which is the opposite of what you want."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-201-07",
+   "d": "201",
+   "obj": "201.2",
+   "q": "A kernel build fails because of stale object files from a different configuration. You want to remove build products but KEEP your .config. Which target?",
+   "o": [
+    [
+     "make mrproper",
+     "mrproper deletes .config too, so your settings would be lost."
+    ],
+    [
+     "make clean",
+     "Right. clean removes most generated files and objects but leaves .config. mrproper does that and also removes .config and other backups."
+    ],
+    [
+     "make bzImage",
+     "That builds the kernel image. It does not clean the tree."
+    ],
+    [
+     "make menuconfig",
+     "menuconfig opens a menu to edit settings, and removes nothing."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-201-08",
+   "d": "201",
+   "obj": "201.2",
+   "q": "After `make modules_install` finishes for kernel 6.6.30, the modules are on disk but modprobe cannot find them by name. Which pair is expected to exist in /lib/modules/6.6.30/ once the dependency index is built?",
+   "o": [
+    [
+     "The .config file, which modprobe reads for names",
+     "modprobe reads modules.dep, not the build configuration."
+    ],
+    [
+     "Only a vmlinuz file, with the modules packed inside",
+     "The kernel image lives in /boot. Modules are separate files under /lib/modules."
+    ],
+    [
+     "A grub.cfg listing every module",
+     "grub.cfg lists boot menu entries. It has no module list."
+    ],
+    [
+     "The .ko files plus modules.dep from depmod",
+     "Right. modules_install copies the .ko files and normally runs depmod, which writes modules.dep and related maps. modprobe uses those to find dependencies."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-201-09",
+   "d": "201",
+   "obj": "201.2",
+   "q": "You built and installed a kernel with `make install`. The files are in /boot, but GRUB 2 does not list the new kernel. Which step is missing?",
+   "o": [
+    [
+     "Regenerate GRUB's config (update-grub or grub2-mkconfig)",
+     "Right. GRUB 2 shows only entries written into its generated config. Many distributions' make install scripts do this, but a custom setup may need it run by hand."
+    ],
+    [
+     "Run depmod -a, which adds menu entries",
+     "depmod rebuilds module dependency data and has no effect on the boot menu."
+    ],
+    [
+     "Run sysctl --system, which rescans /boot",
+     "sysctl loads kernel runtime parameters. It does not touch GRUB."
+    ],
+    [
+     "Run make mrproper in /boot",
+     "make is not run in /boot, and mrproper cleans a source tree."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-201-10",
+   "d": "201",
+   "obj": "201.2",
+   "q": "A vendor's out-of-tree storage driver stops working after every kernel update, and an admin rebuilds it by hand each time. Which tool rebuilds it automatically for each newly installed kernel?",
+   "o": [
+    [
+     "lsmod",
+     "lsmod lists currently loaded modules and does not build anything."
+    ],
+    [
+     "DKMS",
+     "Right. Dynamic Kernel Module Support keeps module sources registered and rebuilds them when a new kernel is installed. `dkms status` shows what is built for which kernel."
+    ],
+    [
+     "modinfo",
+     "modinfo prints details about a module. It never builds one."
+    ],
+    [
+     "udevadm",
+     "udevadm manages device events and rules. It does not compile modules."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-201-11",
+   "d": "201",
+   "obj": "201.2",
+   "q": "A custom kernel boots with the message \"VFS: Unable to mount root fs\". Its disk driver was built as a module and no initramfs was created. What fixes this?",
+   "o": [
+    [
+     "Run make clean and install again",
+     "Cleaning the tree does not put the driver where the kernel can reach it at boot."
+    ],
+    [
+     "Add the driver name to /etc/fstab",
+     "fstab is read after root is mounted. It cannot help the kernel find root."
+    ],
+    [
+     "Run depmod on the new kernel from the GRUB menu",
+     "depmod is a command for a running system. It cannot be done from the GRUB menu and does not load drivers."
+    ],
+    [
+     "Build an initramfs that holds the driver",
+     "Right. At boot the kernel needs the storage driver before it can read the root filesystem. Either build the driver in (y) or supply an initramfs that holds it."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-201-12",
+   "d": "201",
+   "obj": "201.3",
+   "q": "`rmmod e1000e` fails with \"Module e1000e is in use\". Which is the right next step?",
+   "o": [
+    [
+     "Check lsmod's Used by column first",
+     "Right. A module cannot be removed while another module or an open device depends on it. modprobe -r unloads dependents too, if nothing is holding them open."
+    ],
+    [
+     "Use rmmod -f, since it always works",
+     "Forced removal is rarely enabled and is dangerous. It can crash the system."
+    ],
+    [
+     "Edit /etc/fstab and reboot",
+     "fstab lists mounts. It has no relation to this module."
+    ],
+    [
+     "Run insmod e1000e again",
+     "insmod loads a module. It does not unload an in-use one."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-201-13",
+   "d": "201",
+   "obj": "201.3",
+   "q": "Why is `modprobe` preferred over `insmod` for loading a driver that needs another module first?",
+   "o": [
+    [
+     "modprobe skips signature checks that insmod enforces",
+     "Signature enforcement is a kernel setting. It is the same for both."
+    ],
+    [
+     "modprobe edits the boot loader so the module loads at boot",
+     "modprobe affects the running kernel only. Boot-time loading needs a config file such as /etc/modules-load.d/."
+    ],
+    [
+     "modprobe resolves dependencies; insmod does not",
+     "Right. insmod takes a path and loads that single .ko file, failing if its dependencies are missing. modprobe resolves them using the index made by depmod."
+    ],
+    [
+     "insmod can only load modules into running kernels older than 3.0",
+     "Both work on current kernels. The difference is dependency handling."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-201-14",
+   "d": "201",
+   "obj": "201.3",
+   "q": "You need a module option to survive reboots, for example `options usbcore autosuspend=-1`. Where do you put it?",
+   "o": [
+    [
+     "A .conf file under /etc/modprobe.d/",
+     "Right. modprobe reads every .conf file in /etc/modprobe.d/ when it loads a module. `modinfo -p usbcore` lists which parameters exist."
+    ],
+    [
+     "In /usr/src/linux/.config",
+     "That is the build configuration for compiling a kernel, not for runtime options."
+    ],
+    [
+     "In /proc/modules, using echo",
+     "/proc/modules is a read-only list of loaded modules."
+    ],
+    [
+     "In /lib/modules/<version>/modules.dep",
+     "modules.dep is generated by depmod and would be overwritten."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-201-15",
+   "d": "201",
+   "obj": "201.3",
+   "q": "The line `blacklist nouveau` is in /etc/modprobe.d/blacklist.conf, yet nouveau still loads because another module depends on it. Which line stops ANY load of it?",
+   "o": [
+    [
+     "alias nouveau off",
+     "alias maps a name to a module. It does not block loading."
+    ],
+    [
+     "options nouveau modeset=0 disable=1",
+     "options passes parameters to a module that does load, and this one has no such switch."
+    ],
+    [
+     "remove nouveau /bin/false",
+     "A remove line runs when the module is unloaded, so it does not prevent loading."
+    ],
+    [
+     "install nouveau /bin/false",
+     "Right. blacklist only stops automatic loading by alias. An install line replaces the load action itself, so nothing, including a dependency, can load the module."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-201-16",
+   "d": "201",
+   "obj": "201.3",
+   "q": "You ran `sysctl -w net.ipv4.ip_forward=1` and routing works, but after a reboot it is off again. What is the right permanent fix?",
+   "o": [
+    [
+     "Add the line to /proc/sys/net/ipv4/ip_forward",
+     "Files under /proc/sys are live kernel values and are not stored on disk."
+    ],
+    [
+     "Run depmod -a after every reboot",
+     "depmod rebuilds module dependency data and has nothing to do with sysctl settings."
+    ],
+    [
+     "A file in /etc/sysctl.d/, applied with sysctl --system",
+     "Right. sysctl -w changes only the running kernel, the same as writing to /proc/sys. Files in /etc/sysctl.d/ are read at boot, and sysctl --system applies them now."
+    ],
+    [
+     "Run sysctl -w again after each login",
+     "That works but is manual and easy to forget. It is not a fix."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-201-17",
+   "d": "201",
+   "obj": "201.3",
+   "q": "Which command shows each PCI device AND the kernel driver currently bound to it, plus the kernel modules that could handle it?",
+   "o": [
+    [
+     "dmesg --pci",
+     "dmesg has no --pci switch. It prints the kernel ring buffer."
+    ],
+    [
+     "lspci -k",
+     "Right. The -k option adds the lines \"Kernel driver in use\" and \"Kernel modules\" under each device, which helps when a driver did not bind."
+    ],
+    [
+     "lsmod -k",
+     "lsmod has no -k option. It lists loaded modules without hardware."
+    ],
+    [
+     "lsusb -t",
+     "lsusb deals with USB devices and shows no PCI devices."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-201-18",
+   "d": "201",
+   "obj": "201.3",
+   "q": "You are writing a custom udev rule for a USB drive and need the attributes (vendor, serial) of the device and its parents. Which command prints them?",
+   "o": [
+    [
+     "udevadm monitor --subsystem-match=block",
+     "monitor streams live events. It does not print the attribute chain of a device."
+    ],
+    [
+     "udevadm control --reload",
+     "This makes udev re-read the rules files, which is done after writing a rule."
+    ],
+    [
+     "lsusb -v -d /dev/sdb",
+     "lsusb works with USB bus IDs. It does not accept block device names such as /dev/sdb."
+    ],
+    [
+     "udevadm info -a -n /dev/sdb",
+     "Right. The -a option walks up the device chain and prints attributes in a form you can paste into a rule as ATTRS{...} matches."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-201-19",
+   "d": "201",
+   "obj": "201.3",
+   "q": "After a patch night, an admin runs `modprobe vfat` and gets \"FATAL: Module vfat not found in directory /lib/modules/5.14.0-362\". `uname -r` prints 5.14.0-362. What is the likely cause?",
+   "o": [
+    [
+     "The sysctl settings were not applied at boot",
+     "sysctl settings do not decide which modules exist on disk."
+    ],
+    [
+     "The update removed the running kernel's /lib/modules/5.14.0-362 directory",
+     "Right. The running kernel looks for modules in a directory matching its version. If that directory was removed or replaced, modprobe fails until the system boots the new kernel."
+    ],
+    [
+     "vfat was blacklisted in /etc/modprobe.d/ by an earlier admin",
+     "A blacklisted module would not give a 'not found in directory' message."
+    ],
+    [
+     "The udev rules are in the wrong directory under /etc/",
+     "Missing rules cannot make modprobe lose a module file."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-201-20",
+   "d": "201",
+   "obj": "201.3",
+   "q": "A newly installed module will not load with modprobe, and you want to know why. Which TWO commands give the most useful clues? (Choose two.)",
+   "o": [
+    [
+     "lsusb",
+     "It lists USB devices only and says nothing about why a module refused to load."
+    ],
+    [
+     "dmesg | tail",
+     "Right. The kernel logs the reason a load failed, such as an unknown symbol or a version mismatch, in the ring buffer that dmesg prints."
+    ],
+    [
+     "cat /etc/fstab",
+     "fstab lists filesystems to mount. It holds no module information."
+    ],
+    [
+     "swapon --show",
+     "It lists swap areas, which is unrelated to module loading."
+    ],
+    [
+     "modinfo <module>",
+     "Right. It shows the module's depends list, parameters and vermagic (the kernel version it was built for), which reveals a mismatch."
+    ]
+   ],
+   "a": [
+    1,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "l2-202-01",
+   "d": "202",
+   "obj": "202.1",
+   "q": "You want to change one setting of the vendor unit /usr/lib/systemd/system/chronyd.service without editing the packaged file, so a package update will not undo it. What is the cleanest way?",
+   "o": [
+    [
+     "Edit the file in /usr/lib/systemd/system/ and mark it read-only",
+     "A package update may replace it. Locking it leads to failed or skipped updates."
+    ],
+    [
+     "Copy the setting into /etc/inittab",
+     "systemd does not read /etc/inittab for service settings."
+    ],
+    [
+     "systemctl edit chronyd.service (a drop-in file)",
+     "Right. A drop-in override merges with the vendor unit and survives updates. The file lives in /etc/systemd/system/, which has priority over /usr/lib/systemd/system/."
+    ],
+    [
+     "Add the setting to /run/systemd/ and reboot",
+     "/run is temporary memory-backed storage. Its contents are lost at every reboot."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-202-02",
+   "d": "202",
+   "obj": "202.1",
+   "q": "After hand-editing a unit file under /etc/systemd/system/, systemctl warns that the unit file changed on disk. What do you run before restarting the service?",
+   "o": [
+    [
+     "systemctl daemon-reload",
+     "Right. systemd keeps unit definitions in memory. daemon-reload tells it to re-read changed unit files so the restart uses the new content."
+    ],
+    [
+     "systemctl isolate reload.target",
+     "isolate switches the active target. There is no reload.target for this."
+    ],
+    [
+     "telinit 1",
+     "telinit 1 asks for single-user (rescue) mode. It does not make systemd re-read unit files."
+    ],
+    [
+     "systemd-delta --reload",
+     "systemd-delta lists overridden files and does not reload anything."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-202-03",
+   "d": "202",
+   "obj": "202.1",
+   "q": "Which command lists unit files that are overridden, extended or masked compared with the vendor defaults, so you can audit local changes?",
+   "o": [
+    [
+     "systemctl get-default",
+     "It prints the default target only."
+    ],
+    [
+     "systemctl list-sockets",
+     "It lists socket units and their listening addresses."
+    ],
+    [
+     "journalctl --verify",
+     "It checks journal file integrity. It does not compare unit files."
+    ],
+    [
+     "systemd-delta",
+     "Right. systemd-delta compares /etc and /run with /usr/lib and shows which files are [EQUIVALENT], [OVERRIDDEN], [EXTENDED] or [MASKED]."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-202-04",
+   "d": "202",
+   "obj": "202.1",
+   "q": "A server must always boot to the text console, never the graphical login, even after upgrades. Which command sets that on a systemd machine?",
+   "o": [
+    [
+     "systemctl isolate multi-user.target",
+     "isolate changes only the running system, and the change is lost at the next boot."
+    ],
+    [
+     "systemctl mask multi-user.target",
+     "Masking the text target would block it from ever starting."
+    ],
+    [
+     "systemctl set-default multi-user.target",
+     "Right. set-default changes the symlink /etc/systemd/system/default.target. multi-user.target is the text-mode multi-user state, roughly SysV runlevel 3."
+    ],
+    [
+     "systemctl set-default graphical.target",
+     "That makes the graphical login the default, which is the opposite of the goal."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-202-05",
+   "d": "202",
+   "obj": "202.1",
+   "q": "On a Debian system that still uses SysV init, a new script /etc/init.d/myapp must start at boot. Which command creates the rc symlinks?",
+   "o": [
+    [
+     "update-rc.d myapp defaults",
+     "Right. update-rc.d makes the S (start) and K (kill) links in the /etc/rc?.d/ directories. On Red Hat style SysV systems the equivalent is chkconfig myapp on."
+    ],
+    [
+     "chkconfig --add /etc/rc.d",
+     "chkconfig takes a service name and is a Red Hat tool. This command has the wrong argument."
+    ],
+    [
+     "telinit myapp defaults",
+     "telinit changes runlevels. It does not take a service name."
+    ],
+    [
+     "systemctl daemon-reload",
+     "That is for systemd unit files. It does not create SysV links."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-202-06",
+   "d": "202",
+   "obj": "202.1",
+   "q": "In a systemd unit, `Requires=db.service` is set but `After=db.service` is not. What is the result at boot?",
+   "o": [
+    [
+     "The unit never starts, because both lines are required together",
+     "Systemd accepts either line alone. They do different jobs."
+    ],
+    [
+     "Both start in parallel; Requires sets no order",
+     "Right. Requires= declares a dependency, and After= sets ordering. Without After=, systemd starts the two units in parallel, so the app may start before the database is ready."
+    ],
+    [
+     "db.service is started only if it is enabled",
+     "Requires= starts the named unit even if it is not enabled."
+    ],
+    [
+     "The unit waits until db.service has fully started",
+     "That needs After=. Requires= alone does not wait."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-202-07",
+   "d": "202",
+   "obj": "202.2",
+   "q": "After a bad edit to /etc/fstab, the server boots into emergency mode with \"Give root password for maintenance\". The root filesystem is read-only. What do you do first to fix the file?",
+   "o": [
+    [
+     "Run fsck on the mounted root filesystem",
+     "Checking a mounted filesystem is unsafe, and the filesystem is not the issue."
+    ],
+    [
+     "Run grub-install /dev/sda to rewrite the boot loader",
+     "The boot loader loaded fine, since you are already in the OS. The problem is the fstab entry."
+    ],
+    [
+     "Log in, remount / read-write, fix fstab, run mount -a",
+     "Right. Emergency mode mounts root read-only and starts almost nothing. Remount it read-write so you can correct the faulty line, then test it with mount -a."
+    ],
+    [
+     "Run systemctl isolate graphical.target",
+     "The system cannot start the graphical state until fstab is fixed."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-202-08",
+   "d": "202",
+   "obj": "202.2",
+   "q": "You forgot the root password on a RHEL-type server and have console access. Which is the standard recovery method?",
+   "o": [
+    [
+     "Boot normally and use sudo passwd root without a password",
+     "Without a working login, you have no sudo rights."
+    ],
+    [
+     "Add rd.break to the GRUB entry, then chroot and run passwd",
+     "Right. rd.break stops the boot inside the initramfs before the real root starts. You then change the password and create /.autorelabel so SELinux labels are fixed."
+    ],
+    [
+     "Delete /etc/shadow and reboot",
+     "Removing shadow breaks every account and is not a supported recovery."
+    ],
+    [
+     "Run systemctl rescue from the login prompt",
+     "You are not logged in, and rescue mode would also ask for the root password."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-202-09",
+   "d": "202",
+   "obj": "202.2",
+   "q": "What is the difference between systemd's rescue.target and emergency.target?",
+   "o": [
+    [
+     "Rescue mode runs without a root password and emergency asks for one",
+     "Both normally ask for the root password, unless it is locked."
+    ],
+    [
+     "Emergency starts networking and rescue does not",
+     "Neither one brings up the network by default. Emergency is the more minimal mode."
+    ],
+    [
+     "They are the same, and the names depend on the distribution",
+     "They are two different targets with different amounts of the system started."
+    ],
+    [
+     "Rescue is fuller; emergency mounts only root, read-only",
+     "Right. Rescue mode is a single-user environment with the filesystems mounted. Emergency mode is the minimal shell used when even mounting fails."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-202-10",
+   "d": "202",
+   "obj": "202.2",
+   "q": "A new UEFI server uses GRUB 2. Where does the boot loader's EFI program live, and how is that partition usually mounted?",
+   "o": [
+    [
+     "The ESP (FAT32), usually at /boot/efi",
+     "Right. UEFI firmware reads boot programs from the ESP, a small FAT partition. Linux typically mounts it at /boot/efi, and GRUB's files live under EFI/<distro>/."
+    ],
+    [
+     "In /boot/grub/stage1 on an ext4 root",
+     "That is GRUB Legacy's layout, and UEFI cannot read ext4 itself."
+    ],
+    [
+     "In the initramfs, loaded by the kernel",
+     "The initramfs is loaded after the boot loader runs, so it cannot be where it lives."
+    ],
+    [
+     "In the first 512 bytes of the disk, the MBR",
+     "That is how legacy BIOS boots. UEFI loads files from the ESP."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-202-11",
+   "d": "202",
+   "obj": "202.2",
+   "q": "After cloning a disk to new hardware, the UEFI firmware shows no entry for Linux, although the ESP holds EFI/rocky/shimx64.efi. Which tool adds a boot entry from within Linux?",
+   "o": [
+    [
+     "grub-mkconfig, which writes entries into NVRAM",
+     "grub-mkconfig writes grub.cfg only. It does not edit firmware settings."
+    ],
+    [
+     "mkinitrd, which registers the loader with UEFI",
+     "mkinitrd builds an initial RAM disk. It does not touch firmware."
+    ],
+    [
+     "fdisk -l, which rebuilds the boot menu",
+     "fdisk -l only lists partitions."
+    ],
+    [
+     "efibootmgr, which creates a boot entry",
+     "Right. efibootmgr edits the firmware's boot entries stored in NVRAM. -v lists them, and -o changes the order."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-202-12",
+   "d": "202",
+   "obj": "202.2",
+   "q": "A server stops at a `grub rescue>` prompt with \"error: unknown filesystem\". Which first step is sensible at this prompt?",
+   "o": [
+    [
+     "Run apt install --reinstall grub-efi-amd64",
+     "The rescue shell has no package manager."
+    ],
+    [
+     "Type reboot -f to force it to continue",
+     "There is no such force option, and rebooting would return to the same prompt."
+    ],
+    [
+     "ls to find /boot/grub, then set root and prefix",
+     "Right. The rescue shell has only a few commands. After finding the right partition, set root and prefix, run insmod normal and then normal. Once booted, reinstall GRUB."
+    ],
+    [
+     "Run systemctl rescue to enter rescue mode",
+     "systemd is not running yet, so systemctl does not exist at this stage."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-202-13",
+   "d": "202",
+   "obj": "202.2",
+   "q": "A BIOS-boot Linux server's MBR was overwritten by another tool, and the machine no longer boots. From a live USB, which sequence repairs GRUB?",
+   "o": [
+    [
+     "Run grub-install /dev/sda1 from the live USB without a chroot",
+     "That would install the live system's GRUB files and target a partition, not the disk's MBR."
+    ],
+    [
+     "Chroot into the installed system and run grub-install",
+     "Right. Chroot into the installed system so grub-install uses its files, then write GRUB to the MBR of the boot disk and regenerate the config if needed."
+    ],
+    [
+     "Run mkswap /dev/sda to rebuild the boot sector",
+     "mkswap formats swap space and would destroy data."
+    ],
+    [
+     "Run efibootmgr -c on the live USB",
+     "efibootmgr is for UEFI NVRAM entries, and this machine boots with BIOS."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-202-14",
+   "d": "202",
+   "obj": "202.2",
+   "q": "A server powers on, shows the firmware logo and then prints \"No bootable device\". No GRUB menu appears. Which stage failed?",
+   "o": [
+    [
+     "No boot loader was found by the firmware",
+     "Right. Nothing was handed control, so the problem is before GRUB: a missing or damaged boot sector or ESP entry, a wrong boot order, or an absent disk."
+    ],
+    [
+     "The kernel could not mount the root filesystem",
+     "That message appears after GRUB has already loaded the kernel."
+    ],
+    [
+     "systemd failed to reach the default target",
+     "systemd starts long after the boot loader, so this would show systemd messages."
+    ],
+    [
+     "The initramfs lacked the storage driver",
+     "That also occurs after GRUB and the kernel are loaded."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-202-15",
+   "d": "202",
+   "obj": "202.2",
+   "q": "During boot of a server with an ext4 root, the console shows \"UNEXPECTED INCONSISTENCY; RUN fsck MANUALLY\" and drops to a shell. What is the correct action?",
+   "o": [
+    [
+     "Ignore it and mount -o remount,rw / to carry on",
+     "Mounting damaged metadata read-write can make corruption worse."
+    ],
+    [
+     "Run mkfs.ext4 on the root device to start clean",
+     "mkfs would erase everything on it."
+    ],
+    [
+     "Run fsck on the unmounted root, then reboot",
+     "Right. The automatic check found errors it would not fix safely. Run fsck by hand on the unmounted or read-only device, answer the prompts or use -y, then reboot."
+    ],
+    [
+     "Run grub-install to repair the filesystem",
+     "grub-install writes the boot loader. It does not repair filesystems."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-202-16",
+   "d": "202",
+   "obj": "202.3",
+   "q": "A PXELINUX client with MAC address 52:54:00:ab:cd:ef asks TFTP for its configuration. Which file name does it try FIRST?",
+   "o": [
+    [
+     "pxelinux.cfg/01-52-54-00-ab-cd-ef",
+     "Right. PXELINUX tries a file named with the ARP type 01, then the MAC in lowercase with dashes. Next come the IP address in hex, shorter and shorter prefixes of it, and finally 'default'."
+    ],
+    [
+     "pxelinux.cfg/default",
+     "default is the last file tried, used when nothing more specific exists."
+    ],
+    [
+     "isolinux/isolinux.cfg",
+     "That is the configuration for ISOLINUX on optical media, not for network boot."
+    ],
+    [
+     "pxelinux.cfg/52-54-00-ab-cd-ef",
+     "PXELINUX does use dashes, but the name must start with the ARP type prefix 01-. Without it the file is not found first."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-202-17",
+   "d": "202",
+   "obj": "202.3",
+   "q": "You want a bootable Linux ISO that can also be copied with dd to a USB stick and boot there. Which file is used with xorriso/mkisofs for a hybrid MBR?",
+   "o": [
+    [
+     "pxelinux.0",
+     "pxelinux.0 is the network boot loader that PXE clients download."
+    ],
+    [
+     "isohdpfx.bin",
+     "Right. isohdpfx.bin is the SYSLINUX hybrid MBR image (passed with -isohybrid-mbr). It lets the same ISO boot from CD or from a block device such as a USB stick."
+    ],
+    [
+     "isolinux.cfg",
+     "isolinux.cfg holds the boot menu settings and does not make an ISO hybrid."
+    ],
+    [
+     "efiboot.img",
+     "efiboot.img is the FAT image holding the EFI boot files in the ISO, not the hybrid MBR."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-202-18",
+   "d": "202",
+   "obj": "202.3",
+   "q": "Which pairing of SYSLINUX family tools and targets is correct?",
+   "o": [
+    [
+     "extlinux for ISO 9660, syslinux for network boot",
+     "Network boot uses PXELINUX, and ISO 9660 uses ISOLINUX."
+    ],
+    [
+     "syslinux for ISO 9660, extlinux for FAT, isolinux for ext4",
+     "This swaps the roles. Each tool matches the target filesystem in the first answer."
+    ],
+    [
+     "isolinux for FAT USB sticks and extlinux for CD-ROMs",
+     "Both roles are reversed here."
+    ],
+    [
+     "syslinux: FAT; extlinux: ext2/3/4; isolinux: ISO 9660",
+     "Right. All share the same menu and config format but differ in the filesystem they install to. PXELINUX is the network variant."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-202-19",
+   "d": "202",
+   "obj": "202.3",
+   "q": "A PXE server boots BIOS clients fine with pxelinux.0, but new UEFI clients fail to start from the network. What does the DHCP/TFTP setup need?",
+   "o": [
+    [
+     "A larger TFTP block size for UEFI clients",
+     "Block size tuning does not make a BIOS file run on UEFI."
+    ],
+    [
+     "An initramfs added to the DHCP lease",
+     "DHCP does not carry an initramfs. It sends addresses and boot file names."
+    ],
+    [
+     "Renaming pxelinux.0 to bootx64.efi on the TFTP server",
+     "A rename does not turn BIOS code into an EFI executable."
+    ],
+    [
+     "A separate EFI boot file, such as uefi/shim.efi",
+     "Right. pxelinux.0 is built for BIOS. UEFI clients need an EFI program, and DHCP can choose which file to offer by the client architecture (option 93)."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-202-20",
+   "d": "202",
+   "obj": "202.3",
+   "q": "Which description best matches systemd-boot?",
+   "o": [
+    [
+     "A PXE server that serves TFTP files",
+     "It is a local boot manager, not a network service."
+    ],
+    [
+     "The standard boot loader for ARM single-board computers",
+     "That describes U-Boot."
+    ],
+    [
+     "A UEFI boot manager with entries on the ESP",
+     "Right. systemd-boot (formerly gummiboot) is installed with bootctl install. It cannot boot BIOS systems, and U-Boot is a different loader used mostly on ARM and embedded boards."
+    ],
+    [
+     "A BIOS boot loader that writes to the MBR",
+     "systemd-boot requires UEFI and does not use the MBR."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-203-01",
+   "d": "203",
+   "obj": "203.1",
+   "q": "Why do admins put UUID=... instead of /dev/sdb1 in /etc/fstab?",
+   "o": [
+    [
+     "A UUID is required for every filesystem type",
+     "Device names and labels also work. UUIDs are only the safer choice."
+    ],
+    [
+     "Device letters can change, but the UUID does not",
+     "Right. blkid prints each filesystem's UUID. Mounting by UUID keeps the right data on the right mount point even when /dev/sdX letters are reassigned."
+    ],
+    [
+     "UUIDs make the filesystem mount faster than device names",
+     "Both methods take the same time. The benefit is stability, not speed."
+    ],
+    [
+     "A UUID encrypts the mount so other users cannot read it",
+     "A UUID is only an identifier and gives no protection."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-203-02",
+   "d": "203",
+   "obj": "203.1",
+   "q": "An /etc/fstab line reads: `UUID=7c1e-... /data xfs defaults 0 2`. What does the final 2 mean?",
+   "o": [
+    [
+     "fsck order: it is checked after the root filesystem",
+     "Right. The last field is the pass number. 1 is for root, 2 for other filesystems checked after it, and 0 means skip. Note that XFS does not actually need fsck."
+    ],
+    [
+     "It is the dump priority for backups",
+     "Dump frequency is the fifth field (the 0), not the last one."
+    ],
+    [
+     "The filesystem is mounted read-only and checked twice",
+     "Read-only needs the ro option. The pass number has no such meaning."
+    ],
+    [
+     "Two copies of the filesystem are kept",
+     "fstab has no mirroring option. It only describes mounts."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-203-03",
+   "d": "203",
+   "obj": "203.1",
+   "q": "A server has an extra USB data disk listed in fstab. When the disk is unplugged, the server hangs at boot and drops to emergency mode. Which option avoids that?",
+   "o": [
+    [
+     "Add the nofail option to that fstab line",
+     "Right. systemd treats a failed mount as a failed dependency of local-fs.target. nofail makes the mount optional; x-systemd.device-timeout= can shorten the wait."
+    ],
+    [
+     "Set the pass field to 0 so fsck skips it",
+     "That only skips fsck. The mount is still required."
+    ],
+    [
+     "Add noatime, which skips missing devices",
+     "noatime stops access-time updates and does nothing for absent devices."
+    ],
+    [
+     "Add the sync option so writes are immediate",
+     "sync forces writes to be immediate. It does not change how a missing disk is handled."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-203-04",
+   "d": "203",
+   "obj": "203.1",
+   "q": "Put these steps in the correct order to add a 2 GB swap FILE: (a) mkswap, (b) swapon, (c) create the file with fallocate -l 2G, (d) chmod 600. Which order is right?",
+   "o": [
+    [
+     "c, a, b, d",
+     "The permission change should come before swapon, and swapon complains about insecure permissions otherwise."
+    ],
+    [
+     "a, c, d, b",
+     "mkswap needs the file to exist first."
+    ],
+    [
+     "d, c, b, a",
+     "chmod cannot be done on a file that does not exist, and swapon needs the swap signature first."
+    ],
+    [
+     "c, d, a, b",
+     "Right. Create the file, restrict it to root with chmod 600 (swapon warns about open permissions), format it with mkswap, then enable it. Add a line to /etc/fstab to keep it after reboot."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-203-05",
+   "d": "203",
+   "obj": "203.1",
+   "q": "A server has two swap areas: /dev/nvme0n1p3 with `pri=10` and /dev/sdb2 with `pri=1` in fstab. How does the kernel use them?",
+   "o": [
+    [
+     "It alternates between them evenly",
+     "That happens only when priorities are equal."
+    ],
+    [
+     "It fills the higher-priority area (pri=10) first",
+     "Right. Swap areas with different priorities are used in order from highest to lowest. Areas with equal priority are used round-robin."
+    ],
+    [
+     "It uses only the first one listed in swapon --show",
+     "Position in the list does not decide, and the second area is used when the first is full."
+    ],
+    [
+     "It uses the lowest number first",
+     "Higher numbers mean higher priority."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-203-06",
+   "d": "203",
+   "obj": "203.1",
+   "q": "You want systemd to mount /data/backup with a native unit instead of an fstab line. What must the unit file name be?",
+   "o": [
+    [
+     "backup.mount",
+     "The name must contain the whole path, not just the last part."
+    ],
+    [
+     "data-backup.service",
+     "A mount is a .mount unit, not a .service unit."
+    ],
+    [
+     "data-backup.mount",
+     "Right. A mount unit's name must be the mount path with slashes turned into dashes and no leading slash. `systemd-escape -p --suffix=mount /data/backup` prints it."
+    ],
+    [
+     "data.backup.mount",
+     "Dots are not used for path separators. They would appear as a different, literal part."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-203-07",
+   "d": "203",
+   "obj": "203.1",
+   "q": "Which file or view shows exactly what is mounted right now, according to the kernel, including options set by a remount?",
+   "o": [
+    [
+     "/etc/auto.master",
+     "That file belongs to autofs and lists map files."
+    ],
+    [
+     "/proc/partitions",
+     "It lists partitions the kernel knows, whether they are mounted or not."
+    ],
+    [
+     "/proc/mounts",
+     "Right. /proc/mounts is generated by the kernel for the current mount namespace. On modern systems /etc/mtab is just a link to it, while fstab only says what should be mounted."
+    ],
+    [
+     "/etc/fstab",
+     "fstab holds the boot-time plan, which can differ from the live state."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-203-08",
+   "d": "203",
+   "obj": "203.1",
+   "q": "`umount /srv` fails with \"target is busy\". Which command shows which processes keep the mount in use?",
+   "o": [
+    [
+     "fuser -vm /srv",
+     "Right. A process whose working directory or open file is inside the mount blocks unmounting. Once you know who it is, stop it or move it away, then unmount."
+    ],
+    [
+     "tune2fs -l /srv",
+     "tune2fs reads ext superblock settings and does not list processes."
+    ],
+    [
+     "swapoff /srv",
+     "swapoff disables swap areas and does nothing for a mounted filesystem."
+    ],
+    [
+     "blkid -p /srv",
+     "blkid prints filesystem attributes for devices, not users of a mount point."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-203-09",
+   "d": "203",
+   "obj": "203.2",
+   "q": "An ext4 data volume reserves 5% of its blocks for root, which wastes space on a 4 TB volume used only by an application. Which command lowers the reserve to 1%?",
+   "o": [
+    [
+     "tune2fs -j /dev/sdb1",
+     "-j adds a journal. It does not change the reserve."
+    ],
+    [
+     "tune2fs -m 1 /dev/sdb1",
+     "Right. -m sets the reserved percentage. tune2fs -l shows the current block counts. Leave some reserve so the system can keep working when the volume fills."
+    ],
+    [
+     "mkswap -m 1 /dev/sdb1",
+     "mkswap prepares swap space and would destroy the filesystem."
+    ],
+    [
+     "e2fsck -m 1 /dev/sdb1",
+     "e2fsck has no -m option for reserved blocks."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-203-10",
+   "d": "203",
+   "obj": "203.2",
+   "q": "You must convert an ext2 filesystem to ext3 without losing data. What do you do?",
+   "o": [
+    [
+     "xfs_growfs /dev/sdb1",
+     "That grows XFS filesystems and has nothing to do with ext2."
+    ],
+    [
+     "mkfs.ext3 /dev/sdb1 over the existing data",
+     "mkfs makes a new, empty filesystem and erases the old one."
+    ],
+    [
+     "debugfs -w /dev/sdb1 and delete the superblock",
+     "Deleting the superblock destroys the filesystem."
+    ],
+    [
+     "tune2fs -j /dev/sdb1 (adds a journal)",
+     "Right. ext3 is ext2 plus a journal. Adding one with tune2fs -j converts it without reformatting, and the mount type is changed to ext3 (or ext4)."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-203-11",
+   "d": "203",
+   "obj": "203.2",
+   "q": "A team wants to shrink a mounted XFS filesystem by 100 GB to free space for another volume. What is true?",
+   "o": [
+    [
+     "Run xfs_repair -s 100G on the unmounted device",
+     "xfs_repair fixes damage. It has no size option and does not shrink anything."
+    ],
+    [
+     "Run resize2fs, which supports XFS online shrinking",
+     "resize2fs works on ext filesystems, not XFS."
+    ],
+    [
+     "XFS cannot shrink; use xfsdump, remake and xfsrestore",
+     "Right. XFS can only be grown (xfs_growfs). Reducing size means a backup, new smaller filesystem and restore."
+    ],
+    [
+     "Run xfs_growfs -D with a smaller size on the mounted filesystem",
+     "xfs_growfs only grows. It rejects a smaller size."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-203-12",
+   "d": "203",
+   "obj": "203.2",
+   "q": "An unmounted XFS volume will not mount, and the log is not replayable. Which tool performs the repair?",
+   "o": [
+    [
+     "fsck.xfs -a on the device",
+     "fsck.xfs exits without checking anything. It exists only to satisfy boot scripts."
+    ],
+    [
+     "xfs_repair on the unmounted device",
+     "Right. XFS has no real fsck (fsck.xfs does nothing). xfs_repair works on an unmounted filesystem, and -L (zero the log) is a last resort that can lose recent changes."
+    ],
+    [
+     "e2fsck -f on the device",
+     "e2fsck is for ext2/3/4 and will not recognize XFS."
+    ],
+    [
+     "btrfs check --repair on the device",
+     "That is for Btrfs, not XFS."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-203-13",
+   "d": "203",
+   "obj": "203.2",
+   "q": "You must take a read-only snapshot of the Btrfs subvolume /srv/web before an upgrade. Which command does it?",
+   "o": [
+    [
+     "cp -a --reflink=never /srv/web /srv/web-before",
+     "That makes a full copy, not a snapshot, and costs time and space."
+    ],
+    [
+     "btrfs scrub start /srv/web",
+     "Scrub verifies checksums and repairs data from copies. It makes no snapshot."
+    ],
+    [
+     "btrfs filesystem resize -r /srv/web",
+     "That resizes a filesystem. -r is not a read-only flag there."
+    ],
+    [
+     "btrfs subvolume snapshot -r /srv/web /snap1",
+     "Right. A snapshot is a subvolume that shares data with the source until changes are made. The -r flag makes it read-only, so it stays a safe restore point."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-203-14",
+   "d": "203",
+   "obj": "203.2",
+   "q": "A disk's SMART status should be watched all the time and an e-mail sent when a pre-failure attribute trips. Which part does that?",
+   "o": [
+    [
+     "smartd, configured in /etc/smartd.conf",
+     "Right. smartd is the daemon of the smartmontools package. smartctl is the command you run by hand, for example smartctl -H /dev/sda for the health summary."
+    ],
+    [
+     "hdparm -I, which watches SMART continuously",
+     "hdparm -I prints drive identification once."
+    ],
+    [
+     "badblocks -n, which mails results",
+     "badblocks scans for bad sectors and does not send mail."
+    ],
+    [
+     "smartctl -t short, which sends mail after a test",
+     "smartctl starts tests on demand and does not run in the background to send mail."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-203-15",
+   "d": "203",
+   "obj": "203.2",
+   "q": "You want to turn an existing, unmounted ext4 partition into Btrfs in place, with the option to roll back. Which tool?",
+   "o": [
+    [
+     "mkfs.btrfs",
+     "That creates a new, empty filesystem and erases the old data."
+    ],
+    [
+     "zpool create",
+     "That is a ZFS command for creating pools and does not convert ext4."
+    ],
+    [
+     "btrfs-convert",
+     "Right. btrfs-convert changes ext2/3/4 into Btrfs and keeps the old image so you can undo it with -r until you delete that saved image. Always have a backup."
+    ],
+    [
+     "tune2fs -O btrfs",
+     "tune2fs only edits ext filesystem features and cannot produce Btrfs."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-203-16",
+   "d": "203",
+   "obj": "203.3",
+   "q": "autofs has this line in /etc/auto.master: `/mnt/nfs /etc/auto.nfs --timeout=60`, and auto.nfs has `data -fstype=nfs4 srv1:/export/data`. What happens when a user runs `ls /mnt/nfs/data`?",
+   "o": [
+    [
+     "Mounted on first access, then unmounted after 60 s idle",
+     "Right. autofs mounts on demand under the master's mount point. The timeout is the idle time before it unmounts again."
+    ],
+    [
+     "The share is mounted at boot and stays mounted",
+     "That is the behavior of a plain fstab entry. autofs mounts on access."
+    ],
+    [
+     "Nothing happens because /mnt/nfs/data must exist beforehand",
+     "autofs creates the directory when needed."
+    ],
+    [
+     "The share is mounted read-only for 60 seconds",
+     "The timeout controls idle unmounting, not the mode."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-203-17",
+   "d": "203",
+   "obj": "203.3",
+   "q": "In an autofs map for home directories, `* -fstype=nfs4 srv1:/home/&` is used. What does the & stand for?",
+   "o": [
+    [
+     "The mount options copied from the first line of the map",
+     "Options are not repeated by &."
+    ],
+    [
+     "The name matched by the * (such as the user's name)",
+     "Right. The * matches any directory name looked up. & is replaced by that same name, so /home/alice mounts srv1:/home/alice."
+    ],
+    [
+     "Every user's home directory at the same time",
+     "Each key mounts one directory, not all of them."
+    ],
+    [
+     "The server name, srv1, written earlier in the line",
+     "The server name is written out in the line. & never refers to it."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-203-18",
+   "d": "203",
+   "obj": "203.3",
+   "q": "You create an ISO 9660 image for Linux users that must keep long file names, permissions and symbolic links. Which mkisofs option provides that?",
+   "o": [
+    [
+     "-V (volume label)",
+     "-V sets the disc's volume name. It does not store Unix permissions."
+    ],
+    [
+     "-J (Joliet)",
+     "Joliet helps Windows see long names but does not store Unix permissions or symlinks."
+    ],
+    [
+     "-b (El Torito)",
+     "That makes the disc bootable and does not keep permissions."
+    ],
+    [
+     "-R (Rock Ridge)",
+     "Right. Rock Ridge adds POSIX attributes to ISO 9660. Joliet (-J) adds long Unicode names for Windows, and El Torito (-b) makes a disc bootable."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-203-19",
+   "d": "203",
+   "obj": "203.3",
+   "q": "You ran `cryptsetup luksFormat /dev/sdb1` and entered a passphrase. What is the correct next sequence to use the volume?",
+   "o": [
+    [
+     "mkfs.ext4 /dev/sdb1 to prepare the device",
+     "Formatting the raw partition erases the LUKS header and loses the encryption."
+    ],
+    [
+     "cryptsetup luksFormat again, to unlock it",
+     "That would wipe the header and destroy access."
+    ],
+    [
+     "cryptsetup open, then mkfs on /dev/mapper/secure",
+     "Right. luksFormat only sets up the encrypted container (and erases earlier data). Opening it creates a mapped device, which you format and mount like any disk."
+    ],
+    [
+     "Mount /dev/sdb1 on /mnt, as for any partition",
+     "The raw partition holds encrypted data. It has no filesystem to mount."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-203-20",
+   "d": "203",
+   "obj": "203.3",
+   "q": "Which fstab option asks systemd to mount a filesystem on first access, like autofs, without installing autofs?",
+   "o": [
+    [
+     "x-systemd.automount",
+     "Right. It makes systemd create a .automount unit alongside the mount. The first access triggers the mount, and x-systemd.idle-timeout= can unmount it when idle."
+    ],
+    [
+     "noauto,sync",
+     "noauto only skips mounting at boot. sync forces immediate writes. Together they do not mount on access."
+    ],
+    [
+     "x-systemd.requires-mounts-for",
+     "That orders a unit after some mounts and does not cause on-demand mounting."
+    ],
+    [
+     "auto,nofail",
+     "auto is the default and nofail makes a failed mount non-fatal. Neither is on-demand."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-204-01",
+   "d": "204",
+   "obj": "204.1",
+   "q": "A file server uses four 2 TB disks in RAID 5. About how much usable space does it have, and how many disk failures can it survive?",
+   "o": [
+    [
+     "About 8 TB usable, and it survives one failed disk",
+     "8 TB would mean no space is used for parity, which is RAID 0 behavior."
+    ],
+    [
+     "About 6 TB usable, and it survives two failed disks",
+     "The capacity is right, but RAID 5 tolerates just one failure."
+    ],
+    [
+     "About 4 TB usable, and it survives any two failed disks",
+     "That describes RAID 6 or RAID 10 reasoning, not RAID 5."
+    ],
+    [
+     "About 6 TB usable, and it survives one failed disk",
+     "Right. RAID 5 spends one disk's worth of space on parity, so (4 - 1) x 2 TB = 6 TB. Losing a second disk before the rebuild finishes loses the array."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-204-02",
+   "d": "204",
+   "obj": "204.1",
+   "q": "`cat /proc/mdstat` shows: `md0 : active raid1 sdb1[0] sdc1[1](F)` and `[2/1] [U_]`. What does this mean?",
+   "o": [
+    [
+     "The array is resyncing, and it will finish by itself",
+     "A resync shows a progress line with a percentage. This line shows a failed member."
+    ],
+    [
+     "Degraded: sdc1 failed, only sdb1 serves data",
+     "Right. (F) marks a failed member, and [U_] shows one member up and one missing. Replace the disk and re-add it to start a rebuild."
+    ],
+    [
+     "The mirror is healthy and sdc1 is a hot spare",
+     "A spare is marked (S), and a healthy two-disk mirror would read [UU]."
+    ],
+    [
+     "md0 is inactive and has to be assembled",
+     "The first line says active."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-204-03",
+   "d": "204",
+   "obj": "204.1",
+   "q": "In the degraded RAID 1 above, the failed member is /dev/sdc1 and a new partition /dev/sdd1 is ready (same size, type fd). Which commands replace it?",
+   "o": [
+    [
+     "mdadm --zero-superblock /dev/sdb1, then add sdd1",
+     "Zeroing the superblock on the good disk would erase its array membership."
+    ],
+    [
+     "mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb1 /dev/sdd1",
+     "--create builds a new array and can overwrite the existing data's metadata."
+    ],
+    [
+     "mkfs.ext4 /dev/sdd1, then mount it on top of md0",
+     "A new filesystem on the replacement does not put it in the array."
+    ],
+    [
+     "mdadm /dev/md0 --remove /dev/sdc1, then --add /dev/sdd1",
+     "Right. Remove the failed member from the array, then add the new partition. md starts the rebuild at once, and /proc/mdstat shows progress."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-204-04",
+   "d": "204",
+   "obj": "204.1",
+   "q": "After a reboot, the RAID array shows up as /dev/md127 instead of /dev/md0, and fstab uses /dev/md0. What is the usual fix?",
+   "o": [
+    [
+     "Put an ARRAY line in mdadm.conf, update initramfs",
+     "Right. Without a matching ARRAY entry, the array is assembled under a generated name. Saving the scan output to /etc/mdadm.conf (or /etc/mdadm/mdadm.conf) fixes the name."
+    ],
+    [
+     "Run mkswap /dev/md127 and rename the device",
+     "That would turn it into swap space and destroy the data."
+    ],
+    [
+     "Change the partition type from fd to 83 with fdisk",
+     "That is the standard Linux type and has no influence on the md device name."
+    ],
+    [
+     "Edit /proc/mdstat by hand to rename the array",
+     "/proc/mdstat is a read-only view of kernel state."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-204-05",
+   "d": "204",
+   "obj": "204.1",
+   "q": "Which command creates a two-disk mirror named /dev/md0 from /dev/sdb1 and /dev/sdc1?",
+   "o": [
+    [
+     "mdadm --assemble /dev/md0 --level=1 /dev/sdb1 /dev/sdc1",
+     "--assemble starts an existing array and does not make a new one."
+    ],
+    [
+     "mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb1 /dev/sdc1",
+     "Right. Level 1 is mirroring. --raid-devices says how many member disks the array has. Check progress in /proc/mdstat."
+    ],
+    [
+     "mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sdb1 /dev/sdc1",
+     "Level 0 is striping with no redundancy. One failed disk loses everything."
+    ],
+    [
+     "mdadm --grow /dev/md0 --level=1 /dev/sdb1 /dev/sdc1",
+     "--grow changes an existing array and requires one to exist."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-204-06",
+   "d": "204",
+   "obj": "204.1",
+   "q": "What is the purpose of partition type 0xFD (Linux raid autodetect)?",
+   "o": [
+    [
+     "It encrypts the member partitions with LUKS",
+     "Encryption is done with LUKS, not a partition type."
+    ],
+    [
+     "It marks the partition as swap space for md",
+     "Swap uses type 82."
+    ],
+    [
+     "Early kernel autodetect, for 0.90 metadata",
+     "Right. Kernel autodetect works only with 0.90 metadata. Modern setups assemble arrays with mdadm and mdadm.conf, often from the initramfs, so the type is not required."
+    ],
+    [
+     "It tells mkfs to create a RAID filesystem",
+     "mkfs does not look at partition types for this."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-204-07",
+   "d": "204",
+   "obj": "204.1",
+   "q": "A database needs an array of 6 disks that survives ANY two disks failing at the same time. Which level fits?",
+   "o": [
+    [
+     "RAID 10",
+     "If both disks of one mirror pair fail, the array is lost, so it does not guarantee any two."
+    ],
+    [
+     "RAID 6",
+     "Right. RAID 6 keeps two parity blocks per stripe, so any two disks can fail. RAID 10 can lose two disks only when they are in different mirror pairs."
+    ],
+    [
+     "RAID 5",
+     "RAID 5 survives only one failed disk."
+    ],
+    [
+     "RAID 0",
+     "RAID 0 has no redundancy at all."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-204-08",
+   "d": "204",
+   "obj": "204.2",
+   "q": "You want to measure raw sequential read speed of /dev/sda, without a filesystem, to compare with a replacement disk. Which command?",
+   "o": [
+    [
+     "tune2fs -l /dev/sda",
+     "tune2fs shows ext superblock data and not speed."
+    ],
+    [
+     "fstrim -v /dev/sda",
+     "fstrim discards unused blocks on a mounted filesystem. It measures nothing."
+    ],
+    [
+     "hdparm -tT /dev/sda",
+     "Right. -t times reads from the device, and -T times cached reads. Run it on an idle system for a fair result."
+    ],
+    [
+     "scsi_id -g /dev/sda",
+     "scsi_id prints a unique ID, not speed."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-204-09",
+   "d": "204",
+   "obj": "204.2",
+   "q": "A server with SSDs on ext4 should have unused blocks reported to the drives regularly, without the cost of the `discard` mount option. What is the standard approach?",
+   "o": [
+    [
+     "Enable fstrim.timer for weekly fstrim runs",
+     "Right. Periodic TRIM tells the SSD which blocks are free, helping wear leveling and speed. The timer avoids the continuous overhead of discard."
+    ],
+    [
+     "Add noatime and nodiratime to every mount",
+     "noatime reduces metadata writes but does not issue TRIM."
+    ],
+    [
+     "Set hdparm -d1 on each SSD to turn on DMA",
+     "The -d1 switch enables DMA for old IDE devices, and SSDs on AHCI/NVMe already use it."
+    ],
+    [
+     "Run mkswap on each SSD to reserve spare space",
+     "mkswap would turn the drive into swap space."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-204-10",
+   "d": "204",
+   "obj": "204.2",
+   "q": "Which command shows the health data of an NVMe drive, such as temperature and percentage of life used?",
+   "o": [
+    [
+     "hdparm -S /dev/nvme0",
+     "-S sets the spin-down timeout for hard disks and shows no health data."
+    ],
+    [
+     "lsblk -S /dev/nvme0",
+     "lsblk lists block devices. -S lists SCSI devices, not health data."
+    ],
+    [
+     "iscsiadm -m session /dev/nvme0",
+     "iscsiadm manages iSCSI sessions, which are network storage."
+    ],
+    [
+     "nvme smart-log /dev/nvme0",
+     "Right. nvme-cli reads the controller's SMART/health log. `nvme list` shows which NVMe devices exist."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-204-11",
+   "d": "204",
+   "obj": "204.2",
+   "q": "To use a new iSCSI SAN, the first step on the Linux client (initiator) is to ask the storage portal 192.0.2.50 which targets it offers. Which command does that?",
+   "o": [
+    [
+     "iscsid --create 192.0.2.50 --type iscsi",
+     "iscsid is the daemon. It does not take a --create option."
+    ],
+    [
+     "iscsiadm -m node --login -p 192.0.2.50",
+     "A login needs a known target name, so discovery comes first."
+    ],
+    [
+     "scsi_id -g 192.0.2.50 --whitelisted",
+     "scsi_id takes a device, not an IP address."
+    ],
+    [
+     "iscsiadm -m discovery -t st -p 192.0.2.50",
+     "Right. Discovery lists the target IQNs on the portal. Then you log in with iscsiadm -m node -T <iqn> -p <portal> --login, and the LUN appears as a new /dev/sdX."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-204-12",
+   "d": "204",
+   "obj": "204.2",
+   "q": "Why do multipath and fstab setups rely on a WWID (from scsi_id) instead of /dev/sdX names for SAN LUNs?",
+   "o": [
+    [
+     "The WWID encrypts traffic between host and array",
+     "A WWID is only an identifier."
+    ],
+    [
+     "sdX names can change, but the WWID does not",
+     "Right. A LUN reached through two paths shows up as two sd devices, and the order can change. The WWID identifies the LUN no matter which path or name is used."
+    ],
+    [
+     "The WWID doubles the throughput of the LUN",
+     "An identifier does not change speed."
+    ],
+    [
+     "sdX names are not allowed on SAN storage",
+     "They work but are not stable, which is the reason for the choice."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-204-13",
+   "d": "204",
+   "obj": "204.3",
+   "q": "`lvextend -L +10G /dev/vg0/data` succeeds, but `df -h /data` still shows the old size for the ext4 filesystem. What is missing?",
+   "o": [
+    [
+     "Rename the group with vgrename vg0 vg0-new",
+     "Renaming a group does not alter filesystem size."
+    ],
+    [
+     "Run pvresize on the volume group",
+     "pvresize resizes a physical volume. The VG already had space, since lvextend worked."
+    ],
+    [
+     "Grow the filesystem with resize2fs",
+     "Right. The LV and the filesystem inside are separate layers. After the LV is bigger, the filesystem must be grown, and ext4 can be grown while mounted."
+    ],
+    [
+     "Unmount the volume and run mkfs.ext4 on it",
+     "mkfs would erase the existing data."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-204-14",
+   "d": "204",
+   "obj": "204.3",
+   "q": "`lvextend -L +50G /dev/vg0/data` fails with \"Insufficient free space\", and `vgs` shows VFree 0. A new disk /dev/sdd is installed. What is the correct order?",
+   "o": [
+    [
+     "pvcreate, vgextend, lvextend, then resize2fs",
+     "Right. Prepare the disk as a physical volume, add it to the volume group so the pool has free extents, then extend the LV and the filesystem."
+    ],
+    [
+     "vgextend vg0 /dev/sdd first, then pvcreate",
+     "vgextend needs the disk to be a physical volume already."
+    ],
+    [
+     "lvcreate on /dev/sdd, then lvextend the volume",
+     "An LV is made from a VG's extents, not from a raw disk."
+    ],
+    [
+     "mkfs on /dev/sdd, then add it to fstab as /data",
+     "That makes a separate filesystem and does not enlarge /data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-204-15",
+   "d": "204",
+   "obj": "204.3",
+   "q": "You must shrink an ext4 logical volume with data on it. Which order is correct?",
+   "o": [
+    [
+     "vgreduce first, then lvreduce",
+     "vgreduce removes a physical volume from a group, which is a different task."
+    ],
+    [
+     "lvreduce first, then resize2fs",
+     "The LV would be cut below the filesystem's size and data would be lost."
+    ],
+    [
+     "resize2fs on the mounted filesystem, then lvreduce",
+     "ext4 cannot be shrunk while mounted."
+    ],
+    [
+     "Unmount, fsck, resize2fs smaller, then lvreduce",
+     "Right. The filesystem must be made smaller first. If lvreduce comes first, it cuts off the end of the filesystem and destroys data. lvreduce -r automates the safe order."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-204-16",
+   "d": "204",
+   "obj": "204.3",
+   "q": "You created a 5 GB snapshot of /dev/vg0/data with `lvcreate -s -n snap1 -L 5G /dev/vg0/data`. During the backup, 7 GB of data changes on the origin. What happens?",
+   "o": [
+    [
+     "The snapshot grows automatically without limit",
+     "It grows only if autoextend is configured, and that is limited by free space in the VG."
+    ],
+    [
+     "The snapshot fills up and becomes invalid",
+     "Right. A classic LVM snapshot stores the old versions of changed blocks. If that space runs out, the snapshot is dropped. Size it for the expected change, or use lvextend to grow it in time."
+    ],
+    [
+     "The origin volume becomes read-only",
+     "The origin stays usable. The snapshot is what is lost."
+    ],
+    [
+     "The snapshot is merged into the origin",
+     "Merging happens only if you run lvconvert --merge."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-204-17",
+   "d": "204",
+   "obj": "204.3",
+   "q": "A disk from another server holding VG vg_old is attached here. `vgs` shows it, but the LVs have no /dev/mapper entries. Which command makes them available?",
+   "o": [
+    [
+     "vgrename vg_old vg0",
+     "Renaming does not activate volumes."
+    ],
+    [
+     "lvm.conf reload with systemctl restart lvm2",
+     "lvm.conf does not activate groups, and there is no such restart step."
+    ],
+    [
+     "vgchange -ay vg_old",
+     "Right. -a y activates the logical volumes of the group, creating the device nodes under /dev/mapper/ (and /dev/vg_old/)."
+    ],
+    [
+     "pvcreate /dev/sdb1",
+     "pvcreate would write a new header and destroy the existing LVM metadata."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-204-18",
+   "d": "204",
+   "obj": "204.3",
+   "q": "You are retiring /dev/sdb1, a physical volume in vg0 with data on it, and want it empty without taking the system down. Which command moves the data off it?",
+   "o": [
+    [
+     "pvmove /dev/sdb1",
+     "Right. pvmove relocates allocated extents to other physical volumes in the group while LVs stay online. Then vgreduce removes the PV from the group, and pvremove wipes its label."
+    ],
+    [
+     "pvremove /dev/sdb1",
+     "pvremove refuses while the PV is in a VG, and it does not move data."
+    ],
+    [
+     "vgreduce vg0 /dev/sdb1",
+     "If extents are still in use, vgreduce refuses, so data must be moved first."
+    ],
+    [
+     "lvremove /dev/vg0/data",
+     "lvremove deletes the logical volume and its data."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-205-01",
+   "d": "205",
+   "obj": "205.1",
+   "q": "Which `ip` command is the modern equivalent of `ifconfig eth0 192.0.2.10 netmask 255.255.255.0`?",
+   "o": [
+    [
+     "ip addr set eth0 192.0.2.10 255.255.255.0",
+     "ip addr has no set subcommand and does not take a dotted netmask."
+    ],
+    [
+     "ip link set 192.0.2.10/24 eth0",
+     "ip link manages the interface itself (up, down, MTU), not its addresses."
+    ],
+    [
+     "ip addr add 192.0.2.10/24 dev eth0",
+     "Right. ip uses CIDR notation, so 255.255.255.0 becomes /24. The change is not saved across a reboot, so persistent settings go in NetworkManager or the distribution's network files."
+    ],
+    [
+     "ip route add 192.0.2.10/24 dev eth0",
+     "ip route adds routes, and it does not give the interface an address."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-205-02",
+   "d": "205",
+   "obj": "205.1",
+   "q": "`ip addr show eth0` prints `<NO-CARRIER,BROADCAST,MULTICAST,UP>` and `state DOWN`. What does NO-CARRIER indicate?",
+   "o": [
+    [
+     "The kernel has no driver for the card",
+     "Without a driver the interface would not exist in the list."
+    ],
+    [
+     "No link signal, so check the cable or switch port",
+     "Right. UP means the admin turned the interface on. NO-CARRIER means the hardware detects no link, which is a physical or switch-side issue, not a missing IP address."
+    ],
+    [
+     "The interface was turned down with ip link set eth0 down",
+     "That would drop the UP flag. Here UP is present."
+    ],
+    [
+     "The interface has no IP address configured",
+     "A missing address does not change the carrier flag."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-205-03",
+   "d": "205",
+   "obj": "205.1",
+   "q": "`ip neigh show` lists the default gateway 192.0.2.1 as `FAILED`. What does that mean?",
+   "o": [
+    [
+     "The gateway refused the TCP connection",
+     "ARP happens below TCP. A refusal would be a different, higher-level result."
+    ],
+    [
+     "The routing table has no default route",
+     "A missing route is shown by ip route, and the neighbor entry would not exist at all."
+    ],
+    [
+     "The DNS server could not resolve the gateway's name",
+     "ARP does not use DNS."
+    ],
+    [
+     "ARP requests got no reply: a layer 2 problem",
+     "Right. The neighbor table maps IP addresses to MAC addresses. FAILED means resolution did not succeed, for example because of a cable, VLAN or switch-port fault, or a wrong subnet."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-205-04",
+   "d": "205",
+   "obj": "205.1",
+   "q": "You must join a laptop to a WPA2 wireless network from the command line. Which statement is correct?",
+   "o": [
+    [
+     "iw scans, but WPA2 needs wpa_supplicant",
+     "Right. iw talks to the wireless driver about scanning, connecting to open networks and statistics. WPA/WPA2 key handling is done by wpa_supplicant."
+    ],
+    [
+     "iw dev wlan0 scan joins the network automatically",
+     "Scanning only lists networks, and it does not connect."
+    ],
+    [
+     "iwconfig essid and key set up WPA2 fully",
+     "iwconfig only handles WEP-style keys and is deprecated, so it cannot do WPA2."
+    ],
+    [
+     "ifconfig wlan0 up is enough for WPA2",
+     "That only enables the interface and does not authenticate."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-205-05",
+   "d": "205",
+   "obj": "205.1",
+   "q": "Which command lists nearby wireless networks (SSIDs, signal, channel) using the current tools?",
+   "o": [
+    [
+     "iw dev wlan0 scan",
+     "Right. iw is the current tool for wireless drivers. iwlist wlan0 scan does the same job but is part of the old wireless-tools set."
+    ],
+    [
+     "ip neigh show wlan0",
+     "The neighbor table lists ARP entries and not wireless networks."
+    ],
+    [
+     "ip link show wlan0",
+     "It shows the interface state, not a list of networks."
+    ],
+    [
+     "iw dev wlan0 link",
+     "link shows the access point you are already connected to, not neighbors."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-205-06",
+   "d": "205",
+   "obj": "205.1",
+   "q": "Which command shows per-interface packet counters including errors and drops for eth0?",
+   "o": [
+    [
+     "ip neigh show dev eth0",
+     "That lists ARP entries and not traffic counters."
+    ],
+    [
+     "ip route show dev eth0",
+     "That lists routes using the interface."
+    ],
+    [
+     "ip addr show eth0",
+     "That shows addresses and flags, without counters."
+    ],
+    [
+     "ip -s link show eth0",
+     "Right. -s adds statistics. Rising errors, dropped or overruns counters point to cable, duplex or driver trouble."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-205-07",
+   "d": "205",
+   "obj": "205.2",
+   "q": "Hosts on 10.20.0.0/16 are reachable through the router 192.0.2.254, which is on the local subnet. Which command adds that route?",
+   "o": [
+    [
+     "ip route add 192.0.2.254 via 10.20.0.0/16",
+     "The destination and gateway are swapped here."
+    ],
+    [
+     "ip route add 10.20.0.0/16 via 192.0.2.254",
+     "Right. A route needs the destination network and the next hop (via), which must be directly reachable. For a permanent route, add it in the network configuration."
+    ],
+    [
+     "ip addr add 10.20.0.0/16 via 192.0.2.254",
+     "ip addr assigns addresses to interfaces and has no via keyword."
+    ],
+    [
+     "ip neigh add 10.20.0.0/16 lladdr 192.0.2.254",
+     "The neighbor table maps IPs to MAC addresses and cannot hold routes."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-205-08",
+   "d": "205",
+   "obj": "205.2",
+   "q": "The routing table has: 10.0.0.0/8 via 192.0.2.1, 10.1.0.0/16 via 192.0.2.2 and a default route via 192.0.2.3. Which gateway is used for a packet to 10.1.5.9?",
+   "o": [
+    [
+     "192.0.2.3, since the default route is for everything",
+     "The default route is the fallback, used only when no more specific route matches."
+    ],
+    [
+     "192.0.2.1, since it is listed first",
+     "Order in the table does not decide the choice. Prefix length does."
+    ],
+    [
+     "192.0.2.2, since the /16 is the most specific match",
+     "Right. Linux chooses the route with the longest matching prefix. The /16 is longer than the /8, and the default route is used only when nothing else matches."
+    ],
+    [
+     "Traffic is split evenly between all three",
+     "Load sharing needs multipath routes, which are not configured here."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-205-09",
+   "d": "205",
+   "obj": "205.2",
+   "q": "You suspect asymmetric routing and want to know which route, interface and source address the kernel will use for a destination. Which command shows it?",
+   "o": [
+    [
+     "ip route get 10.1.5.9",
+     "Right. ip route get asks the kernel to look up one destination and prints the chosen route, gateway, device and source IP."
+    ],
+    [
+     "ip neigh get 10.1.5.9",
+     "ip neigh has no get subcommand for route lookups."
+    ],
+    [
+     "ip route flush 10.1.5.9",
+     "flush deletes routes, which is destructive."
+    ],
+    [
+     "ss -r 10.1.5.9",
+     "ss -r resolves host names in socket lists. It does not do route lookups."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-205-10",
+   "d": "205",
+   "obj": "205.2",
+   "q": "A Linux box with eth0 (192.0.2.1/24) and eth1 (198.51.100.1/24) is set as the default gateway of both networks, but traffic between them never passes. What is the likely cause?",
+   "o": [
+    [
+     "The ARP cache is too big and rejects new hosts",
+     "A large cache does not stop forwarding."
+    ],
+    [
+     "Both networks need the same netmask as /8",
+     "Netmask size is not the issue, since each interface already has a valid subnet."
+    ],
+    [
+     "The kernel needs a module named ip_route loaded",
+     "There is no such required module, and routing is built into the kernel."
+    ],
+    [
+     "IP forwarding is off; enable net.ipv4.ip_forward",
+     "Right. By default Linux does not forward packets between interfaces. Turn forwarding on, and keep it across reboots through a sysctl file. Also check that the firewall allows the forwarded traffic."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-205-11",
+   "d": "205",
+   "obj": "205.2",
+   "q": "You must record only the DNS queries to and from host 192.0.2.77 on eth0 and not resolve names to keep the capture clean. Which command?",
+   "o": [
+    [
+     "tcpdump -i eth0 -w host 192.0.2.77 udp 53",
+     "-w needs a file name, and the filter words are not valid."
+    ],
+    [
+     "tcpdump -i eth0 -nn port 80 and host 192.0.2.77",
+     "Port 80 is web traffic, not DNS."
+    ],
+    [
+     "tcpdump -i eth0 -nn host 192.0.2.77 and udp port 53",
+     "Right. -nn turns off name and port-number lookups. The filter limits the capture to that host and DNS, which uses UDP port 53 for most queries."
+    ],
+    [
+     "tcpdump -i lo -nn host 192.0.2.77 and udp port 53",
+     "lo is the loopback interface, and the traffic is on eth0."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-205-12",
+   "d": "205",
+   "obj": "205.2",
+   "q": "You want to capture a full-size packet trace on eth0 to open later in Wireshark. Which command is correct?",
+   "o": [
+    [
+     "tcpdump -nn -c 0 /tmp/trace.pcap",
+     "The file name is given without -w, so it is treated as a filter."
+    ],
+    [
+     "tcpdump -i eth0 -s 0 -w /tmp/trace.pcap",
+     "Right. -w writes raw packets to a file in pcap format, and -s 0 keeps whole packets instead of cutting them. Run captures only on networks you are authorized to monitor."
+    ],
+    [
+     "tcpdump -r /tmp/trace.pcap -i eth0",
+     "-r reads an existing file, and it is not used together with -i."
+    ],
+    [
+     "tcpdump -i eth0 > /tmp/trace.pcap",
+     "Redirecting the text output makes a text file that Wireshark cannot open as a capture."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-205-13",
+   "d": "205",
+   "obj": "205.2",
+   "q": "You have written permission to audit your own web server at 192.0.2.10. You want to see which ports an outside machine can actually reach. What is the best approach?",
+   "o": [
+    [
+     "Run ss -tlnp on the server, since it proves reachability",
+     "ss lists listening sockets. It cannot tell you whether a firewall allows outside traffic."
+    ],
+    [
+     "Run lsof -p 1 on the server",
+     "That shows the files of process 1, not reachable ports."
+    ],
+    [
+     "Scan it with nmap from another host",
+     "Right. ss -tlnp on the server shows what is listening, but a firewall may still block it. A scan from another machine shows reachability. Only scan systems you own or are authorized in writing to test."
+    ],
+    [
+     "Run nmap against a neighbor's server for comparison",
+     "Scanning systems you have no permission for may be illegal."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-205-14",
+   "d": "205",
+   "obj": "205.2",
+   "q": "Which command shows TCP sockets in LISTEN state along with the process using each, so you can find what holds port 8080?",
+   "o": [
+    [
+     "ss -ulnp",
+     "-u shows UDP sockets, and the question is about TCP."
+    ],
+    [
+     "ss -tn",
+     "That lists connected TCP sockets, not listening ones."
+    ],
+    [
+     "ss -s",
+     "-s prints summary counts only and not a list of sockets."
+    ],
+    [
+     "ss -tlnp",
+     "Right. -t is TCP, -l is listening, -n skips name lookups and -p adds process names (it needs root for other users' processes)."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-205-15",
+   "d": "205",
+   "obj": "205.2",
+   "q": "From a client, which TWO commands can test whether TCP port 5432 on host 192.0.2.40 accepts connections? (Choose two.)",
+   "o": [
+    [
+     "ping -p 5432 192.0.2.40",
+     "ping uses ICMP, which has no ports. -p sets a data pattern."
+    ],
+    [
+     "arp -a 192.0.2.40",
+     "arp shows MAC address entries and does not test TCP."
+    ],
+    [
+     "traceroute -p 5432 -I 192.0.2.40 -m 1",
+     "This only lists the first hop and does not test the service."
+    ],
+    [
+     "nc -zv 192.0.2.40 5432",
+     "Right. -z checks the port without sending data, and -v prints the result."
+    ],
+    [
+     "nmap -p 5432 192.0.2.40",
+     "Right. nmap reports the port as open, closed or filtered. Use it only on hosts you are authorized to test."
+    ]
+   ],
+   "a": [
+    3,
+    4
+   ],
+   "t": "ms"
+  },
+  {
+   "id": "l2-205-16",
+   "d": "205",
+   "obj": "205.3",
+   "q": "A server can `ping 203.0.113.53` (a DNS server) but `ping www.example.com` says \"Name or service not known\". Which file should you check first?",
+   "o": [
+    [
+     "/etc/resolv.conf for the nameserver lines",
+     "Right. IP traffic works, so the failure is name resolution. resolv.conf lists the DNS servers the resolver uses (on systemd-resolved systems it points to a local stub)."
+    ],
+    [
+     "/etc/issue.net, the network login banner",
+     "issue.net is a login banner, which has no effect on DNS."
+    ],
+    [
+     "/etc/hosts.deny for a rule on ICMP",
+     "hosts.deny is for TCP wrappers and does not block ICMP pings."
+    ],
+    [
+     "/etc/fstab for the root filesystem line",
+     "fstab does not affect name lookups."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-205-17",
+   "d": "205",
+   "obj": "205.3",
+   "q": "`dig app.example.com` returns 192.0.2.80, the new address, but `ping app.example.com` still goes to 192.0.2.30. What is the most likely cause?",
+   "o": [
+    [
+     "The DNS cache on the dig command is stale",
+     "dig does not cache, and it returned the new address."
+    ],
+    [
+     "A stale entry for the name in /etc/hosts",
+     "Right. The order is set by nsswitch.conf, normally files before dns. dig queries DNS directly, so it skips /etc/hosts. getent hosts shows what applications get."
+    ],
+    [
+     "TCP wrappers redirect traffic",
+     "TCP wrappers allow or deny connections. They do not change destinations."
+    ],
+    [
+     "ping uses a different protocol that ignores DNS",
+     "ping uses the normal resolver, so it follows nsswitch.conf."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-205-18",
+   "d": "205",
+   "obj": "205.3",
+   "q": "Users report that a link to a branch office loses packets now and then. You want continuous per-hop loss and latency in a single view. Which tool?",
+   "o": [
+    [
+     "nc -zv",
+     "nc tests one TCP port and shows no hop-by-hop data."
+    ],
+    [
+     "hostname -I",
+     "That prints this machine's own addresses."
+    ],
+    [
+     "arp -a",
+     "arp lists local neighbor MAC addresses only."
+    ],
+    [
+     "mtr",
+     "Right. mtr combines ping and traceroute and updates loss and delay statistics for every hop, so you can see where loss begins. mtr -rw gives a report."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-205-19",
+   "d": "205",
+   "obj": "205.3",
+   "q": "A traceroute shows `* * *` at hop 5, but hops 6, 7 and the destination answer normally. What is the best interpretation?",
+   "o": [
+    [
+     "Hop 5 filters replies but still forwards traffic",
+     "Right. Many routers and firewalls drop or limit TTL-exceeded replies. If later hops respond, packets obviously pass through hop 5."
+    ],
+    [
+     "Hop 5 is down, so the destination is unreachable",
+     "The destination replied, so the path works."
+    ],
+    [
+     "Hop 5 is the final destination of the route",
+     "Later hops answered, so it is not the last one."
+    ],
+    [
+     "The local DNS server failed to resolve hop 5",
+     "traceroute used addresses here, and DNS is not involved in the missing reply."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-205-20",
+   "d": "205",
+   "obj": "205.3",
+   "q": "On a host whose sshd uses TCP wrappers, /etc/hosts.allow has `sshd: 192.0.2.` and /etc/hosts.deny has `ALL: ALL`. A user connects from 198.51.100.4. What happens?",
+   "o": [
+    [
+     "The connection is refused only for non-root users",
+     "The rules apply to the client's address and ignore user names."
+    ],
+    [
+     "Refused: no allow rule matches and the deny rule does",
+     "Right. hosts.allow is checked first, then hosts.deny. If neither matches, access is allowed, but ALL: ALL matches everything not already allowed. Note that many modern sshd builds no longer use libwrap."
+    ],
+    [
+     "The connection is allowed, because hosts.allow is checked last",
+     "hosts.allow is checked first, not last."
+    ],
+    [
+     "The connection is allowed, because the deny file is only a hint",
+     "Entries in hosts.deny are enforced."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-205-21",
+   "d": "205",
+   "obj": "205.3",
+   "q": "Which command sets the hostname so that it survives a reboot on a systemd machine?",
+   "o": [
+    [
+     "hostname web01",
+     "That sets the running name only, and it is gone after a reboot."
+    ],
+    [
+     "echo web01 > /proc/sys/kernel/hostname",
+     "That also sets only the live value."
+    ],
+    [
+     "hostnamectl set-hostname web01",
+     "Right. hostnamectl writes /etc/hostname and updates the running name. The plain hostname command changes only the running system, and the change is lost at reboot."
+    ],
+    [
+     "hostname -I web01",
+     "-I lists the host's addresses and takes no name argument."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-205-22",
+   "d": "205",
+   "obj": "205.3",
+   "q": "A host reaches machines on its own subnet but not anything beyond it. `ip route` prints only `192.0.2.0/24 dev eth0`. What should you do?",
+   "o": [
+    [
+     "Edit /etc/hosts.allow to allow the remote subnet",
+     "Wrappers decide who may connect to services, and they do not create routes."
+    ],
+    [
+     "Add a default route via 192.0.2.1 permanently",
+     "Right. Without a default route, traffic to other networks has no next hop. The gateway must be on the local subnet."
+    ],
+    [
+     "Raise the interface MTU to 9000",
+     "MTU affects packet size, and does not give the host a path to other networks."
+    ],
+    [
+     "Flush the ARP cache with ip neigh flush all",
+     "The local subnet already works, so ARP is not the problem."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-205-23",
+   "d": "205",
+   "obj": "205.3",
+   "q": "On a Debian server using ifupdown, where is the static IP address of eth0 normally configured?",
+   "o": [
+    [
+     "/etc/sysconfig/network-scripts/ifcfg-eth0",
+     "That is the Red Hat style location."
+    ],
+    [
+     "/etc/resolv.conf, the DNS server list",
+     "That lists DNS servers and holds no interface addresses."
+    ],
+    [
+     "/etc/hostname, which holds the host's name",
+     "That holds only the host's name."
+    ],
+    [
+     "/etc/network/interfaces, or a file in interfaces.d/",
+     "Right. ifupdown reads that file. On Red Hat style systems the older equivalent was /etc/sysconfig/network-scripts/ifcfg-eth0, and NetworkManager now handles most setups."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-205-24",
+   "d": "205",
+   "obj": "205.3",
+   "q": "Users complain about brief drops. `ip neigh show` repeatedly shows the gateway's MAC address alternating between two different values. What does this suggest?",
+   "o": [
+    [
+     "Two devices claim the gateway's IP address",
+     "Right. When two machines answer ARP for one IP, the neighbor entry flips between their MAC addresses and traffic goes to the wrong one at times. arping -D can test for duplicates."
+    ],
+    [
+     "The firewall is blocking ICMP echo",
+     "That would not affect ARP results."
+    ],
+    [
+     "The DNS server has two records for the gateway",
+     "DNS records do not change ARP entries."
+    ],
+    [
+     "The interface MTU is too small",
+     "MTU would cause fragmentation problems, but not a changing MAC."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-205-25",
+   "d": "205",
+   "obj": "205.3",
+   "q": "`dmesg` shows `eth0: Link is Down` followed by `Link is Up 100 Mbps Half Duplex` every few seconds on a gigabit port. What is the most likely cause?",
+   "o": [
+    [
+     "A missing default route on the server",
+     "A routing problem would not cause link-state messages."
+    ],
+    [
+     "A wrong DNS server in resolv.conf",
+     "DNS is not involved in link negotiation."
+    ],
+    [
+     "A bad cable or port is flapping the link",
+     "Right. Repeated link up/down messages and a poor negotiated speed point to the physical layer. Replace the cable or try another port."
+    ],
+    [
+     "A stale entry in /etc/hosts for the switch",
+     "The hosts file affects name lookups only."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-206-01",
+   "d": "206",
+   "obj": "206.1",
+   "q": "You downloaded app-2.4.tar.gz and want to install it under /opt/app, with only the final install step run as root. Which sequence is right?",
+   "o": [
+    [
+     "make, then ./configure --prefix=/opt/app, then make install",
+     "configure creates the Makefile, so it must run before make."
+    ],
+    [
+     "tar -xzf app-2.4.tar.gz, then sudo make install only",
+     "Without configure and make, there is nothing built to install."
+    ],
+    [
+     "./configure --prefix=/opt/app, then tar -xzf app-2.4.tar.gz",
+     "The archive has to be unpacked before configure can run."
+    ],
+    [
+     "Unpack, configure --prefix=/opt/app, make, sudo make install",
+     "Right. configure checks the system and sets the install location. make builds as a normal user, and root is needed only to copy files into /opt."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-206-02",
+   "d": "206",
+   "obj": "206.1",
+   "q": "Which tar command unpacks a file named tools-1.8.tar.bz2?",
+   "o": [
+    [
+     "tar -xjf tools-1.8.tar.bz2",
+     "Right. j selects bzip2, z selects gzip and J selects xz. tar can often detect the type by itself on newer systems, but the flag is the safe choice."
+    ],
+    [
+     "tar -cjf tools-1.8.tar.bz2",
+     "-c creates an archive instead of reading one, and could overwrite the file."
+    ],
+    [
+     "tar -xzf tools-1.8.tar.bz2",
+     "z means gzip, and the data is bzip2."
+    ],
+    [
+     "tar -xJvf tools-1.8.tar.bz2",
+     "J means xz, and the data is bzip2."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-206-03",
+   "d": "206",
+   "obj": "206.1",
+   "q": "`./configure` stops with \"configure: error: openssl/ssl.h not found\". OpenSSL's runtime library is already installed. What is the likely fix?",
+   "o": [
+    [
+     "Delete config.log and run configure again",
+     "config.log is only the record of the attempt. Deleting it changes nothing."
+    ],
+    [
+     "Install the OpenSSL -devel (or -dev) package",
+     "Right. Building needs the header files, which come in -devel or -dev packages. The runtime package alone has only the shared libraries."
+    ],
+    [
+     "Run make install with sudo and ignore the error",
+     "Without a successful configure, there is no Makefile to run."
+    ],
+    [
+     "Run ldconfig to rebuild the OpenSSL header files",
+     "ldconfig updates the shared library cache and does not create headers."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-206-04",
+   "d": "206",
+   "obj": "206.1",
+   "q": "The vendor sends fix-12.patch, made with `diff -ru` for the source tree. You are inside the unpacked directory. Which command applies it?",
+   "o": [
+    [
+     "tar -xf ../fix-12.patch",
+     "A patch file is a text diff, not an archive."
+    ],
+    [
+     "install -m 755 ../fix-12.patch .",
+     "install copies a file with chosen permissions and does not apply changes."
+    ],
+    [
+     "patch -p1 < ../fix-12.patch",
+     "Right. patch reads the diff from standard input. -p1 strips the first directory level from the file names in the patch so they match your tree."
+    ],
+    [
+     "make patch",
+     "make has no built-in patch target unless the project defines one."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-206-05",
+   "d": "206",
+   "obj": "206.1",
+   "q": "If you run ./configure with no options and then `make install`, where do the program files go by default?",
+   "o": [
+    [
+     "Under /opt",
+     "/opt is used only when you set --prefix=/opt/... yourself."
+    ],
+    [
+     "Under /usr/local, for example /usr/local/bin",
+     "Right. The default prefix is /usr/local. This keeps locally built software apart from packages managed by the distribution."
+    ],
+    [
+     "Under /home/<user>",
+     "The home directory is used only when the prefix is changed to it."
+    ],
+    [
+     "Under /usr, mixed with distribution packages",
+     "/usr is for the package manager, and configure does not use it unless you ask."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-206-06",
+   "d": "206",
+   "obj": "206.2",
+   "q": "Which set of directories is the best to EXCLUDE from a full-system file backup because they are virtual or rebuilt at every boot?",
+   "o": [
+    [
+     "/proc, /sys, /dev and /run",
+     "Right. These hold live kernel and device information, not stored data. Always include /etc, /home and data directories such as /var/lib."
+    ],
+    [
+     "/boot and /usr/local",
+     "Both hold files that are not rebuilt automatically and need saving."
+    ],
+    [
+     "/root and /srv",
+     "Root's files and served data are not regenerated."
+    ],
+    [
+     "/etc, /home and /var/lib",
+     "These hold configuration, user data and databases, so they must be kept."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-206-07",
+   "d": "206",
+   "obj": "206.2",
+   "q": "The plan is a full backup on Sunday and incremental backups Monday to Wednesday. The disk fails Thursday morning. What do you restore, in order?",
+   "o": [
+    [
+     "Monday, Tuesday and Wednesday incrementals, without the full",
+     "Without the full backup there is no base to apply them to."
+    ],
+    [
+     "Only Wednesday's incremental",
+     "It has just that day's changes, and not the base data."
+    ],
+    [
+     "Sunday's full backup and only Wednesday's incremental",
+     "That would work for a differential plan, but here Monday and Tuesday changes would be missing."
+    ],
+    [
+     "Sunday's full plus Mon, Tue and Wed incrementals in order",
+     "Right. An incremental holds changes since the previous backup of any kind, so every link of the chain is needed. A differential would need only the full plus the latest one."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-206-08",
+   "d": "206",
+   "obj": "206.2",
+   "q": "`rsync -a /srv/data /backup` is run once. What ends up in /backup?",
+   "o": [
+    [
+     "An error, because rsync always needs a remote host",
+     "rsync works locally as well."
+    ],
+    [
+     "Nothing, because -a only works together with --delete",
+     "-a is archive mode and works alone."
+    ],
+    [
+     "A directory /backup/data with all the files in it",
+     "Right. Without the trailing slash, rsync copies the directory itself. With /srv/data/ it would copy only the contents into /backup."
+    ],
+    [
+     "The contents of /srv/data placed directly in /backup",
+     "That is what a trailing slash on the source would do."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-206-09",
+   "d": "206",
+   "obj": "206.2",
+   "q": "Which command makes a raw image of the whole disk /dev/sda into a file on a mounted backup drive?",
+   "o": [
+    [
+     "dd if=/dev/sda of=/mnt/backup/sda.img bs=4M",
+     "Right. if is the input and of is the output. Swapping them would overwrite the disk with the file, so double-check before pressing Enter."
+    ],
+    [
+     "cp /dev/sda /dev/null",
+     "That copies the disk to nowhere and makes no image."
+    ],
+    [
+     "dd if=/mnt/backup/sda.img of=/dev/sda bs=4M",
+     "This reverses the direction and would overwrite the disk with the file."
+    ],
+    [
+     "tar -cf /dev/sda /mnt/backup/sda.img",
+     "tar would write an archive onto the disk device and destroy it."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-206-10",
+   "d": "206",
+   "obj": "206.2",
+   "q": "What is the strongest way to check that a backup is good?",
+   "o": [
+    [
+     "Confirm the backup drive is still plugged in",
+     "That shows the drive is present, not that the data is good."
+    ],
+    [
+     "Do a test restore and compare checksums",
+     "Right. Only a test restore proves the data can really be read back. Listing an archive (tar -tzf) and checking its checksum are useful but weaker."
+    ],
+    [
+     "Check that the backup job exits with status 0",
+     "A clean exit does not prove the files are complete or readable."
+    ],
+    [
+     "Look at the file size of the archive",
+     "A size alone cannot show whether contents are intact."
+    ]
+   ],
+   "a": 1
+  },
+  {
+   "id": "l2-206-11",
+   "d": "206",
+   "obj": "206.2",
+   "q": "You write several tar archives one after another on the same tape with `mt` and tar. Which device name keeps the tape from rewinding after each archive?",
+   "o": [
+    [
+     "/dev/st0",
+     "st0 rewinds the tape when the program ends, so the next write starts at the beginning."
+    ],
+    [
+     "/dev/tape-fast",
+     "There is no such standard device name."
+    ],
+    [
+     "/dev/sda0",
+     "sda is a disk device, not a tape drive."
+    ],
+    [
+     "/dev/nst0",
+     "Right. The n in nst0 stands for non-rewinding. /dev/st0 rewinds when closed, so the next archive would overwrite the first."
+    ]
+   ],
+   "a": 3
+  },
+  {
+   "id": "l2-206-12",
+   "d": "206",
+   "obj": "206.3",
+   "q": "You want a legal notice shown to SSH users AFTER they log in successfully. Which file holds it?",
+   "o": [
+    [
+     "/etc/issue",
+     "It is displayed before login on the console, not after login."
+    ],
+    [
+     "/etc/hosts.allow",
+     "That file controls which hosts may reach services."
+    ],
+    [
+     "/etc/motd",
+     "Right. motd (message of the day) is printed after login. /etc/issue is shown before login on local consoles, and /etc/issue.net is used for network logins that call for a banner."
+    ],
+    [
+     "/etc/fstab",
+     "fstab lists filesystems to mount."
+    ]
+   ],
+   "a": 2
+  },
+  {
+   "id": "l2-206-13",
+   "d": "206",
+   "obj": "206.3",
+   "q": "Maintenance requires a reboot in 30 minutes, and logged-in users should be warned automatically with a message. Which command does it?",
+   "o": [
+    [
+     "shutdown -r +30 \"Patching tonight\"",
+     "Right. shutdown with a time sends a warning to all terminals, blocks new logins shortly before the time, and can be cancelled with shutdown -c."
+    ],
+    [
+     "wall \"Rebooting in 30 minutes\"",
+     "wall only broadcasts text. It schedules nothing."
+    ],
+    [
+     "reboot --wtmp-only",
+     "-w writes a record to the wtmp log and does not reboot or warn anyone."
+    ],
+    [
+     "systemctl reboot --message=\"30 minutes\"",
+     "systemctl reboot acts at once, and it has no such delay option."
+    ]
+   ],
+   "a": 0
+  },
+  {
+   "id": "l2-p-01",
+   "t": "pbq",
+   "kind": "term",
+   "d": "203",
+   "obj": "203.1",
+   "dom": "203",
+   "title": "Fix a data disk that sends the server into emergency mode",
+   "short": "fstab emergency mode",
+   "scenario": "After a planned reboot, app04 stops in emergency mode and the /data volume is not mounted. Find out why, correct the problem in /etc/fstab, and prove that every fstab entry mounts. Do not erase the disk, and do not simply delete the /data line.",
+   "ticket": "INC-6102: app04 (Rocky Linux 9) came up in emergency mode at 06:14 after a kernel update. The second disk /dev/sdb1 holds the application's XFS data. Nobody changed the disk itself.",
+   "host": "app04",
+   "intro": "app04 (Rocky Linux 9), emergency shell as root. The root filesystem is mounted read-only. Type help to see the commands.",
+   "suggest": [
+    "systemctl --failed",
+    "cat /etc/os-release",
+    "lsblk -f"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "systemctl status data.mount",
+      "systemctl status -l data.mount",
+      "systemctl --failed",
+      "systemctl status data.mount --no-pager",
+      "systemctl --no-pager status data.mount"
+     ],
+     "out": "× data.mount - /data\n     Loaded: loaded (/etc/fstab; generated)\n     Active: inactive (dead)\n       What: /dev/disk/by-uuid/3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f18\n\nNov 27 06:14:09 app04 systemd[1]: Dependency failed for /data.\nNov 27 06:14:09 app04 systemd[1]: data.mount: Job data.mount/start failed with result 'dependency'.",
+     "fx": "read:mount"
+    },
+    {
+     "run": [
+      "journalctl -xb",
+      "journalctl -b",
+      "journalctl -b -p err",
+      "journalctl -b -p 3",
+      "journalctl -xb -p err",
+      "journalctl -b --no-pager"
+     ],
+     "out": "Nov 27 06:14:09 app04 systemd[1]: dev-disk-by\\x2duuid-3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f18.device: Job dev-disk-by\\x2duuid-3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f18.device/start timed out.\nNov 27 06:14:09 app04 systemd[1]: Timed out waiting for device /dev/disk/by-uuid/3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f18.\nNov 27 06:14:09 app04 systemd[1]: Dependency failed for /data.\nNov 27 06:14:09 app04 systemd[1]: Dependency failed for Local File Systems.\nNov 27 06:14:09 app04 systemd[1]: Reached target Emergency Mode.",
+     "fx": "read:journal"
+    },
+    {
+     "run": [
+      "cat /etc/fstab",
+      "less /etc/fstab",
+      "more /etc/fstab",
+      "grep data /etc/fstab",
+      "grep /data /etc/fstab",
+      "tail /etc/fstab"
+     ],
+     "out": "UUID=0a7c5b1e-52d4-4f0e-9a38-6b2f1d8c47e0 /     xfs defaults 0 0\nUUID=b81d6e03-7a2c-49f5-a1d7-3c05e9f2a864 /boot xfs defaults 0 0\nUUID=3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f18 /data xfs defaults 0 0",
+     "fx": "read:fstab",
+     "alt": {
+      "if": "fix:fstab",
+      "out": "UUID=0a7c5b1e-52d4-4f0e-9a38-6b2f1d8c47e0 /     xfs defaults 0 0\nUUID=b81d6e03-7a2c-49f5-a1d7-3c05e9f2a864 /boot xfs defaults 0 0\nUUID=3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f81 /data xfs defaults 0 0"
+     }
+    },
+    {
+     "run": [
+      "blkid",
+      "blkid /dev/sdb1",
+      "lsblk -f",
+      "lsblk -f /dev/sdb",
+      "blkid | grep sdb1"
+     ],
+     "out": "/dev/sda1: UUID=\"b81d6e03-7a2c-49f5-a1d7-3c05e9f2a864\" TYPE=\"xfs\"\n/dev/sda2: UUID=\"0a7c5b1e-52d4-4f0e-9a38-6b2f1d8c47e0\" TYPE=\"xfs\"\n/dev/sdb1: UUID=\"3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f81\" TYPE=\"xfs\"",
+     "fx": "found:uuid"
+    },
+    {
+     "run": [
+      "mount -o remount,rw /",
+      "mount -o rw,remount /"
+     ],
+     "out": "",
+     "fx": "fix:remountrw"
+    },
+    {
+     "run": [
+      "vi /etc/fstab",
+      "vim /etc/fstab",
+      "nano /etc/fstab",
+      "sed -i 's/3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f18/3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f81/' /etc/fstab",
+      "sed -i s/3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f18/3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f81/ /etc/fstab"
+     ],
+     "out": "(lab) /etc/fstab saved. The /data line now reads UUID=3f1c9a42-8d17-4e0b-b2c4-91a7e65d0f81.",
+     "fx": "fix:fstab"
+    },
+    {
+     "run": [
+      "systemctl daemon-reload"
+     ],
+     "out": "",
+     "fx": "fix:reload"
+    },
+    {
+     "run": [
+      "mount -a",
+      "mount /data"
+     ],
+     "out": "",
+     "fx": "verify:mounta"
+    },
+    {
+     "run": [
+      "findmnt /data",
+      "df -h /data",
+      "mount | grep data",
+      "findmnt --verify"
+     ],
+     "out": "",
+     "fx": "verify:mounted",
+     "alt": {
+      "if": "fix:fstab",
+      "out": "TARGET SOURCE    FSTYPE OPTIONS\n/data  /dev/sdb1 xfs    rw,relatime,attr2,inode64"
+     }
+    },
+    {
+     "run": [
+      "sed -i '/data/d' /etc/fstab",
+      "sed -i '/\\/data/d' /etc/fstab"
+     ],
+     "out": "(lab) The /data line was removed. The application would now write into the root filesystem.",
+     "fx": "bad:deleteline"
+    },
+    {
+     "run": [
+      "mkfs.xfs /dev/sdb1",
+      "mkfs.xfs -f /dev/sdb1"
+     ],
+     "out": "(lab) That would erase the data on /dev/sdb1. It is blocked.",
+     "fx": "bad:mkfs"
+    },
+    {
+     "run": [
+      "cat /etc/os-release"
+     ],
+     "out": "NAME=\"Rocky Linux\"\nVERSION=\"9.4 (Blue Onyx)\"\nID=\"rocky\""
+    }
+   ],
+   "checks": [
+    {
+     "t": "Read why /data failed (status or journal)",
+     "has": [
+      "read:mount",
+      "read:journal"
+     ],
+     "why": "Both show 'Timed out waiting for device /dev/disk/by-uuid/...3f18'. systemd was looking for a disk with that exact UUID and never found it, so the /data mount failed and the boot fell into emergency mode."
+    },
+    {
+     "t": "Look up the real UUID of /dev/sdb1",
+     "has": "found:uuid",
+     "why": "blkid (or lsblk -f) lists the UUID the disk really has. It ends in ...0f81, but fstab asks for ...0f18: two digits are swapped."
+    },
+    {
+     "t": "Read the /data line in /etc/fstab",
+     "has": "read:fstab",
+     "why": "You must compare what fstab asks for with what blkid reports. The typo is in the UUID on the /data line."
+    },
+    {
+     "t": "Correct the UUID after remounting / read-write",
+     "after": "fix:fstab",
+     "of": "fix:remountrw",
+     "why": "Emergency mode mounts / read-only, so an edit fails until you run mount -o remount,rw /. Only after that can the corrected line be saved."
+    },
+    {
+     "t": "Prove it with mount -a after the fix",
+     "after": "verify:mounta",
+     "of": "fix:fstab",
+     "why": "mount -a tries every fstab entry that is not mounted yet. Running it after the fix and getting no error shows the entries are valid."
+    },
+    {
+     "t": "Did not delete the /data line",
+     "lacks": "bad:deleteline",
+     "why": "Removing the line hides the error, but the application would then write into the root filesystem and fill it. The right fix is to correct the UUID."
+    },
+    {
+     "t": "Did not format the disk",
+     "lacks": "bad:mkfs",
+     "why": "The disk and its XFS data are fine. mkfs would erase everything. Only the UUID text in fstab was wrong."
+    }
+   ]
+  },
+  {
+   "id": "l2-p-02",
+   "t": "pbq",
+   "kind": "term",
+   "d": "204",
+   "obj": "204.1",
+   "dom": "204",
+   "title": "Replace a failed disk in a degraded RAID 1 mirror",
+   "short": "Degraded RAID 1",
+   "scenario": "The monitoring tool says the software RAID array /dev/md0 on nas01 is degraded. Confirm what failed, take the failed member out, add the prepared replacement partition, check that the rebuild starts and save the array in the configuration so the name survives a reboot. Do not touch the healthy disk.",
+   "ticket": "INC-6118: nas01 (Debian 12), array md0 = RAID 1 of /dev/sdb1 and /dev/sdc1. A new disk was installed as /dev/sdd and already partitioned: /dev/sdd1, same size, type fd.",
+   "host": "nas01",
+   "intro": "nas01 (Debian 12). You are logged in as root. Type help to see the commands.",
+   "suggest": [
+    "lsblk",
+    "cat /etc/os-release",
+    "smartctl -H /dev/sdc"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "cat /proc/mdstat"
+     ],
+     "out": "Personalities : [raid1]\nmd0 : active raid1 sdb1[0] sdc1[1](F)\n      976630336 blocks super 1.2 [2/1] [U_]\n\nunused devices: <none>",
+     "fx": "read:mdstat",
+     "alt": {
+      "if": "fix:add",
+      "out": "Personalities : [raid1]\nmd0 : active raid1 sdd1[2] sdb1[0]\n      976630336 blocks super 1.2 [2/1] [U_]\n      [>....................]  recovery =  2.1% (20512640/976630336) finish=104.6min speed=152340K/sec\n\nunused devices: <none>"
+     }
+    },
+    {
+     "run": [
+      "mdadm --detail /dev/md0",
+      "mdadm -D /dev/md0"
+     ],
+     "out": "/dev/md0:\n     Raid Level : raid1\n     Array Size : 976630336 (931.39 GiB)\n          State : clean, degraded\n Active Devices : 1\nWorking Devices : 1\n Failed Devices : 1\n\n    Number   Major   Minor   RaidDevice State\n       0       8       17        0      active sync   /dev/sdb1\n       -       8       33        -      faulty   /dev/sdc1",
+     "fx": "read:detail",
+     "alt": {
+      "if": "fix:add",
+      "out": "/dev/md0:\n     Raid Level : raid1\n     Array Size : 976630336 (931.39 GiB)\n          State : clean, degraded, recovering\n Active Devices : 1\nWorking Devices : 2\n Failed Devices : 0\n Rebuild Status : 2% complete\n\n    Number   Major   Minor   RaidDevice State\n       0       8       17        0      active sync   /dev/sdb1\n       2       8       49        1      spare rebuilding   /dev/sdd1"
+     }
+    },
+    {
+     "run": [
+      "lsblk",
+      "lsblk /dev/sdd"
+     ],
+     "out": "NAME   MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS\nsda      8:0    0    40G  0 disk\nsdb      8:16   0 931.5G  0 disk\n+-sdb1   8:17   0 931.5G  0 part\n  +-md0  9:0    0 931.4G  0 raid1 /srv\nsdc      8:32   0 931.5G  0 disk\n+-sdc1   8:33   0 931.5G  0 part\nsdd      8:48   0 931.5G  0 disk\n+-sdd1   8:49   0 931.5G  0 part"
+    },
+    {
+     "run": [
+      "smartctl -H /dev/sdc",
+      "smartctl -a /dev/sdc",
+      "smartctl -H /dev/sdc1"
+     ],
+     "out": "SMART overall-health self-assessment test result: FAILED!\nDrive failure expected in less than 24 hours. SAVE ALL DATA.",
+     "fx": "found:smart"
+    },
+    {
+     "run": [
+      "mdadm /dev/md0 --remove /dev/sdc1",
+      "mdadm --manage /dev/md0 --remove /dev/sdc1",
+      "mdadm /dev/md0 -r /dev/sdc1",
+      "mdadm --remove /dev/md0 /dev/sdc1",
+      "mdadm /dev/md0 --fail /dev/sdc1 --remove /dev/sdc1"
+     ],
+     "out": "mdadm: hot removed /dev/sdc1 from /dev/md0",
+     "fx": "fix:remove"
+    },
+    {
+     "run": [
+      "mdadm /dev/md0 --add /dev/sdd1",
+      "mdadm --manage /dev/md0 --add /dev/sdd1",
+      "mdadm /dev/md0 -a /dev/sdd1",
+      "mdadm --add /dev/md0 /dev/sdd1"
+     ],
+     "out": "mdadm: added /dev/sdd1",
+     "fx": "fix:add"
+    },
+    {
+     "run": [
+      "mdadm --detail --scan",
+      "mdadm -Ds"
+     ],
+     "out": "ARRAY /dev/md0 metadata=1.2 name=nas01:0 UUID=5d3c8e01:7b2a49f6:a0c1d3e8:94f1b6a2",
+     "fx": "read:scan"
+    },
+    {
+     "run": [
+      "mdadm --detail --scan >> /etc/mdadm/mdadm.conf",
+      "mdadm -Ds >> /etc/mdadm/mdadm.conf",
+      "mdadm --detail --scan | tee -a /etc/mdadm/mdadm.conf"
+     ],
+     "out": "",
+     "fx": "fix:conf"
+    },
+    {
+     "run": [
+      "update-initramfs -u",
+      "update-initramfs -u -k all"
+     ],
+     "out": "update-initramfs: Generating /boot/initrd.img-6.1.0-18-amd64",
+     "fx": "fix:initramfs"
+    },
+    {
+     "run": [
+      "mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb1 /dev/sdd1",
+      "mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb1 /dev/sdd1 --force"
+     ],
+     "out": "(lab) --create would write new array metadata over the existing mirror. It is blocked.",
+     "fx": "bad:create"
+    },
+    {
+     "run": [
+      "mdadm --zero-superblock /dev/sdb1"
+     ],
+     "out": "(lab) That removes the healthy disk's array membership. It is blocked.",
+     "fx": "bad:zero"
+    },
+    {
+     "run": [
+      "cat /etc/os-release"
+     ],
+     "out": "PRETTY_NAME=\"Debian GNU/Linux 12 (bookworm)\"\nID=debian"
+    }
+   ],
+   "checks": [
+    {
+     "t": "Confirm the array is degraded and find the failed member",
+     "has": [
+      "read:mdstat",
+      "read:detail"
+     ],
+     "why": "/proc/mdstat shows sdc1 marked (F) and [U_]. mdadm --detail says 'clean, degraded' with one faulty device. This tells you which partition to remove."
+    },
+    {
+     "t": "Remove the failed member sdc1",
+     "has": "fix:remove",
+     "why": "A failed member must be removed from the array before a new one takes its place. mdadm /dev/md0 --remove /dev/sdc1 does that (--fail is already done by the kernel)."
+    },
+    {
+     "t": "Add /dev/sdd1 after the removal",
+     "after": "fix:add",
+     "of": "fix:remove",
+     "why": "Adding the replacement starts the rebuild at once. Removing the failed disk first keeps the array's member list clean."
+    },
+    {
+     "t": "Check that the rebuild is running",
+     "after": [
+      "read:mdstat",
+      "read:detail"
+     ],
+     "of": "fix:add",
+     "why": "Look again after adding. A 'recovery = ...%' line in /proc/mdstat, or 'spare rebuilding' in mdadm --detail, proves the mirror is being rebuilt."
+    },
+    {
+     "t": "Save the array in mdadm.conf",
+     "has": "fix:conf",
+     "why": "mdadm --detail --scan prints an ARRAY line. Appending it to /etc/mdadm/mdadm.conf makes the system assemble the array as /dev/md0 and not as /dev/md127."
+    },
+    {
+     "t": "Did not run mdadm --create",
+     "lacks": "bad:create",
+     "why": "--create makes a brand-new array and can overwrite the metadata of the live one. Repairs use --remove and --add."
+    },
+    {
+     "t": "Did not zero the superblock of the healthy disk",
+     "lacks": "bad:zero",
+     "why": "--zero-superblock erases the array information from a disk. On sdb1 it would remove the only good copy from the array."
+    }
+   ]
+  },
+  {
+   "id": "l2-p-03",
+   "t": "pbq",
+   "kind": "term",
+   "d": "205",
+   "obj": "205.3",
+   "dom": "205",
+   "title": "Find why a server cannot reach other networks",
+   "short": "No default route",
+   "scenario": "edge07 can talk to machines on its own subnet but nothing beyond it. Find the cause, restore access now, and make the fix permanent so it survives a reboot. Do not remove the interface's address or take the interface down: you are connected over it.",
+   "ticket": "INC-6140: edge07 (Rocky Linux 9, NetworkManager, interface eth0, connection profile also called eth0). Gateway for the 192.0.2.0/24 subnet is 192.0.2.1. A test host to try is 198.51.100.10.",
+   "host": "edge07",
+   "intro": "edge07 (Rocky Linux 9). You are logged in as an admin with sudo. Type help to see the commands.",
+   "suggest": [
+    "cat /etc/resolv.conf",
+    "nmcli connection show eth0 | grep gateway",
+    "cat /etc/os-release"
+   ],
+   "cmds": [
+    {
+     "run": [
+      "ip addr",
+      "ip a",
+      "ip addr show",
+      "ip addr show eth0",
+      "ip -br a",
+      "ip -br addr"
+     ],
+     "out": "eth0   UP   192.0.2.57/24",
+     "fx": "read:addr"
+    },
+    {
+     "run": [
+      "ip route",
+      "ip r",
+      "ip route show",
+      "route -n",
+      "ip -4 route"
+     ],
+     "out": "192.0.2.0/24 dev eth0 proto kernel scope link src 192.0.2.57 metric 100",
+     "fx": "read:route",
+     "alt": {
+      "if": "fix:route",
+      "out": "default via 192.0.2.1 dev eth0\n192.0.2.0/24 dev eth0 proto kernel scope link src 192.0.2.57 metric 100"
+     }
+    },
+    {
+     "run": [
+      "ping -c 2 192.0.2.1",
+      "ping -c2 192.0.2.1",
+      "ping -c 3 192.0.2.1",
+      "ping -c 4 192.0.2.1"
+     ],
+     "out": "PING 192.0.2.1 (192.0.2.1) 56(84) bytes of data.\n64 bytes from 192.0.2.1: icmp_seq=1 ttl=64 time=0.41 ms\n64 bytes from 192.0.2.1: icmp_seq=2 ttl=64 time=0.38 ms\n\n--- 192.0.2.1 ping statistics ---\n2 packets transmitted, 2 received, 0% packet loss",
+     "fx": "found:gwok"
+    },
+    {
+     "run": [
+      "ping -c 2 198.51.100.10",
+      "ping -c2 198.51.100.10",
+      "ping -c 3 198.51.100.10",
+      "ping -c 4 198.51.100.10",
+      "ping 198.51.100.10"
+     ],
+     "out": "ping: connect: Network is unreachable",
+     "fx": "try:ping",
+     "alt": {
+      "if": "fix:route",
+      "out": "PING 198.51.100.10 (198.51.100.10) 56(84) bytes of data.\n64 bytes from 198.51.100.10: icmp_seq=1 ttl=62 time=9.8 ms\n64 bytes from 198.51.100.10: icmp_seq=2 ttl=62 time=9.5 ms\n\n--- 198.51.100.10 ping statistics ---\n2 packets transmitted, 2 received, 0% packet loss"
+     }
+    },
+    {
+     "run": [
+      "ip route add default via 192.0.2.1",
+      "ip route add default via 192.0.2.1 dev eth0",
+      "ip r add default via 192.0.2.1",
+      "ip r add default via 192.0.2.1 dev eth0",
+      "sudo ip route add default via 192.0.2.1",
+      "sudo ip route add default via 192.0.2.1 dev eth0",
+      "route add default gw 192.0.2.1"
+     ],
+     "out": "",
+     "fx": "fix:route"
+    },
+    {
+     "run": [
+      "nmcli connection show eth0 | grep gateway",
+      "nmcli con show eth0 | grep gateway",
+      "nmcli -g ipv4.gateway connection show eth0"
+     ],
+     "out": "ipv4.gateway:                           --",
+     "fx": "read:nmgw",
+     "alt": {
+      "if": "fix:persist",
+      "out": "ipv4.gateway:                           192.0.2.1"
+     }
+    },
+    {
+     "run": [
+      "nmcli connection modify eth0 ipv4.gateway 192.0.2.1",
+      "nmcli con mod eth0 ipv4.gateway 192.0.2.1",
+      "sudo nmcli connection modify eth0 ipv4.gateway 192.0.2.1",
+      "sudo nmcli con mod eth0 ipv4.gateway 192.0.2.1"
+     ],
+     "out": "",
+     "fx": "fix:persist"
+    },
+    {
+     "run": [
+      "nmcli connection up eth0",
+      "nmcli con up eth0",
+      "sudo nmcli connection up eth0",
+      "sudo nmcli con up eth0"
+     ],
+     "out": "Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/4)",
+     "fx": "fix:nmup"
+    },
+    {
+     "run": [
+      "cat /etc/resolv.conf"
+     ],
+     "out": "search example.org\nnameserver 192.0.2.53"
+    },
+    {
+     "run": [
+      "ip addr flush dev eth0",
+      "sudo ip addr flush dev eth0"
+     ],
+     "out": "(lab) The address was removed and your session would drop. Blocked.",
+     "fx": "bad:flush"
+    },
+    {
+     "run": [
+      "ip link set eth0 down",
+      "sudo ip link set eth0 down",
+      "nmcli connection down eth0",
+      "nmcli con down eth0"
+     ],
+     "out": "(lab) The interface would go down and cut your session. Blocked.",
+     "fx": "bad:down"
+    },
+    {
+     "run": [
+      "cat /etc/os-release"
+     ],
+     "out": "NAME=\"Rocky Linux\"\nVERSION=\"9.4 (Blue Onyx)\"\nID=\"rocky\""
+    }
+   ],
+   "checks": [
+    {
+     "t": "Read the routing table",
+     "has": "read:route",
+     "why": "ip route lists only 192.0.2.0/24 and has no 'default via ...' line. Without a default route the host has no next hop for any other network, which is why it reports 'Network is unreachable'."
+    },
+    {
+     "t": "Check that the gateway answers on the local subnet",
+     "has": "found:gwok",
+     "why": "A successful ping to 192.0.2.1 proves the cable, address and ARP all work. The gateway is reachable, so only the route is missing."
+    },
+    {
+     "t": "Add the default route through 192.0.2.1",
+     "has": "fix:route",
+     "why": "ip route add default via 192.0.2.1 gives the host a next hop for every network not in its table. The gateway must be on the local subnet, as here."
+    },
+    {
+     "t": "Test a remote host after adding the route",
+     "after": "try:ping",
+     "of": "fix:route",
+     "why": "Always verify the fix: a ping to 198.51.100.10 that now works proves traffic leaves the subnet. Testing before the fix only shows the failure again."
+    },
+    {
+     "t": "Make the gateway permanent in NetworkManager",
+     "has": "fix:persist",
+     "why": "ip route add changes only the running system. nmcli connection modify writes the gateway into the profile, so it is applied again after a reboot or restart of the connection."
+    },
+    {
+     "t": "Did not flush the interface address",
+     "lacks": "bad:flush",
+     "why": "The address is correct. Flushing it would remove it and cut your remote session, and it does nothing about the missing route."
+    },
+    {
+     "t": "Did not take the interface down",
+     "lacks": "bad:down",
+     "why": "The link works, as the gateway ping shows. Bringing it down would end your session and would not add the route."
+    }
+   ]
+  },
+  {
+   "id": "l2-p-04",
+   "t": "pbq",
+   "kind": "logsel",
+   "d": "201",
+   "obj": "201.3",
+   "dom": "201",
+   "title": "Read dmesg: why did wlan0 disappear after the kernel update?",
+   "short": "dmesg: missing wlan0",
+   "scenario": "After a kernel update and reboot, a field laptop no longer shows its wireless interface wlan0 in ip link. The wired port works. Read these lines from dmesg and mark every line that points to the problem, then say what the log shows.",
+   "ticket": "INC-6155: laptop WL-22 (Debian 12, kernel 6.1.0-22). Wi-Fi worked on kernel 6.1.0-18. The kernel package was updated. Nothing else was changed.",
+   "lines": [
+    {
+     "text": "[    1.204511] usb 1-3: new high-speed USB device number 3 using xhci_hcd",
+     "bad": 0,
+     "why": "The kernel found a USB device (a built-in camera or hub). This is normal startup noise and has nothing to do with Wi-Fi."
+    },
+    {
+     "text": "[    2.019873] e1000e 0000:00:1f.6 eno1: NIC Link is Up 1000 Mbps Full Duplex, Flow Control: None",
+     "bad": 0,
+     "why": "The wired network card loaded its driver and has a link. That matches the report that the wired port works."
+    },
+    {
+     "text": "[    2.311420] iwlwifi 0000:00:14.3: enabling device (0000 -> 0002)",
+     "bad": 0,
+     "why": "The wireless driver iwlwifi found the card and switched it on. This is the normal first step, so it is not a fault by itself."
+    },
+    {
+     "text": "[    2.355907] iwlwifi 0000:00:14.3: Direct firmware load for iwlwifi-so-a0-gf-a0-83.ucode failed with error -2",
+     "bad": 1,
+     "why": "Error -2 is 'no such file'. The driver asked for a firmware file and the file is not on disk. This is the first sign of the problem."
+    },
+    {
+     "text": "[    2.356112] iwlwifi 0000:00:14.3: no suitable firmware found!",
+     "bad": 1,
+     "why": "The driver stops here because it cannot use any firmware version it supports, so no wlan0 is created."
+    },
+    {
+     "text": "[    2.356130] iwlwifi 0000:00:14.3: minimum version required: iwlwifi-so-a0-gf-a0-72",
+     "bad": 1,
+     "why": "This names the oldest firmware the new driver accepts. The system lacks it, so the linux-firmware package is too old or missing for this card."
+    },
+    {
+     "text": "[    3.801662] EXT4-fs (nvme0n1p2): mounted filesystem with ordered data mode. Quota mode: none.",
+     "bad": 0,
+     "why": "The root filesystem mounted normally, so storage is fine."
+    },
+    {
+     "text": "[    5.120034] Bluetooth: hci0: Bootloader revision 0.4 build 0 week 11 2015",
+     "bad": 0,
+     "why": "The Bluetooth part of the card reports in. It does not load the Wi-Fi firmware and is not an error."
+    }
+   ],
+   "ask": {
+    "label": "What does this log show?",
+    "opts": [
+     "A udev rule renamed wlan0 to a different interface name",
+     "The kernel was built without the iwlwifi module",
+     "The wireless driver loaded but the firmware file it needs is missing",
+     "The Wi-Fi radio is switched off by a hardware rfkill switch"
+    ],
+    "a": 2,
+    "obj": "201.3",
+    "why": "The log shows iwlwifi loading, then failing to find its .ucode firmware file ('failed with error -2', 'no suitable firmware found'). A renamed interface would still exist and the driver would not report missing firmware. A kernel without the module would show no iwlwifi lines at all. An rfkill switch leaves the interface present but blocked. The fix is to install or update firmware-iwlwifi (Debian) or linux-firmware (RHEL/Fedora) and reload the module."
+   }
+  },
+  {
+   "id": "l2-p-05",
+   "t": "pbq",
+   "kind": "rules",
+   "d": "204",
+   "obj": "204.3",
+   "dom": "204",
+   "title": "Grow a full logical volume with a new disk",
+   "short": "Grow an LVM volume",
+   "scenario": "The ext4 logical volume that holds /var/www is full. Volume group vg_data has no free extents left. A new empty disk, /dev/sdd, was just installed. Build the safe steps that make /var/www 100 GB larger while the website stays online. Put the needed steps in order and leave out the harmful or useless ones.",
+   "ticket": "Volume group vg_data, logical volume lv_www (ext4, mounted at /var/www). The new disk has no partitions and no data.",
+   "rules": [
+    {
+     "id": "pvc",
+     "text": "pvcreate /dev/sdd",
+     "need": 1,
+     "why": "Writes an LVM label on the new disk so it becomes a physical volume. Only physical volumes can be added to a volume group."
+    },
+    {
+     "id": "vge",
+     "text": "vgextend vg_data /dev/sdd",
+     "need": 1,
+     "why": "Adds the new physical volume to the existing group. This gives vg_data free extents it can hand to lv_www."
+    },
+    {
+     "id": "lve",
+     "text": "lvextend -L +100G /dev/vg_data/lv_www",
+     "need": 1,
+     "why": "Makes the logical volume 100 GB bigger. The filesystem inside does not grow by itself yet."
+    },
+    {
+     "id": "rsz",
+     "text": "resize2fs /dev/vg_data/lv_www",
+     "need": 1,
+     "why": "Grows the ext4 filesystem to fill the larger logical volume. ext4 can be grown while mounted, so the site stays online."
+    },
+    {
+     "id": "mkfs",
+     "text": "mkfs.ext4 /dev/vg_data/lv_www",
+     "need": 0,
+     "why": "This creates a new empty filesystem and destroys all the website's files. Growing never needs a new filesystem."
+    },
+    {
+     "id": "vgc",
+     "text": "vgcreate vg_data /dev/sdd",
+     "need": 0,
+     "why": "The group vg_data already exists, so this fails. Even with a new name it would make a separate pool and not add space to the existing group."
+    },
+    {
+     "id": "umt",
+     "text": "umount /var/www",
+     "need": 0,
+     "why": "Not needed. ext4 can be grown online, and unmounting would take the website down for no reason."
+    },
+    {
+     "id": "lvr",
+     "text": "lvreduce -L -100G /dev/vg_data/lv_www",
+     "need": 0,
+     "why": "This shrinks the volume, the opposite of the goal. Shrinking a volume without shrinking the filesystem first destroys data."
+    }
+   ],
+   "before": [
+    {
+     "a": "pvc",
+     "b": "vge",
+     "why": "vgextend only accepts a physical volume, so the disk must be prepared with pvcreate first."
+    },
+    {
+     "a": "vge",
+     "b": "lve",
+     "why": "lvextend can take space only from free extents in the group. Those do not exist until vgextend adds the new disk."
+    },
+    {
+     "a": "lve",
+     "b": "rsz",
+     "why": "resize2fs grows the filesystem to the size of the logical volume. The volume must be larger first, or there is nothing to grow into."
+    }
+   ],
+   "last": {
+    "id": "rsz",
+    "why": "Growing the filesystem is the final step. Until then, df still shows the old size, even though the volume is larger."
+   }
+  },
+  {
+   "id": "l2-p-06",
+   "t": "pbq",
+   "kind": "diagram",
+   "d": "202",
+   "obj": "202.2",
+   "dom": "202",
+   "title": "Place the stages of a UEFI Linux boot, in order",
+   "short": "UEFI boot stages",
+   "scenario": "A server with UEFI firmware is powered on and boots Linux with GRUB 2 and a systemd-based distribution. Place each stage in the order it happens, from the power button to the running system. Knowing the order tells you where to look when a boot fails.",
+   "top": "Power button pressed",
+   "slots": [
+    {
+     "label": "Stage 1",
+     "zone": "First to run"
+    },
+    {
+     "label": "Stage 2",
+     "zone": "Loaded from the disk"
+    },
+    {
+     "label": "Stage 3",
+     "zone": "Loaded into memory"
+    },
+    {
+     "label": "Stage 4",
+     "zone": "Early userspace"
+    },
+    {
+     "label": "Stage 5",
+     "zone": "Last stage of boot"
+    }
+   ],
+   "devs": [
+    {
+     "id": "fw",
+     "name": "UEFI firmware (hardware check)",
+     "slot": 0,
+     "why": "The firmware runs first. It tests the hardware and reads its boot entries to decide which EFI program to start. efibootmgr edits those entries."
+    },
+    {
+     "id": "esp",
+     "name": "Boot loader on the ESP (shim, then GRUB)",
+     "slot": 1,
+     "why": "The firmware loads an EFI program from the EFI System Partition (usually mounted at /boot/efi). That program is shim and GRUB, which show the menu."
+    },
+    {
+     "id": "krn",
+     "name": "Kernel and initramfs loaded into RAM",
+     "slot": 2,
+     "why": "GRUB reads the kernel and the initramfs from /boot, loads them into memory and hands control to the kernel with its command line."
+    },
+    {
+     "id": "root",
+     "name": "Initramfs mounts the real root",
+     "slot": 3,
+     "why": "The initramfs holds the early drivers (storage, LVM, RAID). It finds the root filesystem and mounts it. A failure here gives 'Unable to mount root fs'."
+    },
+    {
+     "id": "sysd",
+     "name": "systemd (PID 1) starts services",
+     "slot": 4,
+     "why": "Once root is mounted, the kernel starts /sbin/init, which is systemd. It mounts the rest from fstab and brings up services up to the default target."
+    },
+    {
+     "id": "mbr",
+     "name": "MBR boot code in the first 512 bytes",
+     "slot": -1,
+     "why": "MBR boot code is how legacy BIOS starts. A UEFI machine reads the ESP instead and does not run the MBR code."
+    },
+    {
+     "id": "tty",
+     "name": "getty login prompt",
+     "slot": -1,
+     "why": "The login prompt appears after systemd has reached its target, so it comes after all five stages, not as one of them."
+    },
+    {
+     "id": "mki",
+     "name": "mkinitrd or dracut run",
+     "slot": -1,
+     "why": "These tools build an initramfs when a kernel is installed or updated. They are not run at power on."
+    }
+   ]
+  }
+ ]
+}
