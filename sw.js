@@ -129,14 +129,22 @@ function pageRefresh(res) {
     });
   });
 }
-/* the window that is opening may not be listed yet, so look again a few times before giving up */
+/* the window that is opening may not be listed yet, so look again a few times before giving up. v2.98: the window
+   listed first can still be the old page that is closing (a reload), so the message is sent twice more, 1 s and 3 s
+   later; the page shows the Refresh bar only once, so repeats are harmless. */
 function tellPages() {
   var tries = 0;
-  function again() {
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function send() {
     return self.clients.matchAll({ type: "window" }).then(function (list) {
-      if (!list.length && ++tries < 10) return new Promise(function (r) { setTimeout(r, 500); }).then(again);
       list.forEach(function (c) { c.postMessage({ type: "update-ready" }); });
-      return null;
+      return list.length;
+    });
+  }
+  function again() {
+    return send().then(function (n) {
+      if (!n && ++tries < 10) return wait(500).then(again);
+      return wait(1000).then(send).then(function () { return wait(2000).then(send); });
     });
   }
   return again();

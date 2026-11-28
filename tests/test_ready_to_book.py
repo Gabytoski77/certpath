@@ -116,18 +116,28 @@ def test_ready_key_is_backed_up():
 
 # ---- launch screen: the Hex Break mark ----
 
+# Record what the launch screen did from inside the page: on slow CI the whole launch screen can be over before the test
+# gets a turn, so waiting for it from outside missed it (PR #84 CI).
+_SPY = """window.__sp={go:false,anim:null,seen:false};
+new MutationObserver(function(){var s=document.getElementById('splash'),h=document.querySelector('.sp-hex');
+  if(s){window.__sp.seen=true;if(s.classList.contains('go')&&h&&!window.__sp.go){window.__sp.go=true;window.__sp.anim=getComputedStyle(h).animationName;}}
+}).observe(document,{subtree:true,childList:true,attributes:true});"""
+
+
 @pytest.mark.xdist_group("3d")
 def test_mark_draws_on_the_first_load_and_reload_skips_the_splash(site):
-    w = site(lite=False, wait=0)
-    p = w.page
-    p.wait_for_selector("#splash.go", state="attached", timeout=15000)
-    assert p.evaluate("getComputedStyle(document.querySelector('.sp-hex')).animationName") == "spHex"
-    p.wait_for_selector("#splash", state="detached", timeout=20000)
-    t = time.time()
-    p.reload()
-    p.wait_for_selector("#start", state="attached", timeout=15000)
-    assert p.locator("#splash").count() == 0 or p.evaluate("!document.getElementById('splash')"), "a reload in the same visit skips the launch screen"
-    assert time.time() - t < 10
+    w = site(lite=False)
+    ctx = w.page.context
+    ctx.add_init_script(_SPY)
+    p = ctx.new_page()   # a new tab = a new visit, so the launch screen plays
+    p.goto(w.page.url)
+    p.wait_for_selector("#splash", state="detached", timeout=30000)
+    assert p.evaluate("window.__sp.go && window.__sp.anim") == "spHex", p.evaluate("window.__sp")
+    p.reload()           # same tab, same visit: straight home
+    p.wait_for_selector("#start", state="attached", timeout=30000)
+    p.wait_for_timeout(300)
+    assert not p.evaluate("window.__sp.go"), "a reload in the same visit skips the launch screen"
+    assert p.locator("#splash").count() == 0
 
 
 @pytest.mark.xdist_group("3d")
