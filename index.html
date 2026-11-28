@@ -200,7 +200,9 @@ button,summary,[role="button"]{-webkit-user-select:none;user-select:none;-webkit
 .st-card .go{grid-column:2;grid-row:2/span 2;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#e8f1f8;color:#0b121a;font:600 14px/1 var(--f-disp);transition:transform .25s var(--ez)}
 .st-ret{display:flex;flex-direction:column;gap:6px;width:100%;max-width:340px;margin:0 0 10px}
 .st-ret[hidden]{display:none}
-.top-ret{flex:0 1 480px;min-width:0;display:flex;justify-content:center;pointer-events:none}
+/* absolute so the top bar keeps its height: a taller bar shrank the globe (and its picture size) on work laptops */
+.top{position:relative}
+.top-ret{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(480px,calc(100% - 520px));display:flex;justify-content:center;pointer-events:none}
 .top-ret .st-ret{max-width:480px;margin:0}
 .top-ret .st-rt{background:rgba(20,18,12,.88);pointer-events:auto}
 .st-rt{display:flex;align-items:center;gap:4px;border-radius:12px;background:rgba(255,196,87,.1);border:1px solid rgba(255,196,87,.42)}
