@@ -4853,7 +4853,8 @@ function setSort(hard){
 }
 
 /* ---------- explore sheet (pull up from the bottom) ---------- */
-(function(){var h=document.getElementById("sh-hint");if(h) h.textContent=(matchMedia("(pointer:coarse)").matches?"Swipe up":"Click")+": career paths, 8140 roles, CG funding";})();
+var SH_HINT=(matchMedia("(pointer:coarse)").matches?"Swipe up":"Click")+": career paths, 8140 roles, CG funding";
+(function(){var h=document.getElementById("sh-hint"),g=document.getElementById("sh-grab");if(h) h.textContent=" "+SH_HINT;if(g) g.setAttribute("aria-label","Paths, 8140, Funding. "+SH_HINT+". Opens the sheet");})();
 var sheet=$("#sheet"), veil=$("#veil"), grab=$("#sh-grab"), shScroll=$("#sh-scroll");
 /* keyboard: while the sheet is closed its content is out of the Tab order; while it is open, the home behind it is */
 shScroll.inert=true;
@@ -5508,7 +5509,7 @@ function shState(p){
     var lost=!open&&shScroll.contains(document.activeElement);
     if(!srchOpen) restoreInert();
     if(lost) try{grab.focus({preventScroll:true});}catch(e){}
-    grab.setAttribute("aria-label",open?"Paths, 8140, Funding: close the sheet":"Paths, 8140, Funding: open the sheet");
+    grab.setAttribute("aria-label",open?"Paths, 8140, Funding: close the sheet":"Paths, 8140, Funding. "+SH_HINT+". Opens the sheet");
     if(!open&&typeof stRender==="function") stRender();
   }
 }
