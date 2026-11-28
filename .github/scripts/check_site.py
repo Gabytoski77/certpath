@@ -568,7 +568,7 @@ def check_qbank(path, ver):
         fail(f"{tag}: domain weights add up to {sum(d.get('w', 0) for d in doms)}, not 100")
     dset = {d["n"]: d for d in doms}
     ids, texts, before = set(), set(), len(failures)
-    mc_long = mc_n = 0
+    mc_long = mc_n = mc_top2 = 0
     per_dom, per_obj = {}, {}
     for q in b.get("q", []):
         qid = q.get("id", "?")
@@ -624,6 +624,9 @@ def check_qbank(path, ver):
             others = max(len(x[0]) for i, x in enumerate(o) if i != a)
             if len(o[a][0]) > others:
                 mc_long += 1
+            # second-longest is a tell too: "never the longest, pick the next one" (v2.94)
+            if sum(1 for i, x in enumerate(o) if i != a and len(x[0]) > len(o[a][0])) <= 1:
+                mc_top2 += 1
     for d in doms:
         for k in range(1, d.get("obj", 0) + 1):
             if per_obj.get(f"{obj_prefix(d['n'])}.{k}", 0) < 2:
@@ -647,8 +650,12 @@ def check_qbank(path, ver):
             fail(f"{tag}: domain {dn} has {per_dom.get(dn, 0)} questions but a half exam needs {n}")
     if mc_n and mc_long / mc_n > 0.4:
         fail(f"{tag}: the right answer is the longest option in {mc_long}/{mc_n} questions (a giveaway); keep it under 40%")
+    if mc_n and mc_top2 / mc_n > 0.85:
+        fail(f"{tag}: the right answer is one of the two longest options in {mc_top2}/{mc_n} questions (a giveaway); keep it under 85%, aim for about 50%")
+    elif mc_n and mc_top2 / mc_n > 0.65:
+        print(f"warn  {tag}: the right answer is one of the two longest options in {round(100 * mc_top2 / mc_n)}% of questions; aim for about 50%")
     if len(failures) == before:
-        ok(f"{tag}: {len(ids)} items, every objective covered, full exam fits, longest-answer tell {round(100 * mc_long / max(mc_n, 1))}%")
+        ok(f"{tag}: {len(ids)} items, every objective covered, full exam fits, longest-answer tell {round(100 * mc_long / max(mc_n, 1))}%, top-two {round(100 * mc_top2 / max(mc_n, 1))}%")
 
 
 def check_bank_domains(path, ver, gid):
