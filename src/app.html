@@ -2578,7 +2578,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.94</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.95</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
     <button type="button" class="hdr-btn" id="hdr-explore" aria-label="Open paths, DoD 8140 and funding"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.7"/><circle cx="12" cy="4" r="1.7"/><circle cx="4" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/></svg></button>
@@ -6281,6 +6281,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.95",d:"2026-11-27",t:"Full practice exams for LPIC-1 (101-500 and 102-500) and LPIC-2 (201-450 and 202-450)."},
   {v:"2.94",d:"2026-11-27",t:"Three new Cisco practice exams for the CCNP core tests: Security (SCOR 350-701), Enterprise (ENCOR 350-401) and Cybersecurity (CBRCOR 350-201)."},
   {v:"2.93",d:"2026-11-27",t:"Four new cloud practice exams: AZ-104, SC-500, AWS Solutions Architect (SAA-C03) and AWS Security Specialty (SCS-C03). Phones no longer zoom in when you tap a practice terminal."},
   {v:"2.92",d:"2026-11-27",t:"On laptop screens, the \u201cWhich certs to take\u201d text no longer covers the MyNextCert name. In Light mode, the globe keeps its map when the network is spotty."},
@@ -10510,6 +10511,8 @@ GUIDES["Linux Essentials"]={
 
 GUIDES["LPIC-1"]={
   id:"lpic1",
+  mock:{e101:"qbank/101-500.json",e102:"qbank/102-500.json"},
+  mockText:"60 questions in 90 minutes, like the real exam, plus hands-on terminal tasks, flags and a review screen. The real exam has no hands-on tasks, so treat those as extra practice. Use your own lab machine or VM.",
   lead:"LPI's first professional Linux cert, earned over two exams. It proves you can run a Linux system from the command line: install software, manage disks, users and services, read logs, set up networking and lock the box down. It's vendor-neutral, so it works on Ubuntu, Red Hat and the Linux servers behind most clouds.",
   checked:"2026-11-10",
   verLabel:"Exam (take both)",
@@ -14386,6 +14389,8 @@ GUIDES["Security Essentials"]={
 };
 GUIDES["LPIC-2"]={
   id:"lpic2",
+  mock:{e201:"qbank/201-450.json",e202:"qbank/202-450.json"},
+  mockText:"60 questions in 90 minutes, like the real exam, plus hands-on terminal tasks, flags and a review screen. The real exam has no hands-on tasks, so treat those as extra practice. Use your own lab machine or VM.",
   verLabel:"Exam (take both)",
   lead:"LPI's advanced Linux engineer cert. It goes past LPIC-1 into kernels, boot recovery, RAID and LVM, advanced networking, and running the services a network depends on: DNS, web, file sharing, LDAP, mail, VPN and firewalls. Two exams, and you need an active LPIC-1 to be awarded it.",
   checked:"2026-11-14",
