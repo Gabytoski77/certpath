@@ -2637,7 +2637,7 @@ button.q8-cp:active{opacity:.7;transition-duration:.1s}
   <div id="labels"></div>
 
   <header class="top ui">
-    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.101</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
+    <div class="mark" data-rv="0"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><path d="M98.1 38L60 16 21.9 38V82L60 104 98.1 82" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 42L94 60 68 78" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/></svg><b class="vh">MyNextCert</b><span>v.2.102</span><button type="button" class="lite-pill" id="lite-pill" aria-label="Lite mode is on. Open settings">Lite</button></div>
     <div class="top-ret" id="top-ret" data-rv="1"></div>
     <div class="hdr-r" data-rv="1">
     <button type="button" class="hdr-btn srch-btn" id="hdr-search" aria-label="Search certs" aria-keyshortcuts="Control+K Meta+K /"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg><span class="sb-l">Search certs</span><kbd class="sb-k kbd-k" data-k="Ctrl K" aria-hidden="true"></kbd></button>
@@ -6363,6 +6363,7 @@ window.addEventListener("resize",function(){if(!shAnims) setSheet(sheetP);placeT
 /* What's new (v2.78). One line per release: add the newest at the TOP of WHATS_NEW (version, ISO date, 1-2 plain lines for users).
    Keep the list to about the last 6. The first entry must match the visible version label. Built with textContent only. */
 var WHATS_NEW=[
+  {v:"2.102",d:"2026-11-28",t:"New PT1 practice exam: 20 questions plus 5 hands-on Pentest Lab engagements, scored like the real exam (pass at 750 of 1000). It is different from the real PT1, which is a 48-hour practical."},
   {v:"2.101",d:"2026-11-28",t:"Groundwork for a Pentest Lab practice question: a simulated hacking lab with a terminal, web view and findings report. Legal-lab practice only. No lab exam yet."},
   {v:"2.100",d:"2026-11-28",t:"New SAL1 practice exam: 20 questions plus 5 timed SOC Simulator scenarios, scored like the real exam (pass at 750 of 1000). It is shorter than the real one."},
   {v:"2.99",d:"2026-11-28",t:"Groundwork for a timed SOC Simulator practice exam: an alert queue, a log search, an analyst terminal and a case report. The first simulator exam is coming soon."},
@@ -6370,7 +6371,6 @@ var WHATS_NEW=[
   {v:"2.97",d:"2026-11-27",t:"The home card now shows your last practice exam score and the next objective to study, and Continue takes you right there. A banner warns you 90 days before an exam you may need retires."},
   {v:"2.96",d:"2026-11-27",t:"Easier navigation on phones and laptops: a home button in guides, a Jump to button that gets out of your way, clearer practice exam names in search, and hints for the bottom bar and vendor row."},
   {v:"2.95",d:"2026-11-27",t:"Full practice exams for LPIC-1 (101-500 and 102-500) and LPIC-2 (201-450 and 202-450)."},
-  {v:"2.94",d:"2026-11-27",t:"Three new Cisco practice exams for the CCNP core tests: Security (SCOR 350-701), Enterprise (ENCOR 350-401) and Cybersecurity (CBRCOR 350-201)."},
 ];
 (function(){
   var d=document.getElementById("wnew"),list=document.getElementById("wn-list");if(!d||!list||!d.showModal) return;
@@ -9056,6 +9056,8 @@ GUIDES["PT1 · Junior Pentester"]={
   objSub:"Six topic areas from TryHackMe's PT1 training content. Tick objectives as you study them; progress saves on this device.",
   planSub:"Set how many hours a week you can give it. The plan splits about 100 hours across the six areas, then saves the last stretch for full practice runs with a written report.",
   pbqSub:"Hands-on practice in the style of the exam: read real tool output, then make the call a pentester would.",
+  mock:{cur:"qbank/pt1.json"},
+  mockText:"25 items in 2.5 hours: 20 multiple-choice questions (200 points) and 5 hands-on Pentest Lab engagements (800 points), scored out of 1,000 with a pass mark of 750. It is different from the real exam: real PT1 is a 48-hour hands-on engagement across web, network and Active Directory with a graded report, and no multiple choice. Every attempt draws different questions and engagements, so retakes differ. Made-up targets only; practice real skills in legal labs.",
   versions:{
     cur:{code:"PT1",label:"Current exam",status:"Launched 2025 · 48-hour practical",
       note:"Three engagements, web application, network and Active Directory, each with its own scope and rules of engagement. You submit flags and write a report for each one. Candidates report a pass mark of 750 of 1000, with web worth the most.",
@@ -15664,7 +15666,7 @@ function mxResults(){
   var h='<div class="mx-res"><div class="g-qend"><div class="g-qscore" style="--p:'+pct+'"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle class="v" cx="60" cy="60" r="52"/></svg><b>'+Math.round(pct*100)+'<small>%</small></b></div>'+
     '<div class="g-qsum"><p class="lab">'+(R.auto?'Time\'s up &middot; ':'')+gEsc(MX_KINDS[run.kind])+' &middot; '+(rec.pts!=null?rec.pts+' of '+rec.top+' points (pass '+rec.pass+')':(Math.round(rec.s*10)/10)+' of '+rec.n)+' &middot; '+mxFmt(rec.u)+' used</p><p class="g-qmsg">'+gEsc(mxVerdict(rec,run.kind))+'</p>'+
     '<ul class="g-qdom">'+keys.map(function(k){var x=rec.by[k], a=x[0]/x[1], L=wsLabel(G,k,run.ver);return '<li class="'+(a>=.7?'ok':'no')+'"><span>'+gEsc(L.num+" "+L.name)+'</span><i><b style="width:'+(a*100)+'%"></b></i><em>'+Math.round(a*100)+'%</em></li>';}).join("")+'</ul>'+
-    (rec.pts!=null?'<p class="mx-note">Scored like the real exam: multiple choice is worth 200 points and the SOC Simulator scenarios 800. This practice exam is shorter than the real one, so treat the score as a guide.</p>':run.kind==="full"||run.kind==="half"?'<p class="mx-note">'+(mxPassFail(G)?'The real exam is pass/fail with no score, and CompTIA doesn\'t publish the cut line':'CompTIA doesn\'t publish how raw scores turn into its 100&ndash;900 scale')+', so this shows a percent. Aim for 85% or better on two different runs.</p>':'')+
+    (rec.pts!=null?'<p class="mx-note">Scored like the real exam: multiple choice is worth 200 points and the hands-on scenarios 800. This practice exam is shorter than the real one, so treat the score as a guide.</p>':run.kind==="full"||run.kind==="half"?'<p class="mx-note">'+(mxPassFail(G)?'The real exam is pass/fail with no score, and CompTIA doesn\'t publish the cut line':'CompTIA doesn\'t publish how raw scores turn into its 100&ndash;900 scale')+', so this shows a percent. Aim for 85% or better on two different runs.</p>':'')+
     '</div></div>'+
     '<div class="mx-sub">'+(missed.length?'<button type="button" class="g-btn" data-mxa="missed"><span class="g-btn-l">Retry the '+missed.length+' I missed &rarr;</span></button>':'')+
     '<button type="button" class="g-btn ghost" data-mxa="close"><span class="g-btn-l">Done</span></button></div>'+
